@@ -7,8 +7,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EVALS = ROOT / "evals"
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 manifest = json.loads((EVALS / "cases.json").read_text(encoding="utf-8"))
 errors: list[str] = []
+
+if manifest.get("version") != VERSION:
+    errors.append("evals/cases.json version must match VERSION")
 
 seen: set[str] = set()
 for case in manifest.get("cases", []):
@@ -54,6 +58,27 @@ if missing:
 
 if len(manifest.get("cases", [])) < 10:
     errors.append("Expected at least 10 behavioral eval cases")
+
+required_isolation_cases = {
+    "product-isolation-website",
+    "product-isolation-dashboard",
+    "product-isolation-web-application",
+    "product-isolation-mobile-application",
+    "product-isolation-wordpress-plugin",
+}
+missing_isolation = sorted(required_isolation_cases - seen)
+if missing_isolation:
+    errors.append(
+        "Missing explicit product-isolation eval cases: " + ", ".join(missing_isolation)
+    )
+
+for case in manifest.get("cases", []):
+    if case.get("id") not in required_isolation_cases:
+        continue
+    invariants = " ".join(case.get("invariants", [])).casefold()
+    for term in ["does not load", "shared rules", "design system", "intentionally not loaded"]:
+        if term not in invariants:
+            errors.append(f"{case.get('id')}: isolation eval missing invariant term: {term}")
 
 if errors:
     print("Behavioral eval fixture validation failed:")

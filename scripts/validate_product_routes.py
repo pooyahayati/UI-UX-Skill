@@ -9,28 +9,6 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "ui-ux-skill"
 REGISTRY = SKILL / "product-types.json"
 
-MOBILE_LOCAL_PACKS = [
-    "references/products/mobile/ios.md",
-    "references/products/mobile/android.md",
-    "references/products/mobile/cross-platform.md",
-]
-
-WORDPRESS_LOCAL_PACKS = [
-    "references/products/wordpress/settings.md",
-    "references/products/wordpress/onboarding-integrations.md",
-    "references/products/wordpress/diagnostics-operations.md",
-    "references/products/wordpress/multisite-admin.md",
-]
-
-DASHBOARD_LOCAL_PACKS = [
-    "references/products/dashboard/executive.md",
-    "references/products/dashboard/analytical.md",
-    "references/products/dashboard/operational.md",
-    "references/products/dashboard/monitoring-noc.md",
-    "references/products/dashboard/crm-pipeline.md",
-    "references/products/dashboard/admin-management.md",
-]
-
 REQUIRED_PRODUCT_IDS = {
     "website",
     "dashboard",
@@ -40,11 +18,62 @@ REQUIRED_PRODUCT_IDS = {
     "generic-product-ui",
 }
 
+PRIMARY_PACKS = {
+    "website": "references/products/website.md",
+    "dashboard": "references/products/dashboard.md",
+    "web-application": "references/products/web-application.md",
+    "mobile-application": "references/products/mobile-application.md",
+    "wordpress-plugin": "references/products/wordpress-plugin.md",
+    "generic-product-ui": "references/product-routing.md",
+}
+
+LOCAL_MODULES = {
+    "website": [
+        "references/products/website/structure-navigation.md",
+        "references/products/website/conversion-trust.md",
+        "references/products/website/content-seo.md",
+        "references/products/website/media-performance.md",
+        "references/products/website/accessibility-localization-qa.md",
+    ],
+    "dashboard": [
+        "references/products/dashboard/executive.md",
+        "references/products/dashboard/analytical.md",
+        "references/products/dashboard/operational.md",
+        "references/products/dashboard/monitoring-noc.md",
+        "references/products/dashboard/crm-pipeline.md",
+        "references/products/dashboard/admin-management.md",
+    ],
+    "web-application": [
+        "references/products/web-application/navigation-state.md",
+        "references/products/web-application/workflows-data.md",
+        "references/products/web-application/interaction-access.md",
+    ],
+    "mobile-application": [
+        "references/products/mobile/ios.md",
+        "references/products/mobile/android.md",
+        "references/products/mobile/cross-platform.md",
+    ],
+    "wordpress-plugin": [
+        "references/products/wordpress/settings.md",
+        "references/products/wordpress/onboarding-integrations.md",
+        "references/products/wordpress/diagnostics-operations.md",
+        "references/products/wordpress/multisite-admin.md",
+    ],
+}
+
 errors: list[str] = []
 
 
 def error(message: str) -> None:
     errors.append(message)
+
+
+def read(rel: str) -> str:
+    path = SKILL / rel
+    if not path.is_file():
+        error(f"missing required file: {rel}")
+        return ""
+    return path.read_text(encoding="utf-8")
 
 
 try:
@@ -57,12 +86,19 @@ if data.get("schema_version") != 1:
     error("product-types.json schema_version must be 1")
 
 policy = data.get("policy", {})
-if policy.get("classification_required") is not True:
-    error("product classification must be required")
-if policy.get("require_primary_route") is not True:
-    error("a primary product route must be required")
-if policy.get("product_rules_are_mandatory") is not True:
-    error("Product Pack rules must be mandatory")
+for key in [
+    "classification_required",
+    "require_primary_route",
+    "product_rules_are_mandatory",
+    "load_only_active_product_packs",
+    "internal_product_modules_are_parent_routed",
+]:
+    if policy.get(key) is not True:
+        error(f"product routing policy must require {key}")
+
+if policy.get("preload_inactive_product_knowledge") is not False:
+    error("inactive product knowledge must not be preloaded")
+
 if policy.get("fallback_route") != "generic-product-ui":
     error("generic-product-ui must remain the fallback route")
 
@@ -87,147 +123,87 @@ for item in products:
         error(f"duplicate product route id: {product_id}")
     seen.add(product_id)
 
-    label = item.get("label")
-    triggers = item.get("triggers")
-    refs = item.get("required_references")
-
-    if not isinstance(label, str) or not label.strip():
-        error(f"{product_id}: missing label")
-    if not isinstance(triggers, list) or not triggers:
-        error(f"{product_id}: missing triggers")
-    if not isinstance(refs, list) or not refs:
-        error(f"{product_id}: missing required_references")
-
     if item.get("fallback_only"):
         fallback_count += 1
-        if product_id != policy.get("fallback_route"):
-            error(f"{product_id}: only configured fallback may use fallback_only")
+        if product_id != "generic-product-ui":
+            error(f"{product_id}: only generic-product-ui may be fallback_only")
+
+    triggers = item.get("triggers")
+    if not isinstance(triggers, list) or not triggers:
+        error(f"{product_id}: missing triggers")
+
+    refs = item.get("required_references")
+    expected = [PRIMARY_PACKS.get(product_id)]
+    if refs != expected:
+        error(
+            f"{product_id}: required_references must contain only its top-level Product Pack; "
+            f"expected={expected!r}, found={refs!r}"
+        )
+
+    for key in item:
+        if key != "required_references" and "reference" in key.casefold():
+            error(
+                f"{product_id}: global registry leaks internal product routing via {key}; "
+                "internal modules must be parent-routed"
+            )
 
     for ref in refs or []:
-        if not isinstance(ref, str) or not ref.startswith("references/") or not ref.endswith(".md"):
-            error(f"{product_id}: invalid Product Pack reference: {ref!r}")
-            continue
-        path = SKILL / ref
-        if not path.is_file():
-            error(f"{product_id}: missing Product Pack: {ref}")
-            continue
-
-        text = path.read_text(encoding="utf-8")
-        if product_id != "generic-product-ui":
-            activation = f"active product route includes `{product_id}`"
-            if activation.casefold() not in text.casefold():
-                error(
-                    f"{product_id}: Product Pack must state that it applies only when "
-                    f"the active route includes {product_id}"
-                )
+        read(ref)
 
 missing = REQUIRED_PRODUCT_IDS - seen
 if missing:
     error(f"missing required product routes: {sorted(missing)}")
-
+if seen - REQUIRED_PRODUCT_IDS:
+    error(f"unexpected product routes: {sorted(seen - REQUIRED_PRODUCT_IDS)}")
 if fallback_count != 1:
     error(f"exactly one fallback_only route is required; found {fallback_count}")
 
-skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
-for required_term in [
-    "product-types.json",
-    "references/product-routing.md",
-    "dashboard",
-    "web-application",
-    "mobile-application",
-    "wordpress-plugin",
-]:
-    if required_term.casefold() not in skill_text.casefold():
-        error(f"SKILL.md missing product-routing term: {required_term}")
+for product_id, refs in LOCAL_MODULES.items():
+    parent_ref = PRIMARY_PACKS[product_id]
+    parent_text = read(parent_ref)
+    parent_folded = parent_text.casefold()
 
-routing = (SKILL / "references" / "product-routing.md").read_text(encoding="utf-8")
-for required_term in [
-    "MUST be classified by product type",
-    "required_references",
-    "primary product route",
-    "Multiple product routes",
-    "generic-product-ui",
-]:
-    if required_term.casefold() not in routing.casefold():
-        error(f"product-routing.md missing required policy: {required_term}")
+    if "shared-product-rules.md" not in parent_text:
+        error(f"{parent_ref}: must route shared behavior through shared-product-rules.md")
+    if "shared-rule boundary" not in parent_folded and "routing contract" not in parent_folded:
+        error(f"{parent_ref}: missing compact routing/shared boundary")
 
-for ref in MOBILE_LOCAL_PACKS:
-    path = SKILL / ref
-    if not path.is_file():
-        error(f"missing local mobile rule pack: {ref}")
+    for ref in refs:
+        module_text = read(ref)
+        short = ref.removeprefix("references/products/")
+        if short.casefold() not in parent_folded:
+            error(f"{parent_ref}: does not route to local module {short}")
 
-mobile_route = next(
-    (item for item in products if isinstance(item, dict) and item.get("id") == "mobile-application"),
-    {},
-)
-platform_refs = mobile_route.get("platform_references", {})
-expected_platform_refs = {
-    "ios": "references/products/mobile/ios.md",
-    "android": "references/products/mobile/android.md",
-    "cross_platform": "references/products/mobile/cross-platform.md",
-}
-if platform_refs != expected_platform_refs:
-    error("mobile-application platform_references must point to the three local mobile rule packs")
+        module_folded = module_text.casefold()
+        if not any(term in module_folded for term in ["load only", "use this local rule pack", "use for:"]):
+            error(f"{ref}: local module must state its activation/scope")
 
-mobile_main = (SKILL / "references" / "products" / "mobile-application.md")
-if mobile_main.is_file():
-    mobile_text = mobile_main.read_text(encoding="utf-8").casefold()
-    for term in [
-        "mobile/ios.md",
-        "mobile/android.md",
-        "mobile/cross-platform.md",
-        "shared mobile ux",
-        "do not use external design skills",
-    ]:
-        if term.casefold() not in mobile_text:
-            error(f"mobile-application.md missing required local routing term: {term}")
+for product_id, parent_ref in PRIMARY_PACKS.items():
+    if product_id == "generic-product-ui":
+        continue
+    text = read(parent_ref).casefold()
+    for other_id, other_refs in LOCAL_MODULES.items():
+        if other_id == product_id:
+            continue
+        for ref in other_refs:
+            short = ref.removeprefix("references/products/").casefold()
+            if short in text:
+                error(
+                    f"{parent_ref}: routes to inactive product module {short}; "
+                    "cross-product modules must stay isolated"
+                )
 
-website_main = SKILL / "references" / "products" / "website.md"
-if website_main.is_file():
-    website_text = website_main.read_text(encoding="utf-8").casefold()
-    for term in [
+coverage_terms = {
+    "website": [
         "website subtype and visitor job",
-        "information architecture",
-        "homepage architecture",
-        "first viewport / hero",
-        "conversion ux",
-        "trust and credibility",
-        "seo-aware information architecture",
-        "responsive media and art direction",
-        "performance ux",
-        "accessibility",
-        "localization, persian, and rtl websites",
-        "website qa matrix",
-        "do not depend on an external design skill",
-    ]:
-        if term.casefold() not in website_text:
-            error(f"website.md missing local Website Product Pack section: {term}")
-
-for ref in DASHBOARD_LOCAL_PACKS:
-    path = SKILL / ref
-    if not path.is_file():
-        error(f"missing local Dashboard mode pack: {ref}")
-
-dashboard_route = next(
-    (item for item in products if isinstance(item, dict) and item.get("id") == "dashboard"),
-    {},
-)
-dashboard_refs = dashboard_route.get("local_references", {})
-expected_dashboard_refs = {
-    "executive": "references/products/dashboard/executive.md",
-    "analytical": "references/products/dashboard/analytical.md",
-    "operational": "references/products/dashboard/operational.md",
-    "monitoring_noc": "references/products/dashboard/monitoring-noc.md",
-    "crm_pipeline": "references/products/dashboard/crm-pipeline.md",
-    "admin_management": "references/products/dashboard/admin-management.md",
-}
-if dashboard_refs != expected_dashboard_refs:
-    error("dashboard local_references must point to the six local Dashboard mode packs")
-
-dashboard_main = SKILL / "references" / "products" / "dashboard.md"
-if dashboard_main.is_file():
-    dashboard_text = dashboard_main.read_text(encoding="utf-8").casefold()
-    for term in [
+        "website decision brief",
+        "structure-navigation.md",
+        "conversion-trust.md",
+        "content-seo.md",
+        "media-performance.md",
+        "accessibility-localization-qa.md",
+    ],
+    "dashboard": [
         "required dashboard mode routing",
         "dashboard/executive.md",
         "dashboard/analytical.md",
@@ -235,65 +211,57 @@ if dashboard_main.is_file():
         "dashboard/monitoring-noc.md",
         "dashboard/crm-pipeline.md",
         "dashboard/admin-management.md",
-        "dashboard decision brief",
-        "data trust ux",
-        "dashboard qa matrix",
-        "do not depend on an external design skill",
-    ]:
-        if term.casefold() not in dashboard_text:
-            error(f"dashboard.md missing required local rule or routing term: {term}")
-
-for ref in WORDPRESS_LOCAL_PACKS:
-    path = SKILL / ref
-    if not path.is_file():
-        error(f"missing local WordPress rule pack: {ref}")
-
-wordpress_route = next(
-    (item for item in products if isinstance(item, dict) and item.get("id") == "wordpress-plugin"),
-    {},
-)
-wordpress_refs = wordpress_route.get("local_references", {})
-expected_wordpress_refs = {
-    "settings": "references/products/wordpress/settings.md",
-    "onboarding_integrations": "references/products/wordpress/onboarding-integrations.md",
-    "diagnostics_operations": "references/products/wordpress/diagnostics-operations.md",
-    "multisite_admin": "references/products/wordpress/multisite-admin.md",
-}
-if wordpress_refs != expected_wordpress_refs:
-    error("wordpress-plugin local_references must point to the four local WordPress rule packs")
-
-wordpress_main = SKILL / "references" / "products" / "wordpress-plugin.md"
-if wordpress_main.is_file():
-    wordpress_text = wordpress_main.read_text(encoding="utf-8").casefold()
-    for term in [
+    ],
+    "web-application": [
+        "navigation-state.md",
+        "workflows-data.md",
+        "interaction-access.md",
+        "browser history",
+        "autosave",
+        "concurrency",
+    ],
+    "mobile-application": [
+        "required mobile routing",
+        "mobile/ios.md",
+        "mobile/android.md",
+        "mobile/cross-platform.md",
+    ],
+    "wordpress-plugin": [
         "required wordpress routing",
         "wordpress/settings.md",
         "wordpress/onboarding-integrations.md",
         "wordpress/diagnostics-operations.md",
         "wordpress/multisite-admin.md",
-        "capability boundaries",
-        "site health",
-        "privacy and personal data",
-        "plugin qa matrix",
-        "do not depend on an external design skill",
-    ]:
-        if term.casefold() not in wordpress_text:
-            error(f"wordpress-plugin.md missing required local rule or routing term: {term}")
+    ],
+}
 
-web_main = SKILL / "references" / "products" / "web-application.md"
-if web_main.is_file():
-    web_text = web_main.read_text(encoding="utf-8").casefold()
-    for term in [
-        "browser navigation and url state",
-        "drafts, autosave, and unsaved changes",
-        "long-running and background work",
-        "concurrency, stale data, and conflicting edits",
-        "dialogs, drawers, popovers, and overlays",
-        "accessibility interaction contracts",
-        "do not depend on an external design skill",
-    ]:
-        if term.casefold() not in web_text:
-            error(f"web-application.md missing local UX rule section: {term}")
+for product_id, terms in coverage_terms.items():
+    text = read(PRIMARY_PACKS[product_id]).casefold()
+    for term in terms:
+        if term.casefold() not in text:
+            error(f"{PRIMARY_PACKS[product_id]} missing routing/coverage term: {term}")
+
+routing = read("references/product-routing.md").casefold()
+for term in [
+    "product isolation",
+    "inactive product knowledge is out of scope",
+    "load only the `required_references` for active routes",
+    "internal dashboard modes",
+    "generic-product-ui",
+]:
+    if term.casefold() not in routing:
+        error(f"product-routing.md missing required isolation policy: {term}")
+
+skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8").casefold()
+for term in [
+    "product isolation",
+    "product-types.json",
+    "references/product-routing.md",
+    "do not load another product pack",
+    "product-specific references are discovered through the active product pack",
+]:
+    if term.casefold() not in skill_text:
+        error(f"SKILL.md missing thin-head/product-isolation contract: {term}")
 
 if errors:
     print("Product route validation failed:")
@@ -301,4 +269,4 @@ if errors:
         print(f"- {item}")
     raise SystemExit(1)
 
-print("Product route validation passed.")
+print("Product route validation passed: active-pack isolation and parent-routed local modules enforced.")

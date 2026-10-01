@@ -10,23 +10,11 @@ Read the shared detailed component/pattern reference when dashboard components o
 
 `../dashboard-patterns.md`
 
-## Shared rule loading
+## Shared-rule boundary
 
-After the Dashboard Product Pack is active, read `../shared-product-rules.md` and `../../shared-rules.json`.
+After this Product Pack is active, read `../shared-product-rules.md` and load only Shared Product UI Rules that are materially in scope.
 
-For broad dashboard work normally load:
-
-- `../shared/navigation-wayfinding.md`
-- `../shared/feedback-status.md`
-- `../shared/state-recovery.md`
-- `../shared/accessibility-interaction.md`
-- `../shared/responsive-adaptation.md`
-- `../shared/content-hierarchy-progressive-disclosure.md`
-
-Load `../shared/forms-data-entry.md`, `../shared/destructive-high-impact-actions.md`, and `../shared/motion.md` when materially in scope.
-
-Dashboard specialization retains Data Trust UX, metrics, targets/baselines, filters, drill-down, tables/work queues, charts, cross-filtering, alerts, live-update behavior, personalization, role-aware presentation, and mode-specific decision semantics.
-
+Do not duplicate the cross-product contracts here. This Product Pack owns only its product/platform/host specialization and any local sub-routing described below.
 ## Required Dashboard mode routing
 
 Before broad dashboard design decisions, identify the primary Dashboard mode.

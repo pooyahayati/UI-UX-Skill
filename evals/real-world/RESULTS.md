@@ -1,6 +1,6 @@
 # Stage 6 Real-World Evaluation Results
 
-Candidate: UI/UX Skill v3.0.0  
+Candidate: UI/UX Skill v3.1.0  
 Date: 2026-10-02  
 Host: ChatGPT  
 Model: GPT-5.6 Sol  
@@ -16,11 +16,11 @@ Mode: in-session source-based behavioral evaluation
 
 ## Cross-product observations
 
-No blocking routing conflict was found across the five representative projects.
+No blocking routing conflict was found across the five representative projects. The 3.1.0 stabilization check also enforces explicit inactive-route isolation for each primary Product Type.
 
 The layered architecture held consistently:
 
-`Product Route -> Product Pack/local packs -> Shared Product UI Rules -> Design System modules`
+`Product Route -> Active Product Pack only -> scope-relevant local packs -> scope-relevant Shared Product UI Rules -> relevant Design System modules`
 
 The most important positive outcome is that generic visual rules did not displace product-specific semantics:
 

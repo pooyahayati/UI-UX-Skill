@@ -5,7 +5,10 @@
     "allow_multiple_routes": true,
     "require_primary_route": true,
     "product_rules_are_mandatory": true,
-    "fallback_route": "generic-product-ui"
+    "fallback_route": "generic-product-ui",
+    "load_only_active_product_packs": true,
+    "internal_product_modules_are_parent_routed": true,
+    "preload_inactive_product_knowledge": false
   },
   "products": [
     {
@@ -22,15 +25,7 @@
       ],
       "required_references": [
         "references/products/dashboard.md"
-      ],
-      "local_references": {
-        "executive": "references/products/dashboard/executive.md",
-        "analytical": "references/products/dashboard/analytical.md",
-        "operational": "references/products/dashboard/operational.md",
-        "monitoring_noc": "references/products/dashboard/monitoring-noc.md",
-        "crm_pipeline": "references/products/dashboard/crm-pipeline.md",
-        "admin_management": "references/products/dashboard/admin-management.md"
-      }
+      ]
     },
     {
       "id": "web-application",
@@ -66,12 +61,7 @@
       ],
       "required_references": [
         "references/products/mobile-application.md"
-      ],
-      "platform_references": {
-        "ios": "references/products/mobile/ios.md",
-        "android": "references/products/mobile/android.md",
-        "cross_platform": "references/products/mobile/cross-platform.md"
-      }
+      ]
     },
     {
       "id": "wordpress-plugin",
@@ -88,13 +78,7 @@
       ],
       "required_references": [
         "references/products/wordpress-plugin.md"
-      ],
-      "local_references": {
-        "settings": "references/products/wordpress/settings.md",
-        "onboarding_integrations": "references/products/wordpress/onboarding-integrations.md",
-        "diagnostics_operations": "references/products/wordpress/diagnostics-operations.md",
-        "multisite_admin": "references/products/wordpress/multisite-admin.md"
-      }
+      ]
     },
     {
       "id": "website",

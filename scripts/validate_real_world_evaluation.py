@@ -43,6 +43,22 @@ expected_routes = {
     "mobile-application",
     "wordpress-plugin",
 }
+
+PRODUCT_PREFIXES = {
+    "dashboard": "references/products/dashboard",
+    "website": "references/products/website",
+    "web-application": "references/products/web-application",
+    "mobile-application": "references/products/mobile",
+    "wordpress-plugin": "references/products/wordpress",
+}
+
+TOP_LEVEL_PRODUCT_REFS = {
+    "dashboard": "references/products/dashboard.md",
+    "website": "references/products/website.md",
+    "web-application": "references/products/web-application.md",
+    "mobile-application": "references/products/mobile-application.md",
+    "wordpress-plugin": "references/products/wordpress-plugin.md",
+}
 routes = {x.get("product_route") for x in cases if isinstance(x, dict)}
 if routes != expected_routes:
     error(f"real-world product coverage mismatch: {sorted(routes)}")
@@ -89,9 +105,30 @@ for item in cases:
     refs = item.get("product_refs", [])
     if not refs:
         error(f"{case_id}: product_refs must not be empty")
+    if TOP_LEVEL_PRODUCT_REFS.get(route) not in refs:
+        error(f"{case_id}: active top-level Product Pack missing from product_refs")
+
+    forbidden_routes = item.get("forbidden_product_routes", [])
+    expected_forbidden = expected_routes - {route}
+    if set(forbidden_routes) != expected_forbidden:
+        error(
+            f"{case_id}: forbidden_product_routes must contain exactly the four inactive routes; "
+            f"expected={sorted(expected_forbidden)}, found={sorted(set(forbidden_routes))}"
+        )
+
     for ref in refs:
         if not (SKILL / ref).is_file():
             error(f"{case_id}: missing product reference: {ref}")
+            continue
+
+        for forbidden_route in forbidden_routes:
+            forbidden_top = TOP_LEVEL_PRODUCT_REFS[forbidden_route]
+            forbidden_prefix = PRODUCT_PREFIXES[forbidden_route] + "/"
+            if ref == forbidden_top or ref.startswith(forbidden_prefix):
+                error(
+                    f"{case_id}: inactive Product Pack leaked into product_refs: "
+                    f"{forbidden_route} -> {ref}"
+                )
 
     rule_ids = item.get("shared_rules", [])
     if not rule_ids:
@@ -175,4 +212,4 @@ if errors:
         print(f"- {item}")
     raise SystemExit(1)
 
-print("Real-world evaluation validation passed: 5 products, 0 blocking failures.")
+print("Real-world evaluation validation passed: 5 products, explicit inactive-route isolation, 0 blocking failures.")

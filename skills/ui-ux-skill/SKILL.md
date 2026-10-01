@@ -1,129 +1,85 @@
 ---
 name: ui-ux-skill
-description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production product interfaces. Works standalone or as a specialist under a higher-level engineering Head. It MUST classify the product type and load the required Product Pack before product-specific design decisions, then load only scope-relevant Shared Product UI Rules and route remaining specialist concerns. Use for product UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, navigation, forms, data UI, accessibility, performance, personalization, runtime design governance, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing-only websites, or unrelated graphic design.
+description: Product-aware UI/UX Head Skill for production websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other product interfaces. Use for UI/UX design, audits, improvements, responsive/RTL work, personalization, runtime design governance, and visual QA. It classifies the product first, loads only the active Product Pack and scope-relevant Shared UI Rules and Design System modules, and preserves business logic and permissions. Persian-facing UI requires persian-writing. Do not use for backend-only work or unrelated graphic design.
 ---
 
 # UI/UX Skill
 
-Build and improve production interfaces for real work, not screenshot-first demos.
-
-Core principle:
+Build and improve production interfaces for real work.
 
 > Design for the task, not for the screenshot.
 
-## Operating role and delegation
+## Role
 
-This Skill can run in two modes:
+This Skill operates as either:
 
-- **Standalone UI/UX Head** — invoked directly and responsible for UI/UX routing, design decisions, and UI validation.
-- **Head-delegated UI/UX Specialist** — invoked by a higher-level engineering Head with objective, scope, constraints, risk/approval requirements, or acceptance criteria already established.
-
-Read `references/specialist-routing.md` whenever another Skill delegates work to this Skill or when a lower-level specialist may be required.
-
-In Head-delegated mode:
-
-- preserve the higher-level Head's approved scope, risk floor, architecture/security boundaries, and acceptance criteria;
-- do not repeat discovery or reopen decisions already settled upstream;
-- own UI/UX decisions only inside the delegated boundary;
-- return a structured UI/UX handoff rather than declaring the entire software objective complete.
-
-Authority order:
-
-`Higher-level Engineering Head -> UI/UX Head -> Lower-level Specialist`
-
-## Route the product first
-
-Before choosing a work mode, read:
-
-- `product-types.json`
-- `references/product-routing.md`
-
-Determine the primary product route and load every required Product Pack for that route.
-
-Product classification is mandatory for product UI work.
-
-For major/new work, do not make product-specific design decisions until the product route is resolved.
-
-For narrow existing-product changes, infer the route from repository/product evidence when confidence is high.
-
-A task may activate multiple Product Packs, but one primary route must be identified for the current deliverable.
-
-Current registered routes include:
-
-- `website`
-- `dashboard`
-- `web-application`
-- `mobile-application`
-- `wordpress-plugin`
-- `generic-product-ui` as fallback only
-
-## Route shared product UI rules
-
-After the product route and required Product Pack are resolved, read:
-
-- `shared-rules.json`
-- `references/shared-product-rules.md`
-
-Load only the Shared Product UI Rule modules that are relevant to the current scope.
-
-For broad new-product or redesign work, normally consider navigation, feedback/status, state/recovery, accessibility interaction, responsive adaptation, and content hierarchy/progressive disclosure. Load forms, destructive actions, and motion when those concerns are materially in scope.
-
-Product Packs specialize Shared Rules. They do not get replaced by them.
+- **Standalone UI/UX Head** — owns UI/UX routing, decisions, implementation guidance, and validation.
+- **Head-delegated UI/UX Specialist** — works inside scope, architecture, risk, approval, and acceptance constraints supplied by a Higher-level Engineering Head.
 
 Authority:
 
-`Higher-level Engineering Head -> UI/UX Head invariants -> Active Product Pack -> Shared Product UI Rule -> Design-system defaults -> implementation details`
+`Higher-level Engineering Head -> UI/UX Head -> Lower-level Specialist`
 
-A Product Pack may adapt a Shared Rule for its host/platform/domain, but must not weaken accessibility, security, authorization, data integrity, or truthful-state requirements.
+In Head-delegated mode, do not reopen decisions already settled upstream unless they create a material UI/UX conflict or safety problem.
 
-Do not duplicate a complete Shared Rule inside a Product Pack. Keep only product-specific extensions, exceptions, examples, and validation.
+## Required execution order
 
-## Route the design system
+Use this order for product UI work:
 
-When the task creates, changes, audits, or migrates a reusable design system, read:
+1. inspect the request and available product/repository evidence;
+2. read `product-types.json` and `references/product-routing.md`;
+3. resolve one primary product route and only genuine secondary routes;
+4. load only the required Product Pack(s) for active routes;
+5. let each active Product Pack route its own internal modules;
+6. read `shared-rules.json` and `references/shared-product-rules.md`, then load only scope-relevant Shared Product UI Rules;
+7. when reusable foundations, themes, tokens, states, variants, or migration are materially involved, read `design-system.json` and `references/design-system-architecture.md`, then load only relevant Design System modules;
+8. read `specialists.json` and `references/specialist-routing.md` only when delegation/specialist concerns are relevant; Persian-facing UI requires `persian-writing`;
+9. choose the smallest task mode that fits;
+10. validate the actual affected surfaces and report what was and was not checked.
 
-- `design-system.json`
-- `references/design-system-architecture.md`
+Do not make product-specific design decisions before product routing is resolved for major/new work.
 
-Then load only the relevant local Design System modules.
+## Product isolation
 
-For broad new-product or strategic redesign work, normally consider:
+Inactive product knowledge is out of scope.
 
-- tokens/foundations;
-- typography;
-- color/theme;
-- spacing/density/layout;
-- component states;
-- responsive/product variants;
-- governance/migration.
+For a single-route task:
 
-Do not load every Design System module for a narrow cosmetic change.
+- do not load another Product Pack;
+- do not load another product's local modules;
+- do not preload internal module maps from the global registry;
+- do not use another product's conventions as generic defaults;
+- do not load every Shared Rule or Design System module "just in case".
 
-Design System authority comes after Product Pack and Shared Product UI Rules. It must not redefine product semantics, host/platform behavior, authorization, or workflow meaning.
+Multiple Product Packs are allowed only when the current deliverable genuinely spans multiple product surfaces.
 
-## Route the task mode
+The global registry classifies products. Internal product routing belongs only to the activated Product Pack.
 
-Choose the smallest mode that fits the request.
+## Task modes
+
+Choose the smallest mode that satisfies the request.
 
 ### New product
 
-Use when there is no established interface.
+Use when no established interface exists.
 
-Read:
+Read as needed:
+
 - `references/discovery-and-profile.md`
-- the relevant domain references
-- `references/design-system-architecture.md` when implementing a reusable product UI
+- relevant active Product Pack modules
+- `references/design-system-architecture.md` when building reusable product UI
 - `references/qa-checklist.md` before completion
 
 Typical flow:
 
-`Inspect -> Discover -> Recommend -> Approve or Delegate -> Foundation -> Representative Screen -> Roll Out -> QA`
+`Inspect -> Discover -> Decide -> Foundation -> Representative Surface -> Roll Out -> QA`
 
 ### Existing product — audit only
 
-Use when the user asks to review, critique, assess, or report problems.
+Use for review, critique, assessment, or problem reporting.
 
 Read:
+
 - `references/existing-product-audit.md`
 - `references/qa-checklist.md`
 
@@ -131,229 +87,132 @@ Do not modify code or assets unless requested.
 
 ### Existing product — audit and improve
 
-Use when the user asks to fix, modernize, improve, polish, or redesign an existing product.
+Use for fix, modernization, redesign, or polish work.
 
-Read:
+Read as needed:
+
 - `references/existing-product-audit.md`
 - `references/execution-safety.md`
-- `references/design-system-architecture.md` when maintainability or configurability matters
-- relevant visual/domain references
+- relevant active Product Pack and Shared Rules
+- `references/design-system-architecture.md` when maintainability/configurability matters
 - `references/qa-checklist.md`
 
 Typical flow:
 
 `Baseline -> Audit -> Prioritize -> Fix -> Validate -> Compare -> Refine`
 
-If no approved `design-profile.md` exists, infer an Observed Baseline first. Do not force a full discovery interview for local corrective work.
-
 ### Targeted UI change
 
-Use when the request is narrow, such as a table, form, palette, mobile issue, RTL defect, theme issue, typography problem, logo treatment, personalization feature, or appearance setting.
+Use for narrow work such as one form, table, navigation defect, theme issue, RTL problem, responsive defect, palette adjustment, or component state.
 
-Inspect the affected surface and read only the relevant references.
+Inspect only the affected surface and load only the references required by that scope.
 
 Do not expand the assignment unnecessarily.
 
 ## Autonomy and approvals
 
-Respect the user's working style.
+Respect upstream or user-specified approval requirements.
 
-When a higher-level Head supplied approval or autonomy constraints, those constraints take precedence over this Skill's standalone autonomy defaults.
+In collaborative work, pause before broad changes to primary navigation, information architecture, core workflows, global palette/typography, design-system foundations, brand identity, framework/component-library migration, or product-wide runtime configuration.
 
-### Collaborative mode
+In delegated work, proceed within approved scope but never silently weaken security, permissions, business rules, data meaning, or protected user changes.
 
-Use when the user wants to review major design decisions.
-
-Pause before broad changes to:
-- primary navigation
-- information architecture
-- core workflows
-- global palette or typography
-- design-system foundation
-- actual logo artwork or brand identity
-- UI framework or component-library migration
-- runtime configuration capabilities that change product-wide behavior
-
-### Delegated mode
-
-Use when the user explicitly asks the agent to make reasonable design decisions and complete the work without repeated approvals.
-
-Proceed within the requested scope, but still do not silently:
-- weaken permissions or security
-- change business rules or data meaning
-- remove product capabilities
-- replace the actual brand identity unless that was requested
-- introduce a major framework migration without a clear need
-- expose arbitrary CSS, JavaScript, HTML, or unsafe runtime customization
-
-Document significant decisions at the end.
-
-### Audit-only mode
-
-Never modify code, configuration, or assets.
+Audit-only work never modifies code, configuration, or assets.
 
 ## Non-negotiable invariants
 
 1. Inspect before changing.
-2. Preserve user intent and scope.
+2. Preserve requested scope and user intent.
 3. Preserve business logic, permissions, validation, routing, API contracts, and data semantics unless explicitly authorized.
-4. Treat working-tree safety and user-authored changes as protected; read `references/execution-safety.md` for implementation work.
+4. Protect working-tree and user-authored changes; use `references/execution-safety.md` for implementation work.
 5. Reuse the existing stack before adding dependencies.
-6. Existing visual design is not sacred. Improve weak hierarchy, palette, typography, component styling, brand treatment, and responsive behavior when justified.
-7. Treat Persian RTL and English LTR as native modes, not post-processing.
-8. Treat responsive behavior as product architecture, not a final CSS patch.
-9. Use supplied/local fonts and brand assets responsibly; check licensing before adding third-party assets.
-10. Prefer semantic design tokens and configuration boundaries over hard-coded presentation when building reusable product UI.
-11. Runtime customization must be constrained, validated, permissioned, previewable, and reversible.
-12. User preferences must not override locked product constraints or security-sensitive behavior.
-13. Do not call a major UI task complete without QA of the rendered result when rendering/browser access is available.
-14. Report what was actually inspected and what was not.
-15. Do not claim improvement merely because the interface looks newer.
-16. Base significant UX findings on evidence and confidence; do not fabricate metrics or research.
-17. For broad visual changes, capture or report the absence of a rendered baseline when screenshot/browser tooling is available.
-18. Preserve valid user preferences across schema/config changes and reconcile invalid preferences safely.
-19. Use required specialist Skills when their triggers are active; currently only `persian-writing` is an external specialist, and no external design Skill is required.
-20. Keep specialist knowledge out of the Head: store only routing, precedence, constraints, handoff, and fallback rules; do not duplicate specialist methodology.
-21. Use the latest available stable Head/Specialist installations when freshness can be verified; never pin specialist versions in Head routing without an explicit compatibility requirement.
-22. Classify every product UI task through `product-types.json` and load all required Product Packs before product-specific design decisions.
-23. Product-specific rules belong in Product Packs; do not bloat the Head with duplicated dashboard, web-app, mobile-app, or WordPress-specific methodology.
+6. Treat responsive behavior, RTL/LTR, accessibility, state/recovery, and localization as product behavior rather than final polish.
+7. Do not fabricate metrics, research, testimonials, product capabilities, system state, or validation evidence.
+8. Use semantic design tokens/configuration boundaries when reusable UI is in scope; avoid scattered hard-coded presentation.
+9. Runtime customization must be constrained, validated, permissioned, previewable, and reversible.
+10. User preferences must not override locked product, authorization, or safety constraints.
+11. Do not declare significant UI work complete without rendered inspection when rendering/browser/device access is available.
+12. Report unavailable checks explicitly.
+13. Required specialist routing is mandatory; currently `persian-writing` is the only external specialist.
+14. Keep specialist methodology outside this Head.
+15. Product-specific methodology belongs in Product Packs and their local modules.
+16. Cross-product contracts belong in Shared Product UI Rules.
+17. Design System defaults must remain subordinate to product semantics and protected floors.
+18. Prefer evidence-backed improvement over stylistic novelty.
 
-## Reference routing
+## Progressive disclosure
 
-Read references only when relevant.
+Read references only when the task requires them.
 
-- `product-types.json` — machine-readable product routes and required Product Packs; product classification is mandatory
-- `references/product-routing.md` — product classification, precedence, multi-route behavior, and fallback policy
-- `shared-rules.json` — machine-readable Shared Product UI Rule registry; load modules by scope after product routing
-- `references/shared-product-rules.md` — Shared Rule precedence, scope-based loading, specialization, and non-duplication policy
-- `specialists.json` — machine-readable specialist identities, requirement levels, triggers, canonical sources, and install paths; contains no specialist methodology or pinned versions
-- `references/specialist-routing.md` — standalone vs Head-delegated operation, authority hierarchy, specialist policy, and handoff contract
+### Core routers
 
-- `references/discovery-and-profile.md` — discovery, design-profile lifecycle, partial rediscovery, provenance
-- `references/existing-product-audit.md` — existing-product baseline, audit matrix, severity, safe vs strategic fixes
-- `references/execution-safety.md` — git/working-tree safety, data/privacy boundaries, scoped implementation
-- `design-system.json` — machine-readable Design System module registry and architecture order
-- `references/design-system-architecture.md` — modular Design System router, token/variant precedence, runtime boundary, maintainability
-- `references/implementation-strategies.md` — mapping the architecture into existing CSS/framework/theme systems
-- `references/runtime-ui-governance.md` — owner-only appearance controls, preview/publish/version/rollback/audit
-- `references/personalization-and-data-ux.md` — user preferences, saved views, role-aware UX, data trust/freshness
-- `references/preference-reconciliation.md` — migration/conflict rules for stored preferences and saved views
-- `references/ux-evidence-and-metrics.md` — evidence chain, confidence, UX metrics, validation
-- `references/visual-regression.md` — screenshot baselines, rendered evidence, visual regression protocol
-- `references/operational-interaction-patterns.md` — search, real-time updates, concurrency, bulk/long-running operations
-- `references/domain-patterns.md` — domain-aware prompts for CRM, support, ERP, finance, operations, security, and more
-- `references/design-presets.md` — style vocabulary and visual-direction options
-- `references/dashboard-patterns.md` — detailed dashboard patterns; load through the dashboard Product Pack rather than as a generic default
-- Mobile platform-specific design rules are local under `references/products/mobile/` and are loaded by the Mobile Product Pack; do not route mobile design to an external design Skill
-- WordPress plugin-specific design rules are local under `references/products/wordpress/` and are loaded conditionally by the WordPress Plugin Product Pack; do not route WordPress product design to an external design Skill
-- Dashboard mode-specific design rules are local under `references/products/dashboard/` and are loaded conditionally by the Dashboard Product Pack; do not route Dashboard product design to an external design Skill
-- `references/rtl-ltr-typography.md` — RTL/LTR, bilingual UI, localization, fonts, mixed-direction content
-- `references/theme-responsive-brand.md` — theme, palette, logo/brand, icons, and runtime brand governance; generic responsive/motion contracts live in Shared Rules
-- `references/accessibility.md` — accessibility QA/evidence; interaction contracts live in Shared Rules
-- `references/performance.md` — frontend performance and perceived-performance review
-- `references/qa-checklist.md` — final validation and coverage reporting
+- `product-types.json` — product classification and top-level Product Pack mapping.
+- `references/product-routing.md` — product isolation, multi-route rules, precedence, fallback.
+- `shared-rules.json` — Shared Rule registry.
+- `references/shared-product-rules.md` — scope-based Shared Rule loading and non-duplication.
+- `design-system.json` — Design System module registry.
+- `references/design-system-architecture.md` — Design System routing, token/variant precedence, runtime boundary.
+- `specialists.json` — specialist identities/triggers/sources only.
+- `references/specialist-routing.md` — delegation, authority, fallback, freshness, handoff.
 
-## Existing product baseline
+### Work-mode references
 
-Before broad changes, first determine the active product route(s), then determine enough of the current product to understand:
-- shell and navigation
-- high-frequency workflows
-- representative pages
-- components and tokens
-- typography and palette
-- themes
-- responsive behavior
-- RTL/LTR/localization
-- auth and permission-sensitive surfaces
-- loading, empty, error, partial, disabled, and success states
-- personalization and saved-view behavior where present
-- whether presentation values are centralized or hard-coded
-- tests and available visual/browser tooling
-- available UX evidence such as support issues, analytics, user feedback, or task data
-- existing visual-regression tooling/baselines
-- supported product languages and whether Persian-facing UI triggers the required `persian-writing` specialist
-- real-time, concurrency, search, and bulk-operation behavior where relevant
+- `references/discovery-and-profile.md`
+- `references/existing-product-audit.md`
+- `references/execution-safety.md`
+- `references/qa-checklist.md`
 
-For large products, sample representative surfaces first. Record audit coverage rather than implying the whole application was inspected.
+### Load only when materially relevant
 
-## Design profile
+- `references/implementation-strategies.md`
+- `references/runtime-ui-governance.md`
+- `references/personalization-and-data-ux.md`
+- `references/preference-reconciliation.md`
+- `references/ux-evidence-and-metrics.md`
+- `references/visual-regression.md`
+- `references/operational-interaction-patterns.md`
+- `references/domain-patterns.md`
+- `references/design-presets.md`
+- `references/rtl-ltr-typography.md`
+- `references/theme-responsive-brand.md`
+- `references/accessibility.md`
+- `references/performance.md`
 
-For new products or strategic redesigns, create or update `design-profile.md` using `references/discovery-and-profile.md`.
+Product-specific references are discovered through the active Product Pack, not through this Head.
 
-For existing products:
-- keep an approved profile authoritative unless the user approves a revision
-- use an Observed Baseline for corrective work when no profile exists
-- use Partial Rediscovery when only selected strategic fields need to change
+## Existing-product baseline
 
-When runtime customization is appropriate, record which fields are:
-- locked
-- owner-configurable
-- user-configurable
-- code-only
+For broad changes, inspect enough of the current product to understand the affected:
 
-## Runtime configurability decision
+- shell/navigation and high-frequency workflows;
+- representative pages/components/tokens;
+- typography, theme, responsive and RTL/LTR behavior;
+- permissions and destructive/high-impact surfaces;
+- loading, empty, error, partial, stale, disabled, success, and recovery states;
+- available tests, rendered/browser tooling, and UX evidence;
+- personalization or saved-state behavior when present.
 
-Do not add an Owner UI/UX Control Center to every project.
+Sample representative surfaces for large products and report coverage rather than implying full inspection.
 
-Assess whether runtime design governance is justified by:
-- white-label or multi-tenant needs
-- frequent brand/theme changes
-- non-developer owners who need safe appearance controls
-- operational need for density/table/default adjustments
-- multiple deployments that should share/import design configuration
-- meaningful user personalization needs
+## Design profile and runtime governance
 
-If justified, read:
+For new products or strategic redesigns, use `references/discovery-and-profile.md`.
+
+For existing products without an approved profile, use an observed baseline for corrective work rather than forcing full rediscovery.
+
+Do not add runtime appearance governance by default. When white-labeling, non-developer ownership, multi-tenant variation, repeated appearance changes, or meaningful personalization justify it, route to:
+
 - `references/design-system-architecture.md`
 - `references/runtime-ui-governance.md`
 - `references/personalization-and-data-ux.md`
-- `references/preference-reconciliation.md` when persisted settings can become invalid
-- `references/implementation-strategies.md` when mapping the design architecture into the existing stack
+- `references/preference-reconciliation.md` when persisted preferences can become invalid
+- `references/implementation-strategies.md` when mapping into the existing stack
 
-Prefer:
+Protected precedence:
 
 `Locked Constraints -> Design System Defaults -> Published Owner Config -> User Preferences`
 
-Do not allow lower layers to override protected constraints.
-
-## Product-first decisions
-
-Before designing a screen, establish:
-- who uses it
-- why they open it
-- what they must know
-- what they must do
-- what happens next
-- which decisions repeat often enough to deserve saved state or personalization
-
-Prefer hierarchy, typography, spacing, grouping, and alignment before adding containers.
-
-Do not default to:
-- four KPI cards
-- nested cards
-- excessive pills
-- excessive radius or shadow
-- decorative gradients or glass
-- huge operational headings
-- random accent colors
-- charts without a question
-- icon-only critical navigation
-- animation without informational value
-
-## Brand changes
-
-Differentiate:
-- treatment fix: logo size, spacing, contrast, placement, correct variants
-- brand refresh: palette, typography, iconography, surface language, visual personality
-- identity redesign: actual logo/mark replacement or redraw
-
-Treatment fixes can proceed when UI improvement was requested.
-
-Broad brand refresh follows the selected autonomy mode.
-
-Actual identity replacement requires explicit user intent.
-
-## UI implementation boundaries
+## Implementation boundary
 
 Prefer:
 
@@ -361,44 +220,40 @@ Prefer:
 
 Do not migrate frameworks solely for aesthetics.
 
-Keep changes scoped and reviewable.
-
-For existing products, preserve functional contracts while improving the presentation layer.
-
-For configurable products, prefer a token/configuration architecture over scattered page-level values.
-
-When implementing that architecture, read `references/implementation-strategies.md` and adapt to the existing framework rather than forcing a migration.
+Keep changes scoped and reviewable. Preserve functional contracts while improving presentation and interaction.
 
 ## Final validation
 
 Before completion:
-1. read `product-types.json` and `references/product-routing.md`; confirm the correct Product Pack(s) were loaded
-2. read `specialists.json` and `references/specialist-routing.md`; confirm required specialist routes were satisfied and verify installation/freshness when tooling allows
-3. read `references/qa-checklist.md`
-4. inspect the rendered UI when possible
-5. test representative viewports, themes, directions, and states
-6. run available tests, lint, type checks, accessibility checks, and relevant performance checks
-7. compare meaningful redesigns against the baseline; read `references/visual-regression.md` for broad visual changes
-8. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
-9. validate significant UX claims with `references/ux-evidence-and-metrics.md` when evidence is available
-10. report coverage, limitations, changes made, preserved behavior, and remaining approval items
 
-If rendered inspection or a required check cannot be performed, say so explicitly.
+1. confirm the primary/secondary Product Routes and Product Packs actually loaded;
+2. confirm local product modules loaded and intentionally skipped;
+3. confirm Shared Rules and Design System modules actually used;
+4. satisfy required specialist routing;
+5. read `references/qa-checklist.md`;
+6. inspect rendered UI when possible;
+7. test representative states, viewports, directions, themes, permissions, and recovery paths relevant to scope;
+8. run available lint/type/test/accessibility/performance checks as applicable;
+9. use `references/visual-regression.md` for meaningful broad visual changes when screenshot tooling exists;
+10. report coverage, limitations, preserved behavior, unresolved risks, and remaining approvals.
 
+Do not report a check as passed when it was not performed.
 
 ## Head-delegated result format
 
-When this Skill was invoked by a higher-level engineering Head, finish with:
+When invoked by a Higher-level Engineering Head, finish with:
 
 ### UI/UX Specialist Result
+
 - UI/UX decisions made
 - affected surfaces/files
 - upstream constraints preserved
-- required/recommended specialists used or unavailable
-- rendered, accessibility, localization, and UX evidence
-- checks performed / not performed
+- Product Packs/local modules/Shared Rules used
+- required specialists used or unavailable
+- rendered/accessibility/localization/evidence checks
+- checks not performed
 - unresolved UI/UX risks
 - remaining approvals
-- next action required from the higher-level Head
+- next action required from the Higher-level Engineering Head
 
-The higher-level Head owns cross-domain integration, release decisions, and final software completion.
+The Higher-level Engineering Head owns cross-domain integration, release decisions, and final software completion.

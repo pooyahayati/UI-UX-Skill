@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ui-ux",
-  "version": "3.0.0",
-  "description": "Product-aware UI/UX Head Skill with local Product Packs, Shared UI Rules, hardened Design System, and five-product evaluation coverage.",
+  "version": "3.1.0",
+  "description": "Product-aware UI/UX Head Skill with isolated local Product Packs, scope-routed Shared UI Rules, a modular Design System, and evidence-based validation.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://pooyahayati.com"
@@ -36,28 +36,26 @@
       "interface": {
         "displayName": "UI/UX Skill",
         "shortDescription": "UI/UX Head Skill",
-        "longDescription": "Design, audit, improve, and validate production interfaces through a layered local architecture: Product routing and Product Packs, scope-relevant Shared Product UI Rules, and a hardened modular Design System. Version 3 adds recorded real-world evaluation coverage across Dashboard, Website, Web Application, Mobile Application, and WordPress Plugin scenarios, with explicit evidence and validation limitations. The Design System includes DTCG 2025.10-compatible token interchange guidance, component-state contracts, Light/Dark/High Contrast behavior, Persian/RTL typography, responsive/product variants, safe runtime configuration boundaries, and migration governance. Persian-facing language validation is delegated to persian-writing.",
+        "longDescription": "Design, audit, improve, and validate production interfaces through product-first routing. The Skill classifies the product, loads only the active local Product Pack and scope-relevant local modules, then applies only relevant Shared Product UI Rules and Design System modules. It covers websites, dashboards, web applications, mobile applications, and WordPress plugin/admin UI while preserving product behavior and data meaning. The Design System covers semantic tokens, typography, themes, density/layout, component states, responsive/product variants, runtime configuration boundaries, and migration governance. Persian-facing language validation is delegated to persian-writing.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
         "capabilities": [
-          "Route UI work by product type before design",
-          "Load scope-relevant Shared UI Rules after Product Packs",
-          "Build and audit typed semantic token architectures and component-state contracts",
-          "Design Light Dark High Contrast RTL and responsive product variants",
-          "Design dashboards with local executive analytical operational monitoring CRM and admin modes",
-          "Design websites web applications mobile applications and WordPress plugin UI",
-          "Validate runtime design governance and migration boundaries",
-          "Validate redesigns with rendered and visual-regression evidence",
-          "Route Persian-facing UI to required language QA"
+          "Classify UI work by product before product-specific design decisions",
+          "Load only the active Product Pack and scope-relevant local modules",
+          "Apply scope-relevant Shared UI Rules and modular Design System guidance",
+          "Design and audit websites dashboards web applications mobile applications and WordPress plugin UI",
+          "Preserve product behavior accessibility boundaries and data meaning",
+          "Validate significant UI changes with rendered visual-regression and UX evidence when available",
+          "Route Persian-facing language validation to required persian-writing"
         ],
         "websiteURL": "https://pooyahayati.com",
         "supportURL": "https://github.com/pooyahayati/UI-UX-Skill/issues",
         "privacyPolicyURL": "https://github.com/pooyahayati/UI-UX-Skill/blob/main/PRIVACY.md",
         "termsOfServiceURL": "https://github.com/pooyahayati/UI-UX-Skill/blob/main/TERMS.md",
         "defaultPrompt": [
-          "Classify the product, load its Product Pack and relevant Shared UI Rules, then improve it without breaking behavior.",
-          "Design this website or web application using the correct product-specific UI/UX rules and validate representative states.",
-          "Improve this mobile or WordPress plugin UI using its required Product Pack while preserving constraints."
+          "Classify the product first, load only its relevant UI/UX modules, then improve it without breaking behavior.",
+          "Audit this product UI using only the rules relevant to its product type and current scope.",
+          "Improve this interface while preserving business logic data meaning and existing user changes."
         ],
         "brandColor": "#0F766E",
         "brandColorDark": "#5EEAD4",

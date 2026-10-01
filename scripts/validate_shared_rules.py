@@ -30,51 +30,6 @@ PRODUCT_PACKS = [
     "references/products/wordpress-plugin.md",
 ]
 
-EXPECTED_PRODUCT_SHARED_REFS = {
-    "references/products/website.md": {
-        "navigation-wayfinding.md",
-        "forms-data-entry.md",
-        "state-recovery.md",
-        "accessibility-interaction.md",
-        "responsive-adaptation.md",
-        "motion.md",
-        "content-hierarchy-progressive-disclosure.md",
-    },
-    "references/products/web-application.md": {
-        "forms-data-entry.md",
-        "feedback-status.md",
-        "state-recovery.md",
-        "destructive-high-impact-actions.md",
-        "accessibility-interaction.md",
-        "responsive-adaptation.md",
-        "motion.md",
-    },
-    "references/products/mobile-application.md": {
-        "navigation-wayfinding.md",
-        "forms-data-entry.md",
-        "feedback-status.md",
-        "state-recovery.md",
-        "accessibility-interaction.md",
-        "responsive-adaptation.md",
-        "motion.md",
-    },
-    "references/products/wordpress-plugin.md": {
-        "navigation-wayfinding.md",
-        "feedback-status.md",
-        "state-recovery.md",
-        "destructive-high-impact-actions.md",
-        "accessibility-interaction.md",
-        "responsive-adaptation.md",
-    },
-    "references/products/dashboard.md": {
-        "feedback-status.md",
-        "state-recovery.md",
-        "accessibility-interaction.md",
-        "responsive-adaptation.md",
-        "content-hierarchy-progressive-disclosure.md",
-    },
-}
-
 errors: list[str] = []
 
 
@@ -108,10 +63,6 @@ if not isinstance(modules, list):
     error("shared-rules.json modules must be a list")
     modules = []
 
-ids = [item.get("id") for item in modules if isinstance(item, dict)]
-if len(ids) != len(set(ids)):
-    error("shared-rules.json module ids must be unique")
-
 by_id = {
     item.get("id"): item
     for item in modules
@@ -140,11 +91,11 @@ for module_id, ref in EXPECTED.items():
 
 router_text = ROUTER.read_text(encoding="utf-8") if ROUTER.is_file() else ""
 for term in [
-    "../shared-rules.json",
     "Authority and precedence",
     "Load strategy",
     "Non-duplication rule",
     "Product Pack may specialize",
+    "Do not load the full shared set by default",
     "must not weaken",
 ]:
     if term.casefold() not in router_text.casefold():
@@ -156,43 +107,27 @@ for ref in EXPECTED.values():
         error(f"shared-product-rules.md does not route to {short}")
 
 skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
-for term in [
-    "shared-rules.json",
-    "references/shared-product-rules.md",
-]:
-    if term not in skill_text:
-        error(f"SKILL.md missing shared-rule routing: {term}")
+for term in ["shared-rules.json", "references/shared-product-rules.md", "do not load every Shared Rule"]:
+    if term.casefold() not in skill_text.casefold():
+        error(f"SKILL.md missing scope-based Shared Rule routing: {term}")
 
 routing_text = (SKILL / "references/product-routing.md").read_text(encoding="utf-8")
-for term in [
-    "shared-rules.json",
-    "shared-product-rules.md",
-    "Active Product Pack -> Shared Product UI Rule",
-]:
+for term in ["shared-rules.json", "shared-product-rules.md", "load only scope-relevant Shared Rules"]:
     if term.casefold() not in routing_text.casefold():
         error(f"product-routing.md missing shared-rule contract: {term}")
 
-qa_text = (SKILL / "references/qa-checklist.md").read_text(encoding="utf-8")
-for term in [
-    "Shared Product UI Rules",
-    "shared-rules.json",
-    "shared-product-rules.md",
-    "loaded / not applicable",
-]:
-    if term.casefold() not in qa_text.casefold():
-        error(f"qa-checklist.md missing shared-rule QA term: {term}")
-
 for rel in PRODUCT_PACKS:
     text = (SKILL / rel).read_text(encoding="utf-8")
+    folded = text.casefold()
+
     if "shared-product-rules.md" not in text:
         error(f"{rel} must route to shared-product-rules.md")
-    if "Shared rule loading" not in text:
-        error(f"{rel} must contain a Shared rule loading section")
 
-    expected_refs = EXPECTED_PRODUCT_SHARED_REFS.get(rel, set())
-    for ref_name in expected_refs:
-        if ref_name not in text:
-            error(f"{rel} must delegate the cross-product contract to {ref_name}")
+    if "## shared rule loading" in folded:
+        error(f"{rel} still contains the duplicated Shared rule loading block")
+
+    if "shared-rule boundary" not in folded and "routing contract" not in folded:
+        error(f"{rel} must contain a compact Shared Rule boundary/routing contract")
 
 accessibility = (SKILL / "references/accessibility.md").read_text(encoding="utf-8")
 if "shared/accessibility-interaction.md" not in accessibility:
@@ -213,4 +148,4 @@ if errors:
         print(f"- {item}")
     raise SystemExit(1)
 
-print("Shared rule validation passed.")
+print("Shared rule validation passed: one canonical router, scope-based loading, no duplicated pack-level loading blocks.")

@@ -28,23 +28,11 @@ For a cross-platform product targeting both iOS and Android, use:
 
 Do not use external design Skills for mobile product design. Platform design knowledge is maintained locally in this repository.
 
-## Shared rule loading
+## Shared-rule boundary
 
-After the Mobile Product Pack is active, read `../shared-product-rules.md` and `../../shared-rules.json`.
+After this Product Pack is active, read `../shared-product-rules.md` and load only Shared Product UI Rules that are materially in scope.
 
-For broad mobile work normally load:
-
-- `../shared/navigation-wayfinding.md`
-- `../shared/feedback-status.md`
-- `../shared/state-recovery.md`
-- `../shared/accessibility-interaction.md`
-- `../shared/responsive-adaptation.md`
-- `../shared/content-hierarchy-progressive-disclosure.md`
-
-Load `../shared/forms-data-entry.md`, `../shared/destructive-high-impact-actions.md`, and `../shared/motion.md` when those concerns are in scope.
-
-Mobile specialization retains touch/reachability, safe areas/system UI, keyboard/IME behavior, permissions, connectivity/sync, lifecycle restoration, deep links, notifications, platform adaptation, and mobile accessibility services.
-
+Do not duplicate the cross-product contracts here. This Product Pack owns only its product/platform/host specialization and any local sub-routing described below.
 ## Shared Mobile UX
 
 ### Navigation intent

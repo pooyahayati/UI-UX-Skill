@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0",
+  "version": "3.1.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -715,6 +715,71 @@
         "preserves wp-admin host mental model capability security and site-vs-network scope",
         "distinguishes stored credential connection health background job state reset delete and uninstall semantics",
         "reports wp-admin rendered accessibility and responsive validation limitations rather than inventing evidence"
+      ]
+    },
+    {
+      "id": "product-isolation-website",
+      "type": "positive",
+      "fixture": "real-world-website",
+      "prompt": "Audit this public service website. Keep the context product-isolated: use only Website knowledge and the scope-relevant shared/design-system modules.",
+      "invariants": [
+        "classifies the product as website",
+        "loads the Website Product Pack and only the Website local modules required by the requested scope",
+        "does not load Dashboard Web Application Mobile Application or WordPress Plugin Product Packs or their local modules",
+        "loads only Shared Rules and Design System modules justified by the website task",
+        "reports irrelevant Product Packs as intentionally not loaded"
+      ]
+    },
+    {
+      "id": "product-isolation-dashboard",
+      "type": "positive",
+      "fixture": "real-world-dashboard",
+      "prompt": "Audit this support operations dashboard. Keep the context product-isolated and load only the Dashboard knowledge required by its active modes.",
+      "invariants": [
+        "classifies the product as dashboard",
+        "loads the Dashboard Product Pack and only the Dashboard mode packs justified by the task",
+        "does not load Website Web Application Mobile Application or WordPress Plugin Product Packs or their local modules",
+        "loads only Shared Rules and Design System modules justified by the dashboard task",
+        "reports irrelevant Product Packs as intentionally not loaded"
+      ]
+    },
+    {
+      "id": "product-isolation-web-application",
+      "type": "positive",
+      "fixture": "real-world-web-app",
+      "prompt": "Audit this authenticated customer-management web application. Keep the context product-isolated and do not treat it as a website dashboard mobile app or WordPress product.",
+      "invariants": [
+        "classifies the product as web-application",
+        "loads the Web Application Product Pack and only the Web Application local modules required by the task",
+        "does not load Website Dashboard Mobile Application or WordPress Plugin Product Packs or their local modules",
+        "loads only Shared Rules and Design System modules justified by the web-application task",
+        "reports irrelevant Product Packs as intentionally not loaded"
+      ]
+    },
+    {
+      "id": "product-isolation-mobile-application",
+      "type": "positive",
+      "fixture": "real-world-mobile",
+      "prompt": "Audit this iOS and Android field-service app. Keep the context product-isolated and load only the Mobile Product Pack plus the platform packs actually required.",
+      "invariants": [
+        "classifies the product as mobile-application",
+        "loads the Mobile Application Product Pack and only the iOS Android or cross-platform local packs justified by the task",
+        "does not load Website Dashboard Web Application or WordPress Plugin Product Packs or their local modules",
+        "loads only Shared Rules and Design System modules justified by the mobile task",
+        "reports irrelevant Product Packs as intentionally not loaded"
+      ]
+    },
+    {
+      "id": "product-isolation-wordpress-plugin",
+      "type": "positive",
+      "fixture": "real-world-wordpress",
+      "prompt": "Audit this WordPress integration plugin in wp-admin. Keep the context product-isolated and load only the WordPress surfaces required by the task.",
+      "invariants": [
+        "classifies the product as wordpress-plugin",
+        "loads the WordPress Plugin Product Pack and only the WordPress local packs required by the task",
+        "does not load Website Dashboard Web Application or Mobile Application Product Packs or their local modules",
+        "loads only Shared Rules and Design System modules justified by the WordPress task",
+        "reports irrelevant Product Packs as intentionally not loaded"
       ]
     }
   ]

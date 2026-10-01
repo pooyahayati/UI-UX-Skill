@@ -2,6 +2,25 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [3.1.0] - 2026-10-02
+
+### Stabilization, Product Isolation, and Feature Freeze
+
+- Declared a feature freeze: no new Product Types or major capability families are planned for the 3.1.0 stabilization release.
+- Reduced the canonical Head so product-specific references are discovered through the active Product Pack instead of being enumerated globally.
+- Changed the product registry to classify products and map only top-level Product Packs; internal product modules are parent-routed after activation.
+- Added explicit active-product isolation policy so inactive Product Packs and their local modules are not preloaded.
+- Split the Website Product Pack into scope-routed modules for structure/navigation, conversion/trust, content/SEO, media/performance, and accessibility/localization/QA while preserving existing coverage.
+- Split the Web Application Product Pack into scope-routed navigation/state, workflows/data, and interaction/access modules while preserving existing coverage.
+- Centralized Shared Product UI Rule loading to remove repeated pack-level loading instructions.
+- Updated product and Shared Rule validators to enforce scope-based loading, parent-routed local modules, and cross-product isolation.
+- Replaced the README capability list with a product-by-product coverage table and documented the frozen capability scope.
+- Simplified plugin metadata so it describes the stable architecture without version-specific marketing language.
+- Added five explicit behavioral Product Isolation cases, one for each primary Product Type, requiring unrelated Product Packs to remain unloaded.
+- Added machine-readable forbidden inactive routes to the real-world evaluation manifest and validation that fails on cross-product reference leakage.
+- Reduced `validate_release.py` to release/package/documentation responsibilities and removed duplicated Product/Shared/Design/Specialist/Eval validation logic.
+- Made `validate-skill.yml` the single reusable validation gate and made release publication depend on that exact gate before packaging/publishing.
+
 ## [3.0.0] - 2026-10-02
 
 ### Real-World Product Evaluation
