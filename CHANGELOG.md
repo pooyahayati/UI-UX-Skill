@@ -2,6 +2,20 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [2.3.0] - 2026-10-01
+
+### Local Web and Mobile Design Expansion
+
+- Expanded `web-application.md` with local browser-navigation/URL-state, drafts/autosave, long-running jobs, concurrency/conflict, forms, search/filter state, overlays/focus, destructive actions, file operations, session expiry, onboarding, motion, and accessibility interaction rules.
+- Rebuilt the Mobile Product Pack as a shared mobile UX foundation with mandatory local platform routing.
+- Added local `mobile/ios.md` rules for Apple navigation/presentation, safe areas, Dynamic Type, iPad/resizable layouts, VoiceOver, keyboard, gestures, and system capabilities.
+- Added local `mobile/android.md` rules for edge-to-edge/system bars, predictive back, adaptive layouts, navigation adaptation, large screens/foldables, TalkBack, and IME behavior.
+- Added local `mobile/cross-platform.md` rules based on preserving product/UX invariants while translating platform idiom rather than cloning pixels.
+- Added machine-readable mobile platform references in `product-types.json`.
+- Renamed the WordPress product route from `wordpress-plugin-settings` to `wordpress-plugin` and broadened its Product Pack beyond settings-only screens.
+- Reduced external specialists to `persian-writing` only; product design knowledge remains local.
+- Added behavioral evals and release validation for Web App state continuity and local iOS/Android/Cross-platform routing.
+
 ## [2.2.0] - 2026-10-01
 
 ### Website Product Pack and Final Release Automation

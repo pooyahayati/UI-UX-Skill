@@ -111,7 +111,7 @@ CI also runs OpenAI's current Skill validator and a real Codex installer smoke t
 
 ## Specialist dependencies
 
-This Skill uses modular specialist routing. The machine-readable registry is:
+This Skill keeps product-design knowledge local. The only external specialist is `persian-writing`. The machine-readable registry is:
 
 `skills/ui-ux-skill/specialists.json`
 

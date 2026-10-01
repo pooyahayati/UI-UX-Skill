@@ -44,7 +44,7 @@ Examples:
   - primary: `web-application`
   - secondary: `dashboard`
 - a WordPress plugin whose settings page contains a monitoring dashboard:
-  - primary: `wordpress-plugin-settings`
+  - primary: `wordpress-plugin`
   - secondary: `dashboard`
 - a web product with a companion mobile app:
   - route each affected surface independently;

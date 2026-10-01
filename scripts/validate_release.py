@@ -40,7 +40,10 @@ required = [
     f"skills/{SKILL_NAME}/references/products/dashboard.md",
     f"skills/{SKILL_NAME}/references/products/web-application.md",
     f"skills/{SKILL_NAME}/references/products/mobile-application.md",
-    f"skills/{SKILL_NAME}/references/products/wordpress-plugin-settings.md",
+    f"skills/{SKILL_NAME}/references/products/mobile/ios.md",
+    f"skills/{SKILL_NAME}/references/products/mobile/android.md",
+    f"skills/{SKILL_NAME}/references/products/mobile/cross-platform.md",
+    f"skills/{SKILL_NAME}/references/products/wordpress-plugin.md",
     f"skills/{SKILL_NAME}/references/specialist-routing.md",
     f"skills/{SKILL_NAME}/references/discovery-and-profile.md",
     f"skills/{SKILL_NAME}/references/existing-product-audit.md",
@@ -106,7 +109,7 @@ else:
 
 for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md"]:
     if term.casefold() not in skill_text.casefold():
-        error(f"SKILL.md missing v2.2 specialist-routing contract term: {term}")
+        error(f"SKILL.md missing v2.3 specialist-routing contract term: {term}")
 
 # v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
@@ -127,7 +130,7 @@ for product_id in [
     "dashboard",
     "web-application",
     "mobile-application",
-    "wordpress-plugin-settings",
+    "wordpress-plugin",
     "generic-product-ui",
 ]:
     if product_id not in product_ids:
@@ -145,6 +148,13 @@ registry_items = {
     for item in specialist_registry.get("specialists", [])
     if isinstance(item, dict)
 }
+
+external_ids = set(registry_items)
+if external_ids != {"persian-writing"}:
+    error(
+        "Only persian-writing may remain as an external specialist; "
+        f"found: {sorted(external_ids)}"
+    )
 persian_route = registry_items.get("persian-writing", {})
 if persian_route.get("requirement") != "required":
     error("Specialist registry missing required persian-writing route")
@@ -167,7 +177,6 @@ for term in [
 # Specialist references must stay version-agnostic unless an explicit compatibility exception is documented.
 for pattern in [
     r"persian-writing[^\n]{0,120}\bv?\d+\.\d+(?:\.\d+)?\b",
-    r"browser-testing-with-devtools[^\n]{0,120}\bv?\d+\.\d+(?:\.\d+)?\b",
     r"/releases/tag/",
     r"/commit/[0-9a-f]{7,40}",
 ]:
@@ -195,7 +204,7 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v2.2 reference: {ref}")
+        error(f"SKILL.md does not route to required v2.3 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -378,7 +387,7 @@ for term in [
     "data_ux",
 ]:
     if term not in profile:
-        error(f"Design Profile v2.2 field missing: {term}")
+        error(f"Design Profile v2.3 field missing: {term}")
 
 architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
 for term in [
@@ -425,8 +434,8 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 16:
-    error("Behavioral eval manifest should contain at least 16 cases for v2.2")
+if len(cases) < 20:
+    error("Behavioral eval manifest should contain at least 20 cases for v2.3")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -442,11 +451,15 @@ for required_id in [
     "dashboard-product-routing",
     "web-application-product-routing",
     "mobile-application-product-routing",
-    "wordpress-plugin-settings-product-routing",
+    "web-application-state-continuity",
+    "mobile-ios-local-rules",
+    "mobile-android-local-rules",
+    "mobile-cross-platform-local-rules",
+    "wordpress-plugin-product-routing",
     "multi-product-routing",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v2.2 case: {required_id}")
+        error(f"Behavioral eval missing v2.3 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):

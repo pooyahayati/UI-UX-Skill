@@ -1,6 +1,6 @@
 # Public Plugin Submission Test Cases
 
-Prepared for UI/UX Skill v2.2.0.
+Prepared for UI/UX Skill v2.3.0.
 
 Exactly five positive and three negative cases are provided.
 
@@ -66,6 +66,7 @@ Any existing routed/authenticated web application with at least one protected us
 
 - Classifies the primary product route as `mobile-application`.
 - Loads the required Mobile Application Product Pack.
+- Loads the local iOS and Android rule packs, plus cross-platform rules when one product/codebase spans both.
 - Identifies platform and cross-platform constraints before broad design decisions.
 - Handles mobile navigation, touch, keyboard, safe areas, permissions, connectivity, lifecycle, and background work.
 - Does not shrink a desktop layout into a mobile screen.
@@ -80,16 +81,16 @@ Product route, mobile UX architecture, representative screen/workflow decisions,
 
 None required. A representative mobile project or product brief is sufficient.
 
-### 4. WordPress plugin settings and admin UI
+### 4. WordPress plugin and admin UI
 
 **Prompt**
 
-> Redesign this WordPress plugin settings UI inside wp-admin. It has API credentials, save actions, diagnostics, import/export, reset tools, and Persian localization.
+> Redesign this WordPress plugin UI inside wp-admin. It has API credentials, save actions, diagnostics, import/export, reset tools, and Persian localization.
 
 **Expected behavior**
 
-- Classifies the primary product route as `wordpress-plugin-settings`.
-- Loads the required WordPress Plugin Settings Product Pack.
+- Classifies the primary product route as `wordpress-plugin`.
+- Loads the required WordPress Plugin Product Pack.
 - Preserves the surrounding `wp-admin` mental model and capability boundaries.
 - Groups settings by user intent rather than backend modules.
 - Separates normal settings, integrations, diagnostics, and destructive operations.

@@ -1,6 +1,6 @@
 ---
 name: ui-ux-skill
-description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin settings/admin UI, and other production product interfaces. Works standalone or as a specialist under a higher-level engineering Head. It MUST classify the product type and load the required Product Pack before product-specific design decisions, then route narrow concerns to specialist Skills. Use for product UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, navigation, forms, data UI, accessibility, performance, personalization, runtime design governance, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing-only websites, or unrelated graphic design.
+description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production product interfaces. Works standalone or as a specialist under a higher-level engineering Head. It MUST classify the product type and load the required Product Pack before product-specific design decisions, then route narrow concerns to specialist Skills. Use for product UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, navigation, forms, data UI, accessibility, performance, personalization, runtime design governance, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing-only websites, or unrelated graphic design.
 ---
 
 # UI/UX Skill
@@ -54,7 +54,7 @@ Current registered routes include:
 - `dashboard`
 - `web-application`
 - `mobile-application`
-- `wordpress-plugin-settings`
+- `wordpress-plugin`
 - `generic-product-ui` as fallback only
 
 ## Route the task mode
@@ -168,7 +168,7 @@ Never modify code, configuration, or assets.
 16. Base significant UX findings on evidence and confidence; do not fabricate metrics or research.
 17. For broad visual changes, capture or report the absence of a rendered baseline when screenshot/browser tooling is available.
 18. Preserve valid user preferences across schema/config changes and reconcile invalid preferences safely.
-19. Use required specialist Skills when their triggers are active; never claim specialist-dependent validation when a required specialist was unavailable or not run.
+19. Use required specialist Skills when their triggers are active; currently only `persian-writing` is an external specialist, and no external design Skill is required.
 20. Keep specialist knowledge out of the Head: store only routing, precedence, constraints, handoff, and fallback rules; do not duplicate specialist methodology.
 21. Use the latest available stable Head/Specialist installations when freshness can be verified; never pin specialist versions in Head routing without an explicit compatibility requirement.
 22. Classify every product UI task through `product-types.json` and load all required Product Packs before product-specific design decisions.
@@ -197,6 +197,7 @@ Read references only when relevant.
 - `references/domain-patterns.md` — domain-aware prompts for CRM, support, ERP, finance, operations, security, and more
 - `references/design-presets.md` — style vocabulary and visual-direction options
 - `references/dashboard-patterns.md` — detailed dashboard patterns; load through the dashboard Product Pack rather than as a generic default
+- Mobile platform-specific design rules are local under `references/products/mobile/` and are loaded by the Mobile Product Pack; do not route mobile design to an external design Skill
 - `references/rtl-ltr-typography.md` — RTL/LTR, bilingual UI, localization, fonts, mixed-direction content
 - `references/theme-responsive-brand.md` — theme, responsive behavior, palette, logo/brand, icons, motion
 - `references/accessibility.md` — WCAG-oriented implementation and verification

@@ -1,8 +1,8 @@
-# WordPress Plugin Settings Product Pack
+# WordPress Plugin Product Pack
 
-Use only when the active product route includes `wordpress-plugin-settings`.
+Use only when the active product route includes `wordpress-plugin`.
 
-This Product Pack applies to plugin-owned UI inside WordPress administration, especially settings, configuration, onboarding, diagnostics, and plugin-specific admin screens.
+This Product Pack applies to plugin-owned UI inside WordPress administration, including settings, configuration, onboarding, diagnostics, tools, status screens, and plugin-specific operational admin screens.
 
 ## Host environment first
 
@@ -124,7 +124,7 @@ This Product Pack owns the WordPress plugin settings structure and UI behavior, 
 
 ## Validation
 
-For WordPress plugin settings, validate representative:
+For WordPress plugin UI, validate representative:
 
 - entry point/menu placement;
 - main settings groups;

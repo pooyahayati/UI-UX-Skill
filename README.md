@@ -1,10 +1,10 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-2.2.0-blue)
+![Version](https://img.shields.io/badge/version-2.3.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin settings/admin UI, and other production interfaces.
+A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production interfaces.
 
 It can work independently or as a UI/UX specialist under a higher-level engineering Head.
 
@@ -13,8 +13,9 @@ It can work independently or as a UI/UX specialist under a higher-level engineer
 - mandatory product routing before product-specific design decisions
 - websites and public-facing content/conversion interfaces
 - dashboards and operational data interfaces
-- web applications and mobile applications
-- WordPress plugin settings/admin UI
+- web applications with local browser/state/workflow UX rules
+- mobile applications with local iOS, Android, and cross-platform mobile rules
+- WordPress plugin/admin UI
 - new product and existing-product UI/UX work
 - responsive design, Light/Dark themes, RTL/LTR, branding, and local typography
 - design systems, personalization, operational UX, and Data Trust UX
@@ -41,7 +42,7 @@ Higher-level Engineering Head
 
 Head-level scope, security, architecture, approvals, and UI/UX constraints always take precedence over lower-level specialists.
 
-Specialists are referenced by canonical source and should use the latest stable available version rather than a version pinned inside this Skill.
+External specialist use is intentionally minimal: `persian-writing` is the only external specialist and is used for Persian-language validation.
 
 ## Quick use
 
@@ -71,7 +72,7 @@ Claude Code:
 
 ## Current source
 
-**v2.2.0**
+**v2.3.0**
 
 Canonical repository: **pooyahayati/UI-UX-Skill**  
 Canonical Skill slug: **`ui-ux-skill`**

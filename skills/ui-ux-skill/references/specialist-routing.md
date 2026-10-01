@@ -114,7 +114,6 @@ For a routed specialist:
 
 For Persian-facing UI, the registry marks `persian-writing` as REQUIRED.
 
-For browser runtime evidence, the registry currently marks `browser-testing-with-devtools` as RECOMMENDED.
 
 The registry contains routing metadata only. Domain rules remain owned by the current specialist Skill.
 
