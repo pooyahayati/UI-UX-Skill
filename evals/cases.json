@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -81,7 +81,10 @@
         "isolates technical LTR content",
         "reviews locale formatting",
         "reviews mobile and accessibility",
-        "avoids hard-coded physical direction where logical properties fit"
+        "avoids hard-coded physical direction where logical properties fit",
+        "requires the persian-writing specialist before Persian-facing copy is considered final",
+        "keeps Persian linguistic correctness separate from UI direction and layout ownership",
+        "reports Persian language QA as unverified if the required specialist is unavailable"
       ]
     },
     {
@@ -126,6 +129,32 @@
         "does not expose arbitrary executable customization",
         "recommends typed allowlisted configuration instead",
         "preserves security boundaries"
+      ]
+    },
+    {
+      "id": "head-delegated-ui",
+      "type": "positive",
+      "fixture": "existing-dashboard",
+      "prompt": "A higher-level engineering Head has already approved the objective, scope, acceptance criteria, and security boundaries. Improve only the delegated dashboard UI surfaces and return a UI/UX specialist handoff.",
+      "invariants": [
+        "treats upstream objective scope acceptance criteria and security boundaries as authoritative",
+        "does not repeat broad product discovery or reopen settled architecture decisions",
+        "keeps changes inside the delegated UI/UX boundary",
+        "reports specialist usage and validation evidence",
+        "returns a UI/UX specialist result instead of declaring the whole software objective complete"
+      ]
+    },
+    {
+      "id": "persian-specialist-routing",
+      "type": "positive",
+      "fixture": "rtl-table",
+      "prompt": "این رابط مدیریت فارسی است. متن دکمه‌ها، پیام‌های خطا، جدول و محتوای ترکیبی فارسی و انگلیسی را بهبود بده و RTL را هم درست نگه دار.",
+      "invariants": [
+        "detects Persian-facing UI and marks persian-writing as a required specialist",
+        "routes Persian wording register orthography and mixed-language copy to persian-writing",
+        "keeps layout responsive RTL architecture and design-system decisions under the UI/UX Head",
+        "does not claim Persian language QA passed when the required specialist was unavailable",
+        "continues non-language UI work only when safe if the required language specialist is unavailable"
       ]
     }
   ]
