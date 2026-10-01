@@ -303,6 +303,8 @@ require_text(
         "/ui-ux-skill",
         "production-dashboard-ui-ux-skill",
         "ui-ux-skill",
+        "skills/ui-ux-skill/VERSION",
+        "installed Skill root",
         "persian-writing",
     ],
     "INSTALL.md",
