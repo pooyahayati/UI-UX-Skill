@@ -1,6 +1,6 @@
-# Changelog
+# Updates & Changelog
 
-All notable changes to this project are documented here.
+All notable user-facing and technical changes to this project are documented here.
 
 ## [2.0.0] - 2026-10-01
 
