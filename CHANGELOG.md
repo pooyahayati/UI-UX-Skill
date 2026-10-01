@@ -15,6 +15,8 @@ All notable changes to this project are documented here.
 - Added RECOMMENDED `browser-testing-with-devtools` routing for live browser evidence when available.
 - Added specialist-routing QA coverage and Head-delegation/Persian-routing behavioral evals.
 - Updated documentation and release validation to treat specialist routing as a first-class capability.
+- Refined the architecture to a thin Head: specialist methodology is not duplicated in the Head; only triggers, precedence, constraints, handoff, fallback, and source metadata remain.
+- Added version-agnostic specialist routing and a freshness policy that prefers the latest stable installed Head/Specialists, updates known-stale copies when supported, and never pins specialist versions without an explicit compatibility reason.
 
 ## [1.4.0] - 2026-09-20
 
