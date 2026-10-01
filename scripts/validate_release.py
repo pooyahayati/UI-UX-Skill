@@ -36,7 +36,15 @@ required = [
     f"skills/{SKILL_NAME}/product-types.json",
     f"skills/{SKILL_NAME}/specialists.json",
     f"skills/{SKILL_NAME}/shared-rules.json",
+    f"skills/{SKILL_NAME}/design-system.json",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
+    f"skills/{SKILL_NAME}/references/design-system/tokens-foundations.md",
+    f"skills/{SKILL_NAME}/references/design-system/typography.md",
+    f"skills/{SKILL_NAME}/references/design-system/color-theme.md",
+    f"skills/{SKILL_NAME}/references/design-system/spacing-density-layout.md",
+    f"skills/{SKILL_NAME}/references/design-system/component-states.md",
+    f"skills/{SKILL_NAME}/references/design-system/responsive-variants.md",
+    f"skills/{SKILL_NAME}/references/design-system/governance-migration.md",
     f"skills/{SKILL_NAME}/references/shared-product-rules.md",
     f"skills/{SKILL_NAME}/references/shared/navigation-wayfinding.md",
     f"skills/{SKILL_NAME}/references/shared/forms-data-entry.md",
@@ -91,6 +99,7 @@ required = [
     "scripts/prepare_eval_run.py",
     "scripts/validate_product_routes.py",
     "scripts/validate_shared_rules.py",
+    "scripts/validate_design_system.py",
     "scripts/validate_specialists.py",
     "scripts/validate_eval_fixtures.py",
     "scripts/validate_eval_result.py",
@@ -130,9 +139,9 @@ else:
             if term.casefold() not in description.casefold():
                 error(f"Skill description should cover {term}")
 
-for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md", "shared-rules.json", "shared-product-rules.md"]:
+for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md", "shared-rules.json", "shared-product-rules.md", "design-system.json", "design-system-architecture.md"]:
     if term.casefold() not in skill_text.casefold():
-        error(f"SKILL.md missing v2.7 routing contract term: {term}")
+        error(f"SKILL.md missing v2.8 routing contract term: {term}")
 
 # v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
@@ -227,7 +236,7 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v2.7 reference: {ref}")
+        error(f"SKILL.md does not route to required v2.8 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -358,6 +367,8 @@ for term in [
     "[Skill Specification](skills/ui-ux-skill/SKILL.md)",
     "[Shared UI Registry](skills/ui-ux-skill/shared-rules.json)",
     "[Shared UI Routing](skills/ui-ux-skill/references/shared-product-rules.md)",
+    "[Design System Registry](skills/ui-ux-skill/design-system.json)",
+    "[Design System Architecture](skills/ui-ux-skill/references/design-system-architecture.md)",
     "[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)",
 ]:
     if term not in readme:
@@ -366,7 +377,7 @@ for term in [
 if f"**v{VERSION}**" not in readme:
     error("README current-source version does not match VERSION")
 
-for term in ["persian-writing", "UI/UX Head", "Shared UI Rules", "Specialist routing", "websites", "web applications", "mobile applications", "WordPress plugin"]:
+for term in ["persian-writing", "UI/UX Head", "Shared UI Rules", "Design System", "Specialist routing", "websites", "web applications", "mobile applications", "WordPress plugin"]:
     if term.casefold() not in readme.casefold():
         error(f"README missing essential architecture term: {term}")
 
@@ -435,9 +446,14 @@ if "**Status:** Completed" not in stage3_block:
     error("Stage 3 — Dashboard Product Pack must be Completed")
 
 stage5_start = roadmap.find("## Stage 5 — Design System Hardening")
+stage6_start = roadmap.find("## Stage 6 — Real-World Product Evaluation")
 stage4_block = roadmap[stage4_start:stage5_start] if stage4_start >= 0 and stage5_start > stage4_start else ""
 if "**Status:** Completed" not in stage4_block:
-    error("Stage 4 — Shared Product UI Rules must be Completed for v2.7")
+    error("Stage 4 — Shared Product UI Rules must be Completed")
+
+stage5_block = roadmap[stage5_start:stage6_start] if stage5_start >= 0 and stage6_start > stage5_start else ""
+if "**Status:** Completed" not in stage5_block:
+    error("Stage 5 — Design System Hardening must be Completed for v2.8")
 
 website_pack = (SKILL / "references/products/website.md").read_text(encoding="utf-8")
 for term in [
@@ -624,20 +640,44 @@ for term in [
     "routing:",
     "product_packs_loaded",
     "shared_rules_loaded",
+    "design_system:",
+    "modules_loaded",
+    "token_interchange",
+    "runtime_boundary",
 ]:
     if term not in profile:
-        error(f"Design Profile v2.7 field missing: {term}")
+        error(f"Design Profile v2.8 field missing: {term}")
+
+design_registry = json.loads((SKILL / "design-system.json").read_text(encoding="utf-8"))
+expected_design_modules = {
+    "tokens-foundations",
+    "typography",
+    "color-theme",
+    "spacing-density-layout",
+    "component-states",
+    "responsive-variants",
+    "governance-migration",
+}
+design_module_ids = {
+    item.get("id")
+    for item in design_registry.get("modules", [])
+    if isinstance(item, dict)
+}
+if design_registry.get("schema_version") != 1 or design_module_ids != expected_design_modules:
+    error("Design System registry missing or inconsistent")
+if design_registry.get("stable_token_interchange") != "DTCG 2025.10":
+    error("Design System stable token interchange must be DTCG 2025.10")
 
 architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
 for term in [
-    "Primitive tokens",
-    "Semantic tokens",
-    "Component tokens",
-    "schemaVersion",
-    "Precedence",
-    "Schema evolution",
+    "Primitive Tokens -> Semantic Tokens -> Component Tokens -> Product Variants",
+    "Required module routing",
+    "DTCG 2025.10",
+    "Authority and precedence",
+    "Design-system defaults vs runtime settings",
+    "Testing changeability",
 ]:
-    if term not in architecture:
+    if term.casefold() not in architecture.casefold():
         error(f"Design-system architecture guidance missing: {term}")
 
 governance = (SKILL / "references/runtime-ui-governance.md").read_text(encoding="utf-8")
@@ -673,8 +713,8 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 39:
-    error("Behavioral eval manifest should contain at least 39 cases for v2.7")
+if len(cases) < 45:
+    error("Behavioral eval manifest should contain at least 45 cases for v2.8")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -712,9 +752,15 @@ for required_id in [
     "shared-rules-narrow-scope",
     "shared-rules-product-specialization",
     "shared-rules-accessibility-floor",
+    "design-system-token-hierarchy",
+    "design-system-component-states",
+    "design-system-theme-resolution",
+    "design-system-typography-rtl",
+    "design-system-density-responsive",
+    "design-system-runtime-boundary",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v2.7 case: {required_id}")
+        error(f"Behavioral eval missing v2.8 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):
