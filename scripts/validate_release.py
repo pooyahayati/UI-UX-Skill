@@ -36,6 +36,7 @@ required = [
     f"skills/{SKILL_NAME}/specialists.json",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
     f"skills/{SKILL_NAME}/references/product-routing.md",
+    f"skills/{SKILL_NAME}/references/products/website.md",
     f"skills/{SKILL_NAME}/references/products/dashboard.md",
     f"skills/{SKILL_NAME}/references/products/web-application.md",
     f"skills/{SKILL_NAME}/references/products/mobile-application.md",
@@ -105,7 +106,7 @@ else:
 
 for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md"]:
     if term.casefold() not in skill_text.casefold():
-        error(f"SKILL.md missing v2.1 specialist-routing contract term: {term}")
+        error(f"SKILL.md missing v2.2 specialist-routing contract term: {term}")
 
 # v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
@@ -122,6 +123,7 @@ product_ids = {
     if isinstance(item, dict)
 }
 for product_id in [
+    "website",
     "dashboard",
     "web-application",
     "mobile-application",
@@ -193,7 +195,7 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v2.1 reference: {ref}")
+        error(f"SKILL.md does not route to required v2.2 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -329,7 +331,7 @@ for term in [
 if f"**v{VERSION}**" not in readme:
     error("README current-source version does not match VERSION")
 
-for term in ["persian-writing", "UI/UX Head", "Specialist Skills", "web applications", "mobile applications", "WordPress plugin"]:
+for term in ["persian-writing", "UI/UX Head", "Specialist Skills", "websites", "web applications", "mobile applications", "WordPress plugin"]:
     if term.casefold() not in readme.casefold():
         error(f"README missing essential architecture term: {term}")
 
@@ -376,7 +378,7 @@ for term in [
     "data_ux",
 ]:
     if term not in profile:
-        error(f"Design Profile v2.1 field missing: {term}")
+        error(f"Design Profile v2.2 field missing: {term}")
 
 architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
 for term in [
@@ -423,8 +425,8 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 15:
-    error("Behavioral eval manifest should contain at least 15 cases for v2.1")
+if len(cases) < 16:
+    error("Behavioral eval manifest should contain at least 16 cases for v2.2")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -436,6 +438,7 @@ for required_id in [
     "head-delegated-ui",
     "persian-specialist-routing",
     "specialist-freshness",
+    "website-product-routing",
     "dashboard-product-routing",
     "web-application-product-routing",
     "mobile-application-product-routing",
@@ -443,7 +446,7 @@ for required_id in [
     "multi-product-routing",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v2.1 case: {required_id}")
+        error(f"Behavioral eval missing v2.2 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):
