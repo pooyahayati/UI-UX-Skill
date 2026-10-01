@@ -75,6 +75,34 @@
       ]
     },
     {
+      "id": "website",
+      "label": "Website / Public-Facing Website",
+      "triggers": [
+        "website",
+        "company website",
+        "corporate website",
+        "business website",
+        "service website",
+        "marketing website",
+        "content website",
+        "blog",
+        "publication website",
+        "portfolio website",
+        "personal brand website",
+        "landing page",
+        "public-facing informational site",
+        "SEO-driven website"
+      ],
+      "exclusions": [
+        "authenticated web application whose primary purpose is doing work inside an app",
+        "mobile application",
+        "WordPress plugin settings/admin UI"
+      ],
+      "required_references": [
+        "references/products/website.md"
+      ]
+    },
+    {
       "id": "generic-product-ui",
       "label": "Generic Product UI",
       "triggers": [
