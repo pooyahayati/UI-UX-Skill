@@ -1,5 +1,5 @@
 {
-  "version": "2.5.0",
+  "version": "2.6.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -177,10 +177,12 @@
       "prompt": "Improve this operational dashboard. Keep the data meaning and workflows intact, but make the overview, work queue, filters and live states easier to use.",
       "invariants": [
         "classifies the primary product route as dashboard",
-        "loads the required dashboard Product Pack before product-specific design decisions",
-        "uses dashboard-specific information hierarchy and data-trust rules",
-        "does not apply unrelated mobile or WordPress settings conventions",
-        "reports product-aware validation coverage"
+        "loads the shared Dashboard Product Pack before dashboard-specific design decisions",
+        "identifies one primary Dashboard mode and loads only the applicable local Dashboard mode packs",
+        "uses dashboard-specific information hierarchy data-trust filter drill-down table and chart rules",
+        "does not default to a generic KPI-card template",
+        "does not apply unrelated mobile WordPress or website conventions",
+        "reports product-aware and mode-aware validation coverage"
       ]
     },
     {
@@ -408,6 +410,96 @@
         "explains locked network-controlled values instead of showing broken-looking controls",
         "reports partial failures for bulk site operations",
         "uses stronger confirmation for network-wide destructive actions"
+      ]
+    },
+    {
+      "id": "dashboard-executive-mode",
+      "type": "positive",
+      "fixture": "existing-dashboard",
+      "prompt": "Redesign an executive dashboard for monthly business review. Leaders need target vs actual, major variance, forecast, portfolio comparison and only the few exceptions requiring executive attention.",
+      "invariants": [
+        "classifies the product as dashboard and primary mode as executive",
+        "loads the local executive Dashboard rules",
+        "prioritizes strategic outcomes material variance and exceptions instead of operational noise",
+        "shows target baseline or comparison context for prominent metrics",
+        "distinguishes actual from forecast or projection",
+        "provides drill-down without turning the executive layer into an operational control room",
+        "uses a time horizon appropriate to executive review cadence"
+      ]
+    },
+    {
+      "id": "dashboard-analytical-mode",
+      "type": "positive",
+      "fixture": "analytics-dashboard",
+      "prompt": "Improve an analytical dashboard used to compare cohorts, filter segments, investigate anomalies and drill from summary metrics to underlying records.",
+      "invariants": [
+        "classifies the primary Dashboard mode as analytical",
+        "loads the local analytical Dashboard rules",
+        "makes active filters cohorts comparison groups and time context visible",
+        "preserves analytical context through drill-down and return",
+        "distinguishes missing data from zero",
+        "uses distributions or variation when averages would hide important differences",
+        "does not imply causation from correlation or visual pattern alone"
+      ]
+    },
+    {
+      "id": "dashboard-operational-mode",
+      "type": "positive",
+      "fixture": "existing-dashboard",
+      "prompt": "Improve a high-volume operations dashboard where staff process a work queue all day, prioritize SLA risk, reassign ownership, perform bulk actions and use saved views.",
+      "invariants": [
+        "classifies the primary Dashboard mode as operational",
+        "loads the local operational Dashboard rules",
+        "treats the work queue as a primary working surface rather than surrounding it with decorative KPIs",
+        "makes priority SLA due state ownership and next action understandable",
+        "supports partial bulk failure and preserves recoverable context",
+        "considers saved views density and keyboard power-user behavior",
+        "preserves operational priority on narrow widths"
+      ]
+    },
+    {
+      "id": "dashboard-monitoring-noc-mode",
+      "type": "positive",
+      "fixture": "existing-dashboard",
+      "prompt": "Design a NOC monitoring dashboard with live service health, alerts, incidents, thresholds, stale connections, deployment annotations and a wallboard view.",
+      "invariants": [
+        "classifies the primary Dashboard mode as monitoring-noc",
+        "loads the local Monitoring NOC Dashboard rules",
+        "distinguishes live delayed stale disconnected partial and failed data states",
+        "does not treat every threshold or variation as an interruptive alert",
+        "preserves operator selection and reading context during live updates",
+        "chooses refresh cadence according to source and decision needs instead of refreshing unnecessarily",
+        "distinguishes wallboard readability from interactive workstation behavior"
+      ]
+    },
+    {
+      "id": "dashboard-crm-pipeline-mode",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design a sales CRM pipeline dashboard with stages, owners, opportunity value, weighted forecast, conversion, time in stage, stale deals and next actions.",
+      "invariants": [
+        "classifies the primary Dashboard mode as crm-pipeline",
+        "loads the local CRM Pipeline Dashboard rules",
+        "defines stage semantics and does not assign arbitrary probability without product meaning",
+        "distinguishes gross pipeline weighted pipeline forecast and actual closed revenue",
+        "does not mistake current stage inventory for cohort conversion",
+        "surfaces aging stagnation ownership and next action",
+        "provides permission-aware drill-down to contributing opportunities"
+      ]
+    },
+    {
+      "id": "dashboard-admin-management-mode",
+      "type": "positive",
+      "fixture": "owner-config",
+      "prompt": "Improve an admin management dashboard used to manage users, roles, organizations, policy settings, audit history and bulk permission changes.",
+      "invariants": [
+        "classifies the primary Dashboard mode as admin-management",
+        "loads the local Admin Management Dashboard rules",
+        "makes administrative scope and capability boundaries explicit",
+        "distinguishes entity lifecycle states rather than collapsing them into inactive",
+        "treats global policy and permission changes as high-impact actions",
+        "preserves audit and traceability for consequential changes",
+        "handles partial failure for bulk administrative operations"
       ]
     }
   ]
