@@ -44,6 +44,7 @@ for path in [
     "assets/logo.svg",
     "assets/composer-icon.svg",
     f"skills/{SKILL_NAME}/SKILL.md",
+    f"skills/{SKILL_NAME}/VERSION",
     f"skills/{SKILL_NAME}/product-types.json",
     f"skills/{SKILL_NAME}/shared-rules.json",
     f"skills/{SKILL_NAME}/design-system.json",
@@ -68,6 +69,19 @@ for path in [
 
 if not re.fullmatch(r"\d+\.\d+\.\d+", VERSION):
     error(f"VERSION must use x.y.z semantic versioning; got {VERSION!r}")
+
+skill_version_path = SKILL / "VERSION"
+if skill_version_path.is_file():
+    skill_version = skill_version_path.read_text(encoding="utf-8").strip()
+    if skill_version != VERSION:
+        error(
+            "Installed Skill VERSION does not match repository VERSION; "
+            f"skill={skill_version!r}, repository={VERSION!r}"
+        )
+    if not re.fullmatch(r"\d+\.\d+\.\d+", skill_version):
+        error(f"Installed Skill VERSION must use x.y.z semantic versioning; got {skill_version!r}")
+else:
+    error("Installed Skill must contain VERSION at its Skill root")
 
 # Canonical source must remain singular.
 for old in ["SKILL.md", "agents", "references"]:
@@ -101,6 +115,17 @@ else:
 body_lines = skill_text.split("---", 2)[-1].splitlines()
 if len(body_lines) >= 500:
     error(f"SKILL.md body should stay under 500 lines; got {len(body_lines)}")
+
+require_text(
+    skill_text,
+    [
+        "## Installed version",
+        "VERSION at the Skill root",
+        "read that local `VERSION` file",
+        "Do not infer the installed version",
+    ],
+    "SKILL.md installed-version contract",
+)
 
 # Plugin manifest and directory-facing metadata.
 try:
