@@ -14,7 +14,7 @@ REQUIRED_PRODUCT_IDS = {
     "dashboard",
     "web-application",
     "mobile-application",
-    "wordpress-plugin-settings",
+    "wordpress-plugin",
     "generic-product-ui",
 }
 
@@ -113,7 +113,7 @@ for required_term in [
     "dashboard",
     "web-application",
     "mobile-application",
-    "wordpress-plugin-settings",
+    "wordpress-plugin",
 ]:
     if required_term.casefold() not in skill_text.casefold():
         error(f"SKILL.md missing product-routing term: {required_term}")
