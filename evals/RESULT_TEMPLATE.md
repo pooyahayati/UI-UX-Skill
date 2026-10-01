@@ -2,7 +2,7 @@
 
 ## Candidate
 
-- Skill version: 3.1.0
+- Skill version: 3.1.1
 - Host: Codex / Claude Code / Claude.ai
 - Model:
 - Date:
