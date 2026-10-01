@@ -132,7 +132,7 @@ else:
 
 for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md", "shared-rules.json", "shared-product-rules.md"]:
     if term.casefold() not in skill_text.casefold():
-        error(f"SKILL.md missing v2.3 specialist-routing contract term: {term}")
+        error(f"SKILL.md missing v2.7 routing contract term: {term}")
 
 # v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
