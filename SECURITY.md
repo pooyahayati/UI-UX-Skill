@@ -6,7 +6,8 @@ Security-related fixes are applied to the latest published version of UI/UX Skil
 
 | Version | Supported |
 | --- | --- |
-| 1.x | Yes |
+| 2.x | Yes |
+| 1.x | No — migrate to 2.x |
 
 ## Reporting a security issue
 
