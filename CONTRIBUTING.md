@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions to **Production Dashboard UI/UX Skill** are welcome.
+Contributions to **UI/UX Skill** are welcome.
 
 ## Canonical source
 
