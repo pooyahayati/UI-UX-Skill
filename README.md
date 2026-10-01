@@ -232,7 +232,9 @@ Key references include:
 
 ## Releases
 
-Latest release: **v2.0.0**
+Current source version: **v2.0.0**
+
+Published GitHub Releases are created only from matching semantic-version tags. At the time this source version was committed, the latest published Release may still be older until tag `v2.0.0` is pushed.
 
 Release assets include:
 

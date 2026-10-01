@@ -262,8 +262,8 @@ readme = (ROOT / "README.md").read_text(encoding="utf-8")
 canonical_url = "https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill"
 if canonical_url not in readme:
     error("README is missing the canonical Codex installer URL")
-if f"Latest release: **v{VERSION}**" not in readme:
-    error("README latest-release label does not match VERSION")
+if f"Current source version: **v{VERSION}**" not in readme:
+    error("README current-source-version label does not match VERSION")
 for term in ["$ui-ux-skill", "/ui-ux-skill", "skills/ui-ux-skill"]:
     if term not in readme:
         error(f"README missing v2 canonical identity: {term}")
