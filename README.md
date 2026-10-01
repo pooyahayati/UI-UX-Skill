@@ -1,7 +1,7 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-1.5.0-blue)
+![Version](https://img.shields.io/badge/version-2.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A production-oriented UI/UX Head Skill for designing, auditing, improving, and redesigning product interfaces, dashboards, admin panels, CRM, analytics, and operational UI.
@@ -14,13 +14,13 @@ It supports standalone or Head-delegated UI/UX work, specialist routing, existin
 
 ```text
 Use $skill-installer to install this skill from:
-https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/production-dashboard-ui-ux-skill
+https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill
 ```
 
 Then:
 
 ```text
-Use $production-dashboard-ui-ux-skill to audit and improve this dashboard.
+Use $ui-ux-skill to audit and improve this dashboard.
 ```
 
 ### Claude.ai / Claude Desktop
@@ -44,7 +44,7 @@ or project-local:
 Then invoke:
 
 ```text
-/production-dashboard-ui-ux-skill
+/ui-ux-skill
 ```
 
 ## What the Skill covers
@@ -130,13 +130,37 @@ Draft → Preview → Validate → Publish → Version History / Rollback
 
 Arbitrary CSS, JavaScript, HTML, permissions, authentication, security controls, and business logic are not treated as appearance settings.
 
+## Migrating from the legacy slug
+
+Version 2.0 changes the technical Skill slug from `production-dashboard-ui-ux-skill` to `ui-ux-skill`.
+
+Existing installations using the legacy slug must remove the old installed Skill and reinstall from:
+
+```text
+https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill
+```
+
+Use:
+
+```text
+$ui-ux-skill
+```
+
+or, in Claude Code:
+
+```text
+/ui-ux-skill
+```
+
+The repository name remains `UI-UX-Skill`; the canonical machine-readable Skill name is lowercase `ui-ux-skill`.
+
 ## Updating
 
 For a Codex installation made with `$skill-installer`:
 
 ```text
-Update $production-dashboard-ui-ux-skill to the latest version from:
-https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/production-dashboard-ui-ux-skill
+Update $ui-ux-skill to the latest version from:
+https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill
 
 Remove the currently installed copy if necessary, then reinstall it with $skill-installer.
 ```
@@ -149,7 +173,7 @@ For Claude Code, replace the installed Skill folder with the folder from the new
 
 ## Behavioral evals
 
-Version 1.5 includes executable eval preparation and result-validation tooling plus reusable fixture projects.
+Version 2.0 includes executable eval preparation and result-validation tooling plus reusable fixture projects.
 
 ```bash
 python3 scripts/validate_eval_fixtures.py
@@ -184,7 +208,7 @@ CI additionally runs OpenAI's current Skill validator and a real Codex `$skill-i
 The canonical Skill source is:
 
 ```text
-skills/production-dashboard-ui-ux-skill/
+skills/ui-ux-skill/
 ```
 
 Key references include:
@@ -208,7 +232,7 @@ Key references include:
 
 ## Releases
 
-Latest release: **v1.5.0**
+Latest release: **v2.0.0**
 
 Release assets include:
 
