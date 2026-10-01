@@ -52,6 +52,14 @@ def main() -> None:
     out.mkdir(parents=True)
 
     skill_src = ROOT / "skills" / SKILL_NAME
+    skill_version_path = skill_src / "VERSION"
+    if not skill_version_path.is_file():
+        raise RuntimeError("Skill package source is missing VERSION")
+    skill_version = skill_version_path.read_text(encoding="utf-8").strip()
+    if skill_version != VERSION:
+        raise RuntimeError(
+            f"Skill VERSION {skill_version!r} does not match repository VERSION {VERSION!r}"
+        )
 
     claude_root = out / "claude" / SKILL_NAME
     copy_tree(skill_src, claude_root)
