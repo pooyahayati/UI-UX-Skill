@@ -107,22 +107,21 @@ Focus:
 **Target:** v2.7.x  
 **Status:** Completed
 
-Extract stable rules repeated across Product Packs.
+Extracted stable cross-product contracts into local Shared UI modules:
 
-Potential shared modules:
+- navigation and wayfinding
+- forms and data entry
+- feedback and status
+- state and recovery
+- destructive and high-impact actions
+- accessibility interaction
+- responsive adaptation
+- motion and transitions
+- content hierarchy and progressive disclosure
 
-- navigation principles
-- forms
-- feedback
-- loading / empty / error states
-- destructive actions
-- accessibility interaction contracts
-- responsive principles
-- motion
-- content hierarchy
-- state/recovery patterns
+The Product Pack remains authoritative for product/platform/host/domain specialization.
 
-Do not extract rules merely because two files use similar wording. Extract only when the behavioral contract is genuinely shared.
+Shared Rules are loaded only when relevant to the task and cannot weaken accessibility, security, authorization, truthful-state, or user-data-integrity requirements.
 
 ## Stage 5 — Design System Hardening
 
