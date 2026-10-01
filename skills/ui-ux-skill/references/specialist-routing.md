@@ -131,7 +131,7 @@ Rules:
    - the specialist is installed and discoverable;
    - the installed copy matches or is not known to be behind the current canonical upstream source.
    Use the environment's Skill manager when available; this repository also provides `scripts/validate_specialists.py` for explicit source/install checks.
-4. If an installed Skill is known to be stale and the environment supports updating Skills, update/reinstall it from its canonical source before relying on it.
+4. If a REQUIRED Skill is missing or an installed Skill is known to be stale and the environment supports installing/updating Skills, install or update/reinstall it from the registry's canonical source before relying on it. Do not silently substitute Head-local domain rules for a missing required specialist.
 5. If freshness cannot be checked, report freshness as `Unverified`; never claim that the latest version was used.
 6. If a REQUIRED specialist is known to be stale and cannot be updated, do not treat specialist-dependent validation as complete.
 7. If the environment supports a Skill manager/installer, prefer its update mechanism over copying specialist files into this Head.
