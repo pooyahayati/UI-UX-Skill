@@ -21,6 +21,12 @@
         "spacing-density-layout",
         "component-states",
         "color-theme"
+      ],
+      "forbidden_product_routes": [
+        "website",
+        "web-application",
+        "mobile-application",
+        "wordpress-plugin"
       ]
     },
     {
@@ -28,7 +34,12 @@
       "product_route": "website",
       "fixture": "real-world-website",
       "product_refs": [
-        "references/products/website.md"
+        "references/products/website.md",
+        "references/products/website/structure-navigation.md",
+        "references/products/website/conversion-trust.md",
+        "references/products/website/content-seo.md",
+        "references/products/website/media-performance.md",
+        "references/products/website/accessibility-localization-qa.md"
       ],
       "shared_rules": [
         "navigation-wayfinding",
@@ -44,6 +55,12 @@
         "color-theme",
         "component-states",
         "responsive-variants"
+      ],
+      "forbidden_product_routes": [
+        "dashboard",
+        "web-application",
+        "mobile-application",
+        "wordpress-plugin"
       ]
     },
     {
@@ -51,7 +68,10 @@
       "product_route": "web-application",
       "fixture": "real-world-web-app",
       "product_refs": [
-        "references/products/web-application.md"
+        "references/products/web-application.md",
+        "references/products/web-application/navigation-state.md",
+        "references/products/web-application/workflows-data.md",
+        "references/products/web-application/interaction-access.md"
       ],
       "shared_rules": [
         "forms-data-entry",
@@ -66,6 +86,12 @@
         "component-states",
         "responsive-variants",
         "governance-migration"
+      ],
+      "forbidden_product_routes": [
+        "dashboard",
+        "website",
+        "mobile-application",
+        "wordpress-plugin"
       ]
     },
     {
@@ -91,6 +117,12 @@
         "color-theme",
         "component-states",
         "responsive-variants"
+      ],
+      "forbidden_product_routes": [
+        "dashboard",
+        "website",
+        "web-application",
+        "wordpress-plugin"
       ]
     },
     {
@@ -116,6 +148,12 @@
         "color-theme",
         "component-states",
         "responsive-variants"
+      ],
+      "forbidden_product_routes": [
+        "dashboard",
+        "website",
+        "web-application",
+        "mobile-application"
       ]
     }
   ]
