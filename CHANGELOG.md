@@ -2,6 +2,25 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [2.8.0] - 2026-10-02
+
+### Design System Hardening
+
+- Added machine-readable `design-system.json` registry and seven local Design System modules.
+- Rebuilt `design-system-architecture.md` as a modular router with explicit authority and runtime boundaries.
+- Added token foundations covering primitive, semantic, component, product-variant, and resolved-runtime layers.
+- Added stable token typing, aliases/references, source-vs-resolved separation, logical-direction guidance, and DTCG 2025.10-compatible interchange guidance.
+- Added semantic typography roles including Persian/Latin mixed-script behavior, numeric/data typography, responsive type, and font-loading guidance.
+- Added color/theme contracts for Light, Dark, High Contrast / Forced Colors, semantic status roles, chart palette roles, and owner palette constraints.
+- Added spacing/density/layout contracts covering semantic spacing, control sizing, density presets, radius, elevation, and logical layout foundations.
+- Added reusable component-state contracts covering focus-visible, disabled, read-only, loading, validation, selection, and theme/state matrices.
+- Added responsive token and product-variant architecture with deterministic precedence and variant-explosion control.
+- Added design-system governance for lifecycle, deprecation, aliases, migration, impact analysis, runtime configuration boundaries, and visual-regression compatibility.
+- Added `scripts/validate_design_system.py` and wired it into PR and Release workflows.
+- Added six behavioral evals for token hierarchy, component states, theme resolution, bilingual typography, density/responsive behavior, and runtime boundary safety.
+- Extended Design Profile, runtime governance, RTL/typography, theme/brand, and visual-regression references for the hardened Design System.
+- Marked Roadmap Stage 5 complete.
+
 ## [2.7.0] - 2026-10-01
 
 ### Shared Product UI Rules

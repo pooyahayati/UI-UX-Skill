@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for UI/UX Skill v2.7.0.
+Prepared for UI/UX Skill v2.8.0.
 
 ## Package
 
@@ -25,6 +25,11 @@ Prepared for UI/UX Skill v2.7.0.
 - [x] Visual-regression protocol
 - [x] UX evidence/metrics framework
 - [x] Design-system implementation strategies
+- [x] Machine-readable Design System registry
+- [x] Seven local Design System modules
+- [x] DTCG 2025.10-compatible token interchange guidance
+- [x] Component-state and theme-context contracts
+- [x] Design-system structural validator in CI/release
 - [x] Runtime owner UI governance guidance
 - [x] Preference reconciliation guidance
 - [x] Operational real-time/search/concurrency patterns

@@ -35,6 +35,12 @@ Before committing or shipping external fonts, icons, illustrations, or brand ass
 - record attribution when required
 - avoid copying protected brand material from unrelated products
 
+## Design-system routing
+
+Read `design-system/color-theme.md` for color/theme semantics and `design-system/spacing-density-layout.md` for surface/radius/elevation foundations.
+
+This file owns brand identity treatment and visual governance, not the token architecture.
+
 ## Palette
 
 Audit whether colors:

@@ -1,221 +1,322 @@
 # Design System Architecture and Changeability
 
-Use this reference when implementing or auditing a product UI that must remain easy to change after initial delivery.
+Use this reference when implementing, auditing, or migrating a reusable product UI design system.
 
-The goal is controlled changeability, not unlimited theming.
+The goal is controlled, testable changeability—not unlimited theming.
 
-Read `implementation-strategies.md` when mapping this architecture into an existing framework or styling stack.
+Machine-readable registry:
 
-## Architecture principle
+`../design-system.json`
 
-Prefer this flow:
+## Architecture
 
-`Design Profile -> Design System Defaults -> Semantic Tokens -> Component Tokens -> Components -> Pages`
+Use this conceptual flow:
 
-When runtime customization is justified:
+`Design Profile -> Primitive Tokens -> Semantic Tokens -> Component Tokens -> Product Variants -> Resolved Runtime Tokens -> Components -> Product Surfaces`
 
-`Locked Constraints -> Design System Defaults -> Published Owner Config -> User Preferences -> Resolved Runtime Tokens`
+When runtime customization exists:
 
-Pages should consume stable components/tokens rather than repeat visual values.
+`Persisted Config -> Validation/Migration -> Policy Resolution -> Preference Reconciliation -> Resolved Runtime Tokens`
 
-## Token layers
+Pages and product surfaces should consume stable component/token contracts rather than raw owner settings or repeated visual values.
 
-### Primitive tokens
+## Required module routing
 
-Raw scales such as:
-- color ramps
-- spacing scale
-- typography scale
-- radius scale
-- elevation values
-- motion durations
+Load only the modules relevant to the task.
 
-Primitive tokens are implementation building blocks. They are usually not directly editable by non-developers.
+### Tokens and foundations
 
-### Semantic tokens
+`design-system/tokens-foundations.md`
 
-Product meanings such as:
-- background
-- surface
-- surface-muted
-- text-primary
-- text-secondary
-- border
-- primary
-- focus
-- success
-- warning
-- danger
-- info
+Owns:
 
-Owner-facing configuration should normally map to semantic tokens, not arbitrary primitives.
+- primitive / semantic / component token hierarchy;
+- product variants;
+- token naming/types;
+- aliases/references;
+- source vs resolved tokens;
+- DTCG-compatible interchange;
+- logical-direction token principles.
 
-### Component tokens
+### Typography
 
-Component-level meanings such as:
-- button-primary-bg
-- input-border
-- table-row-height
-- sidebar-width
-- chart-grid
-- dialog-elevation
+`design-system/typography.md`
 
-Use them only where a global semantic token is too broad.
+Owns:
+
+- semantic typography roles;
+- type scales;
+- label/body/data/code roles;
+- Persian/Latin pairing;
+- font loading;
+- responsive typography.
+
+### Color and theme
+
+`design-system/color-theme.md`
+
+Owns:
+
+- semantic color roles;
+- Light/Dark;
+- High Contrast / Forced Colors;
+- contrast;
+- status color;
+- chart palette roles;
+- owner-configurable palette boundaries.
+
+### Spacing, density, and layout
+
+`design-system/spacing-density-layout.md`
+
+Owns:
+
+- spacing scale and semantic spacing;
+- density presets;
+- control sizing;
+- layout foundations;
+- radius;
+- elevation.
+
+### Component states
+
+`design-system/component-states.md`
+
+Owns:
+
+- interactive state inventory;
+- state semantics;
+- focus/selected/disabled/read-only distinctions;
+- loading/validation state;
+- state tokens;
+- state/theme matrix.
+
+### Responsive tokens and product variants
+
+`design-system/responsive-variants.md`
+
+Owns:
+
+- reusable responsive-token architecture;
+- breakpoint/range strategy;
+- component variants;
+- product variants;
+- variant precedence;
+- variant-explosion control.
+
+### Governance and migration
+
+`design-system/governance-migration.md`
+
+Owns:
+
+- lifecycle;
+- deprecation;
+- alias migration;
+- breaking-change classification;
+- impact analysis;
+- runtime configuration boundary;
+- visual-regression compatibility;
+- ownership.
+
+## Stable token interchange
+
+When machine-readable design-token interchange is useful, prefer compatibility with the stable DTCG 2025.10 specification.
+
+This does not require migrating a stable existing token format solely for standardization.
+
+Use DTCG concepts such as:
+
+- `$value`;
+- `$type`;
+- groups;
+- references/aliases;
+- composite values;
+- extensions.
+
+Do not implement against a newer unstable draft merely because it is newer.
+
+## Authority and precedence
+
+Use:
+
+`Product Pack -> Shared Product UI Rule -> Design System Contract -> Product Variant -> Runtime Configuration -> Allowed User Preference -> Component Implementation`
+
+Interpret this carefully:
+
+- Product Packs own product/host/platform semantics.
+- Shared Rules own cross-product behavioral contracts.
+- Design System owns reusable visual/interaction primitives and component contracts.
+- Product variants specialize approved token/component behavior.
+- Runtime configuration selects only approved design-system values/presets.
+- User preferences affect only explicitly permitted fields.
+- Component implementation must preserve all higher-level semantics.
+
+No lower layer may weaken:
+
+- accessibility;
+- security;
+- authorization;
+- truthful state;
+- user-data integrity.
+
+## Design-system defaults vs runtime settings
+
+Design-system source is not the same as runtime owner configuration.
+
+Design-system source defines:
+
+- token structure;
+- semantic roles;
+- component states;
+- variant capabilities;
+- safe ranges/presets;
+- theme resolution;
+- migration rules.
+
+Runtime configuration may choose from approved values.
+
+Runtime configuration must not redefine:
+
+- token aliases;
+- component state model;
+- breakpoint logic;
+- arbitrary component CSS;
+- security/permission rules;
+- workflow/business logic.
+
+Read `runtime-ui-governance.md` for owner controls.
+
+## Existing systems
+
+Reuse the project's current architecture where it can support the required contracts.
+
+Do not migrate frameworks, styling libraries, or token formats solely for architectural purity.
+
+Read `implementation-strategies.md` to map the design-system contract into:
+
+- CSS variables;
+- utility-first CSS;
+- theme objects/providers;
+- CSS-in-JS;
+- preprocessors;
+- existing component libraries;
+- framework-native theming.
 
 ## Avoid hard-coded presentation
 
-Audit for repeated raw values in:
-- components
-- pages
-- inline styles
-- chart configs
-- conditional classes
-- theme-specific branches
+Audit repeated raw values in:
 
-Prefer central variables/tokens for values expected to change.
+- components;
+- pages;
+- inline styles;
+- chart configs;
+- theme branches;
+- runtime configuration adapters.
+
+Centralize values that represent a real repeated design decision.
 
 Do not abstract one-off values merely to increase indirection.
 
-## Configuration schema
-
-When runtime design configuration is needed, define a typed/versioned schema.
-
-Example:
-
-```json
-{
-  "schemaVersion": 1,
-  "theme": {
-    "defaultMode": "system",
-    "allowedModes": ["light", "dark", "system"]
-  },
-  "brand": {
-    "primary": "#0F766E",
-    "accent": "#2563EB",
-    "logoLight": "/brand/logo-light.svg",
-    "logoDark": "/brand/logo-dark.svg"
-  },
-  "density": "balanced",
-  "radius": "medium",
-  "motion": "standard",
-  "navigation": {
-    "defaultState": "expanded"
-  },
-  "tables": {
-    "defaultPageSize": 25
-  }
-}
-```
-
-Do not store executable code inside design configuration.
-
-## Validation boundaries
-
-Each configurable field should define:
-
-- type
-- allowed values or range
-- fallback/default
-- role allowed to change it
-- whether it requires preview
-- whether it is user-overridable
-- accessibility constraints
-- compatibility/migration behavior
-
-Examples:
-
-- page size: integer from approved set
-- density: enum
-- radius: preset enum rather than arbitrary CSS
-- color: valid color plus contrast validation
-- logo: approved asset type/size/path
-- font: allowlisted project font family/preset
-
-## Precedence
-
-Resolve configuration deterministically.
-
-Recommended precedence:
-
-1. locked product constraints
-2. design-system defaults
-3. published owner configuration
-4. user preferences for explicitly user-configurable fields
-5. safe runtime fallback when a value is missing or invalid
-
-A user preference must never override a locked or non-user-configurable field.
-
-## Storage
-
-Choose storage based on product architecture.
-
-Possible locations:
-- database configuration record
-- tenant settings
-- server-side configuration service
-- versioned JSON/YAML for build-time-only products
-- local user preference storage for non-sensitive personal preferences
-
-Do not put authorization decisions solely in browser storage.
-
-For multi-tenant products, scope owner configuration to the correct tenant/account.
-
-## Server/client behavior
-
-Avoid theme/config flashes and hydration mismatch.
-
-Where relevant:
-- resolve critical theme/config values before first meaningful render
-- cache safely
-- invalidate cache after publish
-- provide deterministic server/client fallbacks
-- avoid blocking the whole application on non-critical appearance settings
-
-## Schema evolution
-
-Runtime configuration needs migrations.
-
-When changing schema:
-- increment `schemaVersion`
-- provide defaults for new fields
-- migrate or safely ignore removed fields
-- preserve rollback compatibility when practical
-- test older published configs
-
 ## Component contracts
 
-Components should expose purposeful variants rather than raw styling escape hatches.
+Components should expose purposeful variants.
 
 Prefer:
 
 `<Button intent="primary" size="md" />`
 
-over passing arbitrary style fragments throughout the product.
+over raw style fragments passed throughout product code.
 
 Do not make every component infinitely configurable.
 
+Every reusable interactive component should define its relevant states through `design-system/component-states.md`.
+
+## Product variants
+
+Do not create separate design systems for Website, Dashboard, Web App, Mobile, and WordPress.
+
+Use product variants only where reusable system behavior genuinely differs.
+
+Examples:
+
+- dashboard compact data density;
+- website editorial reading measure;
+- WordPress host-compatible admin controls;
+- mobile platform-adapted control metrics.
+
+The active Product Pack remains authoritative for whether a variant is appropriate.
+
+## RTL/LTR
+
+Use one coherent design system for RTL and LTR.
+
+Prefer logical direction concepts and CSS logical properties where applicable.
+
+Read `rtl-ltr-typography.md` for direction/localization architecture and `design-system/typography.md` for typography-system integration.
+
+Do not create a duplicated RTL token system merely to mirror left/right.
+
 ## Testing changeability
 
-A maintainable design system should pass practical change tests, for example:
+A hardened design system should pass practical change tests such as:
 
-- changing primary semantic color updates expected components without editing pages
-- changing density updates tables/forms consistently
-- Light/Dark logo variants switch correctly
-- changing approved typography does not break common layouts
-- user preference overrides only permitted fields
-- invalid owner config falls back safely
+- changing a semantic color updates expected components without page edits;
+- Light/Dark/High Contrast preserve meaning;
+- changing supported density updates controls/tables consistently;
+- typography changes do not break representative layouts;
+- component state semantics survive theme/product variants;
+- responsive tokens resolve without page-level override sprawl;
+- product variants preserve base contracts;
+- invalid runtime configuration falls back safely;
+- user preferences override only allowed fields;
+- deprecated token aliases migrate without silently changing meaning.
+
+## Visual regression
+
+Read `visual-regression.md` for rendered evidence.
+
+Design-system changes should identify affected baseline dimensions:
+
+- themes;
+- component states;
+- density;
+- typography;
+- responsive contexts;
+- RTL/LTR;
+- product variants.
+
+A screenshot difference is not automatically a regression; expected token-driven changes should be documented.
 
 ## Developer handoff
 
 Document:
-- token source
-- config schema
-- precedence
-- owner-configurable fields
-- user-configurable fields
-- code-only fields
-- migration process
-- fallback behavior
-- relevant tests
 
-Changeability is a product capability and should be understandable without reverse-engineering every component.
+- token source;
+- token format/interchange;
+- semantic roles;
+- component-state contract;
+- theme contexts;
+- density/layout roles;
+- responsive/product variants;
+- runtime configuration boundary;
+- user preference boundary;
+- migration/deprecation process;
+- fallback behavior;
+- ownership;
+- relevant tests and visual baselines.
+
+Changeability should be understandable without reverse-engineering every page.
+
+## Current canonical references
+
+When standards details may have changed, verify current sources.
+
+Relevant references include:
+
+- Design Tokens Community Group stable specification;
+- WCAG 2.2;
+- CSS Color Adjustment / Forced Colors;
+- CSS Logical Properties and Values.
+
+These external specifications inform the local design-system contract; they are not external design Skill dependencies.

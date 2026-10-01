@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "stable_token_interchange": "DTCG 2025.10",
+  "modules": [
+    {
+      "id": "tokens-foundations",
+      "reference": "references/design-system/tokens-foundations.md"
+    },
+    {
+      "id": "typography",
+      "reference": "references/design-system/typography.md"
+    },
+    {
+      "id": "color-theme",
+      "reference": "references/design-system/color-theme.md"
+    },
+    {
+      "id": "spacing-density-layout",
+      "reference": "references/design-system/spacing-density-layout.md"
+    },
+    {
+      "id": "component-states",
+      "reference": "references/design-system/component-states.md"
+    },
+    {
+      "id": "responsive-variants",
+      "reference": "references/design-system/responsive-variants.md"
+    },
+    {
+      "id": "governance-migration",
+      "reference": "references/design-system/governance-migration.md"
+    }
+  ],
+  "architecture": {
+    "order": [
+      "design-profile",
+      "primitive-tokens",
+      "semantic-tokens",
+      "component-tokens",
+      "product-variants",
+      "resolved-runtime-tokens",
+      "components",
+      "product-surfaces"
+    ],
+    "protected_floors": [
+      "accessibility",
+      "security",
+      "authorization",
+      "truthful-state",
+      "data-integrity"
+    ]
+  }
+}

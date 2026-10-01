@@ -23,6 +23,23 @@ Useful dimensions:
 
 Do not attempt to capture every possible screen in a large product. Record the chosen coverage.
 
+## Design-system impact dimensions
+
+When a design-system contract changes, record which dimensions are expected to change:
+
+- semantic color/theme;
+- typography;
+- spacing/density;
+- component state;
+- responsive token/layout;
+- RTL/LTR;
+- product variant;
+- owner/user runtime configuration.
+
+Choose baseline coverage from the affected dimensions rather than recapturing every surface blindly.
+
+A semantic-token change can affect many components; impact analysis should identify representative high-risk consumers.
+
 ## Screenshot matrix
 
 Use stable names so before/after evidence can be paired.
