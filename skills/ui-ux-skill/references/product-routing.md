@@ -35,6 +35,11 @@ A product can span more than one route.
 
 Examples:
 
+- a public website with a signed-in product area:
+  - primary route depends on the current deliverable;
+  - public marketing/content surface: `website`;
+  - signed-in product surface: `web-application`;
+  - do not apply app-shell conventions to the public site or website-conversion patterns to an authenticated workflow.
 - a SaaS web application with an analytics dashboard:
   - primary: `web-application`
   - secondary: `dashboard`
