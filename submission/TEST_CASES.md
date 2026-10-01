@@ -80,16 +80,16 @@ Product route, mobile UX architecture, representative screen/workflow decisions,
 
 None required. A representative mobile project or product brief is sufficient.
 
-### 4. WordPress plugin settings and admin UI
+### 4. WordPress plugin and admin UI
 
 **Prompt**
 
-> Redesign this WordPress plugin settings UI inside wp-admin. It has API credentials, save actions, diagnostics, import/export, reset tools, and Persian localization.
+> Redesign this WordPress plugin UI inside wp-admin. It has API credentials, save actions, diagnostics, import/export, reset tools, and Persian localization.
 
 **Expected behavior**
 
-- Classifies the primary product route as `wordpress-plugin-settings`.
-- Loads the required WordPress Plugin Settings Product Pack.
+- Classifies the primary product route as `wordpress-plugin`.
+- Loads the required WordPress Plugin Product Pack.
 - Preserves the surrounding `wp-admin` mental model and capability boundaries.
 - Groups settings by user intent rather than backend modules.
 - Separates normal settings, integrations, diagnostics, and destructive operations.
