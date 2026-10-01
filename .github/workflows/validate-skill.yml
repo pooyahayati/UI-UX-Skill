@@ -21,6 +21,9 @@ jobs:
       - name: Product route validation
         run: python3 scripts/validate_product_routes.py
 
+      - name: Shared rule validation
+        run: python3 scripts/validate_shared_rules.py
+
       - name: Specialist registry validation
         run: python3 scripts/validate_specialists.py
 
