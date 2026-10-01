@@ -86,17 +86,11 @@ This file retains only theme/brand-specific responsive concerns:
 
 Do not redefine generic responsive rules here.
 
-## Mobile tables
+## Dense responsive data
 
-Choose based on task:
+Read `shared/responsive-adaptation.md`.
 
-- priority columns
-- expandable rows
-- summary and detail
-- horizontal scroll
-- dedicated record view
-
-Horizontal scroll can be superior when cross-column comparison matters.
+Generic table adaptation belongs in the Shared Responsive contract. Product-specific table/work-queue behavior belongs in the active Product Pack.
 
 ## Navigation
 
