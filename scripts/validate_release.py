@@ -120,7 +120,7 @@ require_text(
     skill_text,
     [
         "## Installed version",
-        "VERSION at the Skill root",
+        "`VERSION` at the Skill root",
         "read that local `VERSION` file",
         "Do not infer the installed version",
     ],
