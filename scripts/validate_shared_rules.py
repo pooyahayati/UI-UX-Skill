@@ -30,6 +30,51 @@ PRODUCT_PACKS = [
     "references/products/wordpress-plugin.md",
 ]
 
+EXPECTED_PRODUCT_SHARED_REFS = {
+    "references/products/website.md": {
+        "navigation-wayfinding.md",
+        "forms-data-entry.md",
+        "state-recovery.md",
+        "accessibility-interaction.md",
+        "responsive-adaptation.md",
+        "motion.md",
+        "content-hierarchy-progressive-disclosure.md",
+    },
+    "references/products/web-application.md": {
+        "forms-data-entry.md",
+        "feedback-status.md",
+        "state-recovery.md",
+        "destructive-high-impact-actions.md",
+        "accessibility-interaction.md",
+        "responsive-adaptation.md",
+        "motion.md",
+    },
+    "references/products/mobile-application.md": {
+        "navigation-wayfinding.md",
+        "forms-data-entry.md",
+        "feedback-status.md",
+        "state-recovery.md",
+        "accessibility-interaction.md",
+        "responsive-adaptation.md",
+        "motion.md",
+    },
+    "references/products/wordpress-plugin.md": {
+        "navigation-wayfinding.md",
+        "feedback-status.md",
+        "state-recovery.md",
+        "destructive-high-impact-actions.md",
+        "accessibility-interaction.md",
+        "responsive-adaptation.md",
+    },
+    "references/products/dashboard.md": {
+        "feedback-status.md",
+        "state-recovery.md",
+        "accessibility-interaction.md",
+        "responsive-adaptation.md",
+        "content-hierarchy-progressive-disclosure.md",
+    },
+}
+
 errors: list[str] = []
 
 
@@ -143,6 +188,11 @@ for rel in PRODUCT_PACKS:
         error(f"{rel} must route to shared-product-rules.md")
     if "Shared rule loading" not in text:
         error(f"{rel} must contain a Shared rule loading section")
+
+    expected_refs = EXPECTED_PRODUCT_SHARED_REFS.get(rel, set())
+    for ref_name in expected_refs:
+        if ref_name not in text:
+            error(f"{rel} must delegate the cross-product contract to {ref_name}")
 
 accessibility = (SKILL / "references/accessibility.md").read_text(encoding="utf-8")
 if "shared/accessibility-interaction.md" not in accessibility:
