@@ -8,7 +8,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL_NAME = "production-dashboard-ui-ux-skill"
+SKILL_NAME = "ui-ux-skill"
 SKILL = ROOT / "skills" / SKILL_NAME
 VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 ERRORS: list[str] = []
@@ -65,6 +65,10 @@ for old in ["SKILL.md", "agents", "references"]:
     if (ROOT / old).exists():
         error(f"Duplicate root Skill source still exists: {old}")
 
+legacy_skill = ROOT / "skills" / "production-dashboard-ui-ux-skill"
+if legacy_skill.exists():
+    error("Legacy Skill path still exists; v2 canonical source must be skills/ui-ux-skill/")
+
 skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
 if not skill_text.startswith("---\n"):
     error("SKILL.md must start with YAML frontmatter")
@@ -91,9 +95,9 @@ else:
 
 for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head"]:
     if term.casefold() not in skill_text.casefold():
-        error(f"SKILL.md missing v1.5 specialist-routing contract term: {term}")
+        error(f"SKILL.md missing v2.0 specialist-routing contract term: {term}")
 
-# v1.5 thin-head specialist routing:
+# v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
 routing_path = SKILL / "references" / "specialist-routing.md"
 routing_text = routing_path.read_text(encoding="utf-8") if routing_path.exists() else ""
@@ -137,11 +141,14 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v1.4 reference: {ref}")
+        error(f"SKILL.md does not route to required v2.0 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
     error("plugin.json version does not match VERSION")
+
+if manifest.get("name") != "ui-ux":
+    error("plugin.json name must be ui-ux for v2")
 
 plugin_name = manifest.get("name", "")
 if len(f"{plugin_name}:{SKILL_NAME}") > 64:
@@ -252,11 +259,14 @@ validate_svg("logo")
 validate_svg("composerIcon")
 
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
-canonical_url = "https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/production-dashboard-ui-ux-skill"
+canonical_url = "https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill"
 if canonical_url not in readme:
     error("README is missing the canonical Codex installer URL")
 if f"Latest release: **v{VERSION}**" not in readme:
     error("README latest-release label does not match VERSION")
+for term in ["$ui-ux-skill", "/ui-ux-skill", "skills/ui-ux-skill"]:
+    if term not in readme:
+        error(f"README missing v2 canonical identity: {term}")
 for term in [
     "specialist routing",
     "persian-writing",
@@ -297,7 +307,7 @@ for term in [
     "data_ux",
 ]:
     if term not in profile:
-        error(f"Design Profile v1.4 field missing: {term}")
+        error(f"Design Profile v2.0 field missing: {term}")
 
 architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
 for term in [
@@ -345,7 +355,7 @@ cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
 if len(cases) < 10:
-    error("Behavioral eval manifest should contain at least 10 cases for v1.4")
+    error("Behavioral eval manifest should contain at least 10 cases for v2.0")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -359,7 +369,7 @@ for required_id in [
     "specialist-freshness",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v1.4 case: {required_id}")
+        error(f"Behavioral eval missing v2.0 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):

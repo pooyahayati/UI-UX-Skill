@@ -1,5 +1,5 @@
 ---
-name: production-dashboard-ui-ux-skill
+name: ui-ux-skill
 description: UI/UX Head Skill for designing, auditing, improving, and redesigning production dashboards, admin panels, CRM, analytics, and operational product UI. Works standalone or as a specialist under a higher-level engineering Head, and routes narrow concerns to specialist Skills. Use for dashboard UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, tables, forms, navigation, accessibility, performance, personalization, runtime design governance, owner-controlled appearance settings, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing sites, or unrelated graphic design.
 ---
 
@@ -29,7 +29,7 @@ In Head-delegated mode:
 
 Authority order:
 
-`Higher-level Engineering Head -> Production Dashboard UI/UX Head -> Lower-level Specialist`
+`Higher-level Engineering Head -> UI/UX Head -> Lower-level Specialist`
 
 ## Route the task first
 

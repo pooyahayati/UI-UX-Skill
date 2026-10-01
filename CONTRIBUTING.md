@@ -7,7 +7,7 @@ Contributions to **UI/UX Skill** are welcome.
 The Skill has one source of truth:
 
 ```text
-skills/production-dashboard-ui-ux-skill/
+skills/ui-ux-skill/
 ```
 
 Do not add duplicate root copies of `SKILL.md`, `agents/`, or `references/`.
@@ -44,7 +44,7 @@ Prefer:
 - reusable principles over one-off fixes
 - product outcomes over visual trends
 - a concise `SKILL.md`
-- conditional detail in `skills/production-dashboard-ui-ux-skill/references/`
+- conditional detail in `skills/ui-ux-skill/references/`
 - preserving user intent and functional contracts
 - observable QA criteria
 - explicit trigger boundaries

@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "production-dashboard-ui-ux",
-  "version": "1.5.0",
-  "description": "Production dashboard UI/UX head skill with specialist routing, audit, visual regression, design systems, personalization, accessibility, performance, and RTL/LTR workflows.",
+  "name": "ui-ux",
+  "version": "2.0.0",
+  "description": "UI/UX Head Skill with modular specialist routing, audit, visual regression, design systems, personalization, accessibility, performance, and RTL/LTR workflows.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://pooyahayati.com"
@@ -11,6 +11,7 @@
   "repository": "https://github.com/pooyahayati/UI-UX-Skill",
   "license": "MIT",
   "keywords": [
+    "ui-ux-head-skill",
     "dashboard",
     "ui",
     "ux",

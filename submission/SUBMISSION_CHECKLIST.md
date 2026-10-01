@@ -1,11 +1,11 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for UI/UX Skill v1.4.0.
+Prepared for UI/UX Skill v2.0.0.
 
 ## Package
 
 - [x] Portable root `plugin.json`
-- [x] Canonical Skill under `skills/production-dashboard-ui-ux-skill/`
+- [x] Canonical Skill under `skills/ui-ux-skill/`
 - [x] Single Skill source of truth
 - [x] Public GitHub repository
 - [x] MIT license
@@ -43,11 +43,11 @@ Prepared for UI/UX Skill v1.4.0.
 
 **Display name**
 
-Production Dashboard UI/UX
+UI/UX Skill
 
 **Short description**
 
-Production dashboard UI/UX
+UI/UX Head Skill
 
 **Developer**
 
