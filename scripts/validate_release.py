@@ -65,6 +65,10 @@ for old in ["SKILL.md", "agents", "references"]:
     if (ROOT / old).exists():
         error(f"Duplicate root Skill source still exists: {old}")
 
+legacy_skill = ROOT / "skills" / "production-dashboard-ui-ux-skill"
+if legacy_skill.exists():
+    error("Legacy Skill path still exists; v2 canonical source must be skills/ui-ux-skill/")
+
 skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
 if not skill_text.startswith("---\n"):
     error("SKILL.md must start with YAML frontmatter")
@@ -142,6 +146,9 @@ for ref in [
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
     error("plugin.json version does not match VERSION")
+
+if manifest.get("name") != "ui-ux":
+    error("plugin.json name must be ui-ux for v2")
 
 plugin_name = manifest.get("name", "")
 if len(f"{plugin_name}:{SKILL_NAME}") > 64:
@@ -257,6 +264,9 @@ if canonical_url not in readme:
     error("README is missing the canonical Codex installer URL")
 if f"Latest release: **v{VERSION}**" not in readme:
     error("README latest-release label does not match VERSION")
+for term in ["$ui-ux-skill", "/ui-ux-skill", "skills/ui-ux-skill"]:
+    if term not in readme:
+        error(f"README missing v2 canonical identity: {term}")
 for term in [
     "specialist routing",
     "persian-writing",
