@@ -60,3 +60,14 @@ jobs:
         run: |
           python3 "$RUNNER_TEMP/openai-skills/skills/.system/skill-creator/scripts/quick_validate.py" \
             skills/ui-ux-skill
+
+      - name: Codex installer smoke test
+        if: github.event_name == 'push'
+        run: |
+          python3 "$RUNNER_TEMP/openai-skills/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+            --repo pooyahayati/UI-UX-Skill \
+            --path skills/ui-ux-skill \
+            --ref "$GITHUB_SHA" \
+            --dest "$RUNNER_TEMP/installed-skills"
+
+          test -f "$RUNNER_TEMP/installed-skills/ui-ux-skill/SKILL.md"
