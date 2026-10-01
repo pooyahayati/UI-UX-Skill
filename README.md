@@ -1,10 +1,10 @@
-# Production Dashboard UI/UX Skill
+# UI/UX Skill
 
-[![Validate](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml)
+[![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
 ![Version](https://img.shields.io/badge/version-1.5.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A production-oriented Agent Skill for designing, auditing, improving, and redesigning dashboards, admin panels, CRM, analytics, and operational product interfaces.
+A production-oriented UI/UX Head Skill for designing, auditing, improving, and redesigning product interfaces, dashboards, admin panels, CRM, analytics, and operational UI.
 
 It supports standalone or Head-delegated UI/UX work, specialist routing, existing-product audits, evidence-driven UX improvement, visual regression, responsive UI, Persian RTL / English LTR, Light/Dark themes, reusable design systems, runtime design governance, personalization, Data Trust UX, accessibility, and performance.
 
@@ -14,7 +14,7 @@ It supports standalone or Head-delegated UI/UX work, specialist routing, existin
 
 ```text
 Use $skill-installer to install this skill from:
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill/tree/main/skills/production-dashboard-ui-ux-skill
+https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/production-dashboard-ui-ux-skill
 ```
 
 Then:
@@ -136,7 +136,7 @@ For a Codex installation made with `$skill-installer`:
 
 ```text
 Update $production-dashboard-ui-ux-skill to the latest version from:
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill/tree/main/skills/production-dashboard-ui-ux-skill
+https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/production-dashboard-ui-ux-skill
 
 Remove the currently installed copy if necessary, then reinstall it with $skill-installer.
 ```
