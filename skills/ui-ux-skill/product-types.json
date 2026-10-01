@@ -80,7 +80,13 @@
       ],
       "required_references": [
         "references/products/wordpress-plugin.md"
-      ]
+      ],
+      "local_references": {
+        "settings": "references/products/wordpress/settings.md",
+        "onboarding_integrations": "references/products/wordpress/onboarding-integrations.md",
+        "diagnostics_operations": "references/products/wordpress/diagnostics-operations.md",
+        "multisite_admin": "references/products/wordpress/multisite-admin.md"
+      }
     },
     {
       "id": "website",
