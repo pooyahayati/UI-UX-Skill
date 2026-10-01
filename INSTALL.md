@@ -111,10 +111,57 @@ CI also runs OpenAI's current Skill validator and a real Codex installer smoke t
 
 ## Specialist dependencies
 
-This Skill uses modular specialist routing.
+This Skill uses modular specialist routing. The machine-readable registry is:
 
-For Persian-facing UI, `persian-writing` is a required specialist:
+`skills/ui-ux-skill/specialists.json`
+
+For Persian-facing UI, `persian-writing` is REQUIRED and remains an independent Skill:
 
 `https://github.com/ali2000hos/persian-writing`
 
-Specialists are referenced by canonical source rather than pinned versions. When tooling allows, use the latest stable installed version.
+Do not copy it into this repository. Install or update it from its canonical repository so upstream improvements remain available.
+
+### Codex: install Persian specialist
+
+The current `persian-writing` Skill lives at the repository root. Ask `$skill-installer` to install:
+
+```text
+Repository: ali2000hos/persian-writing
+Path: .
+Install name: persian-writing
+```
+
+Codex installs Skills under `$CODEX_HOME/skills` (default `~/.codex/skills`).
+
+### Check specialist sources
+
+Validate the registry only:
+
+```bash
+python3 scripts/validate_specialists.py
+```
+
+Resolve every specialist against its current canonical upstream source:
+
+```bash
+python3 scripts/validate_specialists.py --check-upstream
+```
+
+Check a Codex installation against current upstream:
+
+```bash
+python3 scripts/validate_specialists.py --check-codex --require-current
+```
+
+To require all REQUIRED specialists to be installed as well:
+
+```bash
+python3 scripts/validate_specialists.py \
+  --check-codex \
+  --require-required-installed \
+  --require-current
+```
+
+You can inspect another Skill installation root with repeated `--installed-root <path>`.
+
+Specialists are never version-pinned in the Head. The checker resolves the latest stable GitHub Release when one exists; otherwise it uses the source repository's current default branch.
