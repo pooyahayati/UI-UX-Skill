@@ -55,7 +55,7 @@
         "privacyPolicyURL": "https://github.com/pooyahayati/UI-UX-Skill/blob/main/PRIVACY.md",
         "termsOfServiceURL": "https://github.com/pooyahayati/UI-UX-Skill/blob/main/TERMS.md",
         "defaultPrompt": [
-          "Classify this product, load the required Product Pack, then audit and improve its UI/UX without breaking behavior.",
+          "Classify the product, load its Product Pack and scope-relevant Shared UI Rules, then audit and improve without breaking behavior.",
           "Design this website or web application using the correct product-specific UI/UX rules and validate representative states.",
           "Improve this mobile or WordPress plugin UI using its required Product Pack while preserving constraints."
         ],
