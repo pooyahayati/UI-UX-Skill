@@ -1,0 +1,1 @@
+.shell{display:grid;grid-template-columns:230px 1fr}.shell button{background:#1769ff;color:white;border:0;padding:7px 9px}.shell input{border:1px solid #bbb;padding:7px}@media(max-width:600px){aside{display:none}.shell button:last-child{display:none}}

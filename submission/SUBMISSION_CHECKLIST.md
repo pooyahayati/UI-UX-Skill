@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for UI/UX Skill v2.8.0.
+Prepared for UI/UX Skill v3.0.0.
 
 ## Package
 
@@ -50,6 +50,9 @@ Prepared for UI/UX Skill v2.8.0.
 - [x] Product-aware QA and behavioral eval coverage
 - [x] Behavioral eval definitions
 - [x] Behavioral eval fixture projects
+- [x] Five-product real-world evaluation fixtures and manifest
+- [x] Five-product real-world evaluation recorded in ChatGPT / GPT-5.6 Sol
+- [x] Real-world evaluation structural validator in CI/release
 - [x] Eval run preparation/result-validation scripts
 - [ ] Forward behavioral eval run recorded against the final candidate in Codex/Claude
 - [x] Automated structural validation

@@ -2,7 +2,7 @@
 
 ## Candidate
 
-- Skill version: 1.4.0
+- Skill version: 3.0.0
 - Host: Codex / Claude Code / Claude.ai
 - Model:
 - Date:
@@ -46,3 +46,20 @@ List behavior worse than the previous release.
 - Release candidate accepted / rejected:
 - Blocking issues:
 - Follow-up issues:
+
+
+## Stage 6 five-product evaluation
+
+Record these representative product cases when validating a v3 candidate:
+
+| Product | Case | Result | Evidence / limitations |
+| --- | --- | --- | --- |
+| Dashboard | real-world-dashboard-evaluation | Pass / Partial / Fail / Not testable | |
+| Website | real-world-website-evaluation | Pass / Partial / Fail / Not testable | |
+| Web Application | real-world-web-app-evaluation | Pass / Partial / Fail / Not testable | |
+| Mobile Application | real-world-mobile-evaluation | Pass / Partial / Fail / Not testable | |
+| WordPress Plugin | real-world-wordpress-evaluation | Pass / Partial / Fail / Not testable | |
+
+For every case, distinguish source-based evidence from rendered/browser/device evidence.
+
+Do not mark rendered/device checks as complete when they were not performed.

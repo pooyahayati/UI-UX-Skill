@@ -1,0 +1,241 @@
+{
+  "skillVersion": "3.0.0",
+  "host": "ChatGPT",
+  "model": "GPT-5.6 Sol",
+  "date": "2026-10-02",
+  "evaluationMode": "in-session source-based behavioral evaluation",
+  "independence": "not an independent fresh Codex/Claude session",
+  "notes": "Five representative production-like fixtures were inspected against the current Skill architecture. Routing, rule selection, issue detection, safety boundaries and evidence discipline were evaluated. Browser/device rendering was not available in this connector workflow; each case therefore passes only because it explicitly reports that limitation rather than claiming rendered validation.",
+  "cases": [
+    {
+      "id": "real-world-dashboard-evaluation",
+      "triggerMode": "explicit",
+      "result": "pass",
+      "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
+      "evidence": [
+        "Fixture: evals/fixtures/real-world-dashboard"
+      ],
+      "invariants": [
+        {
+          "text": "classifies the product as dashboard with operational primary mode and monitoring-noc secondary mode",
+          "result": "pass",
+          "evidence": "Fixture README declares all-day support operations; queue/SLA work is operational, while live health/update behavior activates monitoring/NOC as secondary."
+        },
+        {
+          "text": "loads only relevant Dashboard local packs Shared Rules and Design System modules",
+          "result": "pass",
+          "evidence": "Applicable local packs: dashboard/operational + dashboard/monitoring-noc. Shared: feedback/status, state/recovery, accessibility, responsive, destructive/bulk as needed. Design System: tokens, density/layout, component states, color/theme."
+        },
+        {
+          "text": "treats the work queue SLA ownership live updates and bulk scope as primary operational concerns",
+          "result": "pass",
+          "evidence": "Source places queue below KPI cards and exposes ambiguous SLA/bulk/live behavior; evaluation prioritizes queue/SLA/selection/bulk scope over decorative KPIs."
+        },
+        {
+          "text": "identifies stale disconnected and disruptive live-update behavior instead of focusing only on visual polish",
+          "result": "pass",
+          "evidence": "live.js replaces/reorders rows every 3 seconds and clears selection; no stale/disconnected model exists."
+        },
+        {
+          "text": "uses density component-state and semantic-token contracts without weakening target or focus clarity",
+          "result": "pass",
+          "evidence": "styles.css uses raw values and 24px button height; recommended remediation routes through semantic tokens, density presets and state contracts while preserving accessibility floor."
+        },
+        {
+          "text": "preserves business attributes and data meaning",
+          "result": "pass",
+          "evidence": "Evaluation explicitly preserves ticket identity, owner, SLA and acknowledge semantics; no business/API meaning is redefined."
+        },
+        {
+          "text": "covers responsive and accessibility risks and reports rendered validation limitations rather than inventing evidence",
+          "result": "pass",
+          "evidence": "Fixed 1100px table, color-only red status and small buttons are identified from source; no claim of rendered/browser validation is made."
+        }
+      ]
+    },
+    {
+      "id": "real-world-website-evaluation",
+      "triggerMode": "explicit",
+      "result": "pass",
+      "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
+      "evidence": [
+        "Fixture: evals/fixtures/real-world-website"
+      ],
+      "invariants": [
+        {
+          "text": "classifies the product as website rather than web-application",
+          "result": "pass",
+          "evidence": "Fixture is a public bilingual service-business site with public navigation, trust and lead conversion; no authenticated application workflow is present."
+        },
+        {
+          "text": "loads Website Product Pack plus relevant navigation forms state accessibility responsive and design-system modules",
+          "result": "pass",
+          "evidence": "Relevant modules are navigation/wayfinding, forms/data-entry, feedback/state, accessibility, responsive, typography, color/theme and component states."
+        },
+        {
+          "text": "identifies visitor-job navigation vague hero fake-looking unsupported proof and overlong lead-form problems",
+          "result": "pass",
+          "evidence": "index.html uses department labels, vague hero copy, unsupported +10,000 customer claim and a long placeholder-only contact form."
+        },
+        {
+          "text": "does not fabricate testimonials metrics certifications or conversion evidence",
+          "result": "pass",
+          "evidence": "Unsupported trust statistic is flagged as evidence risk and is not repeated as fact or replaced with invented proof."
+        },
+        {
+          "text": "preserves semantic content SEO-aware hierarchy responsive media and bilingual RTL concerns",
+          "result": "pass",
+          "evidence": "Evaluation keeps public semantic hierarchy, lang/dir, responsive image concerns and bilingual direction as Website-specific requirements."
+        },
+        {
+          "text": "uses typography color and component-state contracts instead of page-specific raw styling",
+          "result": "pass",
+          "evidence": "styles.css contains raw font/color/card values; remediation is routed through semantic typography/color/state contracts."
+        },
+        {
+          "text": "reports rendered performance accessibility and visual validation limitations rather than claiming unperformed checks",
+          "result": "pass",
+          "evidence": "Oversized hero filename, missing labels and raw layout imply risks; rendered Core Web Vitals/accessibility/visual claims are explicitly not asserted."
+        }
+      ]
+    },
+    {
+      "id": "real-world-web-app-evaluation",
+      "triggerMode": "explicit",
+      "result": "pass",
+      "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
+      "evidence": [
+        "Fixture: evals/fixtures/real-world-web-app"
+      ],
+      "invariants": [
+        {
+          "text": "classifies the product as web-application rather than website",
+          "result": "pass",
+          "evidence": "Fixture is an authenticated customer-management application with shell, save/delete and API operations."
+        },
+        {
+          "text": "loads Web Application Product Pack plus relevant forms state destructive accessibility responsive and design-system modules",
+          "result": "pass",
+          "evidence": "Required concerns map to forms/data-entry, state/recovery, destructive actions, accessibility, responsive plus tokens/component states."
+        },
+        {
+          "text": "identifies missing URL state unsaved-work loss false saved feedback session-return and modal-focus risks",
+          "result": "pass",
+          "evidence": "App source sets saved=true and toast before await; fixture brief identifies missing URL/draft/session/modal contracts."
+        },
+        {
+          "text": "does not replace application semantics with generic marketing or mobile patterns",
+          "result": "pass",
+          "evidence": "Evaluation keeps route/history/save/session/destructive semantics under Web Application Product Pack."
+        },
+        {
+          "text": "preserves permissions routes API contracts and user data",
+          "result": "pass",
+          "evidence": "No recommendation changes /api/customer semantics or deletes authorization boundaries; existing data operations are treated as protected."
+        },
+        {
+          "text": "uses semantic tokens and reusable component-state contracts rather than scattered raw styles",
+          "result": "pass",
+          "evidence": "styles.css uses raw button/input values; remediation uses token/state contracts rather than page-specific patching."
+        },
+        {
+          "text": "covers narrow-layout recovery and reports browser/render validation limitations honestly",
+          "result": "pass",
+          "evidence": "Media query hides aside and destructive action; risk is identified from source while browser behavior is not claimed as rendered-tested."
+        }
+      ]
+    },
+    {
+      "id": "real-world-mobile-evaluation",
+      "triggerMode": "explicit",
+      "result": "pass",
+      "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
+      "evidence": [
+        "Fixture: evals/fixtures/real-world-mobile"
+      ],
+      "invariants": [
+        {
+          "text": "classifies the product as mobile-application and loads Shared Mobile UX cross-platform iOS and Android packs",
+          "result": "pass",
+          "evidence": "Fixture explicitly targets iOS and Android from one product; Shared + cross-platform + both platform packs are required."
+        },
+        {
+          "text": "loads only relevant Shared Rules and Design System typography theme state responsive and component-state modules",
+          "result": "pass",
+          "evidence": "Relevant concerns are forms/state/accessibility/motion plus typography/color-theme/responsive variants/component states."
+        },
+        {
+          "text": "identifies premature permission request generic upload state keyboard/text-scaling dark-theme and gesture-only action risks",
+          "result": "pass",
+          "evidence": "README and App.tsx expose immediate permission intent, single uploading boolean, fixed 34px input, raw theme and long-press-only delete."
+        },
+        {
+          "text": "preserves platform-specific back dismiss system UI and permission semantics rather than forcing screenshot identity",
+          "result": "pass",
+          "evidence": "Evaluation requires platform adaptation and explicitly rejects identical iOS/Android navigation/system behavior."
+        },
+        {
+          "text": "routes Persian-facing language validation to persian-writing while keeping RTL architecture local",
+          "result": "pass",
+          "evidence": "Mixed Persian/English content triggers persian-writing for language QA; direction/layout remains local UI/UX responsibility."
+        },
+        {
+          "text": "uses mobile-safe theme typography and product variants without duplicating full platform design systems",
+          "result": "pass",
+          "evidence": "Evaluation uses shared semantic design-system contracts with platform variants rather than separate full token systems."
+        },
+        {
+          "text": "reports device/render accessibility validation limitations instead of claiming unperformed testing",
+          "result": "pass",
+          "evidence": "Source risks are identified, but VoiceOver/TalkBack, keyboard avoidance and real device rendering are recorded as unperformed."
+        }
+      ]
+    },
+    {
+      "id": "real-world-wordpress-evaluation",
+      "triggerMode": "explicit",
+      "result": "pass",
+      "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
+      "evidence": [
+        "Fixture: evals/fixtures/real-world-wordpress"
+      ],
+      "invariants": [
+        {
+          "text": "classifies the product as wordpress-plugin",
+          "result": "pass",
+          "evidence": "Fixture is a WordPress admin integration plugin using admin_menu/get_option and wp-admin UI."
+        },
+        {
+          "text": "loads WordPress main pack plus settings onboarding-integrations diagnostics-operations and multisite-admin when relevant",
+          "result": "pass",
+          "evidence": "Credentials, connection, background sync, reset and declared Multisite support activate all relevant local WordPress packs."
+        },
+        {
+          "text": "loads only relevant Shared Rules and host-compatible Design System modules",
+          "result": "pass",
+          "evidence": "Relevant Shared modules include feedback/state/destructive/accessibility; Design System uses host-compatible controls, tokens and component states."
+        },
+        {
+          "text": "identifies role-name capability misuse false connected status global-notice overuse blocking sync and ambiguous reset scope",
+          "result": "pass",
+          "evidence": "plugin.php uses 'administrator' as capability, treats non-empty API key as Connected, global notice, generic Reset and blocking Syncing indicator."
+        },
+        {
+          "text": "preserves wp-admin host mental model capability security and site-vs-network scope",
+          "result": "pass",
+          "evidence": "Evaluation requires actual WordPress capabilities and network/site scope rather than custom role assumptions."
+        },
+        {
+          "text": "distinguishes stored credential connection health background job state reset delete and uninstall semantics",
+          "result": "pass",
+          "evidence": "Stored key is separated from verified connection health; sync job state and data lifecycle actions are required to have distinct semantics."
+        },
+        {
+          "text": "reports wp-admin rendered accessibility and responsive validation limitations rather than inventing evidence",
+          "result": "pass",
+          "evidence": "Custom CSS risks are identified from source; actual wp-admin browser shell, focus and responsive rendering are not claimed as tested."
+        }
+      ]
+    }
+  ]
+}

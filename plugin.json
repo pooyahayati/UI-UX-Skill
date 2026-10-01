@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ui-ux",
-  "version": "2.8.0",
-  "description": "Product-aware UI/UX Head Skill with local Product Packs, Shared UI Rules, and a hardened modular Design System.",
+  "version": "3.0.0",
+  "description": "Product-aware UI/UX Head Skill with local Product Packs, Shared UI Rules, hardened Design System, and five-product evaluation coverage.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://pooyahayati.com"
@@ -36,7 +36,7 @@
       "interface": {
         "displayName": "UI/UX Skill",
         "shortDescription": "UI/UX Head Skill",
-        "longDescription": "Design, audit, improve, and validate production interfaces with mandatory product routing, local Product Packs, Shared Product UI Rules, and a hardened local Design System. The Design System includes machine-readable routing for token foundations, semantic typography, color/theme contexts, spacing/density/layout, component states, responsive/product variants, and governance/migration. It supports DTCG 2025.10-compatible token interchange, Light/Dark/High Contrast behavior, Persian/RTL typography, safe runtime configuration boundaries, and visual-regression-aware change management. Persian-facing language validation is delegated to persian-writing.",
+        "longDescription": "Design, audit, improve, and validate production interfaces through a layered local architecture: Product routing and Product Packs, scope-relevant Shared Product UI Rules, and a hardened modular Design System. Version 3 adds recorded real-world evaluation coverage across Dashboard, Website, Web Application, Mobile Application, and WordPress Plugin scenarios, with explicit evidence and validation limitations. The Design System includes DTCG 2025.10-compatible token interchange guidance, component-state contracts, Light/Dark/High Contrast behavior, Persian/RTL typography, responsive/product variants, safe runtime configuration boundaries, and migration governance. Persian-facing language validation is delegated to persian-writing.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
         "capabilities": [

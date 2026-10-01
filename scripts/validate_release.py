@@ -96,11 +96,16 @@ required = [
     "evals/cases.json",
     "evals/result.schema.json",
     "evals/RESULT_TEMPLATE.md",
+    "evals/real-world/README.md",
+    "evals/real-world/manifest.json",
+    "evals/real-world/result.json",
+    "evals/real-world/RESULTS.md",
     "scripts/prepare_eval_run.py",
     "scripts/validate_product_routes.py",
     "scripts/validate_shared_rules.py",
     "scripts/validate_design_system.py",
     "scripts/validate_specialists.py",
+    "scripts/validate_real_world_evaluation.py",
     "scripts/validate_eval_fixtures.py",
     "scripts/validate_eval_result.py",
 ]
@@ -141,7 +146,7 @@ else:
 
 for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md", "shared-rules.json", "shared-product-rules.md", "design-system.json", "design-system-architecture.md"]:
     if term.casefold() not in skill_text.casefold():
-        error(f"SKILL.md missing v2.8 routing contract term: {term}")
+        error(f"SKILL.md missing v3.0 routing contract term: {term}")
 
 # v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
@@ -236,7 +241,7 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v2.8 reference: {ref}")
+        error(f"SKILL.md does not route to required v3.0 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -418,6 +423,9 @@ for term in [
     "Shared Product UI Rule router",
     "Nine local shared UI contract modules",
     "Shared-rule structural validator",
+    "Machine-readable Design System registry",
+    "Design-system structural validator",
+    "Five-product real-world evaluation",
 ]:
     if term not in submission_checklist:
         error(f"Submission checklist missing v2.7 shared-rule item: {term}")
@@ -453,7 +461,12 @@ if "**Status:** Completed" not in stage4_block:
 
 stage5_block = roadmap[stage5_start:stage6_start] if stage5_start >= 0 and stage6_start > stage5_start else ""
 if "**Status:** Completed" not in stage5_block:
-    error("Stage 5 — Design System Hardening must be Completed for v2.8")
+    error("Stage 5 — Design System Hardening must be Completed")
+
+future_start = roadmap.find("## Future Product Types")
+stage6_block = roadmap[stage6_start:future_start] if stage6_start >= 0 and future_start > stage6_start else ""
+if "**Status:** Completed" not in stage6_block:
+    error("Stage 6 — Real-World Product Evaluation must be Completed for v3.0")
 
 website_pack = (SKILL / "references/products/website.md").read_text(encoding="utf-8")
 for term in [
@@ -646,7 +659,7 @@ for term in [
     "runtime_boundary",
 ]:
     if term not in profile:
-        error(f"Design Profile v2.8 field missing: {term}")
+        error(f"Design Profile v3.0 field missing: {term}")
 
 design_registry = json.loads((SKILL / "design-system.json").read_text(encoding="utf-8"))
 expected_design_modules = {
@@ -713,8 +726,8 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 45:
-    error("Behavioral eval manifest should contain at least 45 cases for v2.8")
+if len(cases) < 50:
+    error("Behavioral eval manifest should contain at least 50 cases for v3.0")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -758,13 +771,27 @@ for required_id in [
     "design-system-typography-rtl",
     "design-system-density-responsive",
     "design-system-runtime-boundary",
+    "real-world-dashboard-evaluation",
+    "real-world-website-evaluation",
+    "real-world-web-app-evaluation",
+    "real-world-mobile-evaluation",
+    "real-world-wordpress-evaluation",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v2.8 case: {required_id}")
+        error(f"Behavioral eval missing v3.0 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):
     error("Behavioral evals need negative cases")
+
+real_world_result = json.loads((ROOT / "evals/real-world/result.json").read_text(encoding="utf-8"))
+real_world_cases = real_world_result.get("cases", [])
+if len(real_world_cases) != 5:
+    error("Stage 6 real-world result must be recorded for exactly five products")
+if any(item.get("result") == "fail" for item in real_world_cases):
+    error("Stage 6 real-world result contains a blocking fail")
+if "not an independent fresh Codex/Claude session" not in (real_world_result.get("independence") or ""):
+    error("Stage 6 real-world result must disclose evaluation independence limitation")
 
 for case in cases:
     fixture = case.get("fixture")

@@ -35,7 +35,18 @@ for case in manifest.get("cases", []):
         elif not (fixture_dir / "README.md").is_file():
             errors.append(f"{case_id}: fixture {fixture} is missing README.md")
 
-required_fixtures = {"existing-dashboard", "owner-config", "rtl-table", "analytics-dashboard", "realtime-ops"}
+required_fixtures = {
+    "existing-dashboard",
+    "owner-config",
+    "rtl-table",
+    "analytics-dashboard",
+    "realtime-ops",
+    "real-world-dashboard",
+    "real-world-website",
+    "real-world-web-app",
+    "real-world-mobile",
+    "real-world-wordpress",
+}
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
 missing = sorted(required_fixtures - existing)
 if missing:
