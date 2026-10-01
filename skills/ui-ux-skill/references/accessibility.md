@@ -1,5 +1,9 @@
 # Accessibility
 
+This file is the accessibility QA/evidence reference.
+
+Read `shared/accessibility-interaction.md` first for the cross-product design and interaction contract.
+
 Target WCAG 2.2 AA where practical for production interfaces.
 
 Automated checks help but do not replace manual interaction testing.
