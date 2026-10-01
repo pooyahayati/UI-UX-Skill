@@ -174,8 +174,9 @@ for product_id, refs in LOCAL_MODULES.items():
         if short.casefold() not in parent_folded:
             error(f"{parent_ref}: does not route to local module {short}")
 
-        if "load only" not in module_text.casefold():
-            error(f"{ref}: local module must explicitly require scope-based loading")
+        module_folded = module_text.casefold()
+        if not any(term in module_folded for term in ["load only", "use this local rule pack", "use for:"]):
+            error(f"{ref}: local module must state its activation/scope")
 
 for product_id, parent_ref in PRIMARY_PACKS.items():
     if product_id == "generic-product-ui":
