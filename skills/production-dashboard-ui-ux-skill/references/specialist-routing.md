@@ -60,6 +60,19 @@ Do not repeat discovery that the higher-level Head has already completed. Do not
 
 This Skill remains responsible for the UI/UX decisions inside the delegated boundary.
 
+## Non-duplication rule
+
+The Head is a controller, not a copy of its specialists.
+
+For every routed specialist:
+
+- keep only trigger conditions, requirement level, canonical source, authority boundary, handoff expectations, and fallback behavior in the Head;
+- do not copy specialist methodology, domain checklists, examples, or detailed implementation rules into the Head;
+- when domain-specific guidance conflicts, the Head-level constraints win, but the specialist remains authoritative inside its delegated domain;
+- if the Head already contains legacy domain detail now owned by a specialist, remove or narrow that detail rather than maintaining two competing rule sets.
+
+This enables specialist replacement or continuous specialist improvement without repeatedly redesigning the Head.
+
 ## Specialist classes
 
 ### Required specialist
@@ -81,77 +94,64 @@ Use when available and when its unique evidence materially improves the task. If
 
 Use only when explicitly requested or when the task clearly benefits enough to justify the extra process.
 
-## Current specialist registry
+## Specialist registry
 
-### Persian language and Persian-facing UI
+The Head stores only routing metadata and control boundaries for specialists. It MUST NOT duplicate the specialist's domain methodology, detailed rules, checklists, or implementation guidance.
+
+This keeps specialist knowledge replaceable and continuously upgradeable.
+
+### Persian-facing UI
 
 **Specialist:** `persian-writing`
 
-**Canonical source:**
-`https://github.com/ali2000hos/persian-writing`
+**Canonical source:** `https://github.com/ali2000hos/persian-writing`
 
-**Status:** REQUIRED when any trigger below is active.
+**Status:** REQUIRED when Persian is a supported or user-facing product language, or when Persian-facing UI content/localization is materially in scope.
 
-Triggers:
+Head responsibilities are limited to:
 
-- Persian is a supported product language.
-- Persian is the primary interface language.
-- The task creates, edits, reviews, or finalizes Persian user-facing copy.
-- The interface contains material mixed Persian/English content.
-- The task materially affects Persian RTL presentation or localization.
-- The target product surface is Persian-facing and typography/text rendering is part of the change.
+- detect the trigger;
+- require and route to `persian-writing`;
+- pass only relevant UI context and upstream constraints;
+- preserve Head-level scope, security, architecture, and approved design constraints;
+- consume the specialist's output as language-domain evidence;
+- refuse to mark Persian language validation complete when the required specialist was not successfully used.
 
-The specialist owns:
+Do not restate Persian writing, orthography, register, localization, or language-QA rules here. Those rules belong to the current installed `persian-writing` Skill.
 
-- Persian wording and register
-- natural Persian phrasing
-- orthography
-- ZWNJ / نیم‌فاصله
-- Persian ی / ک
-- punctuation
-- Persian digit conventions when appropriate
-- Persian/English mixed-text correctness
-- labels, buttons, field help, validation messages, errors, notices, empty states, and other Persian UI copy
-- Persian language QA
-
-This UI/UX Head retains ownership of:
-
-- layout and information architecture
-- design-system architecture
-- component structure
-- responsive behavior
-- RTL/LTR layout architecture
-- typography system and font-loading architecture
-- theme and visual hierarchy
-- interaction design
-- accessibility at the product/UI level
-
-When Persian-facing UI is in scope, do not mark Persian language QA complete unless `persian-writing` was used. If the specialist is unavailable, explicitly report:
-
-`Persian language QA: Unverified — required specialist unavailable.`
-
-The rest of the UI work may proceed when safe, but Persian-facing copy must not be represented as finalized.
+If the required specialist cannot be used, report the specialist-dependent validation as `Unverified` or `Blocked` and do not treat Persian-facing language work as complete.
 
 ### Browser runtime validation
 
 **Specialist:** `browser-testing-with-devtools`
 
-**Canonical source:**
-`https://github.com/addyosmani/agent-skills/tree/main/skills/browser-testing-with-devtools`
+**Canonical source:** `https://github.com/addyosmani/agent-skills/tree/main/skills/browser-testing-with-devtools`
 
-**Status:** RECOMMENDED for browser-based UI work when the specialist is installed and runtime browser access is available.
+**Status:** RECOMMENDED when live browser evidence materially improves UI validation and the specialist/runtime tools are available.
 
-Use it when live runtime evidence is important, including:
+Head responsibilities are limited to deciding when runtime evidence is needed, passing the validation objective and constraints, and consuming the returned evidence. Do not duplicate the specialist's DevTools workflow in this Head.
 
-- layout or rendering defects
-- responsive behavior
-- console errors
-- network behavior affecting UI
-- state/hydration issues
-- visual verification
-- runtime performance investigation
+## Skill freshness and update policy
 
-This Skill defines what needs visual or interaction validation; the browser specialist supplies runtime evidence. Runtime evidence returns to this UI/UX Head and, when present, to the higher-level engineering Head.
+The Head and every routed specialist should use the latest available stable version from their canonical source.
+
+Rules:
+
+1. Do not pin a specialist version, release tag, commit SHA, or copied snapshot inside the Head unless an explicit project compatibility constraint requires a temporary pin.
+2. Keep only the canonical source and specialist identity in the registry.
+3. Before significant work, and whenever a required specialist is first needed in a session, verify when tooling/network access allows:
+   - the Head Skill is installed and discoverable;
+   - the specialist is installed and discoverable;
+   - the installed copy is not known to be behind the latest stable release/source.
+4. If an installed Skill is known to be stale and the environment supports updating Skills, update/reinstall it from its canonical source before relying on it.
+5. If freshness cannot be checked, report freshness as `Unverified`; never claim that the latest version was used.
+6. If a REQUIRED specialist is known to be stale and cannot be updated, do not treat specialist-dependent validation as complete.
+7. If the environment supports a Skill manager/installer, prefer its update mechanism over copying specialist files into this Head.
+8. Periodically re-check installed specialists even when triggers have not changed, so the registry continues to benefit from upstream specialist improvements.
+
+Latest means the latest stable/released version when the source publishes stable releases. If the source has no stable release channel, use the latest compatible canonical default-branch version.
+
+The Head MUST NOT vendor specialist content merely to guarantee a version. Freshness is managed by installation/update checks, not by copying specialist instructions into the Head.
 
 ## Specialist handoff contract
 
