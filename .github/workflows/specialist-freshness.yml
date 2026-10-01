@@ -4,6 +4,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "17 6 * * 1"
+  pull_request:
+    paths:
+      - "skills/ui-ux-skill/specialists.json"
+      - "scripts/validate_specialists.py"
+      - ".github/workflows/specialist-freshness.yml"
 
 permissions:
   contents: read
