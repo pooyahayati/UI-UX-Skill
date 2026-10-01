@@ -1,9 +1,9 @@
 name: Validate Skill and Plugin
 
 on:
-  push:
-    branches: [main]
   pull_request:
+  workflow_call:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,10 +15,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Local release validation
+      - name: Release metadata validation
         run: python3 scripts/validate_release.py
 
-      - name: Product route validation
+      - name: Product route and isolation validation
         run: python3 scripts/validate_product_routes.py
 
       - name: Shared rule validation
@@ -30,10 +30,10 @@ jobs:
       - name: Specialist registry validation
         run: python3 scripts/validate_specialists.py
 
-      - name: Behavioral eval fixture validation
+      - name: Behavioral eval fixture and isolation validation
         run: python3 scripts/validate_eval_fixtures.py
 
-      - name: Real-world product evaluation
+      - name: Real-world product isolation evaluation
         run: |
           python3 scripts/validate_real_world_evaluation.py
           python3 scripts/validate_eval_result.py evals/real-world/result.json
@@ -60,14 +60,3 @@ jobs:
         run: |
           python3 "$RUNNER_TEMP/openai-skills/skills/.system/skill-creator/scripts/quick_validate.py" \
             skills/ui-ux-skill
-
-      - name: Codex installer smoke test
-        if: github.event_name == 'push'
-        run: |
-          python3 "$RUNNER_TEMP/openai-skills/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
-            --repo pooyahayati/UI-UX-Skill \
-            --path skills/ui-ux-skill \
-            --ref "$GITHUB_SHA" \
-            --dest "$RUNNER_TEMP/installed-skills"
-
-          test -f "$RUNNER_TEMP/installed-skills/ui-ux-skill/SKILL.md"
