@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "classification_required": true,
+    "allow_multiple_routes": true,
+    "require_primary_route": true,
+    "product_rules_are_mandatory": true,
+    "fallback_route": "generic-product-ui"
+  },
+  "products": [
+    {
+      "id": "dashboard",
+      "label": "Dashboard / Operational Dashboard",
+      "triggers": [
+        "dashboard",
+        "analytics dashboard",
+        "admin dashboard",
+        "CRM dashboard",
+        "operations dashboard",
+        "monitoring dashboard",
+        "data-heavy operational overview"
+      ],
+      "required_references": [
+        "references/products/dashboard.md"
+      ]
+    },
+    {
+      "id": "web-application",
+      "label": "Web Application",
+      "triggers": [
+        "web application",
+        "web app",
+        "SaaS application",
+        "browser-based product",
+        "multi-page or routed application UI",
+        "authenticated application"
+      ],
+      "exclusions": [
+        "marketing-only website",
+        "landing-page-only work"
+      ],
+      "required_references": [
+        "references/products/web-application.md"
+      ]
+    },
+    {
+      "id": "mobile-application",
+      "label": "Mobile Application",
+      "triggers": [
+        "mobile application",
+        "mobile app",
+        "iOS app",
+        "Android app",
+        "native app",
+        "Flutter app",
+        "React Native app",
+        "hybrid mobile app"
+      ],
+      "required_references": [
+        "references/products/mobile-application.md"
+      ]
+    },
+    {
+      "id": "wordpress-plugin-settings",
+      "label": "WordPress Plugin Settings / Admin UI",
+      "triggers": [
+        "WordPress plugin settings",
+        "WordPress plugin admin page",
+        "WordPress plugin configuration UI",
+        "wp-admin plugin settings",
+        "plugin onboarding/settings screen"
+      ],
+      "required_references": [
+        "references/products/wordpress-plugin-settings.md"
+      ]
+    },
+    {
+      "id": "generic-product-ui",
+      "label": "Generic Product UI",
+      "triggers": [
+        "product UI that does not yet match a registered product type"
+      ],
+      "required_references": [
+        "references/product-routing.md"
+      ],
+      "fallback_only": true
+    }
+  ]
+}
