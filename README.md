@@ -4,7 +4,7 @@
 ![Version](https://img.shields.io/badge/version-2.2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin settings/admin UI, and other production interfaces.
+A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production interfaces.
 
 It can work independently or as a UI/UX specialist under a higher-level engineering Head.
 
@@ -14,7 +14,7 @@ It can work independently or as a UI/UX specialist under a higher-level engineer
 - websites and public-facing content/conversion interfaces
 - dashboards and operational data interfaces
 - web applications and mobile applications
-- WordPress plugin settings/admin UI
+- WordPress plugin/admin UI
 - new product and existing-product UI/UX work
 - responsive design, Light/Dark themes, RTL/LTR, branding, and local typography
 - design systems, personalization, operational UX, and Data Trust UX
