@@ -1,6 +1,6 @@
 # Public Plugin Submission Test Cases
 
-Prepared for UI/UX Skill v2.1.0.
+Prepared for UI/UX Skill v2.2.0.
 
 Exactly five positive and three negative cases are provided.
 
@@ -105,30 +105,31 @@ Product route, settings information architecture, proposed/implemented changes, 
 
 A WordPress plugin with one or more settings/admin pages, or a representative settings-page fixture.
 
-### 5. Owner-only runtime UI/UX control center
+### 5. Public-facing business website
 
 **Prompt**
 
-> Add a panel only for the system owner so they can safely adjust brand colors, theme, density, logo variants, table defaults, and similar UI settings without editing code.
+> Design a public-facing Persian/English service-business website with a homepage, service pages, trust content, contact form, SEO-friendly structure, responsive behavior, and clear conversion paths.
 
 **Expected behavior**
 
-- Classifies the underlying product route before applying product-specific UI rules.
-- Determines whether runtime customization is appropriate rather than blindly adding it.
-- Uses server-side or trusted-boundary owner authorization.
-- Uses typed, allowlisted design configuration and semantic tokens.
-- Separates locked constraints, owner config, user preferences, and code-only fields.
-- Implements or recommends Draft → Preview → Validate → Publish.
-- Includes version history, rollback, audit log, reset, safe fallback, and schema/version migration strategy where appropriate.
-- Does not expose arbitrary CSS, JavaScript, HTML, permissions, authentication, or business logic.
+- Classifies the primary product route as `website`.
+- Loads the required Website Product Pack before website-specific design decisions.
+- Distinguishes the public site from an authenticated web application.
+- Designs information architecture around visitor intent rather than internal company structure.
+- Establishes clear value proposition, trust evidence, calls to action, and useful content hierarchy.
+- Treats forms and conversion as user tasks rather than decoration.
+- Preserves semantic heading/navigation structure and content discoverability.
+- Routes Persian-facing language work to the REQUIRED `persian-writing` specialist.
+- Validates representative desktop/mobile, accessibility, form states, and rendered output.
 
 **Expected result format**
 
-Product route, control-center architecture/UI, configuration schema/precedence, security boundaries, reconciliation/validation rules, and QA coverage.
+Product route, website information architecture, representative page decisions, conversion/trust strategy, Persian specialist status, and website QA coverage.
 
 **Fixtures / test data**
 
-Use `evals/fixtures/owner-config` or an equivalent role-aware product UI.
+None required. A representative company/service brief is sufficient.
 
 ## Negative test cases
 
