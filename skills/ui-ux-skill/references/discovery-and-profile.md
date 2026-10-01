@@ -41,8 +41,18 @@ For unresolved strategic decisions:
 
 Inspect repository and assets before asking questions.
 
+## Product route first
+
+Before full or partial discovery, read `../product-types.json` and `product-routing.md`.
+
+Record one primary product route and any genuinely applicable secondary routes.
+
+The active Product Pack constrains product-specific discovery questions. Do not ask dashboard-specific questions for a mobile app, mobile-specific questions for a web application, or WordPress-admin questions for an unrelated product.
+
 ## Decisions to resolve when relevant
 
+- primary product route
+- secondary product routes when applicable
 - product and domain
 - user roles
 - high-frequency workflows
@@ -119,12 +129,15 @@ Use a concise Markdown or YAML-like structure. Include provenance so future work
 Example:
 
 ```yaml
-profile_version: 3
-skill_version: 2.0.0
+profile_version: 4
+skill_version: 2.1.0
 status: approved
 updated_at: 2026-09-20
 
 product:
+  primary_route: dashboard
+  secondary_routes: []
+  route_source: user-provided
   type: operational-dashboard
   users: [admin, operator]
   primary_workflows:
@@ -245,6 +258,7 @@ Before major UI work:
 - update only affected strategic fields
 - preserve provenance
 - update `skill_version` when materially revising the profile with a newer Skill
+- re-evaluate `primary_route` and `secondary_routes` when the product surface materially changes
 - migrate runtime-governance fields carefully when the schema changes
 - reconcile stored preferences/saved views when owner or schema constraints change
 - update validation/evidence expectations when the redesign scope changes
