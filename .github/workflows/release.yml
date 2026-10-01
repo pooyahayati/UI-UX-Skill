@@ -45,6 +45,7 @@ jobs:
           python3 scripts/validate_design_system.py
           python3 scripts/validate_specialists.py
           python3 scripts/validate_real_world_evaluation.py
+          python3 scripts/validate_eval_result.py evals/real-world/result.json
 
       - name: Package
         run: python3 scripts/package_release.py --output dist
