@@ -1,6 +1,6 @@
 ---
 name: ui-ux-skill
-description: UI/UX Head Skill for designing, auditing, improving, and redesigning production dashboards, admin panels, CRM, analytics, and operational product UI. Works standalone or as a specialist under a higher-level engineering Head, and routes narrow concerns to specialist Skills. Use for dashboard UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, tables, forms, navigation, accessibility, performance, personalization, runtime design governance, owner-controlled appearance settings, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing sites, or unrelated graphic design.
+description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating dashboards, web applications, mobile applications, WordPress plugin settings/admin UI, and other production product interfaces. Works standalone or as a specialist under a higher-level engineering Head. It MUST classify the product type and load the required Product Pack before product-specific design decisions, then route narrow concerns to specialist Skills. Use for product UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, navigation, forms, data UI, accessibility, performance, personalization, runtime design governance, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing-only websites, or unrelated graphic design.
 ---
 
 # UI/UX Skill
@@ -31,7 +31,32 @@ Authority order:
 
 `Higher-level Engineering Head -> UI/UX Head -> Lower-level Specialist`
 
-## Route the task first
+## Route the product first
+
+Before choosing a work mode, read:
+
+- `product-types.json`
+- `references/product-routing.md`
+
+Determine the primary product route and load every required Product Pack for that route.
+
+Product classification is mandatory for product UI work.
+
+For major/new work, do not make product-specific design decisions until the product route is resolved.
+
+For narrow existing-product changes, infer the route from repository/product evidence when confidence is high.
+
+A task may activate multiple Product Packs, but one primary route must be identified for the current deliverable.
+
+Current registered routes include:
+
+- `dashboard`
+- `web-application`
+- `mobile-application`
+- `wordpress-plugin-settings`
+- `generic-product-ui` as fallback only
+
+## Route the task mode
 
 Choose the smallest mode that fits the request.
 
@@ -145,11 +170,15 @@ Never modify code, configuration, or assets.
 19. Use required specialist Skills when their triggers are active; never claim specialist-dependent validation when a required specialist was unavailable or not run.
 20. Keep specialist knowledge out of the Head: store only routing, precedence, constraints, handoff, and fallback rules; do not duplicate specialist methodology.
 21. Use the latest available stable Head/Specialist installations when freshness can be verified; never pin specialist versions in Head routing without an explicit compatibility requirement.
+22. Classify every product UI task through `product-types.json` and load all required Product Packs before product-specific design decisions.
+23. Product-specific rules belong in Product Packs; do not bloat the Head with duplicated dashboard, web-app, mobile-app, or WordPress-specific methodology.
 
 ## Reference routing
 
 Read references only when relevant.
 
+- `product-types.json` — machine-readable product routes and required Product Packs; product classification is mandatory
+- `references/product-routing.md` — product classification, precedence, multi-route behavior, and fallback policy
 - `specialists.json` — machine-readable specialist identities, requirement levels, triggers, canonical sources, and install paths; contains no specialist methodology or pinned versions
 - `references/specialist-routing.md` — standalone vs Head-delegated operation, authority hierarchy, specialist policy, and handoff contract
 
@@ -166,7 +195,7 @@ Read references only when relevant.
 - `references/operational-interaction-patterns.md` — search, real-time updates, concurrency, bulk/long-running operations
 - `references/domain-patterns.md` — domain-aware prompts for CRM, support, ERP, finance, operations, security, and more
 - `references/design-presets.md` — style vocabulary and visual-direction options
-- `references/dashboard-patterns.md` — dashboard, navigation, table, form, filter, chart, state, auth, system-page patterns
+- `references/dashboard-patterns.md` — detailed dashboard patterns; load through the dashboard Product Pack rather than as a generic default
 - `references/rtl-ltr-typography.md` — RTL/LTR, bilingual UI, localization, fonts, mixed-direction content
 - `references/theme-responsive-brand.md` — theme, responsive behavior, palette, logo/brand, icons, motion
 - `references/accessibility.md` — WCAG-oriented implementation and verification
@@ -175,7 +204,7 @@ Read references only when relevant.
 
 ## Existing product baseline
 
-Before broad changes, determine enough of the current product to understand:
+Before broad changes, first determine the active product route(s), then determine enough of the current product to understand:
 - shell and navigation
 - high-frequency workflows
 - representative pages
@@ -292,15 +321,16 @@ When implementing that architecture, read `references/implementation-strategies.
 ## Final validation
 
 Before completion:
-1. read `specialists.json` and `references/specialist-routing.md`, confirm required specialist routes were satisfied, and verify installation/freshness when tooling allows
-2. read `references/qa-checklist.md`
-3. inspect the rendered UI when possible
-4. test representative viewports, themes, directions, and states
-5. run available tests, lint, type checks, accessibility checks, and relevant performance checks
-6. compare meaningful redesigns against the baseline; read `references/visual-regression.md` for broad visual changes
-7. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
-8. validate significant UX claims with `references/ux-evidence-and-metrics.md` when evidence is available
-9. report coverage, limitations, changes made, preserved behavior, and remaining approval items
+1. read `product-types.json` and `references/product-routing.md`; confirm the correct Product Pack(s) were loaded
+2. read `specialists.json` and `references/specialist-routing.md`; confirm required specialist routes were satisfied and verify installation/freshness when tooling allows
+3. read `references/qa-checklist.md`
+4. inspect the rendered UI when possible
+5. test representative viewports, themes, directions, and states
+6. run available tests, lint, type checks, accessibility checks, and relevant performance checks
+7. compare meaningful redesigns against the baseline; read `references/visual-regression.md` for broad visual changes
+8. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
+9. validate significant UX claims with `references/ux-evidence-and-metrics.md` when evidence is available
+10. report coverage, limitations, changes made, preserved behavior, and remaining approval items
 
 If rendered inspection or a required check cannot be performed, say so explicitly.
 

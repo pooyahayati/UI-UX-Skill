@@ -1,7 +1,7 @@
 interface:
   display_name: "UI/UX Skill"
   short_description: "Dashboard UI/UX audit & design"
-  default_prompt: "Audit or improve this dashboard UI/UX, preserve upstream constraints, route required specialists such as persian-writing for Persian-facing UI, and validate significant changes with rendered or UX evidence."
+  default_prompt: "Classify the product type first, load the required Product Pack, preserve upstream constraints, route required specialists such as persian-writing for Persian-facing UI, and validate significant UI/UX changes with rendered or UX evidence."
 policy:
   products:
     - CHAT

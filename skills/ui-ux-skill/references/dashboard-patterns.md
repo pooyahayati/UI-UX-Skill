@@ -1,4 +1,4 @@
-# Dashboard and Product UI Patterns
+# Dashboard UI Patterns
 
 Read `operational-interaction-patterns.md` for search, real-time updates, concurrency, bulk operations, and long-running jobs.
 

@@ -2,6 +2,21 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [2.1.0] - 2026-10-01
+
+### Product-Aware UI/UX Routing
+
+- Expanded the Skill from dashboard-first UI/UX into a product-aware UI/UX Head.
+- Added mandatory product classification before product-specific design decisions.
+- Added machine-readable `product-types.json` routing with required Product Packs.
+- Added Product Packs for dashboards, web applications, mobile applications, and WordPress plugin settings/admin UI.
+- Added multi-route support for products that span surfaces, such as a web application containing an analytics dashboard.
+- Added `generic-product-ui` as a fallback only when no registered product type fits.
+- Added product route precedence and handoff rules without duplicating product-specific methodology in the Head.
+- Added product route fields to Design Discovery / Design Profile.
+- Added product-aware QA coverage and behavioral evals.
+- Added CI/release validation that fails when required Product Packs or registered routes are missing.
+
 ## [2.0.0] - 2026-10-01
 
 ### Canonical Skill Identity Migration

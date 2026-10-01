@@ -1,15 +1,19 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![Version](https://img.shields.io/badge/version-2.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A production-oriented **UI/UX Head Skill** for designing, auditing, improving, and validating product interfaces, dashboards, admin panels, CRM, analytics, and operational UI.
+A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating dashboards, web applications, mobile applications, WordPress plugin settings/admin UI, and other production interfaces.
 
 It can work independently or as a UI/UX specialist under a higher-level engineering Head.
 
 ## Core capabilities
 
+- mandatory product routing before product-specific design decisions
+- dashboards and operational data interfaces
+- web applications and mobile applications
+- WordPress plugin settings/admin UI
 - new product and existing-product UI/UX work
 - responsive design, Light/Dark themes, RTL/LTR, branding, and local typography
 - design systems, personalization, operational UX, and Data Trust UX
@@ -27,7 +31,11 @@ Higher-level Engineering Head
         UI/UX Skill
         (UI/UX Head)
             ↓
-   Specialist Skills
+       Product Router
+            ↓
+      Required Product Pack
+            ↓
+      Specialist Skills
 ```
 
 Head-level scope, security, architecture, approvals, and UI/UX constraints always take precedence over lower-level specialists.
@@ -53,6 +61,8 @@ Claude Code:
 - **[How to Install / Update](INSTALL.md)** — installation, updates, migration from the old slug, and verification
 - **[Updates & Changelog](CHANGELOG.md)** — release-by-release changes
 - **[Skill Specification](skills/ui-ux-skill/SKILL.md)** — canonical Skill behavior and routing
+- **[Product Registry](skills/ui-ux-skill/product-types.json)** — machine-readable product routes and required Product Packs
+- **[Product Routing](skills/ui-ux-skill/references/product-routing.md)** — product classification and multi-route rules
 - **[Specialist Registry](skills/ui-ux-skill/specialists.json)** — machine-readable Specialist sources and triggers
 - **[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)** — Head/Specialist authority, fallback, and freshness rules
 - **[Contributing](CONTRIBUTING.md)** — contribution workflow
@@ -60,7 +70,7 @@ Claude Code:
 
 ## Current source
 
-**v2.0.0**
+**v2.1.0**
 
 Canonical repository: **pooyahayati/UI-UX-Skill**  
 Canonical Skill slug: **`ui-ux-skill`**
