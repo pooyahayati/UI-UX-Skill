@@ -17,7 +17,7 @@ The roadmap is intentionally ordered. Finish and validate each stage before expa
 ## Stage 1 — Website Product Pack
 
 **Target:** v2.4.x  
-**Status:** In progress
+**Status:** Completed
 
 Deepen `references/products/website.md` for public-facing websites.
 
