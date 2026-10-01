@@ -94,19 +94,19 @@ UI/UX Specialist under a higher-level engineering Head
 
 It preserves upstream scope, risk, architecture, security, and acceptance criteria when delegated.
 
-For Persian-facing interfaces, the external `persian-writing` Skill is REQUIRED for Persian language QA:
+For Persian-facing interfaces, the external `persian-writing` Skill is REQUIRED:
 
 ```text
 https://github.com/ali2000hos/persian-writing
 ```
 
-The UI/UX Skill still owns layout, responsive behavior, RTL/LTR architecture, design systems, typography architecture, interaction design, accessibility, and visual hierarchy. `persian-writing` owns Persian wording, register, orthography, mixed Persian/English copy, labels, validation messages, errors, notices, and Persian language QA.
+The Head intentionally does not copy that specialist's language methodology. It keeps only trigger, authority, fallback, and handoff rules. Head-level product, security, scope, architecture, and UI/UX constraints always take precedence.
 
-If the required Persian specialist is unavailable, the Skill may continue safe non-language UI work but must report Persian language QA as unverified and must not present Persian-facing copy as finalized.
+Specialists are referenced by canonical source, not by pinned version. When tooling allows, the Head verifies that itself and required specialists are installed and current, updates known-stale copies before relying on them, and reports freshness as unverified when it cannot be checked.
 
-Browser runtime validation can optionally use `browser-testing-with-devtools` when installed and browser access is available.
+Browser runtime validation can optionally use `browser-testing-with-devtools` when installed and current.
 
-See `specialist-routing.md` for the full authority, fallback, and handoff contract.
+See `specialist-routing.md` for the full authority, freshness, fallback, and handoff contract.
 
 ## Runtime design governance
 
