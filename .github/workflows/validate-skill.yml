@@ -47,10 +47,13 @@ jobs:
       - name: Package release artifacts
         run: python3 scripts/package_release.py --output dist
 
-      - name: Verify ZIP archives
+      - name: Verify ZIP archives and embedded Skill version
         run: |
           unzip -t dist/ui-ux-skill-claude-v*.zip
           unzip -t dist/ui-ux-plugin-v*.zip
+          EXPECTED_VERSION="$(tr -d '\r\n' < VERSION)"
+          test "$(unzip -p dist/ui-ux-skill-claude-v*.zip ui-ux-skill/VERSION | tr -d '\r\n')" = "$EXPECTED_VERSION"
+          test "$(unzip -p dist/ui-ux-plugin-v*.zip ui-ux/skills/ui-ux-skill/VERSION | tr -d '\r\n')" = "$EXPECTED_VERSION"
           cat dist/SHA256SUMS.txt
 
       - name: Fetch official OpenAI skill tools
@@ -71,3 +74,7 @@ jobs:
             --dest "$RUNNER_TEMP/installed-skills"
 
           test -f "$RUNNER_TEMP/installed-skills/ui-ux-skill/SKILL.md"
+          test -f "$RUNNER_TEMP/installed-skills/ui-ux-skill/VERSION"
+          EXPECTED_VERSION="$(tr -d '\r\n' < VERSION)"
+          INSTALLED_VERSION="$(tr -d '\r\n' < "$RUNNER_TEMP/installed-skills/ui-ux-skill/VERSION")"
+          test "$INSTALLED_VERSION" = "$EXPECTED_VERSION"
