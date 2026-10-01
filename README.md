@@ -1,7 +1,7 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-2.6.0-blue)
+![Version](https://img.shields.io/badge/version-2.7.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production interfaces.
@@ -11,6 +11,7 @@ It can work independently or as a UI/UX specialist under a higher-level engineer
 ## Core capabilities
 
 - mandatory product routing before product-specific design decisions
+- shared cross-product UI contracts for navigation, forms, feedback, state/recovery, destructive actions, accessibility, responsive adaptation, motion, and content hierarchy
 - websites with deep local rules for IA, trust, conversion, content/SEO UX, accessibility, responsive media, and performance
 - dashboards with local executive, analytical, operational, monitoring/NOC, CRM/pipeline, and admin-management modes
 - web applications with local browser/state/workflow UX rules
@@ -73,7 +74,7 @@ Claude Code:
 
 ## Current source
 
-**v2.6.0**
+**v2.7.0**
 
 Canonical repository: **pooyahayati/UI-UX-Skill**  
 Canonical Skill slug: **`ui-ux-skill`**
