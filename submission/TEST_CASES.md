@@ -1,6 +1,6 @@
 # Public Plugin Submission Test Cases
 
-Prepared for UI/UX Skill v2.3.0.
+Prepared for UI/UX Skill v2.4.0.
 
 Exactly five positive and three negative cases are provided.
 
@@ -117,9 +117,12 @@ A WordPress plugin with one or more settings/admin pages, or a representative se
 - Classifies the primary product route as `website`.
 - Loads the required Website Product Pack before website-specific design decisions.
 - Distinguishes the public site from an authenticated web application.
+- Identifies the website subtype, visitor job, primary conversion, and proof strategy before broad composition.
 - Designs information architecture around visitor intent rather than internal company structure.
 - Establishes clear value proposition, trust evidence, calls to action, and useful content hierarchy.
 - Treats forms and conversion as user tasks rather than decoration.
+- Uses real, decision-relevant trust evidence and does not fabricate proof.
+- Preserves semantic structure, useful internal linking, responsive media, accessibility, and performance-sensitive behavior.
 - Preserves semantic heading/navigation structure and content discoverability.
 - Routes Persian-facing language work to the REQUIRED `persian-writing` specialist.
 - Validates representative desktop/mobile, accessibility, form states, and rendered output.
