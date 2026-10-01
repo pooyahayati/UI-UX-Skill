@@ -1,4 +1,4 @@
-# Theme, Responsive, Brand, Icons, and Motion
+# Theme, Brand, Icons, and Visual Governance
 
 ## Brand audit
 
