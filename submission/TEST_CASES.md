@@ -1,6 +1,6 @@
 # Public Plugin Submission Test Cases
 
-Prepared for UI/UX Skill v1.4.0.
+Prepared for UI/UX Skill v2.0.0.
 
 Exactly five positive and three negative cases are provided.
 
