@@ -1,5 +1,5 @@
 {
-  "version": "2.2.0",
+  "version": "2.3.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -193,7 +193,10 @@
         "loads the required web-application Product Pack before product-specific design decisions",
         "treats the product as an application rather than a marketing website",
         "defines application shell routed workflows and first-class UI states",
-        "does not transplant mobile-only navigation conventions without justification"
+        "preserves browser navigation deep links refresh and Back Forward semantics where relevant",
+        "defines draft or unsaved-change behavior for meaningful editable work",
+        "defines long-running job and stale or conflict states when relevant",
+        "uses local web-application design rules rather than an external design Skill"
       ]
     },
     {
@@ -203,10 +206,12 @@
       "prompt": "Design the mobile app experience for iOS and Android, including navigation, forms, permissions, weak connectivity and dark mode.",
       "invariants": [
         "classifies the primary product route as mobile-application",
-        "loads the required mobile-application Product Pack before product-specific design decisions",
-        "considers platform context touch keyboard safe areas permissions and lifecycle",
+        "loads the shared mobile-application Product Pack before platform-specific design decisions",
+        "loads local iOS and Android rule packs for the stated iOS and Android targets",
+        "loads the local cross-platform rule pack when one product or codebase spans platforms",
+        "considers touch keyboard safe areas permissions connectivity lifecycle and draft restoration",
         "does not shrink a desktop web layout into a mobile screen",
-        "includes mobile-specific validation states"
+        "uses local mobile design rules rather than an external design Skill"
       ]
     },
     {
@@ -247,6 +252,65 @@
         "does not misclassify the public site as a web application",
         "requires persian-writing for Persian-facing language validation",
         "includes responsive accessibility rendered and semantic-content validation"
+      ]
+    },
+    {
+      "id": "web-application-state-continuity",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Improve this SaaS web app. Users edit long records, use filters and deep links, run background exports, keep multiple tabs open, and sometimes lose sessions.",
+      "invariants": [
+        "classifies the product as web-application",
+        "defines which meaningful state belongs in URL browser history local state or server preferences",
+        "preserves Back Forward refresh and deep-link behavior where appropriate",
+        "defines draft autosave or unsaved-change semantics",
+        "defines queued running completed failed and retry states for background jobs",
+        "addresses stale or conflicting edits without silently overwriting user work",
+        "defines session-expiry and reauthentication return behavior"
+      ]
+    },
+    {
+      "id": "mobile-ios-local-rules",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design the iOS and iPadOS version of this mobile product with forms, sheets, search, large text support and iPad multitasking.",
+      "invariants": [
+        "classifies the product as mobile-application",
+        "loads the shared mobile Product Pack and local iOS rules",
+        "accounts for safe areas keyboard and system-owned regions",
+        "supports Dynamic Type and reflow rather than fixed-height clipping",
+        "distinguishes hierarchical back navigation from modal dismissal",
+        "addresses iPad or resizable-window adaptation",
+        "does not depend on an external iOS design Skill"
+      ]
+    },
+    {
+      "id": "mobile-android-local-rules",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design the Android version for phones tablets and foldables with edge-to-edge layout, forms, navigation and current back behavior.",
+      "invariants": [
+        "classifies the product as mobile-application",
+        "loads the shared mobile Product Pack and local Android rules",
+        "accounts for edge-to-edge system bars and insets",
+        "defines predictable back behavior compatible with predictive back expectations",
+        "adapts navigation and panes across window sizes",
+        "includes large-screen tablet foldable and multi-window considerations",
+        "does not depend on an external Android design Skill"
+      ]
+    },
+    {
+      "id": "mobile-cross-platform-local-rules",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design one cross-platform mobile product for iOS and Android from one codebase while keeping it native-feeling on both platforms.",
+      "invariants": [
+        "loads shared mobile iOS Android and cross-platform local rules",
+        "separates shared product decisions from platform-adapted presentation",
+        "preserves product meaning and core workflows across platforms",
+        "allows navigation dialogs typography gestures and system UI to differ by platform",
+        "does not optimize for screenshot identity across platforms",
+        "does not use an external design Skill"
       ]
     }
   ]
