@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here.
 
+## [2.0.0] - 2026-10-01
+
+### Canonical Skill Identity Migration
+
+- Renamed the technical Skill slug from `production-dashboard-ui-ux-skill` to `ui-ux-skill`.
+- Moved the canonical Skill source to `skills/ui-ux-skill/`.
+- Updated Codex and Claude invocation examples to `$ui-ux-skill` and `/ui-ux-skill`.
+- Renamed the portable Plugin package identity from `production-dashboard-ui-ux` to `ui-ux`.
+- Updated release artifacts, OpenAI validation, installer smoke tests, contribution docs, eval metadata, and submission metadata to the new identity.
+- Added an explicit migration path for legacy installations. Version 1.x installations using the old slug should be removed and reinstalled from the new canonical path.
+- Kept the public repository slug `UI-UX-Skill` and the machine-readable Skill slug `ui-ux-skill` aligned while preserving lowercase Agent Skill naming conventions.
+
 ## [1.5.0] - 2026-10-01
 
 ### Head Skill and Specialist Routing
