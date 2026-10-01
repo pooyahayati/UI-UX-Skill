@@ -1,5 +1,5 @@
 {
-  "version": "2.7.0",
+  "version": "2.8.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -556,6 +556,90 @@
         "does not allow product/platform specialization to weaken keyboard or assistive-input alternatives where applicable",
         "preserves reduced-motion behavior and non-gesture alternatives for important actions",
         "does not claim accessibility conformance without evidence"
+      ]
+    },
+    {
+      "id": "design-system-token-hierarchy",
+      "type": "positive",
+      "fixture": "owner-config",
+      "prompt": "Audit and harden this product's design token architecture. Repeated raw colors and spacing values are scattered across pages, owner settings map directly to CSS variables, and token naming mixes values with semantics.",
+      "invariants": [
+        "loads the design system registry and tokens-foundations module",
+        "separates primitive semantic component product-variant and resolved-runtime token layers",
+        "uses stable semantic names rather than value-based names",
+        "keeps persisted owner configuration separate from canonical design-system source",
+        "uses aliases only for intentional semantic dependency and rejects circular or misleading aliases",
+        "prefers DTCG 2025.10-compatible interchange when a machine-readable token exchange format is needed without forcing unnecessary migration"
+      ]
+    },
+    {
+      "id": "design-system-component-states",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Define a reusable component-state contract for buttons, inputs, navigation items, table rows and dialogs across light and dark themes.",
+      "invariants": [
+        "loads the component-states design system module",
+        "defines only relevant states per component including focus-visible disabled read-only loading validation and selection where applicable",
+        "keeps focus distinct from hover active selected and current states",
+        "does not define state meaning only through color",
+        "reviews state semantics across supported theme contexts",
+        "does not create product variants that weaken focus validation or target clarity"
+      ]
+    },
+    {
+      "id": "design-system-theme-resolution",
+      "type": "positive",
+      "fixture": "owner-config",
+      "prompt": "Harden the theme system for Light, Dark, system preference and Windows forced-colors/high-contrast behavior. Owners may choose brand colors but cannot break accessibility.",
+      "invariants": [
+        "loads color-theme and governance design system modules",
+        "resolves semantic color roles rather than manually switching raw colors in components",
+        "treats Light Dark and forced-colors/high-contrast as distinct contexts",
+        "does not fight forced-colors mode merely to preserve brand appearance",
+        "validates owner palette values before mapping them to semantic roles",
+        "preserves focus status and control identifiability across theme contexts"
+      ]
+    },
+    {
+      "id": "design-system-typography-rtl",
+      "type": "positive",
+      "fixture": "rtl-table",
+      "prompt": "Create a bilingual Persian/English typography system for this RTL/LTR product, including headings, body, labels, dense data and technical identifiers.",
+      "invariants": [
+        "loads the typography design system module plus RTL LTR localization guidance",
+        "defines semantic typography roles rather than page-specific font-size tokens",
+        "tests Persian Latin and mixed-script lines including digits punctuation baseline and weight equivalence",
+        "keeps technical identifiers directionally isolated when needed",
+        "does not duplicate the complete design system for RTL",
+        "preserves zoom text scaling and localized string expansion"
+      ]
+    },
+    {
+      "id": "design-system-density-responsive",
+      "type": "positive",
+      "fixture": "existing-dashboard",
+      "prompt": "Harden the dashboard design system so compact, balanced and comfortable density work across desktop, laptop and narrow windows without duplicating full theme sets.",
+      "invariants": [
+        "loads spacing-density-layout and responsive-variants modules",
+        "treats density as a coordinated control spacing table and layout system rather than one row-height toggle",
+        "does not reduce readable text target practicality or focus visibility to achieve compact density",
+        "uses responsive tokens only for repeated system behavior rather than tokenizing every media query",
+        "uses orthogonal responsive theme density and product contexts to avoid variant explosion",
+        "preserves dashboard Product Pack semantics while using a dashboard product variant"
+      ]
+    },
+    {
+      "id": "design-system-runtime-boundary",
+      "type": "negative",
+      "fixture": "owner-config",
+      "prompt": "Let owners edit token aliases, breakpoint logic, component hover/focus states and arbitrary CSS directly at runtime so they can fully customize the product without deployments.",
+      "invariants": [
+        "loads governance-migration and runtime governance references",
+        "does not expose token alias graphs breakpoint logic component-state contracts or arbitrary CSS as owner-editable runtime settings",
+        "allows only validated approved semantic values presets or explicitly configurable fields",
+        "keeps authorization business rules and validation outside appearance configuration",
+        "preserves preview validation publish rollback and safe fallback behavior",
+        "explains the safe design-system source to resolved-runtime-token boundary"
       ]
     }
   ]
