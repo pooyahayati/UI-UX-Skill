@@ -105,7 +105,7 @@ else:
 
 for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md"]:
     if term.casefold() not in skill_text.casefold():
-        error(f"SKILL.md missing v2.0 specialist-routing contract term: {term}")
+        error(f"SKILL.md missing v2.1 specialist-routing contract term: {term}")
 
 # v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
@@ -193,7 +193,7 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v2.0 reference: {ref}")
+        error(f"SKILL.md does not route to required v2.1 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -376,7 +376,7 @@ for term in [
     "data_ux",
 ]:
     if term not in profile:
-        error(f"Design Profile v2.0 field missing: {term}")
+        error(f"Design Profile v2.1 field missing: {term}")
 
 architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
 for term in [
@@ -423,8 +423,8 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 10:
-    error("Behavioral eval manifest should contain at least 10 cases for v2.0")
+if len(cases) < 15:
+    error("Behavioral eval manifest should contain at least 15 cases for v2.1")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -436,9 +436,14 @@ for required_id in [
     "head-delegated-ui",
     "persian-specialist-routing",
     "specialist-freshness",
+    "dashboard-product-routing",
+    "web-application-product-routing",
+    "mobile-application-product-routing",
+    "wordpress-plugin-settings-product-routing",
+    "multi-product-routing",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v2.0 case: {required_id}")
+        error(f"Behavioral eval missing v2.1 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):
