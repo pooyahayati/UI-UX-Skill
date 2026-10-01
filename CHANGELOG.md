@@ -2,6 +2,22 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [3.0.0] - 2026-10-02
+
+### Real-World Product Evaluation
+
+- Completed Roadmap Stage 6 with one dedicated production-like evaluation fixture for each primary Product Type: Dashboard, Website, Web Application, Mobile Application, and WordPress Plugin.
+- Added five real-world behavioral cases to the main eval manifest, bringing total behavioral coverage to 50 cases.
+- Added `evals/real-world/manifest.json` with machine-readable Product Pack, Shared Rule, and Design System expectations per product.
+- Added a recorded ChatGPT / GPT-5.6 Sol source-based behavioral evaluation in `evals/real-world/result.json`.
+- Added a human-readable Stage 6 result summary with explicit browser/device/fresh-session limitations.
+- Added `scripts/validate_real_world_evaluation.py` to require exact five-product coverage, fixture integrity, routing/module expectations, evidence for every invariant, and zero blocking failures.
+- Wired real-world evaluation validation into PR and Release workflows.
+- Updated the behavioral result template and removed the legacy Dashboard-only schema title.
+- Updated fixture validation to require all five Stage 6 fixtures.
+- Marked Roadmap Stage 6 complete.
+- The recorded run explicitly does not claim independent fresh Codex/Claude/browser/device validation that was not performed.
+
 ## [2.8.0] - 2026-10-02
 
 ### Design System Hardening
