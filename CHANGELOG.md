@@ -2,7 +2,7 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
-## [Unreleased] — target 3.1.0
+## [3.1.0] - 2026-10-02
 
 ### Stabilization, Product Isolation, and Feature Freeze
 
