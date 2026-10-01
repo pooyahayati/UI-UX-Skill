@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ui-ux",
-  "version": "2.5.0",
-  "description": "Product-aware UI/UX Head Skill with deep local design packs for websites, web apps, mobile, dashboards, and WordPress plugin/admin UI.",
+  "version": "2.6.0",
+  "description": "Product-aware UI/UX Head Skill with deep local design packs for websites, dashboards, web apps, mobile, and WordPress plugin/admin UI.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://pooyahayati.com"
@@ -36,13 +36,13 @@
       "interface": {
         "displayName": "UI/UX Skill",
         "shortDescription": "UI/UX Head Skill",
-        "longDescription": "Design, audit, improve, and validate production interfaces with mandatory product-type routing. WordPress plugin UI now uses a local modular Product Pack covering settings/admin forms, onboarding and integrations, diagnostics and operations, Site Health, background jobs, privacy/data lifecycle, capabilities, Multisite/Network Admin, responsive wp-admin, accessibility, localization and Persian/RTL. Website, web-application and mobile design rules remain local, while Persian-facing language validation is delegated to persian-writing.",
+        "longDescription": "Design, audit, improve, and validate production interfaces with mandatory product-type routing. Dashboard design now uses a shared local Dashboard foundation plus local Executive, Analytical, Operational, Monitoring/NOC, CRM/Pipeline, and Admin/Management mode packs. Shared dashboard rules cover decision hierarchy, Data Trust UX, metric contracts, filters, drill-down, tables, charts, cross-filtering, alerts, live updates, personalization, responsive behavior, accessibility, and RTL. Website, web-application, mobile, and WordPress plugin design rules remain local; Persian-facing language validation is delegated to persian-writing.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
         "capabilities": [
           "Route UI work by product type before design",
+          "Design dashboards with local executive analytical operational monitoring CRM and admin modes",
           "Design websites with local IA trust conversion content SEO accessibility and performance rules",
-          "Design dashboards and operational data UI",
           "Design web application product interfaces with local browser and workflow rules",
           "Design mobile applications with local iOS Android and cross-platform rules",
           "Design WordPress plugin UI with local settings onboarding diagnostics operations and Multisite rules",
