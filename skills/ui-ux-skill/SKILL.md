@@ -1,6 +1,6 @@
 ---
 name: ui-ux-skill
-description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating dashboards, web applications, mobile applications, WordPress plugin settings/admin UI, and other production product interfaces. Works standalone or as a specialist under a higher-level engineering Head. It MUST classify the product type and load the required Product Pack before product-specific design decisions, then route narrow concerns to specialist Skills. Use for product UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, navigation, forms, data UI, accessibility, performance, personalization, runtime design governance, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing-only websites, or unrelated graphic design.
+description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin settings/admin UI, and other production product interfaces. Works standalone or as a specialist under a higher-level engineering Head. It MUST classify the product type and load the required Product Pack before product-specific design decisions, then route narrow concerns to specialist Skills. Use for product UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, navigation, forms, data UI, accessibility, performance, personalization, runtime design governance, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing-only websites, or unrelated graphic design.
 ---
 
 # UI/UX Skill
@@ -50,6 +50,7 @@ A task may activate multiple Product Packs, but one primary route must be identi
 
 Current registered routes include:
 
+- `website`
 - `dashboard`
 - `web-application`
 - `mobile-application`

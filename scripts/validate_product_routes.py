@@ -10,6 +10,7 @@ SKILL = ROOT / "skills" / "ui-ux-skill"
 REGISTRY = SKILL / "product-types.json"
 
 REQUIRED_PRODUCT_IDS = {
+    "website",
     "dashboard",
     "web-application",
     "mobile-application",

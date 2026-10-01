@@ -2,6 +2,18 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [2.2.0] - 2026-10-01
+
+### Website Product Pack and Final Release Automation
+
+- Added `website` as a first-class Product Type separate from `web-application`.
+- Added a required Website Product Pack for public-facing company, service, marketing, content, blog, portfolio, landing-page, and SEO-driven websites.
+- Added explicit website-vs-web-application routing so public marketing/content surfaces and signed-in application surfaces use different product rules.
+- Added website-specific guidance for information architecture, homepage/landing-page hierarchy, conversion/forms, trust signals, semantic/SEO structure, responsive behavior, accessibility, performance, branding, multilingual/RTL handling, and evidence-based validation.
+- Added website behavioral eval coverage and release validation.
+- Updated public metadata and prompts to advertise website support.
+- Updated release automation so a new VERSION merged to `main` can publish the matching GitHub Release automatically when the tag/release does not yet exist.
+
 ## [2.1.0] - 2026-10-01
 
 ### Product-Aware UI/UX Routing
