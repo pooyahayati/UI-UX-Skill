@@ -6,23 +6,11 @@ This Product Pack applies to plugin-owned UI inside WordPress administration, in
 
 Product design knowledge for WordPress plugins is maintained locally in this repository. Do not depend on an external design Skill for WordPress plugin UI.
 
-## Shared rule loading
+## Shared-rule boundary
 
-After the WordPress Plugin Product Pack is active, read `../shared-product-rules.md` and `../../shared-rules.json`.
+After this Product Pack is active, read `../shared-product-rules.md` and load only Shared Product UI Rules that are materially in scope.
 
-For broad WordPress plugin work normally load:
-
-- `../shared/navigation-wayfinding.md`
-- `../shared/feedback-status.md`
-- `../shared/state-recovery.md`
-- `../shared/accessibility-interaction.md`
-- `../shared/responsive-adaptation.md`
-- `../shared/content-hierarchy-progressive-disclosure.md`
-
-Load `../shared/forms-data-entry.md`, `../shared/destructive-high-impact-actions.md`, and `../shared/motion.md` when those concerns are materially in scope.
-
-WordPress specialization retains `wp-admin` host behavior, Settings API semantics, capabilities, Site Health, Network Admin/Multisite, plugin data lifecycle, WordPress notices, and localization/RTL integration.
-
+Do not duplicate the cross-product contracts here. This Product Pack owns only its product/platform/host specialization and any local sub-routing described below.
 ## Required WordPress routing
 
 Before major design decisions, classify the current plugin surface.
