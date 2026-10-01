@@ -192,12 +192,16 @@ Verify:
 - specialist-dependent claims are not marked complete without specialist evidence
 - lower-level specialists did not override higher-level scope, risk, architecture, security, or product constraints
 - Head-delegated work returns a UI/UX handoff instead of claiming whole-project completion
+- required specialist installation/discovery was checked when tooling allowed
+- known-stale required specialists were updated before use, or their dependent validation was blocked
+- no specialist version/tag/commit is pinned in Head routing without an explicit compatibility exception
+- Skill freshness is reported as Unverified when it could not be checked
 
 For Persian-facing UI:
 
-- `persian-writing` was used for Persian language QA when available
-- Persian labels, buttons, validation, errors, notices, empty states, and mixed Persian/English content were reviewed through that specialist
-- if unavailable, the report states: `Persian language QA: Unverified — required specialist unavailable.`
+- the required `persian-writing` specialist route was satisfied
+- specialist-specific language rules were not duplicated or substituted by Head-local rules
+- if the required specialist was unavailable or could not be brought current, Persian-language validation is reported as unverified/blocked
 
 ## RTL/LTR and localization
 
