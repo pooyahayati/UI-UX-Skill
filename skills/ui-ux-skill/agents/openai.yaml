@@ -1,7 +1,7 @@
 interface:
   display_name: "UI/UX Skill"
   short_description: "Product-aware UI/UX design"
-  default_prompt: "Classify the product type first (including website vs web application), load the required Product Pack plus any required local Dashboard mode, mobile platform, or WordPress rule packs, then load only scope-relevant Shared Product UI Rules, preserve upstream constraints, route required specialists such as persian-writing for Persian-facing UI, and validate significant UI/UX changes with rendered or UX evidence."
+  default_prompt: "Classify the product type first (including website vs web application), load the required Product Pack plus any required local Dashboard mode, mobile platform, or WordPress rule packs, then load only scope-relevant Shared Product UI Rules and Design System modules, preserve upstream constraints, route required specialists such as persian-writing for Persian-facing UI, and validate significant UI/UX changes with rendered or UX evidence."
 policy:
   products:
     - CHAT
