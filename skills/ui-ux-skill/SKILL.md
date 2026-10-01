@@ -78,6 +78,29 @@ A Product Pack may adapt a Shared Rule for its host/platform/domain, but must no
 
 Do not duplicate a complete Shared Rule inside a Product Pack. Keep only product-specific extensions, exceptions, examples, and validation.
 
+## Route the design system
+
+When the task creates, changes, audits, or migrates a reusable design system, read:
+
+- `design-system.json`
+- `references/design-system-architecture.md`
+
+Then load only the relevant local Design System modules.
+
+For broad new-product or strategic redesign work, normally consider:
+
+- tokens/foundations;
+- typography;
+- color/theme;
+- spacing/density/layout;
+- component states;
+- responsive/product variants;
+- governance/migration.
+
+Do not load every Design System module for a narrow cosmetic change.
+
+Design System authority comes after Product Pack and Shared Product UI Rules. It must not redefine product semantics, host/platform behavior, authorization, or workflow meaning.
+
 ## Route the task mode
 
 Choose the smallest mode that fits the request.
@@ -209,7 +232,8 @@ Read references only when relevant.
 - `references/discovery-and-profile.md` — discovery, design-profile lifecycle, partial rediscovery, provenance
 - `references/existing-product-audit.md` — existing-product baseline, audit matrix, severity, safe vs strategic fixes
 - `references/execution-safety.md` — git/working-tree safety, data/privacy boundaries, scoped implementation
-- `references/design-system-architecture.md` — token layers, configuration boundaries, maintainability, implementation architecture
+- `design-system.json` — machine-readable Design System module registry and architecture order
+- `references/design-system-architecture.md` — modular Design System router, token/variant precedence, runtime boundary, maintainability
 - `references/implementation-strategies.md` — mapping the architecture into existing CSS/framework/theme systems
 - `references/runtime-ui-governance.md` — owner-only appearance controls, preview/publish/version/rollback/audit
 - `references/personalization-and-data-ux.md` — user preferences, saved views, role-aware UX, data trust/freshness
