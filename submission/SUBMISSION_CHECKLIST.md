@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for Production Dashboard UI/UX Skill v1.4.0.
+Prepared for UI/UX Skill v1.4.0.
 
 ## Package
 
@@ -63,15 +63,15 @@ https://pooyahayati.com
 
 **Support**
 
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill/issues
+https://github.com/pooyahayati/UI-UX-Skill/issues
 
 **Privacy**
 
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/PRIVACY.md
+https://github.com/pooyahayati/UI-UX-Skill/blob/main/PRIVACY.md
 
 **Terms**
 
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/TERMS.md
+https://github.com/pooyahayati/UI-UX-Skill/blob/main/TERMS.md
 
 **Submission type**
 
