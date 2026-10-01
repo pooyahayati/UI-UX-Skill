@@ -8,6 +8,8 @@ Record what was actually checked:
 
 | Dimension | Coverage |
 | --- | --- |
+| Product route | primary + secondary |
+| Product Packs | loaded / missing / not applicable |
 | Routes/screens | list |
 | Workflows | list |
 | Viewports | desktop/tablet/mobile/etc |
@@ -26,6 +28,22 @@ Record what was actually checked:
 | Not checked | list |
 
 Do not imply coverage that was not performed.
+
+## Product routing
+
+Read `../product-types.json` and `product-routing.md`.
+
+Verify:
+
+- a primary product route was identified
+- every required Product Pack for the active route(s) was loaded
+- product-specific rules were applied before generic visual defaults
+- unrelated Product Packs were not applied
+- multi-surface products identify primary vs secondary routes
+- product-aware validation reflects the active Product Pack
+- `generic-product-ui` was used only as a fallback when no registered route fit
+
+Do not claim product-aware QA when the required Product Pack was not loaded.
 
 ## Visual regression
 
