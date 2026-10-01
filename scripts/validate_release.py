@@ -32,8 +32,14 @@ required = [
     "assets/logo.svg",
     "assets/composer-icon.svg",
     f"skills/{SKILL_NAME}/SKILL.md",
+    f"skills/{SKILL_NAME}/product-types.json",
     f"skills/{SKILL_NAME}/specialists.json",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
+    f"skills/{SKILL_NAME}/references/product-routing.md",
+    f"skills/{SKILL_NAME}/references/products/dashboard.md",
+    f"skills/{SKILL_NAME}/references/products/web-application.md",
+    f"skills/{SKILL_NAME}/references/products/mobile-application.md",
+    f"skills/{SKILL_NAME}/references/products/wordpress-plugin-settings.md",
     f"skills/{SKILL_NAME}/references/specialist-routing.md",
     f"skills/{SKILL_NAME}/references/discovery-and-profile.md",
     f"skills/{SKILL_NAME}/references/existing-product-audit.md",
@@ -57,6 +63,7 @@ required = [
     "evals/result.schema.json",
     "evals/RESULT_TEMPLATE.md",
     "scripts/prepare_eval_run.py",
+    "scripts/validate_product_routes.py",
     "scripts/validate_specialists.py",
     "scripts/validate_eval_fixtures.py",
     "scripts/validate_eval_result.py",
@@ -96,12 +103,34 @@ else:
             if term.casefold() not in description.casefold():
                 error(f"Skill description should cover {term}")
 
-for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head"]:
+for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md"]:
     if term.casefold() not in skill_text.casefold():
         error(f"SKILL.md missing v2.0 specialist-routing contract term: {term}")
 
 # v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
+product_registry_path = SKILL / "product-types.json"
+try:
+    product_registry = json.loads(product_registry_path.read_text(encoding="utf-8"))
+except Exception as exc:
+    product_registry = {}
+    error(f"Cannot parse product-types.json: {exc}")
+
+product_ids = {
+    item.get("id")
+    for item in product_registry.get("products", [])
+    if isinstance(item, dict)
+}
+for product_id in [
+    "dashboard",
+    "web-application",
+    "mobile-application",
+    "wordpress-plugin-settings",
+    "generic-product-ui",
+]:
+    if product_id not in product_ids:
+        error(f"Product route registry missing {product_id}")
+
 registry_path = SKILL / "specialists.json"
 try:
     specialist_registry = json.loads(registry_path.read_text(encoding="utf-8"))
@@ -300,7 +329,7 @@ for term in [
 if f"**v{VERSION}**" not in readme:
     error("README current-source version does not match VERSION")
 
-for term in ["persian-writing", "UI/UX Head", "Specialist Skills"]:
+for term in ["persian-writing", "UI/UX Head", "Specialist Skills", "web applications", "mobile applications", "WordPress plugin"]:
     if term.casefold() not in readme.casefold():
         error(f"README missing essential architecture term: {term}")
 
