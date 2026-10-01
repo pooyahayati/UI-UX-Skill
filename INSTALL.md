@@ -165,3 +165,18 @@ python3 scripts/validate_specialists.py \
 You can inspect another Skill installation root with repeated `--installed-root <path>`.
 
 Specialists are never version-pinned in the Head. The checker resolves the latest stable GitHub Release when one exists; otherwise it uses the source repository's current default branch.
+
+
+## Release publishing
+
+GitHub Releases are generated automatically from the repository `VERSION` after validated changes reach `main`.
+
+The release workflow:
+
+1. validates the Skill, Product Routes, and Specialist Registry;
+2. packages the Claude-ready Skill ZIP and portable Plugin ZIP;
+3. checks whether the matching `v<version>` Release already exists;
+4. creates the matching tag and GitHub Release when it does not;
+5. attaches the ZIP archives and `SHA256SUMS.txt`.
+
+Do not manually create a different tag for the same source version.
