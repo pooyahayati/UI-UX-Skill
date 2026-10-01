@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for UI/UX Skill v2.0.0.
+Prepared for UI/UX Skill v2.1.0.
 
 ## Package
 
@@ -28,7 +28,10 @@ Prepared for UI/UX Skill v2.0.0.
 - [x] Runtime owner UI governance guidance
 - [x] Preference reconciliation guidance
 - [x] Operational real-time/search/concurrency patterns
-- [x] Domain-aware dashboard patterns
+- [x] Machine-readable product routing registry
+- [x] Required Product Packs for dashboards, web applications, mobile applications, and WordPress plugin settings
+- [x] Multi-route product routing rules
+- [x] Product-aware QA and behavioral eval coverage
 - [x] Behavioral eval definitions
 - [x] Behavioral eval fixture projects
 - [x] Eval run preparation/result-validation scripts
