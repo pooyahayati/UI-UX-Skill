@@ -22,7 +22,15 @@
       ],
       "required_references": [
         "references/products/dashboard.md"
-      ]
+      ],
+      "local_references": {
+        "executive": "references/products/dashboard/executive.md",
+        "analytical": "references/products/dashboard/analytical.md",
+        "operational": "references/products/dashboard/operational.md",
+        "monitoring_noc": "references/products/dashboard/monitoring-noc.md",
+        "crm_pipeline": "references/products/dashboard/crm-pipeline.md",
+        "admin_management": "references/products/dashboard/admin-management.md"
+      }
     },
     {
       "id": "web-application",

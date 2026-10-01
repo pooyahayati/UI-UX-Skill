@@ -2,6 +2,20 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [2.6.0] - 2026-10-01
+
+### Dashboard Product Pack Hardening
+
+- Rebuilt `dashboard.md` as a shared Dashboard foundation plus local mode router while keeping `dashboard` as one Product Type.
+- Added local Dashboard mode packs for Executive, Analytical, Operational, Monitoring/NOC, CRM/Pipeline, and Admin/Management use cases.
+- Added a Dashboard decision brief covering primary mode, users, decision cadence, metrics/entities, attention model, time horizon, filter scope, freshness, actions, drill-down, personalization, responsive priorities, and validation states.
+- Expanded shared Dashboard rules for decision hierarchy, Data Trust UX, metric contracts, targets/baselines, filter context, drill-down/traceability, tables/work queues, visualizations, cross-filtering, alerts, live updates, personalization, role-aware UX, failure/loading states, responsive behavior, accessibility, and RTL.
+- Deepened `dashboard-patterns.md` with metric-card context, number formatting, semantic table accessibility, chart scale/baseline rules, time-series semantics, annotations, cross-filtering, legends/labels, and refresh/performance behavior.
+- Added machine-readable Dashboard `local_references` for all six modes.
+- Added six Dashboard behavioral evals and release/product-route validation for mode-specific routing and required rule contracts.
+- Marked Roadmap Stage 3 complete.
+- Kept Dashboard design knowledge local; `persian-writing` remains the only external specialist.
+
 ## [2.5.0] - 2026-10-01
 
 ### WordPress Plugin Product Pack Hardening

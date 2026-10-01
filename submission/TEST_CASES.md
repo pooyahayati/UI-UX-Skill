@@ -1,6 +1,6 @@
 # Public Plugin Submission Test Cases
 
-Prepared for UI/UX Skill v2.5.0.
+Prepared for UI/UX Skill v2.6.0.
 
 Exactly five positive and three negative cases are provided.
 
@@ -16,10 +16,10 @@ Exactly five positive and three negative cases are provided.
 
 - Triggers the Skill.
 - Classifies the primary product route as `dashboard`.
-- Loads the required Dashboard Product Pack before dashboard-specific design decisions.
+- Loads the shared Dashboard Product Pack, identifies the primary Dashboard mode, and loads only the applicable local Dashboard mode packs before mode-specific design decisions.
 - Routes Persian-facing language work to the REQUIRED `persian-writing` specialist.
 - Runs recommendation-first discovery.
-- Establishes native Persian RTL, responsive priorities, typography, palette, theme, navigation, and localization decisions.
+- Establishes native Persian RTL, responsive priorities, typography, palette, theme, navigation, localization decisions, Data Trust context, and the correct Dashboard mode behavior.
 - Produces an approved or delegated Design Profile before broad rollout.
 - Uses semantic tokens and representative rendered/visual validation when tooling is available.
 

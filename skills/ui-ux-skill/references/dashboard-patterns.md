@@ -59,6 +59,26 @@ Communicate:
 
 Normally one action should be visually dominant.
 
+## Metric cards and summary numbers
+
+A metric card is appropriate when the value itself is a decision-relevant summary.
+
+A useful metric card should usually communicate enough context to answer:
+
+- what the metric is;
+- current value;
+- relevant unit;
+- relevant time period;
+- target/baseline/previous value when comparison matters;
+- direction/variance when meaningful;
+- freshness if the value may be stale.
+
+Do not show percentage change without a meaningful denominator/baseline.
+
+Do not use red/green direction arrows until it is clear whether up/down is actually good or bad.
+
+Avoid a wall of equally prominent metric cards.
+
 ## Metrics and Data Trust
 
 Do not default to four KPI cards.
@@ -78,6 +98,23 @@ For important data, expose relevant trust context such as:
 - concise metric definition when ambiguity is likely
 
 Read `personalization-and-data-ux.md` for detailed Data Trust UX.
+
+## Number formatting
+
+Format values according to the decision task.
+
+Use:
+
+- consistent unit/currency;
+- appropriate precision;
+- compact notation only when it remains interpretable;
+- localized number/date formatting where appropriate;
+- explicit negative values;
+- consistent sign conventions.
+
+Avoid false precision.
+
+Do not mix currencies/units in one comparison without clear labeling or normalization.
 
 ## Tables
 
@@ -117,6 +154,21 @@ For repeated operational use, consider:
 Clarify permission for shared views.
 
 For large datasets read `performance.md`.
+
+## Table accessibility
+
+When a dashboard table is semantically tabular data:
+
+- preserve row/column header relationships;
+- use meaningful column labels;
+- expose sort state;
+- keep row identity clear;
+- ensure row actions are keyboard reachable;
+- do not rely on color-only status;
+- keep focus visible during horizontal/virtualized navigation;
+- provide accessible context when sticky headers/columns are used.
+
+Do not replace semantic tabular relationships with layout-only div grids unless the implementation reproduces the required semantics and keyboard behavior.
 
 ## Forms
 
@@ -182,11 +234,81 @@ For accessibility:
 - provide meaningful labels and summary
 - provide a data/table alternative when exact values matter
 
+## Chart scale and baseline
+
+Choose scales to preserve truthful interpretation.
+
+For bars, a zero baseline is generally important for length comparison unless a specialized analytical context justifies otherwise.
+
+For lines, a non-zero axis may be appropriate, but the scale should not exaggerate ordinary variation.
+
+When comparing panels, consistent scales can materially improve interpretation.
+
+Do not truncate axes merely to make change look dramatic.
+
+## Time series
+
+For time-based visuals:
+
+- clarify timezone;
+- keep intervals consistent;
+- distinguish missing intervals from zero;
+- expose comparison periods clearly;
+- avoid connecting data across gaps when that implies observation;
+- mark "now" or incomplete current buckets when useful.
+
+Preserve chronological meaning in RTL.
+
 For analytical traceability, provide drill-down to underlying records when the product domain benefits from answering:
 
 `Why is this number here?`
 
 Preserve chronological and analytical semantics in RTL rather than blindly mirroring.
+
+## Cross-filtering and linked interactions
+
+When selecting a chart/table item filters or highlights other panels:
+
+- make the selected source visible;
+- show the resulting filter/highlight state;
+- communicate which panels changed;
+- provide a clear reset path;
+- preserve keyboard/focus context;
+- avoid chaining hidden filters that users cannot reconstruct.
+
+Cross-filtering should accelerate analysis, not create invisible dashboard state.
+
+## Annotations and events
+
+Use annotations when events materially explain a metric or incident.
+
+Examples:
+
+- deployment;
+- campaign start;
+- pricing change;
+- outage;
+- policy change;
+- release;
+- data-source interruption.
+
+Annotations should be concise and inspectable.
+
+Do not annotate every ordinary event.
+
+## Legends, labels, and exact values
+
+Legends and labels should support interpretation.
+
+Prefer direct labeling when it reduces eye travel and clutter.
+
+Avoid:
+
+- truncated legend labels that destroy meaning;
+- labels on every point when they obscure the pattern;
+- relying on hover as the only way to retrieve critical exact values.
+
+When exact values matter, provide a table/data alternative or accessible detail view.
 
 ## Status
 
@@ -324,3 +446,36 @@ Choose among:
 Large dialogs may become full-screen views, sheets, or pages.
 
 Keep primary actions discoverable.
+
+
+## Refresh and performance
+
+Dashboard performance is part of usability.
+
+Review:
+
+- query/data volume;
+- number of panels;
+- refresh cadence;
+- virtualization/pagination;
+- interaction latency;
+- cross-filter cost;
+- heavy chart rendering;
+- background polling;
+- unnecessary hidden panels.
+
+Do not refresh more frequently than the user decision or source data requires.
+
+For slow panels:
+
+- preserve the rest of the dashboard;
+- show local loading/failure;
+- avoid blocking unrelated interactions.
+
+## Dashboard-mode boundary
+
+Mode-specific behavior belongs in local packs under `references/products/dashboard/`.
+
+Use this shared file for reusable components and interaction patterns.
+
+Do not copy executive, analytical, operational, monitoring/NOC, CRM/pipeline, or admin-management methodology back into this shared reference.

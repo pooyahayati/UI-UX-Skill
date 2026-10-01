@@ -130,7 +130,7 @@ Example:
 
 ```yaml
 profile_version: 4
-skill_version: 2.5.0
+skill_version: 2.6.0
 status: approved
 updated_at: 2026-09-20
 
