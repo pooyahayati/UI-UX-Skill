@@ -129,8 +129,8 @@ Use a concise Markdown or YAML-like structure. Include provenance so future work
 Example:
 
 ```yaml
-profile_version: 5
-skill_version: 2.7.0
+profile_version: 6
+skill_version: 2.8.0
 status: approved
 updated_at: 2026-09-20
 
@@ -154,6 +154,24 @@ routing:
     - state-recovery
     - accessibility-interaction
     - responsive-adaptation
+
+design_system:
+  enabled: true
+  modules_loaded:
+    - tokens-foundations
+    - typography
+    - color-theme
+    - spacing-density-layout
+    - component-states
+    - responsive-variants
+    - governance-migration
+  token_interchange: DTCG-2025.10-compatible
+  themes: [light, dark]
+  high_contrast: supported-where-platform-applies
+  density: [compact, balanced, comfortable]
+  product_variants:
+    - dashboard/operational
+  runtime_boundary: validated-semantic-values-only
 
 direction:
   languages: [fa, en]
@@ -271,6 +289,7 @@ Before major UI work:
 - update `skill_version` when materially revising the profile with a newer Skill
 - re-evaluate `primary_route` and `secondary_routes` when the product surface materially changes
 - re-evaluate `product_packs_loaded` and `shared_rules_loaded` when task scope or product behavior materially changes
+- re-evaluate `design_system.modules_loaded`, theme/density contexts, and product variants when design-system scope materially changes
 - migrate runtime-governance fields carefully when the schema changes
 - reconcile stored preferences/saved views when owner or schema constraints change
 - update validation/evidence expectations when the redesign scope changes
