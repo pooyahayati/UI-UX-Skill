@@ -143,6 +143,8 @@ Never modify code, configuration, or assets.
 17. For broad visual changes, capture or report the absence of a rendered baseline when screenshot/browser tooling is available.
 18. Preserve valid user preferences across schema/config changes and reconcile invalid preferences safely.
 19. Use required specialist Skills when their triggers are active; never claim specialist-dependent validation when a required specialist was unavailable or not run.
+20. Keep specialist knowledge out of the Head: store only routing, precedence, constraints, handoff, and fallback rules; do not duplicate specialist methodology.
+21. Use the latest available stable Head/Specialist installations when freshness can be verified; never pin specialist versions in Head routing without an explicit compatibility requirement.
 
 ## Reference routing
 
@@ -289,7 +291,7 @@ When implementing that architecture, read `references/implementation-strategies.
 ## Final validation
 
 Before completion:
-1. read `references/specialist-routing.md` and confirm all required specialist routes were satisfied or explicitly reported unavailable
+1. read `references/specialist-routing.md`, confirm required specialist routes were satisfied, and verify installation/freshness when tooling allows
 2. read `references/qa-checklist.md`
 3. inspect the rendered UI when possible
 4. test representative viewports, themes, directions, and states
