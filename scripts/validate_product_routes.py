@@ -140,6 +140,19 @@ for ref in MOBILE_LOCAL_PACKS:
     if not path.is_file():
         error(f"missing local mobile rule pack: {ref}")
 
+mobile_route = next(
+    (item for item in products if isinstance(item, dict) and item.get("id") == "mobile-application"),
+    {},
+)
+platform_refs = mobile_route.get("platform_references", {})
+expected_platform_refs = {
+    "ios": "references/products/mobile/ios.md",
+    "android": "references/products/mobile/android.md",
+    "cross_platform": "references/products/mobile/cross-platform.md",
+}
+if platform_refs != expected_platform_refs:
+    error("mobile-application platform_references must point to the three local mobile rule packs")
+
 mobile_main = (SKILL / "references" / "products" / "mobile-application.md")
 if mobile_main.is_file():
     mobile_text = mobile_main.read_text(encoding="utf-8").casefold()
