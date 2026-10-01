@@ -1,7 +1,7 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-2.3.0-blue)
+![Version](https://img.shields.io/badge/version-2.4.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production interfaces.
@@ -11,7 +11,7 @@ It can work independently or as a UI/UX specialist under a higher-level engineer
 ## Core capabilities
 
 - mandatory product routing before product-specific design decisions
-- websites and public-facing content/conversion interfaces
+- websites with deep local rules for IA, trust, conversion, content/SEO UX, accessibility, responsive media, and performance
 - dashboards and operational data interfaces
 - web applications with local browser/state/workflow UX rules
 - mobile applications with local iOS, Android, and cross-platform mobile rules
@@ -60,6 +60,7 @@ Claude Code:
 
 ## Documentation
 
+- **[Roadmap](ROADMAP.md)** — ordered development plan and upcoming hardening stages
 - **[How to Install / Update](INSTALL.md)** — installation, updates, migration from the old slug, and verification
 - **[Updates & Changelog](CHANGELOG.md)** — release-by-release changes
 - **[Skill Specification](skills/ui-ux-skill/SKILL.md)** — canonical Skill behavior and routing
@@ -72,7 +73,7 @@ Claude Code:
 
 ## Current source
 
-**v2.3.0**
+**v2.4.0**
 
 Canonical repository: **pooyahayati/UI-UX-Skill**  
 Canonical Skill slug: **`ui-ux-skill`**
