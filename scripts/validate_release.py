@@ -25,6 +25,7 @@ def require(path: str) -> Path:
 required = [
     "README.md",
     "CHANGELOG.md",
+    "INSTALL.md",
     "LICENSE",
     "VERSION",
     "plugin.json",
@@ -259,24 +260,41 @@ validate_svg("logo")
 validate_svg("composerIcon")
 
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
-canonical_url = "https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill"
-if canonical_url not in readme:
-    error("README is missing the canonical Codex installer URL")
-if f"Current source version: **v{VERSION}**" not in readme:
-    error("README current-source-version label does not match VERSION")
-for term in ["$ui-ux-skill", "/ui-ux-skill", "skills/ui-ux-skill"]:
-    if term not in readme:
-        error(f"README missing v2 canonical identity: {term}")
+install = (ROOT / "INSTALL.md").read_text(encoding="utf-8")
+
+# README should remain a concise entrypoint and link to detailed docs.
+if len(readme.splitlines()) > 120:
+    error(f"README should stay concise (<=120 lines); got {len(readme.splitlines())}")
+
 for term in [
-    "specialist routing",
-    "persian-writing",
-    "runtime design governance",
-    "owner ui/ux control center",
-    "personalization",
-    "data trust ux",
+    "[How to Install / Update](INSTALL.md)",
+    "[Updates & Changelog](CHANGELOG.md)",
+    "[Skill Specification](skills/ui-ux-skill/SKILL.md)",
+    "[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)",
 ]:
+    if term not in readme:
+        error(f"README missing required documentation link: {term}")
+
+if f"**v{VERSION}**" not in readme:
+    error("README current-source version does not match VERSION")
+
+for term in ["persian-writing", "UI/UX Head", "Specialist Skills"]:
     if term.casefold() not in readme.casefold():
-        error(f"README missing key capability: {term}")
+        error(f"README missing essential architecture term: {term}")
+
+canonical_url = "https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill"
+if canonical_url not in install:
+    error("INSTALL.md is missing the canonical installer URL")
+
+for term in [
+    "$ui-ux-skill",
+    "/ui-ux-skill",
+    "production-dashboard-ui-ux-skill",
+    "ui-ux-skill",
+    "persian-writing",
+]:
+    if term not in install:
+        error(f"INSTALL.md missing required installation/migration term: {term}")
 
 tests = (ROOT / "submission/TEST_CASES.md").read_text(encoding="utf-8")
 positive_section, _, negative_section = tests.partition("## Negative test cases")
@@ -381,10 +399,6 @@ for case in cases:
         fixture_dir = ROOT / "evals" / "fixtures" / fixture
         if not fixture_dir.is_dir() or not (fixture_dir / "README.md").is_file():
             error(f"Missing or invalid eval fixture: {fixture}")
-
-for term in ["visual-regression.md", "ux-evidence-and-metrics.md", "implementation-strategies.md", "preference-reconciliation.md"]:
-    if term not in readme:
-        error(f"README key-reference list missing: {term}")
 
 if ERRORS:
     print("Release validation failed:")
