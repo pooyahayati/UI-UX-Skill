@@ -167,7 +167,6 @@ for term in [
 # Specialist references must stay version-agnostic unless an explicit compatibility exception is documented.
 for pattern in [
     r"persian-writing[^\n]{0,120}\bv?\d+\.\d+(?:\.\d+)?\b",
-    r"browser-testing-with-devtools[^\n]{0,120}\bv?\d+\.\d+(?:\.\d+)?\b",
     r"/releases/tag/",
     r"/commit/[0-9a-f]{7,40}",
 ]:
