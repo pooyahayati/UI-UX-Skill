@@ -1,11 +1,11 @@
 {
-  "skillVersion": "3.0.0",
+  "skillVersion": "3.1.0",
   "host": "ChatGPT",
   "model": "GPT-5.6 Sol",
   "date": "2026-10-02",
   "evaluationMode": "in-session source-based behavioral evaluation",
   "independence": "not an independent fresh Codex/Claude session",
-  "notes": "Five representative production-like fixtures were inspected against the current Skill architecture. Routing, rule selection, issue detection, safety boundaries and evidence discipline were evaluated. Browser/device rendering was not available in this connector workflow; each case therefore passes only because it explicitly reports that limitation rather than claiming rendered validation.",
+  "notes": "Five representative production-like fixtures were rechecked against the 3.1.0 stabilization architecture. Product routing, active-pack isolation, scope-based local/shared/design-system selection, issue detection, safety boundaries and evidence discipline were evaluated in-session. Browser/device rendering was not available in this connector workflow; each case therefore passes only because it explicitly reports that limitation rather than claiming rendered validation.",
   "cases": [
     {
       "id": "real-world-dashboard-evaluation",
