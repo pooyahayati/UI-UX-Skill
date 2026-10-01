@@ -2,7 +2,7 @@
 
 Structural validation cannot prove that a model follows this Skill well.
 
-Version 1.4 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
+Version 2.0 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
 
 ## Validate fixtures
 
