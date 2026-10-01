@@ -9,6 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "ui-ux-skill"
 REGISTRY = SKILL / "product-types.json"
 
+MOBILE_LOCAL_PACKS = [
+    "references/products/mobile/ios.md",
+    "references/products/mobile/android.md",
+    "references/products/mobile/cross-platform.md",
+]
+
 REQUIRED_PRODUCT_IDS = {
     "website",
     "dashboard",
@@ -128,6 +134,39 @@ for required_term in [
 ]:
     if required_term.casefold() not in routing.casefold():
         error(f"product-routing.md missing required policy: {required_term}")
+
+for ref in MOBILE_LOCAL_PACKS:
+    path = SKILL / ref
+    if not path.is_file():
+        error(f"missing local mobile rule pack: {ref}")
+
+mobile_main = (SKILL / "references" / "products" / "mobile-application.md")
+if mobile_main.is_file():
+    mobile_text = mobile_main.read_text(encoding="utf-8").casefold()
+    for term in [
+        "mobile/ios.md",
+        "mobile/android.md",
+        "mobile/cross-platform.md",
+        "shared mobile ux",
+        "do not use external design skills",
+    ]:
+        if term.casefold() not in mobile_text:
+            error(f"mobile-application.md missing required local routing term: {term}")
+
+web_main = SKILL / "references" / "products" / "web-application.md"
+if web_main.is_file():
+    web_text = web_main.read_text(encoding="utf-8").casefold()
+    for term in [
+        "browser navigation and url state",
+        "drafts, autosave, and unsaved changes",
+        "long-running and background work",
+        "concurrency, stale data, and conflicting edits",
+        "dialogs, drawers, popovers, and overlays",
+        "accessibility interaction contracts",
+        "do not depend on an external design skill",
+    ]:
+        if term.casefold() not in web_text:
+            error(f"web-application.md missing local UX rule section: {term}")
 
 if errors:
     print("Product route validation failed:")
