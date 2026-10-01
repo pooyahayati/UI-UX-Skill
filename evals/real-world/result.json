@@ -13,7 +13,7 @@
       "result": "pass",
       "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
       "evidence": [
-        "Fixture: evals/fixtures/dashboard"
+        "Fixture: evals/fixtures/real-world-dashboard"
       ],
       "invariants": [
         {
@@ -59,7 +59,7 @@
       "result": "pass",
       "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
       "evidence": [
-        "Fixture: evals/fixtures/website"
+        "Fixture: evals/fixtures/real-world-website"
       ],
       "invariants": [
         {
@@ -105,7 +105,7 @@
       "result": "pass",
       "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
       "evidence": [
-        "Fixture: evals/fixtures/web-app"
+        "Fixture: evals/fixtures/real-world-web-app"
       ],
       "invariants": [
         {
@@ -151,7 +151,7 @@
       "result": "pass",
       "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
       "evidence": [
-        "Fixture: evals/fixtures/mobile"
+        "Fixture: evals/fixtures/real-world-mobile"
       ],
       "invariants": [
         {
@@ -197,7 +197,7 @@
       "result": "pass",
       "notes": "Source-based evaluation passed all behavioral invariants. Rendered/device validation remains a disclosed limitation where applicable.",
       "evidence": [
-        "Fixture: evals/fixtures/wordpress"
+        "Fixture: evals/fixtures/real-world-wordpress"
       ],
       "invariants": [
         {
