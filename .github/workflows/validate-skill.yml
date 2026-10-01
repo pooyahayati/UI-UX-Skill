@@ -32,8 +32,8 @@ jobs:
 
       - name: Verify ZIP archives
         run: |
-          unzip -t dist/production-dashboard-ui-ux-skill-claude-v*.zip
-          unzip -t dist/production-dashboard-ui-ux-plugin-v*.zip
+          unzip -t dist/ui-ux-skill-claude-v*.zip
+          unzip -t dist/ui-ux-plugin-v*.zip
           cat dist/SHA256SUMS.txt
 
       - name: Fetch official OpenAI skill tools
@@ -42,15 +42,15 @@ jobs:
       - name: Official OpenAI quick validation
         run: |
           python3 "$RUNNER_TEMP/openai-skills/skills/.system/skill-creator/scripts/quick_validate.py" \
-            skills/production-dashboard-ui-ux-skill
+            skills/ui-ux-skill
 
       - name: Codex installer smoke test
         if: github.event_name == 'push'
         run: |
           python3 "$RUNNER_TEMP/openai-skills/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
             --repo pooyahayati/UI-UX-Skill \
-            --path skills/production-dashboard-ui-ux-skill \
+            --path skills/ui-ux-skill \
             --ref "$GITHUB_SHA" \
             --dest "$RUNNER_TEMP/installed-skills"
 
-          test -f "$RUNNER_TEMP/installed-skills/production-dashboard-ui-ux-skill/SKILL.md"
+          test -f "$RUNNER_TEMP/installed-skills/ui-ux-skill/SKILL.md"
