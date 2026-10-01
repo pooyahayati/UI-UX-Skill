@@ -13,6 +13,10 @@ All notable user-facing and technical changes to this project are documented her
 - Updated release artifacts, OpenAI validation, installer smoke tests, contribution docs, eval metadata, and submission metadata to the new identity.
 - Added an explicit migration path for legacy installations. Version 1.x installations using the old slug should be removed and reinstalled from the new canonical path.
 - Kept the public repository slug `UI-UX-Skill` and the machine-readable Skill slug `ui-ux-skill` aligned while preserving lowercase Agent Skill naming conventions.
+- Added a machine-readable `specialists.json` registry so specialist identity, trigger, requirement level, source, and install path are separated from domain methodology.
+- Added `scripts/validate_specialists.py` to validate specialist sources and compare installed copies with current canonical upstream without pinning versions.
+- Added periodic upstream specialist freshness validation in GitHub Actions.
+- Confirmed `persian-writing` as a REQUIRED independent specialist for Persian-facing UI; it is referenced and installable from its canonical repository rather than vendored into this Head.
 
 ## [1.5.0] - 2026-10-01
 
