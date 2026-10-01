@@ -1,8 +1,8 @@
 # Support
 
-For questions, bug reports, and feature requests related to **Production Dashboard UI/UX Skill**, use the GitHub issue tracker:
+For questions, bug reports, and feature requests related to **UI/UX Skill**, use the GitHub issue tracker:
 
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill/issues
+https://github.com/pooyahayati/UI-UX-Skill/issues
 
 Before opening an issue:
 
