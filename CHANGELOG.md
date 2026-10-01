@@ -2,6 +2,23 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [2.7.0] - 2026-10-01
+
+### Shared Product UI Rules
+
+- Added a machine-readable `shared-rules.json` registry for stable cross-product UI contracts.
+- Added `references/shared-product-rules.md` with scope-based loading, authority/precedence, specialization rules, and a strict non-duplication policy.
+- Added nine local Shared UI modules: navigation/wayfinding, forms/data entry, feedback/status, state/recovery, destructive/high-impact actions, accessibility interaction, responsive adaptation, motion, and content hierarchy/progressive disclosure.
+- Established the architecture `Product Route -> Product Pack -> scope-relevant Shared Product UI Rules`; Product Packs retain product/platform/host/domain specialization.
+- Added an explicit floor preventing product specialization from weakening accessibility, security, authorization, truthful-state, or user-data-integrity requirements.
+- Deduplicated generic navigation/forms/feedback/state/destructive/responsive/accessibility/motion/hierarchy contracts from Website, Web Application, Mobile Application, WordPress Plugin, and Dashboard Product Packs while preserving product-specific behavior.
+- Split accessibility responsibility into the Shared accessibility interaction contract plus `accessibility.md` for QA/evidence.
+- Removed generic responsive/navigation/motion duplication from the theme/brand reference.
+- Added Shared Rule routing to Design Profile and final QA coverage.
+- Added `scripts/validate_shared_rules.py` and made Shared Rule validation mandatory in PR and Release workflows.
+- Added four behavioral evals for broad Shared Rule loading, narrow scope selection, product specialization precedence, and accessibility-floor preservation.
+- Marked Roadmap Stage 4 complete.
+
 ## [2.6.0] - 2026-10-01
 
 ### Dashboard Product Pack Hardening
