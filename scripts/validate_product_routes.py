@@ -11,7 +11,6 @@ REGISTRY = SKILL / "product-types.json"
 
 REQUIRED_PRODUCT_IDS = {
     "website",
-    "website",
     "dashboard",
     "web-application",
     "mobile-application",
