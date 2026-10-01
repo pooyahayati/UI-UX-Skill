@@ -391,6 +391,12 @@ for term in [
     if term not in roadmap:
         error(f"ROADMAP missing required stage: {term}")
 
+stage2_start = roadmap.find("## Stage 2 — WordPress Plugin Product Pack")
+stage3_start = roadmap.find("## Stage 3 — Dashboard Product Pack")
+stage2_block = roadmap[stage2_start:stage3_start] if stage2_start >= 0 and stage3_start > stage2_start else ""
+if "**Status:** Completed" not in stage2_block:
+    error("Stage 2 — WordPress Plugin Product Pack must be Completed for v2.5")
+
 website_pack = (SKILL / "references/products/website.md").read_text(encoding="utf-8")
 for term in [
     "Website subtype and visitor job",
@@ -472,7 +478,7 @@ for term in [
     "data_ux",
 ]:
     if term not in profile:
-        error(f"Design Profile v2.3 field missing: {term}")
+        error(f"Design Profile v2.5 field missing: {term}")
 
 architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
 for term in [
