@@ -4,6 +4,10 @@ Use only when the active product route includes `dashboard`.
 
 This Product Pack specializes the UI/UX Head for operational, analytical, monitoring, CRM, and data-heavy dashboards.
 
+Read the detailed dashboard reference when dashboard components or workflows are in scope:
+
+`../dashboard-patterns.md`
+
 ## Primary objective
 
 A dashboard exists to help a user understand state, notice change, make decisions, and act.
