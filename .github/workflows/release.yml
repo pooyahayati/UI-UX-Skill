@@ -16,7 +16,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  validate:
+    uses: ./.github/workflows/validate-skill.yml
+
   release:
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,18 +41,14 @@ jobs:
             test "$GITHUB_REF_NAME" = "$TAG"
           fi
 
-      - name: Validate
-        run: |
-          python3 scripts/validate_release.py
-          python3 scripts/validate_product_routes.py
-          python3 scripts/validate_shared_rules.py
-          python3 scripts/validate_design_system.py
-          python3 scripts/validate_specialists.py
-          python3 scripts/validate_real_world_evaluation.py
-          python3 scripts/validate_eval_result.py evals/real-world/result.json
-
-      - name: Package
+      - name: Package validated source
         run: python3 scripts/package_release.py --output dist
+
+      - name: Verify release archives
+        run: |
+          unzip -t dist/ui-ux-skill-claude-v*.zip
+          unzip -t dist/ui-ux-plugin-v*.zip
+          cat dist/SHA256SUMS.txt
 
       - name: Check existing release
         id: existing
@@ -83,7 +83,7 @@ jobs:
           EXISTS: ${{ steps.existing.outputs.exists }}
         run: |
           if [ "$EXISTS" = "true" ]; then
-            echo "Release $TAG already existed; validation and packaging passed."
+            echo "Release $TAG already existed; shared validation gate and packaging passed."
           else
-            echo "Published release $TAG."
+            echo "Published release $TAG after the shared validation gate."
           fi
