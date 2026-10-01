@@ -34,6 +34,28 @@ Authorization must be enforced server-side or at the trusted application boundar
 
 Hiding a route/menu item is not sufficient access control.
 
+## Design-system boundary
+
+Runtime configuration is not the design-system source of truth.
+
+Use:
+
+`Design System Source -> Validated Runtime Configuration -> Resolved Runtime Tokens -> Components`
+
+Owner configuration may select approved semantic values or presets.
+
+It must not redefine:
+
+- token alias/reference graph;
+- component state contracts;
+- responsive breakpoint logic;
+- product semantic meaning;
+- arbitrary CSS/JavaScript;
+- authorization/security;
+- validation/business rules.
+
+Read `design-system-architecture.md` and `design-system/governance-migration.md`.
+
 ## Safe configuration categories
 
 Reasonable owner-configurable areas can include:
