@@ -42,7 +42,7 @@ Use:
 
 `Design System Source -> Validated Runtime Configuration -> Resolved Runtime Tokens -> Components`
 
-Owner configuration may select approved semantic values or presets.
+Owner configuration may select approved semantic tokens, semantic values, or presets.
 
 It must not redefine:
 
