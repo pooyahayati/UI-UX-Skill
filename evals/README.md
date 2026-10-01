@@ -2,7 +2,7 @@
 
 Structural validation cannot prove that a model follows this Skill well.
 
-Version 2.7 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
+Version 2.8 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
 
 ## Validate fixtures
 
@@ -99,6 +99,12 @@ A candidate should not ship with an unexplained Fail in:
 - shared-rule scope selection after product routing
 - shared-rule/product-pack specialization precedence
 - shared accessibility/security/data-integrity floors
+- design-system token hierarchy and aliases
+- component-state completeness and theme matrices
+- Light/Dark/High Contrast theme resolution
+- Persian/RTL typography-system behavior
+- density/responsive/product-variant behavior
+- runtime configuration boundary safety
 
 - business-logic preservation
 - working-tree safety
