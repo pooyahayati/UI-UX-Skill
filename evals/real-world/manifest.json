@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "real-world-dashboard-evaluation",
+      "product_route": "dashboard",
+      "fixture": "real-world-dashboard",
+      "product_refs": [
+        "references/products/dashboard.md",
+        "references/products/dashboard/operational.md",
+        "references/products/dashboard/monitoring-noc.md"
+      ],
+      "shared_rules": [
+        "feedback-status",
+        "state-recovery",
+        "accessibility-interaction",
+        "responsive-adaptation"
+      ],
+      "design_system": [
+        "tokens-foundations",
+        "spacing-density-layout",
+        "component-states",
+        "color-theme"
+      ]
+    },
+    {
+      "id": "real-world-website-evaluation",
+      "product_route": "website",
+      "fixture": "real-world-website",
+      "product_refs": [
+        "references/products/website.md"
+      ],
+      "shared_rules": [
+        "navigation-wayfinding",
+        "forms-data-entry",
+        "feedback-status",
+        "state-recovery",
+        "accessibility-interaction",
+        "responsive-adaptation"
+      ],
+      "design_system": [
+        "tokens-foundations",
+        "typography",
+        "color-theme",
+        "component-states",
+        "responsive-variants"
+      ]
+    },
+    {
+      "id": "real-world-web-app-evaluation",
+      "product_route": "web-application",
+      "fixture": "real-world-web-app",
+      "product_refs": [
+        "references/products/web-application.md"
+      ],
+      "shared_rules": [
+        "forms-data-entry",
+        "feedback-status",
+        "state-recovery",
+        "destructive-high-impact-actions",
+        "accessibility-interaction",
+        "responsive-adaptation"
+      ],
+      "design_system": [
+        "tokens-foundations",
+        "component-states",
+        "responsive-variants",
+        "governance-migration"
+      ]
+    },
+    {
+      "id": "real-world-mobile-evaluation",
+      "product_route": "mobile-application",
+      "fixture": "real-world-mobile",
+      "product_refs": [
+        "references/products/mobile-application.md",
+        "references/products/mobile/ios.md",
+        "references/products/mobile/android.md",
+        "references/products/mobile/cross-platform.md"
+      ],
+      "shared_rules": [
+        "forms-data-entry",
+        "feedback-status",
+        "state-recovery",
+        "accessibility-interaction",
+        "responsive-adaptation",
+        "motion"
+      ],
+      "design_system": [
+        "typography",
+        "color-theme",
+        "component-states",
+        "responsive-variants"
+      ]
+    },
+    {
+      "id": "real-world-wordpress-evaluation",
+      "product_route": "wordpress-plugin",
+      "fixture": "real-world-wordpress",
+      "product_refs": [
+        "references/products/wordpress-plugin.md",
+        "references/products/wordpress/settings.md",
+        "references/products/wordpress/onboarding-integrations.md",
+        "references/products/wordpress/diagnostics-operations.md",
+        "references/products/wordpress/multisite-admin.md"
+      ],
+      "shared_rules": [
+        "feedback-status",
+        "state-recovery",
+        "destructive-high-impact-actions",
+        "accessibility-interaction",
+        "responsive-adaptation"
+      ],
+      "design_system": [
+        "tokens-foundations",
+        "color-theme",
+        "component-states",
+        "responsive-variants"
+      ]
+    }
+  ]
+}
