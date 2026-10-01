@@ -73,31 +73,18 @@ Review independently:
 
 ## Responsive
 
-Review:
+Read `shared/responsive-adaptation.md` for the cross-product responsive/adaptive contract.
 
-- large desktop
-- desktop
-- laptop
-- tablet
-- mobile
+This file retains only theme/brand-specific responsive concerns:
 
-Use existing breakpoints where sensible.
+- logo variants;
+- brand lockup behavior;
+- theme surfaces;
+- icon presentation;
+- brand imagery;
+- token behavior across layout changes.
 
-Responsive changes may affect:
-
-- navigation
-- grid and columns
-- table fields
-- filters
-- actions
-- forms
-- charts
-- secondary panels
-- sticky regions
-- dialogs
-- information priority
-
-Do not solve mobile by only shrinking fonts.
+Do not redefine generic responsive rules here.
 
 ## Mobile tables
 
@@ -113,14 +100,9 @@ Horizontal scroll can be superior when cross-column comparison matters.
 
 ## Navigation
 
-Choose based on destination count, depth, frequency, expertise, and viewport:
+Read `shared/navigation-wayfinding.md`.
 
-- sidebar
-- compact sidebar
-- top navigation
-- hybrid
-
-Adapt intentionally on mobile.
+This file owns only brand/theme treatment of navigation, not destination hierarchy or wayfinding behavior.
 
 ## Icons
 
@@ -132,13 +114,9 @@ Icons should assist recognition, not replace critical labels.
 
 ## Motion
 
-Use motion for state, hierarchy, continuity, or feedback.
+Read `shared/motion.md`.
 
-Keep operational UI subtle.
-
-Respect reduced-motion preferences.
-
-Avoid animation that delays access.
+This file owns only brand/theming implications of motion, not the general motion contract.
 
 ## Surface and radius
 
