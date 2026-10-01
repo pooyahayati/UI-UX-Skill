@@ -22,6 +22,15 @@ WORDPRESS_LOCAL_PACKS = [
     "references/products/wordpress/multisite-admin.md",
 ]
 
+DASHBOARD_LOCAL_PACKS = [
+    "references/products/dashboard/executive.md",
+    "references/products/dashboard/analytical.md",
+    "references/products/dashboard/operational.md",
+    "references/products/dashboard/monitoring-noc.md",
+    "references/products/dashboard/crm-pipeline.md",
+    "references/products/dashboard/admin-management.md",
+]
+
 REQUIRED_PRODUCT_IDS = {
     "website",
     "dashboard",
@@ -193,6 +202,46 @@ if website_main.is_file():
     ]:
         if term.casefold() not in website_text:
             error(f"website.md missing local Website Product Pack section: {term}")
+
+for ref in DASHBOARD_LOCAL_PACKS:
+    path = SKILL / ref
+    if not path.is_file():
+        error(f"missing local Dashboard mode pack: {ref}")
+
+dashboard_route = next(
+    (item for item in products if isinstance(item, dict) and item.get("id") == "dashboard"),
+    {},
+)
+dashboard_refs = dashboard_route.get("local_references", {})
+expected_dashboard_refs = {
+    "executive": "references/products/dashboard/executive.md",
+    "analytical": "references/products/dashboard/analytical.md",
+    "operational": "references/products/dashboard/operational.md",
+    "monitoring_noc": "references/products/dashboard/monitoring-noc.md",
+    "crm_pipeline": "references/products/dashboard/crm-pipeline.md",
+    "admin_management": "references/products/dashboard/admin-management.md",
+}
+if dashboard_refs != expected_dashboard_refs:
+    error("dashboard local_references must point to the six local Dashboard mode packs")
+
+dashboard_main = SKILL / "references" / "products" / "dashboard.md"
+if dashboard_main.is_file():
+    dashboard_text = dashboard_main.read_text(encoding="utf-8").casefold()
+    for term in [
+        "required dashboard mode routing",
+        "dashboard/executive.md",
+        "dashboard/analytical.md",
+        "dashboard/operational.md",
+        "dashboard/monitoring-noc.md",
+        "dashboard/crm-pipeline.md",
+        "dashboard/admin-management.md",
+        "dashboard decision brief",
+        "data trust ux",
+        "dashboard qa matrix",
+        "do not depend on an external design skill",
+    ]:
+        if term.casefold() not in dashboard_text:
+            error(f"dashboard.md missing required local rule or routing term: {term}")
 
 for ref in WORDPRESS_LOCAL_PACKS:
     path = SKILL / ref
