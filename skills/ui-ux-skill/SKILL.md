@@ -57,6 +57,27 @@ Current registered routes include:
 - `wordpress-plugin`
 - `generic-product-ui` as fallback only
 
+## Route shared product UI rules
+
+After the product route and required Product Pack are resolved, read:
+
+- `shared-rules.json`
+- `references/shared-product-rules.md`
+
+Load only the Shared Product UI Rule modules that are relevant to the current scope.
+
+For broad new-product or redesign work, normally consider navigation, feedback/status, state/recovery, accessibility interaction, responsive adaptation, and content hierarchy/progressive disclosure. Load forms, destructive actions, and motion when those concerns are materially in scope.
+
+Product Packs specialize Shared Rules. They do not get replaced by them.
+
+Authority:
+
+`Higher-level Engineering Head -> UI/UX Head invariants -> Active Product Pack -> Shared Product UI Rule -> Design-system defaults -> implementation details`
+
+A Product Pack may adapt a Shared Rule for its host/platform/domain, but must not weaken accessibility, security, authorization, data integrity, or truthful-state requirements.
+
+Do not duplicate a complete Shared Rule inside a Product Pack. Keep only product-specific extensions, exceptions, examples, and validation.
+
 ## Route the task mode
 
 Choose the smallest mode that fits the request.
