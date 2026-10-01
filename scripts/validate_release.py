@@ -32,6 +32,7 @@ required = [
     "assets/logo.svg",
     "assets/composer-icon.svg",
     f"skills/{SKILL_NAME}/SKILL.md",
+    f"skills/{SKILL_NAME}/specialists.json",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
     f"skills/{SKILL_NAME}/references/specialist-routing.md",
     f"skills/{SKILL_NAME}/references/discovery-and-profile.md",
@@ -56,6 +57,7 @@ required = [
     "evals/result.schema.json",
     "evals/RESULT_TEMPLATE.md",
     "scripts/prepare_eval_run.py",
+    "scripts/validate_specialists.py",
     "scripts/validate_eval_fixtures.py",
     "scripts/validate_eval_result.py",
 ]
@@ -100,6 +102,26 @@ for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head
 
 # v2.0 thin-head specialist routing:
 # the Head should contain routing/governance, not copied specialist methodology.
+registry_path = SKILL / "specialists.json"
+try:
+    specialist_registry = json.loads(registry_path.read_text(encoding="utf-8"))
+except Exception as exc:
+    specialist_registry = {}
+    error(f"Cannot parse specialists.json: {exc}")
+
+registry_items = {
+    item.get("id"): item
+    for item in specialist_registry.get("specialists", [])
+    if isinstance(item, dict)
+}
+persian_route = registry_items.get("persian-writing", {})
+if persian_route.get("requirement") != "required":
+    error("Specialist registry missing required persian-writing route")
+if persian_route.get("canonical_repository") != "ali2000hos/persian-writing":
+    error("persian-writing must use its canonical upstream repository")
+if any(key in persian_route for key in ["version", "tag", "commit", "sha", "pinned_ref"]):
+    error("persian-writing registry entry must not pin a version/ref")
+
 routing_path = SKILL / "references" / "specialist-routing.md"
 routing_text = routing_path.read_text(encoding="utf-8") if routing_path.exists() else ""
 for term in [
