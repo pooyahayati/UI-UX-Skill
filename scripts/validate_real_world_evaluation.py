@@ -117,7 +117,10 @@ if result.get("evaluationMode") != "in-session source-based behavioral evaluatio
     error("recorded Stage 6 evaluation mode is missing or inconsistent")
 
 notes = (result.get("notes") or "").casefold()
-for term in ["not an independent", "browser", "render"]:
+independence = (result.get("independence") or "").casefold()
+if "not an independent" not in independence:
+    error("real-world result must disclose that the run is not an independent fresh session")
+for term in ["browser", "render"]:
     if term not in notes:
         error(f"real-world result notes must disclose limitation term: {term}")
 
