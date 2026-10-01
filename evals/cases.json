@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -168,6 +168,71 @@
         "checks freshness against the latest stable canonical source when tooling allows",
         "updates or reinstalls a known-stale required specialist before relying on it when supported",
         "reports freshness as unverified or blocks dependent validation when freshness cannot be established"
+      ]
+    },
+    {
+      "id": "dashboard-product-routing",
+      "type": "positive",
+      "fixture": "existing-dashboard",
+      "prompt": "Improve this operational dashboard. Keep the data meaning and workflows intact, but make the overview, work queue, filters and live states easier to use.",
+      "invariants": [
+        "classifies the primary product route as dashboard",
+        "loads the required dashboard Product Pack before product-specific design decisions",
+        "uses dashboard-specific information hierarchy and data-trust rules",
+        "does not apply unrelated mobile or WordPress settings conventions",
+        "reports product-aware validation coverage"
+      ]
+    },
+    {
+      "id": "web-application-product-routing",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design the authenticated web application UI for a SaaS product with multiple routes, forms, account pages and responsive behavior.",
+      "invariants": [
+        "classifies the primary product route as web-application",
+        "loads the required web-application Product Pack before product-specific design decisions",
+        "treats the product as an application rather than a marketing website",
+        "defines application shell routed workflows and first-class UI states",
+        "does not transplant mobile-only navigation conventions without justification"
+      ]
+    },
+    {
+      "id": "mobile-application-product-routing",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design the mobile app experience for iOS and Android, including navigation, forms, permissions, weak connectivity and dark mode.",
+      "invariants": [
+        "classifies the primary product route as mobile-application",
+        "loads the required mobile-application Product Pack before product-specific design decisions",
+        "considers platform context touch keyboard safe areas permissions and lifecycle",
+        "does not shrink a desktop web layout into a mobile screen",
+        "includes mobile-specific validation states"
+      ]
+    },
+    {
+      "id": "wordpress-plugin-settings-product-routing",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Redesign the settings pages of this WordPress plugin inside wp-admin. It has API credentials, save actions, diagnostics, reset tools and Persian localization.",
+      "invariants": [
+        "classifies the primary product route as wordpress-plugin-settings",
+        "loads the required WordPress plugin settings Product Pack",
+        "preserves the wp-admin host mental model and capability boundaries",
+        "separates normal settings integrations diagnostics and dangerous operations",
+        "also requires persian-writing because Persian-facing UI is in scope"
+      ]
+    },
+    {
+      "id": "multi-product-routing",
+      "type": "positive",
+      "fixture": "analytics-dashboard",
+      "prompt": "This SaaS web application includes an analytics dashboard as one major route. Improve the app shell and the dashboard experience.",
+      "invariants": [
+        "uses web-application as the primary route",
+        "activates dashboard as a secondary route for the dashboard surface",
+        "loads both required Product Packs",
+        "does not apply dashboard rules to unrelated application routes",
+        "reports primary and secondary product routes"
       ]
     }
   ]
