@@ -1,7 +1,7 @@
 interface:
   display_name: "UI/UX Skill"
-  short_description: "Dashboard UI/UX audit & design"
-  default_prompt: "Classify the product type first (including website vs web application), load the required Product Pack and any required local mobile platform rules, preserve upstream constraints, route required specialists such as persian-writing for Persian-facing UI, and validate significant UI/UX changes with rendered or UX evidence."
+  short_description: "Product-aware UI/UX design"
+  default_prompt: "Classify the product type first (including website vs web application), load the required Product Pack plus any required local mobile or WordPress rule packs, preserve upstream constraints, route required specialists such as persian-writing for Persian-facing UI, and validate significant UI/UX changes with rendered or UX evidence."
 policy:
   products:
     - CHAT
