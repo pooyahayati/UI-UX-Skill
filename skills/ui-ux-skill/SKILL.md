@@ -201,6 +201,8 @@ Read references only when relevant.
 
 - `product-types.json` — machine-readable product routes and required Product Packs; product classification is mandatory
 - `references/product-routing.md` — product classification, precedence, multi-route behavior, and fallback policy
+- `shared-rules.json` — machine-readable Shared Product UI Rule registry; load modules by scope after product routing
+- `references/shared-product-rules.md` — Shared Rule precedence, scope-based loading, specialization, and non-duplication policy
 - `specialists.json` — machine-readable specialist identities, requirement levels, triggers, canonical sources, and install paths; contains no specialist methodology or pinned versions
 - `references/specialist-routing.md` — standalone vs Head-delegated operation, authority hierarchy, specialist policy, and handoff contract
 
@@ -222,8 +224,8 @@ Read references only when relevant.
 - WordPress plugin-specific design rules are local under `references/products/wordpress/` and are loaded conditionally by the WordPress Plugin Product Pack; do not route WordPress product design to an external design Skill
 - Dashboard mode-specific design rules are local under `references/products/dashboard/` and are loaded conditionally by the Dashboard Product Pack; do not route Dashboard product design to an external design Skill
 - `references/rtl-ltr-typography.md` — RTL/LTR, bilingual UI, localization, fonts, mixed-direction content
-- `references/theme-responsive-brand.md` — theme, responsive behavior, palette, logo/brand, icons, motion
-- `references/accessibility.md` — WCAG-oriented implementation and verification
+- `references/theme-responsive-brand.md` — theme, palette, logo/brand, icons, and runtime brand governance; generic responsive/motion contracts live in Shared Rules
+- `references/accessibility.md` — accessibility QA/evidence; interaction contracts live in Shared Rules
 - `references/performance.md` — frontend performance and perceived-performance review
 - `references/qa-checklist.md` — final validation and coverage reporting
 
