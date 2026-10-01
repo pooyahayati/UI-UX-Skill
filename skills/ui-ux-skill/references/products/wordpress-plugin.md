@@ -6,6 +6,23 @@ This Product Pack applies to plugin-owned UI inside WordPress administration, in
 
 Product design knowledge for WordPress plugins is maintained locally in this repository. Do not depend on an external design Skill for WordPress plugin UI.
 
+## Shared rule loading
+
+After the WordPress Plugin Product Pack is active, read `../shared-product-rules.md` and `../../shared-rules.json`.
+
+For broad WordPress plugin work normally load:
+
+- `../shared/navigation-wayfinding.md`
+- `../shared/feedback-status.md`
+- `../shared/state-recovery.md`
+- `../shared/accessibility-interaction.md`
+- `../shared/responsive-adaptation.md`
+- `../shared/content-hierarchy-progressive-disclosure.md`
+
+Load `../shared/forms-data-entry.md`, `../shared/destructive-high-impact-actions.md`, and `../shared/motion.md` when those concerns are materially in scope.
+
+WordPress specialization retains `wp-admin` host behavior, Settings API semantics, capabilities, Site Health, Network Admin/Multisite, plugin data lifecycle, WordPress notices, and localization/RTL integration.
+
 ## Required WordPress routing
 
 Before major design decisions, classify the current plugin surface.
@@ -148,24 +165,17 @@ Do not create a top-level menu for branding/status alone.
 
 ## Admin navigation
 
-Within the plugin, navigation should reflect user jobs.
+Read `../shared/navigation-wayfinding.md`.
 
-Prefer:
+WordPress specialization must preserve the relationship between:
 
-- a small set of stable plugin sections;
-- consistent page titles;
-- predictable current-location state;
-- clear parent/child relationships.
+- global `wp-admin` navigation;
+- plugin entry point;
+- plugin-local sections;
+- tabs/subpages;
+- application-like plugin workspace when justified.
 
-Avoid:
-
-- tab-within-tab navigation;
-- tabs used for unrelated product areas;
-- duplicating the same destinations in both side navigation and tabs;
-- icon-only plugin navigation without labels;
-- custom navigation that visually conflicts with the WordPress admin shell.
-
-If the plugin has an application-like workspace, distinguish global WordPress navigation from plugin-local navigation.
+Do not duplicate the same plugin destinations across equally prominent local navigation systems or visually detach a simple plugin page from the WordPress host.
 
 ## Capability boundaries
 
@@ -242,20 +252,14 @@ The UI/UX Skill does not replace implementation security.
 
 ## Notices and messaging
 
-Choose the message surface by scope.
+Read `../shared/feedback-status.md`.
 
-Use global/admin notice patterns for conditions that genuinely matter at admin-page scope.
+WordPress specialization:
 
-Use page-local or inline feedback for:
-
-- field validation;
-- connection tests;
-- local status;
-- one operation.
-
-Avoid promotional or low-value notices across unrelated WordPress screens.
-
-A dismissible notice is not a substitute for resolving an ongoing product problem.
+- use WordPress admin notices only when the message belongs at admin-page/global scope;
+- use page-local or inline feedback for field validation, connection tests, and local operations;
+- do not use dismissible promotional nags across unrelated admin screens;
+- dismissal must not imply the underlying problem is resolved.
 
 ## Onboarding and activation
 
@@ -295,10 +299,11 @@ Use `wordpress/diagnostics-operations.md`.
 
 ## Background work
 
-WordPress plugins often perform work outside the immediate request:
+Read `../shared/state-recovery.md` and `../shared/feedback-status.md`.
 
-- imports;
-- exports;
+WordPress specialization must distinguish scheduled/backgrounded work from completed work for:
+
+- imports/exports;
 - sync;
 - indexing;
 - cache generation;
@@ -306,32 +311,24 @@ WordPress plugins often perform work outside the immediate request:
 - cleanup;
 - scheduled tasks.
 
-Design this work as stateful operations, not as a submit button followed by an indefinite spinner.
-
-Use `wordpress/diagnostics-operations.md`.
+Use `wordpress/diagnostics-operations.md` for detailed operational behavior.
 
 ## Dangerous and destructive actions
 
-Separate ordinary configuration from:
+Read `../shared/destructive-high-impact-actions.md`.
 
-- reset;
-- disconnect;
-- delete data;
+WordPress specialization must distinguish:
+
+- reset configuration;
+- disconnect integration;
+- delete cached/derived data;
+- delete plugin-owned data;
 - uninstall cleanup;
-- rebuild;
-- repair;
+- rebuild/repair;
 - migration;
-- bulk operations.
+- network-wide destructive action.
 
-Explain:
-
-- scope;
-- consequence;
-- reversibility;
-- expected duration;
-- recovery.
-
-Do not group harmless utilities and destructive actions inside the same undifferentiated button row.
+Do not collapse materially different WordPress data-lifecycle actions into one generic "Reset".
 
 ## Privacy and personal data
 
@@ -413,41 +410,35 @@ Make network-vs-site scope explicit.
 
 ## Responsive wp-admin
 
-Validate plugin UI inside the actual WordPress admin shell.
+Read `../shared/responsive-adaptation.md`.
 
-Account for:
+WordPress specialization must be validated inside the real `wp-admin` shell, including:
 
 - expanded/collapsed admin navigation;
-- narrow viewport;
 - toolbar;
 - notices;
-- tables;
 - plugin-local navigation;
-- fixed/sticky controls;
+- tables/forms;
+- sticky/fixed controls;
 - modal/dialog behavior.
 
-Avoid fixed-width interfaces that collide with the admin shell.
-
-For dense operational tables, prefer priority + drill-down over squeezing every column into mobile width.
+Do not validate a plugin surface in isolation from its host.
 
 ## Accessibility
 
-Plugin admin UI should support:
+Read `../shared/accessibility-interaction.md` for the cross-product contract and `../accessibility.md` for QA/evidence.
 
-- semantic page structure;
-- keyboard navigation;
-- visible focus;
-- labels/descriptions;
-- understandable validation;
-- non-color status meaning;
-- zoom/reflow;
-- reduced motion where relevant;
-- accessible dialogs/menus;
-- meaningful progress/status announcements.
+WordPress specialization additionally verifies:
 
-Use native WordPress/HTML semantics before recreating standard controls.
+- native WordPress/HTML semantics when suitable;
+- admin notice/status meaning;
+- plugin-local navigation;
+- settings/forms;
+- diagnostics tables;
+- responsive `wp-admin`;
+- localization and RTL.
 
-Do not claim accessibility compliance without appropriate evidence.
+Do not claim accessibility compliance without evidence.
 
 ## Localization, Persian, and RTL
 
