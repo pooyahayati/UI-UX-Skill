@@ -45,6 +45,10 @@ required = [
     f"skills/{SKILL_NAME}/references/products/mobile/android.md",
     f"skills/{SKILL_NAME}/references/products/mobile/cross-platform.md",
     f"skills/{SKILL_NAME}/references/products/wordpress-plugin.md",
+    f"skills/{SKILL_NAME}/references/products/wordpress/settings.md",
+    f"skills/{SKILL_NAME}/references/products/wordpress/onboarding-integrations.md",
+    f"skills/{SKILL_NAME}/references/products/wordpress/diagnostics-operations.md",
+    f"skills/{SKILL_NAME}/references/products/wordpress/multisite-admin.md",
     f"skills/{SKILL_NAME}/references/specialist-routing.md",
     f"skills/{SKILL_NAME}/references/discovery-and-profile.md",
     f"skills/{SKILL_NAME}/references/existing-product-audit.md",
@@ -205,7 +209,7 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v2.4 reference: {ref}")
+        error(f"SKILL.md does not route to required v2.5 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -387,6 +391,12 @@ for term in [
     if term not in roadmap:
         error(f"ROADMAP missing required stage: {term}")
 
+stage2_start = roadmap.find("## Stage 2 — WordPress Plugin Product Pack")
+stage3_start = roadmap.find("## Stage 3 — Dashboard Product Pack")
+stage2_block = roadmap[stage2_start:stage3_start] if stage2_start >= 0 and stage3_start > stage2_start else ""
+if "**Status:** Completed" not in stage2_block:
+    error("Stage 2 — WordPress Plugin Product Pack must be Completed for v2.5")
+
 website_pack = (SKILL / "references/products/website.md").read_text(encoding="utf-8")
 for term in [
     "Website subtype and visitor job",
@@ -407,6 +417,53 @@ for term in [
     if term.casefold() not in website_pack.casefold():
         error(f"Website Product Pack Hardening missing: {term}")
 
+wordpress_pack = (SKILL / "references/products/wordpress-plugin.md").read_text(encoding="utf-8")
+for term in [
+    "Required WordPress routing",
+    "Menu placement and entry point",
+    "Capability boundaries",
+    "WordPress-native vs custom application UI",
+    "Settings API awareness",
+    "Diagnostics and Site Health",
+    "Privacy and personal data",
+    "Multisite / Network Admin",
+    "Plugin QA matrix",
+]:
+    if term.casefold() not in wordpress_pack.casefold():
+        error(f"WordPress Plugin Product Pack Hardening missing: {term}")
+
+for ref, terms in {
+    "settings.md": [
+        "Settings information architecture",
+        "Save model",
+        "Admin notices",
+        "Import / export",
+        "License and account surfaces",
+    ],
+    "onboarding-integrations.md": [
+        "First successful outcome",
+        "Integration state model",
+        "OAuth / external authorization",
+        "Data sync onboarding",
+    ],
+    "diagnostics-operations.md": [
+        "Site Health integration",
+        "Background jobs",
+        "Support information",
+        "Data deletion and uninstall cleanup",
+    ],
+    "multisite-admin.md": [
+        "Network Admin vs site admin",
+        "Network defaults and site overrides",
+        "Bulk / selected-site operations",
+        "Destructive network actions",
+    ],
+}.items():
+    wp_ref = (SKILL / "references/products/wordpress" / ref).read_text(encoding="utf-8")
+    for term in terms:
+        if term.casefold() not in wp_ref.casefold():
+            error(f"WordPress local pack {ref} missing: {term}")
+
 profile = (SKILL / "references/discovery-and-profile.md").read_text(encoding="utf-8")
 for term in [
     "profile_version",
@@ -421,7 +478,7 @@ for term in [
     "data_ux",
 ]:
     if term not in profile:
-        error(f"Design Profile v2.3 field missing: {term}")
+        error(f"Design Profile v2.5 field missing: {term}")
 
 architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
 for term in [
@@ -468,8 +525,8 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 25:
-    error("Behavioral eval manifest should contain at least 25 cases for v2.4")
+if len(cases) < 29:
+    error("Behavioral eval manifest should contain at least 29 cases for v2.5")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -492,10 +549,14 @@ for required_id in [
     "mobile-android-local-rules",
     "mobile-cross-platform-local-rules",
     "wordpress-plugin-product-routing",
+    "wordpress-settings-capabilities",
+    "wordpress-onboarding-integrations",
+    "wordpress-diagnostics-operations",
+    "wordpress-multisite-admin",
     "multi-product-routing",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v2.4 case: {required_id}")
+        error(f"Behavioral eval missing v2.5 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):

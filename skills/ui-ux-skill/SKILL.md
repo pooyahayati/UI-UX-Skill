@@ -198,6 +198,7 @@ Read references only when relevant.
 - `references/design-presets.md` — style vocabulary and visual-direction options
 - `references/dashboard-patterns.md` — detailed dashboard patterns; load through the dashboard Product Pack rather than as a generic default
 - Mobile platform-specific design rules are local under `references/products/mobile/` and are loaded by the Mobile Product Pack; do not route mobile design to an external design Skill
+- WordPress plugin-specific design rules are local under `references/products/wordpress/` and are loaded conditionally by the WordPress Plugin Product Pack; do not route WordPress product design to an external design Skill
 - `references/rtl-ltr-typography.md` — RTL/LTR, bilingual UI, localization, fonts, mixed-direction content
 - `references/theme-responsive-brand.md` — theme, responsive behavior, palette, logo/brand, icons, motion
 - `references/accessibility.md` — WCAG-oriented implementation and verification

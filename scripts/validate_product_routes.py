@@ -15,6 +15,13 @@ MOBILE_LOCAL_PACKS = [
     "references/products/mobile/cross-platform.md",
 ]
 
+WORDPRESS_LOCAL_PACKS = [
+    "references/products/wordpress/settings.md",
+    "references/products/wordpress/onboarding-integrations.md",
+    "references/products/wordpress/diagnostics-operations.md",
+    "references/products/wordpress/multisite-admin.md",
+]
+
 REQUIRED_PRODUCT_IDS = {
     "website",
     "dashboard",
@@ -186,6 +193,43 @@ if website_main.is_file():
     ]:
         if term.casefold() not in website_text:
             error(f"website.md missing local Website Product Pack section: {term}")
+
+for ref in WORDPRESS_LOCAL_PACKS:
+    path = SKILL / ref
+    if not path.is_file():
+        error(f"missing local WordPress rule pack: {ref}")
+
+wordpress_route = next(
+    (item for item in products if isinstance(item, dict) and item.get("id") == "wordpress-plugin"),
+    {},
+)
+wordpress_refs = wordpress_route.get("local_references", {})
+expected_wordpress_refs = {
+    "settings": "references/products/wordpress/settings.md",
+    "onboarding_integrations": "references/products/wordpress/onboarding-integrations.md",
+    "diagnostics_operations": "references/products/wordpress/diagnostics-operations.md",
+    "multisite_admin": "references/products/wordpress/multisite-admin.md",
+}
+if wordpress_refs != expected_wordpress_refs:
+    error("wordpress-plugin local_references must point to the four local WordPress rule packs")
+
+wordpress_main = SKILL / "references" / "products" / "wordpress-plugin.md"
+if wordpress_main.is_file():
+    wordpress_text = wordpress_main.read_text(encoding="utf-8").casefold()
+    for term in [
+        "required wordpress routing",
+        "wordpress/settings.md",
+        "wordpress/onboarding-integrations.md",
+        "wordpress/diagnostics-operations.md",
+        "wordpress/multisite-admin.md",
+        "capability boundaries",
+        "site health",
+        "privacy and personal data",
+        "plugin qa matrix",
+        "do not depend on an external design skill",
+    ]:
+        if term.casefold() not in wordpress_text:
+            error(f"wordpress-plugin.md missing required local rule or routing term: {term}")
 
 web_main = SKILL / "references" / "products" / "web-application.md"
 if web_main.is_file():

@@ -2,6 +2,21 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [2.5.0] - 2026-10-01
+
+### WordPress Plugin Product Pack Hardening
+
+- Rebuilt `wordpress-plugin.md` as a local modular Product Pack and router for WordPress admin UI.
+- Added local `wordpress/settings.md` rules for settings architecture, save/validation behavior, notices, advanced settings, import/export, licenses/accounts, credentials, reset/default actions, accessibility, and responsive `wp-admin`.
+- Added local `wordpress/onboarding-integrations.md` rules for first-run setup, setup wizards, prerequisites, OAuth/API connections, integration states, background initial sync, resume/skip behavior, and completion.
+- Added local `wordpress/diagnostics-operations.md` rules for Site Health, plugin-local diagnostics, support exports, logs, background/scheduled jobs, repair/maintenance, destructive data cleanup, and operational notices.
+- Added local `wordpress/multisite-admin.md` rules for Network Admin, site-vs-network scope, capabilities, network defaults, site overrides, locked settings, bulk operations, network activation, and destructive network actions.
+- Expanded the shared WordPress Product Pack with menu-placement rules, native-vs-application UI classification, capability-aware UX, Settings API awareness, privacy/data lifecycle, updates/migrations, dependencies, responsive admin, accessibility, localization, and a WordPress-specific QA matrix.
+- Added machine-readable `local_references` for the WordPress product route.
+- Added behavioral evals for settings/capabilities, onboarding/integrations, diagnostics/operations, and Multisite.
+- Added release/product-route validation that requires all local WordPress packs and critical WordPress UX contracts.
+- Kept `persian-writing` as the only external specialist; WordPress product design remains local.
+
 ## [2.4.0] - 2026-10-01
 
 ### Website Product Pack Hardening

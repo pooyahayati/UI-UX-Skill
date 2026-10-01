@@ -52,7 +52,7 @@ Completion gate:
 ## Stage 2 — WordPress Plugin Product Pack
 
 **Target:** v2.5.x  
-**Status:** Planned
+**Status:** Completed
 
 Deepen `references/products/wordpress-plugin.md`.
 

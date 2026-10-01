@@ -1,5 +1,5 @@
 {
-  "version": "2.4.0",
+  "version": "2.5.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -223,7 +223,9 @@
         "classifies the primary product route as wordpress-plugin",
         "loads the required WordPress Plugin Product Pack",
         "preserves the wp-admin host mental model and capability boundaries",
-        "separates normal settings integrations diagnostics and dangerous operations",
+        "routes settings onboarding integrations diagnostics and multisite concerns to the matching local WordPress packs",
+        "separates normal settings integrations diagnostics and destructive operations",
+        "does not depend on an external design Skill for WordPress plugin UI",
         "also requires persian-writing because Persian-facing UI is in scope"
       ]
     },
@@ -345,6 +347,67 @@
         "treats Core Web Vitals and third-party scripts as performance UX concerns without inventing measured improvements",
         "maintains language-specific direction and routes Persian linguistic QA to persian-writing",
         "does not claim SEO accessibility conversion or performance uplift without evidence"
+      ]
+    },
+    {
+      "id": "wordpress-settings-capabilities",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Redesign a WordPress plugin settings area with general, advanced and integration settings, API keys, import/export, reset actions, admin notices and users with different capabilities.",
+      "invariants": [
+        "classifies the product as wordpress-plugin",
+        "loads the local WordPress settings pack",
+        "groups settings by user intent and consequence rather than implementation modules",
+        "defines one clear save model and preserves values on validation errors",
+        "distinguishes stored credentials from verified connection health",
+        "uses notices according to scope instead of global notices for every local action",
+        "keeps visibility and enabled actions aligned with actual capabilities rather than role labels",
+        "separates reset defaults data deletion and uninstall cleanup"
+      ]
+    },
+    {
+      "id": "wordpress-onboarding-integrations",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design first-run onboarding for a WordPress plugin that needs an account connection, OAuth, optional API settings, an environment prerequisite and a background initial sync.",
+      "invariants": [
+        "loads the local WordPress onboarding and integrations pack",
+        "optimizes for first successful outcome instead of configuring every optional setting",
+        "distinguishes required optional and deferrable setup",
+        "supports resume after partial setup",
+        "models unconfigured connecting connected warning expired and disconnected integration states",
+        "handles external authorization cancellation and return context",
+        "treats the initial sync as background work with truthful status rather than an indefinite spinner"
+      ]
+    },
+    {
+      "id": "wordpress-diagnostics-operations",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Improve a WordPress plugin diagnostics area with Site Health checks, remote-service health, logs, support info, scheduled sync, stuck jobs, retry, repair tools and delete-data actions.",
+      "invariants": [
+        "loads the local WordPress diagnostics and operations pack",
+        "uses WordPress Site Health for checks that fit the core health model",
+        "keeps plugin-local diagnostics for domain-specific operational detail",
+        "separates status health checks diagnostics logs and maintenance tools",
+        "defines queued running completed failed stuck retry and cancel states when supported",
+        "does not expose secrets or personal data carelessly in logs or support exports",
+        "distinguishes cache cleanup repair reset and destructive data deletion"
+      ]
+    },
+    {
+      "id": "wordpress-multisite-admin",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design this plugin for WordPress Multisite. Network Admin controls defaults, sites may override some values, some values are locked, and Super Admin can run bulk maintenance across selected sites.",
+      "invariants": [
+        "loads the local WordPress multisite and admin-scope pack",
+        "distinguishes site network selected-sites and all-sites scope",
+        "does not assume Administrator role implies network authority",
+        "shows effective values network defaults and site overrides clearly",
+        "explains locked network-controlled values instead of showing broken-looking controls",
+        "reports partial failures for bulk site operations",
+        "uses stronger confirmation for network-wide destructive actions"
       ]
     }
   ]
