@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here.
 
+## [1.5.0] - 2026-10-01
+
+### Head Skill and Specialist Routing
+
+- Added explicit standalone and Head-delegated operating modes so the Skill can act as a UI/UX Head or as a bounded specialist under a higher-level engineering Head.
+- Added a formal authority hierarchy: higher-level engineering Head → Production Dashboard UI/UX Head → lower-level specialists.
+- Added `references/specialist-routing.md` with required/recommended specialist classes, delegation contracts, fallback behavior, conflict handling, repository-state ownership, and structured handoff rules.
+- Added REQUIRED `persian-writing` routing for Persian-facing UI and mixed Persian/English user-facing copy.
+- Kept UI layout, responsive behavior, RTL/LTR architecture, design-system decisions, typography architecture, interaction design, accessibility, and visual hierarchy under the UI/UX Head while delegating Persian linguistic correctness to `persian-writing`.
+- Added explicit fail-safe behavior when the required Persian specialist is unavailable: safe non-language UI work may continue, but Persian language QA remains Unverified and Persian-facing copy cannot be declared final.
+- Added RECOMMENDED `browser-testing-with-devtools` routing for live browser evidence when available.
+- Added specialist-routing QA coverage and Head-delegation/Persian-routing behavioral evals.
+- Updated documentation and release validation to treat specialist routing as a first-class capability.
+- Refined the architecture to a thin Head: specialist methodology is not duplicated in the Head; only triggers, precedence, constraints, handoff, fallback, and source metadata remain.
+- Added version-agnostic specialist routing and a freshness policy that prefers the latest stable installed Head/Specialists, updates known-stale copies when supported, and never pins specialist versions without an explicit compatibility reason.
+
 ## [1.4.0] - 2026-09-20
 
 ### Quality, Evidence, and Operational UX

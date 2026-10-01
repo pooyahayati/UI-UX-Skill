@@ -2,6 +2,14 @@
 
 Treat Persian RTL and English LTR as first-class modes.
 
+## Persian language routing
+
+When Persian-facing language work is in scope, route it to the REQUIRED `persian-writing` specialist defined in `specialist-routing.md`.
+
+This reference does not duplicate Persian-language rules. It remains responsible only for UI/UX direction architecture, mixed-direction layout behavior, responsive behavior, and typography-system integration.
+
+Head-level UI/UX constraints take precedence over any overlapping lower-level specialist guidance.
+
 ## Direction architecture
 
 Use correct document `lang` and `dir`.

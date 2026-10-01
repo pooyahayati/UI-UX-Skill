@@ -21,6 +21,8 @@ Record what was actually checked:
 | Automated checks | list |
 | Visual baseline/diff | captured / existing / unavailable / not applicable |
 | UX evidence | measured / observed / user-provided / inferred / unavailable |
+| Required specialists | used / unavailable / not applicable |
+| Recommended specialists | used / fallback / unavailable / not applicable |
 | Not checked | list |
 
 Do not imply coverage that was not performed.
@@ -177,6 +179,29 @@ At representative widths:
 - sticky regions
 - overflow
 - touch targets
+
+## Specialist routing
+
+Read `specialist-routing.md`.
+
+Verify:
+
+- required specialist triggers were evaluated
+- required specialists were actually used when available
+- unavailable required specialists are explicitly reported
+- specialist-dependent claims are not marked complete without specialist evidence
+- lower-level specialists did not override higher-level scope, risk, architecture, security, or product constraints
+- Head-delegated work returns a UI/UX handoff instead of claiming whole-project completion
+- required specialist installation/discovery was checked when tooling allowed
+- known-stale required specialists were updated before use, or their dependent validation was blocked
+- no specialist version/tag/commit is pinned in Head routing without an explicit compatibility exception
+- Skill freshness is reported as Unverified when it could not be checked
+
+For Persian-facing UI:
+
+- the required `persian-writing` specialist route was satisfied
+- specialist-specific language rules were not duplicated or substituted by Head-local rules
+- if the required specialist was unavailable or could not be brought current, Persian-language validation is reported as unverified/blocked
 
 ## RTL/LTR and localization
 

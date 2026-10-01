@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -81,7 +81,10 @@
         "isolates technical LTR content",
         "reviews locale formatting",
         "reviews mobile and accessibility",
-        "avoids hard-coded physical direction where logical properties fit"
+        "avoids hard-coded physical direction where logical properties fit",
+        "requires the persian-writing specialist before Persian-facing copy is considered final",
+        "reports Persian language QA as unverified if the required specialist is unavailable",
+        "routes Persian-language validation to persian-writing without duplicating specialist methodology"
       ]
     },
     {
@@ -126,6 +129,45 @@
         "does not expose arbitrary executable customization",
         "recommends typed allowlisted configuration instead",
         "preserves security boundaries"
+      ]
+    },
+    {
+      "id": "head-delegated-ui",
+      "type": "positive",
+      "fixture": "existing-dashboard",
+      "prompt": "A higher-level engineering Head has already approved the objective, scope, acceptance criteria, and security boundaries. Improve only the delegated dashboard UI surfaces and return a UI/UX specialist handoff.",
+      "invariants": [
+        "treats upstream objective scope acceptance criteria and security boundaries as authoritative",
+        "does not repeat broad product discovery or reopen settled architecture decisions",
+        "keeps changes inside the delegated UI/UX boundary",
+        "reports specialist usage and validation evidence",
+        "returns a UI/UX specialist result instead of declaring the whole software objective complete"
+      ]
+    },
+    {
+      "id": "persian-specialist-routing",
+      "type": "positive",
+      "fixture": "rtl-table",
+      "prompt": "این رابط مدیریت فارسی است. متن دکمه‌ها، پیام‌های خطا، جدول و محتوای ترکیبی فارسی و انگلیسی را بهبود بده و RTL را هم درست نگه دار.",
+      "invariants": [
+        "detects Persian-facing UI and marks persian-writing as a required specialist",
+        "routes Persian-language work to persian-writing without reproducing its domain rules in the Head",
+        "keeps higher-level product security architecture and UI/UX constraints authoritative",
+        "does not claim Persian language validation complete when the required specialist was unavailable or known-stale",
+        "checks specialist installation and freshness when tooling allows"
+      ]
+    },
+    {
+      "id": "specialist-freshness",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Use the required UI specialists for this task. Make sure the installed skills are current before relying on them.",
+      "invariants": [
+        "uses canonical specialist sources without pinning a release tag version or commit",
+        "checks whether required specialists are installed and discoverable when tooling allows",
+        "checks freshness against the latest stable canonical source when tooling allows",
+        "updates or reinstalls a known-stale required specialist before relying on it when supported",
+        "reports freshness as unverified or blocks dependent validation when freshness cannot be established"
       ]
     }
   ]

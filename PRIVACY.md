@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Production Dashboard UI/UX Skill** is an instruction-only Skill and skills-only Plugin package maintained by Pooya Hayati.
+**UI/UX Skill** is an instruction-only Skill and skills-only Plugin package maintained by Pooya Hayati.
 
 Last updated: 2026-09-20
 
@@ -38,4 +38,4 @@ Material changes to this policy are documented in repository history and release
 
 For privacy questions, open a minimal GitHub issue without sensitive information:
 
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill/issues
+https://github.com/pooyahayati/UI-UX-Skill/issues

@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-20
 
-By using **Production Dashboard UI/UX Skill**, you agree to the following terms.
+By using **UI/UX Skill**, you agree to the following terms.
 
 ## Purpose
 
@@ -42,4 +42,4 @@ These terms may be updated through normal repository versioning and release note
 
 Project support and issue tracking:
 
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill/issues
+https://github.com/pooyahayati/UI-UX-Skill/issues

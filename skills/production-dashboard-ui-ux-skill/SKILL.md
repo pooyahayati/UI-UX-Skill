@@ -1,15 +1,35 @@
 ---
 name: production-dashboard-ui-ux-skill
-description: Design, audit, improve, and redesign production dashboards, admin panels, CRM, analytics, and operational product UI. Use for dashboard UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, tables, forms, navigation, accessibility, performance, personalization, runtime design governance, owner-controlled appearance settings, or visual QA. Do not use for backend-only work, marketing sites, or unrelated graphic design.
+description: UI/UX Head Skill for designing, auditing, improving, and redesigning production dashboards, admin panels, CRM, analytics, and operational product UI. Works standalone or as a specialist under a higher-level engineering Head, and routes narrow concerns to specialist Skills. Use for dashboard UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, tables, forms, navigation, accessibility, performance, personalization, runtime design governance, owner-controlled appearance settings, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing sites, or unrelated graphic design.
 ---
 
-# Production Dashboard UI/UX Skill
+# UI/UX Skill
 
 Build and improve production interfaces for real work, not screenshot-first demos.
 
 Core principle:
 
 > Design for the task, not for the screenshot.
+
+## Operating role and delegation
+
+This Skill can run in two modes:
+
+- **Standalone UI/UX Head** — invoked directly and responsible for UI/UX routing, design decisions, and UI validation.
+- **Head-delegated UI/UX Specialist** — invoked by a higher-level engineering Head with objective, scope, constraints, risk/approval requirements, or acceptance criteria already established.
+
+Read `references/specialist-routing.md` whenever another Skill delegates work to this Skill or when a lower-level specialist may be required.
+
+In Head-delegated mode:
+
+- preserve the higher-level Head's approved scope, risk floor, architecture/security boundaries, and acceptance criteria;
+- do not repeat discovery or reopen decisions already settled upstream;
+- own UI/UX decisions only inside the delegated boundary;
+- return a structured UI/UX handoff rather than declaring the entire software objective complete.
+
+Authority order:
+
+`Higher-level Engineering Head -> Production Dashboard UI/UX Head -> Lower-level Specialist`
 
 ## Route the task first
 
@@ -68,6 +88,8 @@ Do not expand the assignment unnecessarily.
 
 Respect the user's working style.
 
+When a higher-level Head supplied approval or autonomy constraints, those constraints take precedence over this Skill's standalone autonomy defaults.
+
 ### Collaborative mode
 
 Use when the user wants to review major design decisions.
@@ -120,10 +142,15 @@ Never modify code, configuration, or assets.
 16. Base significant UX findings on evidence and confidence; do not fabricate metrics or research.
 17. For broad visual changes, capture or report the absence of a rendered baseline when screenshot/browser tooling is available.
 18. Preserve valid user preferences across schema/config changes and reconcile invalid preferences safely.
+19. Use required specialist Skills when their triggers are active; never claim specialist-dependent validation when a required specialist was unavailable or not run.
+20. Keep specialist knowledge out of the Head: store only routing, precedence, constraints, handoff, and fallback rules; do not duplicate specialist methodology.
+21. Use the latest available stable Head/Specialist installations when freshness can be verified; never pin specialist versions in Head routing without an explicit compatibility requirement.
 
 ## Reference routing
 
 Read references only when relevant.
+
+- `references/specialist-routing.md` — standalone vs Head-delegated operation, authority hierarchy, required/recommended specialists, and handoff contract
 
 - `references/discovery-and-profile.md` — discovery, design-profile lifecycle, partial rediscovery, provenance
 - `references/existing-product-audit.md` — existing-product baseline, audit matrix, severity, safe vs strategic fixes
@@ -163,6 +190,7 @@ Before broad changes, determine enough of the current product to understand:
 - tests and available visual/browser tooling
 - available UX evidence such as support issues, analytics, user feedback, or task data
 - existing visual-regression tooling/baselines
+- supported product languages and whether Persian-facing UI triggers the required `persian-writing` specialist
 - real-time, concurrency, search, and bulk-operation behavior where relevant
 
 For large products, sample representative surfaces first. Record audit coverage rather than implying the whole application was inspected.
@@ -263,13 +291,32 @@ When implementing that architecture, read `references/implementation-strategies.
 ## Final validation
 
 Before completion:
-1. read `references/qa-checklist.md`
-2. inspect the rendered UI when possible
-3. test representative viewports, themes, directions, and states
-4. run available tests, lint, type checks, accessibility checks, and relevant performance checks
-5. compare meaningful redesigns against the baseline; read `references/visual-regression.md` for broad visual changes
-6. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
-7. validate significant UX claims with `references/ux-evidence-and-metrics.md` when evidence is available
-8. report coverage, limitations, changes made, preserved behavior, and remaining approval items
+1. read `references/specialist-routing.md`, confirm required specialist routes were satisfied, and verify installation/freshness when tooling allows
+2. read `references/qa-checklist.md`
+3. inspect the rendered UI when possible
+4. test representative viewports, themes, directions, and states
+5. run available tests, lint, type checks, accessibility checks, and relevant performance checks
+6. compare meaningful redesigns against the baseline; read `references/visual-regression.md` for broad visual changes
+7. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
+8. validate significant UX claims with `references/ux-evidence-and-metrics.md` when evidence is available
+9. report coverage, limitations, changes made, preserved behavior, and remaining approval items
 
 If rendered inspection or a required check cannot be performed, say so explicitly.
+
+
+## Head-delegated result format
+
+When this Skill was invoked by a higher-level engineering Head, finish with:
+
+### UI/UX Specialist Result
+- UI/UX decisions made
+- affected surfaces/files
+- upstream constraints preserved
+- required/recommended specialists used or unavailable
+- rendered, accessibility, localization, and UX evidence
+- checks performed / not performed
+- unresolved UI/UX risks
+- remaining approvals
+- next action required from the higher-level Head
+
+The higher-level Head owns cross-domain integration, release decisions, and final software completion.
