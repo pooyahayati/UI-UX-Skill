@@ -1,6 +1,6 @@
 # Public Plugin Submission Test Cases
 
-Prepared for UI/UX Skill v2.4.0.
+Prepared for UI/UX Skill v2.5.0.
 
 Exactly five positive and three negative cases are provided.
 
@@ -90,10 +90,13 @@ None required. A representative mobile project or product brief is sufficient.
 **Expected behavior**
 
 - Classifies the primary product route as `wordpress-plugin`.
-- Loads the required WordPress Plugin Product Pack.
+- Loads the required WordPress Plugin Product Pack and the matching local WordPress packs for settings, onboarding/integrations, diagnostics/operations, and Multisite when those concerns are in scope.
 - Preserves the surrounding `wp-admin` mental model and capability boundaries.
 - Groups settings by user intent rather than backend modules.
-- Separates normal settings, integrations, diagnostics, and destructive operations.
+- Separates normal settings, integrations, diagnostics, background operations, and destructive actions.
+- Aligns visible controls and actions with actual WordPress capabilities rather than role labels.
+- Uses Site Health for checks that fit the WordPress health model and keeps domain-specific operational detail local to the plugin.
+- Distinguishes site-level and Network Admin scope when Multisite is relevant.
 - Makes save scope, validation, connection state, and dangerous actions clear.
 - Routes Persian-facing language work to the REQUIRED `persian-writing` specialist.
 - Validates the plugin surface inside the actual WordPress admin shell when browser tooling is available.
