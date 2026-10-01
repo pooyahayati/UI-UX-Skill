@@ -210,13 +210,13 @@
       ]
     },
     {
-      "id": "wordpress-plugin-settings-product-routing",
+      "id": "wordpress-plugin-product-routing",
       "type": "positive",
       "fixture": null,
       "prompt": "Redesign the settings pages of this WordPress plugin inside wp-admin. It has API credentials, save actions, diagnostics, reset tools and Persian localization.",
       "invariants": [
-        "classifies the primary product route as wordpress-plugin-settings",
-        "loads the required WordPress plugin settings Product Pack",
+        "classifies the primary product route as wordpress-plugin",
+        "loads the required WordPress Plugin Product Pack",
         "preserves the wp-admin host mental model and capability boundaries",
         "separates normal settings integrations diagnostics and dangerous operations",
         "also requires persian-writing because Persian-facing UI is in scope"
