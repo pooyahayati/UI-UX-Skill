@@ -359,8 +359,8 @@ if tests.count("**Expected result format**") != 8:
     error("Every submission test needs Expected result format")
 if tests.count("**Fixtures / test data**") != 8:
     error("Every submission test needs Fixtures / test data")
-if "Owner-only runtime UI/UX control center" not in tests:
-    error("Submission tests do not cover runtime UI governance")
+if "Public-facing business website" not in tests:
+    error("Submission tests do not cover the website Product Pack")
 if "Unsafe owner customization" not in tests:
     error("Submission tests do not cover unsafe runtime customization")
 
