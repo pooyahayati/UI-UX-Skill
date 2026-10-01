@@ -1,6 +1,6 @@
 ---
 name: production-dashboard-ui-ux-skill
-description: Design, audit, improve, and redesign production dashboards, admin panels, CRM, analytics, and operational product UI. Use for dashboard UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, tables, forms, navigation, accessibility, performance, personalization, runtime design governance, owner-controlled appearance settings, or visual QA. Do not use for backend-only work, marketing sites, or unrelated graphic design.
+description: UI/UX Head Skill for designing, auditing, improving, and redesigning production dashboards, admin panels, CRM, analytics, and operational product UI. Works standalone or as a specialist under a higher-level engineering Head, and routes narrow concerns to specialist Skills. Use for dashboard UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, tables, forms, navigation, accessibility, performance, personalization, runtime design governance, owner-controlled appearance settings, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing sites, or unrelated graphic design.
 ---
 
 # Production Dashboard UI/UX Skill
@@ -120,6 +120,7 @@ Never modify code, configuration, or assets.
 16. Base significant UX findings on evidence and confidence; do not fabricate metrics or research.
 17. For broad visual changes, capture or report the absence of a rendered baseline when screenshot/browser tooling is available.
 18. Preserve valid user preferences across schema/config changes and reconcile invalid preferences safely.
+19. Use required specialist Skills when their triggers are active; never claim specialist-dependent validation when a required specialist was unavailable or not run.
 
 ## Reference routing
 
@@ -273,3 +274,21 @@ Before completion:
 8. report coverage, limitations, changes made, preserved behavior, and remaining approval items
 
 If rendered inspection or a required check cannot be performed, say so explicitly.
+
+
+## Head-delegated result format
+
+When this Skill was invoked by a higher-level engineering Head, finish with:
+
+### UI/UX Specialist Result
+- UI/UX decisions made
+- affected surfaces/files
+- upstream constraints preserved
+- required/recommended specialists used or unavailable
+- rendered, accessibility, localization, and UX evidence
+- checks performed / not performed
+- unresolved UI/UX risks
+- remaining approvals
+- next action required from the higher-level Head
+
+The higher-level Head owns cross-domain integration, release decisions, and final software completion.
