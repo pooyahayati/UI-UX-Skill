@@ -83,8 +83,8 @@
         "reviews mobile and accessibility",
         "avoids hard-coded physical direction where logical properties fit",
         "requires the persian-writing specialist before Persian-facing copy is considered final",
-        "keeps Persian linguistic correctness separate from UI direction and layout ownership",
-        "reports Persian language QA as unverified if the required specialist is unavailable"
+        "reports Persian language QA as unverified if the required specialist is unavailable",
+        "routes Persian-language validation to persian-writing without duplicating specialist methodology"
       ]
     },
     {
@@ -151,10 +151,23 @@
       "prompt": "این رابط مدیریت فارسی است. متن دکمه‌ها، پیام‌های خطا، جدول و محتوای ترکیبی فارسی و انگلیسی را بهبود بده و RTL را هم درست نگه دار.",
       "invariants": [
         "detects Persian-facing UI and marks persian-writing as a required specialist",
-        "routes Persian wording register orthography and mixed-language copy to persian-writing",
-        "keeps layout responsive RTL architecture and design-system decisions under the UI/UX Head",
-        "does not claim Persian language QA passed when the required specialist was unavailable",
-        "continues non-language UI work only when safe if the required language specialist is unavailable"
+        "routes Persian-language work to persian-writing without reproducing its domain rules in the Head",
+        "keeps higher-level product security architecture and UI/UX constraints authoritative",
+        "does not claim Persian language validation complete when the required specialist was unavailable or known-stale",
+        "checks specialist installation and freshness when tooling allows"
+      ]
+    },
+    {
+      "id": "specialist-freshness",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Use the required UI specialists for this task. Make sure the installed skills are current before relying on them.",
+      "invariants": [
+        "uses canonical specialist sources without pinning a release tag version or commit",
+        "checks whether required specialists are installed and discoverable when tooling allows",
+        "checks freshness against the latest stable canonical source when tooling allows",
+        "updates or reinstalls a known-stale required specialist before relying on it when supported",
+        "reports freshness as unverified or blocks dependent validation when freshness cannot be established"
       ]
     }
   ]
