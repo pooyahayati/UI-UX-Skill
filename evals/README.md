@@ -2,7 +2,7 @@
 
 Structural validation cannot prove that a model follows this Skill well.
 
-Version 2.2 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
+Version 2.3 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
 
 ## Validate fixtures
 
@@ -87,6 +87,8 @@ A candidate should not ship with an unexplained Fail in:
 - product-type classification
 - required Product Pack loading
 - primary/secondary route separation
+- local mobile platform-pack routing
+- web-application browser/state continuity
 
 - business-logic preservation
 - working-tree safety
