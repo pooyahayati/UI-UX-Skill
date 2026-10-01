@@ -44,7 +44,7 @@ Inactive Product Packs are not preloaded. Specialist routing is evaluated indepe
 
 ## Feature freeze
 
-The current product model is feature-frozen for the `3.1.0` stabilization release. No new Product Types or major capability areas are planned. Work is limited to deduplication, context isolation, quality hardening, validation, documentation, and release maintenance unless the freeze is explicitly lifted.
+The current product model is feature-frozen for the `3.1.x` stabilization line. No new Product Types or major capability areas are planned. Work is limited to deduplication, context isolation, quality hardening, validation, documentation, and release maintenance unless the freeze is explicitly lifted.
 
 ## Quick use
 
