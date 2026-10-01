@@ -2,11 +2,18 @@ name: Release
 
 on:
   push:
+    branches:
+      - main
     tags:
       - "v*.*.*"
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: release-${{ github.repository }}
+  cancel-in-progress: false
 
 jobs:
   release:
@@ -14,25 +21,65 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Verify tag matches VERSION
+      - name: Resolve release version
+        id: version
         shell: bash
         run: |
-          EXPECTED="v$(tr -d '\r\n' < VERSION)"
-          test "$GITHUB_REF_NAME" = "$EXPECTED"
+          VERSION="$(tr -d '\r\n' < VERSION)"
+          TAG="v$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            test "$GITHUB_REF_NAME" = "$TAG"
+          fi
 
       - name: Validate
-        run: python3 scripts/validate_release.py
+        run: |
+          python3 scripts/validate_release.py
+          python3 scripts/validate_product_routes.py
+          python3 scripts/validate_specialists.py
 
       - name: Package
         run: python3 scripts/package_release.py --output dist
 
-      - name: Publish release
+      - name: Check existing release
+        id: existing
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        shell: bash
         run: |
-          gh release create "$GITHUB_REF_NAME" \
-            --title "UI/UX Skill $GITHUB_REF_NAME" \
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish release
+        if: steps.existing.outputs.exists != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        shell: bash
+        run: |
+          gh release create "$TAG" \
+            --target "$GITHUB_SHA" \
+            --title "UI/UX Skill $TAG" \
             --notes "See CHANGELOG.md for release details." \
             dist/*.zip \
             dist/SHA256SUMS.txt
+
+      - name: Release summary
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+          EXISTS: ${{ steps.existing.outputs.exists }}
+        run: |
+          if [ "$EXISTS" = "true" ]; then
+            echo "Release $TAG already existed; validation and packaging passed."
+          else
+            echo "Published release $TAG."
+          fi
