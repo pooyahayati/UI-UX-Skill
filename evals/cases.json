@@ -1,5 +1,5 @@
 {
-  "version": "2.1.0",
+  "version": "2.2.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -233,6 +233,20 @@
         "loads both required Product Packs",
         "does not apply dashboard rules to unrelated application routes",
         "reports primary and secondary product routes"
+      ]
+    },
+    {
+      "id": "website-product-routing",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design a public-facing service-business website with homepage, service pages, contact form, trust content, SEO-friendly structure, mobile responsiveness and Persian/English support.",
+      "invariants": [
+        "classifies the primary product route as website",
+        "loads the required Website Product Pack before website-specific design decisions",
+        "treats information architecture trust content and conversion as website concerns",
+        "does not misclassify the public site as a web application",
+        "requires persian-writing for Persian-facing language validation",
+        "includes responsive accessibility rendered and semantic-content validation"
       ]
     }
   ]
