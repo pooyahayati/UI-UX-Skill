@@ -105,7 +105,7 @@ Focus:
 ## Stage 4 — Shared Product UI Rules
 
 **Target:** v2.7.x  
-**Status:** Planned
+**Status:** Completed
 
 Extract stable rules repeated across Product Packs.
 
