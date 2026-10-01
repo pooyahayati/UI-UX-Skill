@@ -93,6 +93,29 @@ for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head
     if term.casefold() not in skill_text.casefold():
         error(f"SKILL.md missing v1.5 specialist-routing contract term: {term}")
 
+# v1.5 thin-head specialist routing:
+# the Head should contain routing/governance, not copied specialist methodology.
+routing_path = SKILL / "references" / "specialist-routing.md"
+routing_text = routing_path.read_text(encoding="utf-8") if routing_path.exists() else ""
+for term in [
+    "Non-duplication rule",
+    "Skill freshness and update policy",
+    "Do not pin a specialist version",
+    "latest available stable version",
+]:
+    if term.casefold() not in routing_text.casefold():
+        error(f"Specialist routing guidance missing: {term}")
+
+# Specialist references must stay version-agnostic unless an explicit compatibility exception is documented.
+for pattern in [
+    r"persian-writing[^\n]{0,120}\bv?\d+\.\d+(?:\.\d+)?\b",
+    r"browser-testing-with-devtools[^\n]{0,120}\bv?\d+\.\d+(?:\.\d+)?\b",
+    r"/releases/tag/",
+    r"/commit/[0-9a-f]{7,40}",
+]:
+    if re.search(pattern, routing_text, re.I):
+        error("Specialist routing must not pin a specialist version/tag/commit without an explicit compatibility exception")
+
 body_lines = skill_text.split("---", 2)[-1].splitlines()
 if len(body_lines) >= 500:
     error(f"SKILL.md body should stay under 500 lines; got {len(body_lines)}")
@@ -333,6 +356,7 @@ for required_id in [
     "realtime-operations",
     "head-delegated-ui",
     "persian-specialist-routing",
+    "specialist-freshness",
 ]:
     if required_id not in ids:
         error(f"Behavioral eval missing v1.4 case: {required_id}")
