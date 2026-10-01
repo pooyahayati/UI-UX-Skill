@@ -2,6 +2,16 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [3.1.1] - 2026-10-02
+
+### Installed Version Metadata
+
+- Added `skills/ui-ux-skill/VERSION` so standalone Codex/Claude Skill installations can report their installed version without repository-root metadata.
+- Added an explicit Skill contract to read the local Skill-root `VERSION` for installed-version questions.
+- Hardened release validation so repository, plugin, and installed-Skill versions must match.
+- Hardened package and Codex installer smoke tests so the Skill-root `VERSION` must be present and equal to the release version.
+- No UI/UX capability, Product Pack, Shared Rule, Design System, or routing behavior changed in this patch.
+
 ## [3.1.0] - 2026-10-02
 
 ### Stabilization, Product Isolation, and Feature Freeze

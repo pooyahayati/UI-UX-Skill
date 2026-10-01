@@ -1,6 +1,6 @@
 # Stage 6 Real-World Evaluation Results
 
-Candidate: UI/UX Skill v3.1.0  
+Candidate: UI/UX Skill v3.1.1  
 Date: 2026-10-02  
 Host: ChatGPT  
 Model: GPT-5.6 Sol  

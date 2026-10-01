@@ -1,11 +1,11 @@
 {
-  "skillVersion": "3.1.0",
+  "skillVersion": "3.1.1",
   "host": "ChatGPT",
   "model": "GPT-5.6 Sol",
   "date": "2026-10-02",
   "evaluationMode": "in-session source-based behavioral evaluation",
   "independence": "not an independent fresh Codex/Claude session",
-  "notes": "Five representative production-like fixtures were rechecked against the 3.1.0 stabilization architecture. Product routing, active-pack isolation, scope-based local/shared/design-system selection, issue detection, safety boundaries and evidence discipline were evaluated in-session. Browser/device rendering was not available in this connector workflow; each case therefore passes only because it explicitly reports that limitation rather than claiming rendered validation.",
+  "notes": "The 3.1.1 patch changes installed-version metadata only and does not change UI/UX behavior. The five representative production-like fixtures and the 3.1.0 stabilization architecture were structurally revalidated in-session. Browser/device rendering was not available in this connector workflow; no rendered validation is claimed.",
   "cases": [
     {
       "id": "real-world-dashboard-evaluation",

@@ -16,6 +16,12 @@ Machine-readable Skill name:
 
 `ui-ux-skill`
 
+Installed Skill version source:
+
+`skills/ui-ux-skill/VERSION`
+
+After installation, the same file is present at the installed Skill root. Version questions should be answered from that local file rather than inferred from the repository branch.
+
 ## OpenAI Codex
 
 Install with `$skill-installer` from:
@@ -37,6 +43,14 @@ Use $ui-ux-skill to classify this product and improve its UI/UX using the requir
 ```
 
 If Codex does not detect the Skill immediately, restart Codex or start a new session.
+
+To verify the installed version directly:
+
+```bash
+cat "${CODEX_HOME:-$HOME/.codex}/skills/ui-ux-skill/VERSION"
+```
+
+If `CODEX_HOME` is unset, its usual default is `~/.codex`.
 
 ## Claude.ai / Claude Desktop
 

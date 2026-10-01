@@ -22,6 +22,12 @@ Authority:
 
 In Head-delegated mode, do not reopen decisions already settled upstream unless they create a material UI/UX conflict or safety problem.
 
+## Installed version
+
+The installed Skill version is recorded in `VERSION` at the Skill root.
+
+When asked which version is installed, read that local `VERSION` file and report its exact value. Do not infer the installed version from the repository branch name, release history, or the root repository `VERSION` when only the installed Skill directory is available.
+
 ## Required execution order
 
 Use this order for product UI work:
