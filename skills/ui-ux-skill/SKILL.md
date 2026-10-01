@@ -1,6 +1,6 @@
 ---
 name: ui-ux-skill
-description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating production websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other product interfaces. It classifies the product before product-specific decisions, loads only the active Product Pack and scope-relevant Shared UI Rules and Design System modules, preserves business logic and permissions, supports personalization and runtime design governance, and validates significant work with accessibility, responsive, visual QA, and evidence. Persian-facing UI requires persian-writing. Do not use for backend-only work or unrelated graphic design.
+description: Product-aware UI/UX Head Skill for production websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other product interfaces. Use for UI/UX design, audits, improvements, responsive/RTL work, personalization, runtime design governance, and visual QA. It classifies the product first, loads only the active Product Pack and scope-relevant Shared UI Rules and Design System modules, and preserves business logic and permissions. Persian-facing UI requires persian-writing. Do not use for backend-only work or unrelated graphic design.
 ---
 
 # UI/UX Skill
