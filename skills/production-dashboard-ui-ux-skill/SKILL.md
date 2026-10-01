@@ -11,6 +11,26 @@ Core principle:
 
 > Design for the task, not for the screenshot.
 
+## Operating role and delegation
+
+This Skill can run in two modes:
+
+- **Standalone UI/UX Head** — invoked directly and responsible for UI/UX routing, design decisions, and UI validation.
+- **Head-delegated UI/UX Specialist** — invoked by a higher-level engineering Head with objective, scope, constraints, risk/approval requirements, or acceptance criteria already established.
+
+Read `references/specialist-routing.md` whenever another Skill delegates work to this Skill or when a lower-level specialist may be required.
+
+In Head-delegated mode:
+
+- preserve the higher-level Head's approved scope, risk floor, architecture/security boundaries, and acceptance criteria;
+- do not repeat discovery or reopen decisions already settled upstream;
+- own UI/UX decisions only inside the delegated boundary;
+- return a structured UI/UX handoff rather than declaring the entire software objective complete.
+
+Authority order:
+
+`Higher-level Engineering Head -> Production Dashboard UI/UX Head -> Lower-level Specialist`
+
 ## Route the task first
 
 Choose the smallest mode that fits the request.
@@ -67,6 +87,8 @@ Do not expand the assignment unnecessarily.
 ## Autonomy and approvals
 
 Respect the user's working style.
+
+When a higher-level Head supplied approval or autonomy constraints, those constraints take precedence over this Skill's standalone autonomy defaults.
 
 ### Collaborative mode
 
@@ -126,6 +148,8 @@ Never modify code, configuration, or assets.
 
 Read references only when relevant.
 
+- `references/specialist-routing.md` — standalone vs Head-delegated operation, authority hierarchy, required/recommended specialists, and handoff contract
+
 - `references/discovery-and-profile.md` — discovery, design-profile lifecycle, partial rediscovery, provenance
 - `references/existing-product-audit.md` — existing-product baseline, audit matrix, severity, safe vs strategic fixes
 - `references/execution-safety.md` — git/working-tree safety, data/privacy boundaries, scoped implementation
@@ -164,6 +188,7 @@ Before broad changes, determine enough of the current product to understand:
 - tests and available visual/browser tooling
 - available UX evidence such as support issues, analytics, user feedback, or task data
 - existing visual-regression tooling/baselines
+- supported product languages and whether Persian-facing UI triggers the required `persian-writing` specialist
 - real-time, concurrency, search, and bulk-operation behavior where relevant
 
 For large products, sample representative surfaces first. Record audit coverage rather than implying the whole application was inspected.
@@ -264,14 +289,15 @@ When implementing that architecture, read `references/implementation-strategies.
 ## Final validation
 
 Before completion:
-1. read `references/qa-checklist.md`
-2. inspect the rendered UI when possible
-3. test representative viewports, themes, directions, and states
-4. run available tests, lint, type checks, accessibility checks, and relevant performance checks
-5. compare meaningful redesigns against the baseline; read `references/visual-regression.md` for broad visual changes
-6. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
-7. validate significant UX claims with `references/ux-evidence-and-metrics.md` when evidence is available
-8. report coverage, limitations, changes made, preserved behavior, and remaining approval items
+1. read `references/specialist-routing.md` and confirm all required specialist routes were satisfied or explicitly reported unavailable
+2. read `references/qa-checklist.md`
+3. inspect the rendered UI when possible
+4. test representative viewports, themes, directions, and states
+5. run available tests, lint, type checks, accessibility checks, and relevant performance checks
+6. compare meaningful redesigns against the baseline; read `references/visual-regression.md` for broad visual changes
+7. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
+8. validate significant UX claims with `references/ux-evidence-and-metrics.md` when evidence is available
+9. report coverage, limitations, changes made, preserved behavior, and remaining approval items
 
 If rendered inspection or a required check cannot be performed, say so explicitly.
 
