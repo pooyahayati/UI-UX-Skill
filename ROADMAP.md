@@ -76,7 +76,7 @@ Scope:
 ## Stage 3 — Dashboard Product Pack
 
 **Target:** v2.6.x  
-**Status:** Planned
+**Status:** Completed
 
 Re-audit and deepen dashboard rules while keeping one Dashboard Product Pack.
 
