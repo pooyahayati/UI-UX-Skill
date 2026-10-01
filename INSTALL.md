@@ -33,7 +33,7 @@ $ui-ux-skill
 Example:
 
 ```text
-Use $ui-ux-skill to audit and improve this dashboard.
+Use $ui-ux-skill to classify this product and improve its UI/UX using the required Product Pack.
 ```
 
 If Codex does not detect the Skill immediately, restart Codex or start a new session.
