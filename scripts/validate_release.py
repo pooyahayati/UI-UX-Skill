@@ -35,7 +35,18 @@ required = [
     f"skills/{SKILL_NAME}/SKILL.md",
     f"skills/{SKILL_NAME}/product-types.json",
     f"skills/{SKILL_NAME}/specialists.json",
+    f"skills/{SKILL_NAME}/shared-rules.json",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
+    f"skills/{SKILL_NAME}/references/shared-product-rules.md",
+    f"skills/{SKILL_NAME}/references/shared/navigation-wayfinding.md",
+    f"skills/{SKILL_NAME}/references/shared/forms-data-entry.md",
+    f"skills/{SKILL_NAME}/references/shared/feedback-status.md",
+    f"skills/{SKILL_NAME}/references/shared/state-recovery.md",
+    f"skills/{SKILL_NAME}/references/shared/destructive-high-impact-actions.md",
+    f"skills/{SKILL_NAME}/references/shared/accessibility-interaction.md",
+    f"skills/{SKILL_NAME}/references/shared/responsive-adaptation.md",
+    f"skills/{SKILL_NAME}/references/shared/motion.md",
+    f"skills/{SKILL_NAME}/references/shared/content-hierarchy-progressive-disclosure.md",
     f"skills/{SKILL_NAME}/references/product-routing.md",
     f"skills/{SKILL_NAME}/references/products/website.md",
     f"skills/{SKILL_NAME}/references/products/dashboard.md",
@@ -79,6 +90,7 @@ required = [
     "evals/RESULT_TEMPLATE.md",
     "scripts/prepare_eval_run.py",
     "scripts/validate_product_routes.py",
+    "scripts/validate_shared_rules.py",
     "scripts/validate_specialists.py",
     "scripts/validate_eval_fixtures.py",
     "scripts/validate_eval_result.py",
@@ -118,7 +130,7 @@ else:
             if term.casefold() not in description.casefold():
                 error(f"Skill description should cover {term}")
 
-for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md"]:
+for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head", "product-types.json", "product-routing.md", "shared-rules.json", "shared-product-rules.md"]:
     if term.casefold() not in skill_text.casefold():
         error(f"SKILL.md missing v2.3 specialist-routing contract term: {term}")
 
@@ -215,7 +227,7 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v2.6 reference: {ref}")
+        error(f"SKILL.md does not route to required v2.7 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -406,7 +418,12 @@ if "**Status:** Completed" not in stage2_block:
 
 stage3_block = roadmap[stage3_start:stage4_start] if stage3_start >= 0 and stage4_start > stage3_start else ""
 if "**Status:** Completed" not in stage3_block:
-    error("Stage 3 — Dashboard Product Pack must be Completed for v2.6")
+    error("Stage 3 — Dashboard Product Pack must be Completed")
+
+stage5_start = roadmap.find("## Stage 5 — Design System Hardening")
+stage4_block = roadmap[stage4_start:stage5_start] if stage4_start >= 0 and stage5_start > stage4_start else ""
+if "**Status:** Completed" not in stage4_block:
+    error("Stage 4 — Shared Product UI Rules must be Completed for v2.7")
 
 website_pack = (SKILL / "references/products/website.md").read_text(encoding="utf-8")
 for term in [
@@ -535,6 +552,49 @@ for ref, terms in {
         if term.casefold() not in dashboard_ref.casefold():
             error(f"Dashboard local mode pack {ref} missing: {term}")
 
+shared_registry = json.loads((SKILL / "shared-rules.json").read_text(encoding="utf-8"))
+expected_shared_ids = {
+    "navigation-wayfinding",
+    "forms-data-entry",
+    "feedback-status",
+    "state-recovery",
+    "destructive-high-impact-actions",
+    "accessibility-interaction",
+    "responsive-adaptation",
+    "motion",
+    "content-hierarchy-progressive-disclosure",
+}
+shared_ids = {
+    item.get("id")
+    for item in shared_registry.get("modules", [])
+    if isinstance(item, dict)
+}
+if shared_registry.get("schema_version") != 1 or shared_ids != expected_shared_ids:
+    error("Shared Product UI Rule registry missing or inconsistent")
+
+shared_router = (SKILL / "references/shared-product-rules.md").read_text(encoding="utf-8")
+for term in [
+    "Authority and precedence",
+    "Load strategy",
+    "Non-duplication rule",
+    "Product Pack may specialize",
+    "must not weaken",
+]:
+    if term.casefold() not in shared_router.casefold():
+        error(f"Shared Product UI Rule routing missing: {term}")
+
+for product_ref in [
+    "website.md",
+    "dashboard.md",
+    "web-application.md",
+    "mobile-application.md",
+    "wordpress-plugin.md",
+]:
+    product_text = (SKILL / "references/products" / product_ref).read_text(encoding="utf-8")
+    for term in ["Shared rule loading", "shared-product-rules.md"]:
+        if term.casefold() not in product_text.casefold():
+            error(f"{product_ref} missing Shared Product UI Rule routing: {term}")
+
 profile = (SKILL / "references/discovery-and-profile.md").read_text(encoding="utf-8")
 for term in [
     "profile_version",
@@ -547,9 +607,12 @@ for term in [
     "user_configurable",
     "code_only",
     "data_ux",
+    "routing:",
+    "product_packs_loaded",
+    "shared_rules_loaded",
 ]:
     if term not in profile:
-        error(f"Design Profile v2.6 field missing: {term}")
+        error(f"Design Profile v2.7 field missing: {term}")
 
 architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
 for term in [
@@ -596,8 +659,8 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 35:
-    error("Behavioral eval manifest should contain at least 35 cases for v2.6")
+if len(cases) < 39:
+    error("Behavioral eval manifest should contain at least 39 cases for v2.7")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -631,9 +694,13 @@ for required_id in [
     "wordpress-diagnostics-operations",
     "wordpress-multisite-admin",
     "multi-product-routing",
+    "shared-rules-broad-redesign",
+    "shared-rules-narrow-scope",
+    "shared-rules-product-specialization",
+    "shared-rules-accessibility-floor",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v2.6 case: {required_id}")
+        error(f"Behavioral eval missing v2.7 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):
