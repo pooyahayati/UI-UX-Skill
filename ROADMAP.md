@@ -144,10 +144,10 @@ Design-system specialization remains subordinate to Product Pack semantics and S
 
 ## Stage 6 — Real-World Product Evaluation
 
-**Target:** v3.0.0 candidate  
-**Status:** Planned
+**Target:** v3.0.0  
+**Status:** Completed
 
-Test the Skill against representative real projects:
+Evaluated one representative production-like fixture for each primary Product Type:
 
 1. Dashboard
 2. Website
@@ -155,22 +155,29 @@ Test the Skill against representative real projects:
 4. Mobile Application
 5. WordPress Plugin
 
-Evaluate:
+Evaluation covered:
 
 - product-route classification accuracy
-- correct Product Pack loading
-- unnecessary questions
-- rule relevance
-- rule conflicts
-- missed states
-- rendered quality
-- accessibility behavior
-- responsive behavior
-- Persian/RTL behavior
-- regression safety
-- completion/reporting quality
+- correct Product Pack/local-pack loading
+- Shared Rule scope
+- Design System module scope
+- unnecessary-rule avoidance
+- product-specific issue detection
+- safety/authorization/data-integrity boundaries
+- accessibility/responsive risk coverage
+- evidence discipline and explicit validation limitations
 
-Use failures to refine existing rules before adding new ones.
+Recorded result:
+
+`evals/real-world/result.json`
+
+Summary:
+
+`evals/real-world/RESULTS.md`
+
+The 2026-10-02 run was an in-session source-based behavioral evaluation using ChatGPT / GPT-5.6 Sol.
+
+It did not independently execute a fresh Codex/Claude/browser/device run. Rendered/device validation limitations are explicitly recorded and are not represented as completed checks.
 
 ## Future Product Types
 
