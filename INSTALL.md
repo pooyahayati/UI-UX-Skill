@@ -47,7 +47,7 @@ If Codex does not detect the Skill immediately, restart Codex or start a new ses
 To verify the installed version directly:
 
 ```bash
-cat "$CODEX_HOME/skills/ui-ux-skill/VERSION"
+cat "${CODEX_HOME:-$HOME/.codex}/skills/ui-ux-skill/VERSION"
 ```
 
 If `CODEX_HOME` is unset, its usual default is `~/.codex`.
