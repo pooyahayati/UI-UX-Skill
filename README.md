@@ -38,7 +38,9 @@ Higher-level Engineering Head
             ↓
       Required Product Pack
             ↓
-      Specialist Skills
+  Scope-relevant Shared UI Rules
+
+Specialist routing (for example persian-writing) is evaluated independently within its delegated domain.
 ```
 
 Head-level scope, security, architecture, approvals, and UI/UX constraints always take precedence over lower-level specialists.
@@ -67,6 +69,8 @@ Claude Code:
 - **[Skill Specification](skills/ui-ux-skill/SKILL.md)** — canonical Skill behavior and routing
 - **[Product Registry](skills/ui-ux-skill/product-types.json)** — machine-readable product routes and required Product Packs
 - **[Product Routing](skills/ui-ux-skill/references/product-routing.md)** — product classification and multi-route rules
+- **[Shared UI Registry](skills/ui-ux-skill/shared-rules.json)** — machine-readable cross-product UI rule modules
+- **[Shared UI Routing](skills/ui-ux-skill/references/shared-product-rules.md)** — scope loading, precedence, and non-duplication policy
 - **[Specialist Registry](skills/ui-ux-skill/specialists.json)** — machine-readable Specialist sources and triggers
 - **[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)** — Head/Specialist authority, fallback, and freshness rules
 - **[Contributing](CONTRIBUTING.md)** — contribution workflow
