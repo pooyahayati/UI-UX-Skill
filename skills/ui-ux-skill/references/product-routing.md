@@ -97,9 +97,8 @@ For significant work, record:
 - primary product route
 - secondary routes, if any
 - evidence used to classify the product
-- required Product Packs loaded
-- any product-type ambiguity that remains
 - Product Packs loaded
+- any product-type ambiguity that remains
 - Shared Product UI Rules loaded / not applicable
 - product-specific validation performed
 - shared-rule behavior actually exercised
