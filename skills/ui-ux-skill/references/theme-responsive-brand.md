@@ -1,4 +1,4 @@
-# Theme, Responsive, Brand, Icons, and Motion
+# Theme, Brand, Icons, and Visual Governance
 
 ## Brand audit
 
@@ -73,54 +73,30 @@ Review independently:
 
 ## Responsive
 
-Review:
+Read `shared/responsive-adaptation.md` for the cross-product responsive/adaptive contract.
 
-- large desktop
-- desktop
-- laptop
-- tablet
-- mobile
+This file retains only theme/brand-specific responsive concerns:
 
-Use existing breakpoints where sensible.
+- logo variants;
+- brand lockup behavior;
+- theme surfaces;
+- icon presentation;
+- brand imagery;
+- token behavior across layout changes.
 
-Responsive changes may affect:
+Do not redefine generic responsive rules here.
 
-- navigation
-- grid and columns
-- table fields
-- filters
-- actions
-- forms
-- charts
-- secondary panels
-- sticky regions
-- dialogs
-- information priority
+## Dense responsive data
 
-Do not solve mobile by only shrinking fonts.
+Read `shared/responsive-adaptation.md`.
 
-## Mobile tables
-
-Choose based on task:
-
-- priority columns
-- expandable rows
-- summary and detail
-- horizontal scroll
-- dedicated record view
-
-Horizontal scroll can be superior when cross-column comparison matters.
+Generic table adaptation belongs in the Shared Responsive contract. Product-specific table/work-queue behavior belongs in the active Product Pack.
 
 ## Navigation
 
-Choose based on destination count, depth, frequency, expertise, and viewport:
+Read `shared/navigation-wayfinding.md`.
 
-- sidebar
-- compact sidebar
-- top navigation
-- hybrid
-
-Adapt intentionally on mobile.
+This file owns only brand/theme treatment of navigation, not destination hierarchy or wayfinding behavior.
 
 ## Icons
 
@@ -132,13 +108,9 @@ Icons should assist recognition, not replace critical labels.
 
 ## Motion
 
-Use motion for state, hierarchy, continuity, or feedback.
+Read `shared/motion.md`.
 
-Keep operational UI subtle.
-
-Respect reduced-motion preferences.
-
-Avoid animation that delays access.
+This file owns only brand/theming implications of motion, not the general motion contract.
 
 ## Surface and radius
 

@@ -1,6 +1,6 @@
 ---
 name: ui-ux-skill
-description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production product interfaces. Works standalone or as a specialist under a higher-level engineering Head. It MUST classify the product type and load the required Product Pack before product-specific design decisions, then route narrow concerns to specialist Skills. Use for product UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, navigation, forms, data UI, accessibility, performance, personalization, runtime design governance, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing-only websites, or unrelated graphic design.
+description: Product-aware UI/UX Head Skill for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production product interfaces. Works standalone or as a specialist under a higher-level engineering Head. It MUST classify the product type and load the required Product Pack before product-specific design decisions, then load only scope-relevant Shared Product UI Rules and route remaining specialist concerns. Use for product UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, navigation, forms, data UI, accessibility, performance, personalization, runtime design governance, or visual QA. Persian-facing UI requires the persian-writing specialist. Do not use for backend-only work, marketing-only websites, or unrelated graphic design.
 ---
 
 # UI/UX Skill
@@ -56,6 +56,27 @@ Current registered routes include:
 - `mobile-application`
 - `wordpress-plugin`
 - `generic-product-ui` as fallback only
+
+## Route shared product UI rules
+
+After the product route and required Product Pack are resolved, read:
+
+- `shared-rules.json`
+- `references/shared-product-rules.md`
+
+Load only the Shared Product UI Rule modules that are relevant to the current scope.
+
+For broad new-product or redesign work, normally consider navigation, feedback/status, state/recovery, accessibility interaction, responsive adaptation, and content hierarchy/progressive disclosure. Load forms, destructive actions, and motion when those concerns are materially in scope.
+
+Product Packs specialize Shared Rules. They do not get replaced by them.
+
+Authority:
+
+`Higher-level Engineering Head -> UI/UX Head invariants -> Active Product Pack -> Shared Product UI Rule -> Design-system defaults -> implementation details`
+
+A Product Pack may adapt a Shared Rule for its host/platform/domain, but must not weaken accessibility, security, authorization, data integrity, or truthful-state requirements.
+
+Do not duplicate a complete Shared Rule inside a Product Pack. Keep only product-specific extensions, exceptions, examples, and validation.
 
 ## Route the task mode
 
@@ -180,6 +201,8 @@ Read references only when relevant.
 
 - `product-types.json` — machine-readable product routes and required Product Packs; product classification is mandatory
 - `references/product-routing.md` — product classification, precedence, multi-route behavior, and fallback policy
+- `shared-rules.json` — machine-readable Shared Product UI Rule registry; load modules by scope after product routing
+- `references/shared-product-rules.md` — Shared Rule precedence, scope-based loading, specialization, and non-duplication policy
 - `specialists.json` — machine-readable specialist identities, requirement levels, triggers, canonical sources, and install paths; contains no specialist methodology or pinned versions
 - `references/specialist-routing.md` — standalone vs Head-delegated operation, authority hierarchy, specialist policy, and handoff contract
 
@@ -201,8 +224,8 @@ Read references only when relevant.
 - WordPress plugin-specific design rules are local under `references/products/wordpress/` and are loaded conditionally by the WordPress Plugin Product Pack; do not route WordPress product design to an external design Skill
 - Dashboard mode-specific design rules are local under `references/products/dashboard/` and are loaded conditionally by the Dashboard Product Pack; do not route Dashboard product design to an external design Skill
 - `references/rtl-ltr-typography.md` — RTL/LTR, bilingual UI, localization, fonts, mixed-direction content
-- `references/theme-responsive-brand.md` — theme, responsive behavior, palette, logo/brand, icons, motion
-- `references/accessibility.md` — WCAG-oriented implementation and verification
+- `references/theme-responsive-brand.md` — theme, palette, logo/brand, icons, and runtime brand governance; generic responsive/motion contracts live in Shared Rules
+- `references/accessibility.md` — accessibility QA/evidence; interaction contracts live in Shared Rules
 - `references/performance.md` — frontend performance and perceived-performance review
 - `references/qa-checklist.md` — final validation and coverage reporting
 

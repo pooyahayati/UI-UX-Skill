@@ -28,17 +28,35 @@ For a cross-platform product targeting both iOS and Android, use:
 
 Do not use external design Skills for mobile product design. Platform design knowledge is maintained locally in this repository.
 
+## Shared rule loading
+
+After the Mobile Product Pack is active, read `../shared-product-rules.md` and `../../shared-rules.json`.
+
+For broad mobile work normally load:
+
+- `../shared/navigation-wayfinding.md`
+- `../shared/feedback-status.md`
+- `../shared/state-recovery.md`
+- `../shared/accessibility-interaction.md`
+- `../shared/responsive-adaptation.md`
+- `../shared/content-hierarchy-progressive-disclosure.md`
+
+Load `../shared/forms-data-entry.md`, `../shared/destructive-high-impact-actions.md`, and `../shared/motion.md` when those concerns are in scope.
+
+Mobile specialization retains touch/reachability, safe areas/system UI, keyboard/IME behavior, permissions, connectivity/sync, lifecycle restoration, deep links, notifications, platform adaptation, and mobile accessibility services.
+
 ## Shared Mobile UX
 
 ### Navigation intent
 
-Choose navigation based on task frequency, hierarchy, depth, and return behavior.
+Read `../shared/navigation-wayfinding.md`.
 
-Keep back/dismiss behavior predictable.
+Mobile specialization:
 
-Do not transplant desktop sidebars, hover-dependent interactions, or dense desktop tables into mobile unchanged.
-
-Do not hide the only path to an important action behind an undiscoverable gesture.
+- preserve predictable back/dismiss behavior;
+- adapt destination presentation to platform/window context;
+- avoid desktop sidebars or hover-dependent navigation transplanted unchanged;
+- keep important actions discoverable without gesture-only dependence.
 
 ### Touch and reachability
 
@@ -68,21 +86,18 @@ Focused inputs and primary actions must remain usable when the keyboard is visib
 
 ### Mobile forms and data entry
 
-Treat forms as workflows, not field collections.
+Read `../shared/forms-data-entry.md`.
 
-Use:
+Mobile specialization additionally owns:
 
-- appropriate input semantics;
-- clear field progression;
-- useful defaults;
-- autofill/password-manager/OTP support when applicable;
-- preserved valid values after validation errors;
-- explicit submit/save state;
-- draft/resume behavior for long forms when loss would be costly.
+- appropriate mobile input/keyboard semantics;
+- autofill/password-manager/OTP behavior where applicable;
+- keyboard avoidance;
+- field progression;
+- interruption-safe long-form behavior;
+- reduced typing.
 
-Reduce unnecessary typing.
-
-Do not obscure validation errors after the keyboard opens.
+Do not let generic form rules override platform keyboard behavior.
 
 ### Permissions
 
@@ -127,26 +142,25 @@ Clearly distinguish:
 
 ### Session continuity and state restoration
 
-Mobile work is frequently interrupted.
+Read `../shared/state-recovery.md`.
 
-For meaningful in-progress work:
+Mobile specialization additionally defines behavior across:
 
-- preserve draft/input state when safe;
-- define resume behavior after backgrounding;
-- define behavior after process termination where the product can restore state;
-- resume or explain interrupted uploads/downloads;
-- preserve the user's place in long workflows;
-- avoid forcing a full restart after recoverable interruption.
+- background/foreground transitions;
+- process termination where restoration is supported;
+- app switching;
+- interrupted uploads/downloads;
+- local draft vs synchronized state.
+
+Do not force a full restart after recoverable mobile interruption.
 
 ### Long-running work
 
-For uploads, exports, imports, generation, media processing, or other long tasks:
+Read `../shared/state-recovery.md` and `../shared/feedback-status.md`.
 
-- show queued/running/completed/failed state;
-- show meaningful progress when measurable;
-- support safe retry/cancel where the product allows;
-- keep work understandable across app switches;
-- do not report completion before authoritative confirmation.
+Mobile specialization must account for work continuing while the app is backgrounded or the user leaves the current screen.
+
+Preserve truthful queued/running/completed/failed state and safe return paths.
 
 ### Deep links and return paths
 
@@ -187,32 +201,24 @@ Do not shrink a desktop grid into an unreadable phone table.
 
 ### Motion and haptics
 
-Use motion and haptics to communicate:
+Read `../shared/motion.md`.
 
-- hierarchy;
-- state change;
-- confirmation;
-- continuity;
-- direct manipulation.
+Mobile specialization retains platform-native transition and haptic conventions.
 
-Avoid decorative motion in repeated workflows.
-
-Respect reduced-motion preferences.
+Do not use haptics as the only feedback and respect reduced-motion settings.
 
 ### Accessibility goals
 
-Validate:
+Read `../shared/accessibility-interaction.md` for the cross-product floor and `../accessibility.md` for QA/evidence.
 
-- screen-reader semantics and reading order;
-- text scaling;
-- contrast;
-- touch target practicality;
-- focus/navigation with assistive input when relevant;
-- reduced motion;
-- alternatives to gesture-only actions;
-- adaptive layout at larger text sizes.
+Mobile specialization additionally validates:
 
-Accessibility is part of the design model, not a final patch.
+- VoiceOver/TalkBack semantics;
+- platform text scaling;
+- touch reachability;
+- switch/keyboard/pointer input where relevant;
+- platform focus behavior;
+- adaptive layouts at larger text sizes.
 
 ## Platform-specific local rules
 

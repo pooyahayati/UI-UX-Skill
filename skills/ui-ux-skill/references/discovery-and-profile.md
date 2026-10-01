@@ -129,8 +129,8 @@ Use a concise Markdown or YAML-like structure. Include provenance so future work
 Example:
 
 ```yaml
-profile_version: 4
-skill_version: 2.6.0
+profile_version: 5
+skill_version: 2.7.0
 status: approved
 updated_at: 2026-09-20
 
@@ -143,6 +143,17 @@ product:
   primary_workflows:
     - review queue
     - update record
+
+routing:
+  product_packs_loaded:
+    - dashboard
+    - dashboard/operational
+  shared_rules_loaded:
+    - navigation-wayfinding
+    - feedback-status
+    - state-recovery
+    - accessibility-interaction
+    - responsive-adaptation
 
 direction:
   languages: [fa, en]
@@ -259,6 +270,7 @@ Before major UI work:
 - preserve provenance
 - update `skill_version` when materially revising the profile with a newer Skill
 - re-evaluate `primary_route` and `secondary_routes` when the product surface materially changes
+- re-evaluate `product_packs_loaded` and `shared_rules_loaded` when task scope or product behavior materially changes
 - migrate runtime-governance fields carefully when the schema changes
 - reconcile stored preferences/saved views when owner or schema constraints change
 - update validation/evidence expectations when the redesign scope changes

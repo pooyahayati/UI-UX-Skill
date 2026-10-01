@@ -6,6 +6,23 @@ This Product Pack applies to browser-based products whose primary purpose is doi
 
 All web-application design rules are maintained locally in this repository. Do not depend on an external design Skill for product UX.
 
+## Shared rule loading
+
+After this Product Pack is active, read `../shared-product-rules.md` and `../../shared-rules.json`.
+
+For broad web-application work normally load:
+
+- `../shared/navigation-wayfinding.md`
+- `../shared/feedback-status.md`
+- `../shared/state-recovery.md`
+- `../shared/accessibility-interaction.md`
+- `../shared/responsive-adaptation.md`
+- `../shared/content-hierarchy-progressive-disclosure.md`
+
+Load `../shared/forms-data-entry.md`, `../shared/destructive-high-impact-actions.md`, and `../shared/motion.md` when those concerns are materially in scope.
+
+This Product Pack retains browser history/URL state, application-shell, draft/autosave, concurrency, session/auth, custom-workflow, and application-specific interaction semantics.
+
 ## Product model
 
 Establish:
@@ -124,24 +141,18 @@ Autosave must communicate failure and conflict states.
 
 ## State model
 
-Design first-class states for:
+Read `../shared/state-recovery.md` and `../shared/feedback-status.md`.
 
-- initial/loading;
-- empty;
-- partial;
-- error;
-- permission denied;
-- stale;
-- offline/disconnected when relevant;
-- success/confirmation;
-- background processing;
+The Web Application Product Pack additionally owns:
+
+- route-specific unavailable/deleted resource state;
+- permission/session effects;
+- stale server state;
 - syncing/reconnecting;
 - conflict;
-- unavailable/deleted resource.
+- background processing tied to application objects.
 
-Do not rely on toast notifications as the only explanation for critical state changes.
-
-Preserve enough prior context during loading/error transitions to prevent unnecessary disorientation when safe.
+Preserve enough prior application context during recoverable loading/error transitions to prevent unnecessary disorientation.
 
 ## Long-running and background work
 
@@ -190,25 +201,19 @@ Do not invent collaboration semantics that the backend does not implement.
 
 ## Forms and data entry
 
-Treat forms as workflows.
+Read `../shared/forms-data-entry.md`.
 
-Use:
+Web-application specialization must additionally define:
 
-- persistent visible labels;
-- useful grouping;
-- appropriate input types;
-- helpful defaults;
-- inline validation where useful;
-- clear submit/save semantics;
-- preserved valid values after errors;
-- error summary for complex forms when helpful;
-- explicit required/optional meaning.
+- explicit save vs autosave vs staged changes;
+- async/server validation;
+- remote uniqueness/existence checks;
+- draft persistence;
+- cross-field/business validation;
+- application permission effects;
+- form state across route changes.
 
-Match field complexity to user expertise.
-
-Do not turn every setting into a modal or every action into a multi-step wizard.
-
-For async validation, make pending/failed states distinguishable from final validity.
+Do not use a generic form contract to erase application-specific save/concurrency semantics.
 
 ## Search, filtering, sorting, and saved state
 
@@ -284,20 +289,20 @@ Use native HTML behavior when it adequately solves the task.
 
 ## Destructive and reversible actions
 
-Classify actions as:
+Read `../shared/destructive-high-impact-actions.md`.
 
-- harmless/reversible;
-- consequential but recoverable;
-- destructive/irreversible.
+Web-application specialization should distinguish object deletion from:
 
-Prefer undo or recovery over repeated confirmation when safe.
+- removing a relationship;
+- revoking access;
+- cancelling a job;
+- archiving;
+- disabling;
+- changing shared state.
 
-For irreversible actions:
+Use the actual domain consequence and authorization model.
 
-- communicate scope and consequence;
-- distinguish object deletion from removing access/relationship;
-- avoid ambiguous primary actions;
-- require deliberate confirmation proportional to risk.
+Do not invent Undo, approval, or recovery semantics that the backend cannot support.
 
 ## File upload, import, export, and download
 
@@ -316,44 +321,30 @@ Drag-and-drop must not be the only input path.
 
 ## Feedback and notifications
 
-Choose feedback persistence by consequence.
+Read `../shared/feedback-status.md`.
 
-Use:
+Web-application specialization:
 
-- inline feedback for field/task-local issues;
-- persistent banners/notices for unresolved product state;
-- transient toast/snackbar for low-risk confirmations;
-- notification center/job history when results may arrive after the user navigates away.
+- use inline feedback for field/task-local issues;
+- persistent application notices for unresolved product state;
+- transient feedback for low-risk acknowledgement;
+- durable job/history surfaces when results may arrive after navigation.
 
-Do not use transient toast-only feedback for critical failures or actions requiring recovery.
+Do not let a toast become the only record of a critical application failure.
 
 ## Responsive web behavior
 
-Responsive behavior is product architecture.
+Read `../shared/responsive-adaptation.md` and `../shared/navigation-wayfinding.md`.
 
-Determine what should:
+Web-application specialization must decide how:
 
-- reflow;
-- collapse;
-- move into a drawer/sheet;
-- become a dedicated route;
-- remain horizontally scrollable;
-- become a split pane;
-- persist as visible navigation;
-- disappear only when truly secondary.
+- app shell/navigation transforms;
+- multi-pane workflows collapse;
+- data grids preserve working context;
+- filters/actions move into temporary surfaces;
+- pointer/keyboard productivity remains viable on narrow windows.
 
-Consider:
-
-- pointer vs touch input;
-- narrow laptop windows;
-- tablets;
-- browser zoom;
-- large text;
-- split-screen use.
-
-Do not emulate a native mobile app merely because the viewport is narrow.
-
-Do not treat the desktop layout as the single source that everything else simply shrinks from.
+Do not emulate a native mobile app merely because the browser viewport is narrow.
 
 ## Authentication, session, and permission-facing UX
 
@@ -385,34 +376,26 @@ When a product begins empty or unconfigured:
 
 ## Motion and transition feedback
 
-Use motion to communicate hierarchy, continuity, expansion, and state change.
+Read `../shared/motion.md`.
 
-Avoid motion that:
+For repeated-use web applications, keep motion subordinate to task speed, focus continuity, and state clarity.
 
-- delays frequent actions;
-- creates false progress;
-- hides final state;
-- disrupts keyboard/power users;
-- ignores reduced-motion preferences.
+Avoid motion that delays frequent commands or creates false progress.
 
 ## Accessibility interaction contracts
 
-Accessibility must cover behavior, not only contrast.
+Read `../shared/accessibility-interaction.md` for the design contract and `../accessibility.md` for QA/evidence.
 
-Validate:
+Web-application specialization must additionally validate:
 
-- keyboard reachability;
-- visible focus;
-- focus not obscured by sticky/overlay content;
-- semantic roles/names/states;
-- form labels/errors;
-- custom widget keyboard patterns;
-- zoom/text scaling;
-- reduced motion;
-- screen-reader reading order;
-- status/error announcements when needed.
+- routed page/app-shell focus behavior;
+- custom widgets used by productivity workflows;
+- overlays/drawers/dialog focus return;
+- keyboard power-user paths;
+- sticky application chrome;
+- dynamic status/error announcements.
 
-Do not claim WCAG compliance without sufficient evidence.
+Do not claim WCAG compliance without sufficient evidence and defined scope.
 
 ## Persian and mixed-language web applications
 

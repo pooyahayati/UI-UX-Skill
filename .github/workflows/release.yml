@@ -41,6 +41,7 @@ jobs:
         run: |
           python3 scripts/validate_release.py
           python3 scripts/validate_product_routes.py
+          python3 scripts/validate_shared_rules.py
           python3 scripts/validate_specialists.py
 
       - name: Package

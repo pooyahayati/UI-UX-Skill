@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for UI/UX Skill v2.6.0.
+Prepared for UI/UX Skill v2.7.0.
 
 ## Package
 
@@ -29,6 +29,11 @@ Prepared for UI/UX Skill v2.6.0.
 - [x] Preference reconciliation guidance
 - [x] Operational real-time/search/concurrency patterns
 - [x] Machine-readable product routing registry
+- [x] Machine-readable Shared Product UI Rule registry
+- [x] Shared Product UI Rule router with scope-based loading and precedence
+- [x] Nine local shared UI contract modules
+- [x] Shared-rule non-duplication policy across Product Packs
+- [x] Shared-rule structural validator in CI/release
 - [x] Required Product Packs for websites, dashboards, web applications, mobile applications, and WordPress plugin UI
 - [x] Deep local Dashboard mode rules for executive, analytical, operational, monitoring/NOC, CRM/pipeline, and admin/management use cases
 - [x] Deep local WordPress Plugin rules for settings, onboarding/integrations, diagnostics/operations, capabilities, Multisite, privacy/data lifecycle, accessibility, and responsive wp-admin

@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "local_rules_only": true,
+    "load_after_product_route": true,
+    "require_scope_based_loading": true,
+    "product_pack_specializes_shared_rules": true,
+    "shared_rules_define_cross_product_contracts": true,
+    "product_pack_must_not_weaken_accessibility_security_or_data_integrity": true
+  },
+  "modules": [
+    {
+      "id": "navigation-wayfinding",
+      "reference": "references/shared/navigation-wayfinding.md",
+      "triggers": [
+        "navigation",
+        "wayfinding",
+        "menus",
+        "tabs",
+        "breadcrumbs",
+        "back behavior",
+        "route hierarchy",
+        "deep navigation"
+      ]
+    },
+    {
+      "id": "forms-data-entry",
+      "reference": "references/shared/forms-data-entry.md",
+      "triggers": [
+        "form",
+        "data entry",
+        "validation",
+        "input",
+        "wizard",
+        "multi-step form",
+        "save",
+        "submit"
+      ]
+    },
+    {
+      "id": "feedback-status",
+      "reference": "references/shared/feedback-status.md",
+      "triggers": [
+        "feedback",
+        "toast",
+        "notice",
+        "banner",
+        "progress",
+        "success",
+        "warning",
+        "status message",
+        "notification"
+      ]
+    },
+    {
+      "id": "state-recovery",
+      "reference": "references/shared/state-recovery.md",
+      "triggers": [
+        "loading",
+        "empty",
+        "error",
+        "offline",
+        "stale",
+        "partial",
+        "retry",
+        "resume",
+        "draft",
+        "unsaved",
+        "recovery",
+        "long-running work"
+      ]
+    },
+    {
+      "id": "destructive-high-impact-actions",
+      "reference": "references/shared/destructive-high-impact-actions.md",
+      "triggers": [
+        "delete",
+        "reset",
+        "disconnect",
+        "revoke",
+        "bulk action",
+        "destructive",
+        "irreversible",
+        "high-impact action"
+      ]
+    },
+    {
+      "id": "accessibility-interaction",
+      "reference": "references/shared/accessibility-interaction.md",
+      "triggers": [
+        "accessibility",
+        "keyboard",
+        "focus",
+        "screen reader",
+        "aria",
+        "zoom",
+        "text scaling",
+        "target size",
+        "reduced motion",
+        "custom widget"
+      ]
+    },
+    {
+      "id": "responsive-adaptation",
+      "reference": "references/shared/responsive-adaptation.md",
+      "triggers": [
+        "responsive",
+        "adaptive",
+        "mobile width",
+        "tablet",
+        "large screen",
+        "resizing",
+        "reflow",
+        "orientation",
+        "zoom"
+      ]
+    },
+    {
+      "id": "motion",
+      "reference": "references/shared/motion.md",
+      "triggers": [
+        "animation",
+        "motion",
+        "transition",
+        "haptic",
+        "reduced motion",
+        "scroll animation",
+        "loading animation"
+      ]
+    },
+    {
+      "id": "content-hierarchy-progressive-disclosure",
+      "reference": "references/shared/content-hierarchy-progressive-disclosure.md",
+      "triggers": [
+        "content hierarchy",
+        "visual hierarchy",
+        "progressive disclosure",
+        "dense content",
+        "sectioning",
+        "information hierarchy",
+        "help text"
+      ]
+    }
+  ]
+}

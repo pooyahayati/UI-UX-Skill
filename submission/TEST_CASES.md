@@ -1,6 +1,6 @@
 # Public Plugin Submission Test Cases
 
-Prepared for UI/UX Skill v2.6.0.
+Prepared for UI/UX Skill v2.7.0.
 
 Exactly five positive and three negative cases are provided.
 
@@ -17,6 +17,7 @@ Exactly five positive and three negative cases are provided.
 - Triggers the Skill.
 - Classifies the primary product route as `dashboard`.
 - Loads the shared Dashboard Product Pack, identifies the primary Dashboard mode, and loads only the applicable local Dashboard mode packs before mode-specific design decisions.
+- Then loads only scope-relevant Shared Product UI Rules; does not load unrelated shared modules.
 - Routes Persian-facing language work to the REQUIRED `persian-writing` specialist.
 - Runs recommendation-first discovery.
 - Establishes native Persian RTL, responsive priorities, typography, palette, theme, navigation, localization decisions, Data Trust context, and the correct Dashboard mode behavior.
@@ -41,6 +42,7 @@ None required. A blank or sample frontend repository is sufficient.
 
 - Classifies the primary product route as `web-application`.
 - Loads the required Web Application Product Pack.
+- Then loads only scope-relevant Shared Product UI Rules for the requested app-shell/forms/state/responsive work.
 - Establishes an Observed Baseline.
 - Checks working-tree state when Git is available.
 - Preserves routes, permissions, data semantics, and browser behavior.
@@ -66,6 +68,7 @@ Any existing routed/authenticated web application with at least one protected us
 
 - Classifies the primary product route as `mobile-application`.
 - Loads the required Mobile Application Product Pack.
+- Then loads only scope-relevant Shared Product UI Rules while preserving mobile/platform-specific navigation, permission, lifecycle, and accessibility behavior.
 - Loads the local iOS and Android rule packs, plus cross-platform rules when one product/codebase spans both.
 - Identifies platform and cross-platform constraints before broad design decisions.
 - Handles mobile navigation, touch, keyboard, safe areas, permissions, connectivity, lifecycle, and background work.
@@ -91,6 +94,7 @@ None required. A representative mobile project or product brief is sufficient.
 
 - Classifies the primary product route as `wordpress-plugin`.
 - Loads the required WordPress Plugin Product Pack and the matching local WordPress packs for settings, onboarding/integrations, diagnostics/operations, and Multisite when those concerns are in scope.
+- Then loads only scope-relevant Shared Product UI Rules without weakening WordPress capabilities, host behavior, or data-lifecycle semantics.
 - Preserves the surrounding `wp-admin` mental model and capability boundaries.
 - Groups settings by user intent rather than backend modules.
 - Separates normal settings, integrations, diagnostics, background operations, and destructive actions.
@@ -119,6 +123,7 @@ A WordPress plugin with one or more settings/admin pages, or a representative se
 
 - Classifies the primary product route as `website`.
 - Loads the required Website Product Pack before website-specific design decisions.
+- Then loads only scope-relevant Shared Product UI Rules while preserving Website-specific conversion, trust, SEO/content, media, and performance behavior.
 - Distinguishes the public site from an authenticated web application.
 - Identifies the website subtype, visitor job, primary conversion, and proof strategy before broad composition.
 - Designs information architecture around visitor intent rather than internal company structure.

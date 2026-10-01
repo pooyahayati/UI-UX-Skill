@@ -1,5 +1,5 @@
 {
-  "version": "2.6.0",
+  "version": "2.7.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -500,6 +500,62 @@
         "treats global policy and permission changes as high-impact actions",
         "preserves audit and traceability for consequential changes",
         "handles partial failure for bulk administrative operations"
+      ]
+    },
+    {
+      "id": "shared-rules-broad-redesign",
+      "type": "positive",
+      "fixture": "existing-dashboard",
+      "prompt": "Redesign this existing operational dashboard broadly: improve navigation, hierarchy, feedback, loading/error recovery, responsiveness, accessibility and the repeated work queue without changing data meaning or permissions.",
+      "invariants": [
+        "classifies the product route and dashboard mode before selecting shared rules",
+        "loads the active Dashboard Product Pack before Shared Product UI Rules",
+        "loads only scope-relevant shared modules including navigation feedback state recovery accessibility responsive and content hierarchy",
+        "preserves Dashboard-specific Data Trust work-queue and permission semantics",
+        "does not treat Shared Rules as a replacement for the Dashboard Product Pack",
+        "reports which Shared Rules were loaded and which behaviors were actually validated"
+      ]
+    },
+    {
+      "id": "shared-rules-narrow-scope",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Fix only the validation and error recovery of this website contact form. Do not redesign navigation, layout, motion, or the rest of the website.",
+      "invariants": [
+        "classifies the product as website before shared-rule selection",
+        "loads the Website Product Pack",
+        "loads forms-data-entry plus feedback-status and state-recovery as needed for the narrow form task",
+        "does not load unrelated navigation motion or broad responsive modules without a task reason",
+        "preserves website-specific lead-generation and conversion semantics",
+        "does not broaden scope into a site redesign"
+      ]
+    },
+    {
+      "id": "shared-rules-product-specialization",
+      "type": "positive",
+      "fixture": "owner-config",
+      "prompt": "Improve the WordPress plugin's Delete plugin data action. It must be capability-aware, clearly distinguish cache/configuration/user data, handle async deletion status, and work inside wp-admin.",
+      "invariants": [
+        "classifies the product as wordpress-plugin",
+        "loads the WordPress Product Pack and relevant local WordPress rule packs before Shared Rules",
+        "loads destructive-high-impact-actions plus state-recovery and feedback-status as needed",
+        "keeps WordPress capability wp-admin data-lifecycle and async-operation semantics product-specific",
+        "does not replace WordPress-specific deletion meaning with a generic confirmation recipe",
+        "does not weaken authorization or data-integrity requirements"
+      ]
+    },
+    {
+      "id": "shared-rules-accessibility-floor",
+      "type": "positive",
+      "fixture": null,
+      "prompt": "Design a custom mobile interaction that uses gestures, animated transitions and a platform-specific navigation pattern. Keep it visually distinctive, but accessibility and reduced motion must remain correct.",
+      "invariants": [
+        "classifies the product as mobile-application and loads applicable local platform rules",
+        "loads accessibility-interaction and motion Shared Rules after the Product Pack",
+        "allows platform-specific navigation and gesture specialization",
+        "does not allow product/platform specialization to weaken keyboard or assistive-input alternatives where applicable",
+        "preserves reduced-motion behavior and non-gesture alternatives for important actions",
+        "does not claim accessibility conformance without evidence"
       ]
     }
   ]

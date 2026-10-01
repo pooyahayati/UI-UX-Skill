@@ -10,6 +10,7 @@ Record what was actually checked:
 | --- | --- |
 | Product route | primary + secondary |
 | Product Packs | loaded / missing / not applicable |
+| Shared Product UI Rules | loaded / not applicable |
 | Routes/screens | list |
 | Workflows | list |
 | Viewports | desktop/tablet/mobile/etc |
@@ -44,6 +45,34 @@ Verify:
 - `generic-product-ui` was used only as a fallback when no registered route fit
 
 Do not claim product-aware QA when the required Product Pack was not loaded.
+
+## Shared Product UI Rules
+
+Read `../shared-rules.json` and `shared-product-rules.md`.
+
+Verify:
+
+- product routing occurred before Shared Rule selection;
+- only scope-relevant Shared Rules were loaded;
+- Product Pack specialization did not duplicate or contradict the shared behavioral contract;
+- accessibility/security/authorization/data-integrity floors were not weakened by product specialization;
+- loaded Shared Rules were actually exercised on representative behavior;
+- narrow tasks did not load unrelated Shared Rule modules;
+- product-specific exceptions remained in the Product Pack rather than leaking into Shared Rules.
+
+For broad work, explicitly report relevant coverage for:
+
+- navigation/wayfinding;
+- forms/data entry;
+- feedback/status;
+- state/recovery;
+- destructive/high-impact actions;
+- accessibility interaction;
+- responsive adaptation;
+- motion;
+- content hierarchy/progressive disclosure.
+
+Do not claim shared-rule coverage simply because a file was read.
 
 ## Visual regression
 
@@ -237,7 +266,7 @@ Where applicable:
 
 ## Accessibility
 
-Read `accessibility.md`.
+Read `shared/accessibility-interaction.md` for the design/interaction contract and `accessibility.md` for QA/evidence.
 
 Record automated and manual checks separately.
 
