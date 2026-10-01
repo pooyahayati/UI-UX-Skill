@@ -396,6 +396,18 @@ if "Public-facing business website" not in tests:
     error("Submission tests do not cover the website Product Pack")
 if "Unsafe owner customization" not in tests:
     error("Submission tests do not cover unsafe runtime customization")
+if tests.count("Shared Product UI Rules") < 5:
+    error("Submission tests do not cover Shared Product UI Rules across all five positive product cases")
+
+submission_checklist = (ROOT / "submission/SUBMISSION_CHECKLIST.md").read_text(encoding="utf-8")
+for term in [
+    "Machine-readable Shared Product UI Rule registry",
+    "Shared Product UI Rule router",
+    "Nine local shared UI contract modules",
+    "Shared-rule structural validator",
+]:
+    if term not in submission_checklist:
+        error(f"Submission checklist missing v2.7 shared-rule item: {term}")
 
 roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
 for term in [
