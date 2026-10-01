@@ -8,7 +8,7 @@
     "url": "https://pooyahayati.com"
   },
   "homepage": "https://pooyahayati.com",
-  "repository": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill",
+  "repository": "https://github.com/pooyahayati/UI-UX-Skill",
   "license": "MIT",
   "keywords": [
     "dashboard",
@@ -27,8 +27,8 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Production Dashboard UI/UX",
-        "shortDescription": "Production dashboard UI/UX",
+        "displayName": "UI/UX Skill",
+        "shortDescription": "UI/UX Head Skill",
         "longDescription": "Design, audit, improve, and redesign production dashboards and operational product interfaces. Works standalone or as a UI/UX specialist under a higher-level engineering Head, with specialist routing for Persian-facing UI and runtime browser validation. Includes evidence-driven UX audits, visual regression, existing-product safety, reusable design-system architecture, implementation strategies, owner-controlled runtime appearance settings, preference reconciliation, user personalization and saved views, Data Trust UX, real-time operational patterns, responsive behavior, Persian RTL and English LTR, branding, accessibility, performance, and regression-aware QA.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
@@ -41,9 +41,9 @@
           "Route Persian-facing UI to required language QA"
         ],
         "websiteURL": "https://pooyahayati.com",
-        "supportURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/issues",
-        "privacyPolicyURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/PRIVACY.md",
-        "termsOfServiceURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/TERMS.md",
+        "supportURL": "https://github.com/pooyahayati/UI-UX-Skill/issues",
+        "privacyPolicyURL": "https://github.com/pooyahayati/UI-UX-Skill/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/pooyahayati/UI-UX-Skill/blob/main/TERMS.md",
         "defaultPrompt": [
           "Audit this dashboard, fix safe UI/UX issues, preserve behavior, and validate the result with evidence.",
           "Redesign this dashboard and provide representative before/after visual-regression evidence.",
