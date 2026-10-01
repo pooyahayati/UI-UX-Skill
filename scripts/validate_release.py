@@ -40,6 +40,9 @@ required = [
     f"skills/{SKILL_NAME}/references/products/dashboard.md",
     f"skills/{SKILL_NAME}/references/products/web-application.md",
     f"skills/{SKILL_NAME}/references/products/mobile-application.md",
+    f"skills/{SKILL_NAME}/references/products/mobile/ios.md",
+    f"skills/{SKILL_NAME}/references/products/mobile/android.md",
+    f"skills/{SKILL_NAME}/references/products/mobile/cross-platform.md",
     f"skills/{SKILL_NAME}/references/products/wordpress-plugin.md",
     f"skills/{SKILL_NAME}/references/specialist-routing.md",
     f"skills/{SKILL_NAME}/references/discovery-and-profile.md",
@@ -145,6 +148,13 @@ registry_items = {
     for item in specialist_registry.get("specialists", [])
     if isinstance(item, dict)
 }
+
+external_ids = set(registry_items)
+if external_ids != {"persian-writing"}:
+    error(
+        "Only persian-writing may remain as an external specialist; "
+        f"found: {sorted(external_ids)}"
+    )
 persian_route = registry_items.get("persian-writing", {})
 if persian_route.get("requirement") != "required":
     error("Specialist registry missing required persian-writing route")
