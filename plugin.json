@@ -36,7 +36,7 @@
       "interface": {
         "displayName": "UI/UX Skill",
         "shortDescription": "UI/UX Head Skill",
-        "longDescription": "Design, audit, improve, and validate production interfaces with mandatory product-type routing. Supports websites, dashboards, web applications, mobile applications, and WordPress plugin/admin UI, with product-specific required packs plus modular specialist routing for Persian-facing UI and runtime browser validation. Includes evidence-driven UX audits, visual regression, design-system architecture, responsive behavior, Light/Dark themes, RTL/LTR, personalization, Data Trust UX, accessibility, performance, and regression-aware QA.",
+        "longDescription": "Design, audit, improve, and validate production interfaces with mandatory product-type routing. Supports websites, dashboards, web applications, mobile applications, and WordPress plugin/admin UI, with product-specific required packs, local UI/UX rules, and external Persian-language validation when Persian-facing UI is in scope. Includes evidence-driven UX audits, visual regression, design-system architecture, responsive behavior, Light/Dark themes, RTL/LTR, personalization, Data Trust UX, accessibility, performance, and regression-aware QA.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
         "capabilities": [
