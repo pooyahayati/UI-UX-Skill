@@ -182,7 +182,7 @@ At representative widths:
 
 ## Specialist routing
 
-Read `specialist-routing.md`.
+Read `../specialists.json` and `specialist-routing.md`.
 
 Verify:
 
@@ -192,7 +192,7 @@ Verify:
 - specialist-dependent claims are not marked complete without specialist evidence
 - lower-level specialists did not override higher-level scope, risk, architecture, security, or product constraints
 - Head-delegated work returns a UI/UX handoff instead of claiming whole-project completion
-- required specialist installation/discovery was checked when tooling allowed
+- required specialist installation/discovery was checked against the machine-readable registry when tooling allowed
 - known-stale required specialists were updated before use, or their dependent validation was blocked
 - no specialist version/tag/commit is pinned in Head routing without an explicit compatibility exception
 - Skill freshness is reported as Unverified when it could not be checked
