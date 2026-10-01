@@ -57,6 +57,11 @@ required = [
     f"skills/{SKILL_NAME}/references/shared/content-hierarchy-progressive-disclosure.md",
     f"skills/{SKILL_NAME}/references/product-routing.md",
     f"skills/{SKILL_NAME}/references/products/website.md",
+    f"skills/{SKILL_NAME}/references/products/website/structure-navigation.md",
+    f"skills/{SKILL_NAME}/references/products/website/conversion-trust.md",
+    f"skills/{SKILL_NAME}/references/products/website/content-seo.md",
+    f"skills/{SKILL_NAME}/references/products/website/media-performance.md",
+    f"skills/{SKILL_NAME}/references/products/website/accessibility-localization-qa.md",
     f"skills/{SKILL_NAME}/references/products/dashboard.md",
     f"skills/{SKILL_NAME}/references/products/dashboard/executive.md",
     f"skills/{SKILL_NAME}/references/products/dashboard/analytical.md",
@@ -65,6 +70,9 @@ required = [
     f"skills/{SKILL_NAME}/references/products/dashboard/crm-pipeline.md",
     f"skills/{SKILL_NAME}/references/products/dashboard/admin-management.md",
     f"skills/{SKILL_NAME}/references/products/web-application.md",
+    f"skills/{SKILL_NAME}/references/products/web-application/navigation-state.md",
+    f"skills/{SKILL_NAME}/references/products/web-application/workflows-data.md",
+    f"skills/{SKILL_NAME}/references/products/web-application/interaction-access.md",
     f"skills/{SKILL_NAME}/references/products/mobile-application.md",
     f"skills/{SKILL_NAME}/references/products/mobile/ios.md",
     f"skills/{SKILL_NAME}/references/products/mobile/android.md",
@@ -468,7 +476,15 @@ stage6_block = roadmap[stage6_start:future_start] if stage6_start >= 0 and futur
 if "**Status:** Completed" not in stage6_block:
     error("Stage 6 — Real-World Product Evaluation must be Completed for v3.0")
 
-website_pack = (SKILL / "references/products/website.md").read_text(encoding="utf-8")
+website_paths = [
+    "references/products/website.md",
+    "references/products/website/structure-navigation.md",
+    "references/products/website/conversion-trust.md",
+    "references/products/website/content-seo.md",
+    "references/products/website/media-performance.md",
+    "references/products/website/accessibility-localization-qa.md",
+]
+website_pack = "\n".join((SKILL / rel).read_text(encoding="utf-8") for rel in website_paths)
 for term in [
     "Website subtype and visitor job",
     "Website decision brief",
@@ -486,7 +502,25 @@ for term in [
     "Website QA matrix",
 ]:
     if term.casefold() not in website_pack.casefold():
-        error(f"Website Product Pack Hardening missing: {term}")
+        error(f"Website Product Pack coverage missing after modularization: {term}")
+
+web_app_paths = [
+    "references/products/web-application.md",
+    "references/products/web-application/navigation-state.md",
+    "references/products/web-application/workflows-data.md",
+    "references/products/web-application/interaction-access.md",
+]
+web_app_pack = "\n".join((SKILL / rel).read_text(encoding="utf-8") for rel in web_app_paths)
+for term in [
+    "Browser navigation and URL state",
+    "Drafts, autosave, and unsaved changes",
+    "Long-running and background work",
+    "Concurrency, stale data, and conflicting edits",
+    "Dialogs, drawers, popovers, and overlays",
+    "Accessibility interaction contracts",
+]:
+    if term.casefold() not in web_app_pack.casefold():
+        error(f"Web Application Product Pack coverage missing after modularization: {term}")
 
 wordpress_pack = (SKILL / "references/products/wordpress-plugin.md").read_text(encoding="utf-8")
 for term in [
@@ -634,9 +668,10 @@ for product_ref in [
     "wordpress-plugin.md",
 ]:
     product_text = (SKILL / "references/products" / product_ref).read_text(encoding="utf-8")
-    for term in ["Shared rule loading", "shared-product-rules.md"]:
-        if term.casefold() not in product_text.casefold():
-            error(f"{product_ref} missing Shared Product UI Rule routing: {term}")
+    if "shared-product-rules.md" not in product_text:
+        error(f"{product_ref} missing Shared Product UI Rule routing")
+    if "Shared rule loading".casefold() in product_text.casefold():
+        error(f"{product_ref} still contains the duplicated Shared rule loading block")
 
 profile = (SKILL / "references/discovery-and-profile.md").read_text(encoding="utf-8")
 for term in [
