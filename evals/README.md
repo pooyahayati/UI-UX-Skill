@@ -2,7 +2,7 @@
 
 Structural validation cannot prove that a model follows this Skill well.
 
-Version 2.8 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
+Version 3.0 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
 
 ## Validate fixtures
 
@@ -115,3 +115,35 @@ A candidate should not ship with an unexplained Fail in:
 - identity-redesign boundary
 - trigger boundary
 - claims of visual/UX validation without evidence
+
+
+## Stage 6 real-world evaluation
+
+The v3 candidate includes five dedicated production-like fixtures and cases:
+
+- Dashboard
+- Website
+- Web Application
+- Mobile Application
+- WordPress Plugin
+
+Machine-readable plan:
+
+`real-world/manifest.json`
+
+Recorded result:
+
+`real-world/result.json`
+
+Human-readable summary:
+
+`real-world/RESULTS.md`
+
+Validate with:
+
+```bash
+python3 scripts/validate_real_world_evaluation.py
+python3 scripts/validate_eval_result.py evals/real-world/result.json
+```
+
+The recorded 2026-10-02 run is an in-session source-based ChatGPT / GPT-5.6 Sol evaluation, not an independent fresh Codex/Claude/browser/device run. Do not infer rendered or device validation from that record.
