@@ -126,25 +126,21 @@ Shared Rules are loaded only when relevant to the task and cannot weaken accessi
 ## Stage 5 — Design System Hardening
 
 **Target:** v2.8.x  
-**Status:** Planned
+**Status:** Completed
 
-Strengthen the design-system layer:
+Hardened the local Design System into a modular, machine-readable architecture:
 
-- foundations
-- semantic tokens
-- typography roles
-- spacing
-- color roles
-- radius
-- elevation
-- component states
-- density
-- themes
-- RTL/LTR
-- responsive tokens
-- product-specific variants
-- runtime configuration boundaries
-- visual regression compatibility
+- token foundations: primitive, semantic, component, product-variant, and resolved-runtime layers
+- stable token naming/types, aliases/references, and DTCG 2025.10-compatible interchange
+- semantic typography roles with Persian/Latin and mixed-script behavior
+- semantic color roles with Light, Dark, High Contrast / Forced Colors contexts
+- spacing, density, control sizing, radius, elevation, and layout foundations
+- reusable component-state contracts
+- responsive tokens and product variants without variant explosion
+- design-system lifecycle, deprecation, migration, impact analysis, and visual-regression compatibility
+- explicit runtime-configuration boundary
+
+Design-system specialization remains subordinate to Product Pack semantics and Shared Product UI Rules.
 
 ## Stage 6 — Real-World Product Evaluation
 
