@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security-related fixes are applied to the latest published version of Production Dashboard UI/UX Skill.
+Security-related fixes are applied to the latest published version of UI/UX Skill.
 
 | Version | Supported |
 | --- | --- |
