@@ -1,35 +1,93 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Production Dashboard UI/UX Behavioral Eval Result",
+  "title": "UI/UX Skill Behavioral Eval Result",
   "type": "object",
-  "required": ["skillVersion", "host", "model", "date", "cases"],
+  "required": [
+    "skillVersion",
+    "host",
+    "model",
+    "date",
+    "cases"
+  ],
   "properties": {
-    "skillVersion": {"type": "string"},
-    "host": {"type": "string"},
-    "model": {"type": "string"},
-    "date": {"type": "string"},
-    "fixtureCommit": {"type": "string"},
-    "notes": {"type": "string"},
+    "skillVersion": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "fixtureCommit": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
     "cases": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "triggerMode", "result", "invariants"],
+        "required": [
+          "id",
+          "triggerMode",
+          "result",
+          "invariants"
+        ],
         "properties": {
-          "id": {"type": "string"},
-          "triggerMode": {"enum": ["explicit", "implicit"]},
-          "result": {"enum": ["pass", "partial", "fail", "not-testable"]},
-          "notes": {"type": "string"},
-          "evidence": {"type": "array", "items": {"type": "string"}},
+          "id": {
+            "type": "string"
+          },
+          "triggerMode": {
+            "enum": [
+              "explicit",
+              "implicit"
+            ]
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "partial",
+              "fail",
+              "not-testable"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "invariants": {
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["text", "result"],
+              "required": [
+                "text",
+                "result"
+              ],
               "properties": {
-                "text": {"type": "string"},
-                "result": {"enum": ["pass", "partial", "fail", "not-testable"]},
-                "evidence": {"type": "string"}
+                "text": {
+                  "type": "string"
+                },
+                "result": {
+                  "enum": [
+                    "pass",
+                    "partial",
+                    "fail",
+                    "not-testable"
+                  ]
+                },
+                "evidence": {
+                  "type": "string"
+                }
               }
             }
           }
