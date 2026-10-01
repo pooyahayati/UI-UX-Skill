@@ -2,7 +2,7 @@
 
 Structural validation cannot prove that a model follows this Skill well.
 
-Version 2.5 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
+Version 2.6 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
 
 ## Validate fixtures
 
@@ -95,6 +95,7 @@ A candidate should not ship with an unexplained Fail in:
 - wordpress onboarding/integration behavior
 - wordpress diagnostics/background-operation behavior
 - wordpress multisite/network-admin behavior
+- dashboard executive/analytical/operational/monitoring/CRM/admin mode behavior
 
 - business-logic preservation
 - working-tree safety
