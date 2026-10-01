@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ui-ux",
-  "version": "2.1.0",
-  "description": "Product-aware UI/UX Head Skill with mandatory product routing, modular specialist routing, audit, design systems, accessibility, performance, and RTL/LTR workflows.",
+  "version": "2.2.0",
+  "description": "Product-aware UI/UX Head Skill with mandatory routing for websites, dashboards, web apps, mobile apps, and WordPress plugin UI.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://pooyahayati.com"
@@ -11,6 +11,8 @@
   "repository": "https://github.com/pooyahayati/UI-UX-Skill",
   "license": "MIT",
   "keywords": [
+    "website-design",
+    "public-website-ui",
     "product-aware-ui-ux",
     "web-app",
     "mobile-app",
@@ -34,17 +36,17 @@
       "interface": {
         "displayName": "UI/UX Skill",
         "shortDescription": "UI/UX Head Skill",
-        "longDescription": "Design, audit, improve, and validate production product interfaces with mandatory product-type routing. Supports dashboards, web applications, mobile applications, and WordPress plugin settings/admin UI, with product-specific required packs plus modular specialist routing for Persian-facing UI and runtime browser validation. Includes evidence-driven UX audits, visual regression, design-system architecture, responsive behavior, Light/Dark themes, RTL/LTR, personalization, Data Trust UX, accessibility, performance, and regression-aware QA.",
+        "longDescription": "Design, audit, improve, and validate production interfaces with mandatory product-type routing. Supports websites, dashboards, web applications, mobile applications, and WordPress plugin settings/admin UI, with product-specific required packs plus modular specialist routing for Persian-facing UI and runtime browser validation. Includes evidence-driven UX audits, visual regression, design-system architecture, responsive behavior, Light/Dark themes, RTL/LTR, personalization, Data Trust UX, accessibility, performance, and regression-aware QA.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
         "capabilities": [
           "Route UI work by product type before design",
+          "Design websites and public-facing product sites",
           "Design dashboards and operational data UI",
           "Design web application product interfaces",
           "Design mobile application product interfaces",
           "Design WordPress plugin settings and admin UI",
           "Validate redesigns with visual evidence",
-          "Design reusable token-based UI systems",
           "Route Persian-facing UI to required language QA"
         ],
         "websiteURL": "https://pooyahayati.com",
@@ -53,8 +55,8 @@
         "termsOfServiceURL": "https://github.com/pooyahayati/UI-UX-Skill/blob/main/TERMS.md",
         "defaultPrompt": [
           "Classify this product, load the required Product Pack, then audit and improve its UI/UX without breaking behavior.",
-          "Design this web or mobile application using the correct product-specific UI/UX rules and validate representative states.",
-          "Improve this WordPress plugin settings UI using the WordPress product route while preserving permissions and behavior."
+          "Design this website or web application using the correct product-specific UI/UX rules and validate representative states.",
+          "Improve this mobile or WordPress plugin UI using its required Product Pack while preserving constraints."
         ],
         "brandColor": "#0F766E",
         "brandColorDark": "#5EEAD4",
