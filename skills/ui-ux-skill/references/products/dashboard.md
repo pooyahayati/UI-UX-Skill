@@ -10,6 +10,23 @@ Read the shared detailed component/pattern reference when dashboard components o
 
 `../dashboard-patterns.md`
 
+## Shared rule loading
+
+After the Dashboard Product Pack is active, read `../shared-product-rules.md` and `../../shared-rules.json`.
+
+For broad dashboard work normally load:
+
+- `../shared/navigation-wayfinding.md`
+- `../shared/feedback-status.md`
+- `../shared/state-recovery.md`
+- `../shared/accessibility-interaction.md`
+- `../shared/responsive-adaptation.md`
+- `../shared/content-hierarchy-progressive-disclosure.md`
+
+Load `../shared/forms-data-entry.md`, `../shared/destructive-high-impact-actions.md`, and `../shared/motion.md` when materially in scope.
+
+Dashboard specialization retains Data Trust UX, metrics, targets/baselines, filters, drill-down, tables/work queues, charts, cross-filtering, alerts, live-update behavior, personalization, role-aware presentation, and mode-specific decision semantics.
+
 ## Required Dashboard mode routing
 
 Before broad dashboard design decisions, identify the primary Dashboard mode.
@@ -117,26 +134,13 @@ Different Dashboard modes answer these questions differently.
 
 ## Decision hierarchy
 
-Prioritize content by decision consequence and frequency.
+Read `../shared/content-hierarchy-progressive-disclosure.md`.
 
-A visual is important only if it contributes to a real decision or understanding task.
+Dashboard specialization prioritizes content by decision consequence, frequency, and required attention.
 
-Avoid giving equal visual weight to unrelated metrics.
+A prominent dashboard element may be an exception, work queue, alert, trend, target variance, pipeline, critical table, or single metric.
 
-Do not fill available layout space merely because data exists.
-
-The most prominent element may be:
-
-- an exception;
-- a work queue;
-- an alert;
-- a trend;
-- a target variance;
-- a pipeline;
-- a critical table;
-- a single metric.
-
-It does not have to be a KPI card.
+Do not default to equally weighted KPI cards simply because dashboard space exists.
 
 ## Audience and use context
 
@@ -386,78 +390,62 @@ Do not expose a privileged action because a dashboard layout says the user shoul
 
 ## Empty, partial, stale, and failure states
 
-Distinguish:
+Read `../shared/state-recovery.md` and `../shared/feedback-status.md`.
 
-- no data exists;
-- no result for search;
-- no result for filters;
+Dashboard specialization must distinguish data semantics such as:
+
+- genuine zero;
+- no records;
+- filtered/no-result;
 - not configured;
 - permission denied;
-- source unavailable;
 - partial source failure;
-- stale data;
-- delayed data;
-- syncing;
-- failed load.
+- stale/delayed data;
+- source unavailable;
+- syncing.
 
-Do not make all absence look like "0".
-
-Every failure state should communicate:
-
-- what happened;
-- what is affected;
-- what remains trustworthy;
-- what the user can do.
+For every degraded state, communicate what remains trustworthy and current.
 
 ## Loading and refresh
 
-Loading should preserve useful context when safe.
+Read `../shared/state-recovery.md`.
 
-Avoid replacing an entire dashboard with skeletons during small refreshes.
+Dashboard specialization should preserve stable context during local panel refresh.
 
-When only one panel refreshes/fails, keep unrelated panels stable.
+Do not replace an entire dashboard with skeletons when only one panel is refreshing or failed.
 
-Do not use animated loading treatment that competes with operational attention.
+Refresh cadence remains a Dashboard/data-source decision, not a generic loading rule.
 
 ## Responsive dashboard architecture
 
-On smaller windows, preserve decision priority rather than shrinking the desktop grid.
+Read `../shared/responsive-adaptation.md`.
 
-Choose intentionally between:
+Dashboard specialization preserves decision priority across widths using, as appropriate:
 
-- reduced summary;
 - prioritized columns;
 - expandable rows;
-- detail route;
-- deferred secondary analysis;
-- horizontal comparison when necessary;
+- summary + detail;
 - filter drawer/sheet;
-- split-to-single-pane transition.
+- deferred secondary analysis;
+- split-to-single-pane transition;
+- horizontal comparison where semantically necessary.
 
-Do not convert every dashboard table into large cards automatically.
-
-Do not preserve an arbitrary desktop tile arrangement when it no longer reflects decision hierarchy.
+Do not convert every data table to cards or preserve an arbitrary desktop tile grid.
 
 ## Accessibility
 
-Dashboard accessibility includes:
+Read `../shared/accessibility-interaction.md` for the cross-product interaction floor and `../accessibility.md` for QA/evidence.
 
-- keyboard navigation;
-- visible focus;
-- logical focus/tab order;
-- semantic data tables;
-- meaningful visual titles/labels;
-- non-color status encoding;
-- sufficient contrast;
-- screen-reader-readable summaries;
-- alternatives for exact chart values;
-- text scaling/zoom;
-- reduced motion;
-- no hover-only critical information.
+Dashboard specialization additionally requires:
 
-For dynamic visuals, static alt text should not make claims that become incorrect as data changes.
+- semantic data-table relationships;
+- non-color status/trend meaning;
+- accessible current-data summaries/alternatives for charts;
+- exact-value alternatives when needed;
+- restrained live announcements;
+- keyboard access through filters, tables, and linked views.
 
-Provide accessible equivalents that preserve current data meaning.
+Static alt text must not make claims that become false as dashboard data changes.
 
 ## RTL and mixed-direction data
 
