@@ -16,6 +16,10 @@ All notable user-facing and technical changes to this project are documented her
 - Updated product and Shared Rule validators to enforce scope-based loading, parent-routed local modules, and cross-product isolation.
 - Replaced the README capability list with a product-by-product coverage table and documented the frozen capability scope.
 - Simplified plugin metadata so it describes the stable architecture without version-specific marketing language.
+- Added five explicit behavioral Product Isolation cases, one for each primary Product Type, requiring unrelated Product Packs to remain unloaded.
+- Added machine-readable forbidden inactive routes to the real-world evaluation manifest and validation that fails on cross-product reference leakage.
+- Reduced `validate_release.py` to release/package/documentation responsibilities and removed duplicated Product/Shared/Design/Specialist/Eval validation logic.
+- Made `validate-skill.yml` the single reusable validation gate and made release publication depend on that exact gate before packaging/publishing.
 
 ## [3.0.0] - 2026-10-02
 
