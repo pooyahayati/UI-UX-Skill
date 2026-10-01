@@ -1,24 +1,51 @@
 # Product Routing
 
-UI/UX work MUST be classified by product type before product-specific design rules are applied.
+Classify UI/UX work by product type before loading product-specific knowledge.
 
-The machine-readable source of truth is:
+Machine-readable source of truth:
 
 `../product-types.json`
 
-## Required routing sequence
+## Required sequence
 
-1. inspect the request and existing product/repository context;
-2. determine the primary `product_type`;
-3. add secondary product routes only when the task genuinely spans multiple product surfaces;
-4. load every `required_references` entry for each active route;
-5. read `../shared-rules.json` and `shared-product-rules.md`;
-6. load only scope-relevant Shared Product UI Rule modules after the Product Pack is known;
-7. apply specialist routing independently for language or other specialist domains.
+1. inspect the request and available product/repository evidence;
+2. determine one primary product route;
+3. add a secondary route only when the current deliverable genuinely spans another product surface;
+4. load only the `required_references` for active routes;
+5. let each active Product Pack route its own internal modules;
+6. read `../shared-rules.json` and `shared-product-rules.md`, then load only scope-relevant Shared Rules;
+7. load Design System modules only when the task materially needs them;
+8. evaluate specialist triggers independently.
 
-For new products and major redesigns, do not proceed with product-specific design decisions while `product_type` is unresolved.
+Do not read Product Packs or internal product modules merely to classify the product. Classification uses the request, repository/product evidence, and registry triggers/exclusions.
 
-For narrow changes to an existing product, infer the route from observable product/repository evidence when confidence is high. If the route is genuinely ambiguous and materially changes the design rules, surface the ambiguity instead of silently choosing a product model.
+## Product isolation
+
+Inactive product knowledge is out of scope.
+
+For a single-route task:
+
+- do not load another Product Pack;
+- do not load another product's local modules;
+- do not preload local module maps from the global registry;
+- do not apply another product's conventions by analogy when the active Product Pack already defines the behavior.
+
+The global registry identifies products and their required top-level Product Packs only. Internal Dashboard modes, Mobile platform packs, WordPress surfaces, Website modules, and Web Application modules are routed from their parent Product Pack after activation.
+
+This isolation reduces context without weakening product-specific quality.
+
+## Multiple product routes
+
+Use multiple routes only when the current deliverable genuinely spans multiple product surfaces.
+
+Examples:
+
+- public marketing/content surface plus signed-in application area: route each affected surface as `website` or `web-application`;
+- SaaS application with an analytics dashboard: primary `web-application`, secondary `dashboard` only for the dashboard surface;
+- WordPress plugin containing a monitoring workspace: primary `wordpress-plugin`, secondary `dashboard` only when dashboard semantics materially apply;
+- web product with a companion mobile app: route affected web and mobile surfaces independently.
+
+Always identify one primary route for the current deliverable. Do not activate a secondary route because a product merely contains that technology elsewhere.
 
 ## Authority
 
@@ -26,81 +53,29 @@ Use this precedence:
 
 `Higher-level Engineering Head -> UI/UX Head invariants -> Active Product Pack -> Shared Product UI Rule -> Design-system defaults -> Lower-level Specialist within its delegated domain`
 
-A Product Pack specializes UI/UX behavior for its product class. It must not override upstream product scope, security, architecture, business rules, or approved constraints.
+A Product Pack owns product/platform/host/domain specialization. Shared Rules own stable cross-product contracts. A lower-level specialist is authoritative only inside its delegated domain.
 
-A lower-level Specialist remains authoritative inside its delegated domain, but cannot override Head-level or active Product Pack constraints outside that domain.
-
-## Shared Product UI Rules
-
-Shared rules are local cross-product behavioral contracts.
-
-Machine-readable source:
-
-`../shared-rules.json`
-
-Routing/precedence:
-
-`shared-product-rules.md`
-
-Rules:
-
-- route the product first;
-- Product Pack owns product/platform/host/domain specialization;
-- load Shared Rules by scope rather than all at once;
-- Product Pack may specialize presentation and environment behavior;
-- specialization must not weaken accessibility, security, authorization, truthful-state, or user-data-integrity requirements;
-- do not copy a whole Shared Rule back into a Product Pack.
-
-For multi-route tasks, apply each Product Pack first, then use Shared Rules for common cross-surface behavior.
-
-## Multiple product routes
-
-A product can span more than one route.
-
-Examples:
-
-- a public website with a signed-in product area:
-  - primary route depends on the current deliverable;
-  - public marketing/content surface: `website`;
-  - signed-in product surface: `web-application`;
-  - do not apply app-shell conventions to the public site or website-conversion patterns to an authenticated workflow.
-- a SaaS web application with an analytics dashboard:
-  - primary: `web-application`
-  - secondary: `dashboard`
-- a WordPress plugin whose settings page contains a monitoring dashboard:
-  - primary: `wordpress-plugin`
-  - secondary: `dashboard`
-- a web product with a companion mobile app:
-  - route each affected surface independently;
-  - do not apply mobile navigation conventions to the web application or vice versa.
-
-Always identify one primary route for the current deliverable.
+No lower layer may weaken accessibility, security, authorization, truthful-state, data-integrity, or approved upstream constraints.
 
 ## Generic fallback
 
-`generic-product-ui` is a temporary fallback, not a preferred product class.
+`generic-product-ui` is fallback-only.
 
-Use it only when:
-
-- the task is product UI work;
-- no registered product type fits;
-- the current scope is still safe to handle with shared UI/UX rules.
+Use it only when the task is product UI work, no registered product type fits, and the current scope can be handled safely with shared UI/UX rules.
 
 Do not force an unrelated Product Pack onto an unknown product.
 
-When a new recurring product class appears, add a dedicated Product Pack instead of expanding the generic fallback indefinitely.
-
-## Product route handoff
+## Handoff
 
 For significant work, record:
 
-- primary product route
-- secondary routes, if any
-- evidence used to classify the product
-- Product Packs loaded
-- any product-type ambiguity that remains
-- Shared Product UI Rules loaded / not applicable
-- product-specific validation performed
-- shared-rule behavior actually exercised
+- primary product route;
+- secondary routes, if any;
+- evidence used for classification;
+- Product Packs and local modules actually loaded;
+- Shared Rules and Design System modules actually loaded;
+- product-specific validation performed;
+- relevant modules intentionally not loaded;
+- unresolved product-type ambiguity.
 
-Do not claim product-aware validation when the required Product Pack was not loaded.
+Do not claim product-aware validation for a Product Pack or module that was not loaded and exercised.
