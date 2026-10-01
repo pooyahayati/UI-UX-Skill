@@ -268,6 +268,12 @@ short = interface.get("shortDescription", "")
 long_desc = interface.get("longDescription", "")
 developer = interface.get("developerName", "")
 
+if "Version 3" in long_desc or "Version 3" in manifest.get("description", ""):
+    error("Plugin metadata should describe stable capabilities without version-specific marketing language")
+for term in ["active local Product Pack", "scope-relevant local modules", "Shared Product UI Rules", "Design System"]:
+    if term.casefold() not in long_desc.casefold():
+        error(f"Plugin longDescription missing product-isolation architecture term: {term}")
+
 if not display_name or len(display_name) > 30:
     error("Plugin displayName must be 1..30 characters")
 if not short or len(short) > 30 or "\n" in short:
@@ -394,6 +400,23 @@ for term in ["persian-writing", "UI/UX Head", "Shared UI Rules", "Design System"
     if term.casefold() not in readme.casefold():
         error(f"README missing essential architecture term: {term}")
 
+for term in [
+    "## Product coverage",
+    "| **Website** |",
+    "| **Dashboard** |",
+    "| **Web Application** |",
+    "| **Mobile Application** |",
+    "| **WordPress Plugin / Admin UI** |",
+    "| **Shared foundation** |",
+    "Inactive Product Packs are not preloaded",
+    "## Feature freeze",
+]:
+    if term.casefold() not in readme.casefold():
+        error(f"README missing product-coverage/freeze contract: {term}")
+
+if "## Core capabilities" in readme:
+    error("README must use the product coverage table instead of the legacy Core capabilities list")
+
 canonical_url = "https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill"
 if canonical_url not in install:
     error("INSTALL.md is missing the canonical installer URL")
@@ -471,10 +494,28 @@ stage5_block = roadmap[stage5_start:stage6_start] if stage5_start >= 0 and stage
 if "**Status:** Completed" not in stage5_block:
     error("Stage 5 — Design System Hardening must be Completed")
 
-future_start = roadmap.find("## Future Product Types")
-stage6_block = roadmap[stage6_start:future_start] if stage6_start >= 0 and future_start > stage6_start else ""
+freeze_start = roadmap.find("## Feature Freeze — 3.1.0 Stabilization")
+stage6_block = roadmap[stage6_start:freeze_start] if stage6_start >= 0 and freeze_start > stage6_start else ""
 if "**Status:** Completed" not in stage6_block:
-    error("Stage 6 — Real-World Product Evaluation must be Completed for v3.0")
+    error("Stage 6 — Real-World Product Evaluation must remain Completed")
+
+if freeze_start < 0:
+    error("ROADMAP must declare the 3.1.0 Feature Freeze")
+else:
+    freeze_block = roadmap[freeze_start:]
+    for term in [
+        "**Status:** Active",
+        "new Product Types",
+        "new major capability families",
+        "persian-writing",
+        "deduplication",
+        "context isolation",
+    ]:
+        if term.casefold() not in freeze_block.casefold():
+            error(f"ROADMAP feature-freeze policy missing: {term}")
+
+if "## Future Product Types" in roadmap:
+    error("ROADMAP must not advertise future Product Types during the feature freeze")
 
 website_paths = [
     "references/products/website.md",
