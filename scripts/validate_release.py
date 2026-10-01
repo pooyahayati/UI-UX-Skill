@@ -252,7 +252,7 @@ validate_svg("logo")
 validate_svg("composerIcon")
 
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
-canonical_url = "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/tree/main/skills/production-dashboard-ui-ux-skill"
+canonical_url = "https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/production-dashboard-ui-ux-skill"
 if canonical_url not in readme:
     error("README is missing the canonical Codex installer URL")
 if f"Latest release: **v{VERSION}**" not in readme:
