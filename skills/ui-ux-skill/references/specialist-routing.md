@@ -96,40 +96,27 @@ Use only when explicitly requested or when the task clearly benefits enough to j
 
 ## Specialist registry
 
-The Head stores only routing metadata and control boundaries for specialists. It MUST NOT duplicate the specialist's domain methodology, detailed rules, checklists, or implementation guidance.
+The machine-readable source of truth for specialist identity, requirement level, trigger, canonical repository, and install path is:
 
-This keeps specialist knowledge replaceable and continuously upgradeable.
+`../specialists.json`
 
-### Persian-facing UI
+The Head MUST NOT duplicate specialist methodology, domain checklists, examples, implementation rules, or pinned versions.
 
-**Specialist:** `persian-writing`
+For a routed specialist:
 
-**Canonical source:** `https://github.com/ali2000hos/persian-writing`
+- read the matching registry entry;
+- evaluate its trigger;
+- enforce its requirement level;
+- pass only the context needed for the specialist's domain;
+- preserve Head-level scope, security, architecture, approvals, and UI/UX constraints;
+- consume the specialist result as domain evidence;
+- mark specialist-dependent validation `Unverified` or `Blocked` when a required specialist cannot be used.
 
-**Status:** REQUIRED when Persian is a supported or user-facing product language, or when Persian-facing UI content/localization is materially in scope.
+For Persian-facing UI, the registry marks `persian-writing` as REQUIRED.
 
-Head responsibilities are limited to:
+For browser runtime evidence, the registry currently marks `browser-testing-with-devtools` as RECOMMENDED.
 
-- detect the trigger;
-- require and route to `persian-writing`;
-- pass only relevant UI context and upstream constraints;
-- preserve Head-level scope, security, architecture, and approved design constraints;
-- consume the specialist's output as language-domain evidence;
-- refuse to mark Persian language validation complete when the required specialist was not successfully used.
-
-Do not restate Persian writing, orthography, register, localization, or language-QA rules here. Those rules belong to the current installed `persian-writing` Skill.
-
-If the required specialist cannot be used, report the specialist-dependent validation as `Unverified` or `Blocked` and do not treat Persian-facing language work as complete.
-
-### Browser runtime validation
-
-**Specialist:** `browser-testing-with-devtools`
-
-**Canonical source:** `https://github.com/addyosmani/agent-skills/tree/main/skills/browser-testing-with-devtools`
-
-**Status:** RECOMMENDED when live browser evidence materially improves UI validation and the specialist/runtime tools are available.
-
-Head responsibilities are limited to deciding when runtime evidence is needed, passing the validation objective and constraints, and consuming the returned evidence. Do not duplicate the specialist's DevTools workflow in this Head.
+The registry contains routing metadata only. Domain rules remain owned by the current specialist Skill.
 
 ## Skill freshness and update policy
 
@@ -142,8 +129,9 @@ Rules:
 3. Before significant work, and whenever a required specialist is first needed in a session, verify when tooling/network access allows:
    - the Head Skill is installed and discoverable;
    - the specialist is installed and discoverable;
-   - the installed copy is not known to be behind the latest stable release/source.
-4. If an installed Skill is known to be stale and the environment supports updating Skills, update/reinstall it from its canonical source before relying on it.
+   - the installed copy matches or is not known to be behind the current canonical upstream source.
+   Use the environment's Skill manager when available; this repository also provides `scripts/validate_specialists.py` for explicit source/install checks.
+4. If a REQUIRED Skill is missing or an installed Skill is known to be stale and the environment supports installing/updating Skills, install or update/reinstall it from the registry's canonical source before relying on it. Do not silently substitute Head-local domain rules for a missing required specialist.
 5. If freshness cannot be checked, report freshness as `Unverified`; never claim that the latest version was used.
 6. If a REQUIRED specialist is known to be stale and cannot be updated, do not treat specialist-dependent validation as complete.
 7. If the environment supports a Skill manager/installer, prefer its update mechanism over copying specialist files into this Head.

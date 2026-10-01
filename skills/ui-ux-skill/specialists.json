@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "version_strategy": "latest-stable-release-or-default-branch",
+    "allow_version_pins": false,
+    "vendor_specialists": false,
+    "head_precedence": true
+  },
+  "specialists": [
+    {
+      "id": "persian-writing",
+      "skill_name": "persian-writing",
+      "requirement": "required",
+      "trigger": "Persian is supported or user-facing, or Persian-facing UI content/localization is materially in scope.",
+      "canonical_repository": "ali2000hos/persian-writing",
+      "skill_path": ".",
+      "install_name": "persian-writing"
+    },
+    {
+      "id": "browser-testing-with-devtools",
+      "skill_name": "browser-testing-with-devtools",
+      "requirement": "recommended",
+      "trigger": "Live browser evidence materially improves UI validation and browser/runtime tooling is available.",
+      "canonical_repository": "addyosmani/agent-skills",
+      "skill_path": "skills/browser-testing-with-devtools",
+      "install_name": "browser-testing-with-devtools"
+    }
+  ]
+}

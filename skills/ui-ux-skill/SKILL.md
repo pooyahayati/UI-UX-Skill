@@ -150,7 +150,8 @@ Never modify code, configuration, or assets.
 
 Read references only when relevant.
 
-- `references/specialist-routing.md` — standalone vs Head-delegated operation, authority hierarchy, required/recommended specialists, and handoff contract
+- `specialists.json` — machine-readable specialist identities, requirement levels, triggers, canonical sources, and install paths; contains no specialist methodology or pinned versions
+- `references/specialist-routing.md` — standalone vs Head-delegated operation, authority hierarchy, specialist policy, and handoff contract
 
 - `references/discovery-and-profile.md` — discovery, design-profile lifecycle, partial rediscovery, provenance
 - `references/existing-product-audit.md` — existing-product baseline, audit matrix, severity, safe vs strategic fixes
@@ -291,7 +292,7 @@ When implementing that architecture, read `references/implementation-strategies.
 ## Final validation
 
 Before completion:
-1. read `references/specialist-routing.md`, confirm required specialist routes were satisfied, and verify installation/freshness when tooling allows
+1. read `specialists.json` and `references/specialist-routing.md`, confirm required specialist routes were satisfied, and verify installation/freshness when tooling allows
 2. read `references/qa-checklist.md`
 3. inspect the rendered UI when possible
 4. test representative viewports, themes, directions, and states

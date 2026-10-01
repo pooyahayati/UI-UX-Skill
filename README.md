@@ -53,6 +53,7 @@ Claude Code:
 - **[How to Install / Update](INSTALL.md)** — installation, updates, migration from the old slug, and verification
 - **[Updates & Changelog](CHANGELOG.md)** — release-by-release changes
 - **[Skill Specification](skills/ui-ux-skill/SKILL.md)** — canonical Skill behavior and routing
+- **[Specialist Registry](skills/ui-ux-skill/specialists.json)** — machine-readable Specialist sources and triggers
 - **[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)** — Head/Specialist authority, fallback, and freshness rules
 - **[Contributing](CONTRIBUTING.md)** — contribution workflow
 - **[Security](SECURITY.md)** — supported versions and security reporting

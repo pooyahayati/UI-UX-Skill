@@ -1,0 +1,29 @@
+name: Specialist Freshness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
+  pull_request:
+    paths:
+      - "skills/ui-ux-skill/specialists.json"
+      - "scripts/validate_specialists.py"
+      - ".github/workflows/specialist-freshness.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  specialist-freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate specialist registry
+        run: python3 scripts/validate_specialists.py
+
+      - name: Resolve current upstream specialist sources
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/validate_specialists.py --check-upstream

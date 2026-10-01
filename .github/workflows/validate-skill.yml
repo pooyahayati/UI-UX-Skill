@@ -18,6 +18,9 @@ jobs:
       - name: Local release validation
         run: python3 scripts/validate_release.py
 
+      - name: Specialist registry validation
+        run: python3 scripts/validate_specialists.py
+
       - name: Behavioral eval fixture validation
         run: python3 scripts/validate_eval_fixtures.py
 
