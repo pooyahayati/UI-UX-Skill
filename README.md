@@ -1,12 +1,12 @@
 # Production Dashboard UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-1.4.0-blue)
+![Version](https://img.shields.io/badge/version-1.5.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A production-oriented Agent Skill for designing, auditing, improving, and redesigning dashboards, admin panels, CRM, analytics, and operational product interfaces.
 
-It supports existing-product audits, evidence-driven UX improvement, visual regression, responsive UI, Persian RTL / English LTR, Light/Dark themes, reusable design systems, runtime design governance, personalization, Data Trust UX, accessibility, and performance.
+It supports standalone or Head-delegated UI/UX work, specialist routing, existing-product audits, evidence-driven UX improvement, visual regression, responsive UI, Persian RTL / English LTR, Light/Dark themes, reusable design systems, runtime design governance, personalization, Data Trust UX, accessibility, and performance.
 
 ## Quick start
 
@@ -82,6 +82,32 @@ The Skill preserves functional contracts and user-authored changes unless change
 
 For broad visual changes it records actual visual QA coverage and, when screenshot/browser tooling is available, uses a representative baseline and before/after comparison.
 
+## Head and specialist routing
+
+The Skill can work as:
+
+```text
+Standalone UI/UX Head
+or
+UI/UX Specialist under a higher-level engineering Head
+```
+
+It preserves upstream scope, risk, architecture, security, and acceptance criteria when delegated.
+
+For Persian-facing interfaces, the external `persian-writing` Skill is REQUIRED for Persian language QA:
+
+```text
+https://github.com/ali2000hos/persian-writing
+```
+
+The UI/UX Skill still owns layout, responsive behavior, RTL/LTR architecture, design systems, typography architecture, interaction design, accessibility, and visual hierarchy. `persian-writing` owns Persian wording, register, orthography, mixed Persian/English copy, labels, validation messages, errors, notices, and Persian language QA.
+
+If the required Persian specialist is unavailable, the Skill may continue safe non-language UI work but must report Persian language QA as unverified and must not present Persian-facing copy as finalized.
+
+Browser runtime validation can optionally use `browser-testing-with-devtools` when installed and browser access is available.
+
+See `specialist-routing.md` for the full authority, fallback, and handoff contract.
+
 ## Runtime design governance
 
 The optional configuration hierarchy is:
@@ -123,7 +149,7 @@ For Claude Code, replace the installed Skill folder with the folder from the new
 
 ## Behavioral evals
 
-Version 1.4 includes executable eval preparation and result-validation tooling plus reusable fixture projects.
+Version 1.5 includes executable eval preparation and result-validation tooling plus reusable fixture projects.
 
 ```bash
 python3 scripts/validate_eval_fixtures.py
@@ -138,6 +164,8 @@ Fixtures cover:
 - Persian RTL table behavior
 - analytics/Data Trust UX
 - real-time operations
+- Head-delegated UI/UX routing
+- required Persian language specialist routing
 
 The harness makes behavioral testing repeatable, but it does not claim to test a model unless the prepared case is actually run in Codex/Claude and the result is recorded.
 
@@ -161,6 +189,8 @@ skills/production-dashboard-ui-ux-skill/
 
 Key references include:
 
+- `specialist-routing.md`
+
 - `existing-product-audit.md`
 - `ux-evidence-and-metrics.md`
 - `visual-regression.md`
@@ -178,7 +208,7 @@ Key references include:
 
 ## Releases
 
-Latest release: **v1.4.0**
+Latest release: **v1.5.0**
 
 Release assets include:
 
