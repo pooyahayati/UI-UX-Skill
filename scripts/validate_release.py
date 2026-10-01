@@ -356,6 +356,8 @@ for term in [
     "[How to Install / Update](INSTALL.md)",
     "[Updates & Changelog](CHANGELOG.md)",
     "[Skill Specification](skills/ui-ux-skill/SKILL.md)",
+    "[Shared UI Registry](skills/ui-ux-skill/shared-rules.json)",
+    "[Shared UI Routing](skills/ui-ux-skill/references/shared-product-rules.md)",
     "[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)",
 ]:
     if term not in readme:
@@ -364,7 +366,7 @@ for term in [
 if f"**v{VERSION}**" not in readme:
     error("README current-source version does not match VERSION")
 
-for term in ["persian-writing", "UI/UX Head", "Specialist Skills", "websites", "web applications", "mobile applications", "WordPress plugin"]:
+for term in ["persian-writing", "UI/UX Head", "Shared UI Rules", "Specialist routing", "websites", "web applications", "mobile applications", "WordPress plugin"]:
     if term.casefold() not in readme.casefold():
         error(f"README missing essential architecture term: {term}")
 
