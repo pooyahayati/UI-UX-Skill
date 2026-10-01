@@ -44,10 +44,13 @@ jobs:
       - name: Package validated source
         run: python3 scripts/package_release.py --output dist
 
-      - name: Verify release archives
+      - name: Verify release archives and embedded Skill version
         run: |
           unzip -t dist/ui-ux-skill-claude-v*.zip
           unzip -t dist/ui-ux-plugin-v*.zip
+          EXPECTED_VERSION="$(tr -d '\r\n' < VERSION)"
+          test "$(unzip -p dist/ui-ux-skill-claude-v*.zip ui-ux-skill/VERSION | tr -d '\r\n')" = "$EXPECTED_VERSION"
+          test "$(unzip -p dist/ui-ux-plugin-v*.zip ui-ux/skills/ui-ux-skill/VERSION | tr -d '\r\n')" = "$EXPECTED_VERSION"
           cat dist/SHA256SUMS.txt
 
       - name: Check existing release
