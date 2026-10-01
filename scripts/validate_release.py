@@ -40,7 +40,7 @@ required = [
     f"skills/{SKILL_NAME}/references/products/dashboard.md",
     f"skills/{SKILL_NAME}/references/products/web-application.md",
     f"skills/{SKILL_NAME}/references/products/mobile-application.md",
-    f"skills/{SKILL_NAME}/references/products/wordpress-plugin-settings.md",
+    f"skills/{SKILL_NAME}/references/products/wordpress-plugin.md",
     f"skills/{SKILL_NAME}/references/specialist-routing.md",
     f"skills/{SKILL_NAME}/references/discovery-and-profile.md",
     f"skills/{SKILL_NAME}/references/existing-product-audit.md",
@@ -127,7 +127,7 @@ for product_id in [
     "dashboard",
     "web-application",
     "mobile-application",
-    "wordpress-plugin-settings",
+    "wordpress-plugin",
     "generic-product-ui",
 ]:
     if product_id not in product_ids:
@@ -442,7 +442,7 @@ for required_id in [
     "dashboard-product-routing",
     "web-application-product-routing",
     "mobile-application-product-routing",
-    "wordpress-plugin-settings-product-routing",
+    "wordpress-plugin-product-routing",
     "multi-product-routing",
 ]:
     if required_id not in ids:
