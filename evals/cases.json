@@ -1,5 +1,5 @@
 {
-  "version": "2.8.0",
+  "version": "3.0.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -640,6 +640,81 @@
         "keeps authorization business rules and validation outside appearance configuration",
         "preserves preview validation publish rollback and safe fallback behavior",
         "explains the safe design-system source to resolved-runtime-token boundary"
+      ]
+    },
+    {
+      "id": "real-world-dashboard-evaluation",
+      "type": "positive",
+      "fixture": "real-world-dashboard",
+      "prompt": "Evaluate and improve this production-like support operations dashboard. Keep queue/SLA/business semantics intact, reduce operator disruption, and use the current UI/UX Skill architecture rather than a generic dashboard template.",
+      "invariants": [
+        "classifies the product as dashboard with operational primary mode and monitoring-noc secondary mode",
+        "loads only relevant Dashboard local packs Shared Rules and Design System modules",
+        "treats the work queue SLA ownership live updates and bulk scope as primary operational concerns",
+        "identifies stale disconnected and disruptive live-update behavior instead of focusing only on visual polish",
+        "uses density component-state and semantic-token contracts without weakening target or focus clarity",
+        "preserves business attributes and data meaning",
+        "covers responsive and accessibility risks and reports rendered validation limitations rather than inventing evidence"
+      ]
+    },
+    {
+      "id": "real-world-website-evaluation",
+      "type": "positive",
+      "fixture": "real-world-website",
+      "prompt": "Evaluate and improve this production-like bilingual service-business website. Fix information architecture, trust, contact conversion, semantics, responsive/RTL behavior, and design-system quality without fabricating proof.",
+      "invariants": [
+        "classifies the product as website rather than web-application",
+        "loads Website Product Pack plus relevant navigation forms state accessibility responsive and design-system modules",
+        "identifies visitor-job navigation vague hero fake-looking unsupported proof and overlong lead-form problems",
+        "does not fabricate testimonials metrics certifications or conversion evidence",
+        "preserves semantic content SEO-aware hierarchy responsive media and bilingual RTL concerns",
+        "uses typography color and component-state contracts instead of page-specific raw styling",
+        "reports rendered performance accessibility and visual validation limitations rather than claiming unperformed checks"
+      ]
+    },
+    {
+      "id": "real-world-web-app-evaluation",
+      "type": "positive",
+      "fixture": "real-world-web-app",
+      "prompt": "Evaluate and improve this production-like authenticated customer-management web application. Preserve routes, permissions and data meaning while fixing browser state, unsaved work, save truthfulness, session recovery, destructive actions and responsive behavior.",
+      "invariants": [
+        "classifies the product as web-application rather than website",
+        "loads Web Application Product Pack plus relevant forms state destructive accessibility responsive and design-system modules",
+        "identifies missing URL state unsaved-work loss false saved feedback session-return and modal-focus risks",
+        "does not replace application semantics with generic marketing or mobile patterns",
+        "preserves permissions routes API contracts and user data",
+        "uses semantic tokens and reusable component-state contracts rather than scattered raw styles",
+        "covers narrow-layout recovery and reports browser/render validation limitations honestly"
+      ]
+    },
+    {
+      "id": "real-world-mobile-evaluation",
+      "type": "positive",
+      "fixture": "real-world-mobile",
+      "prompt": "Evaluate and improve this production-like field-service mobile app for iOS and Android. It must handle camera permission, weak connectivity, background upload, dark theme, gestures, Persian/English content and platform-specific behavior.",
+      "invariants": [
+        "classifies the product as mobile-application and loads Shared Mobile UX cross-platform iOS and Android packs",
+        "loads only relevant Shared Rules and Design System typography theme state responsive and component-state modules",
+        "identifies premature permission request generic upload state keyboard/text-scaling dark-theme and gesture-only action risks",
+        "preserves platform-specific back dismiss system UI and permission semantics rather than forcing screenshot identity",
+        "routes Persian-facing language validation to persian-writing while keeping RTL architecture local",
+        "uses mobile-safe theme typography and product variants without duplicating full platform design systems",
+        "reports device/render accessibility validation limitations instead of claiming unperformed testing"
+      ]
+    },
+    {
+      "id": "real-world-wordpress-evaluation",
+      "type": "positive",
+      "fixture": "real-world-wordpress",
+      "prompt": "Evaluate and improve this production-like WordPress integration plugin inside wp-admin. Preserve WordPress capability semantics while fixing settings IA, credentials, notices, sync status, reset scope, Multisite behavior and design-system consistency.",
+      "invariants": [
+        "classifies the product as wordpress-plugin",
+        "loads WordPress main pack plus settings onboarding-integrations diagnostics-operations and multisite-admin when relevant",
+        "loads only relevant Shared Rules and host-compatible Design System modules",
+        "identifies role-name capability misuse false connected status global-notice overuse blocking sync and ambiguous reset scope",
+        "preserves wp-admin host mental model capability security and site-vs-network scope",
+        "distinguishes stored credential connection health background job state reset delete and uninstall semantics",
+        "reports wp-admin rendered accessibility and responsive validation limitations rather than inventing evidence"
       ]
     }
   ]
