@@ -9,7 +9,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL_NAME = "production-dashboard-ui-ux-skill"
+SKILL_NAME = "ui-ux-skill"
 VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 
 def copy_file(src: Path, dst: Path) -> None:
