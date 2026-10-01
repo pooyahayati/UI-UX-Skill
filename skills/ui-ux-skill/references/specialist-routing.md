@@ -11,7 +11,7 @@ The Skill may also route narrowly scoped work to lower-level specialist Skills. 
 
 When multiple Skills are active, use this precedence:
 
-`Higher-level Engineering Head -> Production Dashboard UI/UX Head -> Lower-level Specialist`
+`Higher-level Engineering Head -> UI/UX Head -> Lower-level Specialist`
 
 A lower-level specialist MUST NOT silently override:
 
