@@ -76,7 +76,7 @@ Claude Code:
 Canonical repository: **pooyahayati/UI-UX-Skill**  
 Canonical Skill slug: **`ui-ux-skill`**
 
-GitHub Releases are tag-driven, so the latest published Release can temporarily lag behind the current source version.
+GitHub Releases are published automatically from the current `VERSION` after validated changes reach `main`.
 
 ## Author
 
