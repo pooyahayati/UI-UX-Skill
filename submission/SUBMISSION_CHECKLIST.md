@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for UI/UX Skill v3.1.0.
+Prepared for UI/UX Skill v3.1.1.
 
 ## Package
 
