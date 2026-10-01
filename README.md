@@ -1,7 +1,7 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-2.7.0-blue)
+![Version](https://img.shields.io/badge/version-2.8.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production interfaces.
@@ -12,6 +12,7 @@ It can work independently or as a UI/UX specialist under a higher-level engineer
 
 - mandatory product routing before product-specific design decisions
 - shared cross-product UI contracts for navigation, forms, feedback, state/recovery, destructive actions, accessibility, responsive adaptation, motion, and content hierarchy
+- hardened local design system for tokens, typography, themes, density, component states, responsive/product variants, and migration governance
 - websites with deep local rules for IA, trust, conversion, content/SEO UX, accessibility, responsive media, and performance
 - dashboards with local executive, analytical, operational, monitoring/NOC, CRM/pipeline, and admin-management modes
 - web applications with local browser/state/workflow UX rules
@@ -71,6 +72,8 @@ Claude Code:
 - **[Product Routing](skills/ui-ux-skill/references/product-routing.md)** — product classification and multi-route rules
 - **[Shared UI Registry](skills/ui-ux-skill/shared-rules.json)** — machine-readable cross-product UI rule modules
 - **[Shared UI Routing](skills/ui-ux-skill/references/shared-product-rules.md)** — scope loading, precedence, and non-duplication policy
+- **[Design System Registry](skills/ui-ux-skill/design-system.json)** — machine-readable local design-system modules
+- **[Design System Architecture](skills/ui-ux-skill/references/design-system-architecture.md)** — token hierarchy, themes, states, variants, governance, and runtime boundaries
 - **[Specialist Registry](skills/ui-ux-skill/specialists.json)** — machine-readable Specialist sources and triggers
 - **[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)** — Head/Specialist authority, fallback, and freshness rules
 - **[Contributing](CONTRIBUTING.md)** — contribution workflow
@@ -78,7 +81,7 @@ Claude Code:
 
 ## Current source
 
-**v2.7.0**
+**v2.8.0**
 
 Canonical repository: **pooyahayati/UI-UX-Skill**  
 Canonical Skill slug: **`ui-ux-skill`**
