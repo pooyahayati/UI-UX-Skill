@@ -399,9 +399,14 @@ for term in [
 
 stage2_start = roadmap.find("## Stage 2 — WordPress Plugin Product Pack")
 stage3_start = roadmap.find("## Stage 3 — Dashboard Product Pack")
+stage4_start = roadmap.find("## Stage 4 — Shared Product UI Rules")
 stage2_block = roadmap[stage2_start:stage3_start] if stage2_start >= 0 and stage3_start > stage2_start else ""
 if "**Status:** Completed" not in stage2_block:
-    error("Stage 2 — WordPress Plugin Product Pack must be Completed for v2.5")
+    error("Stage 2 — WordPress Plugin Product Pack must be Completed")
+
+stage3_block = roadmap[stage3_start:stage4_start] if stage3_start >= 0 and stage4_start > stage3_start else ""
+if "**Status:** Completed" not in stage3_block:
+    error("Stage 3 — Dashboard Product Pack must be Completed for v2.6")
 
 website_pack = (SKILL / "references/products/website.md").read_text(encoding="utf-8")
 for term in [
