@@ -2,24 +2,13 @@
 
 Treat Persian RTL and English LTR as first-class modes.
 
-## Persian language specialist
+## Persian language routing
 
-When Persian-facing UI is in scope, `persian-writing` is a REQUIRED specialist.
+When Persian-facing language work is in scope, route it to the REQUIRED `persian-writing` specialist defined in `specialist-routing.md`.
 
-Canonical source:
+This reference does not duplicate Persian-language rules. It remains responsible only for UI/UX direction architecture, mixed-direction layout behavior, responsive behavior, and typography-system integration.
 
-`https://github.com/ali2000hos/persian-writing`
-
-Use it for Persian wording, register, orthography, نیم‌فاصله/ZWNJ, Persian ی/ک, punctuation, digit conventions, mixed Persian/English text, and user-facing copy QA.
-
-This reference remains authoritative for UI direction architecture, layout behavior, responsive RTL/LTR behavior, component structure, and typography-system integration. If language guidance and layout guidance overlap, keep ownership separate:
-
-- Persian linguistic correctness -> `persian-writing`
-- UI/UX layout and direction architecture -> this Skill
-
-If `persian-writing` is unavailable, do not claim Persian language QA passed. Report:
-
-`Persian language QA: Unverified — required specialist unavailable.`
+Head-level UI/UX constraints take precedence over any overlapping lower-level specialist guidance.
 
 ## Direction architecture
 
