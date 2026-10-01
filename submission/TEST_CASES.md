@@ -1,6 +1,6 @@
 # Public Plugin Submission Test Cases
 
-Prepared for UI/UX Skill v2.7.0.
+Prepared for UI/UX Skill v2.8.0.
 
 Exactly five positive and three negative cases are provided.
 
@@ -22,7 +22,7 @@ Exactly five positive and three negative cases are provided.
 - Runs recommendation-first discovery.
 - Establishes native Persian RTL, responsive priorities, typography, palette, theme, navigation, localization decisions, Data Trust context, and the correct Dashboard mode behavior.
 - Produces an approved or delegated Design Profile before broad rollout.
-- Uses semantic tokens and representative rendered/visual validation when tooling is available.
+- Uses semantic tokens, loads relevant Design System modules, defines component states/theme/density contracts, and uses representative rendered/visual validation when tooling is available.
 
 **Expected result format**
 
@@ -47,7 +47,7 @@ None required. A blank or sample frontend repository is sufficient.
 - Checks working-tree state when Git is available.
 - Preserves routes, permissions, data semantics, and browser behavior.
 - Reviews application shell, navigation, forms, interrupted workflows, responsive behavior, and first-class UI states.
-- Uses rendered/regression evidence when tooling is available.
+- Loads relevant Design System modules for reusable shell/forms/states and uses rendered/regression evidence when tooling is available.
 - Does not treat the application as a marketing website.
 
 **Expected result format**
@@ -74,7 +74,7 @@ Any existing routed/authenticated web application with at least one protected us
 - Handles mobile navigation, touch, keyboard, safe areas, permissions, connectivity, lifecycle, and background work.
 - Does not shrink a desktop layout into a mobile screen.
 - Routes Persian-facing language work to `persian-writing`.
-- Includes mobile-specific responsive/accessibility/runtime validation.
+- Includes mobile-specific responsive/accessibility/runtime validation and preserves the Design System contract through platform variants.
 
 **Expected result format**
 
@@ -103,7 +103,7 @@ None required. A representative mobile project or product brief is sufficient.
 - Distinguishes site-level and Network Admin scope when Multisite is relevant.
 - Makes save scope, validation, connection state, and dangerous actions clear.
 - Routes Persian-facing language work to the REQUIRED `persian-writing` specialist.
-- Validates the plugin surface inside the actual WordPress admin shell when browser tooling is available.
+- Validates the plugin surface inside the actual WordPress admin shell and preserves host-compatible Design System variants when browser tooling is available.
 
 **Expected result format**
 
@@ -133,7 +133,7 @@ A WordPress plugin with one or more settings/admin pages, or a representative se
 - Preserves semantic structure, useful internal linking, responsive media, accessibility, and performance-sensitive behavior.
 - Preserves semantic heading/navigation structure and content discoverability.
 - Routes Persian-facing language work to the REQUIRED `persian-writing` specialist.
-- Validates representative desktop/mobile, accessibility, form states, and rendered output.
+- Validates representative desktop/mobile, theme/component states, accessibility, form states, and rendered output.
 
 **Expected result format**
 
