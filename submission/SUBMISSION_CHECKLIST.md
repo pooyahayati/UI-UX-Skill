@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for UI/UX Skill v2.3.0.
+Prepared for UI/UX Skill v2.4.0.
 
 ## Package
 
@@ -30,6 +30,7 @@ Prepared for UI/UX Skill v2.3.0.
 - [x] Operational real-time/search/concurrency patterns
 - [x] Machine-readable product routing registry
 - [x] Required Product Packs for websites, dashboards, web applications, mobile applications, and WordPress plugin UI
+- [x] Deep local Website rules for IA, trust, conversion, content/SEO UX, accessibility, responsive media, privacy/consent, and performance
 - [x] Local iOS, Android, and cross-platform mobile design rule packs
 - [x] Local Web Application browser/state/workflow design rules
 - [x] Persian-writing is the only external specialist

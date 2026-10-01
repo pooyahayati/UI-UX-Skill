@@ -2,6 +2,22 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [2.4.0] - 2026-10-01
+
+### Website Product Pack Hardening
+
+- Added a root `ROADMAP.md` with an ordered product-design hardening plan through real-world evaluation.
+- Deepened `website.md` from a general public-site guide into a full local Product Pack.
+- Added website subtype and visitor-job classification for corporate, service, product/brand, personal-brand, publication/content, and campaign/landing surfaces.
+- Expanded website information architecture, navigation, mega-menu, breadcrumb, homepage, first-viewport, landing-page, service/detail, and editorial-content rules.
+- Added local conversion, CTA, forms/lead-generation, contact/support, trust, testimonials, case-study, pricing, and non-manipulative interaction rules.
+- Expanded SEO-aware UX with semantic content structure, title/page-title alignment, internal linking, breadcrumbs, visible-content/structured-data alignment, and search-result presentation considerations.
+- Expanded responsive behavior, responsive media/art direction, video, progressive enhancement, third-party script, and performance UX guidance.
+- Added WCAG-aware website interaction rules covering focus, target size, forms, menus, zoom/text scaling, reduced motion, consistent help, and recovery states.
+- Added privacy/consent, legal/footer, multilingual, Persian/RTL, and website edge-page guidance.
+- Added a comprehensive website QA matrix and explicit evidence boundaries for conversion, SEO, accessibility, trust, and performance claims.
+- Added behavioral evals and validators that enforce critical Website Product Pack sections.
+
 ## [2.3.0] - 2026-10-01
 
 ### Local Web and Mobile Design Expansion

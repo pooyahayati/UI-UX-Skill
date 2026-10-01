@@ -166,6 +166,27 @@ if mobile_main.is_file():
         if term.casefold() not in mobile_text:
             error(f"mobile-application.md missing required local routing term: {term}")
 
+website_main = SKILL / "references" / "products" / "website.md"
+if website_main.is_file():
+    website_text = website_main.read_text(encoding="utf-8").casefold()
+    for term in [
+        "website subtype and visitor job",
+        "information architecture",
+        "homepage architecture",
+        "first viewport / hero",
+        "conversion ux",
+        "trust and credibility",
+        "seo-aware information architecture",
+        "responsive media and art direction",
+        "performance ux",
+        "accessibility",
+        "localization, persian, and rtl websites",
+        "website qa matrix",
+        "do not depend on an external design skill",
+    ]:
+        if term.casefold() not in website_text:
+            error(f"website.md missing local Website Product Pack section: {term}")
+
 web_main = SKILL / "references" / "products" / "web-application.md"
 if web_main.is_file():
     web_text = web_main.read_text(encoding="utf-8").casefold()

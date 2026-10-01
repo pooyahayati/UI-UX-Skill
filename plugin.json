@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ui-ux",
-  "version": "2.3.0",
-  "description": "Product-aware UI/UX Head Skill with local design packs for web, mobile, dashboards, websites, and WordPress plugin UI.",
+  "version": "2.4.0",
+  "description": "Product-aware UI/UX Head Skill with deep local design packs for websites, web apps, mobile, dashboards, and WordPress plugin UI.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://pooyahayati.com"
@@ -36,12 +36,12 @@
       "interface": {
         "displayName": "UI/UX Skill",
         "shortDescription": "UI/UX Head Skill",
-        "longDescription": "Design, audit, improve, and validate production interfaces with mandatory product-type routing. Supports websites, dashboards, web applications, mobile applications, and WordPress plugin/admin UI. Web-application design rules are local, including browser state, drafts, long-running work, concurrency, overlays, keyboard/focus, session UX, and accessibility interaction contracts. Mobile design is local through shared, iOS/iPadOS, Android, and cross-platform rule packs. Persian-facing language validation is delegated to the external persian-writing specialist.",
+        "longDescription": "Design, audit, improve, and validate production interfaces with mandatory product-type routing. The Website Product Pack now includes local rules for website subtype and visitor jobs, information architecture, navigation, homepage/landing composition, trust/proof, conversion/forms, content hierarchy, SEO-aware semantics, responsive media, accessibility, performance UX, privacy/consent, multilingual/RTL behavior, and website QA. Web-application and mobile design rules remain local, while Persian-facing language validation is delegated to persian-writing.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
         "capabilities": [
           "Route UI work by product type before design",
-          "Design websites and public-facing product sites",
+          "Design websites with local IA trust conversion content SEO accessibility and performance rules",
           "Design dashboards and operational data UI",
           "Design web application product interfaces with local browser and workflow rules",
           "Design mobile applications with local iOS Android and cross-platform rules",

@@ -25,6 +25,7 @@ def require(path: str) -> Path:
 required = [
     "README.md",
     "CHANGELOG.md",
+    "ROADMAP.md",
     "INSTALL.md",
     "LICENSE",
     "VERSION",
@@ -204,7 +205,7 @@ for ref in [
     "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
-        error(f"SKILL.md does not route to required v2.3 reference: {ref}")
+        error(f"SKILL.md does not route to required v2.4 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -329,6 +330,7 @@ if len(readme.splitlines()) > 120:
     error(f"README should stay concise (<=120 lines); got {len(readme.splitlines())}")
 
 for term in [
+    "[Roadmap](ROADMAP.md)",
     "[How to Install / Update](INSTALL.md)",
     "[Updates & Changelog](CHANGELOG.md)",
     "[Skill Specification](skills/ui-ux-skill/SKILL.md)",
@@ -372,6 +374,38 @@ if "Public-facing business website" not in tests:
     error("Submission tests do not cover the website Product Pack")
 if "Unsafe owner customization" not in tests:
     error("Submission tests do not cover unsafe runtime customization")
+
+roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+for term in [
+    "Stage 1 — Website Product Pack",
+    "Stage 2 — WordPress Plugin Product Pack",
+    "Stage 3 — Dashboard Product Pack",
+    "Stage 4 — Shared Product UI Rules",
+    "Stage 5 — Design System Hardening",
+    "Stage 6 — Real-World Product Evaluation",
+]:
+    if term not in roadmap:
+        error(f"ROADMAP missing required stage: {term}")
+
+website_pack = (SKILL / "references/products/website.md").read_text(encoding="utf-8")
+for term in [
+    "Website subtype and visitor job",
+    "Website decision brief",
+    "Navigation",
+    "Homepage architecture",
+    "First viewport / hero",
+    "Conversion UX",
+    "Trust and credibility",
+    "SEO-aware information architecture",
+    "Responsive media and art direction",
+    "Performance UX",
+    "Accessibility",
+    "Privacy, consent, and preference UX",
+    "Localization, Persian, and RTL websites",
+    "Website QA matrix",
+]:
+    if term.casefold() not in website_pack.casefold():
+        error(f"Website Product Pack Hardening missing: {term}")
 
 profile = (SKILL / "references/discovery-and-profile.md").read_text(encoding="utf-8")
 for term in [
@@ -434,8 +468,8 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 20:
-    error("Behavioral eval manifest should contain at least 20 cases for v2.3")
+if len(cases) < 25:
+    error("Behavioral eval manifest should contain at least 25 cases for v2.4")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
@@ -448,6 +482,8 @@ for required_id in [
     "persian-specialist-routing",
     "specialist-freshness",
     "website-product-routing",
+    "website-ia-trust-conversion",
+    "website-content-accessibility-performance",
     "dashboard-product-routing",
     "web-application-product-routing",
     "mobile-application-product-routing",
@@ -459,7 +495,7 @@ for required_id in [
     "multi-product-routing",
 ]:
     if required_id not in ids:
-        error(f"Behavioral eval missing v2.3 case: {required_id}")
+        error(f"Behavioral eval missing v2.4 case: {required_id}")
 if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):
