@@ -61,17 +61,20 @@
       ]
     },
     {
-      "id": "wordpress-plugin-settings",
-      "label": "WordPress Plugin Settings / Admin UI",
+      "id": "wordpress-plugin",
+      "label": "WordPress Plugin / Admin UI",
       "triggers": [
+        "WordPress plugin",
         "WordPress plugin settings",
         "WordPress plugin admin page",
         "WordPress plugin configuration UI",
         "wp-admin plugin settings",
-        "plugin onboarding/settings screen"
+        "plugin onboarding/settings screen",
+        "plugin diagnostics/status screen",
+        "plugin tools/admin workflow"
       ],
       "required_references": [
-        "references/products/wordpress-plugin-settings.md"
+        "references/products/wordpress-plugin.md"
       ]
     },
     {
@@ -96,7 +99,7 @@
       "exclusions": [
         "authenticated web application whose primary purpose is doing work inside an app",
         "mobile application",
-        "WordPress plugin settings/admin UI"
+        "WordPress plugin/admin UI"
       ],
       "required_references": [
         "references/products/website.md"
