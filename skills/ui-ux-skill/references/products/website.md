@@ -17,6 +17,27 @@ Typical examples:
 - SEO-driven content sites
 - public product/brand websites
 
+## Shared rule loading
+
+After this Product Pack is active, read `../shared-product-rules.md` and `../../shared-rules.json`.
+
+For broad website work normally load:
+
+- `../shared/navigation-wayfinding.md`
+- `../shared/feedback-status.md`
+- `../shared/state-recovery.md`
+- `../shared/accessibility-interaction.md`
+- `../shared/responsive-adaptation.md`
+- `../shared/content-hierarchy-progressive-disclosure.md`
+
+Also load:
+
+- `../shared/forms-data-entry.md` when forms/lead generation are in scope;
+- `../shared/destructive-high-impact-actions.md` for consequential account/consent/delete actions;
+- `../shared/motion.md` when motion is materially in scope.
+
+This Website Product Pack specializes those contracts for public-facing discovery, trust, content, conversion, SEO-aware structure, media, and performance. Do not duplicate the full Shared Rule here.
+
 ## Website vs web application
 
 Use `website` when the primary experience is public-facing communication, discovery, content, trust, or conversion.
@@ -166,39 +187,32 @@ A visitor should be able to predict where a navigation item leads from its label
 
 ## Navigation
 
-Navigation is an orientation system, not a decorative header.
+Read `../shared/navigation-wayfinding.md` for the cross-product navigation contract.
 
-Define:
+Website-specific navigation must additionally resolve:
 
-- primary navigation;
-- utility navigation when needed;
-- mobile navigation behavior;
-- current-location indication;
+- primary and utility navigation;
+- public information architecture;
 - language switching when multilingual;
-- search entry point when search is important;
-- account/app entry point when a public site connects to a product;
-- sticky behavior only when useful.
+- search entry point when content volume warrants it;
+- account/app entry point when the website connects to a signed-in product;
+- sticky behavior only when it improves public-site wayfinding.
 
-Use descriptive labels rather than vague labels such as "Solutions" when a clearer category is available.
+Use descriptive public-facing labels rather than internal organizational terminology.
 
-Do not hide high-value destinations solely to preserve visual minimalism.
+Do not hide high-value public destinations solely to preserve visual minimalism.
 
 ### Mega menus
 
 Use a mega menu only when information volume and hierarchy justify it.
 
-A mega menu should:
+A mega menu should group destinations meaningfully, remain keyboard/focus usable, work at zoom and smaller desktop widths, and have an intentional mobile replacement.
 
-- group destinations meaningfully;
-- make categories scannable;
-- avoid becoming a sitemap inside a floating panel;
-- provide usable keyboard/focus behavior;
-- remain practical at zoom and smaller desktop widths;
-- have an intentional mobile replacement rather than shrinking the desktop menu.
+Do not turn a mega menu into an undifferentiated sitemap.
 
 ### Breadcrumbs
 
-Use breadcrumbs when hierarchy is deep enough that location context helps.
+Use breadcrumbs when the public content hierarchy is deep enough that location context helps.
 
 Breadcrumbs should represent a useful user-facing hierarchy, not blindly mirror URL segments.
 
@@ -319,22 +333,16 @@ For long pages, support scanning with meaningful headings rather than excessive 
 
 ## Content hierarchy and scanning
 
-Use typography, spacing, grouping, media, and semantic sections to support scanning.
+Read `../shared/content-hierarchy-progressive-disclosure.md` for the cross-product hierarchy contract.
 
-Prioritize:
+Website specialization:
 
-- clarity before novelty;
-- meaningful headings;
-- useful subheads;
-- concise supporting text;
-- visible relationships;
-- useful visual evidence;
-- accessible calls to action;
-- content order based on visitor questions.
+- order sections around visitor questions and uncertainty;
+- keep editorial/content pages readable before promotional;
+- use public-facing headings that remain meaningful for scanning and semantic structure;
+- let proof, media, CTA, and supporting content earn their prominence.
 
-Do not turn every content block into a rounded card.
-
-Do not add labels, numbers, dividers, badges, or decorative metadata unless they communicate structure.
+Do not convert every public content section into a rounded card or decorate hierarchy with badges/dividers that add no meaning.
 
 ## Visual direction
 
@@ -446,35 +454,19 @@ Do not use:
 
 ## Forms and lead generation
 
-Treat forms as high-friction decision points.
+Read `../shared/forms-data-entry.md` and `../shared/feedback-status.md`.
 
-Ask only for information needed at that stage.
+Website lead-generation specialization:
 
-Use:
+- ask only for information needed at the current commitment level;
+- explain privacy/use context when collecting personal or sensitive information;
+- align form length with visitor readiness and value offered;
+- preserve the public conversion path after validation failure;
+- make success state and response/next-step expectation explicit.
 
-- persistent visible labels;
-- appropriate input types;
-- clear required/optional status;
-- grouped related fields;
-- useful defaults;
-- autofill where appropriate;
-- specific validation messages;
-- preserved valid values after errors;
-- explicit privacy/use context when collecting sensitive or personal information;
-- clear submit state;
-- clear success and next step.
+For multi-step lead forms, preserve progress and entered data and clarify when information is actually submitted.
 
-For multi-step forms:
-
-- show meaningful progress;
-- avoid unnecessary steps;
-- preserve entered data;
-- allow safe back navigation;
-- clarify when data is actually submitted.
-
-Do not make placeholder text carry the only label.
-
-Do not erase the form after a failed submission.
+Do not force visitors to provide contact details before they understand what they receive.
 
 ## Contact and support
 
@@ -675,32 +667,19 @@ Avoid:
 
 ## Responsive behavior
 
-Design for content priority, not device labels or desktop shrinkage.
+Read `../shared/responsive-adaptation.md`.
 
-Define breakpoint/reflow behavior when content or interaction stops working.
+Website-specific responsive decisions must additionally preserve:
 
-Resolve:
+- first-viewport purpose;
+- public navigation and language switching;
+- reading width;
+- CTA hierarchy;
+- media focal point/art direction;
+- comparison/pricing readability;
+- footer/legal discoverability.
 
-- navigation replacement;
-- first-viewport composition;
-- content order;
-- line length;
-- media crop/focal point;
-- CTA placement;
-- multi-column collapse;
-- comparison/table behavior;
-- cards/grids;
-- sticky elements;
-- forms;
-- footer density;
-- touch targets;
-- overlays;
-- long words/URLs;
-- zoom and text scaling.
-
-Do not preserve desktop spacing ratios mechanically on narrow screens.
-
-Do not reorder content visually in a way that creates a confusing semantic/keyboard order.
+Do not preserve desktop spacing ratios mechanically or reorder content in a way that damages semantic/keyboard order.
 
 ## Responsive media and art direction
 
@@ -810,32 +789,20 @@ Provide graceful fallback for:
 
 ## Accessibility
 
-Accessibility applies to the entire visitor journey.
+Read `../shared/accessibility-interaction.md` for the cross-product interaction floor and `../accessibility.md` for QA/evidence.
 
-Validate:
+Website specialization must additionally validate:
 
-- semantic landmarks;
-- heading hierarchy;
-- keyboard navigation;
-- visible focus;
-- focus not hidden behind sticky headers/overlays;
-- text/background contrast;
-- non-text control contrast;
-- text scaling and zoom;
-- target size/spacing;
-- form labels and error identification;
-- descriptive link purpose;
-- image alternatives;
-- captions/transcripts where relevant;
-- reduced motion;
-- menus/dialogs;
-- skip/navigation landmarks;
-- consistent help/contact placement where repeated;
-- no unnecessary repeated data entry in a single flow.
+- semantic landmarks and heading structure for public content;
+- skip/navigation landmarks where appropriate;
+- meaningful link purpose;
+- accessible menus and public search;
+- forms/lead conversion;
+- image alternatives and media captions/transcripts;
+- sticky public headers that do not obscure focus;
+- public content at zoom/text expansion.
 
-Use native semantic elements before recreating standard controls.
-
-Do not claim WCAG compliance without sufficient evidence and scope.
+Do not claim WCAG compliance without sufficient evidence and defined scope.
 
 ## Menus and interactive navigation accessibility
 
@@ -852,19 +819,14 @@ Mobile navigation should have a clear open/close model and should not trap focus
 
 ## Motion
 
-Use motion to explain hierarchy, continuity, attention, or direct manipulation.
+Read `../shared/motion.md`.
 
-Non-user-triggered motion should be rare and purposeful.
+Website specialization:
 
-Avoid:
-
-- every-section fade/slide reveals;
-- perpetual decorative motion;
-- motion required to understand content;
-- animations that delay reading;
-- scroll effects that hijack navigation.
-
-Respect reduced-motion preferences.
+- non-user-triggered motion should be rare and purposeful;
+- avoid scroll hijacking and reveal animation required to access content;
+- decorative background motion must not harm reading or performance;
+- public-site animation should not delay discovery or conversion.
 
 A website does not become more premium simply by moving more.
 
@@ -930,20 +892,19 @@ Do not treat the RTL version as a mirrored screenshot.
 
 ## Error, unavailable, and edge pages
 
-Website quality includes pages outside the ideal journey.
+Read `../shared/state-recovery.md`.
 
-Design representative:
+Website-specific recovery should cover representative:
 
 - 404/not found;
 - unavailable/maintenance when applicable;
-- form failure;
+- failed public form submission;
 - empty search results;
-- no content/category state;
-- removed/expired content when relevant.
+- removed/expired public content.
 
-Every edge page should help the visitor recover.
+Every edge page should preserve useful public navigation and a recovery path.
 
-A playful 404 page is not useful if it removes navigation and recovery.
+A playful 404 page is not useful if it removes orientation and recovery.
 
 ## Website QA matrix
 
