@@ -2,124 +2,545 @@
 
 Use only when the active product route includes `dashboard`.
 
-This Product Pack specializes the UI/UX Head for operational, analytical, monitoring, CRM, and data-heavy dashboards.
+This Product Pack owns shared dashboard UX and routes the current dashboard to one or more local Dashboard modes.
 
-Read the detailed dashboard reference when dashboard components or workflows are in scope:
+Dashboard design knowledge is maintained locally in this repository. Do not depend on an external design Skill for dashboard design.
+
+Read the shared detailed component/pattern reference when dashboard components or workflows are in scope:
 
 `../dashboard-patterns.md`
 
+## Required Dashboard mode routing
+
+Before broad dashboard design decisions, identify the primary Dashboard mode.
+
+### Executive
+
+Load:
+
+`dashboard/executive.md`
+
+Use when the primary job is strategic oversight, target/variance review, portfolio comparison, risk/opportunity review, or executive decision support.
+
+### Analytical
+
+Load:
+
+`dashboard/analytical.md`
+
+Use when the primary job is exploration, comparison, segmentation, diagnosis, drill-down, hypothesis testing, or understanding patterns.
+
+### Operational
+
+Load:
+
+`dashboard/operational.md`
+
+Use when users repeatedly prioritize queues, process records, manage SLA/time-sensitive work, perform bulk actions, or run daily operations.
+
+### Monitoring / NOC
+
+Load:
+
+`dashboard/monitoring-noc.md`
+
+Use for real-time/near-real-time monitoring, observability, NOC/SOC-like situational awareness, incident response, wallboards, or system/service health.
+
+### CRM / Pipeline
+
+Load:
+
+`dashboard/crm-pipeline.md`
+
+Use for leads, deals, opportunities, account/customer lifecycle, pipeline stages, forecasting, ownership, and next-action work.
+
+### Admin / Management
+
+Load:
+
+`dashboard/admin-management.md`
+
+Use when the dashboard primarily manages users, organizations, permissions, policies, configuration, governance, or administrative operations.
+
+A dashboard can combine modes.
+
+Examples:
+
+- executive overview with a drill-down analytical page -> primary `executive`, secondary `analytical`;
+- support operations dashboard with live incident health -> primary `operational`, secondary `monitoring-noc`;
+- sales manager dashboard -> primary `crm-pipeline`, secondary `executive`;
+- system admin dashboard with live health -> primary `admin-management`, secondary `monitoring-noc`.
+
+Always identify one primary Dashboard mode for the current deliverable.
+
+Do not load every mode by default.
+
+## Dashboard decision brief
+
+Before broad visual design, establish:
+
+- primary Dashboard mode;
+- secondary modes, if any;
+- primary users/roles;
+- primary decision or job;
+- decision cadence;
+- critical metrics/entities;
+- attention/exception model;
+- default time horizon;
+- filter scope;
+- data freshness expectations;
+- source/provenance needs;
+- primary actions;
+- drill-down path;
+- live-update behavior if applicable;
+- personalization/saved-view needs;
+- responsive priorities;
+- representative states for validation.
+
+Do not begin from a fixed collection of KPI cards and charts.
+
 ## Primary objective
 
-A dashboard exists to help a user understand state, notice change, make decisions, and act.
+A dashboard exists to reduce the time and uncertainty required to understand state, detect meaningful change, make a decision, and act.
 
-Before selecting components, establish:
+Before selecting components, answer:
 
-- what requires attention;
-- what changed;
-- what is abnormal;
-- what decision the user is making;
-- what action follows;
-- what can safely wait.
+- What requires attention?
+- What changed?
+- What is abnormal?
+- What decision is being made?
+- What action follows?
+- What can safely wait?
+- How trustworthy/current is the data?
 
-Do not begin from a fixed card/chart template.
+Different Dashboard modes answer these questions differently.
 
-## Information hierarchy
+## Decision hierarchy
 
-Prioritize by operational consequence and decision frequency.
+Prioritize content by decision consequence and frequency.
 
-Use summary metrics only when they answer a real question.
+A visual is important only if it contributes to a real decision or understanding task.
 
-Avoid equal visual weight for unrelated information.
+Avoid giving equal visual weight to unrelated metrics.
 
-A dashboard homepage should not become a decorative report when users primarily need a work queue, alert stream, table, or next action.
+Do not fill available layout space merely because data exists.
 
-## Data trust
+The most prominent element may be:
 
-Where relevant, make clear:
+- an exception;
+- a work queue;
+- an alert;
+- a trend;
+- a target variance;
+- a pipeline;
+- a critical table;
+- a single metric.
+
+It does not have to be a KPI card.
+
+## Audience and use context
+
+Consider:
+
+- who uses the dashboard;
+- how often;
+- for how long;
+- on what screen;
+- under what time pressure;
+- with what level of domain expertise;
+- whether interaction is expected;
+- whether the dashboard is used in meetings/wallboards/exports.
+
+A monthly executive review and an all-day operator workstation should not share the same density and interaction model merely because they use the same data.
+
+## Data Trust UX
+
+A dashboard must communicate enough context to interpret its data correctly.
+
+Where relevant expose:
 
 - active time range;
 - timezone;
-- filter scope;
-- last updated / freshness;
-- stale, partial, delayed, or disconnected state;
+- last updated;
+- source;
+- refresh cadence;
+- live/stale/delayed/partial state;
 - comparison baseline;
+- active filter scope;
 - metric definition;
-- drill-down path to underlying records.
+- unit/currency;
+- missing-data meaning;
+- forecast/model status;
+- drill-down path.
+
+Do not present stale, partial, modeled, forecast, or sampled data as current observed truth.
+
+Read `../personalization-and-data-ux.md` for deeper Data Trust UX.
+
+## Metric contracts
+
+Important metrics should have a stable contract.
+
+For each important metric, know:
+
+- business definition;
+- numerator/denominator when relevant;
+- aggregation rule;
+- inclusion/exclusion;
+- unit/currency;
+- time window;
+- timezone;
+- source;
+- update cadence;
+- target/baseline;
+- owner.
+
+Do not let the same metric label mean different things across pages without explicit context.
+
+## Targets, baselines, and variance
+
+When a metric is evaluated against something, show the relevant basis:
+
+- target;
+- prior period;
+- forecast;
+- benchmark;
+- budget;
+- threshold;
+- control range.
+
+Avoid red/green variance without explaining what "good" means.
+
+Do not assume higher is always better.
+
+## Filters and analytical context
+
+For global filters:
+
+- make active state visible;
+- communicate scope;
+- identify widgets that are excluded;
+- support clear/reset;
+- preserve/share state intentionally;
+- avoid hidden inherited filters.
+
+For repeated-use workflows, consider:
+
+- saved views;
+- owner/team-published views;
+- recent views;
+- URL/shareable state where useful.
+
+A user should be able to answer:
+
+`What exact slice of data am I looking at?`
+
+## Drill-down and traceability
+
+For important summaries, provide a path toward explanation when the domain supports it.
+
+A typical path may be:
+
+`overview -> segment -> entity/record -> source/activity/context`
+
+Preserve the user's filter/time context during drill-down.
+
+Do not use drill-down merely to hide information that belongs in the primary view.
 
 ## Tables and work queues
 
-Treat operational tables as working surfaces.
+Treat tables as working surfaces.
 
-Resolve when relevant:
+Resolve:
 
-- identifier and key context;
+- row identity;
+- operational columns;
+- status;
+- numeric/metric fields;
 - search scope;
-- filter model;
+- filters;
 - sorting;
-- selection and bulk operations;
+- grouping;
+- selection;
+- bulk operations;
 - row actions;
 - column priority;
 - density;
 - sticky behavior;
-- pagination or virtualization;
+- pagination/virtualization;
 - responsive strategy;
 - saved/published views.
 
-Do not expose database structure merely because fields exist.
+Do not expose database schema just because fields exist.
 
-## Charts
+For semantic/accessibility behavior, preserve real row/column relationships and headers when the table is a data table.
 
-Every chart must have a question.
+## Charts and visualizations
 
-Prefer the simplest representation that answers it.
+Every chart must answer a question.
 
-Preserve analytical meaning in RTL; do not mirror chronological or quantitative semantics blindly.
+Prefer the simplest visual that supports the comparison.
 
-Provide accessible alternatives when exact values or non-visual access matter.
+Use visual encoding deliberately:
 
-## Live dashboards
+- position/length for precise comparison;
+- color for limited semantic/category meaning;
+- shape/marker/text when color alone is insufficient;
+- area/size only when users can interpret it reliably.
 
-For live or near-real-time products, read `../operational-interaction-patterns.md`.
+Avoid:
 
-Protect operator context during incoming updates.
+- 3D charts;
+- decorative gauges;
+- unnecessary series;
+- rainbow palettes;
+- misleading truncation/scales;
+- stacking that hides important values;
+- dual axes that imply unsupported relationships.
 
-Make connection, stale-data, reconnecting, and synchronization states visible when material.
+When exact values matter, provide a table/data alternative or accessible equivalent.
 
-## Roles and authorization
+## Cross-filtering and linked views
 
-Role-aware presentation may change emphasis, defaults, shortcuts, or visible summaries.
+When selecting one visual changes others:
 
-Presentation must follow authorization and must not create capabilities.
+- show selection clearly;
+- distinguish highlight from filter;
+- communicate scope;
+- provide reset;
+- preserve sufficient context.
 
-## Responsive behavior
+Do not create invisible cross-filter behavior.
 
-On smaller screens, preserve decision priority rather than shrinking the desktop dashboard.
+## Alerts and attention
+
+An alert should earn interruption.
+
+Define:
+
+- severity;
+- trigger/baseline;
+- affected scope;
+- owner;
+- required action;
+- acknowledgement semantics;
+- resolved semantics.
+
+Do not use alarm colors for ordinary variation.
+
+Read `../operational-interaction-patterns.md` for real-time, concurrency, alert, bulk-action, and long-running patterns.
+
+## Live and near-real-time dashboards
+
+For live products:
+
+- preserve operator focus/selection;
+- avoid disruptive resorting;
+- expose connection/freshness;
+- distinguish new vs changed data where useful;
+- consider pause/freeze/live controls;
+- choose refresh cadence according to the source and decision.
+
+Do not refresh more frequently than the decision/data requires.
+
+Do not show a "live" indicator when the current data is stale or disconnected.
+
+## Personalization
+
+Personalization should reduce repeated work without making shared dashboards unpredictable.
+
+Possible preferences:
+
+- visible columns;
+- column width/order;
+- density;
+- saved filter/sort/view;
+- default date range;
+- landing dashboard;
+- optional widgets;
+- theme/reduced motion.
+
+Separate:
+
+- personal views;
+- shared/team views;
+- owner/admin-published defaults.
+
+Read `../personalization-and-data-ux.md`.
+
+## Role-aware presentation
+
+Different roles may need different:
+
+- default dashboard;
+- visible summaries;
+- alerts;
+- shortcuts;
+- default filters;
+- table columns;
+- actions.
+
+Presentation must follow authorization.
+
+Do not expose a privileged action because a dashboard layout says the user should see it.
+
+## Empty, partial, stale, and failure states
+
+Distinguish:
+
+- no data exists;
+- no result for search;
+- no result for filters;
+- not configured;
+- permission denied;
+- source unavailable;
+- partial source failure;
+- stale data;
+- delayed data;
+- syncing;
+- failed load.
+
+Do not make all absence look like "0".
+
+Every failure state should communicate:
+
+- what happened;
+- what is affected;
+- what remains trustworthy;
+- what the user can do.
+
+## Loading and refresh
+
+Loading should preserve useful context when safe.
+
+Avoid replacing an entire dashboard with skeletons during small refreshes.
+
+When only one panel refreshes/fails, keep unrelated panels stable.
+
+Do not use animated loading treatment that competes with operational attention.
+
+## Responsive dashboard architecture
+
+On smaller windows, preserve decision priority rather than shrinking the desktop grid.
 
 Choose intentionally between:
 
 - reduced summary;
 - prioritized columns;
 - expandable rows;
-- dedicated record view;
-- deferred secondary analytics;
-- horizontal comparison when cross-column context is essential.
+- detail route;
+- deferred secondary analysis;
+- horizontal comparison when necessary;
+- filter drawer/sheet;
+- split-to-single-pane transition.
 
-## Validation
+Do not convert every dashboard table into large cards automatically.
 
-For dashboard work, validate representative:
+Do not preserve an arbitrary desktop tile arrangement when it no longer reflects decision hierarchy.
 
-- overview/landing state;
-- work queue or core table;
-- filters/search;
-- detail/drill-down;
-- empty/error/stale states;
-- relevant roles;
-- responsive widths;
-- active themes/directions;
-- live-update states when applicable.
+## Accessibility
 
-Read shared references only when relevant:
-- `../personalization-and-data-ux.md`
-- `../operational-interaction-patterns.md`
-- `../domain-patterns.md`
-- `../performance.md`
+Dashboard accessibility includes:
+
+- keyboard navigation;
+- visible focus;
+- logical focus/tab order;
+- semantic data tables;
+- meaningful visual titles/labels;
+- non-color status encoding;
+- sufficient contrast;
+- screen-reader-readable summaries;
+- alternatives for exact chart values;
+- text scaling/zoom;
+- reduced motion;
+- no hover-only critical information.
+
+For dynamic visuals, static alt text should not make claims that become incorrect as data changes.
+
+Provide accessible equivalents that preserve current data meaning.
+
+## RTL and mixed-direction data
+
+Persian dashboard language requires the external `persian-writing` specialist for linguistic validation.
+
+Dashboard design remains local.
+
+For RTL:
+
+- navigation/layout may originate from the right;
+- preserve chronological direction and quantitative semantics according to the data/visualization;
+- do not blindly mirror charts, timelines, axes, or numeric meaning;
+- isolate mixed technical identifiers when needed.
+
+## Dashboard QA matrix
+
+For significant dashboard work, validate representative:
+
+### Shared
+
+- primary decision/job;
+- active Dashboard mode(s);
+- default time range/timezone;
+- filter scope;
+- data freshness;
+- metric definitions;
+- drill-down;
+- empty/no-result;
+- stale/partial/failure;
+- responsive layout;
+- keyboard/focus;
+- RTL/LTR when supported.
+
+### Tables
+
+- sorting/filtering;
+- selection;
+- bulk operations;
+- row actions;
+- column priority;
+- semantic headers;
+- narrow-width behavior.
+
+### Charts
+
+- question/visual fit;
+- scale/baseline;
+- missing data;
+- exact-value alternative;
+- color-independent meaning;
+- cross-filter selection/reset.
+
+### Live data
+
+- connection;
+- reconnecting;
+- stale/disconnected;
+- incoming updates;
+- context stability;
+- refresh cadence.
+
+### Personalization
+
+- saved/private/shared views;
+- permissions;
+- persistence/reset;
+- schema fallback.
+
+### Mode-specific
+
+Run the validation checklist from every loaded Dashboard mode pack.
+
+Do not claim dashboard-wide validation when the relevant mode/state was not exercised.
+
+## Current canonical references
+
+When details may have changed, prefer current authoritative guidance.
+
+Useful references include:
+
+- Grafana dashboard best practices for purpose, cognitive load, monitoring strategy, refresh cadence, documentation, and dashboard sprawl;
+- Microsoft Power BI accessibility guidance for keyboard navigation, focus order, high contrast, labels, and accessible data alternatives;
+- W3C/WAI data-table guidance for semantic header/data relationships;
+- current WCAG guidance for non-color meaning, focus, contrast, and keyboard access.
+
+These sources refresh implementation/context details; this local Dashboard Product Pack remains the design authority.
