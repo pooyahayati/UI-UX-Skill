@@ -21,6 +21,8 @@ Record what was actually checked:
 | Automated checks | list |
 | Visual baseline/diff | captured / existing / unavailable / not applicable |
 | UX evidence | measured / observed / user-provided / inferred / unavailable |
+| Required specialists | used / unavailable / not applicable |
+| Recommended specialists | used / fallback / unavailable / not applicable |
 | Not checked | list |
 
 Do not imply coverage that was not performed.
@@ -177,6 +179,25 @@ At representative widths:
 - sticky regions
 - overflow
 - touch targets
+
+## Specialist routing
+
+Read `specialist-routing.md`.
+
+Verify:
+
+- required specialist triggers were evaluated
+- required specialists were actually used when available
+- unavailable required specialists are explicitly reported
+- specialist-dependent claims are not marked complete without specialist evidence
+- lower-level specialists did not override higher-level scope, risk, architecture, security, or product constraints
+- Head-delegated work returns a UI/UX handoff instead of claiming whole-project completion
+
+For Persian-facing UI:
+
+- `persian-writing` was used for Persian language QA when available
+- Persian labels, buttons, validation, errors, notices, empty states, and mixed Persian/English content were reviewed through that specialist
+- if unavailable, the report states: `Persian language QA: Unverified — required specialist unavailable.`
 
 ## RTL/LTR and localization
 
