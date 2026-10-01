@@ -188,8 +188,8 @@ The capability roadmap is complete and frozen for `3.1.0`.
 
 Allowed work:
 
-- remove duplicated or parallel instructions;
-- reduce context without removing product knowledge;
+- deduplication of repeated or parallel instructions;
+- context isolation and context reduction without removing product knowledge;
 - improve Product Pack and local-module isolation;
 - strengthen validation that prevents irrelevant knowledge loading;
 - correct contradictions, stale documentation, or release metadata;
