@@ -1,8 +1,8 @@
 # UI/UX Skill Roadmap
 
-This roadmap defines the planned sequence for deepening the local design knowledge of `UI/UX Skill`.
+This roadmap records the completed capability-building sequence for `UI/UX Skill` and the current stabilization policy.
 
-The roadmap is intentionally ordered. Finish and validate each stage before expanding the next one.
+Stages 1–6 are complete. The project is now feature-frozen for the `3.1.0` stabilization release: no new Product Types or major capability areas are planned.
 
 ## Principles
 
@@ -10,9 +10,10 @@ The roadmap is intentionally ordered. Finish and validate each stage before expa
 - `persian-writing` remains the only external specialist unless explicitly changed later.
 - Product Packs contain product-specific methodology.
 - Shared rules should be extracted only when repetition becomes real and stable.
-- Every major stage should add behavioral eval coverage and release validation.
-- Do not add a new Product Type merely to avoid improving an existing Product Pack.
+- Behavioral evals and release validation protect existing capabilities.
+- Product routing should minimize context and keep inactive Product Packs unloaded.
 - Prefer evidence-backed rules and current platform guidance over stylistic opinion.
+- During the feature freeze, changes are limited to deduplication, context isolation, correctness, validation, documentation, and release maintenance.
 
 ## Stage 1 — Website Product Pack
 
@@ -179,14 +180,28 @@ The 2026-10-02 run was an in-session source-based behavioral evaluation using Ch
 
 It did not independently execute a fresh Codex/Claude/browser/device run. Rendered/device validation limitations are explicitly recorded and are not represented as completed checks.
 
-## Future Product Types
+## Feature Freeze — 3.1.0 Stabilization
 
-Only consider new Product Types after the current roadmap is validated.
+**Status:** Active
 
-Candidates may include:
+The capability roadmap is complete and frozen for `3.1.0`.
 
-- ecommerce
-- desktop application
-- documentation / knowledge platform
+Allowed work:
 
-A candidate should become a dedicated Product Type only when its behavior cannot be represented cleanly by an existing Product Pack plus shared rules.
+- remove duplicated or parallel instructions;
+- reduce context without removing product knowledge;
+- improve Product Pack and local-module isolation;
+- strengthen validation that prevents irrelevant knowledge loading;
+- correct contradictions, stale documentation, or release metadata;
+- improve tests, packaging, and release reliability.
+
+Not planned during the freeze:
+
+- new Product Types;
+- new major capability families;
+- additional external design specialists;
+- speculative feature expansion.
+
+`persian-writing` remains the only external specialist.
+
+Any future capability expansion requires an explicit decision to lift the feature freeze rather than being added implicitly through maintenance work.
