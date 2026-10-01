@@ -34,7 +34,9 @@ jobs:
         run: python3 scripts/validate_eval_fixtures.py
 
       - name: Real-world product evaluation
-        run: python3 scripts/validate_real_world_evaluation.py
+        run: |
+          python3 scripts/validate_real_world_evaluation.py
+          python3 scripts/validate_eval_result.py evals/real-world/result.json
 
       - name: Eval harness smoke test
         run: |
