@@ -32,6 +32,7 @@ required = [
     "assets/composer-icon.svg",
     f"skills/{SKILL_NAME}/SKILL.md",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
+    f"skills/{SKILL_NAME}/references/specialist-routing.md",
     f"skills/{SKILL_NAME}/references/discovery-and-profile.md",
     f"skills/{SKILL_NAME}/references/existing-product-audit.md",
     f"skills/{SKILL_NAME}/references/execution-safety.md",
@@ -88,6 +89,10 @@ else:
             if term.casefold() not in description.casefold():
                 error(f"Skill description should cover {term}")
 
+for term in ["persian-writing", "Head-delegated", "Higher-level Engineering Head"]:
+    if term.casefold() not in skill_text.casefold():
+        error(f"SKILL.md missing v1.5 specialist-routing contract term: {term}")
+
 body_lines = skill_text.split("---", 2)[-1].splitlines()
 if len(body_lines) >= 500:
     error(f"SKILL.md body should stay under 500 lines; got {len(body_lines)}")
@@ -97,6 +102,7 @@ for ref in sorted(set(re.findall(r"references/[a-z0-9-]+\.md", skill_text))):
         error(f"Referenced file missing: {ref}")
 
 for ref in [
+    "references/specialist-routing.md",
     "references/design-system-architecture.md",
     "references/runtime-ui-governance.md",
     "references/personalization-and-data-ux.md",
@@ -229,6 +235,8 @@ if canonical_url not in readme:
 if f"Latest release: **v{VERSION}**" not in readme:
     error("README latest-release label does not match VERSION")
 for term in [
+    "specialist routing",
+    "persian-writing",
     "runtime design governance",
     "owner ui/ux control center",
     "personalization",
@@ -323,6 +331,8 @@ for required_id in [
     "arbitrary-code-config",
     "visual-regression-redesign",
     "realtime-operations",
+    "head-delegated-ui",
+    "persian-specialist-routing",
 ]:
     if required_id not in ids:
         error(f"Behavioral eval missing v1.4 case: {required_id}")
