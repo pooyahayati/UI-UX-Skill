@@ -58,7 +58,12 @@
       ],
       "required_references": [
         "references/products/mobile-application.md"
-      ]
+      ],
+      "platform_references": {
+        "ios": "references/products/mobile/ios.md",
+        "android": "references/products/mobile/android.md",
+        "cross_platform": "references/products/mobile/cross-platform.md"
+      }
     },
     {
       "id": "wordpress-plugin",
