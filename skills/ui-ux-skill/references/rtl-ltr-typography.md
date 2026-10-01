@@ -79,6 +79,10 @@ Avoid constructing sentences from fragments when localization will make grammar 
 
 ## Typography
 
+Read `design-system/typography.md` for the canonical typography-role and design-system contract.
+
+This file owns direction/localization integration and mixed-script behavior.
+
 For user-supplied local fonts inspect:
 
 - family
