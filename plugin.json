@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "production-dashboard-ui-ux",
-  "version": "1.4.0",
-  "description": "Production dashboard UI/UX design, audit, visual regression, UX evidence, design systems, runtime governance, personalization, accessibility, performance, and RTL/LTR workflows.",
+  "version": "1.5.0",
+  "description": "Production dashboard UI/UX head skill with specialist routing, audit, visual regression, design systems, personalization, accessibility, performance, and RTL/LTR workflows.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://pooyahayati.com"
@@ -29,7 +29,7 @@
       "interface": {
         "displayName": "Production Dashboard UI/UX",
         "shortDescription": "Production dashboard UI/UX",
-        "longDescription": "Design, audit, improve, and redesign production dashboards and operational product interfaces. Includes evidence-driven UX audits, visual regression, existing-product safety, reusable design-system architecture, implementation strategies, owner-controlled runtime appearance settings, preference reconciliation, user personalization and saved views, Data Trust UX, real-time operational patterns, responsive behavior, Persian RTL and English LTR, branding, accessibility, performance, and regression-aware QA.",
+        "longDescription": "Design, audit, improve, and redesign production dashboards and operational product interfaces. Works standalone or as a UI/UX specialist under a higher-level engineering Head, with specialist routing for Persian-facing UI and runtime browser validation. Includes evidence-driven UX audits, visual regression, existing-product safety, reusable design-system architecture, implementation strategies, owner-controlled runtime appearance settings, preference reconciliation, user personalization and saved views, Data Trust UX, real-time operational patterns, responsive behavior, Persian RTL and English LTR, branding, accessibility, performance, and regression-aware QA.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
         "capabilities": [
@@ -37,7 +37,8 @@
           "Validate redesigns with visual evidence",
           "Design reusable token-based UI systems",
           "Design safe owner appearance controls",
-          "Improve personalization and operational UX"
+          "Improve personalization and operational UX",
+          "Route Persian-facing UI to required language QA"
         ],
         "websiteURL": "https://pooyahayati.com",
         "supportURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/issues",
