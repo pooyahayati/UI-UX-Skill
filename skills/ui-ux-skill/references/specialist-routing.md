@@ -162,6 +162,18 @@ Expected return:
 - checks performed/not performed
 - explicit conflicts with higher-level constraints
 
+## Bounded early-design agent handoff
+
+For substantial early discovery/sample work, strongly recommend that the engineering lead delegate a bounded design assignment using this same Skill to keep the main coding conversation concise. This is an agent role, not a new external specialist or registry entry.
+
+Proceed only when agent use is authorized and the capability exists. A recommendation is not permission to spawn an agent or create a separate user-owned chat. Otherwise the lead performs the same scoped work directly and reports that no subagent was used; do not make delegation itself a blocker.
+
+The assignment identifies the product, audience/roles, approved goals/features, stack, default/supported languages and directions, existing assets/decisions, protected constraints, representative workflows, acceptance criteria, and exact owned paths. Name the canonical handbook path and baseline revision when established; until R2 migration is implemented, preserve the existing profile rather than silently creating competing authorities.
+
+Assign exactly one handbook writer for a given revision. Other agents return proposed changes instead of racing to edit shared decisions. Give only the permissions needed for the assignment; do not authorize unrelated dependencies, backend changes, publication, or broader software scope.
+
+The return contains product-specific recommendations with rationale, truly open questions, sample locations/revisions when produced, proposed handbook changes, observed versus inferred assumptions, checks/evidence and limitations, conflicts, and approvals still needed. The lead checks scope, evidence and revision consistency and explicitly accepts or returns the result. Agent preference is not owner approval; sample approval is not feature-scope approval.
+
 ## UI/UX result returned to a higher-level Head
 
 When operating in Head-delegated mode, finish with a compact handoff that includes:

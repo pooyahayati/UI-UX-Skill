@@ -1,12 +1,14 @@
 # Runtime UI Governance and Owner Control Center
 
-Use this reference only when runtime UI/UX configuration is justified by the product.
+Use this reference when runtime appearance management is within approved scope. Its activation boundary is owned by `discovery-and-profile.md#foundation-activation-and-ownership`.
 
 The goal is a safe control plane for presentation, not a no-code application builder.
 
 ## Decide whether to build it
 
-A runtime Owner Control Center is useful when one or more are true:
+New/broad work with an admin surface includes bounded appearance management in the delivery plan under the discovery activation contract. Reuse native/host controls; do not infer a new backend or unlimited customization.
+
+For an explicitly scoped addition to an existing product, useful signals include:
 
 - owners need to adjust branding without deployment
 - the product is white-label or multi-tenant
@@ -15,10 +17,7 @@ A runtime Owner Control Center is useful when one or more are true:
 - multiple environments or tenants need import/export
 - user personalization needs owner-defined boundaries
 
-Avoid it when:
-- the product is small and rarely changes
-- design changes are infrequent and developer-owned
-- configuration complexity would exceed its operational value
+For a narrow correction, do not introduce a new panel without separate scope authorization. Existing-product additions should justify their operational value; this is not an exemption from the in-scope new/broad-work requirement.
 
 ## Access model
 

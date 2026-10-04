@@ -2,6 +2,22 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [Unreleased]
+
+### Adaptive discovery (R1)
+
+- Added inspect-first, recommendation-first discovery with product-specific questions, focused stopping conditions, initial defaults and scoped delegation/provenance.
+- Separated conversation language from product languages/directions; planned light/dark samples early and bounded inference from reference images.
+- Added synthetic raw discovery fixtures and forward-eval cases; any source-based walkthrough is explicitly non-independent and does not prove customer preference fit or rendered behavior.
+- Living-handbook migration, visual directions and runtime controls remain subsequent stages; the release version is unchanged.
+
+### Controlled correction kickoff (R0)
+
+- Authorized only the agreed R0–R8 correction scope while preserving stabilization outside it, historical evaluation limitations, Product Pack isolation, and the existing specialist inventory.
+- Clarified broad/narrow/no-admin activation and bounded design-agent ownership; future appearance delivery is required for in-scope broad work with admin, not for every small fix.
+- Added release-policy/progress consistency validation with focused negative regressions in the shared validation workflow.
+- R1–R8 capabilities remain planned. No version bump, publication, deployment, or installed-Skill update is included.
+
 ## [3.1.1] - 2026-10-02
 
 ### Installed Version Metadata

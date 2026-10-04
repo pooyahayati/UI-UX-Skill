@@ -185,7 +185,7 @@ Check:
 - tenant scope
 - user-preference precedence
 
-Do not recommend building this feature when runtime customization has little product value.
+Apply `discovery-and-profile.md#foundation-activation-and-ownership`: narrow/audit work does not authorize building this feature. In-scope broad redesigns with admin include bounded appearance management in the delivery plan; separately scoped existing-product additions must justify their value.
 
 ### Personalization and Data Trust
 

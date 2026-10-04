@@ -2,6 +2,103 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "discovery-novice-recommendations",
+      "type": "positive",
+      "fixture": "discovery-brief",
+      "prompt": "Use the supplied Workroom brief to begin design discovery. I know nothing about design; recommend a suitable foundation and help me choose without a technical questionnaire. Do not build the application yet.",
+      "invariants": [
+        "reuses supplied product audience roles features identity languages and constraints before asking",
+        "gives a primary recommendation with product-specific rationale and meaningful limited alternatives or custom preference",
+        "separates UX needs from proposed visual defaults and asks only material unanswered questions",
+        "plans light and dark from first samples without claiming a sample or runtime panel already exists",
+        "ends with a focused initial brief and nonblocking unknowns rather than an exhaustive questionnaire"
+      ]
+    },
+    {
+      "id": "discovery-known-decisions",
+      "type": "positive",
+      "fixture": "discovery-brief",
+      "prompt": "Use the experienced-owner variant. Balanced density and outline icons are already approved. Help resolve the mobile workflow only; do not reopen branding or my accepted choices.",
+      "invariants": [
+        "preserves accepted density icons identity language and feature scope without asking them again",
+        "recommends mobile treatment from the supplied core task with rationale",
+        "reopens only genuinely relevant unknowns and records their source",
+        "does not invent analytics billing roles or a stack migration"
+      ]
+    },
+    {
+      "id": "discovery-reference-uncertainty",
+      "type": "positive",
+      "fixture": "discovery-brief",
+      "prompt": "I like the grouping and outline treatment in reference.svg, not its large heading. Extract useful design preferences for Workroom, and tell me its exact font and animation timing if you can.",
+      "invariants": [
+        "records reference source and supplied likes and dislikes",
+        "distinguishes visible or source-observed properties from uncertain actual font and runtime behavior",
+        "does not claim exact rendered font motion timing responsive layout or interactions from a static asset",
+        "treats reference appearance as direction rather than approval or permission to copy identity or add features"
+      ]
+    },
+    {
+      "id": "discovery-missing-reference",
+      "type": "negative",
+      "fixture": "discovery-brief",
+      "prompt": "Use the missing-image variant. The unavailable-reference.png attachment cannot be opened, but I remember liking spacious grouping. Begin discovery anyway where possible.",
+      "invariants": [
+        "states that the unavailable attachment was not inspected",
+        "uses verbal preferences with provenance instead of fabricated image observations",
+        "continues permitted discovery without blocking on a nonessential reference",
+        "requests a usable attachment only when it materially affects an unresolved choice"
+      ]
+    },
+    {
+      "id": "discovery-language-not-conversation",
+      "type": "positive",
+      "fixture": "discovery-brief",
+      "prompt": "گفت‌وگویمان فارسی است، اما محصول طبق فایل `BRIEF.md` فقط انگلیسی است. نیازهای زبان و جهت را ثبت کن و پایهٔ اولیهٔ طراحی را پیشنهاد بده؛ فارسی‌بودن این پیام نباید زبان محصول را عوض کند.",
+      "invariants": [
+        "records English as default and sole supported product language with LTR direction",
+        "does not add Persian RTL fonts or localization features based on conversation language",
+        "keeps real font availability unverified when no font assets are supplied",
+        "plans light and dark samples in the actual product language"
+      ]
+    },
+    {
+      "id": "discovery-bilingual-foundation",
+      "type": "positive",
+      "fixture": "discovery-brief",
+      "prompt": "Use the explicitly bilingual variant. English remains default; English and Persian are supported. Begin the foundation brief without designing separate unrelated themes for each language.",
+      "invariants": [
+        "records English default English LTR and Persian RTL explicitly",
+        "plans representative content mixed-script fields and light and dark coverage without claiming rendered validation",
+        "routes required Persian-language judgment to the existing persian-writing specialist without duplicating its methodology",
+        "keeps one coherent design system and preserves the supplied features and roles"
+      ]
+    },
+    {
+      "id": "discovery-scoped-choice-authority",
+      "type": "negative",
+      "fixture": "discovery-brief",
+      "prompt": "Use Workroom's brief. I explicitly delegate the density choice to your recommendation. I have not answered your color proposal. Please finish the initial brief, but do not assume I approved colors or all future designs.",
+      "invariants": [
+        "records delegated density with the actual scoped instruction and rationale",
+        "keeps unanswered colors proposed or unresolved rather than approved",
+        "preserves protected constraints and does not expand delegation to future design or product scope",
+        "retains specific open questions or revisit triggers and scoped sample approval as a later step"
+      ]
+    },
+    {
+      "id": "discovery-narrow-scope",
+      "type": "negative",
+      "fixture": "discovery-brief",
+      "prompt": "Use the narrow variant. Only assess how to fix action alignment in the existing task table. Do not change code during this assessment.",
+      "invariants": [
+        "uses the existing approved baseline and inspects only the affected surface",
+        "does not start full discovery handbook migration global redesign or a new appearance panel",
+        "does not modify source assets configuration or product roles",
+        "reports missing affected-surface evidence without inventing a verified fix"
+      ]
+    },
+    {
       "id": "existing-safe-improvement",
       "type": "positive",
       "fixture": "existing-dashboard",
