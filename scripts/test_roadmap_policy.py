@@ -42,7 +42,7 @@ class RoadmapPolicyTests(unittest.TestCase):
         ):
             with self.subTest(after=after):
                 text = self.roadmap.replace(before, after)
-                self.assertNotEqual(text, self.roadmap)
+                self.assertTrue(text != self.roadmap, "Scope mutation did not change the fixture")
                 self.assertTrue(validate_policy(self.readme, text))
 
     def test_historical_completion_is_preserved(self):
@@ -54,12 +54,15 @@ class RoadmapPolicyTests(unittest.TestCase):
         self.rejected(self.roadmap, "README stabilization policy missing", readme=text)
 
     def test_tracker_rejects_missing_duplicate_and_invalid_stages(self):
+        row = next(line for line in self.roadmap.splitlines() if line.startswith("| R1 |"))
+        fields = row.split("|")
+        fields[3] = " Almost done "
         for text in (
             self.roadmap.replace("| R8 |", "| R9 |", 1),
             self.roadmap.replace("| R8 |", "| R7 |", 1),
-            self.roadmap.replace("| Not started | R0 |", "| Almost done | R0 |", 1),
+            self.roadmap.replace(row, "|".join(fields)),
         ):
-            self.assertNotEqual(text, self.roadmap)
+            self.assertTrue(text != self.roadmap, "Tracker mutation did not change the fixture")
             self.assertTrue(validate_policy(self.readme, text))
 
     def test_counter_and_active_stage_must_match_tracker(self):

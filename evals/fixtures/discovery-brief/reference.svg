@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+  <title>Synthetic static grouping and icon-treatment reference</title>
+  <rect width="640" height="360" fill="#f6f7f9"/>
+  <rect x="24" y="24" width="592" height="312" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="48" y="80" font-family="sans-serif" font-size="32" fill="#243244">Example heading</text>
+  <rect x="48" y="112" width="544" height="80" rx="8" fill="#f6f7f9" stroke="#cbd5e1"/>
+  <circle cx="80" cy="152" r="12" fill="none" stroke="#334155" stroke-width="2"/>
+  <path d="M 74 152 L 78 156 L 86 147" fill="none" stroke="#334155" stroke-width="2"/>
+  <rect x="112" y="137" width="260" height="10" rx="5" fill="#cbd5e1"/>
+  <rect x="112" y="157" width="190" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="48" y="216" width="544" height="80" rx="8" fill="#f6f7f9" stroke="#cbd5e1"/>
+  <circle cx="80" cy="256" r="12" fill="none" stroke="#334155" stroke-width="2"/>
+  <path d="M 80 249 V 263 M 73 256 H 87" fill="none" stroke="#334155" stroke-width="2"/>
+  <rect x="112" y="241" width="230" height="10" rx="5" fill="#cbd5e1"/>
+  <rect x="112" y="261" width="170" height="8" rx="4" fill="#e2e8f0"/>
+</svg>

@@ -10,9 +10,9 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **In progress**; **1 of 9 correction stages completed**.
-- Active implementation stage: **None**.
-- Next implementation stage: **R1 — Adaptive discovery**, ready on the working branch after local R0 acceptance; not yet integrated into `main`.
-- Current authorized delivery: local R0 implementation on `codex/r0-controlled-kickoff`, following the owner's explicit instruction to start. Push, merge, release, deployment, and installed-Skill updates are not authorized by this kickoff.
+- Active implementation stage: **R1**.
+- Next implementation stage: **R2 — Living DESIGN.md**, after evidenced R1 acceptance.
+- Current authorized delivery: local R1 implementation on `codex/r0-controlled-kickoff`, following the owner's instruction to proceed to the next stage. Push, merge, release, deployment, and installed-Skill updates remain unauthorized.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
 - Historical Stages 1–6: **Completed as recorded**, with the Stage 6 source-based evaluation limitations preserved below.
@@ -26,7 +26,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | Stage | Deliverable | Status | Dependencies | Accountable role | Completed on | Acceptance evidence / PR |
 | --- | --- | --- | --- | --- | --- | --- |
 | R0 | Controlled kickoff, policy consistency, and ownership | Completed | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | 2026-10-04 | [R0 execution record](#r0-execution-record) |
-| R1 | Adaptive discovery and professional recommendations | Not started | R0 | Design role; engineering lead accepts | Not completed | Not recorded |
+| R1 | Adaptive discovery and professional recommendations | In progress | Locally accepted R0 | Current design role; engineering lead accepts; single writer | Not completed | [R1 execution record](#r1-execution-record) |
 | R2 | Living `DESIGN.md` contract and profile migration | Not started | R1 | Design role; one handbook writer | Not completed | Not recorded |
 | R3 | Comparable visual directions and versioned approval | Not started | R1, R2 | Design role; product owner approves | Not completed | Not recorded |
 | R4 | Incremental decisions and bounded agent handoffs | Not started | R2, R3 | Engineering lead | Not completed | Not recorded |
@@ -187,6 +187,15 @@ Tasks:
 Output: initial design brief, evidence-backed recommendations, preferences/constraints, assumptions, and a focused open-question list.
 
 Exit: both a design novice and an experienced owner can make progress; known information is not reasked; recommendations fit the actual product; reference images are not treated as permission to copy identity/assets or expand functionality. Attach representative discovery transcripts/evaluation results before acceptance.
+
+### R1 execution record
+
+- Started: 2026-10-04 after the owner's instruction to proceed to the next stage; accepted R0 baseline `228d9fa8de5db3ea31b24df590db8eba1645c951` on `codex/r0-controlled-kickoff`. The working tree was clean; live upstream `main` remained `16cfced8a166ab59eadfd7b38b899b046ba334f6`.
+- Owner/writer: current coding agent acting as the bounded design role; the same agent retains engineering acceptance. No subagent or new external specialist is authorized or used.
+- Plan/scope: extend the existing discovery reference and its thin Head entry; add raw synthetic discovery inputs, focused eval cases, and explicitly labeled source-based walkthroughs; run fixture/preparation/policy/protected validation and inspect package consumption; repair a progress-test assumption exposed by the R1 dependency wording; review and record acceptance. No product build, handbook migration/template, visual directions, runtime panel, dependency, registry, or version changes.
+- Acceptance: inspect before asking; reuse settled/protected decisions; adapt to product jobs, breadth and sections; record actual product languages/directions; give understandable recommendation/rationale/alternatives/custom/delegation; distinguish proposals, approval and silence; bound image inference; stop when enough is known for representative samples and retain focused unknowns.
+- Evidence: pending. Any current-session walkthrough is synthetic and non-independent, not a real customer interview, fresh-agent compliance test, rendered sample, or proof of preference fit. Independent conformance remains part of R8 when authorized.
+- Delivery: local branch only; no push, PR, Issue, milestone, merge, release, deployment, or installation.
 
 ### R2 — Living `DESIGN.md` and compatible migration
 

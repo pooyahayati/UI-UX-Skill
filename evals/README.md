@@ -117,6 +117,12 @@ A candidate should not ship with an unexplained Fail in:
 - claims of visual/UX validation without evidence
 
 
+## R1 adaptive discovery cases
+
+The `discovery-*` cases use raw synthetic inputs in `fixtures/discovery-brief/`. Prepare each with `prepare_eval_run.py`; give future independent evaluators only the case prompt, candidate Skill and raw fixture, not the illustrative responses in `discovery/WALKTHROUGHS.md`.
+
+That walkthrough is a current-session implementation-agent source review, not a fresh model run or customer interview. It is not machine-recorded conformance evidence. Old Stage 6 results do not cover these added cases; full candidate evaluation remains pending. Do not pass `--require-all` on the old five-case result and call that a full candidate run.
+
 ## Stage 6 real-world evaluation
 
 The v3 candidate includes five dedicated production-like fixtures and cases:

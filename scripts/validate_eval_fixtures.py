@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 EVALS = ROOT / "evals"
@@ -50,6 +51,7 @@ required_fixtures = {
     "real-world-web-app",
     "real-world-mobile",
     "real-world-wordpress",
+    "discovery-brief",
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
 missing = sorted(required_fixtures - existing)
@@ -71,6 +73,31 @@ if missing_isolation:
     errors.append(
         "Missing explicit product-isolation eval cases: " + ", ".join(missing_isolation)
     )
+
+# Resource/manifest coverage only; this does not execute a model or score discovery.
+required_discovery_cases = {
+    "discovery-novice-recommendations", "discovery-known-decisions",
+    "discovery-reference-uncertainty", "discovery-missing-reference",
+    "discovery-language-not-conversation", "discovery-bilingual-foundation",
+    "discovery-scoped-choice-authority", "discovery-narrow-scope",
+}
+missing_discovery = sorted(required_discovery_cases - seen)
+if missing_discovery:
+    errors.append("Missing discovery eval cases: " + ", ".join(missing_discovery))
+for case in manifest.get("cases", []):
+    if case.get("id") in required_discovery_cases and case.get("fixture") != "discovery-brief":
+        errors.append(f"{case['id']}: must use the raw discovery-brief fixture")
+discovery = EVALS / "fixtures" / "discovery-brief"
+if not (discovery / "BRIEF.md").is_file():
+    errors.append("Discovery fixture missing BRIEF.md")
+try:
+    reference = ET.parse(discovery / "reference.svg").getroot()
+    if reference.tag != "{http://www.w3.org/2000/svg}svg":
+        errors.append("Discovery reference must be SVG")
+except (OSError, ET.ParseError) as exc:
+    errors.append(f"Discovery reference missing or invalid: {exc}")
+if (discovery / "unavailable-reference.png").exists():
+    errors.append("Missing-reference scenario must retain its absent attachment")
 
 for case in manifest.get("cases", []):
     if case.get("id") not in required_isolation_cases:
