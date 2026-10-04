@@ -2,6 +2,41 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "runtime-appearance-admin-planning",
+      "type": "positive",
+      "fixture": "runtime-appearance-brief",
+      "prompt": "Use only ADMIN.md as the raw product request. Prepare its requested implementation plan and initial design handbook in an output directory; no product implementation or publication is authorized.",
+      "invariants": [
+        "uses web-application route and preserves existing stack roles tenant and authentication boundaries",
+        "includes bounded appearance management in existing owner administration with actual consumer and value-source planning",
+        "defines private drafts trusted validation atomic publication persistence conflict history rollback and fallback evidence",
+        "preserves settled foundations and separates proposed choices and planned checks from approval implementation or successful runtime evidence"
+      ]
+    },
+    {
+      "id": "runtime-appearance-narrow-boundary",
+      "type": "positive",
+      "fixture": "runtime-appearance-brief",
+      "prompt": "Use only NARROW.md as the raw product request. Prepare its short implementation and verification recommendation in an output directory; no product implementation or publication is authorized.",
+      "invariants": [
+        "keeps targeted web-application scope and reuses settled product foundations without a discovery questionnaire",
+        "does not add an appearance panel handbook migration backend role or shared radius change",
+        "recommends affected rendered focus and search behavior checks without claiming unavailable source or runtime verification"
+      ]
+    },
+    {
+      "id": "runtime-appearance-no-admin-boundary",
+      "type": "positive",
+      "fixture": "runtime-appearance-brief",
+      "prompt": "Use only NO_ADMIN.md as the raw product request. Prepare its requested design plan and initial handbook in an output directory; no product implementation or publication is authorized.",
+      "invariants": [
+        "uses website-only route and preserves static repository delivery and actual supplied pages",
+        "does not invent an administration area login database privileged role service or runtime configuration backend",
+        "plans source-based supported visual maintenance with one intent handbook and real value-source ownership",
+        "retains English LTR and settled foundations while keeping unseen samples and derived theme approval pending"
+      ]
+    },
+    {
       "id": "incremental-executable-baseline",
       "type": "positive",
       "fixture": "executable-baseline",

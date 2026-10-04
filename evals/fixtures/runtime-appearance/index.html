@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Appearance Lab · synthetic product</title>
+  <link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script>
+</head>
+<body>
+  <header><a href="/">Appearance Lab</a><nav aria-label="Product"><a href="/">Design and Appearance</a><a href="/reader">Published reader</a></nav></header>
+  <main>
+    <p class="eyebrow">SYNTHETIC WEB APPLICATION · NO CUSTOMER DATA</p>
+    <h1 id="page-title">Design and Appearance</h1>
+    <p id="identity">Loading fixture context…</p>
+    <p id="status" role="status" aria-live="polite">Loading published appearance…</p>
+    <section id="manager" hidden aria-labelledby="settings-title">
+      <div class="workspace">
+        <div class="settings card">
+          <h2 id="settings-title">Your private draft</h2>
+          <p>Only this owner can read the draft. Publishing changes this tenant's product, not another tenant.</p>
+          <p id="draft-state"></p>
+          <div class="toolbar"><button id="preset">Use balanced defaults</button><button id="compact">Use compact preset</button></div>
+          <form id="settings-form"><div id="settings-fields"></div></form>
+          <div class="toolbar">
+            <button id="preview">Preview unsaved changes</button>
+            <button id="save" class="primary">Save private draft</button>
+            <button id="publish" disabled>Review publication</button>
+            <button id="discard" disabled>Discard saved draft</button>
+          </div>
+          <p id="diff" class="note"></p>
+          <details><summary>Version history and recovery</summary>
+            <p>Rollback appends a new active version. Defaults are staged privately; neither action deletes history.</p>
+            <label for="history-choice">Version to restore</label><select id="history-choice"></select>
+            <div class="toolbar"><button id="rollback">Review rollback</button><button id="reset">Review defaults reset</button><button id="reload">Reload server state</button></div>
+            <ol id="history"></ol><h3>Recent actions</h3><ul id="audit"></ul>
+          </details>
+        </div>
+        <div class="preview-column">
+          <h2>Representative product surfaces</h2><p id="preview-state" class="state-label"></p>
+          <section class="product-surface card" id="admin-preview" aria-label="Private representative preview"></section>
+        </div>
+      </div>
+    </section>
+    <section class="reader-region" aria-labelledby="reader-title">
+      <h2 id="reader-title">Published product</h2>
+      <p id="published-state"></p><button id="refresh-reader">Refresh published values</button>
+      <section class="product-surface card" id="published-preview" aria-label="Published representative product"></section>
+    </section>
+    <aside class="note">Prepared parameters only. Adding an unbundled font or new component variant needs development preparation. This is not a production authentication service.</aside>
+  </main>
+  <dialog id="confirmation" aria-labelledby="confirmation-title">
+    <h2 id="confirmation-title">Review change</h2><p id="confirmation-text"></p>
+    <form method="dialog" class="toolbar"><button value="cancel" autofocus>Cancel</button><button id="confirm-action" value="confirm" class="primary">Confirm change</button></form>
+  </dialog>
+  <dialog id="surface-dialog" aria-labelledby="surface-dialog-title">
+    <h2 id="surface-dialog-title">Product overlay example</h2><p>This overlay consumes the same resolved appearance as its source surface.</p>
+    <p class="error-example">Sample error: this is illustrative, not a failed real operation.</p>
+    <form method="dialog"><button>Close example</button></form>
+  </dialog>
+  <template id="product-template">
+    <div class="surface-heading"><strong class="brand"><span class="brand-mark" aria-hidden="true">AL</span> Service workspace</strong><span>Sample data</span></div>
+    <h3>Today's work queue</h3>
+    <p>Prepared appearance affects everyday controls and data without changing the workflow.</p>
+    <label>Find a request <input type="search" placeholder="Request name or identifier" aria-label="Find a request"></label>
+    <div class="toolbar"><button class="primary"><span class="search-icon" aria-hidden="true">⌕</span> Search</button><button class="open-example">Open overlay example</button><button disabled>Restricted action</button></div>
+    <div class="table-scroll"><table><caption>Synthetic service requests</caption><thead><tr><th>Request</th><th>Owner</th><th>Status</th></tr></thead><tbody><tr><td><bdi>REQ-A2</bdi></td><td>Alex</td><td>Ready</td></tr><tr><td><bdi>REQ-B7</bdi></td><td>Sam</td><td>Waiting</td></tr></tbody></table></div>
+    <p class="error-example">Sample validation message: choose a request before continuing.</p>
+    <svg class="chart" viewBox="0 0 320 170" role="img" aria-label="Synthetic requests: Monday 3, Tuesday 5, Wednesday 4"></svg>
+    <p class="chart-alternative">Synthetic requests: Monday 3 · Tuesday 5 · Wednesday 4.</p>
+    <svg class="diagram" viewBox="0 0 320 82" role="img" aria-label="Prepared workflow: Draft, Review, Publish"></svg>
+  </template>
+</body>
+</html>

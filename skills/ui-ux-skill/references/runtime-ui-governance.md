@@ -4,6 +4,14 @@ Use this reference when runtime appearance management is within approved scope. 
 
 The goal is a safe control plane for presentation, not a no-code application builder.
 
+## Setting contract and actual consumers
+
+For each offered control, identify its human label, default/value source, allowed type/range or prepared preset, affected roles/states/themes, scope owner and write permission, dependencies, actual consumers and reset/failure behavior. Include supported body/heading/label sizes, weights and line height, spacing/control/table density, borders/radius/elevation, component variants, motion and chart/diagram presentation where relevant; a font selector or background color alone is not the agreed appearance capability. Do not invent controls for absent product surfaces.
+
+Keep scopes explicit: public product, owned admin UI, tenant/account and permitted user preference are not interchangeable. A host-controlled surface must keep host constraints; owner appearance values cannot change another tenant, resource access or locked readability/interaction floors. `DESIGN.md` records supported contracts and links to defaults/configuration sources, not a second manually synchronized settings database.
+
+Resolve configuration once through the existing stack's stable theme/token boundary. Map independent consumers such as chart canvases/SVG, tooltips/overlays, icons, error screens and approved assets through supported adapters; plain CSS inheritance is insufficient when a consumer bypasses it. Name these consumers in the affected verification. No control is accepted merely because a form saves a value: change it through the real panel, observe every claimed representative consumer, refresh/reopen and reverse it without editing component source.
+
 ## Decide whether to build it
 
 New/broad work with an admin surface includes bounded appearance management in the delivery plan under the discovery activation contract. Reuse native/host controls; do not infer a new backend or unlimited customization.
@@ -180,6 +188,8 @@ Warnings can be used for non-blocking quality concerns, but distinguish them fro
 
 ## Version history
 
+Bind a draft to its owner/scope and base published revision. Publish one complete validated snapshot at the trusted write boundary, not partially applied fields. When the base moved, return a conflict and let the owner reconcile rather than silently overwrite a concurrent change; use the product's existing concurrency contract. A lost response leaves publication outcome unknown: reconcile the active revision before retrying instead of claiming failure or blindly duplicating a publication.
+
 Each publish should create an immutable or reconstructable version containing:
 
 - version identifier
@@ -286,6 +296,8 @@ Provide safe fallbacks when runtime configuration:
 - references an unavailable asset
 
 The application should still render with design-system defaults.
+
+Distinguish current published values, a private preview and fallback defaults in state/evidence. A failing load must not leak a draft, combine incompatible fragments or show a saved/published success falsely. Preserve the last valid configuration and actionable recovery; invalid stored data is validated before resolution. Exercise missing, partial, invalid and failed-load boundaries relevant to the product. Reset starts from known defaults through the same controlled lifecycle; it must not silently delete history or publish an unreviewed change.
 
 ## Operational UX of the control center
 
