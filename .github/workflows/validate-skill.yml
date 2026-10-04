@@ -18,6 +18,9 @@ jobs:
       - name: Release metadata validation
         run: python3 scripts/validate_release.py
 
+      - name: Roadmap policy regression tests
+        run: python3 scripts/test_roadmap_policy.py
+
       - name: Product route and isolation validation
         run: python3 scripts/validate_product_routes.py
 

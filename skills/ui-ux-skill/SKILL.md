@@ -206,7 +206,11 @@ For new products or strategic redesigns, use `references/discovery-and-profile.m
 
 For existing products without an approved profile, use an observed baseline for corrective work rather than forcing full rediscovery.
 
-Do not add runtime appearance governance by default. When white-labeling, non-developer ownership, multi-tenant variation, repeated appearance changes, or meaningful personalization justify it, route to:
+Apply the scope-sensitive activation contract in `references/discovery-and-profile.md`. For in-scope new products or broad redesigns with admin, include Design and Appearance settings in the delivery plan. Narrow corrections do not authorize a new panel; products without admin must not acquire an invented backend or privileged role.
+
+For substantial early design work, recommend the bounded same-Skill agent handoff in `references/specialist-routing.md`; the lead keeps approval and integration authority. Use delegation only when authorized and available.
+
+When appearance management is in scope, route to:
 
 - `references/design-system-architecture.md`
 - `references/runtime-ui-governance.md`

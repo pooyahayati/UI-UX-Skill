@@ -4,6 +4,21 @@ Use for new products, major redesigns, or strategic changes to an existing visua
 
 Do not run full discovery when a narrow existing-product fix can be resolved from the current baseline.
 
+## Foundation activation and ownership
+
+This is the canonical activation boundary; the runtime and audit references inherit it.
+
+| Request | Required boundary |
+| --- | --- |
+| New product or broad redesign with an admin surface | Plan Design and Appearance settings as part of delivery, even for a small product. Define safe prepared parameters within the approved stack; use `runtime-ui-governance.md` for implementation. |
+| Narrow existing-product correction | Reuse approved decisions or an observed baseline. Fix the affected surface only; an absent appearance panel is follow-up scope, not permission to build one. |
+| Product without admin | Raise appearance-management needs to the engineering lead; choose a host-appropriate surface only within approved scope. Do not invent accounts, a backend, or a new admin app. |
+| Audit-only or backend-only | Report relevant findings; do not mutate the product or activate unrelated foundation work. |
+
+Examples: a new bilingual booking application with existing admin includes appearance controls in its plan; a mobile-only product does not acquire a web admin backend by assumption; fixing one RTL table does not launch a design interview or control-center project. A WordPress plugin owns its own surfaces, not all of `wp-admin`.
+
+The lead recommends bounded delegation for substantial early design work, but delegation is not automatic permission to start another agent or create a chat. See `specialist-routing.md#bounded-early-design-agent-handoff` for ownership, inputs, returns, and the unavailable/unauthorized fallback. Reuse settled scope and approvals.
+
 ## Modes
 
 ### Full Discovery
@@ -88,9 +103,9 @@ The active Product Pack constrains product-specific discovery questions. Do not 
 
 ## Runtime governance decision
 
-Do not assume every project needs an Owner UI/UX Control Center.
+Apply the foundation activation boundary above. In-scope new/broad work with admin must include safe appearance management in its plan; do not silently omit it on complexity grounds. Negotiate unsupported controls with the lead instead of promising unlimited no-code changes.
 
-Recommend it only when product value justifies the complexity.
+For separately authorized additions to existing products, evaluate product value and complexity. A narrow correction alone never authorizes a new control center.
 
 Useful triggers include:
 

@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from roadmap_policy import validate_policy
+
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAME = "ui-ux-skill"
 SKILL = ROOT / "skills" / SKILL_NAME
@@ -64,6 +66,8 @@ for path in [
     "scripts/validate_eval_fixtures.py",
     "scripts/validate_real_world_evaluation.py",
     "scripts/validate_eval_result.py",
+    "scripts/roadmap_policy.py",
+    "scripts/test_roadmap_policy.py",
 ]:
     require(path)
 
@@ -335,45 +339,9 @@ require_text(
     "submission/SUBMISSION_CHECKLIST.md",
 )
 
-# Completed roadmap + active freeze.
+# Preserved history, bounded correction exception, and canonical progress.
 roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
-for stage in [
-    "Stage 1 — Website Product Pack",
-    "Stage 2 — WordPress Plugin Product Pack",
-    "Stage 3 — Dashboard Product Pack",
-    "Stage 4 — Shared Product UI Rules",
-    "Stage 5 — Design System Hardening",
-    "Stage 6 — Real-World Product Evaluation",
-]:
-    start = roadmap.find(f"## {stage}")
-    if start < 0:
-        error(f"ROADMAP missing required stage: {stage}")
-        continue
-    next_start = roadmap.find("\n## ", start + 4)
-    block = roadmap[start:next_start if next_start >= 0 else len(roadmap)]
-    if "**Status:** Completed" not in block:
-        error(f"{stage} must remain Completed")
-
-freeze_marker = "## Feature Freeze — 3.1.0 Stabilization"
-freeze_start = roadmap.find(freeze_marker)
-if freeze_start < 0:
-    error("ROADMAP must declare the 3.1.0 Feature Freeze")
-else:
-    freeze = roadmap[freeze_start:]
-    require_text(
-        freeze,
-        [
-            "**Status:** Active",
-            "new Product Types",
-            "new major capability families",
-            "persian-writing",
-            "deduplication",
-            "context isolation",
-        ],
-        "ROADMAP feature freeze",
-    )
-if "## Future Product Types" in roadmap:
-    error("ROADMAP must not advertise future Product Types during the feature freeze")
+ERRORS.extend(validate_policy(readme, roadmap))
 
 # Current version must have a changelog entry. During development, newer work may remain Unreleased.
 changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")

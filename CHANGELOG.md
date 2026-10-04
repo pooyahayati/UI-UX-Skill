@@ -2,6 +2,15 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
+## [Unreleased]
+
+### Controlled correction kickoff (R0)
+
+- Authorized only the agreed R0–R8 correction scope while preserving stabilization outside it, historical evaluation limitations, Product Pack isolation, and the existing specialist inventory.
+- Clarified broad/narrow/no-admin activation and bounded design-agent ownership; future appearance delivery is required for in-scope broad work with admin, not for every small fix.
+- Added release-policy/progress consistency validation with focused negative regressions in the shared validation workflow.
+- R1–R8 capabilities remain planned. No version bump, publication, deployment, or installed-Skill update is included.
+
 ## [3.1.1] - 2026-10-02
 
 ### Installed Version Metadata

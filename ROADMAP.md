@@ -2,17 +2,17 @@
 
 This is the repository's durable roadmap and stage-progress reference. It preserves the completed capability-building history and defines the agreed correction workstream for design discovery, a living product design handbook, visual approval, and configurable appearance.
 
-The correction workstream is planned, not implemented. Publishing this document does not start implementation, lift the stabilization policy, change installed Skill behavior, or authorize a merge or release.
+Implementation was explicitly authorized after roadmap publication. The tracker below distinguishes executed kickoff work from the still-planned R1–R8 capabilities. Publishing or editing this document alone does not change installed Skill behavior or authorize push, merge, or release.
 
 ## Current state
 
 - Last updated: **2026-10-04**.
-- Reviewed source baseline: **v3.1.1** at `d2420e9c60230fb2a667dff971f60a8bbbaaa1de`.
+- Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
-- Implementation: **Not started**; **0 of 9 correction stages completed**.
-- Active implementation stage: **None**.
-- Next implementation stage: **R0 — Controlled kickoff**, after an explicit instruction to start corrections.
-- Current authorized delivery: the English roadmap documentation only.
+- Implementation: **In progress**; **0 of 9 correction stages completed**.
+- Active implementation stage: **R0**.
+- Next implementation stage: **R1 — Adaptive discovery**, after evidenced R0 acceptance.
+- Current authorized delivery: local R0 implementation on `codex/r0-controlled-kickoff`, following the owner's explicit instruction to start. Push, merge, release, deployment, and installed-Skill updates are not authorized by this kickoff.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
 - Historical Stages 1–6: **Completed as recorded**, with the Stage 6 source-based evaluation limitations preserved below.
@@ -25,7 +25,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 
 | Stage | Deliverable | Status | Dependencies | Accountable role | Completed on | Acceptance evidence / PR |
 | --- | --- | --- | --- | --- | --- | --- |
-| R0 | Controlled kickoff, policy consistency, and ownership | Not started | Explicit implementation authorization; valid working checkout | Engineering lead / maintainer | Not completed | Not recorded |
+| R0 | Controlled kickoff, policy consistency, and ownership | In progress | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | Not completed | [R0 execution record](#r0-execution-record) |
 | R1 | Adaptive discovery and professional recommendations | Not started | R0 | Design role; engineering lead accepts | Not completed | Not recorded |
 | R2 | Living `DESIGN.md` contract and profile migration | Not started | R1 | Design role; one handbook writer | Not completed | Not recorded |
 | R3 | Comparable visual directions and versioned approval | Not started | R1, R2 | Design role; product owner approves | Not completed | Not recorded |
@@ -49,7 +49,7 @@ Language, direction, accessibility, and dark mode start with discovery and the f
 
 Allowed stage states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. A future stage is not blocked merely because its predecessor has not started. The active stage, tracker, checked tasks, completion evidence, and next action must agree before handoff.
 
-There are currently no completed correction-stage records. When a stage is accepted, retain a concise dated completion entry here or in its linked PR; the tracker must link to that real record. Do not require a second competing status document solely for this workstream.
+At stage acceptance, retain a concise dated completion entry here or in its linked PR; the tracker must link to that real record. Do not require a second competing status document solely for this workstream.
 
 ## Principles
 
@@ -60,7 +60,7 @@ There are currently no completed correction-stage records. When a stage is accep
 - Behavioral evals and release validation protect existing capabilities.
 - Product routing should minimize context and keep inactive Product Packs unloaded.
 - Prefer evidence-backed rules and current platform guidance over stylistic opinion.
-- During the feature freeze, changes are limited to deduplication, context isolation, correctness, validation, documentation, and release maintenance.
+- Outside the explicitly authorized R0–R8 correction exception, the feature freeze limits changes to deduplication, context isolation, correctness, validation, documentation, and release maintenance.
 
 ## Correction objective and boundaries
 
@@ -72,9 +72,9 @@ The goal is a final interface that stays close to the product owner's intent and
 
 This work improves the Skill's contracts, routing, reusable assets, and evaluations. It does not turn the Skill repository into a universal application/theme builder. Small representative executable fixtures may prove the contracts; production implementations must follow their own approved software scope and stack.
 
-### Planned limited exception to stabilization
+### Authorized limited exception to stabilization
 
-The agreed correction package is limited to **design foundation, the living handbook, visual approval, and safe parametric appearance management**. R0 must reconcile the roadmap, README, and release-validation policy before capability implementation starts. The current stabilization contract remains in place for this documentation-only update.
+The owner has explicitly authorized starting corrections. The exception is limited to **design foundation, the living handbook, visual approval, and safe parametric appearance management**. R0 reconciles the roadmap, README, and release-validation policy before later capability stages; this is not a general lifting of stabilization.
 
 Do not add new Product Types, external design specialists, mandatory cloud services, a mandatory frontend framework, or a general-purpose page builder. Avada Theme was an illustration of owner-editable appearance, not an architectural dependency or a request to reproduce WordPress everywhere.
 
@@ -129,7 +129,7 @@ Keep detailed investigation in the design work and present concise decisions in 
 
 ## Correction stages and exit criteria
 
-All actions below are planned and unchecked. They are not evidence that the requested capabilities already exist. Stage order describes dependencies, not separate mandatory approvals for every routine task. Reuse settled approvals; obtain fresh direction only for material new decisions or actions requiring additional authority.
+Task checkboxes record actual execution; unchecked tasks remain planned. They are not evidence that the requested capabilities already exist. Stage order describes dependencies, not separate mandatory approvals for every routine task. Reuse settled approvals; obtain fresh direction only for material new decisions or actions requiring additional authority.
 
 ### R0 — Controlled kickoff and consistent policy
 
@@ -148,6 +148,18 @@ Tasks:
 Output: accepted implementation scope, consistent development policy, ownership/handoff contract, and actual baseline check results.
 
 Exit: the implementation scope is authorized; policy documents and validators no longer contradict the correction exception; mandatory admin delivery and narrow-task non-expansion are distinguishable; no new specialist, stack, or agent permission is invented. Attach the reviewed diff, baseline results, and accepting lead decision before marking R0 complete.
+
+### R0 execution record
+
+- Started: 2026-10-04, after the owner's explicit "start" instruction.
+- Engineering lead and sole implementation writer: the current coding agent. No subagent was started.
+- Branch: `codex/r0-controlled-kickoff`; baseline `16cfced8a166ab59eadfd7b38b899b046ba334f6`.
+- Plan: reconcile repository policy and validation first; align the existing activation/handoff references without implementing later stages; add focused policy regressions; run protected baseline checks; review the diff and record acceptance.
+- Scope: `README.md`, `ROADMAP.md`, `CHANGELOG.md`, the existing Head/discovery/runtime/audit/specialist references, release-policy validation and its regression tests, and the shared CI validation step. No product UI, registries, dependencies, versions, or release automation changes.
+- Acceptance: the limited exception is explicit and bounded; full/narrow/no-admin/audit/backend examples are distinguishable; lead authority and one-writer handoff are clear; inconsistent policy/progress is rejected; protected validators pass and the reviewed diff remains inside this scope.
+- Baseline: all eight repository validators passed before edits; existing evaluation results are structural/source-based evidence only. Live upstream still points to the baseline above.
+- Evidence: pending focused regression, protected validation, and final diff review. No independent agent, rendered UI, or device evaluation is claimed for this policy-only stage.
+- Delivery: local only. No new PR, Issue, milestone, release, deployment, or installation has been created; no merge is authorized.
 
 ### R1 — Adaptive discovery and designer recommendations
 
@@ -335,6 +347,7 @@ This is an impact map, not permission to change every listed file now. New files
 | --- | --- | --- |
 | `ROADMAP.md` | Current stage, tasks, dependencies, acceptance evidence, and preserved history | Durable execution tracking |
 | `README.md` | Consistent limited-exception and deliverable summary in R0 | Concise project introduction |
+| `PRIVACY.md` | Reconcile the old profile filename during R2 migration without changing data ownership | Documentation compatibility |
 | `skills/ui-ux-skill/SKILL.md` | Entry triggers, key gates, handbook routing, bounded delegation | Thin Head |
 | `references/discovery-and-profile.md` | Adaptive recommendations, image evidence, and profile migration | Discovery |
 | `references/design-foundation-workflow.md` | Add only if the substantial sample/approval workflow warrants a separate reference | Proposed conditional workflow |
@@ -430,7 +443,7 @@ python3 scripts/validate_eval_result.py evals/real-world/result.json
 
 Follow [the eval harness](evals/README.md) for fresh meaningful runs and result validation. Require all applicable candidate cases when they have actually been executed; never substitute a valid old JSON schema for fresh behavior evidence.
 
-For this documentation-only publication, any baseline validators/package checks concern the unchanged Skill and roadmap compatibility. They do not count as executed correction scenarios or completed R0–R8 work. The associated PR/check runs record the actual publication-validation outcome.
+For the initial documentation-only publication (PR #18), baseline validators/package checks concerned the unchanged Skill and roadmap compatibility. They do not count as executed correction scenarios or completed R0–R8 work. New implementation evidence belongs to the relevant correction-stage record, not that historical PR/check run.
 
 The package script removes an existing output directory before building. Inspect its actual behavior and use an explicit isolated output directory whose target has been validated and contains no user data. Archive/package checks do not authorize installation or release.
 
@@ -481,12 +494,12 @@ Planning readiness:
 
 Still pending:
 
-- [ ] Explicit authorization to start Skill capability corrections.
+- [x] Explicit authorization to start Skill capability corrections; the owner instructed the coding agent to start on 2026-10-04.
 - [ ] Execution and evidenced acceptance of R0–R8.
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** start R0 only after an explicit implementation-start instruction, reusing this roadmap and rechecking current source. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
+**Next implementation action:** execute and accept R0 on the working branch before starting R1. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 
@@ -661,11 +674,22 @@ It did not independently execute a fresh Codex/Claude/browser/device run. Render
 
 ## Feature Freeze — 3.1.0 Stabilization
 
-**Status:** Active
+**Status:** Active with limited correction exception
 
-This is the baseline stabilization policy retained for the documentation-only roadmap publication. The agreed limited correction workstream above is planned but not executing. R0 must reconcile this policy, the README, and its validator when implementation is explicitly authorized; no new Product Types or external specialists are part of that exception.
+**Correction exception:** Authorized for R0–R8 only.
 
-The capability roadmap is complete and frozen for `3.1.0`.
+**Outside this exception:** Stabilization maintenance only.
+
+Allowed correction scope:
+
+- design foundation;
+- the living handbook;
+- visual approval;
+- safe parametric appearance management.
+
+The owner authorized kickoff on 2026-10-04. The tracker records what has actually been executed. No new Product Types or additional external design specialists are authorized. Existing Product Pack isolation, historical acceptance limitations, protected product behavior, and separate publication gates remain in force.
+
+The historical capability roadmap is complete; its recorded `3.1.0` stabilization baseline is preserved. R0–R8 are a distinct correction workstream, not retroactively completed history.
 
 Allowed work:
 
@@ -676,7 +700,7 @@ Allowed work:
 - correct contradictions, stale documentation, or release metadata;
 - improve tests, packaging, and release reliability.
 
-Not planned during the freeze:
+Not authorized outside the named correction scope:
 
 - new Product Types;
 - new major capability families;
@@ -685,4 +709,4 @@ Not planned during the freeze:
 
 `persian-writing` remains the only external specialist.
 
-Any future capability expansion requires an explicit decision to lift the feature freeze rather than being added implicitly through maintenance work.
+Any capability expansion beyond the named correction scope requires a separate explicit decision; it must not be added implicitly through maintenance or this exception.

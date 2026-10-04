@@ -44,7 +44,9 @@ Inactive Product Packs are not preloaded. Specialist routing is evaluated indepe
 
 ## Feature freeze
 
-The current product model is feature-frozen for the `3.1.x` stabilization line. No new Product Types or major capability areas are planned. Work is limited to deduplication, context isolation, quality hardening, validation, documentation, and release maintenance unless the freeze is explicitly lifted.
+Limited correction exception: R0–R8 only. The owner authorized design foundation, the living `DESIGN.md` handbook, visual approval, and safe parametric appearance management. Outside this exception, the `3.1.x` stabilization policy remains active; no new Product Types, additional external design specialists, or general-purpose page builder are authorized.
+
+See [Roadmap](ROADMAP.md) for actual stage progress and acceptance evidence. Planned capabilities are not yet delivered. The released version remains `3.1.1`; source changes require separate candidate validation, versioning, and publication authorization.
 
 ## Quick use
 
@@ -62,7 +64,7 @@ Claude Code:
 
 ## Documentation
 
-- **[Roadmap](ROADMAP.md)** — completed capability roadmap and current feature-freeze policy
+- **[Roadmap](ROADMAP.md)** — correction-stage progress, acceptance evidence, preserved history, and bounded stabilization exception
 - **[How to Install / Update](INSTALL.md)** — installation, updates, migration from the old slug, and verification
 - **[Updates & Changelog](CHANGELOG.md)** — release-by-release changes
 - **[Skill Specification](skills/ui-ux-skill/SKILL.md)** — canonical Skill behavior and routing
