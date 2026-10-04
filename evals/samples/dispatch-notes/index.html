@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-direction="a" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Dispatch Notes — comparison r1</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a href="#workspace" class="skip" data-copy="skip">Skip to visit workspace</a>
+  <aside class="review" aria-labelledby="review-title">
+    <div class="review-heading"><strong id="review-title" data-copy="review">Design comparison · r1</strong><span data-copy="pending">Not selected or approved</span></div>
+    <div class="review-controls">
+      <label><span data-copy="direction">Direction</span><select id="direction"><option value="a">A · Structured</option><option value="b">B · Field notebook</option></select></label>
+      <label><span data-copy="language">Language</span><select id="language"><option value="en" lang="en">English</option><option value="fa" lang="fa">فارسی</option></select></label>
+      <label><span data-copy="theme">Theme</span><select id="theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <label><span data-copy="scenario">Simulated state</span><select id="scenario"><option value="ready">Ready</option><option value="loading">Loading</option><option value="empty">No assigned visits</option><option value="access">Read only</option></select></label>
+      <label class="check"><input id="fail-next" type="checkbox"><span data-copy="fail">Fail next save (simulation)</span></label>
+    </div>
+    <p id="recommendation"></p>
+  </aside>
+  <div class="product">
+    <header class="product-header">
+      <a href="#list" class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="5" width="20" height="24" rx="3"/><path d="M11 12h10M11 18h10M11 24h6M12 3h8v5h-8z"/></svg><bdi lang="en" dir="ltr">Dispatch Notes</bdi></a>
+      <span class="identity" id="identity"></span>
+    </header>
+    <p class="sample-notice" data-copy="synthetic">Synthetic sample. Saves are simulated in this tab only; refresh clears all notes.</p>
+    <main id="workspace" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow" data-copy="workspace">Visit workspace</p><h1 data-copy="myVisits">My visits</h1></div><span class="date" id="date"></span></div>
+      <div class="workspace-grid">
+        <section class="queue" aria-labelledby="queue-title">
+          <h2 id="queue-title" data-copy="assigned">Assigned visit</h2>
+          <div id="list-state" class="state-panel" role="status" hidden></div>
+          <article class="visit-card" id="visit-card">
+            <div class="visit-meta"><bdi dir="ltr" lang="en" class="identifier">VIS-204</bdi><span class="badge" id="visit-status"></span></div>
+            <h3 id="site"></h3>
+            <p class="muted" id="schedule"></p>
+            <p id="instruction-short"></p>
+            <a href="#visit" class="open-visit" id="open-visit"><span data-copy="open">Open visit</span><span class="arrow" aria-hidden="true">→</span></a>
+          </article>
+          <div class="next-task" id="next-task"><p class="eyebrow" data-copy="next">Next task</p><p data-copy="longTask"></p></div>
+        </section>
+        <section class="details" id="details" aria-labelledby="detail-title">
+          <a href="#list" class="back"><span class="arrow" aria-hidden="true">←</span><span data-copy="back">Back to visits</span></a>
+          <div class="detail-heading"><h2 id="detail-title" tabindex="-1" data-copy="details">Visit details</h2><bdi dir="ltr" lang="en" class="identifier">VIS-204</bdi></div>
+          <dl class="facts"><div><dt data-copy="location">Location</dt><dd id="detail-site"></dd></div><div><dt data-copy="technician">Technician</dt><dd id="technician"></dd></div><div><dt data-copy="unit">Unit</dt><dd><bdi dir="ltr" lang="en">HVAC-A2</bdi></dd></div></dl>
+          <section class="instructions"><h3 data-copy="instructions">Before you begin</h3><p data-copy="instruction"></p></section>
+          <form id="note-form" novalidate>
+            <label for="note" class="note-label" data-copy="note">Visit note</label>
+            <p id="note-help" class="muted" data-copy="noteHelp">Record the work and reading. Maximum 2,000 characters. Draft saves do not complete the visit.</p>
+            <textarea id="note" rows="4" maxlength="2000" aria-describedby="note-help note-feedback" dir="auto"></textarea>
+            <p id="note-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+            <div class="form-actions"><button type="submit" id="save" data-copy="save">Save draft</button><span class="save-scope" data-copy="tabOnly">Simulation · this tab only</span></div>
+            <div class="completion"><label class="check"><input id="confirm-complete" type="checkbox"><span data-copy="confirm">I have finished the work described above.</span></label><button type="button" class="secondary" id="complete" data-copy="complete">Mark complete</button></div>
+          </form>
+          <section id="completed-note" class="completed-note" hidden><h3 data-copy="recorded">Recorded note · simulation</h3><p id="recorded-text" dir="auto"></p></section>
+        </section>
+      </div>
+    </main>
+    <footer><span data-copy="footer">Comparison r1 · Same workflow, records and actions in both directions.</span><button type="button" class="text-button" id="reset" data-copy="reset">Reset simulated visit</button></footer>
+  </div>
+  <noscript>This executable comparison needs JavaScript for simulated actions. No server saves are available.</noscript>
+</body>
+</html>

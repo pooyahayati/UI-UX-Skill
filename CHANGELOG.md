@@ -9,7 +9,8 @@ All notable user-facing and technical changes to this project are documented her
 - Added a conditional comparable-sample workflow with professional recommendations, actual product language/direction, both themes from first samples and executable selected-sample evidence before broad rollout.
 - Distinguished direction selection, revision-scoped sample approval and implementation authority; preserved pending revisions and hypothetical-feature boundaries in the handbook template.
 - Added six raw forward-evaluation cases and preparation regressions for exact inputs/prompts and preservation of existing review evidence. They do not execute a model or render a sample.
-- R3's executable/rendered evaluation and real scoped approval remain pending. Instruction coverage is not a completed product design; no release/version bump or installed-Skill change is included.
+- Added an isolated, authored executable Dispatch Notes comparison: two equivalent directions, both themes, explicitly bilingual real copy, licensed local fonts, a draft `DESIGN.md` and actual browser/action coverage with stated limits. Kept these outputs outside raw forward inputs and distributable Skill packages.
+- Added sample asset/link/font/revision integrity tests; these do not render the browser or execute a model. R3 direction selection, refinement and real scoped approval remain pending; authored rendering is not independent Skill conformance. No release/version bump or installed-Skill change is included.
 
 ### Living design handbook (R2)
 

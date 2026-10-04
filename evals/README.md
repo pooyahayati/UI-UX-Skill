@@ -2,6 +2,8 @@
 
 Structural validation cannot prove that a model follows this Skill well.
 
+The [authored Dispatch Notes comparison](samples/dispatch-notes/README.md) is a separate executable R3 output example with a draft handbook and bounded rendered evidence. It is not a raw fixture, independent model outcome or approved design. Do not use it as an answer key/input for fresh evaluations.
+
 Version 3.0 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
 
 ## Validate fixtures

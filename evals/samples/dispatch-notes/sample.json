@@ -1,0 +1,21 @@
+{
+  "sample_revision": "r1",
+  "handbook_revision": "h1",
+  "kind": "authored-executable-example",
+  "default_language": "en",
+  "supported_languages": {"en": "ltr", "fa": "rtl"},
+  "language_source": "../../fixtures/sample-review/variants/bilingual.md",
+  "directions": ["a", "b"],
+  "themes": ["light", "dark"],
+  "entry": "index.html",
+  "hash_routes": ["list", "visit"],
+  "comparison": "compare.html",
+  "supported_language_comparison": "compare-fa.html",
+  "handbook": "DESIGN.md",
+  "rendered_review": "QA.md",
+  "direction_selection": null,
+  "sample_approval": null,
+  "broad_rollout_authority": null,
+  "backend": false,
+  "admin_panel": false
+}

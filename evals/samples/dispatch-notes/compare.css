@@ -1,0 +1,16 @@
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px; font: 16px/1.6 system-ui, sans-serif; color: #253246; background: #e9edf2; }
+header, footer { max-inline-size: 1200px; margin-inline: auto; }
+h1 { margin: 0; font-size: 28px; }
+h2 { font-size: 18px; margin: 0; }
+p { margin-block: 8px 12px; }
+a { color: #264c7a; text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid #825400; outline-offset: 4px; }
+.comparison { display: grid; grid-template-columns: repeat(2, 588.8px); gap: 24px; justify-content: center; margin-block: 24px; }
+section > a { display: inline-block; min-block-size: 44px; padding-block: 6px; }
+.frame { inline-size: 588.8px; block-size: 644px; overflow: hidden; background: #fff; border: 1px solid #8996a6; }
+iframe { inline-size: 1280px; block-size: 1400px; border: none; transform: scale(.46); transform-origin: top left; }
+footer { border-block-start: 1px solid #8996a6; padding-block-start: 12px; }
+@media (max-width: 1250px) { .comparison { grid-template-columns: 588.8px; } }
+@media (max-width: 650px) { body { padding: 16px; } .comparison { grid-template-columns: 294.4px; } .frame { inline-size: 294.4px; block-size: 322px; } iframe { transform: scale(.23); } }
