@@ -1,4 +1,4 @@
-"""Raw sample-eval preparation regressions, not model or rendered UI checks."""
+"""Raw sample/continuation preparation regressions, not model or rendered UI checks."""
 from __future__ import annotations
 
 import json
@@ -8,11 +8,21 @@ import sys
 import tempfile
 import unittest
 
+# Include exact positive binding regressions in the existing CI test entrypoint.
+from test_executable_baseline import ExecutableBaselineTests
+
 ROOT = Path(__file__).resolve().parents[1]
 PREPARE = ROOT / "scripts/prepare_eval_run.py"
-RAW = ROOT / "evals/fixtures/sample-review"
+RAW_ROOT = ROOT / "evals/fixtures"
+RAW_FILES = {
+    "sample-review": {"README.md", "BRIEF.md", "OWNER_NOTES.md", "FOUNDATION.json",
+                      "variants/bilingual.md", "variants/revision-change.md"},
+    "incremental-design": {"README.md", "BRIEF.md", "DESIGN.md", "OWNER_NOTES.md", "ui-tokens.json"},
+    "executable-baseline": {".gitattributes", "README.md", "BRIEF.md", "DESIGN.md",
+                            "OWNER_NOTES.md", "BASELINE.json", "index.html"},
+}
 MANIFEST = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
-CASES = [c for c in MANIFEST["cases"] if c["id"].startswith("samples-")]
+CASES = [c for c in MANIFEST["cases"] if c["id"].startswith(("samples-", "incremental-"))]
 
 
 def files(root: Path) -> dict[str, bytes]:
@@ -22,13 +32,14 @@ def files(root: Path) -> dict[str, bytes]:
 
 class SampleInputPreparation(unittest.TestCase):
     def test_each_case_receives_only_exact_raw_inputs_and_prompt(self):
-        expected = files(RAW)
-        self.assertEqual(set(expected), {"README.md", "BRIEF.md", "OWNER_NOTES.md", "FOUNDATION.json",
-                                        "variants/bilingual.md", "variants/revision-change.md"})
+        raw_snapshots = {name: files(RAW_ROOT / name) for name in RAW_FILES}
+        for name, expected_files in RAW_FILES.items():
+            self.assertEqual(set(raw_snapshots[name]), expected_files)
         self.assertTrue(CASES)
         with tempfile.TemporaryDirectory() as temporary:
             for case in CASES:
                 with self.subTest(case=case["id"]):
+                    expected = raw_snapshots[case["fixture"]]
                     output = Path(temporary) / case["id"]
                     result = subprocess.run(
                         [sys.executable, "-B", str(PREPARE), case["id"], "--output", str(output)],
@@ -41,11 +52,12 @@ class SampleInputPreparation(unittest.TestCase):
                     run = json.loads((output / "RUN.json").read_text(encoding="utf-8"))
                     self.assertEqual(run["caseId"], case["id"])
                     self.assertEqual(run["prompt"], case["prompt"])
-                    self.assertEqual(run["fixture"], "sample-review")
+                    self.assertEqual(run["fixture"], case["fixture"])
                     self.assertEqual(run["skillVersion"], MANIFEST["version"])
                     self.assertEqual(set(files(output)),
                                      {"RUN.json", "PROMPT.txt"} | {"fixture/" + p for p in expected})
-        self.assertEqual(files(RAW), expected)
+        for name, expected in raw_snapshots.items():
+            self.assertEqual(files(RAW_ROOT / name), expected)
 
     def test_preparation_refuses_existing_run_without_overwriting(self):
         with tempfile.TemporaryDirectory() as temporary:

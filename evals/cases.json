@@ -2,6 +2,19 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "incremental-executable-baseline",
+      "type": "positive",
+      "fixture": "executable-baseline",
+      "prompt": "Inspect BRIEF.md, the exact BASELINE.json-bound index.html/DESIGN.md pair and fixture-owner-1 plus fixture-change-2. In an output copy, implement the delegated successful-save refresh-loss disclosure and record only the affected handbook decision and new sample/document revision. Preserve original inputs, foundation values, save/error/completion behavior and sole English/LTR/light scope. Inspect the actual revised UI when available; otherwise record that limitation. Do not add persistence, themes, languages, a runtime panel or an agent. Do not inherit approval for the generated revision or treat this synthetic fixture as historical customer approval.",
+      "invariants": [
+        "inspects actual source and handbook identities against exact baseline binding before using fictional scoped authority",
+        "preserves input bytes and existing foundation and functional behavior while changing only delegated feedback copy and revision metadata",
+        "clearly discloses refresh loss without implying real backend persistence or adding a new feature",
+        "records new source and handbook linkage scoped decision provenance and actual performed versus unavailable UI checks",
+        "keeps generated sample visual approval pending and does not authenticate absent historical artifacts or broaden language theme admin or agent scope"
+      ]
+    },
+    {
       "id": "samples-primary-foundation-proposal",
       "type": "positive",
       "fixture": "sample-review",
@@ -117,6 +130,72 @@
         "does not add admin settings themes languages features or agents",
         "plans only affected rendered label and protected save check when implementation is authorized",
         "does not claim nonexistent current sample or broader approval from fictional records"
+      ]
+    },
+    {
+      "id": "incremental-new-design-need",
+      "type": "positive",
+      "fixture": "incremental-design",
+      "prompt": "Read the continuing brief, DESIGN.md and ui-tokens.json. Activate owner-note-7 and owner-note-8 only. Recommend remaining-character feedback for the approved note limit, and update only affected draft handbook entries in a prepared copy. Do not build UI or change token files, limits, permissions, languages or foundations. No current render is supplied.",
+      "invariants": [
+        "reads h7 scope approval and separate token authority before recommending a local continuation",
+        "classifies character feedback as a new treatment of an already approved job and respects bounded delegation without reopening palette font spacing or density questions",
+        "gives one phone-fit foundation-aligned recommendation and records source rationale affected note state and verification gap",
+        "preserves approved h7 provenance and adds scoped proposed or delegated delta rather than blanket h8 visual approval",
+        "leaves token bytes product limit roles features and sole English LTR language unchanged",
+        "returns actual changed paths baseline next revision performed and unperformed checks remaining sample approval and lead action without inventing code or rendered evidence"
+      ]
+    },
+    {
+      "id": "incremental-reuse-settled-foundation",
+      "type": "positive",
+      "fixture": "incremental-design",
+      "prompt": "Only owner-note-7 is active. Before the next existing note-editor slice, inspect what is already settled and describe the smallest design handoff. Do not change files, reopen the design interview or start an agent.",
+      "invariants": [
+        "inspects canonical h7 baseline approved scope and actual value source before answering",
+        "reuses settled balanced density palette type spacing language and responsive priority without duplicate preference questions",
+        "passes only affected workflow states baseline protected constraints and relevant acceptance checks",
+        "does not invent samples font resolution runtime controls or authority from absent render",
+        "does not modify files spawn agents add specialists features or a second design authority"
+      ]
+    },
+    {
+      "id": "incremental-strategic-preference",
+      "type": "negative",
+      "fixture": "incremental-design",
+      "prompt": "Activate owner-note-7 and preference-note-9. Should the latest neon and denser preference replace h7 globally now? Explain the impact and necessary decision; do not change files or generate alternative full designs.",
+      "invariants": [
+        "distinguishes unapproved appearance preference from a new user need or implementation authorization",
+        "retains accepted h7 foundations and token values while describing proposed strategic change",
+        "assesses affected primary dark responsive components settings contract and approvals without claiming a runtime panel exists",
+        "asks only the owning material scope or approval decision instead of restarting all discovery",
+        "preserves monolingual scope and sequential phase review without simultaneous locale alternatives or file writes"
+      ]
+    },
+    {
+      "id": "incremental-stale-conflicting-return",
+      "type": "negative",
+      "fixture": "incremental-design",
+      "prompt": "Only owner-note-7 and stale-return are active. Review that contributor return against current DESIGN.md and ui-tokens.json. Decide whether the lead can accept it or what must be returned for revision; do not edit files or execute another agent.",
+      "invariants": [
+        "identifies h6 versus current h7 stale baseline and compact density different font conflict with accepted constraints",
+        "does not treat contributor approved label as owner approval or overwrite current handbook token authority",
+        "requires one writer and one owning reconciled decision rather than simultaneous canonical values",
+        "records lead changes-required decision actual missing render and precise return scope without claiming independent review or execution",
+        "does not change files spawn agents or erase unaffected accepted decisions"
+      ]
+    },
+    {
+      "id": "incremental-agent-unavailable",
+      "type": "negative",
+      "fixture": "incremental-design",
+      "prompt": "Use h7 and activate owner-note-8 for a bounded early continuation recommendation. Agent capability is unavailable and creating another chat or installing specialists is unauthorized. Return the necessary design proposal and compact engineering handoff directly without changing files; do not pretend delegation happened.",
+      "invariants": [
+        "continues scoped design work directly using current baseline and genuinely new need without making delegation a blocker",
+        "does not spawn an agent create another task install a skill or expand product scope",
+        "preserves single writer and gives foundation-aligned recommendation within owner-note-8 scope without duplicate foundation questions",
+        "states no delegation code rendering or new sample approval occurred and names remaining affected checks",
+        "returns accepted baseline proposed or delegated delta conflicts limits and lead next action rather than whole-product completion"
       ]
     },
     {

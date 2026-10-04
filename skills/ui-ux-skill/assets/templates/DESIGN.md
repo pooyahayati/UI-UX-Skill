@@ -109,6 +109,8 @@ Link real token/theme sources, component consumers, icon registry, published con
 
 Record meaningful revision changes, affected scope, source/approval and prior baseline. Do not log every routine runtime value change.
 
+For a meaningful later slice, record its baseline, new need/change classification, affected decisions/components/settings/approvals, scoped recommendation/authority and verification status here or in the existing decision rows. Link a bounded assignment/return and the lead's actual acceptance when delegated; retain one writer and reconcile stale proposals rather than creating a second handbook. Omit this record for incidental edits with no contract change.
+
 ## Acceptance and next handoff
 
 - Requirement coverage and protected behavior: not verified.

@@ -31,6 +31,10 @@ Inside RTL UI, isolate technical LTR values such as:
 
 Use semantic isolation such as `dir="ltr"`, `bdi`, or `unicode-bidi: isolate` when needed.
 
+Distinguish structured technical values from editable mixed-script free text. Inspect representative identifiers and adjacent punctuation in the actual consumer at relevant widths; verify complete ordering, legibility, keyboard editing and an actual copy/paste round-trip. A soft wrap at a hyphen is not itself a defect if the value remains unambiguous and usable. Inspect an existing saved/read-only presentation separately; if none exists, record that boundary rather than inventing a view.
+
+Preserve the exact input and editing semantics. If a failure is reproduced, choose the smallest presentation/layout correction; do not inject hidden directional controls into stored text, force global nowrap or create horizontal overflow to hide wrapping. Keep ordinary text reflow and essential actions usable. Route Persian language rules through the existing required specialist instead of duplicating them here.
+
 ## Directional icons
 
 Mirror only icons whose meaning is directional.
@@ -82,6 +86,8 @@ Avoid constructing sentences from fragments when localization will make grammar 
 Read `design-system/typography.md` for the canonical typography-role and design-system contract.
 
 This file owns direction/localization integration and mixed-script behavior.
+
+Separate the requested font/stack, asset loading/readiness and actual rendered glyph-font identity. Computed CSS or a loaded FontFaceSet alone does not prove which face rendered Persian, Latin, digits or punctuation, nor whether a requested weight was synthesized. Use supported rendered-font inspection when available, naming the environment and method; otherwise retain identity/weight validation as unverified while reporting scoped visual observations separately. A deliberate system stack is not itself a defect or permission to replace/install a font.
 
 For user-supplied local fonts inspect:
 

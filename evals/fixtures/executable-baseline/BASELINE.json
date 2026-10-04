@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "sample_id": "fixture-primary-1",
+  "handbook_revision": "fixture-h1",
+  "approval_record": "fixture-owner-1",
+  "authority_kind": "explicitly-fictional-test-input",
+  "scope": "English/LTR/light assigned visit and inline note editor; phone and desktop",
+  "hash_method": "sha256-exact-bytes-utf8-lf",
+  "files": {
+    "index.html": "f582728aefffb516ae9014286e5912101cd9dc1c56569ac02f7bf2a7e70407ff",
+    "DESIGN.md": "114b00038a77f540cdacfa358eeed4136aba491d0ebe6e3c56739adabcfb3eed"
+  }
+}

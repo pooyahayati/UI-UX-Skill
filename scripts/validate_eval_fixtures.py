@@ -5,6 +5,7 @@ import json
 import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
+from baseline_binding import validate_baseline
 
 ROOT = Path(__file__).resolve().parents[1]
 EVALS = ROOT / "evals"
@@ -54,6 +55,8 @@ required_fixtures = {
     "discovery-brief",
     "legacy-handbook",
     "sample-review",
+    "incremental-design",
+    "executable-baseline",
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
 missing = sorted(required_fixtures - existing)
@@ -146,6 +149,26 @@ try:
 except (OSError, ValueError) as exc:
     errors.append(f"Sample-review foundation missing or invalid: {exc}")
 
+# Continuation input availability only; no agent behavior is executed here.
+incremental_cases = {
+    "incremental-new-design-need", "incremental-reuse-settled-foundation",
+    "incremental-strategic-preference", "incremental-stale-conflicting-return",
+    "incremental-agent-unavailable",
+}
+for case_id in incremental_cases:
+    case = next((c for c in manifest["cases"] if c.get("id") == case_id), None)
+    if case is None or case.get("fixture") != "incremental-design":
+        errors.append(f"{case_id}: missing continuation case or wrong raw fixture")
+continuation = EVALS / "fixtures/incremental-design"
+for name in ("README.md", "BRIEF.md", "DESIGN.md", "OWNER_NOTES.md", "ui-tokens.json"):
+    if not (continuation / name).is_file():
+        errors.append(f"Continuation fixture missing {name}")
+try:
+    if not isinstance(json.loads((continuation / "ui-tokens.json").read_text(encoding="utf-8")), dict):
+        errors.append("Continuation token source must be a JSON object")
+except (OSError, ValueError) as exc:
+    errors.append(f"Continuation token source missing or invalid: {exc}")
+
 for case in manifest.get("cases", []):
     if case.get("id") not in required_isolation_cases:
         continue
@@ -153,6 +176,12 @@ for case in manifest.get("cases", []):
     for term in ["does not load", "shared rules", "design system", "intentionally not loaded"]:
         if term not in invariants:
             errors.append(f"{case.get('id')}: isolation eval missing invariant term: {term}")
+
+# Exact positive source/handbook input availability, never agent conformance.
+positive_baseline = next((c for c in manifest["cases"] if c.get("id") == "incremental-executable-baseline"), None)
+if positive_baseline is None or positive_baseline.get("fixture") != "executable-baseline":
+    errors.append("Missing exact executable continuation baseline case")
+errors.extend(validate_baseline(EVALS / "fixtures/executable-baseline"))
 
 if errors:
     print("Behavioral eval fixture validation failed:")

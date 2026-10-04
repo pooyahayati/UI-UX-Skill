@@ -1,0 +1,5 @@
+# Dispatch Notes continuation request
+
+An English/LTR browser web application for technicians on phones and coordinators on desktop. The existing synthetic preview opens one assigned visit, allows editing a note, simulates save success/failure in page memory, and shows a browser-native completion confirmation. No real server storage, authentication or admin application exists. Refresh discards the in-memory draft, including after a simulated save.
+
+Use the exact input source and handbook. Keep current palette, system-font strategy, spacing, density, responsive priorities, visible text actions and existing behavior. Do not add languages/themes, libraries, fonts, routes, roles or a persistence backend. A new owner request asks that the successful-save feedback clearly explain refresh loss without implying real persistence. Recommend and implement only that small feedback-copy delta in an output source/handbook pair. Actual visual review of the new revision remains separate from this delegated detail.
