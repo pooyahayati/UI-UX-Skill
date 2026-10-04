@@ -2,17 +2,17 @@
 
 This is the repository's durable roadmap and stage-progress reference. It preserves the completed capability-building history and defines the agreed correction workstream for design discovery, a living product design handbook, visual approval, and configurable appearance.
 
-Implementation was explicitly authorized after roadmap publication. The tracker below distinguishes executed kickoff work from the still-planned R1–R8 capabilities. Publishing or editing this document alone does not change installed Skill behavior or authorize push, merge, or release.
+Implementation was explicitly authorized after roadmap publication. The tracker below distinguishes locally accepted R0/R1 work from the still-planned R2–R8 capabilities. Publishing or editing this document alone does not change installed Skill behavior or authorize push, merge, or release.
 
 ## Current state
 
 - Last updated: **2026-10-04**.
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
-- Implementation: **In progress**; **1 of 9 correction stages completed**.
-- Active implementation stage: **R1**.
-- Next implementation stage: **R2 — Living DESIGN.md**, after evidenced R1 acceptance.
-- Current authorized delivery: local R1 implementation on `codex/r0-controlled-kickoff`, following the owner's instruction to proceed to the next stage. Push, merge, release, deployment, and installed-Skill updates remain unauthorized.
+- Implementation: **In progress**; **2 of 9 correction stages completed**.
+- Active implementation stage: **None**.
+- Next implementation stage: **R2 — Living DESIGN.md**, ready after local R1 acceptance; not yet started.
+- Current authorized delivery: R1 completed locally on `codex/r0-controlled-kickoff`, following the owner's instruction to proceed to the next stage. Further stage work awaits the next instruction. Push, merge, release, deployment, and installed-Skill updates remain unauthorized.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
 - Historical Stages 1–6: **Completed as recorded**, with the Stage 6 source-based evaluation limitations preserved below.
@@ -26,7 +26,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | Stage | Deliverable | Status | Dependencies | Accountable role | Completed on | Acceptance evidence / PR |
 | --- | --- | --- | --- | --- | --- | --- |
 | R0 | Controlled kickoff, policy consistency, and ownership | Completed | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | 2026-10-04 | [R0 execution record](#r0-execution-record) |
-| R1 | Adaptive discovery and professional recommendations | In progress | Locally accepted R0 | Current design role; engineering lead accepts; single writer | Not completed | [R1 execution record](#r1-execution-record) |
+| R1 | Adaptive discovery and professional recommendations | Completed | Locally accepted R0 | Current design role; engineering lead accepts; single writer | 2026-10-04 | [R1 execution record](#r1-execution-record) |
 | R2 | Living `DESIGN.md` contract and profile migration | Not started | R1 | Design role; one handbook writer | Not completed | Not recorded |
 | R3 | Comparable visual directions and versioned approval | Not started | R1, R2 | Design role; product owner approves | Not completed | Not recorded |
 | R4 | Incremental decisions and bounded agent handoffs | Not started | R2, R3 | Engineering lead | Not completed | Not recorded |
@@ -174,15 +174,15 @@ Owner: design role within the lead's boundary. Prerequisite: R0.
 
 Tasks:
 
-- [ ] Inspect existing product documents, assets, interfaces, decisions, and stack before asking the user.
-- [ ] Extract product type, audience/roles, principal jobs and workflows, breadth, approved sections/features, and practical constraints; separate UX needs from visual preferences.
-- [ ] Record the default language, supported languages, direction per language, and localization requirements explicitly. A Persian conversation can describe an English product.
-- [ ] Use a short, product-relevant question sequence rather than a fixed exhaustive questionnaire. Let the user answer, attach references, select a proposal, or explicitly delegate a choice.
-- [ ] For key decisions, always give a primary professional recommendation, product/audience rationale, and limited alternatives, with room for a custom preference.
-- [ ] Cover relevant palette, typography roles/sizes, style, spacing/density, borders, controls, charts/diagrams, icons, effects/motion, responsive behavior, accessibility, and light/dark preferences; do not ask about irrelevant features.
-- [ ] Accept screenshots/images and verbal references; record what the user likes and dislikes, provenance, confidence, and observed versus inferred properties. Do not claim exact font, motion, spacing, or interaction from an ambiguous static image.
-- [ ] Treat silence as unresolved, not approval. Distinguish user choice, explicit delegation, an agent proposal, and protected product constraints.
-- [ ] Resolve most foundation decisions early and leave genuinely unknown details open for the appropriate development stage; do not invent capabilities or roles to fill a form.
+- [x] Inspect existing product documents, assets, interfaces, decisions, and stack before asking the user.
+- [x] Extract product type, audience/roles, principal jobs and workflows, breadth, approved sections/features, and practical constraints; separate UX needs from visual preferences.
+- [x] Record the default language, supported languages, direction per language, and localization requirements explicitly. A Persian conversation can describe an English product.
+- [x] Use a short, product-relevant question sequence rather than a fixed exhaustive questionnaire. Let the user answer, attach references, select a proposal, or explicitly delegate a choice.
+- [x] For key decisions, always give a primary professional recommendation, product/audience rationale, and limited alternatives, with room for a custom preference.
+- [x] Cover relevant palette, typography roles/sizes, style, spacing/density, borders, controls, charts/diagrams, icons, effects/motion, responsive behavior, accessibility, and light/dark preferences; do not ask about irrelevant features.
+- [x] Accept screenshots/images and verbal references; record what the user likes and dislikes, provenance, confidence, and observed versus inferred properties. Do not claim exact font, motion, spacing, or interaction from an ambiguous static image.
+- [x] Treat silence as unresolved, not approval. Distinguish user choice, explicit delegation, an agent proposal, and protected product constraints.
+- [x] Resolve most foundation decisions early and leave genuinely unknown details open for the appropriate development stage; do not invent capabilities or roles to fill a form.
 
 Output: initial design brief, evidence-backed recommendations, preferences/constraints, assumptions, and a focused open-question list.
 
@@ -194,7 +194,16 @@ Exit: both a design novice and an experienced owner can make progress; known inf
 - Owner/writer: current coding agent acting as the bounded design role; the same agent retains engineering acceptance. No subagent or new external specialist is authorized or used.
 - Plan/scope: extend the existing discovery reference and its thin Head entry; add raw synthetic discovery inputs, focused eval cases, and explicitly labeled source-based walkthroughs; run fixture/preparation/policy/protected validation and inspect package consumption; repair a progress-test assumption exposed by the R1 dependency wording; review and record acceptance. No product build, handbook migration/template, visual directions, runtime panel, dependency, registry, or version changes.
 - Acceptance: inspect before asking; reuse settled/protected decisions; adapt to product jobs, breadth and sections; record actual product languages/directions; give understandable recommendation/rationale/alternatives/custom/delegation; distinguish proposals, approval and silence; bound image inference; stop when enough is known for representative samples and retain focused unknowns.
-- Evidence: pending. Any current-session walkthrough is synthetic and non-independent, not a real customer interview, fresh-agent compliance test, rendered sample, or proof of preference fit. Independent conformance remains part of R8 when authorized.
+- Accepted locally: 2026-10-04 by the current engineering lead after reviewing the instruction changes and illustrative brief/choice records against this stage's criteria. Task completion describes the delivered discovery workflow, not an actual customer's design approval or independently measured model compliance.
+- Implementation commit: `e7aabc4def83af8dce14b65d816ed64150fd2d4c`. The subsequent roadmap-only commit records acceptance; its identity is retained in Git history.
+- Changed paths: the existing Head and `references/discovery-and-profile.md`; `evals/cases.json`, `evals/README.md`, the raw `evals/fixtures/discovery-brief/` inputs, and `evals/discovery/WALKTHROUGHS.md`; `scripts/validate_eval_fixtures.py`, `scripts/test_roadmap_policy.py`, `CHANGELOG.md`, and this roadmap. Short reference paths are relative to the canonical Skill folder. No competing discovery module was created.
+- Discovery evidence: [eight synthetic walkthroughs](evals/discovery/WALKTHROUGHS.md) cover novice/experienced owners, reference uncertainty, a missing image, Persian conversation with an English product, explicit bilingual scope, partial delegation, and a narrow assessment. They are current-session authored and source-reviewed examples, not real owner interviews, fresh-agent tests, rendered inspections, usability findings, or preference-fit proof. Raw inputs remain separate from those illustrative responses. Independent conformance remains pending for later authorized evaluation/R8.
+- Checks: all eight existing validation commands exited zero; 11 roadmap-policy regression tests passed. Fixture validation covers 63 cases and 11 fixture directories structurally. All eight new discovery cases were prepared in isolated copies with exact manifest prompts and byte-matching raw artifacts; the copies exclude the walkthrough responses. Preparation is not model execution. Existing five-product Stage 6 records were revalidated structurally, not rerun as fresh R1 behavior tests.
+- Regression repair: the invalid-status test had depended on R1's human-readable dependency wording. It now mutates the actual status cell, retaining the same policy rejection and avoiding a whole-document assertion dump. The production roadmap-policy validator was not relaxed.
+- Package evidence: both isolated archives passed CRC and SHA256 checks, with all 71 canonical Skill files matching current source bytes and embedded versions unchanged at `3.1.1`. These are unreleased verification artifacts outside the repository; no release or installed-Skill update occurred.
+- Review: the Head still routes to the existing discovery reference; known decisions, approval provenance, product-language independence, light/dark planning, bounded reference inference, and focused stopping conditions are explicit. Later handbook/template, visual-approval and runtime capabilities remain unimplemented. Impact was checked directly through source, references, validators, and packaging; no generated Graphify evidence is claimed. The Persian illustrative prose passed local lint with zero issues; mechanical cleanup was inspected on an external copy and did not substitute product-language/rendered validation.
+- Limitations: the official local quick validator still cannot import `yaml` because `PyYAML` is unavailable; no dependency was installed. Official CI for this branch remains pending a separately authorized push/PR. Source review and fixture preparation do not waive independent behavioral, rendered-language, font, preference-fit, or final candidate gates.
+- Repository purity: no forbidden tracked/staged artifacts; only the existing optional local Git-exclude configuration warning. No host or exclusion settings were changed.
 - Delivery: local branch only; no push, PR, Issue, milestone, merge, release, deployment, or installation.
 
 ### R2 — Living `DESIGN.md` and compatible migration
@@ -512,17 +521,18 @@ Still pending:
 
 - [x] Explicit authorization to start Skill capability corrections; the owner instructed the coding agent to start on 2026-10-04.
 - [x] Execution and local evidenced acceptance of R0.
-- [ ] Execution and evidenced acceptance of R1–R8.
+- [x] Execution and local evidenced acceptance of R1, with synthetic/source-review limitations explicitly recorded.
+- [ ] Execution and evidenced acceptance of R2–R8.
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** implement R1 adaptive discovery on the working branch, reusing the locally accepted R0 contract. R0 has not been pushed or merged. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
+**Next implementation action:** on the owner's next instruction, implement R2's living `DESIGN.md` contract and compatible profile migration on the working branch, reusing locally accepted R0/R1. Neither stage has been pushed or merged. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 
 ## Completed capability history
 
-Stages 1–6 are complete as recorded below. These historical statuses, version targets, and limitations are retained independently from the not-started R0–R8 correction tracker. The historical Stage 6 result is not fresh execution evidence for the correction workstream.
+Stages 1–6 are complete as recorded below. These historical statuses, version targets, and limitations are retained independently from the R0–R8 correction tracker. The historical Stage 6 result is not fresh execution evidence for the correction workstream.
 
 ## Stage 1 — Website Product Pack
 
