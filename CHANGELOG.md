@@ -4,12 +4,30 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Editable semantic icons (R6 executable checkpoint)
+
+- Added prepared original outline/solid artwork, semantic family/per-use mappings,
+  a visible gallery, meaningful missing-asset fallback and shared private/public/
+  overlay adapters. Size, semantic color and supported outline stroke preserve
+  labels, native disclosure pairs, direction, contrast and target floors.
+- Extended stored appearance to schema 2 with strict read-time compatibility for
+  complete valid pre-icon snapshots/drafts, preserving old values and historical
+  bytes; new requests use the current catalog. Icon defaults are local draft edits,
+  not unrelated appearance resets or publication. Arbitrary vector/code/URLs are
+  rejected; no dependency, host installation, version bump or new release.
+- Added a separate raw icon planning request and fresh independent planning review,
+  plus icon, migration and HTTP rejection regressions. Current runtime/visual and
+  final delivery evidence are recorded in the roadmap; R7/R8 remain required.
+- R6 has scoped lead acceptance through PR #25 after exact-source native scan,
+  byte-matched candidate packages and successful implementation CI. Final-head
+  checks and passing integration remain explicit gates; no new release is made.
+
 ### Runtime appearance governance (R5 executable checkpoint)
 
 - Extended the existing runtime contract with per-setting ownership, prepared values, real consumer adapters, coherent publication, conflicts and identifiable fallback. Preserved broad/admin, narrow-change and no-admin scope boundaries.
 - Added an isolated stdlib/SQLite browser fixture and 17 real store/HTTP regressions for private drafts, publication, history, rollback/reset, persistence, authorization/isolation and malformed/corrupt input. No production login, new dependency or general theme builder.
 - Added three raw planning cases and a separate fresh forward review. Browser checks cover supported settings, private-versus-published effects, dark publication, measured narrow layout and cancel/confirm/reset/rollback; these do not certify full R7/R8 or actual customer approval.
-- R5 received scoped lead acceptance after final source review, candidate-bound native scan, exact package checks and successful implementation CI; passing integration of its acceptance update is recorded separately. Editable icons and required typography/native-confirm evidence remain later obligations. Version/release/tag and installed packages are unchanged.
+- R5 received scoped lead acceptance after final source review, candidate-bound native scan, exact package checks and successful CI; it integrated through PR #24 with passing merge/installer checks and skipped publication. R6 contract preparation has begun; executable editable icons and required typography/native-confirm evidence remain later obligations. Version/release/tag and installed packages are unchanged.
 
 ### Incremental design decisions and bounded handoffs (R4 preparation)
 

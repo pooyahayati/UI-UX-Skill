@@ -9,7 +9,7 @@ import threading
 import time
 import unittest
 
-from runtime_appearance import AppearanceError, DEFAULTS, FixtureServer, Store, catalog, resolve, validate
+from runtime_appearance import AppearanceError, DEFAULTS, LEGACY_DEFAULTS, FixtureServer, Store, catalog, resolve, stored_config, validate
 
 
 class ConfigurationContract(unittest.TestCase):
@@ -21,10 +21,46 @@ class ConfigurationContract(unittest.TestCase):
             candidate = dict(DEFAULTS, **{key: value})
             with self.subTest(key=key, value=value), self.assertRaises(AppearanceError):
                 validate(candidate)
-        for candidate in [{}, dict(DEFAULTS, role="owner"), dict(DEFAULTS, schema=2)]:
+        for candidate in [{}, dict(DEFAULTS, role="owner"), dict(DEFAULTS, schema=99)]:
             with self.assertRaises(AppearanceError):
                 validate(candidate)
         self.assertIn("--chart-series", resolve(DEFAULTS))
+
+    def test_prepared_icon_assignments_preserve_meaning_and_reject_asset_injection(self):
+        for family in ("outline", "solid"):
+            for use in catalog()["icons"]["uses"]:
+                for variant in ("plain", "badge"):
+                    config = dict(DEFAULTS, iconFamily=family, **{use + "Icon": variant})
+                    icon = resolve(config)["icons"][use]
+                    self.assertEqual((icon["use"], icon["variant"]), (use, variant))
+                    self.assertTrue(all(icon["states"].values()))
+                    if use == "disclosure":
+                        self.assertNotEqual(icon["states"]["open"], icon["states"]["closed"])
+                    self.assertEqual(icon["directional"], use in ("previous", "disclosure"))
+        fallback = resolve(dict(DEFAULTS, iconFamily="solid", settingsIcon="badge"))["icons"]["settings"]
+        self.assertEqual((fallback["family"], fallback["fallback"]), ("outline", True))
+        for key, value in [("searchIcon", "delete"), ("iconFamily", "https://invalid/icon.svg"),
+                           ("searchIcon", "<svg onload=alert(1)>"), ("iconSize", 100), ("iconStroke", True)]:
+            with self.subTest(key=key), self.assertRaises(AppearanceError):
+                validate(dict(DEFAULTS, **{key: value}))
+        with self.assertRaises(AppearanceError):
+            validate(dict(DEFAULTS, svg="M0 0"))
+        self.assertEqual(resolve(dict(DEFAULTS, iconFamily="solid", iconStroke=1.5))["iconStroke"], 2)
+
+    def test_only_complete_valid_legacy_storage_is_normalized(self):
+        legacy = dict(LEGACY_DEFAULTS, palette="forest", bodySize=20, spacing=24, theme="dark")
+        normalized = stored_config(json.dumps(legacy))
+        for key in legacy.keys() - {"schema"}:
+            self.assertEqual(normalized[key], legacy[key])
+        self.assertEqual((normalized["schema"], normalized["iconFamily"]), (2, "outline"))
+        for bad in [dict(legacy, schema=True), dict(legacy, schema=99), dict(legacy, radius=900),
+                    dict(legacy, iconFamily="solid"), {"schema": 1}, LEGACY_DEFAULTS]:
+            # Valid legacy storage is supported; old requests are intentionally not.
+            with self.subTest(keys=list(bad)), self.assertRaises(AppearanceError):
+                validate(bad)
+        for bad in [dict(legacy, radius=900), dict(legacy, iconFamily="solid"), {"schema": 1}]:
+            with self.assertRaises(AppearanceError):
+                stored_config(json.dumps(bad))
 
     def test_catalog_values_have_resolved_effect_and_prepared_contrast(self):
         baseline = resolve(DEFAULTS)
@@ -78,6 +114,34 @@ class PersistedLifecycle(unittest.TestCase):
         self.assertEqual(restored["revision"], 2)
         self.assertEqual(restored["config"], DEFAULTS)
         self.assertEqual([v["revision"] for v in self.store.history("a", 50)], [2, 1, 0])
+
+    def test_legacy_published_draft_and_history_survive_without_rewrites(self):
+        legacy = dict(LEGACY_DEFAULTS, palette="forest", font="serif", spacing=24, theme="dark")
+        raw = json.dumps(legacy, indent=2)
+        with self.store.connection(True) as db:
+            db.execute("UPDATE versions SET config=? WHERE tenant='a' AND revision=0", (raw,))
+            db.execute("INSERT INTO drafts VALUES ('a','owner-a',7,0,?)", (raw,))
+            db.execute("INSERT INTO audit VALUES (7,'a','owner-a','draft-saved',7,'2026-10-04T22:00:00+00:00')")
+        reopened = Store(self.path)
+        normalized = stored_config(raw)
+        self.assertEqual(reopened.published("a")["source"], "published")
+        self.assertEqual(reopened.published("a")["config"], normalized)
+        self.assertEqual(reopened.draft("a", "owner-a")["config"], normalized)
+        self.assertTrue(reopened.history("a", 50)[0]["valid"])
+        with reopened.connection() as db:
+            self.assertEqual(db.execute("SELECT config FROM versions WHERE tenant='a'").fetchone()[0], raw)
+            self.assertEqual(db.execute("SELECT config FROM drafts WHERE tenant='a'").fetchone()[0], raw)
+        changed = dict(normalized, iconFamily="solid", searchIcon="badge", settingsIcon="badge", iconSize=24)
+        draft = reopened.save("a", "owner-a", changed, 0, 7)
+        self.assertGreater(draft["draftRevision"], 7)
+        reopened.publish("a", "owner-a", draft["draftRevision"])
+        self.assertEqual(Store(self.path).published("a")["config"], changed)
+        self.assertCountEqual(reopened.history("a", 50)[0]["changedFields"], ["iconFamily", "searchIcon", "settingsIcon", "iconSize"])
+        result = reopened.rollback("a", "owner-a", 0, 1)
+        self.assertEqual(result["config"], normalized)
+        with reopened.connection() as db:
+            self.assertEqual(db.execute("SELECT config FROM versions WHERE tenant='a' AND revision=0").fetchone()[0], raw)
+        self.assertEqual(reopened.published("b")["config"], DEFAULTS)
 
     def test_history_differences_are_reconstructable_without_invalid_baselines(self):
         draft = self.save()
@@ -281,6 +345,11 @@ class HTTPBoundary(unittest.TestCase):
             ({"raw": "x" * 16385}, 413),
             ({"body": self.draft_body(), "headers": {"Content-Type": "text/plain"}}, 415),
             ({"body": dict(self.draft_body(), config=dict(DEFAULTS, font="url(javascript:alert(1))"))}, 422),
+            ({"body": dict(self.draft_body(), config=dict(DEFAULTS, iconFamily="https://invalid/icon.svg"))}, 422),
+            ({"body": dict(self.draft_body(), config=dict(DEFAULTS, searchIcon="delete"))}, 422),
+            ({"body": dict(self.draft_body(), config=dict(DEFAULTS, searchIcon="<svg onload=alert(1)>"))}, 422),
+            ({"body": dict(self.draft_body(), config=dict(DEFAULTS, svg="M0 0"))}, 422),
+            ({"body": dict(self.draft_body(), config=LEGACY_DEFAULTS)}, 422),
             ({"body": dict(self.draft_body(), baseRevision=True)}, 422),
             ({"method": "PATCH", "body": self.draft_body()}, 405),
         ]

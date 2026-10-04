@@ -20,6 +20,8 @@
           <p id="draft-state"></p>
           <div class="toolbar"><button id="preset">Use balanced defaults</button><button id="compact">Use compact preset</button></div>
           <form id="settings-form"><div id="settings-fields"></div></form>
+          <button id="icon-defaults">Stage icon defaults only</button>
+          <p class="note">Icon defaults replace only local icon choices. Preview and save the draft before publication; fonts, colors and spacing are preserved.</p>
           <div class="toolbar">
             <button id="preview">Preview unsaved changes</button>
             <button id="save" class="primary">Save private draft</button>
@@ -54,6 +56,8 @@
   <dialog id="surface-dialog" aria-labelledby="surface-dialog-title">
     <h2 id="surface-dialog-title">Product overlay example</h2><p>This overlay consumes the same resolved appearance as its source surface.</p>
     <p class="error-example">Sample error: this is illustrative, not a failed real operation.</p>
+    <div class="toolbar"><button disabled><span data-icon="search"></span> Search example</button><button disabled><span data-icon="settings"></span> Settings example</button></div>
+    <p class="icon-provenance note"></p>
     <form method="dialog"><button>Close example</button></form>
   </dialog>
   <template id="product-template">
@@ -61,7 +65,12 @@
     <h3>Today's work queue</h3>
     <p>Prepared appearance affects everyday controls and data without changing the workflow.</p>
     <label>Find a request <input type="search" placeholder="Request name or identifier" aria-label="Find a request"></label>
-    <div class="toolbar"><button class="primary"><span class="search-icon" aria-hidden="true">⌕</span> Search</button><button class="open-example">Open overlay example</button><button disabled>Restricted action</button></div>
+    <div class="toolbar"><button class="primary"><span data-icon="search"></span> Search</button><button class="open-example"><span data-icon="settings"></span> Open overlay example</button><button disabled>Restricted action</button></div>
+    <p>Illustrative actions only; these do not create, edit or delete requests.</p>
+    <div class="toolbar"><button disabled><span data-icon="add"></span> Add example</button><button disabled><span data-icon="edit"></span> Edit example</button><button disabled><span data-icon="delete"></span> Delete example</button></div>
+    <a href="/"><span data-icon="previous"></span> Return to Appearance Lab</a>
+    <details class="product-details"><summary><span data-icon="disclosure"></span> Request guidance</summary><p>Expanded guidance is a real native disclosure state. Its icon changes with the state, not the action meaning.</p></details>
+    <p class="icon-provenance note"></p>
     <div class="table-scroll"><table><caption>Synthetic service requests</caption><thead><tr><th>Request</th><th>Owner</th><th>Status</th></tr></thead><tbody><tr><td><bdi>REQ-A2</bdi></td><td>Alex</td><td>Ready</td></tr><tr><td><bdi>REQ-B7</bdi></td><td>Sam</td><td>Waiting</td></tr></tbody></table></div>
     <p class="error-example">Sample validation message: choose a request before continuing.</p>
     <svg class="chart" viewBox="0 0 320 170" role="img" aria-label="Synthetic requests: Monday 3, Tuesday 5, Wednesday 4"></svg>

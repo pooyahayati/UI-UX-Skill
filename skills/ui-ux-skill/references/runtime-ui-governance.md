@@ -83,6 +83,16 @@ Reasonable owner-configurable areas can include:
 - approved type-scale preset
 - compact/balanced/comfortable sizing preset
 
+### Editable icons
+
+In-scope owner appearance management includes a prepared icon-family choice and
+a visible gallery for changing individual semantic uses, not code-only icon
+imports. Connect these choices to private preview, validation, publication,
+persistence, history and rollback. Read [the icon adapter contract](implementation-strategies.md#icons)
+for shared consumers, meaningful incomplete-family fallback, supported visual
+controls and preserved accessibility/direction/state. Prepared safe assets only;
+arbitrary uploaded SVG/code is not an appearance control.
+
 ### Density and surfaces
 - compact/balanced/comfortable density
 - approved radius preset

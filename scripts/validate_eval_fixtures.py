@@ -61,6 +61,7 @@ required_fixtures = {
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
 for case_id, raw in (("runtime-appearance-admin-planning", "ADMIN.md"),
+                     ("runtime-appearance-icon-planning", "ICONS.md"),
                      ("runtime-appearance-narrow-boundary", "NARROW.md"),
                      ("runtime-appearance-no-admin-boundary", "NO_ADMIN.md")):
     case = next((c for c in manifest.get("cases", []) if c.get("id") == case_id), None)

@@ -70,6 +70,69 @@ function svgElement(name, attributes, text) {
   return node;
 }
 
+function iconElement(icon, tokens, iconState = "default") {
+  const artwork = icon.states[iconState];
+  const svg = svgElement("svg", { viewBox: "0 0 24 24", "aria-hidden": "true",
+    focusable: "false", class: "semantic-icon", "data-use": icon.use,
+    "data-family": icon.family, "data-variant": icon.variant,
+    "data-fallback": String(icon.fallback), "data-state": iconState,
+    "data-mirror": String(icon.directional && iconState !== "open") });
+  for (const path of artwork) {
+    svg.append(svgElement("path", { d: path.d, "fill-rule": "evenodd",
+      fill: path.badge || !icon.stroke ? "currentColor" : "none",
+      stroke: path.badge || !icon.stroke ? "none" : "currentColor",
+      "stroke-width": icon.fallback ? 2 : tokens.iconStroke,
+      "stroke-linecap": "round", "stroke-linejoin": "round" }));
+  }
+  return svg;
+}
+
+// Every owned consumer uses this adapter, including readers and overlays.
+// Only server-resolved prepared artwork reaches a fixed SVG element vocabulary.
+function renderIcons(root, tokens) {
+  for (const slot of root.querySelectorAll("[data-icon]")) {
+    const use = slot.dataset.icon;
+    const details = use === "disclosure" && slot.closest("details");
+    const iconState = details ? (details.open ? "open" : "closed") : "default";
+    slot.replaceChildren(iconElement(tokens.icons[use], tokens, iconState));
+  }
+  for (const note of root.querySelectorAll(".icon-provenance")) {
+    const fallbacks = Object.values(tokens.icons).filter(icon => icon.fallback);
+    note.textContent = fallbacks.length
+      ? "Prepared fallback: " + fallbacks.map(icon => `${icon.use} ${icon.variant} uses ${icon.family}; unavailable in ${icon.requestedFamily}.`).join(" ")
+      : "All icon assignments are available in the selected family.";
+  }
+}
+
+function updateIconGallery() {
+  if (!state.catalog) return;
+  const config = readConfig(), icons = state.catalog.icons;
+  for (const button of document.querySelectorAll(".icon-choice")) {
+    const key = button.dataset.setting, value = button.dataset.value;
+    const use = key === "iconFamily" ? "search" : key.slice(0, -4);
+    const family = key === "iconFamily" ? value : config.iconFamily;
+    const variant = key === "iconFamily" ? config.searchIcon : value;
+    const icon = icons.assets[family][use][variant];
+    const art = button.querySelector(".choice-art");
+    const galleryUses = key === "iconFamily" ? ["search", "add", "delete"] : [use];
+    art.replaceChildren(...galleryUses.map(semantic => {
+      const preview = icons.assets[family][semantic][key === "iconFamily" ? config[semantic + "Icon"] : variant];
+      return iconElement(preview, { iconStroke: family === "outline" ? config.iconStroke : 2 }, semantic === "disclosure" ? "closed" : "default");
+    }));
+    const selected = config[key] === value;
+    button.setAttribute("aria-pressed", String(selected));
+    button.querySelector(".choice-note").textContent = (selected ? "Selected · " : "") + (icon.fallback ? "Prepared outline fallback" : "Available");
+    button.disabled = state.busy;
+  }
+  const stroke = $("setting-iconStroke");
+  if (stroke) {
+    stroke.disabled = state.busy || !icons.families[config.iconFamily].stroke;
+    $("help-iconStroke").textContent = config.iconFamily === "solid"
+      ? "Not editable for solid assets. Your outline preference is retained but dormant; a fallback uses its prepared width."
+      : "Adjusts outline artwork only. Solid artwork has no stroke; control target size stays unchanged.";
+  }
+}
+
 // An explicit non-CSS adapter: same resolved roles, unchanged data/relationships.
 function renderVisualizations(root, tokens) {
   const chart = root.querySelector(".chart");
@@ -103,12 +166,17 @@ function renderSurface(id, snapshot) {
     root.querySelector(".open-example").addEventListener("click", event => {
       overlayTrigger = event.currentTarget;
       applyTokens($("surface-dialog"), root._resolvedTokens);
+      renderIcons($("surface-dialog"), root._resolvedTokens);
       $("surface-dialog").showModal();
     });
+    for (const details of root.querySelectorAll(".product-details")) {
+      details.addEventListener("toggle", () => renderIcons(root, root._resolvedTokens));
+    }
   }
   root._resolvedTokens = snapshot.tokens;
   applyTokens(root, snapshot.tokens);
   renderVisualizations(root, snapshot.tokens);
+  renderIcons(root, snapshot.tokens);
 }
 
 function renderControls() {
@@ -118,7 +186,7 @@ function renderControls() {
     if (spec.group !== group) {
       group = spec.group;
       const details = document.createElement("details");
-      details.open = group === "Brand" || group === "Typography";
+      details.open = group === "Brand" || group === "Typography" || group === "Icons";
       const summary = document.createElement("summary"); summary.textContent = group;
       content = document.createElement("div"); details.append(summary, content); container.append(details);
     }
@@ -133,6 +201,21 @@ function renderControls() {
     select.setAttribute("aria-describedby", `${description.id} ${error.id}`);
     select.addEventListener("change", () => { state.dirty = true; updateActions(); });
     label.append(select, description, error); content.append(label);
+    if (spec.key === "iconFamily" || spec.key.endsWith("Icon")) {
+      const gallery = document.createElement("div"); gallery.className = "icon-gallery";
+      gallery.setAttribute("role", "group"); gallery.setAttribute("aria-label", spec.label + " visual choices");
+      for (const value of spec.values) {
+        const button = document.createElement("button"); button.type = "button"; button.className = "icon-choice";
+        button.dataset.setting = spec.key; button.dataset.value = value;
+        const art = document.createElement("span"); art.className = "choice-art";
+        const name = document.createElement("span"); name.textContent = spec.key === "iconFamily" ? state.catalog.icons.families[value].label : spec.label + " · " + value;
+        const note = document.createElement("small"); note.className = "choice-note";
+        button.append(art, name, note);
+        button.addEventListener("click", () => { select.value = value; state.dirty = true; updateActions(); });
+        gallery.append(button);
+      }
+      content.append(gallery);
+    }
   }
 }
 
@@ -147,14 +230,16 @@ function readConfig() {
 
 function fillControls(config) {
   for (const spec of state.catalog.settings) $("setting-" + spec.key).value = String(config[spec.key]);
+  updateIconGallery();
 }
 
 function updateActions() {
   const locked = state.busy;
-  for (const id of ["save", "preview", "reset", "reload", "compact", "preset", "rollback"]) $(id).disabled = locked;
+  for (const id of ["save", "preview", "reset", "reload", "compact", "preset", "rollback", "icon-defaults"]) $(id).disabled = locked;
   $("publish").disabled = locked || !state.draft || state.dirty;
   $("discard").disabled = locked || !state.draft;
   for (const spec of (state.catalog ? state.catalog.settings : [])) $("setting-" + spec.key).disabled = locked;
+  updateIconGallery();
   $("draft-state").textContent = state.dirty ? "Unsaved edits. Save before publication; refresh can lose these edits." : state.draft ? `Saved private draft ${state.draft.draftRevision}; based on published version ${state.draft.baseRevision}.` : "No saved draft. Published values remain active.";
   if (state.catalog && state.published && !isReader && state.session.canEdit) {
     const config = readConfig();
@@ -232,6 +317,13 @@ $("discard").addEventListener("click", () => perform(async () => {
 }));
 $("preset").addEventListener("click", () => { fillControls(state.catalog.defaults); state.dirty = true; updateActions(); });
 $("compact").addEventListener("click", () => { $("setting-density").value = "compact"; state.dirty = true; updateActions(); });
+$("icon-defaults").addEventListener("click", () => {
+  for (const spec of state.catalog.settings.filter(spec => spec.group === "Icons")) {
+    $("setting-" + spec.key).value = String(state.catalog.defaults[spec.key]);
+  }
+  state.dirty = true; updateActions();
+  status("Icon defaults staged locally. Other appearance choices are preserved; preview and save before publishing.");
+});
 $("reset").addEventListener("click", event => confirmChange("Stage appearance defaults?", "This replaces your private draft with prepared defaults. It does not publish or delete history. Unsaved local edits will be replaced.", event.currentTarget, async () => {
   state.draft = await request("resets", "POST", { baseRevision: state.published.revision, draftRevision: state.draft ? state.draft.draftRevision : 0 });
   fillControls(state.draft.config); state.dirty = false; await preview(); await refreshHistory(); status("Defaults saved as a private draft. Review before publishing.");

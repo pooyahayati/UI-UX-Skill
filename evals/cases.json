@@ -2,6 +2,20 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "runtime-appearance-icon-planning",
+      "type": "positive",
+      "fixture": "runtime-appearance-brief",
+      "prompt": "Use only ICONS.md as the raw product request. Recommend its practical implementation and acceptance plan using the current Skill. Do not inspect the authored runtime fixture, tests or samples; no application implementation, installation or publication is authorized.",
+      "invariants": [
+        "extends the existing English LTR web-application appearance page and lifecycle without a new product framework or invented authority",
+        "offers visible prepared family and individual semantic icon choices through one shared adapter including public reader and dialog consumers",
+        "preserves action names directional semantics coherent disclosure pairs meaningful incomplete-family fallback and supported size color stroke controls",
+        "rejects arbitrary executable SVG code or URLs as runtime appearance settings",
+        "preserves valid pre-icon font color spacing values and historical snapshots through explicit compatibility and reversible publication",
+        "defines actual consumer lifecycle authorization accessibility and theme checks without claiming those planned checks passed"
+      ]
+    },
+    {
       "id": "runtime-appearance-admin-planning",
       "type": "positive",
       "fixture": "runtime-appearance-brief",
