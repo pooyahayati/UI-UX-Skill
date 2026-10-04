@@ -8,6 +8,12 @@ Version 3.0 provides fixture projects plus scripts that make forward testing rep
 
 ## Validate fixtures
 
+R5's [raw appearance requests](fixtures/runtime-appearance-brief/README.md) are
+separate from the [authored executable fixture](fixtures/runtime-appearance/README.md).
+Its [three fresh planning outcomes](samples/RUNTIME_FORWARD_REVIEW.md) have scoped
+lead assessments, not runtime security certification or full-candidate conformance.
+Do not give the executable fixture/review as an answer key for those raw cases.
+
 ```bash
 python3 scripts/validate_eval_fixtures.py
 ```

@@ -30,6 +30,9 @@ jobs:
       - name: Authored sample assets and raw-input boundary
         run: python3 scripts/test_sample_artifact.py
 
+      - name: Runtime appearance contract, persistence and trusted HTTP boundary
+        run: python3 scripts/test_runtime_appearance.py
+
       - name: Product route and isolation validation
         run: python3 scripts/validate_product_routes.py
 

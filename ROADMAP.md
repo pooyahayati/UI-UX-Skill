@@ -9,10 +9,10 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Last updated: **2026-10-05**.
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
-- Implementation: **In progress**; **5 of 9 correction stages completed**.
-- Active implementation stage: **None**. R4 is locally accepted; its integration checks precede R5 kickoff.
-- Next implementation stage: **R5 — Parametric appearance management with real consumers**. Not started; R4's scoped continuation/handoff exit is accepted. No maintainer taste choice for a fictional product is requested.
-- Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22. R4 is locally accepted on `codex/r4-incremental-design-handoffs`, pending candidate-bound CI and integration. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
+- Implementation: **In progress**; **6 of 9 correction stages completed**.
+- Active implementation stage: **None**. R5's scoped implementation/delivery acceptance is recorded below; its authorized passing merge is the immediate integration action. R6–R8 are not completed.
+- Next implementation stage: **R6 — Editable semantic icons**. Not started; begin after R5 integration. No maintainer taste choice for a fictional product is requested.
+- Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22; R4 through PR #23. R5's reviewed implementation `6e072c43264ab51b4c3460f180dc6e07f8ddde61` is pushed on `codex/r5-parametric-appearance` in PR #24; passing integration remains pending at this checkpoint. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
 - Dependency disposition: the [six-case R4 review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) records actual bounded forward execution, separate lead acceptance and shared-session limitations. No specialist was added or policy/test gate weakened; one writer and completed prerequisites remain enforced.
 - Quality follow-up: [QF01–QF07](evals/samples/REMEDIATION_PLAN.md) preserve all historical evidence. QF01–QF03 and QF06/QF07 have bounded Verified outcomes; QF04/QF05 remain Unverified required R7 typography/native-confirmation obligations with explicit owner/reason/trigger, not waivers. The separately authorized installed Persian specialist update to 1.4.0 remains verified with its full prior backup. Source review, rendered save/refresh checks and current installation do not prove actual glyph-font/weight or completion-dialog branches. No additional external design specialist or other installation was performed.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
@@ -32,7 +32,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | R2 | Living `DESIGN.md` contract and profile migration | Completed | Integrated R1 | Current design role; one handbook writer | 2026-10-04 | [R2 execution record](#r2-execution-record) |
 | R3 | Sequential product-aware samples and versioned approval | Completed | R1, R2 | Design role; product owner approves actual product designs | 2026-10-04 | [R3 independent forward review](evals/samples/SEQUENTIAL_FORWARD_REVIEW.md) |
 | R4 | Incremental decisions and bounded agent handoffs | Completed | R2, R3; scoped continuation and separate lead review accepted | Engineering lead (single writer) | 2026-10-05 | [R4 forward review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) |
-| R5 | Parametric appearance governance with real consumers | Not started | R2, R4 | Engineering lead with design input | Not completed | Not recorded |
+| R5 | Parametric appearance governance with real consumers | Completed | R2, integrated R4 | Engineering lead with design input | 2026-10-05 | [R5 delivery acceptance](#r5-delivery-acceptance--2026-10-05) |
 | R6 | Editable semantic icons and icon families | Not started | R5 | Engineering lead with design input | Not completed | Not recorded |
 | R7 | Integrated language, direction, theme, and visual quality | Not started | Contracts begin in R1/R3; final gate after R6 | Design role; engineering lead accepts | Not completed | Not recorded |
 | R8 | Behavioral evaluation, package verification, release readiness | Not started | R0–R7 | Engineering lead / maintainer | Not completed | Not recorded |
@@ -397,22 +397,60 @@ Owner: engineering lead with design input. Prerequisites: R2, R4.
 
 Tasks:
 
-- [ ] Make admin appearance management mandatory for in-scope new/broad work on products with admin, while retaining the narrow-change and no-admin boundaries.
-- [ ] Define each setting's ownership and effect: product surface, owned admin surface, organization/tenant, or user. Preserve isolation and protected precedence.
-- [ ] Reuse the product's current technology and native/host controls. Do not migrate frameworks to resemble the example theme.
-- [ ] Define validated configuration, resolution, persistence, and component-consumption boundaries; do not scatter raw settings or hard-coded configurable values through pages.
-- [ ] Offer coherent presets/simple controls plus bounded advanced settings, with human-readable names, defaults, allowed values, dependencies, permissions, consumers, and reset behavior.
-- [ ] Cover colors/brand, available fonts and typography sizes, line height, spacing/density, borders/radii/shadows, component style, light/dark modes, motion, and supported chart/diagram styles.
-- [ ] Connect charts, overlays, icons, error screens, and independent assets through appropriate adapters; changing CSS variables alone is not proof of complete consumption.
-- [ ] Define isolated draft, preview, validation, publish, active-version identity, history, rollback, reset, and safe defaults; keep public rendering on the published version.
-- [ ] Enforce authorization and input constraints at the trusted boundary, not only by hiding a menu.
-- [ ] Verify persistence, refresh behavior, cache invalidation, partial/failing loads, and coherent publication.
-- [ ] Restrict choices to prepared/legal assets and variants. Adding a new font/library or unbundled asset may require preparation/build; routine supported setting changes must not require editing a page.
-- [ ] Do not substitute arbitrary CSS, JavaScript, HTML, or executable asset input for safe parametric controls. Optional import/export must validate schema, show differences, and never publish silently.
+- [x] Make admin appearance management mandatory for in-scope new/broad work on products with admin, while retaining the narrow-change and no-admin boundaries.
+- [x] Define each setting's ownership and effect: product surface, owned admin surface, organization/tenant, or user. Preserve isolation and protected precedence.
+- [x] Reuse the product's current technology and native/host controls. Do not migrate frameworks to resemble the example theme.
+- [x] Define validated configuration, resolution, persistence, and component-consumption boundaries; do not scatter raw settings or hard-coded configurable values through pages.
+- [x] Offer coherent presets/simple controls plus bounded advanced settings, with human-readable names, defaults, allowed values, dependencies, permissions, consumers, and reset behavior.
+- [x] Cover colors/brand, available fonts and typography sizes, line height, spacing/density, borders/radii/shadows, component style, light/dark modes, motion, and supported chart/diagram styles.
+- [x] Connect charts, overlays, icons, error screens, and independent assets through appropriate adapters; changing CSS variables alone is not proof of complete consumption.
+- [x] Define isolated draft, preview, validation, publish, active-version identity, history, rollback, reset, and safe defaults; keep public rendering on the published version.
+- [x] Enforce authorization and input constraints at the trusted boundary, not only by hiding a menu.
+- [x] Verify persistence, refresh behavior, cache invalidation, partial/failing loads, and coherent publication.
+- [x] Restrict choices to prepared/legal assets and variants. Adding a new font/library or unbundled asset may require preparation/build; routine supported setting changes must not require editing a page.
+- [x] Do not substitute arbitrary CSS, JavaScript, HTML, or executable asset input for safe parametric controls. Optional import/export must validate schema, show differences, and never publish silently.
 
 Output: implementation-neutral panel contract and a small stack-appropriate executable fixture proving color, font, density, and component-shape changes.
 
 Exit: valid published changes visibly affect relevant consumers and survive refresh; invalid/unauthorized writes are rejected; drafts remain private; fallback and rollback really work. Attach runtime, persistence, denial/isolation, and rollback evidence. A settings form or JSON file alone does not satisfy this gate.
+
+### R4 integration and R5 preparation record
+
+R4 integrated 2026-10-05 local date through [PR #23](https://github.com/pooyahayati/UI-UX-Skill/pull/23), reviewed head `59c49fd4209899a5da9df17f0db6213116f224a4`, merge `265e9c360c279b637bd8987e16e1f90fb39c0d86`. PR validation run `37234302646` and merge run `37234373674` succeeded, including official quick validation and the merge-bound installer smoke. Publish release was explicitly skipped; latest release remains v3.1.1 published 2026-10-01, its assets retain that date, and tag still points to `d2420e9c60230fb2a667dff971f60a8bbbaaa1de`. No new release, version bump, installation or deployment.
+
+Before publication, native Trivy 0.75.0 (freshly verified stable) actually scanned the exact git-archive delivery tree bound to the reviewed head: zero findings, no warnings and helper PASS. The direct Git-checkout diagnostic had zero secrets but was rejected because its native report type was repository rather than filesystem; an unchanged-helper scan on the exact delivery tree without Git metadata resolved this without weakening validation. Private report/manifest/package hashes are retained outside source. Candidate 3.1.1 ZIP CRC checks passed; these were not uploaded as release assets. No Graphify was required for the bounded input/caller source analysis.
+
+### R5 preparation record
+
+Started 2026-10-05 from the clean matching local/live main merge above; one writer, no new specialist/framework or installed package. Inspected existing runtime governance, handbook/value ownership, design-system migration and stack adapters before editing. Added per-setting ownership/allowed-value/consumer/reset evidence and complete snapshot/base-revision conflict/fallback boundaries to the existing canonical runtime reference, not another control-center methodology.
+
+Engineering risk floor is Tier 2 for the future trusted configuration/storage fixture even though wording-only classification may be lower. The external execution plan retains all R5 tasks and exit criteria. Use a small isolated synthetic browser fixture with real local persistence and trusted validation/permission boundaries, not a production auth/backend project or a settings-only mock. Reuse current Python stdlib/SQLite and browser-native HTML/CSS/JavaScript where adequate; these fixture choices do not mandate a stack in products using this Skill. Generated databases/reports remain outside source. Actual implementation, panel rendering, consumers, denial/isolation, publish/history/rollback/restart/fallback and independent outcome evidence are still pending. No R5 task or stage is marked complete from this preparation.
+
+### R5 executable checkpoint — 2026-10-05
+
+This supersedes the preparation-only description above, not outstanding delivery gates. One implementation writer remains; R5 stays In progress, the completed count stays 5 of 9 and R6–R8 remain required.
+
+- Implemented `scripts/runtime_appearance.py`, its SQLite/HTTP tests and the [isolated runtime fixture](evals/fixtures/runtime-appearance/README.md). The handbook records intent, one catalog/resolver owns 18 prepared controls and external SQLite holds complete tenant publications and actor-private drafts. No dependency/framework/host installation, production data/account or new external design specialist.
+- `python -B -X utf8 scripts/test_runtime_appearance.py` passed 17 tests: catalog effects/contrast/target floors, privacy/isolation, stale draft/base conflicts, concurrent publication with one winner, persisted restart/reopen, append-only history/rollback/reset/discard, malformed/unsafe/oversized/duplicate inputs, one-use access/expiry, generic storage failure and whole-snapshot history/default fallback. The lead read existing contract/security guidance; no independent security-specialist return or production certification is claimed.
+- Actual red-to-green fixes include huge numeric conversion, non-ASCII CSRF comparison, missing history differences/audit events, Windows early-refusal delivery, deeply nested corrupt stored JSON, duplicate security/framing headers, malformed/absolute request targets and blank/excess history queries. Persisted configuration now uses a bounded strict snapshot decoder. Required rejection/protected-state assertions were not relaxed to obtain success.
+- [Three fresh planning evaluations](evals/samples/RUNTIME_FORWARD_REVIEW.md) passed 11 scoped invariants with separate lead review; all canonical raw briefs match evaluated-input SHA256 values. Authored runtime output was not an answer key. Admin output kept icons code-only; R6 must correct that, not claim icon configurability accepted.
+- Actual panel observations: 17 non-theme controls changed typography, spacing/density, shapes, colors, component style, motion and SVG chart/diagram presentation in a private preview; public version 2 stayed unchanged until publication, then version 3 survived refresh and a real process restart. Overlay/error/brand/decorative-icon roles share resolution. All five source/default/handbook files remained byte-identical during runtime changes.
+- Current-code dark preview stayed private against light version 3; cancel preserved version 3/draft 8, confirmation created version 4 and survived refresh. Measured 400×900 CSS viewport had document width 381; targets exceeded 44 px, table content fit its wrapper, dark chart labels and a 368 px overlay consumed semantic roles. Browser scale 0.8 required a nominal 320×720 request; coverage uses actual DOM geometry, not nominal request or raster size. Temporary override was reset.
+- Reset cancel preserved public/history state; confirmation saved private defaults draft 10, leaving version 4 and five history entries unchanged. Discard removed only the draft. Rollback cancel preserved version 4; confirmation appended light version 5 copied from version 3 and retained all six historical entries. Backend/frontend/handbook hashes were unchanged before/after these operations.
+- A separate read-only fixture with inaccessible storage rendered identifiable safe defaults/degraded provenance, never a private draft or false success. This capture predates the latest input hardening; current store/HTTP tests cover that corrected source. Inspected old `history-after-restart.jpg` showed loading and is not history proof; inspected new `rollback-history-current.jpg` shows version 5/4/3 entries in a scrolled viewport, not a full-page claim. Screenshots/database/session material stay outside Git. Localhost fixture cookies ignore port; use serial personas, not weaker cookies.
+- All eight protected validators passed; 85 cases/17 fixtures are structural validity, not 85 executed model cases. JavaScript syntax/diff whitespace passed. Official local quick validation remains unavailable without PyYAML; no installation to bypass it.
+- Pending R5 acceptance: final source/diff review, exact-source native security scan, package integrity, current CI and authorized passing integration. QF04/QF05 stay required R7 obligations; generic font declarations/new HTML dialogs do not prove old glyph identity/native-confirm branches. Version stays 3.1.1; no release/tag/asset upload/deployment/installed-Skill change.
+
+### R5 delivery acceptance — 2026-10-05
+
+Engineering lead accepts the scoped R5 setting/consumer/lifecycle contract at reviewed implementation `6e072c43264ab51b4c3460f180dc6e07f8ddde61`, delivered through [PR #24](https://github.com/pooyahayati/UI-UX-Skill/pull/24). The earlier executable checkpoint's pending gates were subsequently checked; it remains historical evidence, not the current status. R5 is Completed for its stated fixture/Skill scope, not production certification, editable-icon completion or full R7/R8 acceptance. Integration of this acceptance update is still pending and must pass current CI before merge.
+
+- Final source/diff review checked all R5 plan rows, catalog/resolver, trusted store/HTTP boundaries and actual component/SVG consumers. One implementation writer; existing security/interface guidance informed lead review, not an independent specialist return. All 47 tests across six local suites and eight protected validators passed after the final handbook evidence update; JavaScript syntax/whitespace passed. Purity found no forbidden tracked/staged files; its optional local-exclude setup warning is retained.
+- [Candidate CI](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37241534531) passed at that exact implementation, including runtime regressions, protected validators, packaging and official quick validation. PR-event installer smoke was skipped by the existing condition; exact merge-bound installation is a subsequent CI check, not a claimed local installation.
+- Native Trivy 0.75.0, freshly resolved stable, scanned the complete exact git-archive delivery tree without Git metadata: helper PASS, zero findings, no warnings. Secret-only scope matches text/stdlib resources with no shipped third-party dependency or changed infrastructure; executable authorization/integrity checks remain separate. Private scan reports and delivery manifest stay outside source. The direct-checkout report-type limitation is preserved rather than weakening the helper.
+- Both candidate ZIPs passed CRC and exact byte comparison of all 75 canonical Skill files, including `assets/templates/DESIGN.md` and runtime governance. Portable SHA256 `50b0c59833e6b104cb86b4f08aa0c6b00c2cf6c823224167ba1d2d4b6c2ce209`; plugin SHA256 `417f44b9847a9ed13465511a71ca76ce4717c15615db37c9af4d625c78ffcc49`. Source archive SHA256 `dc46263f8661f803fc46487add015c043e47738f8cc5f500e68b3c72307d67c7`. These are candidate verification artifacts, not uploaded release assets.
+- Representative rendered settings, private/public state, publication, refresh/process restart, dark, reset/discard/rollback and source-preservation evidence remain as recorded above. The later handbook evidence update is not runtime synchronization. The verified own loopback server was stopped. Exact OS glyph/font weight and the original native-confirmation branches remain required QF04/QF05 at R7, not waived by this acceptance.
+- Owner authorized passing merges and prohibited a new release. Root/Skill/plugin versions remain 3.1.1; public release/tag/assets were rechecked unchanged before integration. No version bump, release dispatch, upload, deployment, host installation, dependency/framework or external design-specialist addition. R6 is next after passing integration; R7/R8 remain required.
 
 ### R6 — Editable semantic icons
 
@@ -528,7 +566,7 @@ The handbook describes the approved contract and links to real default/value sou
 
 ## Planned acceptance scenarios
 
-All correction scenarios below are **planned, not run**. Previous fixture/schema results do not prove the new capabilities.
+This is the correction acceptance catalog, not a blanket execution result. Stage records identify actual scoped checks and limitations. Full-candidate scenario reconciliation remains an R8 obligation; previous fixture/schema results alone do not prove the new capabilities.
 
 | ID | Scenario | Observable expected result |
 | --- | --- | --- |
@@ -635,11 +673,12 @@ Still pending:
 - [x] Execution and local evidenced acceptance of R2, with synthetic consumer checks and independent-behavior limitations recorded.
 - [x] Targeted fresh sequential behavior and evidenced stage acceptance of R3, retaining demo/evidence limitations.
 - [x] Targeted fresh continuation/handoff behavior and separate lead acceptance of R4, with required later typography/interaction evidence retained.
-- [ ] Execution and evidenced acceptance of R5–R8.
+- [x] Execution and evidenced scoped acceptance of R5, with final candidate checks and passing implementation CI; integration is recorded separately.
+- [ ] Execution and evidenced acceptance of R6–R8.
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** integrate the accepted R4 slice after final source review, required security and candidate-bound CI, then start R5's actual configuration/consumer/persistence boundary. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and verify the existing-release publication skip. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's actual workflow acceptance does not certify those unchanged surfaces or finish R8. A full backend is not a prerequisite for fictional R3/R4 previews; actual persistence and trusted write checks are prerequisites for R5's separate runtime fixture. No benchmark style choice is requested.
+**Next implementation action:** finish R5's passing integration of the acceptance record, then start R6 under the retained plan; use the existing runtime reference, not a decorative settings mock or mandated product framework. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the separate R5 runtime fixture, not fabricated claims about the fictional R3/R4 previews.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 
