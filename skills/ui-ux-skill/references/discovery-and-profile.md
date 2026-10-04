@@ -1,4 +1,4 @@
-# Design Discovery and Design Profile
+# Design Discovery and Initial Brief
 
 Use for new products, major redesigns, or strategic changes to an existing visual system.
 
@@ -40,9 +40,9 @@ Use when only selected strategic fields need reconsideration, such as:
 - runtime appearance governance
 - user personalization
 
-### Reuse Existing Profile
+### Reuse Existing Handbook or Legacy Profile
 
-Use when an approved `design-profile.md` exists and remains appropriate.
+Use when an approved `DESIGN.md` or valid legacy design documentation remains appropriate. Follow `design-handbook.md` for scoped migration; a narrow correction does not require it.
 
 ## Recommendation-first discovery
 
@@ -86,7 +86,7 @@ Return a compact brief containing:
 
 Initial numeric values may be justified proposals or existing approved tokens, never precise measurements invented from an ambiguous image. Prefer readable named presets for a novice; expose detailed sizes/spacing when the product or owner actually needs them. Include intended configurable versus locked choices under the activation contract, but do not claim the R5 panel already exists.
 
-Reuse existing durable design documentation rather than creating a competing approved profile. This brief feeds the living `DESIGN.md` lifecycle; migration/template details are a separate responsibility. Until that migration is implemented, preserve valid existing profiles and provenance. Recommend substantial-work delegation through the existing bounded handoff, without implicitly launching another agent.
+Reuse existing durable design documentation rather than creating a competing approved profile. This brief feeds the living `DESIGN.md` lifecycle in `design-handbook.md`; preserve valid legacy decisions and provenance through its compatibility boundary. Recommend substantial-work delegation through the existing bounded handoff, without implicitly launching another agent.
 
 ## Product route first
 
@@ -172,174 +172,6 @@ Explicitly distinguish:
 
 Actual identity replacement requires explicit user intent.
 
-## Design Profile schema
+## Durable handbook
 
-Use a concise Markdown or YAML-like structure. Include provenance so future work can tell what was observed vs approved.
-
-Example:
-
-```yaml
-profile_version: 6
-skill_version: 3.0.0
-status: approved
-updated_at: 2026-09-20
-
-product:
-  primary_route: dashboard
-  secondary_routes: []
-  route_source: user-provided
-  type: operational-dashboard
-  users: [admin, operator]
-  primary_workflows:
-    - review queue
-    - update record
-
-routing:
-  product_packs_loaded:
-    - dashboard
-    - dashboard/operational
-  shared_rules_loaded:
-    - navigation-wayfinding
-    - feedback-status
-    - state-recovery
-    - accessibility-interaction
-    - responsive-adaptation
-
-design_system:
-  enabled: true
-  modules_loaded:
-    - tokens-foundations
-    - typography
-    - color-theme
-    - spacing-density-layout
-    - component-states
-    - responsive-variants
-    - governance-migration
-  token_interchange: DTCG-2025.10-compatible
-  themes: [light, dark]
-  high_contrast: supported-where-platform-applies
-  density: [compact, balanced, comfortable]
-  product_variants:
-    - dashboard/operational
-  runtime_boundary: validated-semantic-values-only
-
-direction:
-  languages: [fa, en]
-  rtl: true
-  ltr: true
-
-visual:
-  style: professional
-  personality: calm
-  density: high
-  freedom: balanced
-
-brand:
-  change_scope: treatment-only
-  logo_source: existing
-  palette: approved-semantic-tokens
-  typography: local-font
-
-theme:
-  modes: [light, dark]
-  default: system
-
-responsive:
-  priority: desktop-first
-  supported: [large-desktop, desktop, laptop, tablet, mobile]
-
-runtime_governance:
-  enabled: true
-  owner_role: system-owner
-  owner_configurable:
-    - theme.default
-    - brand.primary
-    - visual.density
-    - tables.default_page_size
-  user_configurable:
-    - theme.preference
-    - visual.density
-    - tables.visible_columns
-    - saved_views
-  code_only:
-    - navigation.destinations
-    - authentication
-    - permissions
-  preview_publish_rollback: true
-
-data_ux:
-  show_last_updated: true
-  show_filter_scope: true
-  timezone: product-locale
-  saved_views: true
-
-validation:
-  visual_regression: representative
-  ux_evidence: use-when-available
-  performance_budget: existing-or-baseline-delta
-
-decisions:
-  - field: visual.density
-    value: high
-    source: user-approved
-  - field: brand.logo_source
-    value: existing
-    source: observed-baseline
-  - field: runtime_governance.enabled
-    value: true
-    source: delegated-recommendation
-
-locked_constraints:
-  - preserve authentication flow
-  - do not change brand mark
-  - owner config cannot alter permissions
-
-open_questions: []
-```
-
-## Status
-
-Use:
-
-- `draft` while strategic choices remain unresolved
-- `approved` after user approval or explicit delegated authority
-
-## Decision source
-
-Useful values:
-
-- user-provided
-- user-approved
-- delegated-recommendation
-- observed-baseline
-- existing-profile
-
-Do not represent an inferred decision as user-approved.
-
-## Configurability classification
-
-For products with runtime or user configuration, classify design decisions as:
-
-- `locked` — cannot be changed through runtime presentation settings
-- `owner-configurable` — controlled product-wide or tenant-wide setting
-- `user-configurable` — personal preference within allowed bounds
-- `code-only` — requires implementation/deployment
-
-Avoid unclear ownership of configuration.
-
-## Updates
-
-Before major UI work:
-
-- read the profile
-- respect locked constraints
-- avoid re-asking resolved questions
-- update only affected strategic fields
-- preserve provenance
-- update `skill_version` when materially revising the profile with a newer Skill
-- re-evaluate `primary_route` and `secondary_routes` when the product surface materially changes
-- re-evaluate `product_packs_loaded` and `shared_rules_loaded` when task scope or product behavior materially changes
-- re-evaluate `design_system.modules_loaded`, theme/density contexts, and product variants when design-system scope materially changes
-- migrate runtime-governance fields carefully when the schema changes
-- reconcile stored preferences/saved views when owner or schema constraints change
-- update validation/evidence expectations when the redesign scope changes
+Use [the living handbook contract](design-handbook.md) for the canonical `DESIGN.md` path, early draft template, scoped decision/approval states, source links and compatible legacy-profile migration. Reuse accepted decisions; the initial brief is not blanket visual approval. Keep routine runtime values in their real implementation/storage authorities, not a second editable profile.

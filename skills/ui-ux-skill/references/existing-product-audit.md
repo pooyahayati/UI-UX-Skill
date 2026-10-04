@@ -309,7 +309,7 @@ Follow the user's autonomy mode before broad propagation of:
 - business-visible terminology
 - actual logo or brand identity
 
-## Existing product without design-profile.md
+## Existing product without an approved handbook
 
 Infer an Observed Baseline.
 
@@ -317,7 +317,7 @@ Use it as a temporary constraint for corrective work.
 
 Run Partial Discovery only for strategic decisions that need reconsideration.
 
-Create `design-profile.md` once a coherent strategic direction is approved or delegated.
+For authorized strategic foundation work, create an early draft `DESIGN.md` through `design-handbook.md`; retain observed, proposed and approved decisions separately. Reuse valid legacy profiles until compatible migration is verified. A narrow correction or audit alone does not authorize creating or migrating the handbook.
 
 ## Compare before/after
 

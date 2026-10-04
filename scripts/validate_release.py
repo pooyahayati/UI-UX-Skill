@@ -52,6 +52,8 @@ for path in [
     f"skills/{SKILL_NAME}/design-system.json",
     f"skills/{SKILL_NAME}/specialists.json",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
+    f"skills/{SKILL_NAME}/references/design-handbook.md",
+    f"skills/{SKILL_NAME}/assets/templates/DESIGN.md",
     "submission/TEST_CASES.md",
     "submission/SUBMISSION_CHECKLIST.md",
     "evals/cases.json",
@@ -68,6 +70,7 @@ for path in [
     "scripts/validate_eval_result.py",
     "scripts/roadmap_policy.py",
     "scripts/test_roadmap_policy.py",
+    "scripts/test_handbook_migration.py",
 ]:
     require(path)
 

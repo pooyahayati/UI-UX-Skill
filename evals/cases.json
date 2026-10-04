@@ -2,6 +2,55 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "handbook-initial-draft",
+      "type": "positive",
+      "fixture": "discovery-brief",
+      "prompt": "Prepare an initial product-root DESIGN.md draft from the supplied Workroom context before UI implementation. No visual sample or blanket design approval exists. Preserve known scope and leave nonblocking decisions explicit.",
+      "invariants": [
+        "records exact canonical path single writer draft revision and scoped decision provenance",
+        "maps approved product jobs to proposed screens states and verification without adding features",
+        "records actual product languages directions light and dark and honest unknown assets",
+        "keeps proposals and open questions distinct from approval and does not invent samples runtime sources or a panel"
+      ]
+    },
+    {
+      "id": "handbook-legacy-compatible",
+      "type": "positive",
+      "fixture": "legacy-handbook",
+      "prompt": "In a prepared copy, migrate the supplied legacy design documentation to product-root DESIGN.md. Preserve valid decisions and provenance, inspect PROJECT.md and tools/profile_reader.py, and verify compatibility. No deletion or token-value change is authorized.",
+      "invariants": [
+        "preserves accepted density identity scope languages themes and original owner-note provenance",
+        "keeps unresolved palette font and sample evidence distinct from inherited scoped approval",
+        "inspects actual legacy consumer and does not replace parser-required fields with a pointer alone",
+        "establishes one canonical handbook with necessary nonauthoritative compatibility source and valid consumer links",
+        "leaves ui-tokens.json unchanged and links actual value authority rather than duplicating live values"
+      ]
+    },
+    {
+      "id": "handbook-conflicting-authority",
+      "type": "negative",
+      "fixture": "legacy-handbook",
+      "prompt": "The conflict variant claims compact density and status approved at a later date. Reconcile it with the supplied owner-note-7 before any migration. Do not modify files yet.",
+      "invariants": [
+        "does not infer newer document or global approved label overrides scoped owner evidence",
+        "identifies conflict source and preserves demonstrably approved baseline pending resolution",
+        "asks only the material owning decision and does not silently overwrite either document",
+        "does not modify product files or invent new approval from this reconciliation request"
+      ]
+    },
+    {
+      "id": "handbook-runtime-separation",
+      "type": "negative",
+      "fixture": "legacy-handbook",
+      "prompt": "Explain how DESIGN.md should relate to token defaults and future published admin density changes. The runtime panel does not exist yet; do not change files or build it.",
+      "invariants": [
+        "distinguishes approved design contract actual ui-tokens source and future published configuration storage",
+        "does not require manual handbook edits for every routine admin value change",
+        "reopens handbook only for meaningful contract changes and preserves locked floors",
+        "does not claim storage permission checks panel or consumer rendering exists without evidence"
+      ]
+    },
+    {
       "id": "discovery-novice-recommendations",
       "type": "positive",
       "fixture": "discovery-brief",

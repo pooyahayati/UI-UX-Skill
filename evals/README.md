@@ -123,6 +123,12 @@ The `discovery-*` cases use raw synthetic inputs in `fixtures/discovery-brief/`.
 
 That walkthrough is a current-session implementation-agent source review, not a fresh model run or customer interview. It is not machine-recorded conformance evidence. Old Stage 6 results do not cover these added cases; full candidate evaluation remains pending. Do not pass `--require-all` on the old five-case result and call that a full candidate run.
 
+## R2 handbook cases and compatibility example
+
+The `handbook-*` cases use raw `discovery-brief` or `legacy-handbook` inputs. The authored after-artifacts in `handbook/example/` are separate from raw fixtures and must not be given to forward evaluators. `scripts/test_handbook_migration.py` exercises actual fixture parser compatibility (including the broken pointer-only replacement), unchanged token/owner bytes and local after-document links. It does not execute a model or prove an arbitrary product migration.
+
+Prepare new cases in isolated copies. Full candidate conformance, real visual approval and runtime behavior remain pending; revalidating old Stage 6 records does not test these new cases. The example is a current-session source-based mapping with explicit gaps, not an independent agent outcome.
+
 ## Stage 6 real-world evaluation
 
 The v3 candidate includes five dedicated production-like fixtures and cases:

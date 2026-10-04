@@ -200,13 +200,15 @@ For broad changes, inspect enough of the current product to understand the affec
 
 Sample representative surfaces for large products and report coverage rather than implying full inspection.
 
-## Design profile and runtime governance
+## Design handbook and runtime governance
 
 For new products or strategic redesigns, use `references/discovery-and-profile.md`.
 
 Inspect known decisions before questioning. Use product-relevant recommendation-first discovery, record actual product languages/directions and light/dark expectations, and keep reference-image inference and proposed defaults distinct from owner approval. Return a focused initial brief rather than an exhaustive questionnaire.
 
-For existing products without an approved profile, use an observed baseline for corrective work rather than forcing full rediscovery.
+For durable foundation work, read `references/design-handbook.md` for the early `DESIGN.md` draft, single-writer/approval contract and compatible legacy-profile migration. Its output template is routed there; a draft is not owner approval or active runtime configuration.
+
+For existing products without an approved handbook, use an observed baseline for corrective work rather than forcing full rediscovery or document migration.
 
 Apply the scope-sensitive activation contract in `references/discovery-and-profile.md`. For in-scope new products or broad redesigns with admin, include Design and Appearance settings in the delivery plan. Narrow corrections do not authorize a new panel; products without admin must not acquire an invented backend or privileged role.
 
