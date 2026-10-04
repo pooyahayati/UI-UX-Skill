@@ -99,12 +99,13 @@ draft/base conflicts, immutable history/rollback/reset, restart, invalid/missing
 failed-load fallback, reader coherence and source-preserving no-code changes need
 actual checks. Color, font, spacing and shape must visibly change representative
 forms/tables, overlays/errors and SVG consumers through the real panel. Stage
-acceptance remains pending until those observations and lead review are recorded.
+acceptance requires those observations and lead review, not this list alone.
 
 The [R5 executable checkpoint](../../../ROADMAP.md#r5-executable-checkpoint--2026-10-05)
 records 17 actual test outcomes, representative rendered lifecycle evidence and
 source-preserving changes. The required outcomes above describe the contract,
-not a substitute for that evidence. Final security/package/CI/integration review
-remains pending; R6 icons, R7 integrated quality and R8 candidate evaluation are
+not a substitute for that evidence. The [subsequent scoped R5 acceptance](../../../ROADMAP.md#r5-delivery-acceptance--2026-10-05)
+records final source/security/package checks and passing implementation CI; its
+integration checkpoint remains separate. R6 icons, R7 integrated quality and R8 candidate evaluation are
 not certified by this fixture. Synthetic search controls illustrate appearance,
 not a production search implementation or actual customer approval.
