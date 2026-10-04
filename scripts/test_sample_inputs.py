@@ -8,6 +8,9 @@ import sys
 import tempfile
 import unittest
 
+# Include exact positive binding regressions in the existing CI test entrypoint.
+from test_executable_baseline import ExecutableBaselineTests
+
 ROOT = Path(__file__).resolve().parents[1]
 PREPARE = ROOT / "scripts/prepare_eval_run.py"
 RAW_ROOT = ROOT / "evals/fixtures"
@@ -15,6 +18,8 @@ RAW_FILES = {
     "sample-review": {"README.md", "BRIEF.md", "OWNER_NOTES.md", "FOUNDATION.json",
                       "variants/bilingual.md", "variants/revision-change.md"},
     "incremental-design": {"README.md", "BRIEF.md", "DESIGN.md", "OWNER_NOTES.md", "ui-tokens.json"},
+    "executable-baseline": {".gitattributes", "README.md", "BRIEF.md", "DESIGN.md",
+                            "OWNER_NOTES.md", "BASELINE.json", "index.html"},
 }
 MANIFEST = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 CASES = [c for c in MANIFEST["cases"] if c["id"].startswith(("samples-", "incremental-"))]

@@ -2,6 +2,19 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "incremental-executable-baseline",
+      "type": "positive",
+      "fixture": "executable-baseline",
+      "prompt": "Inspect BRIEF.md, the exact BASELINE.json-bound index.html/DESIGN.md pair and fixture-owner-1 plus fixture-change-2. In an output copy, implement the delegated successful-save refresh-loss disclosure and record only the affected handbook decision and new sample/document revision. Preserve original inputs, foundation values, save/error/completion behavior and sole English/LTR/light scope. Inspect the actual revised UI when available; otherwise record that limitation. Do not add persistence, themes, languages, a runtime panel or an agent. Do not inherit approval for the generated revision or treat this synthetic fixture as historical customer approval.",
+      "invariants": [
+        "inspects actual source and handbook identities against exact baseline binding before using fictional scoped authority",
+        "preserves input bytes and existing foundation and functional behavior while changing only delegated feedback copy and revision metadata",
+        "clearly discloses refresh loss without implying real backend persistence or adding a new feature",
+        "records new source and handbook linkage scoped decision provenance and actual performed versus unavailable UI checks",
+        "keeps generated sample visual approval pending and does not authenticate absent historical artifacts or broaden language theme admin or agent scope"
+      ]
+    },
+    {
       "id": "samples-primary-foundation-proposal",
       "type": "positive",
       "fixture": "sample-review",

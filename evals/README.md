@@ -145,6 +145,12 @@ Five `incremental-*` cases use raw `fixtures/incremental-design/` inputs: suppli
 
 The existing preparation regression copies both sample and continuation fixtures byte-exactly, keeps prompts isolated and refuses overwriting existing evidence. It does not execute a model or verify a generated handbook/UI. Observe actual baseline reuse, delta-only changes, necessary questions, authority, stale-return handling and performed versus missing checks in future candidate runs. The [authored continuation source review](incremental/WALKTHROUGH.md) is separate illustrative output, never a raw input/answer key or independent conformance claim.
 
+## Positive executable continuation input
+
+`incremental-executable-baseline` uses the separate frozen `fixtures/executable-baseline/` source/handbook pair and its exact byte binding. The supplied approval/delegation records are explicitly fictional and scoped to these actual inputs, not missing historical artifacts. Preserve the originals and work in an output copy. Generated feedback, revised handbooks, current renders and actual model outcomes are not bundled as answers. Existing missing-original/stale cases are unchanged.
+
+`scripts/test_executable_baseline.py` checks the real pair and rejects changed/missing artifacts, absent scoped identity and untrusted manifest paths. Exact-input preparation includes this new fixture. Those deterministic checks prove only binding/preparation; a fresh continuation response, rendered inspection and lead review remain separate.
+
 ## Stage 6 real-world evaluation
 
 The v3 candidate includes five dedicated production-like fixtures and cases:

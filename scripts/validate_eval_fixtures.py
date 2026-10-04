@@ -5,6 +5,7 @@ import json
 import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
+from baseline_binding import validate_baseline
 
 ROOT = Path(__file__).resolve().parents[1]
 EVALS = ROOT / "evals"
@@ -55,6 +56,7 @@ required_fixtures = {
     "legacy-handbook",
     "sample-review",
     "incremental-design",
+    "executable-baseline",
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
 missing = sorted(required_fixtures - existing)
@@ -174,6 +176,12 @@ for case in manifest.get("cases", []):
     for term in ["does not load", "shared rules", "design system", "intentionally not loaded"]:
         if term not in invariants:
             errors.append(f"{case.get('id')}: isolation eval missing invariant term: {term}")
+
+# Exact positive source/handbook input availability, never agent conformance.
+positive_baseline = next((c for c in manifest["cases"] if c.get("id") == "incremental-executable-baseline"), None)
+if positive_baseline is None or positive_baseline.get("fixture") != "executable-baseline":
+    errors.append("Missing exact executable continuation baseline case")
+errors.extend(validate_baseline(EVALS / "fixtures/executable-baseline"))
 
 if errors:
     print("Behavioral eval fixture validation failed:")

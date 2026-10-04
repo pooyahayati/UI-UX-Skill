@@ -77,6 +77,14 @@ Reduce false diffs when practical:
 
 Do not hide dynamic behavior that is itself part of the UX being evaluated.
 
+## Capture validity before acceptance
+
+Inspect the returned raster before using it as evidence. Pair it with the actual source/sample and handbook revisions, language/direction, theme, state and capture mode. When dimensions matter, record the applied viewport, relevant document/scroll dimensions and scroll position; note device scale when available. Requested size or a filename is not proof that the captured layout used that size.
+
+Compare visible geometry and essential content with the observed layout. A matching file size, hash or DOM overflow check does not prove the raster is correct. If a capture is clipped or contradicts the applied viewport, exclude it from positive visual evidence and distinguish a reproduced application defect, capture-method defect and unknown cause before changing UI code.
+
+Use a supported alternative when one capture mode fails. For example, if full-page capture changes geometry, capture the actual viewport and identified scrolled segments, retaining the state and scroll offsets; those segments are not a full-page or whole-workflow check. Preserve failed originals and save replacements with new identities. If no trustworthy capture is available, keep the dependent visual claim unverified and give the recovery action rather than calling the interface accepted.
+
 ## Compare by category
 
 Inspect differences in:

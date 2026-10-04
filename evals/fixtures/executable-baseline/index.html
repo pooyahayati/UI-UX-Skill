@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="light">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dispatch Notes · fixture-primary-1</title>
+<style>
+:root{--canvas:#f1f5f4;--surface:#ffffff;--text:#182f2e;--muted:#4e6562;--border:#536f69;--action:#12685b;--on-action:#ffffff;--space:16px;--radius:12px;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--text);font:400 16px/1.6 system-ui,sans-serif}button,textarea{font:inherit}
+header,main,footer{max-inline-size:1040px;margin-inline:auto;padding:24px}h1{font-size:28px;margin:0 0 8px}h2{font-size:20px;margin:0 0 8px}p{margin:0 0 var(--space)}
+article{padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}.muted{color:var(--muted)}label{display:block;font-weight:700}
+textarea{inline-size:100%;min-block-size:144px;padding:var(--space);background:var(--canvas);color:var(--text);border:1px solid var(--border);border-radius:var(--radius)}
+button{min-block-size:48px;padding:12px 16px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer}button.primary{background:var(--action);color:var(--on-action);border-color:var(--action);font-weight:700}
+button:disabled{opacity:.65;cursor:default}button:focus-visible,textarea:focus-visible{outline:3px solid var(--action);outline-offset:3px}.actions{display:flex;gap:var(--space);flex-wrap:wrap;margin-block:var(--space)}.actions button{flex:1}.status{min-block-size:26px;overflow-wrap:anywhere}[hidden]{display:none!important}
+@media(max-width:600px){header,main,footer,article{padding:var(--space)}.actions{display:grid}.actions button{inline-size:100%}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<header>Dispatch Notes · Technician</header>
+<main><h1>My assigned visits</h1><p class="muted">Synthetic demonstration. Actions are simulated; nothing is sent to a server.</p>
+<article><p id="visit-status">Assigned</p><h2>North Workshop</h2><p><bdi dir="ltr">VIS-204</bdi> · Tuesday at 09:30</p><button id="open" aria-expanded="false" aria-controls="editor">Open visit</button>
+<section id="editor" hidden><h2 id="instructions" tabindex="-1">Instructions</h2><p>Inspect the intake filter before restarting the unit.</p><label for="note">Visit note</label><textarea id="note">Filter replaced. Reading stable after restart.</textarea>
+<p id="status" class="status" role="status" aria-live="polite">Unsaved changes.</p><div class="actions"><button id="save" class="primary">Save draft</button><button id="complete" disabled aria-describedby="prerequisite">Mark complete</button></div><p id="prerequisite" class="muted">Mark complete becomes available after saving a draft.</p></section></article>
+<details><summary>Demonstration review controls</summary><label><input type="checkbox" id="fail">Fail next simulated save</label></details></main>
+<footer>fixture-primary-1 / fixture-h1 · Synthetic fixture baseline, not real customer approval</footer>
+<script>
+const byId=id=>document.getElementById(id);let saved=false,busy=false;
+const text={unsaved:'Unsaved changes.',saving:'Simulated save in progress…',saved:"Draft saved in this preview's memory only. Server save is not confirmed.",failed:'Simulated save failed. Your note is preserved. Select Save draft to retry.',done:'Completion simulated in this preview. Server completion is not confirmed.',confirm:'Mark this visit complete in the preview?'};
+byId('open').onclick=()=>{const opening=byId('editor').hidden;byId('editor').hidden=!opening;byId('open').setAttribute('aria-expanded',String(opening));byId('open').textContent=opening?'Close visit':'Open visit';if(opening)byId('instructions').focus()};
+byId('note').oninput=()=>{saved=false;byId('status').textContent=text.unsaved;byId('complete').disabled=true;byId('prerequisite').hidden=false};
+byId('save').onclick=()=>{if(busy)return;busy=true;byId('save').disabled=true;byId('complete').disabled=true;byId('status').textContent=text.saving;setTimeout(()=>{const fail=byId('fail').checked;byId('fail').checked=false;byId('status').textContent=fail?text.failed:text.saved;saved=!fail;busy=false;byId('save').disabled=false;byId('complete').disabled=!saved;byId('prerequisite').hidden=saved},900)};
+byId('complete').onclick=()=>{if(saved&&confirm(text.confirm)){byId('status').textContent=text.done;byId('visit-status').textContent=text.done;byId('complete').disabled=true}};
+</script></html>

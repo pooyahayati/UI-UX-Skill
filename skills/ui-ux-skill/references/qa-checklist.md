@@ -82,6 +82,7 @@ Verify where applicable:
 
 - representative baseline exists or its absence is reported
 - before/after captures use stable states/viewports
+- returned rasters match the observed context/geometry; apply the capture-validity check in `visual-regression.md` and exclude mismatched captures from acceptance evidence
 - dynamic noise is controlled without hiding relevant behavior
 - pixel diffs are reviewed semantically
 - intentional changes are distinguished from regressions
@@ -120,6 +121,7 @@ Verify:
 - empty, error, stale, and permission states are useful
 - destructive actions communicate consequence
 - role-specific emphasis does not bypass authorization
+- confirmation cancellation and acceptance are observed separately with their protected-state/result checks; use controls supported for the actual native/application dialog, and never infer the branch from a timeout or final screen alone
 
 ## Data Trust UX
 
@@ -197,6 +199,7 @@ Verify:
 - palette semantics and contrast improved
 - typography works at real sizes
 - local fonts load correctly
+- actual glyph-font/weight claims are separated from CSS declarations and readiness; use the evidence boundary in `rtl-ltr-typography.md`, retaining unavailable identity checks as unverified
 - strategic identity changes were authorized
 - third-party asset licensing checked when relevant
 

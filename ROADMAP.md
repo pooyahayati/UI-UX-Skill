@@ -2,18 +2,19 @@
 
 This is the repository's durable roadmap and stage-progress reference. It preserves the completed capability-building history and defines the agreed correction workstream for design discovery, a living product design handbook, visual approval, and configurable appearance.
 
-Implementation was explicitly authorized after roadmap publication. The tracker distinguishes completed R0–R3, local R4 contract preparation with continuation behavior still outstanding, and planned R5–R8. R3 completion covers its targeted fresh workflow observations, not customer approval or production readiness of a fictional demo. Editing this document alone does not change installed Skill behavior or authorize push, merge or release.
+Implementation was explicitly authorized after roadmap publication. The tracker distinguishes completed R0–R4 and planned R5–R8. R3/R4 completion covers their scoped fresh workflow observations, not customer approval or production readiness of a fictional demo. The owner's remaining-work goal separately authorizes passing merges and practical choices, but expressly prohibits a new release. Editing this document alone does not grant delivery authority.
 
 ## Current state
 
-- Last updated: **2026-10-04**.
+- Last updated: **2026-10-05**.
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
-- Implementation: **In progress**; **4 of 9 correction stages completed**.
-- Active implementation stage: **R4**. Its bounded source/input preparation is implemented locally; fresh continuation and handoff behavior remain unverified.
-- Next implementation stage: **R5 — Parametric appearance management with real consumers**. Not started; requires R4 acceptance. No maintainer taste choice for a fictional product is requested.
-- Current authorized delivery: on 2026-10-04 the owner requested merging the corrected R3 slice and going to the next stage. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; the corrected sequential contract and historical example through PR #22. R4 starts on local `codex/r4-incremental-design-handoffs`; it is not pushed/merged. Further integration, release, deployment and installed-Skill updates retain separate gates.
-- Dependency disposition: the owner subsequently authorized one temporary independent R3 evaluator. The targeted fresh workflow gate is accepted with prototype/evidence limitations retained below; R4 now formally enters In progress under the existing next-stage authorization. No specialist was added or policy/test gate weakened; one active stage and completed prerequisites remain enforced.
+- Implementation: **In progress**; **5 of 9 correction stages completed**.
+- Active implementation stage: **None**. R4 is locally accepted; its integration checks precede R5 kickoff.
+- Next implementation stage: **R5 — Parametric appearance management with real consumers**. Not started; R4's scoped continuation/handoff exit is accepted. No maintainer taste choice for a fictional product is requested.
+- Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22. R4 is locally accepted on `codex/r4-incremental-design-handoffs`, pending candidate-bound CI and integration. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
+- Dependency disposition: the [six-case R4 review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) records actual bounded forward execution, separate lead acceptance and shared-session limitations. No specialist was added or policy/test gate weakened; one writer and completed prerequisites remain enforced.
+- Quality follow-up: [QF01–QF07](evals/samples/REMEDIATION_PLAN.md) preserve all historical evidence. QF01–QF03 and QF06/QF07 have bounded Verified outcomes; QF04/QF05 remain Unverified required R7 typography/native-confirmation obligations with explicit owner/reason/trigger, not waivers. The separately authorized installed Persian specialist update to 1.4.0 remains verified with its full prior backup. Source review, rendered save/refresh checks and current installation do not prove actual glyph-font/weight or completion-dialog branches. No additional external design specialist or other installation was performed.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
 - Historical Stages 1–6: **Completed as recorded**, with the Stage 6 source-based evaluation limitations preserved below.
@@ -30,7 +31,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | R1 | Adaptive discovery and professional recommendations | Completed | Locally accepted R0 | Current design role; engineering lead accepts; single writer | 2026-10-04 | [R1 execution record](#r1-execution-record) |
 | R2 | Living `DESIGN.md` contract and profile migration | Completed | Integrated R1 | Current design role; one handbook writer | 2026-10-04 | [R2 execution record](#r2-execution-record) |
 | R3 | Sequential product-aware samples and versioned approval | Completed | R1, R2 | Design role; product owner approves actual product designs | 2026-10-04 | [R3 independent forward review](evals/samples/SEQUENTIAL_FORWARD_REVIEW.md) |
-| R4 | Incremental decisions and bounded agent handoffs | In progress | R2, R3; source/input preparation local, continuation behavior outstanding | Engineering lead (single writer) | Not completed | [R4 execution record](#r4-execution-record) |
+| R4 | Incremental decisions and bounded agent handoffs | Completed | R2, R3; scoped continuation and separate lead review accepted | Engineering lead (single writer) | 2026-10-05 | [R4 forward review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) |
 | R5 | Parametric appearance governance with real consumers | Not started | R2, R4 | Engineering lead with design input | Not completed | Not recorded |
 | R6 | Editable semantic icons and icon families | Not started | R5 | Engineering lead with design input | Not completed | Not recorded |
 | R7 | Integrated language, direction, theme, and visual quality | Not started | Contracts begin in R1/R3; final gate after R6 | Design role; engineering lead accepts | Not completed | Not recorded |
@@ -357,6 +358,19 @@ Formal advancement checkpoint — 2026-10-04: after explicitly authorized indepe
 - Verification/local delivery: initial policy runs rejected premature R4 advancement and multiple active statuses; the single-active-stage tracker is corrected without changing policy/tests. Final 20 local tests and eight protected validators pass. Exact-input tests cover nine sample/five continuation cases, preserve both raw directories byte-for-byte and refuse overwriting run evidence. 81 case definitions/14 fixtures are structurally valid, not fresh executed model outcomes. All 25 local links in touched documents resolve; normalized LF/diff checks pass. Both external test archives match all 75 portable Skill files by bytes, CRC/SHA256 and unchanged version 3.1.1.
 - Delivery limits: local R4 preparation is not pushed/merged and has no PR, Issue or milestone. R3's remote CI does not validate it; official quick validation is locally unavailable without PyYAML, no dependency installed. No fresh candidate/rendered/product-runtime evidence, independent agent or Graphify result claimed. Recovery: obtain fresh candidate sequential observations for R3, then formally enter R4 and evaluate continuation behavior; independent delegation still requires authorization. Completed-stage count unchanged.
 
+### Design evidence remediation follow-up
+
+Current checkpoint — 2026-10-05: QF06 exact positive input and QF07 affected regressions/continuation reconciliation are Verified within their stated scope; see [the latest remediation checkpoint](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05). R4 is locally accepted by the engineering lead after six actual forward cases. QF04/QF05 remain required R7 evidence obligations, not passes; full-candidate R8 and integration remain pending. The paragraphs below preserve earlier checkpoint scope and do not override the current tracker.
+
+Owner: engineering lead / maintainer, single writer. Planning completed 2026-10-04 at local source `c0a2ac273d800db451ee7eaf9e981483c5f26e75`; the owner's subsequent continuation request authorized execution. QF01 is Verified by lead review of reproduced full-page capture mismatches, inspected viewport/scrolled replacements and affected local checks. Its [execution checkpoint](evals/samples/REMEDIATION_PLAN.md#qf01-execution-checkpoint--2026-10-04) preserves unknown internal/historical causes and validation limits. See the [detailed plan and task tracker](evals/samples/REMEDIATION_PLAN.md), derived from the preserved [R3 forward review](evals/samples/SEQUENTIAL_FORWARD_REVIEW.md).
+
+- QF01 establishes reliable capture evidence before assigning a layout cause to clipped RTL rasters.
+- QF02 addresses the applicable essential-field border contrast with the smallest authorized semantic correction; QF03 assesses mixed-script free-text readability without rewriting user data or treating all wrapping as a defect.
+- QF04–QF06 cover actual font resolution, explicit completion cancel/confirm observations and executable exact prior baselines. QF04/QF05 have a [current attempted-execution checkpoint](evals/samples/REMEDIATION_PLAN.md#qf04-and-qf05-execution-checkpoint--2026-10-04) with unmet evidence retained, not passes. Missing real-device, backend and local validator evidence remains classified by scope/tooling, not mislabeled as a confirmed product bug.
+- QF07 runs affected regressions and reconciles fresh forward/continuation evidence when authorized. Existing R3 workflow acceptance remains scoped; R4 continuation/handoff acceptance is still outstanding. These follow-ups do not start R5, R7 or R8, and their plan is not a new evaluation result.
+
+The earlier planning slice changed only this roadmap and the remediation plan. QF01 adds a bounded capture-validity check to the existing visual-regression reference and a QA pointer; unchanged sample sources and historical rasters are reviewed, not edited. QF02 adds a linked foundation-conflict check and an external isolated proposed note-border correction; resolved-color measurements, phone/intermediate captures and unchanged-script/source checks support its [bounded execution acceptance](evals/samples/REMEDIATION_PLAN.md#qf02-execution-checkpoint--2026-10-04), not actual customer approval or fresh model conformance. QF03 adds a free-text-specific direction clarification; fresh renders, actual copy/paste/editing and simulated save preservation support its [no-sample-change assessment](evals/samples/REMEDIATION_PLAN.md#qf03-execution-checkpoint--2026-10-04), not real persistence or actual font identity. Raw fixtures, repository scripts, dependencies, installed version and historical results are unchanged. Keep the agreed primary → dark → authorized secondary review order and the no-new-specialists boundary. Before R4 completion, reconcile relevant required follow-ups or explicitly retain justified later-stage/out-of-scope obligations; do not waive a required acceptance check or demand a backend for the fictional preview.
+
 ### R4 — Incremental development and bounded handoffs
 
 Owner: engineering lead. Prerequisites: R2, R3.
@@ -369,11 +383,11 @@ Tasks:
 - [x] Separate preferences from changed user needs/feature scope; preserve owning approval before strategic expansion.
 - [x] Define delta-only handbook/sample updates with meaningful provenance and retained accepted baseline.
 - [x] Define revision-aware handoff inputs/returns, one writer, stale-return reconciliation and explicit lead acceptance.
-- [ ] Demonstrate continuation with one new design need without uncontrolled style drift or duplicate questioning.
+- [x] Demonstrate continuation with one new design need without uncontrolled style drift or duplicate questioning; six bounded cases and separate lead review are recorded in [the R4 forward review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md).
 
 Output: incremental decision/handoff contract and a continuation evaluation.
 
-Checked items are implemented instruction contracts with a labeled authored source review. They do not establish independent agent behavior; raw forward cases and preparation tests are not completed model outcomes.
+The original source-review/preparation checkpoint did not establish agent behavior. The subsequent dated forward review records actual case execution and separate lead acceptance; its shared-session, fictional-authority and unperformed product-check limitations remain explicit.
 
 Exit: a new slice follows the approved foundation, only necessary new questions are asked, and conflicting feedback is resolved as one product decision rather than parallel values. Attach the continuation/handoff evidence and lead acceptance.
 
@@ -620,11 +634,12 @@ Still pending:
 - [x] Execution and local evidenced acceptance of R1, with synthetic/source-review limitations explicitly recorded.
 - [x] Execution and local evidenced acceptance of R2, with synthetic consumer checks and independent-behavior limitations recorded.
 - [x] Targeted fresh sequential behavior and evidenced stage acceptance of R3, retaining demo/evidence limitations.
-- [ ] Execution and evidenced acceptance of R4–R8.
+- [x] Targeted fresh continuation/handoff behavior and separate lead acceptance of R4, with required later typography/interaction evidence retained.
+- [ ] Execution and evidenced acceptance of R5–R8.
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** evaluate the local R4 continuation/handoff contract against its raw cases, reconcile actual results and lead acceptance before completing R4 or starting R5. R3's targeted forward gate is now accepted; no benchmark taste choice is requested. Corrected R3 source is merged through PR #22; its new review and R4 preparation remain local, not pushed/merged. A full backend is not a prerequisite; actual product approvals remain scoped to visible revisions. Prototype corrections and unverified product checks in the R3 review are not waived by stage acceptance.
+**Next implementation action:** integrate the accepted R4 slice after final source review, required security and candidate-bound CI, then start R5's actual configuration/consumer/persistence boundary. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and verify the existing-release publication skip. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's actual workflow acceptance does not certify those unchanged surfaces or finish R8. A full backend is not a prerequisite for fictional R3/R4 previews; actual persistence and trusted write checks are prerequisites for R5's separate runtime fixture. No benchmark style choice is requested.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 
