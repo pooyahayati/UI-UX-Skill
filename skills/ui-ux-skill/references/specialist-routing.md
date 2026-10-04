@@ -174,6 +174,8 @@ Assign exactly one handbook writer for a given revision. Other agents return pro
 
 The return contains product-specific recommendations with rationale, truly open questions, sample locations/revisions when produced, proposed handbook changes, observed versus inferred assumptions, checks/evidence and limitations, conflicts, and approvals still needed. The lead checks scope, evidence and revision consistency and explicitly accepts or returns the result. Agent preference is not owner approval; sample approval is not feature-scope approval.
 
+For subsequent slices, use [incremental decisions and handoffs](incremental-design-decisions.md) to pass the current approved baseline and genuinely new need, record affected decisions/settings/approvals, and reconcile a stale return before integration. A moved handbook revision is neither permission to overwrite it nor reason to repeat all discovery.
+
 ## UI/UX result returned to a higher-level Head
 
 When operating in Head-delegated mode, finish with a compact handoff that includes:

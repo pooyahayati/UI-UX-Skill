@@ -212,6 +212,8 @@ Before broad rollout, read `references/design-foundation-workflow.md`: one respo
 
 For existing products without an approved handbook, use an observed baseline for corrective work rather than forcing full rediscovery or document migration.
 
+Before a meaningful later UI slice or new design need, read `references/incremental-design-decisions.md` for baseline reuse, delta-only questions/updates, dependent approvals and revision-aware handoffs. Do not repeat settled discovery or let a stale contribution overwrite the current foundation.
+
 Apply the scope-sensitive activation contract in `references/discovery-and-profile.md`. For in-scope new products or broad redesigns with admin, include Design and Appearance settings in the delivery plan. Narrow corrections do not authorize a new panel; products without admin must not acquire an invented backend or privileged role.
 
 For substantial early design work, recommend the bounded same-Skill agent handoff in `references/specialist-routing.md`; the lead keeps approval and integration authority. Use delegation only when authorized and available.

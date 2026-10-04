@@ -49,3 +49,5 @@ Record actual migration checks and retained compatibility needs. Instruction exa
 ## Incremental handoff
 
 Read the canonical path and approved baseline before a meaningful UI slice. Update only affected decisions, requirement coverage and material evidence; retain open questions with their trigger. Return baseline/revision, accepted versus proposed changes, protected invariants, real sample/source links, checks and limitations, unresolved conflicts and remaining approval. Do not duplicate raw chat or rebuild the entire document for a small correction.
+
+Use [incremental decisions and handoffs](incremental-design-decisions.md) when a later slice introduces a new design need, preference/conflict or delegated contribution. It defines delta classification, necessary questions, dependent approval impact and lead acceptance without creating another design authority.

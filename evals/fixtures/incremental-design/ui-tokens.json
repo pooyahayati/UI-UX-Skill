@@ -1,0 +1,11 @@
+{
+  "source": "fictional h7 foundation values",
+  "density": "balanced",
+  "typography": {"family": "system-ui, sans-serif", "bodyPx": 16, "titlePx": 28, "bodyLineHeight": 1.6},
+  "spacingPx": [8, 12, 16, 24, 32],
+  "radiusPx": 12,
+  "light": {"canvas": "#f1f5f4", "surface": "#ffffff", "text": "#182f2e", "action": "#12685b", "onAction": "#ffffff"},
+  "dark": {"canvas": "#102320", "surface": "#1a3430", "text": "#edf6f3", "action": "#86d8bf", "onAction": "#102320"},
+  "motion": "low; respect reduced motion",
+  "actualFontResolution": "not inspected"
+}

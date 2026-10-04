@@ -139,6 +139,12 @@ The nine `samples-*` cases use only raw `fixtures/sample-review/` inputs, includ
 
 Prepare each case separately. Observe one professional proposal applying settled palette/font/spacing, product-specific responsive priority, focused corrections and revision linkage; inspect dark-after-primary and owner-authorized secondary-after-dark boundaries, monolingual omissions and stale approval refusal. Inspect executable actions and actual current-phase fonts/layout evidence or missing checks. Score behavior/evidence, not instruction headings. Keep source checks, prepared inputs, fresh model results, rendered proof and real product-owner approval distinct. Preparing cases does not run a model or complete R3; old Stage 6 results do not cover them.
 
+## R4 incremental decisions and handoff cases
+
+Five `incremental-*` cases use raw `fixtures/incremental-design/` inputs: supplied hypothetical h7 handbook, separate token-value authority, scoped owner records and stale contributor feedback. They cover a newly needed treatment of an approved job, reuse without duplicate questioning, strategic appearance preference, stale conflicting return and direct fallback when agent use is unavailable/unauthorized.
+
+The existing preparation regression copies both sample and continuation fixtures byte-exactly, keeps prompts isolated and refuses overwriting existing evidence. It does not execute a model or verify a generated handbook/UI. Observe actual baseline reuse, delta-only changes, necessary questions, authority, stale-return handling and performed versus missing checks in future candidate runs. The [authored continuation source review](incremental/WALKTHROUGH.md) is separate illustrative output, never a raw input/answer key or independent conformance claim.
+
 ## Stage 6 real-world evaluation
 
 The v3 candidate includes five dedicated production-like fixtures and cases:

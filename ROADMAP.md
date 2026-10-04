@@ -2,7 +2,7 @@
 
 This is the repository's durable roadmap and stage-progress reference. It preserves the completed capability-building history and defines the agreed correction workstream for design discovery, a living product design handbook, visual approval, and configurable appearance.
 
-Implementation was explicitly authorized after roadmap publication. The tracker below distinguishes integrated R0–R2 work, active R3 work, and still-planned R4–R8 capabilities. Publishing or editing this document alone does not change installed Skill behavior or authorize push, merge, or release.
+Implementation was explicitly authorized after roadmap publication. The tracker distinguishes completed R0–R2, integrated R3 partial source with outstanding behavioral evidence, prepared R4 contract work awaiting its prerequisite gate, and planned R5–R8. Editing this document alone does not change installed Skill behavior or authorize push, merge or release.
 
 ## Current state
 
@@ -10,9 +10,10 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **In progress**; **3 of 9 correction stages completed**.
-- Active implementation stage: **R3**.
-- Next implementation stage: **R4 — Incremental decisions and bounded handoffs**, after R3 acceptance. The immediate next action is evaluation of the owner-corrected sequential review contract, not a maintainer taste choice for a fictional product.
-- Current authorized delivery: the owner authorized merging the R3 partial contract and continuing on 2026-10-04. R0/R1 are integrated through PR #19; R2 through PR #20; R3's contract/preparation slice through PR #21. The authored executable sample slice runs locally on `codex/r3-executable-samples` and is not pushed or merged. Further integration, release, deployment and installed-Skill updates retain separate gates.
+- Active implementation stage: **R3**. Its fresh behavioral-evaluation gap remains open.
+- Next implementation stage: **R4 — Incremental decisions and bounded handoffs**. Its bounded source/input preparation is implemented locally; formal stage advancement awaits R3 acceptance. R5 is not started. No maintainer taste choice for a fictional product is requested.
+- Current authorized delivery: on 2026-10-04 the owner requested merging the corrected R3 slice and going to the next stage. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; the corrected sequential contract and historical example through PR #22. R4 starts on local `codex/r4-incremental-design-handoffs`; it is not pushed/merged. Further integration, release, deployment and installed-Skill updates retain separate gates.
+- Dependency disposition: the owner's next-stage request allowed preparing the bounded R4 contract. The protected roadmap policy requires one active stage and completed prerequisites; formal R4 remains Not started until R3 acceptance, with its preparation recorded separately below. No policy/test gate was weakened; completed-stage count stays 3 of 9.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
 - Historical Stages 1–6: **Completed as recorded**, with the Stage 6 source-based evaluation limitations preserved below.
@@ -29,7 +30,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | R1 | Adaptive discovery and professional recommendations | Completed | Locally accepted R0 | Current design role; engineering lead accepts; single writer | 2026-10-04 | [R1 execution record](#r1-execution-record) |
 | R2 | Living `DESIGN.md` contract and profile migration | Completed | Integrated R1 | Current design role; one handbook writer | 2026-10-04 | [R2 execution record](#r2-execution-record) |
 | R3 | Sequential product-aware samples and versioned approval | In progress | R1, R2 | Design role; product owner approves actual product designs | Not completed | [R3 execution record](#r3-execution-record) |
-| R4 | Incremental decisions and bounded agent handoffs | Not started | R2, R3 | Engineering lead | Not completed | Not recorded |
+| R4 | Incremental decisions and bounded agent handoffs | Not started | R2, R3; source/input preparation local, formal advancement awaits R3 acceptance | Engineering lead (single writer) | Not completed | [R4 execution record](#r4-execution-record) |
 | R5 | Parametric appearance governance with real consumers | Not started | R2, R4 | Engineering lead with design input | Not completed | Not recorded |
 | R6 | Editable semantic icons and icon families | Not started | R5 | Engineering lead with design input | Not completed | Not recorded |
 | R7 | Integrated language, direction, theme, and visual quality | Not started | Contracts begin in R1/R3; final gate after R6 | Design role; engineering lead accepts | Not completed | Not recorded |
@@ -337,21 +338,40 @@ Checked contract items have source evidence; the older executable example proves
 
 Exit: fresh candidate observations demonstrate the sequential boundaries, settled-foundation reuse, responsive product-fit and honest missing checks. Actual product handoffs require matching sample/handbook revisions and real scoped approvals for each applicable phase; primary approval does not approve dark or secondary samples. Attach concrete evidence and limits. Structural/source checks alone cannot substitute for model/rendered observations; fictional notes are scenario inputs, not customer approval.
 
+### R3 corrected-slice integration checkpoint
+
+- Owner authorization: merge and proceed, 2026-10-04. Earlier unpublished/local-only notes describe their historical checkpoints, not current R3 integration status.
+- [PR #22](https://github.com/pooyahayati/UI-UX-Skill/pull/22) merged at reviewed head `fd0bbc59557a94327e023c8938be7cf696b0383f`; merge commit `ddb4b1b5fb7fc06644a450b738359cf04db6616c`. Local main fast-forwarded to matching origin/main before the R4 branch was created.
+- [PR CI](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37204221329) succeeded at the exact head. [Post-merge workflow](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37204282987) succeeded at the merge, including official quick validation and ephemeral CI installer smoke. Publish release was skipped; no new release, version bump or host installation.
+- Direct OAuth push lacked workflow-file scope; the already configured GitHub connection published the exact uploaded reviewed commit and merged after green checks. No workflow step, approval gate or token permission was removed/weakened. No new connection or credential scope was requested.
+- Merge accepts this source slice, not fresh candidate conformance or a fictional customer design. R3 remains In progress with its recorded evaluation gap.
+
+### R4 execution record
+
+- Preparation started 2026-10-04 from R3 merge `ddb4b1b5fb7fc06644a450b738359cf04db6616c`, clean `codex/r4-incremental-design-handoffs`, one implementation writer. Formal R4 is Not started pending the open R3 behavioral gate; this requested preparation does not fabricate acceptance of that prerequisite.
+- Scope: one [incremental decision reference](skills/ui-ux-skill/references/incremental-design-decisions.md), thin Head/handbook/handoff/template routes, five raw continuation cases, extended exact-input preparation coverage and a separate [authored continuation source review](evals/incremental/WALKTHROUGH.md). No Product Pack, registry, runtime panel, product UI, feature/role, dependency, version or installed-Skill change.
+- Preflight: current engineering Skill 1.3.1, no selected specialists or installation; first freshness connection failed transiently, bounded retry passed. Tier 1 instruction/input maintenance crosses skills/evals, with an external retained plan. Unrelated fixture PHP/WordPress/browser markers do not establish this task's platform; relevant roadmap regions inspected directly despite scanner truncation. No agent/independent review or Graphify output is claimed.
+- Source-review acceptance: new near-limit character feedback uses an approved job and scoped fictional delegation, retains h7 foundations/token authority and requests no duplicate palette/font/density interview. It proposes only the affected h8 delta, planned checks and remaining approval; no current render or actual customer authority is fabricated. This illustrative source review is not a fresh agent outcome or full R4 acceptance.
+- Verification/local delivery: initial policy runs rejected premature R4 advancement and multiple active statuses; the single-active-stage tracker is corrected without changing policy/tests. Final 20 local tests and eight protected validators pass. Exact-input tests cover nine sample/five continuation cases, preserve both raw directories byte-for-byte and refuse overwriting run evidence. 81 case definitions/14 fixtures are structurally valid, not fresh executed model outcomes. All 25 local links in touched documents resolve; normalized LF/diff checks pass. Both external test archives match all 75 portable Skill files by bytes, CRC/SHA256 and unchanged version 3.1.1.
+- Delivery limits: local R4 preparation is not pushed/merged and has no PR, Issue or milestone. R3's remote CI does not validate it; official quick validation is locally unavailable without PyYAML, no dependency installed. No fresh candidate/rendered/product-runtime evidence, independent agent or Graphify result claimed. Recovery: obtain fresh candidate sequential observations for R3, then formally enter R4 and evaluate continuation behavior; independent delegation still requires authorization. Completed-stage count unchanged.
+
 ### R4 — Incremental development and bounded handoffs
 
 Owner: engineering lead. Prerequisites: R2, R3.
 
 Tasks:
 
-- [ ] Require the current handbook and affected constraints to be read before each meaningful UI development slice.
-- [ ] Reuse approved decisions; resolve compatible details within authority rather than interviewing the user again.
-- [ ] Identify genuinely new needs, conflicts, or strategic changes and their impact on screens, components, runtime settings, and existing approvals.
-- [ ] Keep preference changes separate from changed user needs or software feature scope; obtain required approval before expanding a strategic change.
-- [ ] Update only affected handbook/sample sections and retain meaningful decision provenance.
-- [ ] Require agent handoffs to identify the baseline revision, proposed/accepted decisions, evidence, unchecked areas, conflicts, and remaining approvals.
+- [x] Define reading the current handbook and affected constraints before each meaningful UI development slice.
+- [x] Define reuse of approved decisions and compatible delegated details without duplicate interviews.
+- [x] Define new-need/conflict/strategic impact on screens, components, runtime contracts and dependent approvals.
+- [x] Separate preferences from changed user needs/feature scope; preserve owning approval before strategic expansion.
+- [x] Define delta-only handbook/sample updates with meaningful provenance and retained accepted baseline.
+- [x] Define revision-aware handoff inputs/returns, one writer, stale-return reconciliation and explicit lead acceptance.
 - [ ] Demonstrate continuation with one new design need without uncontrolled style drift or duplicate questioning.
 
 Output: incremental decision/handoff contract and a continuation evaluation.
+
+Checked items are implemented instruction contracts with a labeled authored source review. They do not establish independent agent behavior; raw forward cases and preparation tests are not completed model outcomes.
 
 Exit: a new slice follows the approved foundation, only necessary new questions are asked, and conflicting feedback is resolved as one product decision rather than parallel values. Attach the continuation/handoff evidence and lead acceptance.
 
@@ -601,7 +621,7 @@ Still pending:
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** verify the corrected sequential source/fixtures and observe fresh candidate behavior before closing R3 or beginning R4. No benchmark taste choice is requested from the maintainer. R2 and the earlier R3 partial contract are merged; the authored example and this correction remain local. A large admin application or full backend is not a prerequisite; actual product approvals remain scoped to visible revisions.
+**Next implementation action:** verify the local R4 continuation contract/inputs and observe fresh candidate behavior before claiming R3/R4 completion or beginning R5 implementation. No benchmark taste choice is requested. Corrected R3 source is merged through PR #22; R4 remains local. A full backend is not a prerequisite; actual product approvals remain scoped to visible revisions.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 

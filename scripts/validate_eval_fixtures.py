@@ -54,6 +54,7 @@ required_fixtures = {
     "discovery-brief",
     "legacy-handbook",
     "sample-review",
+    "incremental-design",
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
 missing = sorted(required_fixtures - existing)
@@ -145,6 +146,26 @@ try:
         errors.append("Sample-review foundation must be a JSON object")
 except (OSError, ValueError) as exc:
     errors.append(f"Sample-review foundation missing or invalid: {exc}")
+
+# Continuation input availability only; no agent behavior is executed here.
+incremental_cases = {
+    "incremental-new-design-need", "incremental-reuse-settled-foundation",
+    "incremental-strategic-preference", "incremental-stale-conflicting-return",
+    "incremental-agent-unavailable",
+}
+for case_id in incremental_cases:
+    case = next((c for c in manifest["cases"] if c.get("id") == case_id), None)
+    if case is None or case.get("fixture") != "incremental-design":
+        errors.append(f"{case_id}: missing continuation case or wrong raw fixture")
+continuation = EVALS / "fixtures/incremental-design"
+for name in ("README.md", "BRIEF.md", "DESIGN.md", "OWNER_NOTES.md", "ui-tokens.json"):
+    if not (continuation / name).is_file():
+        errors.append(f"Continuation fixture missing {name}")
+try:
+    if not isinstance(json.loads((continuation / "ui-tokens.json").read_text(encoding="utf-8")), dict):
+        errors.append("Continuation token source must be a JSON object")
+except (OSError, ValueError) as exc:
+    errors.append(f"Continuation token source missing or invalid: {exc}")
 
 for case in manifest.get("cases", []):
     if case.get("id") not in required_isolation_cases:

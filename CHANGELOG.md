@@ -4,6 +4,12 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Incremental design decisions and bounded handoffs (R4 preparation)
+
+- Added a conditional continuation contract: inspect/reuse approved foundation, classify a genuinely new need or preference/conflict, update only affected handbook decisions and reconcile dependent approvals and stale returns under one writer/lead acceptance.
+- Added five raw continuation scenarios and a clearly authored source-review walkthrough; extended the existing exact-input preparation regression instead of duplicating test machinery. No independent model, product rendering, runtime panel, new specialist or agent execution is claimed.
+- Formal R4 advancement remains blocked on R3's fresh behavioral evidence; roadmap-policy checks and completed-stage count are preserved.
+
 ### Visual sample and approval contract (R3, in progress)
 
 - Owner correction: one primary-language/direction responsive proposal applies settled foundations and receives corrections/approval; derived dark review follows; secondary language/layout follows dark approval only when needed and owner-authorized. Updated Head, discovery, handbook, template, QA, roadmap and nine raw sequential scenarios; no product UI or new rendered/model outcome is claimed.
