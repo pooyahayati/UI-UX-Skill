@@ -11,7 +11,7 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **In progress**; **3 of 9 correction stages completed**.
 - Active implementation stage: **R3**.
-- Next implementation stage: **R4 — Incremental decisions and bounded handoffs**, after R3 acceptance. The immediate next action is benchmark direction selection, focused refinement and revision-specific scoped acceptance.
+- Next implementation stage: **R4 — Incremental decisions and bounded handoffs**, after R3 acceptance. The immediate next action is evaluation of the owner-corrected sequential review contract, not a maintainer taste choice for a fictional product.
 - Current authorized delivery: the owner authorized merging the R3 partial contract and continuing on 2026-10-04. R0/R1 are integrated through PR #19; R2 through PR #20; R3's contract/preparation slice through PR #21. The authored executable sample slice runs locally on `codex/r3-executable-samples` and is not pushed or merged. Further integration, release, deployment and installed-Skill updates retain separate gates.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
@@ -28,14 +28,14 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | R0 | Controlled kickoff, policy consistency, and ownership | Completed | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | 2026-10-04 | [R0 execution record](#r0-execution-record) |
 | R1 | Adaptive discovery and professional recommendations | Completed | Locally accepted R0 | Current design role; engineering lead accepts; single writer | 2026-10-04 | [R1 execution record](#r1-execution-record) |
 | R2 | Living `DESIGN.md` contract and profile migration | Completed | Integrated R1 | Current design role; one handbook writer | 2026-10-04 | [R2 execution record](#r2-execution-record) |
-| R3 | Comparable visual directions and versioned approval | In progress | R1, R2 | Design role; product owner approves | Not completed | [R3 execution record](#r3-execution-record) |
+| R3 | Sequential product-aware samples and versioned approval | In progress | R1, R2 | Design role; product owner approves actual product designs | Not completed | [R3 execution record](#r3-execution-record) |
 | R4 | Incremental decisions and bounded agent handoffs | Not started | R2, R3 | Engineering lead | Not completed | Not recorded |
 | R5 | Parametric appearance governance with real consumers | Not started | R2, R4 | Engineering lead with design input | Not completed | Not recorded |
 | R6 | Editable semantic icons and icon families | Not started | R5 | Engineering lead with design input | Not completed | Not recorded |
 | R7 | Integrated language, direction, theme, and visual quality | Not started | Contracts begin in R1/R3; final gate after R6 | Design role; engineering lead accepts | Not completed | Not recorded |
 | R8 | Behavioral evaluation, package verification, release readiness | Not started | R0–R7 | Engineering lead / maintainer | Not completed | Not recorded |
 
-Language, direction, accessibility, and dark mode start with discovery and the first samples. R7 is their integration gate, not permission to postpone them. Define and run stage-relevant checks during each stage; R8 is the final gate, not the first testing stage.
+Identify language, direction, accessibility and theme needs during discovery. Review one responsive primary-language/direction design first, using settled foundations; derive dark mode after primary approval; review secondary language/layout only after dark approval, confirmed need and owner authorization. Monolingual products need no extra locale sample. R7 integrates required approved contexts; define stage-relevant checks throughout, not only at R8.
 
 ### Mandatory progress-update protocol
 
@@ -93,10 +93,10 @@ The installed Skill and source capability version remain unchanged by roadmap pu
 | ID | Requirement | Responsible stages | Observable acceptance |
 | --- | --- | --- | --- |
 | F01 | Adaptive discovery based on product subject, audience, breadth, approved features, and sections | R1 | Relevant questions; known information is reused |
-| F02 | Mandatory professional recommendation, rationale, and a small alternative set | R1 | A novice can choose or explicitly delegate a choice |
+| F02 | One professional recommendation, rationale and focused corrections | R1 | A novice can accept, correct or explicitly delegate; alternatives are not mandatory |
 | F03 | Image/reference intake, including likes and dislikes | R1 | Provenance and inference confidence are recorded |
 | F04 | Early designs before full feature/backend implementation | R3 | Representative screens identify synthetic data and hypothetical capabilities |
-| F05 | Usually two or three coherent, comparable directions | R3 | Equivalent content and scenarios make meaningful differences visible |
+| F05 | One foundation-aligned responsive primary proposal | R3 | Actual primary language/direction, settled palette/font/spacing and product-specific viewport priorities are applied before feedback and approval |
 | F06 | Approval of a specific design revision | R3 | The selected sample, decision, and approval source are traceable |
 | F07 | An initial and living product handbook named `DESIGN.md` | R2 | Another agent can use the canonical document without chat history |
 | F08 | Incremental questions and recorded decisions during development | R4 | Only genuinely new or conflicting decisions are reopened |
@@ -106,9 +106,9 @@ The installed Skill and source capability version remain unchanged by roadmap pu
 | F12 | Editable colors, fonts, sizes, spacing, borders, shadows, and component style | R5 | Valid changes reach their consumers and persist |
 | F13 | Editable icon family and individual semantic icon assignments | R6 | Gallery, shared mapping, preview, and rollback work |
 | F14 | Separate the handbook from active runtime configuration | R2, R5 | Routine admin changes need no manual handbook or code edit |
-| F15 | Use the default and supported product languages | R1, R7 | Product language is not inferred from the conversation language |
+| F15 | Primary product language first; secondary language only when needed and authorized | R1, R3, R7 | Product language is not inferred from conversation; monolingual products avoid extra layouts |
 | F16 | Support the product's LTR, RTL, and multilingual directions | R7 | Directional behavior and mixed-script content are verified |
-| F17 | Light and dark mode from the first samples through delivery | R3, R7 | Samples, handbook, settings, and checks cover both |
+| F17 | Dark review follows corrected primary approval | R3, R7 | Derive dark from the accepted baseline, receive corrections and scoped approval before any needed owner-authorized secondary review |
 | F18 | Draft, preview, validation, publish, history, and rollback | R5 | Drafts stay private and active revisions are identifiable/reversible |
 | F19 | Preserve behavior, authorization, data, and the existing stack | All | Relevant protection checks and change boundaries are recorded |
 | F20 | Rendered and behavioral evidence, not source-text checks alone | R8 | Real representative execution and honest limitations are recorded |
@@ -276,9 +276,9 @@ Exit: another agent can identify approved/open decisions without the chat; migra
 ### R3 execution record
 
 - Started: 2026-10-04 from R2 merge `b487880a18e095d4e01569c975393b685fad433e`, clean branch `codex/r3-visual-directions-approval`. The current coding agent remains the sole implementation writer; no subagent was started.
-- Retained plan: implement one conditional sample/approval reference; route it from Head/discovery/handbook and adapt the existing output template; supply raw independent-evaluation scenarios for comparability, default versus supported languages, both themes, unavailable rendering and revision-scoped approval; verify raw preparation isolation, links and protected validators; then build/inspect representative executable samples and exercise the approval boundary before stage acceptance.
+- Initial plan (historical, superseded by the owner-corrected checkpoint below): implement comparable samples, simultaneous theme/locale coverage and revision-scoped approval, with raw forward inputs and an authored executable example.
 - Protected scope: no new Product Types/specialists, stack/framework mandate, runtime panel, feature expansion, version bump, release or host installation. Sample selection, scoped visual approval and broad implementation authorization must remain distinct.
-- Acceptance retained: R3's exit below still requires actual displayable comparable directions, executable selected sample, revision-matched handbook, representative rendered coverage and real scoped approval. Instruction/fixture completion alone cannot close it.
+- Current acceptance: R3's exit below evaluates sequential gates and evidence separation. Actual products require executable responsive evidence, revision-matched handbook and real scoped approvals; Skill maintenance does not require this maintainer to approve a fictional product's style. Instruction/fixture completion alone is not independent conformance.
 - Preflight: engineering Skill `v1.3.1` verified current without installation/update. Instruction-maintenance selection is empty; the source Skill is the artifact being maintained, not an installed candidate execution. Router signals from unrelated existing browser/PHP/WordPress evaluation fixtures do not establish a product/platform for this work. The active correction requirements and relevant roadmap sections were inspected directly; no Graphify output is claimed.
 - Initial contract checkpoint (historical): the conditional [sample/approval workflow](skills/ui-ux-skill/references/design-foundation-workflow.md), Head/discovery/handbook routes and existing `DESIGN.md` output template were implemented. Six `samples-*` forward cases use [raw sample-review inputs](evals/fixtures/sample-review/README.md), with initial-comparison notes inactive and the bilingual variant explicitly opt-in. No authored after-answer or rendered sample is supplied as input.
 - Accepted partial slice (historical): the current engineering lead reviewed instruction routing, scope, selection/approval/rollout separation, pending-revision handling, actual-language/theme obligations and raw-input isolation. This accepted the contract/preparation change, not the R3 stage exit or a product design. Executable sample, fresh model evaluation and owner design approval were absent at that checkpoint; the subsequent evidence below does not fabricate the latter two.
@@ -303,29 +303,39 @@ Exit: another agent can identify approved/open decisions without the chat; migra
 - Actual isolated browser evidence: 28 assertions passed for busy/failure/retry, exact note preservation, language/theme changes, list/detail navigation, loading/empty/access simulations, validation, keyboard completion, literal markup and reload reset. Narrow/intermediate RTL and four semantic text palettes were checked. Native comparison boards were displayed; top-level RTL full-page captures exhibited a capture-tool clipping limitation, explicitly recorded rather than passed off as trustworthy full-page evidence.
 - Local checks: 20 regression/integrity tests (11 policy, four migration, two raw-preparation, three authored-assets) and all eight protected validators passed. JavaScript syntax and extracted Persian copy lint passed. Static CI tests protect assets/revisions/input isolation only; this unpublished slice has no remote CI result and does not replay browser or model actions. Historical eval results were only structurally revalidated.
 - Both candidate archives passed CRC/SHA256, exact membership and source-byte matching: 74 portable Skill files, 74 standalone entries / 81 plugin entries. Version remains `3.1.1`; authored sample/font/evidence output is excluded. All 28 local roadmap/sample document links and external source-binding hashes resolved/matched. No Issue, milestone, new PR, release, deployment, host update or Graphify result is claimed for this local slice.
-- **Remaining gate:** maintainer selects/delegates one benchmark direction, focused refinement uses actual feedback, and a real revision-specific scoped acceptance is recorded. Neither direction is selected; no product design or broad rollout authority exists. R3 remains `In progress` (3 of 9 stages completed); R4 is not started.
+- Historical proposed gate (superseded): maintainer benchmark direction selection was requested. The owner corrected this workflow below; selecting the fictional example is not a prerequisite for Skill development. No product approval or broad rollout authority is inferred from this correction.
 
-### R3 — Visual directions, representative prototype, and approval
+### R3 owner-corrected sequential checkpoint — 2026-10-04
+
+- Owner correction: one professional responsive proposal in the primary product language/direction, applying already settled palette, font, spacing and related foundations. Receive corrections and scoped primary approval; then derive/review/approve dark mode; only then confirm need and obtain named authorization for secondary language/layout. No unnecessary variants for a monolingual product.
+- Updated canonical workflow, thin Head routes, discovery, handbook, template and phase-relevant QA. Recorded phase prerequisites, foundation sources, feedback/revisions, dependent baselines and separate approvals. Existing admin appearance/icon requirements, production themes/locales, permissions and software feature scope are unchanged.
+- Revised raw sample inputs with explicit settled foundations and nine sequential sample scenarios (76 total cases, 13 fixture directories). Fictional phase records activate only in their named cases; they are neither current renders nor real customer approval. Raw preparation must preserve exact inputs and refuse overwriting prior run evidence.
+- The earlier authored A/B bilingual/two-theme example remains historical output, not evidence of the revised sequence or an answer key. No new product UI or browser rendering is claimed by this instruction-only correction. Independent model evaluation remains outstanding; R3 stays `In progress`, 3 of 9 stages completed, and R4 is not started.
+- Verification: all 20 local regression/integrity tests and eight protected validators passed. Nine prepared sample cases preserve exact raw files/prompts and prior run evidence; 76 cases across 13 fixtures are definitions, not executed model outcomes. All 27 local links in touched documents resolve; LF/source diff checks pass. Both test archives match all 74 portable Skill files by bytes, CRC/SHA256 and version `3.1.1`; authored samples/raw fixtures are excluded.
+- Local delivery only on `codex/r3-executable-samples`; no branch upstream or associated PR. Live GitHub main remains `b069bd16e1170028fd987af804197d2d3732f752`. Older PR #21 CI results do not validate this correction; official quick validation is unavailable locally because `PyYAML` is absent. No dependency was installed. No push, merge, new Issue/milestone, release, deployment, installed-Skill change, independent review/model run or Graphify result is claimed.
+
+### R3 — Sequential proposal, representative prototype, and approval
 
 Owner: design role; product owner approves the design revision. Prerequisites: R1, R2.
 
 Tasks:
 
 - [x] Select representative screens from important audience workflows and explain the choice; do not always choose login/dashboard screens regardless of product.
-- [x] Usually present two or three coherent directions with comparable content and scenarios. A different count needs a proportionate scope-based reason.
-- [x] Use the default product language, real text and fonts, and both light and dark mode from the first samples.
-- [x] Provide representative samples for other supported languages and their real directions, including bilingual/multilingual products.
+- [x] Define one primary professional proposal using settled palette/font/spacing and other foundation sources; no mandatory competing designs.
+- [x] Define primary-language/direction/theme review with product-specific responsive viewport priorities, focused corrections and exact revision approval.
+- [x] Define derived dark review after primary approval, retaining accepted foundations and receiving its own corrections/approval.
+- [x] Define secondary review only after dark approval, confirmed product need and named owner authorization; monolingual extra layouts are not required.
 - [x] Build early samples without waiting for the full backend or all features. Clearly mark synthetic data and hypothetical capabilities; approving their appearance does not add them to software scope.
 - [x] Use conceptual images when useful for selecting direction, but prove real typography, direction, layout, and behavior with an executable sample before claiming those qualities validated.
-- [ ] Inspect the selected direction on desktop and mobile with relevant normal, loading, empty, error, success, disabled/access, and recovery states.
-- [ ] Ask for feedback about specific parts, revise deliberately, and record approval of a specific sample/handbook revision before broad rollout.
-- [ ] Do not interpret approval of a few screens as approval of unbuilt pages, new features, or all future decisions.
+- [ ] Observe candidate agent behavior on fresh raw sequential scenarios, including refusing premature dark/localized work and preserving settled foundation values.
+- [ ] Inspect generated executable samples at relevant responsive sizes/states; record actual evidence or unavailable checks without substituting old authored rendering.
+- [ ] Exercise feedback, exact sample/handbook approval and dependent-revision invalidation without inventing customer approvals or extending scope.
 
-Output: comparable visible directions, an executable selected sample, an approved handbook baseline, and actual coverage/limitations.
+Output: sequential review instructions and honest evaluation evidence; in a real product, corrected primary sample, derived dark sample, any authorized secondary sample, scoped handbook baselines and actual coverage/limitations.
 
-The checked items have authored benchmark/source evidence, not proof that every independent agent follows the Skill. Selected refinement and scoped approval remain unchecked; the stage is not complete.
+Checked contract items have source evidence; the older executable example proves only its historical bounded checks, not the new sequence. Fresh candidate behavior remains unverified and the stage is not complete. A maintainer accepting Skill changes need not approve an unrelated demonstration design.
 
-Exit: the sample and handbook agree on revision; both themes and relevant languages are visible; approval is real and scoped. Source inspection or a passing build cannot substitute for rendered evidence. Attach sample locations, observations/screenshots, revision, and approval source.
+Exit: fresh candidate observations demonstrate the sequential boundaries, settled-foundation reuse, responsive product-fit and honest missing checks. Actual product handoffs require matching sample/handbook revisions and real scoped approvals for each applicable phase; primary approval does not approve dark or secondary samples. Attach concrete evidence and limits. Structural/source checks alone cannot substitute for model/rendered observations; fictional notes are scenario inputs, not customer approval.
 
 ### R4 — Incremental development and bounded handoffs
 
@@ -490,8 +500,8 @@ All correction scenarios below are **planned, not run**. Previous fixture/schema
 | E02 | Owner supplies visual references | Likes/dislikes and confidence are recorded; inference is not relabeled approval |
 | E03 | English product discussed in Persian | Samples and handbook use English/LTR, not the conversation language |
 | E04 | Persian product | Real Persian text/fonts and correct RTL behavior |
-| E05 | Persian/English bilingual product | Representative samples cover both directions and mixed-script content |
-| E06 | Comparable design directions | Equivalent content, meaningful differences, light/dark samples, selected revision |
+| E05 | Authorized Persian/English secondary review | Primary and dark approvals precede confirmed need/owner authorization; coherent real RTL/mixed-script adaptation follows |
+| E06 | Single professional primary proposal | Settled foundations, product-specific responsive priority, meaningful rationale, corrections and revision-scoped approval; no upfront variants |
 | E07 | Features/backend incomplete | Early samples are shown; hypothetical data/features are marked; scope stays protected |
 | E08 | Initial sample approval | Handbook and samples refer to the same actually approved revision |
 | E09 | Prior design profile exists | Compatible migration preserves provenance and one canonical authority |
@@ -564,7 +574,7 @@ Use the approved scope and real evidence at each gate. Missing tools/data leave 
 | Decorative settings panel with no real effect | Verify consumers, persistence, draft isolation, failure, and rollback; R5 |
 | Incomplete or misleading icon families | Semantic mappings, visible approved gallery, fallback and accessibility; R6 |
 | Persian chat incorrectly determines product language | Explicit default/supported-language contract; R1/R7 |
-| Dark mode deferred or incomplete | Both themes from first samples through actual component/chart QA; R3/R7 |
+| Dark mode forgotten or incomplete | Track need early; derive and approve after primary acceptance, then integrated component/chart QA; R3/R7 |
 | Small fix becomes global redesign/admin project | Full versus narrow scope contract and authorized follow-up only; R0 |
 | Agent races or hidden approval assumptions | Bounded handoff, one writer, lead acceptance, actual owner approval; R4 |
 | Structural checks mistaken for real-agent/rendered success | Separate evidence types and record limitations; R8 |
@@ -591,7 +601,7 @@ Still pending:
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** review the authored r1/h1 comparison, obtain a real benchmark direction choice/delegation, refine only the affected design and obtain revision-specific scoped acceptance before R4. R2 and the R3 partial contract are merged; the executable sample slice is local. A large admin application or all backend features are not prerequisites, and approval of these sample screens cannot authorize unseen product work.
+**Next implementation action:** verify the corrected sequential source/fixtures and observe fresh candidate behavior before closing R3 or beginning R4. No benchmark taste choice is requested from the maintainer. R2 and the earlier R3 partial contract are merged; the authored example and this correction remain local. A large admin application or full backend is not a prerequisite; actual product approvals remain scoped to visible revisions.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 

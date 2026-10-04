@@ -1,6 +1,8 @@
 # Authored Dispatch Notes comparison
 
-This is **output**, not a raw forward-test fixture or an independent model result. It must never be copied into `evals/fixtures/sample-review` or included in a prepared prompt as an answer key. The original raw files remain unchanged. It is outside the distributable Skill/plugin package.
+Historical example: on 2026-10-04 the owner replaced mandatory multiple directions and upfront theme/locale combinations with [sequential review](../../../skills/ui-ux-skill/references/design-foundation-workflow.md). This preserved prototype demonstrates the older method only; it is not evidence of the new sequence, an active approval request or a prerequisite taste choice for the maintainer. Raw fixtures were subsequently revised for future evaluations; this output is not their new answer.
+
+This is **output**, not a raw forward-test fixture or an independent model result. It must never be copied into `evals/fixtures/sample-review` or included in a prepared prompt as an answer key. Raw files were unchanged when this example was authored. It is outside the distributable Skill/plugin package.
 
 The maintainer authorized continuing R3 after its instruction/fixture contract integration. This bounded, fictional bilingual browser sample makes the design contract inspectable without a backend, new role, framework, admin panel, specialist installation or deployment.
 

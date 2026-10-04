@@ -36,6 +36,7 @@ Keep assumptions separate from decisions. Do not copy private customer data or u
 ## Languages, directions and formats
 
 - Default and supported product languages: not recorded; not inferred from conversation.
+- Secondary language/layout need and owner authorization: not recorded; review only after dark approval. If monolingual, record not applicable with source.
 
 | Supported language | Direction | Actual font / text assets | Relevant formats / mixed-script fields | Evidence / next action |
 | --- | --- | --- | --- | --- |
@@ -45,10 +46,13 @@ Keep assumptions separate from decisions. Do not copy private customer data or u
 
 Record relevant style/personality, semantic color roles, typography roles/scale, density/spacing, surfaces/borders/radius/shadows, responsive priorities and motion/reduced-motion expectations. Values remain proposals until actually accepted. When sources exist, link them instead of duplicating live token values.
 
+- Settled foundation sources / scoped authority applied to the first proposal: not recorded; resolve material gaps before the affected sample, not by silently replacing accepted values.
+- Product-specific primary viewport / usage rationale / responsive target sizes: not recorded; do not assume every website/web app is desktop-first.
+
 | Theme | Intended semantic treatment / source | Representative coverage | Evidence / gap |
 | --- | --- | --- | --- |
-| Light | Proposed / not recorded | Plan in first samples | Not run |
-| Dark | Proposed / not recorded | Plan in first samples | Not run |
+| Primary (normally light; inspect existing default) | Proposed / not recorded | First responsive proposal in primary language/direction | Not run |
+| Derived dark | Proposed / not recorded | After primary revision approval; reuse accepted foundations | Not run / phase not started |
 
 ## Components, states and icons
 
@@ -64,13 +68,15 @@ Use `proposed`, `approved`, `delegated`, `observed`, `unresolved` or `superseded
 
 ## Samples and approval
 
-| Direction ID / sample location / revision / fidelity | Comparable workflow / content | Language / direction / theme / viewport | Actual viewing evidence / gaps |
+| Phase / sample location / revision / fidelity | Workflow / applied foundation sources / parent baseline | Language / direction / theme / viewport | Actual viewing evidence / gaps |
 | --- | --- | --- | --- |
 | None produced | Not recorded | Coverage planned, not observed | Not viewed |
 
 - Professional recommendation / product-fit reason / tradeoff: not recorded.
-- Direction selection or scoped delegation / real source: none recorded.
-- Selected executable sample and matching handbook baseline: none recorded.
+- One primary proposal / focused feedback / corrections / matching executable and handbook revisions: none recorded.
+- Primary approval / scoped delegation / real source: none recorded; not inferred from recommendation.
+- Dark review prerequisite (approved primary revision) / feedback / matching revisions / approval source: none recorded; phase not started.
+- Secondary review prerequisite (approved dark revision) / confirmed need / named owner authorization / feedback / approval source: none recorded; do not generate automatically.
 - Actual sample approval / actor / source / date / covered scope / exclusions: none recorded.
 - Broad implementation authority / remaining gates: not recorded; not implied by selection.
 - Proposed changes against last approved baseline / affected decisions needing approval: not recorded.

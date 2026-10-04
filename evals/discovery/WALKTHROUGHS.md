@@ -1,5 +1,7 @@
 # R1 synthetic discovery walkthroughs
 
+Historical source-review record: the later owner-corrected [sequential workflow](../../skills/ui-ux-skill/references/design-foundation-workflow.md) supersedes any upfront multi-theme/locale or mandatory alternatives language below. These authored responses have not been rerun against the revised instructions.
+
 Date: 2026-10-04. Source baseline before R1: `228d9fa8de5db3ea31b24df590db8eba1645c951`.
 
 These are illustrative current-session responses authored and source-reviewed by the implementation agent against the raw `discovery-brief` inputs. They are not independent fresh-host/model runs, actual owner interviews, rendered inspections, measured usability findings, or customer approval. The host model identifier was not independently verified. No product or visual sample was built.

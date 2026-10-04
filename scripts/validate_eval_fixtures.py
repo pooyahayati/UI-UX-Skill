@@ -124,18 +124,27 @@ except (OSError, ValueError) as exc:
 
 # Forward-input availability only, not model conformance or visual approval.
 sample_cases = {
-    "samples-comparable-first-directions", "samples-bilingual-coverage",
-    "samples-selected-executable-refinement", "samples-stale-scoped-approval",
+    "samples-primary-foundation-proposal", "samples-approved-secondary-language",
+    "samples-primary-executable-refinement", "samples-stale-scoped-approval",
     "samples-rendering-unavailable", "samples-narrow-change-no-redesign",
+    "samples-dark-after-primary-approval", "samples-secondary-needs-approval",
+    "samples-monolingual-no-extra-layout",
 }
 for case_id in sample_cases:
     case = next((c for c in manifest["cases"] if c.get("id") == case_id), None)
     if case is None or case.get("fixture") != "sample-review":
         errors.append(f"{case_id}: missing sample case or wrong raw fixture")
-for name in ("README.md", "BRIEF.md", "OWNER_NOTES.md", "variants/bilingual.md",
+for name in ("README.md", "BRIEF.md", "OWNER_NOTES.md", "FOUNDATION.json", "variants/bilingual.md",
              "variants/revision-change.md"):
     if not (EVALS / "fixtures/sample-review" / name).is_file():
         errors.append(f"Sample-review fixture missing {name}")
+
+try:
+    foundation = json.loads((EVALS / "fixtures/sample-review/FOUNDATION.json").read_text(encoding="utf-8"))
+    if not isinstance(foundation, dict):
+        errors.append("Sample-review foundation must be a JSON object")
+except (OSError, ValueError) as exc:
+    errors.append(f"Sample-review foundation missing or invalid: {exc}")
 
 for case in manifest.get("cases", []):
     if case.get("id") not in required_isolation_cases:

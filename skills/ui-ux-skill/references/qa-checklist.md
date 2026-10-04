@@ -314,6 +314,8 @@ When browser, preview, or screenshot tools are available:
 
 If rendered QA is unavailable, say so.
 
+For staged foundation review, inspect the current phase's actual language/theme and product-relevant responsive sizes. Record later dark/localized coverage as planned, not passed; follow `design-foundation-workflow.md` before producing those variants. Final integrated coverage still includes the product's required themes and authorized locales.
+
 ## Final comparison
 
 For redesigns compare baseline vs result on:
