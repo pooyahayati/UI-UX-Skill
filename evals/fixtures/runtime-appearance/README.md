@@ -22,15 +22,30 @@ behavior must be verified in the chosen browser; do not weaken the cookie for it
 
 Assets: two available generic font stacks and prepared palettes/variants only.
 No font uploads, arbitrary colors/code/URLs, imports or exports. OS glyph identity
-is not proved by a font-family declaration. R6 adds editable semantic icon choices;
-R5 existing decorative icons remain connected to resolved color/size roles.
+is not proved by a font-family declaration. R6 extends the catalog with prepared
+outline/solid icons, visible family/per-use choices and a central fixed SVG adapter.
+Original artwork and family capabilities are in `scripts/runtime_icons.py`, not
+owner-authored vector code or an installed library. The solid settings badge is
+deliberately unavailable and resolves a meaningful outline fallback with visible
+provenance. Accessible action labels and disclosure state pairs remain separate
+from artwork; only back/closed-disclosure semantics are direction-mirrored.
 
 ### Observable lifecycle
 
 - Each owner has a private saved draft and base published revision. Preview is
   explicitly private and never changes the public reader or other owner's draft.
-- Saving a complete schema-1 draft is explicit. Validation errors preserve stored
+- Saving a complete schema-2 draft is explicit. Validation errors preserve stored
   draft/published/history state. Saving over a changed draft requires its revision.
+- Complete valid schema-1 stored snapshots/drafts normalize on read into schema 2,
+  preserving every prior appearance value and original historical bytes. Missing,
+  extra or invalid old fields are not silently repaired. New requests must supply
+  the current complete schema; stale legacy clients need to reload the catalog.
+  Rollback copies a valid normalized old snapshot into a new version. No startup
+  write-back or silent reset occurs.
+- Size/color controls affect declared consumers while primary foreground/target
+  floors remain locked. Solid stroke editing is disabled; the retained outline
+  width is dormant and an outline fallback uses its prepared width. Icon-only
+  defaults affect local icon choices only and require normal preview/save/publish.
 - Publish consumes the exact saved draft revision and base active revision in one
   transaction. A stale base returns 409; it never overwrites another publication.
 - Publication/rollback is not safe to blindly retry after a lost response: refresh

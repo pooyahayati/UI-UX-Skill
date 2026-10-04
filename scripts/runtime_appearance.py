@@ -12,13 +12,17 @@ import secrets
 import sqlite3
 import time
 from urllib.parse import parse_qs, urlsplit
+from runtime_icons import FAMILIES, USES, VARIANTS, icon_catalog, resolve_icons
 
 FIXTURE = Path(__file__).resolve().parents[1] / "evals/fixtures/runtime-appearance"
-DEFAULTS = dict(schema=1, palette="ocean", font="system", bodySize=16,
+LEGACY_DEFAULTS = dict(schema=1, palette="ocean", font="system", bodySize=16,
                 headingSize=28, labelSize=14, bodyWeight=400, headingWeight=700,
                 lineHeight=1.6, density="balanced", spacing=16, radius=8,
                 border=1, shadow="soft", buttonStyle="filled", theme="light",
                 motion="reduced", chartStyle="bars", diagramStyle="outlined")
+DEFAULTS = dict(LEGACY_DEFAULTS, schema=2, iconFamily="outline", iconSize=20,
+                iconTone="inherit", iconStroke=2,
+                **{use + "Icon": "plain" for use in USES})
 
 # Human contract and default source; none of these choices can alter permissions.
 SETTING_SPECS = [
@@ -41,6 +45,16 @@ SETTING_SPECS = [
     ("chartStyle", "Chart presentation", "Visualization", ["bars", "lollipop"], "SVG chart; data/labels unchanged"),
     ("diagramStyle", "Diagram presentation", "Visualization", ["outlined", "filled"], "SVG workflow nodes; connections unchanged"),
 ]
+LEGACY_SPECS = list(SETTING_SPECS)
+SETTING_SPECS.extend([
+    ("iconFamily", "Icon family", "Icons", list(FAMILIES), "all centrally mapped icon uses"),
+    ("iconSize", "Icon size (px)", "Icons", [16, 20, 24], "mapped icons; control targets remain locked"),
+    ("iconTone", "Icon color role", "Icons", ["inherit", "accent"], "mapped icons; primary/destructive foreground wins"),
+    ("iconStroke", "Outline stroke width", "Icons", [1.5, 2, 2.5], "outline assets only; dormant for solid; fallback uses prepared width"),
+])
+SETTING_SPECS.extend((use + "Icon", label + " icon", "Icons", VARIANTS,
+                      "all " + use + " uses, including private/published surfaces and overlays")
+                     for use, label in USES.items())
 SPECS = {row[0]: row for row in SETTING_SPECS}
 PALETTES = {
     "ocean": ("#145f86", "#8bd3ff"),
@@ -70,13 +84,13 @@ def invalid(message, details=None):
     return AppearanceError(422, "VALIDATION_ERROR", message, details)
 
 
-def validate(config):
-    if type(config) is not dict or set(config) != set(DEFAULTS):
+def _validate(config, defaults, specs):
+    if type(config) is not dict or set(config) != set(defaults):
         raise invalid("Provide the complete supported appearance configuration.")
-    if type(config["schema"]) is not int or config["schema"] != 1:
-        raise invalid("Unsupported configuration schema.", {"schema": "Use schema 1."})
+    if type(config["schema"]) is not int or config["schema"] != defaults["schema"]:
+        raise invalid("Unsupported configuration schema.", {"schema": f'Use schema {defaults["schema"]}.'})
     errors = {}
-    for name, _, _, values, _ in SETTING_SPECS:
+    for name, _, _, values, _ in specs:
         value = config[name]
         numeric = type(values[0]) in (int, float)
         if numeric:
@@ -90,8 +104,14 @@ def validate(config):
     return dict(config)
 
 
+def validate(config):
+    # Requests must use the current complete contract, not a partial legacy merge.
+    return _validate(config, DEFAULTS, SETTING_SPECS)
+
+
 def catalog():
-    return {"schema": 1, "defaults": dict(DEFAULTS), "scope": "tenant product and owned admin preview",
+    return {"schema": DEFAULTS["schema"], "defaults": dict(DEFAULTS), "icons": icon_catalog(),
+            "scope": "tenant product and owned admin preview",
             "settings": [{"key": key, "label": label, "group": group, "values": values,
                           "default": DEFAULTS[key], "consumers": consumers,
                           "permission": "tenant owner", "reset": "private defaults draft",
@@ -119,7 +139,10 @@ def resolve(config):
                    "--primary-bg": action if config["buttonStyle"] == "filled" else colors["surface"],
                    "--primary-text": colors["inverse"] if config["buttonStyle"] == "filled" else action,
                    "--duration": "0ms" if config["motion"] == "reduced" else "140ms",
-                   "--icon-size": f'{config["labelSize"] + 4}px',
+                   "--icon-size": f'{config["iconSize"]}px',
+                   "--icon-color": "currentColor" if config["iconTone"] == "inherit" else action,
+                   "iconStroke": config["iconStroke"] if config["iconFamily"] == "outline" else 2,
+                   "icons": resolve_icons(config),
                    "color-scheme": config["theme"], "chartStyle": config["chartStyle"],
                    "diagramStyle": config["diagramStyle"]})
     return tokens
@@ -139,7 +162,13 @@ def stored_config(raw):
     """Persisted data can be missing/corrupt; never bypass the snapshot boundary."""
     if type(raw) is not str or len(raw) > 16384:
         raise invalid("Stored appearance configuration is not supported.")
-    return validate(json.loads(raw, object_pairs_hook=strict_object))
+    config = json.loads(raw, object_pairs_hook=strict_object)
+    if type(config) is dict and type(config.get("schema")) is int and config["schema"] == 1:
+        # Read-time normalization only: strict old snapshot first, preserve every
+        # valid old value, add prepared new fields, never rewrite historical bytes.
+        legacy = _validate(config, LEGACY_DEFAULTS, LEGACY_SPECS)
+        return validate({**DEFAULTS, **legacy, "schema": 2})
+    return validate(config)
 
 
 class Store:

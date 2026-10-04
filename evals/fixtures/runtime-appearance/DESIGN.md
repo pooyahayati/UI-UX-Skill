@@ -18,6 +18,9 @@ need R7 evidence. Do not silently install or substitute a product font.
 Defaults, legal values, semantic resolution and setting consumers are owned by
 `scripts/runtime_appearance.py`. The panel consumes its catalog, not copied default
 values here. Runtime snapshots/drafts/history are in external SQLite, not this file.
+Prepared original icon artwork, semantic roles, family capabilities and meaningful
+fallbacks are owned by `scripts/runtime_icons.py`; configuration stores allowed
+identifiers only. Shared/private/public/dialog consumers use the same SVG adapter.
 Routine panel changes do not update this handbook or component source.
 
 Owner configuration is tenant-scoped for the sample product and its owned preview.
@@ -31,6 +34,10 @@ Primary sample review/corrections come first. Dark follows primary acceptance;
 secondary locale/direction review requires confirmed need and scoped owner authority.
 R5 prepares supported theme values; R7 records their actual integrated coverage.
 R6 owns editable icon-family/semantic assignment, not arbitrary uploaded SVG.
+The fixture offers prepared outline/solid families and plain/badged semantic uses;
+these are demonstration choices, not mandated product libraries or style. Solid
+stroke editing is disabled and its retained outline preference is dormant. Icon
+defaults are staged locally without changing other settings or publishing them.
 
 ## Verification record
 

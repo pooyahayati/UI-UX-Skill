@@ -10,7 +10,7 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **In progress**; **6 of 9 correction stages completed**.
-- Active implementation stage: **R6**. R5 is accepted and integrated; R6 contract/preparation work has begun under one writer. Its runtime gallery, semantic selection, compatibility and rendered/lifecycle acceptance remain pending.
+- Active implementation stage: **R6**. R5 is accepted and integrated. R6's executable gallery, semantic consumers and strict pre-icon compatibility are implemented with scoped test/rendered/forward evidence; final source/security/package/CI/integration acceptance is pending. One implementation writer remains.
 - Next implementation stage: **R7 — Language, direction, theme, and integrated quality**. Not started; final integrated gate follows R6. No maintainer taste choice for a fictional product is requested.
 - Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22; R4 through PR #23; R5 through PR #24 at `61eacadece92e187434d72c5c58a9c44e55e2007`. R6 starts on local `codex/r6-editable-semantic-icons` from that clean matching main; its preparation is not pushed/merged. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
 - Dependency disposition: the [six-case R4 review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) records actual bounded forward execution, separate lead acceptance and shared-session limitations. No specialist was added or policy/test gate weakened; one writer and completed prerequisites remain enforced.
@@ -470,18 +470,32 @@ Owner: engineering lead with design input. Prerequisite: R5.
 
 Tasks:
 
-- [ ] Define central semantic assignments for designed uses such as search, add, edit, delete, and settings.
-- [ ] Provide a visible gallery for choosing an available family and replacing the icon assigned to an individual semantic use.
-- [ ] Route all applicable component/page uses through the assignments, not isolated page-level imports beyond admin control.
-- [ ] Define valid per-family mappings and safe meaningful fallbacks for missing icons; incomplete families must not break the interface.
-- [ ] Offer size, color, and stroke controls only when supported; do not show ineffective stroke controls for incompatible solid assets.
-- [ ] Preserve accessible names, operation meaning, directional behavior, and meaningful open/closed state pairs.
-- [ ] Do not execute unknown uploaded vector/code assets directly. Arbitrary uploads require a separately scoped safe asset pipeline.
-- [ ] Include family/per-use changes in preview, publication, refresh, rollback, and both themes.
+- [x] Define central semantic assignments for designed uses such as search, add, edit, delete, and settings.
+- [x] Provide a visible gallery for choosing an available family and replacing the icon assigned to an individual semantic use.
+- [x] Route all applicable component/page uses through the assignments, not isolated page-level imports beyond admin control.
+- [x] Define valid per-family mappings and safe meaningful fallbacks for missing icons; incomplete families must not break the interface.
+- [x] Offer size, color, and stroke controls only when supported; do not show ineffective stroke controls for incompatible solid assets.
+- [x] Preserve accessible names, operation meaning, directional behavior, and meaningful open/closed state pairs.
+- [x] Do not execute unknown uploaded vector/code assets directly. Arbitrary uploads require a separately scoped safe asset pipeline.
+- [x] Include family/per-use changes in preview, publication, refresh, rollback, and both themes.
 
 Output: icon contract and an executable family/per-use replacement fixture.
 
 Exit: changing the search assignment updates all relevant uses; a missing icon has a safe fallback; meaning/accessibility/direction remain intact; selection persists and rollback restores it. Attach actual rendered and state evidence.
+
+### R6 executable checkpoint — 2026-10-05
+
+This supersedes preparation-only runtime descriptions, not final delivery gates.
+R6 remains In progress and the completed count remains 6 of 9.
+
+- Extended the existing isolated web-application fixture with original prepared outline/solid artwork in `scripts/runtime_icons.py`, central semantic assignments and visible family/per-use galleries. All owned private/public/dialog icon instances use one fixed SVG adapter. No library, raw vector upload, external URL or product framework was introduced. Add/edit/delete controls remain explicitly illustrative/disabled, not invented business functions.
+- Schema 2 accepts complete current requests. Complete valid schema-1 stored versions/drafts normalize on read, preserving every prior field and original historical bytes; malformed/extra old fields still fail closed. Old requests must reload the current catalog. The real persisted legacy test publishes new selections, reopens storage, restores an old version into new history and verifies tenant isolation and original bytes.
+- Twenty actual store/configuration/HTTP tests pass, including all existing R5 guards plus asset-identifier/code rejection and legacy compatibility. Five entrypoint suites pass (45 tests; the raw preparation suite also imports the five baseline tests). Protected validators pass with 86 structurally valid cases/17 fixtures; the five-product historical result is not fresh R8 agent evidence. JavaScript syntax and whitespace checks pass.
+- Browser selections changed only the private surface until publication. Cancellation preserved version 0; confirmation published solid/badged search and the meaningful outline settings fallback at version 1. Every shared search and the independent dialog resolved the selected asset. A keyboard-operated native disclosure used its real open/closed icon states. Outline size 16/stroke 2.5 visibly resolved while button targets remained 48px; semantic accent color changed settings icons while primary foreground stayed white.
+- Dark preview remained private against light published state, then version 2 survived an actual server stop/start on the same external SQLite state. Cancelled rollback preserved version 2; confirmed rollback appended version 3 from initial defaults, restoring outline/plain search/light with versions 0–2 intact. Runtime operations left the six inspected source/handbook hashes unchanged; later documentation/UI-default-control edits are separate source work, not runtime synchronization.
+- Icon-only defaults preserved local plum/serif/spacing24 choices, disabled publication until a draft save and left public version 3 unchanged; the saved draft was subsequently discarded. Selected choice now has explicit text as well as pressed state, distinct from keyboard focus. Screenshots retain real light/dark gallery/overlay observations externally; evidence is scoped to the fixture's actual English/LTR route, not unexecuted RTL/native-device/screen-reader coverage.
+- [Fresh raw-input forward planning review](evals/samples/ICON_FORWARD_REVIEW.md) is accepted for six independent case invariants. The evaluator received no answer key/runtime source; actual return and input/source bindings are retained outside Git. This is planning behavior, not independent security review or product approval.
+- Pending: final source/contract review, exact-source native scan, candidate packages, current CI and passing integration. QF04/QF05 remain required at R7. Root/Skill/plugin version remains 3.1.1; no new release/tag/upload/deployment/host installation.
 
 ### R7 — Language, direction, theme, and integrated quality
 
@@ -690,7 +704,7 @@ Still pending:
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** implement and verify R6's central semantic icon catalog, visible family/per-use gallery, actual consumers and compatible persisted lifecycle under its retained Tier 2 plan; use the existing runtime reference, not a decorative settings mock or mandated product framework. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the separate R5 runtime fixture, not fabricated claims about the fictional R3/R4 previews.
+**Next implementation action:** finish R6 final source/security/package/CI and passing integration gates, then perform required R7 language/direction/theme/typography/native-confirmation coverage. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the runtime appearance fixture, not fabricated claims about the fictional R3/R4 previews.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 

@@ -4,6 +4,21 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Editable semantic icons (R6 executable checkpoint)
+
+- Added prepared original outline/solid artwork, semantic family/per-use mappings,
+  a visible gallery, meaningful missing-asset fallback and shared private/public/
+  overlay adapters. Size, semantic color and supported outline stroke preserve
+  labels, native disclosure pairs, direction, contrast and target floors.
+- Extended stored appearance to schema 2 with strict read-time compatibility for
+  complete valid pre-icon snapshots/drafts, preserving old values and historical
+  bytes; new requests use the current catalog. Icon defaults are local draft edits,
+  not unrelated appearance resets or publication. Arbitrary vector/code/URLs are
+  rejected; no dependency, host installation, version bump or new release.
+- Added a separate raw icon planning request and fresh independent planning review,
+  plus icon, migration and HTTP rejection regressions. Current runtime/visual and
+  final delivery evidence are recorded in the roadmap; R7/R8 remain required.
+
 ### Runtime appearance governance (R5 executable checkpoint)
 
 - Extended the existing runtime contract with per-setting ownership, prepared values, real consumer adapters, coherent publication, conflicts and identifiable fallback. Preserved broad/admin, narrow-change and no-admin scope boundaries.
