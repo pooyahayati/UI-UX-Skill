@@ -2,17 +2,17 @@
 
 This is the repository's durable roadmap and stage-progress reference. It preserves the completed capability-building history and defines the agreed correction workstream for design discovery, a living product design handbook, visual approval, and configurable appearance.
 
-Implementation was explicitly authorized after roadmap publication. The tracker below distinguishes locally accepted R0/R1 work from the still-planned R2–R8 capabilities. Publishing or editing this document alone does not change installed Skill behavior or authorize push, merge, or release.
+Implementation was explicitly authorized after roadmap publication. The tracker below distinguishes accepted R0–R2 work (R0/R1 integrated, R2 local) from the still-planned R3–R8 capabilities. Publishing or editing this document alone does not change installed Skill behavior or authorize push, merge, or release.
 
 ## Current state
 
 - Last updated: **2026-10-04**.
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
-- Implementation: **In progress**; **2 of 9 correction stages completed**.
-- Active implementation stage: **R2**.
-- Next implementation stage: **R3 — Comparable visual directions**, after evidenced R2 acceptance.
-- Current authorized delivery: the owner authorized merging R0/R1 and proceeding to R2 on 2026-10-04. R0/R1 are integrated through PR #19; R2 is local implementation on `codex/r2-living-design-handbook`. Release, deployment, installed-Skill updates and automatic merge of future stages remain outside this instruction.
+- Implementation: **In progress**; **3 of 9 correction stages completed**.
+- Active implementation stage: **None**.
+- Next implementation stage: **R3 — Comparable visual directions**, ready after local R2 acceptance; not yet started.
+- Current authorized delivery: the owner authorized merging R0/R1 and proceeding to R2 on 2026-10-04. R0/R1 are integrated through PR #19; R2 is completed locally on `codex/r2-living-design-handbook`, not pushed/merged. Release, deployment, installed-Skill updates and automatic merge of future stages remain outside this instruction.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
 - Historical Stages 1–6: **Completed as recorded**, with the Stage 6 source-based evaluation limitations preserved below.
@@ -27,7 +27,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | --- | --- | --- | --- | --- | --- | --- |
 | R0 | Controlled kickoff, policy consistency, and ownership | Completed | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | 2026-10-04 | [R0 execution record](#r0-execution-record) |
 | R1 | Adaptive discovery and professional recommendations | Completed | Locally accepted R0 | Current design role; engineering lead accepts; single writer | 2026-10-04 | [R1 execution record](#r1-execution-record) |
-| R2 | Living `DESIGN.md` contract and profile migration | In progress | Integrated R1 | Current design role; one handbook writer | Not completed | [R2 execution record](#r2-execution-record) |
+| R2 | Living `DESIGN.md` contract and profile migration | Completed | Integrated R1 | Current design role; one handbook writer | 2026-10-04 | [R2 execution record](#r2-execution-record) |
 | R3 | Comparable visual directions and versioned approval | Not started | R1, R2 | Design role; product owner approves | Not completed | Not recorded |
 | R4 | Incremental decisions and bounded agent handoffs | Not started | R2, R3 | Engineering lead | Not completed | Not recorded |
 | R5 | Parametric appearance governance with real consumers | Not started | R2, R4 | Engineering lead with design input | Not completed | Not recorded |
@@ -212,15 +212,15 @@ Owner: one assigned handbook writer. Prerequisite: R1.
 
 Tasks:
 
-- [ ] Define the canonical product handbook as `DESIGN.md`, with this exact capitalization, and record its location in the product's working contract.
-- [ ] Provide a usable initial template early, not only a document written after implementation is finished.
-- [ ] Link requirements to workflows, screens, components, states, and verification methods; cover UX structure as well as visual styling.
-- [ ] Track proposed, approved, and open decisions with their real approval/delegation source, revision, and relevant sample.
-- [ ] Define one canonical handbook and one writer; preserve enough context for another agent to continue without chat history.
-- [ ] Migrate valid `design-profile.md` or other established design documentation into the canonical handbook compatibly. Inspect consumers before renaming/removing anything; preserve provenance and references.
-- [ ] Avoid two independent approved documents or duplicated canonical token values. Preserve an old document as an explicit compatibility reference only when required, with the new authority clear.
-- [ ] Keep runtime token values/configuration in their real implementation sources. The handbook defines approved roles, initial defaults, policies, allowed controls, and links to those sources.
-- [ ] Do not require manual handbook edits for every routine admin setting change. Active configuration comes from product storage and version history.
+- [x] Define the canonical product handbook as `DESIGN.md`, with this exact capitalization, and record its location in the product's working contract.
+- [x] Provide a usable initial template early, not only a document written after implementation is finished.
+- [x] Link requirements to workflows, screens, components, states, and verification methods; cover UX structure as well as visual styling.
+- [x] Track proposed, approved, and open decisions with their real approval/delegation source, revision, and relevant sample.
+- [x] Define one canonical handbook and one writer; preserve enough context for another agent to continue without chat history.
+- [x] Migrate valid `design-profile.md` or other established design documentation into the canonical handbook compatibly. Inspect consumers before renaming/removing anything; preserve provenance and references.
+- [x] Avoid two independent approved documents or duplicated canonical token values. Preserve an old document as an explicit compatibility reference only when required, with the new authority clear.
+- [x] Keep runtime token values/configuration in their real implementation sources. The handbook defines approved roles, initial defaults, policies, allowed controls, and links to those sources.
+- [x] Do not require manual handbook edits for every routine admin setting change. Active configuration comes from product storage and version history.
 
 Minimum handbook content:
 
@@ -248,6 +248,7 @@ Exit: another agent can identify approved/open decisions without the chat; migra
 - Owner authorization: merge and proceed to the next stage, 2026-10-04. Earlier local-only notes above are historical checkpoints, not the current integration state.
 - [PR #19](https://github.com/pooyahayati/UI-UX-Skill/pull/19) merged with exact reviewed head `94d09795e603154331518e8de5711339465f39cc`; merge commit `336a50ba3db54e2c8b05d82e4cf087098ae1c0a7`. Local `main` was fast-forwarded to the same live `origin/main` before the R2 branch was created.
 - [CI run](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37194969743) succeeded for that PR head, including official quick validation and package checks. The installer smoke step was skipped by the existing event condition; no host installation or release occurred. This closes the R0/R1 CI gap, not their independent behavioral/rendered evidence limitations.
+- [Post-merge workflow](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37195042407) also succeeded at the exact merge commit, including official quick validation and the CI installer smoke test. The publication step was skipped because `v3.1.1` already exists; that public release still targets `d2420e9c60230fb2a667dff971f60a8bbbaaa1de`. No new release or local host installation was made.
 
 ### R2 execution record
 
@@ -255,7 +256,15 @@ Exit: another agent can identify approved/open decisions without the chat; migra
 - Plan/spec: add one routed lifecycle/migration reference and a reusable draft template; replace the competing legacy schema instructions with that route; reconcile existing audit, specialist, design-system and privacy consumers; supply raw legacy/conflict inputs and an inspectable before/after migration example; validate links, fixture preparation, regressions and exact packages; review and record acceptance. No actual product migration, runtime configuration, visual samples, dependencies, registries or version changes.
 - Acceptance: exact canonical `DESIGN.md` path and single writer; early draft with product/UX/foundation/language/theme coverage; scoped decision/sample/evidence provenance; resumable without chat history; compatible migration preserving valid decisions and inspected consumers without silent overwrite or deletion; actual token/storage authorities remain outside the handbook. The roadmap is the retained stage plan, not a duplicate operational plan.
 - Impact/risk: instruction/output-document compatibility across routed resources and packaging; no customer data, application schema or production configuration is migrated. Source/reference/fixture/package impact is inspected directly instead of claiming a generated Graphify graph. Independent model behavior remains unverified unless actually evaluated.
-- Evidence and stage acceptance: pending.
+- Accepted locally: 2026-10-04 by the current engineering lead after source/template/example review and the checks below. Task completion means the instruction/template/migration contract is delivered, not that a real product was migrated or its owner approved a design. A fresh independent agent was not run; resumability was assessed from the self-contained example's path, states, sources, constraints and next actions, not measured as model conformance.
+- Implementation commit: `f98cef40a089339f35db7c65de336aeb90942669`. The following roadmap-only commit records acceptance; its identity is retained in Git history.
+- Delivered resources: [handbook contract](skills/ui-ux-skill/references/design-handbook.md), [early draft template](skills/ui-ux-skill/assets/templates/DESIGN.md), [raw legacy inputs](evals/fixtures/legacy-handbook/README.md) and [after-handbook example](evals/handbook/example/DESIGN.md). The Head and existing discovery/audit/specialist/token-foundation consumers route to the same contract; the old duplicate profile schema instructions were removed. `PRIVACY.md` describes the local filename/scope without changing application data ownership. Registry identifiers and versions remain unchanged.
+- Migration evidence: four concrete `scripts/test_handbook_migration.py` tests passed: the supplied legacy parser keeps its accepted payload; a pointer-only replacement is correctly rejected; token/owner-source bytes remain unchanged; after-document links resolve. Only isolated copies of the synthetic fixture are transformed. The retained old file is an explicit read-only projection tied to revision 1/D1, not a second editable authority. The conflicted variant and missing visual/runtime proof remain explicit.
+- Forward inputs: four `handbook-*` cases were added, structurally validated and prepared with exact prompts and byte-matching raw inputs (67 total cases, 12 fixture directories). The after-example is excluded from those raw inputs; no model ran. Existing five-product Stage 6 records were only revalidated structurally, not rerun as correction behavior.
+- Checks: 11 roadmap-policy regressions and all eight existing validators passed; routed handbook/template links resolve inside the portable Skill. CI now includes the synthetic consumer regression, but R2 has not been pushed, so its remote CI is pending. Windows restricted execution denied access inside temporary directories; the unchanged four-test suite passed with authorized elevated execution in an external workspace temp directory. This is an environment limitation, not a suppressed test failure.
+- Package evidence: two isolated archives passed CRC/SHA256, exact membership and byte matching for all 73 canonical Skill files, including the routed contract/template. Embedded versions remain `3.1.1`; these external verification artifacts do not replace the public release or installed Skill.
+- Limitations: no independent model, real owner approval, product UI/rendered languages/themes/fonts, runtime panel or arbitrary product-parser migration is claimed. The local official quick validator remains unavailable without `PyYAML`; R0/R1 CI success does not validate unpublished R2. Required candidate behavioral/visual/runtime gates remain pending for their authorized stages.
+- Repository purity: no forbidden tracked/staged artifacts; the existing optional local Git-exclude warning remains. No dependencies, host tools, local exclusion policy or installed skills were changed. No R2 PR, Issue or milestone was created; delivery is local only.
 
 ### R3 — Visual directions, representative prototype, and approval
 
@@ -536,11 +545,12 @@ Still pending:
 - [x] Explicit authorization to start Skill capability corrections; the owner instructed the coding agent to start on 2026-10-04.
 - [x] Execution and local evidenced acceptance of R0.
 - [x] Execution and local evidenced acceptance of R1, with synthetic/source-review limitations explicitly recorded.
-- [ ] Execution and evidenced acceptance of R2–R8.
+- [x] Execution and local evidenced acceptance of R2, with synthetic consumer checks and independent-behavior limitations recorded.
+- [ ] Execution and evidenced acceptance of R3–R8.
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** finish the authorized local R2 contract/template and compatible migration scenario on its branch, using integrated R0/R1. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
+**Next implementation action:** obtain the next stage/integration instruction, then proceed to R3's comparable visual directions and versioned approval using the R2 handbook contract. R2 is local, not pushed/merged. The first visible capability proof includes representative light/dark samples in actual product languages by R3; a large admin application or all backend features are not prerequisites.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 
