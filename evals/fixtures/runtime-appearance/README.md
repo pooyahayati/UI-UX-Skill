@@ -1,5 +1,11 @@
 # Runtime appearance fixture
 
+R6 scoped acceptance is recorded in the
+[roadmap](../../../ROADMAP.md#r6-delivery-acceptance--2026-10-05). Its fixture
+evidence does not close R7/R8, original typography/native-confirmation gaps or
+production integration. Candidate source acceptance and passing merge are
+separate checks; no new release or installed package is implied.
+
 Synthetic web application, not a production theme builder or authentication system.
 Primary review: English, LTR, light. The owner delegated practical fixture choices;
 this is not customer approval of a real product. R7 owns integrated dark/localized QA.

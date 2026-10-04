@@ -2,17 +2,17 @@
 
 This is the repository's durable roadmap and stage-progress reference. It preserves the completed capability-building history and defines the agreed correction workstream for design discovery, a living product design handbook, visual approval, and configurable appearance.
 
-Implementation was explicitly authorized after roadmap publication. The tracker distinguishes completed R0–R4 and planned R5–R8. R3/R4 completion covers their scoped fresh workflow observations, not customer approval or production readiness of a fictional demo. The owner's remaining-work goal separately authorizes passing merges and practical choices, but expressly prohibits a new release. Editing this document alone does not grant delivery authority.
+Implementation was explicitly authorized after roadmap publication. The tracker distinguishes completed R0–R6 from remaining R7/R8. Scoped fixture/workflow acceptance does not establish customer approval or production readiness of a fictional demo. The owner's remaining-work goal separately authorizes passing merges and practical choices, but expressly prohibits a new release. Editing this document alone does not grant delivery authority.
 
 ## Current state
 
 - Last updated: **2026-10-05**.
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
-- Implementation: **In progress**; **6 of 9 correction stages completed**.
-- Active implementation stage: **R6**. R5 is accepted and integrated. R6's executable gallery, semantic consumers and strict pre-icon compatibility are implemented with scoped test/rendered/forward evidence; final source/security/package/CI/integration acceptance is pending. One implementation writer remains.
+- Implementation: **In progress**; **7 of 9 correction stages completed**.
+- Active implementation stage: **None**. R6 has scoped delivery acceptance; R7 has not started. Its kickoff requires current passing CI and confirmed PR #25 integration. One implementation writer remains.
 - Next implementation stage: **R7 — Language, direction, theme, and integrated quality**. Not started; final integrated gate follows R6. No maintainer taste choice for a fictional product is requested.
-- Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22; R4 through PR #23; R5 through PR #24 at `61eacadece92e187434d72c5c58a9c44e55e2007`. R6 starts on local `codex/r6-editable-semantic-icons` from that clean matching main; its preparation is not pushed/merged. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
+- Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22; R4 through PR #23; R5 through PR #24 at `61eacadece92e187434d72c5c58a9c44e55e2007`. R6 delivery is [PR #25](https://github.com/pooyahayati/UI-UX-Skill/pull/25) from `codex/r6-editable-semantic-icons`; its scoped acceptance is recorded below, and integration is gated by current CI. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
 - Dependency disposition: the [six-case R4 review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) records actual bounded forward execution, separate lead acceptance and shared-session limitations. No specialist was added or policy/test gate weakened; one writer and completed prerequisites remain enforced.
 - Quality follow-up: [QF01–QF07](evals/samples/REMEDIATION_PLAN.md) preserve all historical evidence. QF01–QF03 and QF06/QF07 have bounded Verified outcomes; QF04/QF05 remain Unverified required R7 typography/native-confirmation obligations with explicit owner/reason/trigger, not waivers. The separately authorized installed Persian specialist update to 1.4.0 remains verified with its full prior backup. Source review, rendered save/refresh checks and current installation do not prove actual glyph-font/weight or completion-dialog branches. No additional external design specialist or other installation was performed.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
@@ -33,7 +33,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | R3 | Sequential product-aware samples and versioned approval | Completed | R1, R2 | Design role; product owner approves actual product designs | 2026-10-04 | [R3 independent forward review](evals/samples/SEQUENTIAL_FORWARD_REVIEW.md) |
 | R4 | Incremental decisions and bounded agent handoffs | Completed | R2, R3; scoped continuation and separate lead review accepted | Engineering lead (single writer) | 2026-10-05 | [R4 forward review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) |
 | R5 | Parametric appearance governance with real consumers | Completed | R2, integrated R4 | Engineering lead with design input | 2026-10-05 | [R5 delivery acceptance](#r5-delivery-acceptance--2026-10-05) |
-| R6 | Editable semantic icons and icon families | In progress | Integrated R5 | Engineering lead with design input | Not completed | [R6 preparation](#r6-preparation--2026-10-05) |
+| R6 | Editable semantic icons and icon families | Completed | Integrated R5 | Engineering lead with design input | 2026-10-05 | [R6 delivery acceptance](#r6-delivery-acceptance--2026-10-05) |
 | R7 | Integrated language, direction, theme, and visual quality | Not started | Contracts begin in R1/R3; final gate after R6 | Design role; engineering lead accepts | Not completed | Not recorded |
 | R8 | Behavioral evaluation, package verification, release readiness | Not started | R0–R7 | Engineering lead / maintainer | Not completed | Not recorded |
 
@@ -497,6 +497,23 @@ R6 remains In progress and the completed count remains 6 of 9.
 - [Fresh raw-input forward planning review](evals/samples/ICON_FORWARD_REVIEW.md) is accepted for six independent case invariants. The evaluator received no answer key/runtime source; actual return and input/source bindings are retained outside Git. This is planning behavior, not independent security review or product approval.
 - Pending: final source/contract review, exact-source native scan, candidate packages, current CI and passing integration. QF04/QF05 remain required at R7. Root/Skill/plugin version remains 3.1.1; no new release/tag/upload/deployment/host installation.
 
+### R6 delivery acceptance — 2026-10-05
+
+Engineering lead accepts the scoped R6 exit criteria at reviewed implementation
+`f327d8d9f771ec7a5761e8b9fb33266715902d21`, delivered through
+[PR #25](https://github.com/pooyahayati/UI-UX-Skill/pull/25). This supersedes the
+preceding executable checkpoint's pending source/scan/package/initial-CI gates.
+Acceptance is limited to the stated English/LTR synthetic fixture and Skill
+contracts; it is not whole R7/R8 acceptance, production certification, customer
+approval or an independent application security-specialist return.
+
+- Final source/contract review preserves trusted IDs, fixed SVG vocabulary, original prepared local paths, complete-before-normalization legacy validation, unchanged history bytes and existing auth/origin/tenant/draft/publication guards. The independent forward planning return and separate lead acceptance remain distinct from this implementation review. Direct source/config/consumer/test impact evidence is retained; no generated Graphify freshness is claimed.
+- Exact committed source was archived and extracted outside Git before native Trivy 0.75.0 secret scanning: PASS, zero findings/warnings. The text/stdlib delivery has no shipped third-party dependencies or affected infrastructure; this is not source-vulnerability certification. Final acceptance-document changes require their own exact-source scan before integration.
+- Initial working-checkout packages were rejected for CRLF/LF byte differences against Git source. The unchanged packager ran from the exact committed extraction into a fresh external directory: both ZIP CRC checks pass, all 75 canonical resources match byte-for-byte, root/Skill/plugin versions remain 3.1.1. Portable SHA256 `a1ac499a23319a92c131cb1210bf55de1aac319353ec3395ec1c9ef2f95622e8`; plugin SHA256 `55bb78c83ded5ccc222ffd682085466d8eb81a13b9f8e7499f2a7368dc1992ca`. No archive was uploaded or installed.
+- [Implementation CI](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37244281014) passes at exact reviewed implementation, including official quick validation. Local quick validation's unavailable PyYAML is not a local pass; no dependency was installed. Current acceptance-head CI must also pass before merge; the actual merge and its checks are verified separately, not inferred from this document.
+- Rendered selection, consumers, fallback, native keyboard disclosure, supported visual controls, private/light/dark publication, process reopen, rollback and icon-only defaults are recorded above. The confirmed own loopback server was stopped. Required QF04/QF05 and R7 language/direction/integrated coverage remain; R8 still needs full candidate behavioral/package readiness evidence.
+- Owner explicitly requested this merge and prohibited a new release. Rechecked public release v3.1.1, release ID 401413402, published 2026-10-01T22:50:31Z and asset IDs 604289137/604289138/604289139 unchanged. Do not bump versions, tag, dispatch publication, upload, deploy or install. R7 is the next executable stage after confirmed passing integration.
+
 ### R7 — Language, direction, theme, and integrated quality
 
 Owner: design role; engineering lead accepts. Contracts start in R1/R3; final integration follows R6.
@@ -700,11 +717,11 @@ Still pending:
 - [x] Targeted fresh sequential behavior and evidenced stage acceptance of R3, retaining demo/evidence limitations.
 - [x] Targeted fresh continuation/handoff behavior and separate lead acceptance of R4, with required later typography/interaction evidence retained.
 - [x] Execution and evidenced scoped acceptance of R5, with final candidate checks and passing implementation CI; integration is recorded separately.
-- [ ] Execution and evidenced acceptance of R6–R8.
+- [ ] Execution and evidenced acceptance of R7/R8; R6 scoped acceptance is recorded above.
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** finish R6 final source/security/package/CI and passing integration gates, then perform required R7 language/direction/theme/typography/native-confirmation coverage. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the runtime appearance fixture, not fabricated claims about the fictional R3/R4 previews.
+**Next implementation action:** confirm PR #25's final acceptance-head CI and passing integration, then perform required R7 language/direction/theme/typography/native-confirmation coverage. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the runtime appearance fixture, not fabricated claims about the fictional R3/R4 previews.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 

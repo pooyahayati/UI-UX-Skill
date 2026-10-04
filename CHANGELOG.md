@@ -18,6 +18,9 @@ All notable user-facing and technical changes to this project are documented her
 - Added a separate raw icon planning request and fresh independent planning review,
   plus icon, migration and HTTP rejection regressions. Current runtime/visual and
   final delivery evidence are recorded in the roadmap; R7/R8 remain required.
+- R6 has scoped lead acceptance through PR #25 after exact-source native scan,
+  byte-matched candidate packages and successful implementation CI. Final-head
+  checks and passing integration remain explicit gates; no new release is made.
 
 ### Runtime appearance governance (R5 executable checkpoint)
 
