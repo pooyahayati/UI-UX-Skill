@@ -23,7 +23,7 @@ def files(root: Path) -> dict[str, bytes]:
 class SampleInputPreparation(unittest.TestCase):
     def test_each_case_receives_only_exact_raw_inputs_and_prompt(self):
         expected = files(RAW)
-        self.assertEqual(set(expected), {"README.md", "BRIEF.md", "OWNER_NOTES.md",
+        self.assertEqual(set(expected), {"README.md", "BRIEF.md", "OWNER_NOTES.md", "FOUNDATION.json",
                                         "variants/bilingual.md", "variants/revision-change.md"})
         self.assertTrue(CASES)
         with tempfile.TemporaryDirectory() as temporary:

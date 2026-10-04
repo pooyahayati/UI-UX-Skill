@@ -1,6 +1,6 @@
 # Explicit Bilingual Variant
 
-This variant explicitly changes supported languages: default English/LTR; also Persian/RTL. Both themes remain required. The same approved workflow and synthetic records apply. No extra feature or role is added.
+This variant explicitly declares a secondary-language need: default English/LTR; also Persian/RTL. Both themes remain required. The same approved workflow, settled foundation and synthetic records apply. No extra feature or role is added. This declaration alone does not authorize producing secondary samples ahead of primary and dark approval; activate locale-1 only when the case explicitly supplies that owner authorization.
 
 Representative Persian copy: «بازدیدهای من»، «جزئیات بازدید»، «ذخیرهٔ پیش‌نویس»، «ثبت پایان بازدید».
 

@@ -2,6 +2,8 @@
 
 Structural validation cannot prove that a model follows this Skill well.
 
+The [authored Dispatch Notes comparison](samples/dispatch-notes/README.md) is historical executable R3 output from the superseded simultaneous/multiple-direction workflow. Its draft handbook and bounded rendered evidence do not demonstrate the revised sequential gates. It is not a raw fixture, independent model outcome or approved design; choosing its style is not a maintainer prerequisite. Do not use it as an answer key/input for fresh evaluations.
+
 Version 3.0 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
 
 ## Validate fixtures
@@ -131,11 +133,11 @@ The `handbook-*` cases use raw `discovery-brief` or `legacy-handbook` inputs. Th
 
 Prepare new cases in isolated copies. Full candidate conformance, real visual approval and runtime behavior remain pending; revalidating old Stage 6 records does not test these new cases. The example is a current-session source-based mapping with explicit gaps, not an independent agent outcome.
 
-## R3 comparable samples and approval cases
+## R3 sequential samples and approval cases
 
-The six `samples-*` cases use only raw `fixtures/sample-review/` inputs. The base is English/LTR; the bilingual variant explicitly supplies Persian/RTL. Supplied fictional owner notes are scoped scenario inputs, not current artifacts or approval of newly generated samples. No authored comparison or expected response is part of that fixture.
+The nine `samples-*` cases use only raw `fixtures/sample-review/` inputs, including previously settled foundation values. The base is English/LTR; the conditional bilingual variant declares Persian/RTL need. Cases activate only named fictional phase records: initial primary, correction, approved-primary dark derivation, post-dark authorized secondary, premature secondary refusal, monolingual skip, stale approval, unavailable rendering and narrow correction. These scoped scenario notes are not current artifacts or approval of newly generated samples. No authored comparison or expected response is part of the fixture.
 
-Prepare each case separately. Observe actual generated directions, text/scenario comparability, theme/language coverage, executable actions and sample/handbook revision linkage; inspect specific refusals of stale or overly broad approval. Score behavior and evidence, not instruction headings. Keep source checks, prepared inputs, fresh model results, rendered proof and real product-owner approval distinct. Preparing these cases does not run a model or complete R3; old Stage 6 results do not cover them.
+Prepare each case separately. Observe one professional proposal applying settled palette/font/spacing, product-specific responsive priority, focused corrections and revision linkage; inspect dark-after-primary and owner-authorized secondary-after-dark boundaries, monolingual omissions and stale approval refusal. Inspect executable actions and actual current-phase fonts/layout evidence or missing checks. Score behavior/evidence, not instruction headings. Keep source checks, prepared inputs, fresh model results, rendered proof and real product-owner approval distinct. Preparing cases does not run a model or complete R3; old Stage 6 results do not cover them.
 
 ## Stage 6 real-world evaluation
 

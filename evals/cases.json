@@ -2,43 +2,84 @@
   "version": "3.1.1",
   "cases": [
     {
-      "id": "samples-comparable-first-directions",
+      "id": "samples-primary-foundation-proposal",
       "type": "positive",
       "fixture": "sample-review",
-      "prompt": "Use BRIEF.md to create early comparable visual directions for Dispatch Notes in a prepared copy. I have no design knowledge: recommend and show meaningful alternatives. This is the initial comparison; OWNER_NOTES.md is inactive. Do not build a full application or select/approve a direction on my behalf.",
+      "prompt": "Use BRIEF.md and the previously settled FOUNDATION.json to show one professional primary design for Dispatch Notes in a prepared copy. I have no design vocabulary: explain your recommendation and ask focused corrections. All OWNER_NOTES.md records and the bilingual variant are inactive. Do not approve on my behalf or build a full app.",
       "invariants": [
         "selects assigned-visit workflow surfaces with product-specific rationale rather than generic login or dashboard",
-        "usually produces two or three displayable coherent directions with same synthetic text actions state viewport and comparable fidelity",
-        "gives primary professional recommendation rationale and tradeoff without treating it as submitted owner selection",
-        "uses English LTR actual text fonts and light and dark for each direction without adding Persian from conversation language",
-        "labels synthetic data and hypothetical capabilities without adding backend roles admin or tracking scope",
-        "links actual artifact revisions viewing evidence and limitations without claiming source or concepts prove rendering"
+        "presents one displayable coherent English LTR light proposal without mandatory competing directions dark or secondary layouts",
+        "applies settled palette typography spacing density controls and motion from FOUNDATION.json instead of replacing foundations",
+        "prioritizes technician phone use while making and checking a responsive layout at relevant sizes or explicitly reporting unavailable checks",
+        "gives professional rationale tradeoff and focused feedback request without treating recommendation silence or artifact creation as approval",
+        "labels synthetic data and actions without adding backend roles admin tracking or claiming concepts source and build prove rendered fonts"
       ]
     },
     {
-      "id": "samples-bilingual-coverage",
+      "id": "samples-approved-secondary-language",
       "type": "positive",
       "fixture": "sample-review",
-      "prompt": "Use the explicit bilingual variant with English default and Persian supported RTL. Prepare comparable early sample coverage for this workflow in both themes. Do not infer actual font loading or approve a design from source code.",
+      "prompt": "Use the explicit bilingual variant and settled FOUNDATION.json. Activate only primary-1, dark-1 and locale-1 as supplied fictional prior approvals and named secondary authorization. Prepare the authorized Persian RTL adaptation of the same list workflow for owner corrections. No actual prior sample artifacts are supplied: do not invent inspection of them or approval of your new revision.",
       "invariants": [
-        "preserves English default LTR and explicit Persian RTL without conflicting design systems",
-        "routes Persian through persian-writing and uses real long text and mixed-script identifiers",
-        "shows both themes and relevant language directions from first samples with justified coverage",
-        "records actual font assets or availability gaps and separates source from rendered observation",
-        "does not turn variant or artifact creation into real owner approval"
+        "identifies approved primary and dark parent scopes then locale-1 named secondary authority rather than generating all languages upfront",
+        "preserves English default and accepted shared foundations while adapting actual Persian RTL copy and mixed-script identifiers",
+        "routes required Persian judgment through persian-writing and identifies real font availability or scoped adaptation gaps rather than silently changing accepted typography",
+        "shows authorized secondary theme treatments at product-relevant responsive sizes with actual evidence or explicit missing checks",
+        "links secondary revision handbook and parent baseline records without claiming supplied fictional notes authenticate absent renders or approve new artifacts",
+        "does not add another locale calendar feature role or conflicting design system"
       ]
     },
     {
-      "id": "samples-selected-executable-refinement",
+      "id": "samples-primary-executable-refinement",
       "type": "positive",
       "fixture": "sample-review",
-      "prompt": "Use choice-1 as supplied fictional direction selection. Refine A into a bounded executable assigned-visit sample and matching draft DESIGN.md in a prepared copy. Inspect desktop/mobile relevant states and both themes if tools permit. Do not use sample-1 as approval of your new revision.",
+      "prompt": "Apply settled FOUNDATION.json and activate only choice-1 as fictional correction/refinement feedback on the single primary proposal. Refine A into a bounded English LTR light executable assigned-visit sample and matching draft DESIGN.md in a prepared copy. Inspect product-relevant responsive states if permitted. All approval records and bilingual variant are inactive; do not start dark or secondary design yet.",
       "invariants": [
-        "treats choice-1 as refinement selection not blanket final approval or tracking scope",
-        "uses current stack or bounded browser preview without full backend or mandatory replacement framework",
-        "exercises workflow actions and relevant loading empty error success disabled and recovery with truthful simulation labels",
-        "inspects desktop mobile themes actual fonts and high-risk combinations or reports missing evidence",
-        "links sample and draft handbook baseline revisions and seeks focused feedback before broad rollout"
+        "treats choice-1 as correction and refinement scope not final approval or software feature authority",
+        "preserves settled palette font scale spacing and balanced density while improving save draft prominence on phones",
+        "uses a bounded current-stack browser preview without mandatory framework full backend or admin panel",
+        "exercises applicable actions loading empty error success disabled and recovery with truthful simulation labels at product-relevant responsive sizes",
+        "records actual font and layout observations or missing checks then asks focused approval of exact primary sample handbook revisions before dark review",
+        "does not derive dark or secondary samples while primary acceptance remains pending"
+      ]
+    },
+    {
+      "id": "samples-dark-after-primary-approval",
+      "type": "positive",
+      "fixture": "sample-review",
+      "prompt": "Use BRIEF.md and FOUNDATION.json; activate only primary-1 as supplied fictional scoped acceptance of the corrected primary list. Derive its English LTR dark treatment next in a prepared copy and request corrections/approval. No primary render is supplied; report that evidence gap. dark-1, locale-1 and the bilingual variant are inactive.",
+      "invariants": [
+        "starts dark derivation only from explicitly scoped primary-1 and records parent sample handbook identity",
+        "retains accepted typography spacing density controls icons workflow and primary language while deriving semantic dark colors and surfaces",
+        "inspects responsive dark states contrast focus actions and recovery or records missing rendered evidence without authenticating absent primary artifacts",
+        "asks focused corrections and exact dark revision approval without treating primary acceptance as dark approval",
+        "does not generate secondary language layout or alter approved feature and admin scope"
+      ]
+    },
+    {
+      "id": "samples-secondary-needs-approval",
+      "type": "negative",
+      "fixture": "sample-review",
+      "prompt": "The bilingual variant is declared, but only primary-1 is active; dark-1 and locale-1 are inactive. Can you jump to Persian RTL and both localized themes now? Explain the next permitted phase and necessary owner decision without creating artifacts or changing files.",
+      "invariants": [
+        "does not treat declared bilingual need or primary acceptance as authority to skip dark review or produce secondary samples",
+        "identifies dark corrections and scoped approval as the next design phase before secondary need confirmation and named authorization",
+        "does not activate copied but inactive dark-1 or locale-1 records",
+        "retains primary approved scope and settled foundations without restarting discovery or changing files",
+        "does not claim actual sample or font rendering exists from hypothetical notes"
+      ]
+    },
+    {
+      "id": "samples-monolingual-no-extra-layout",
+      "type": "negative",
+      "fixture": "sample-review",
+      "prompt": "گفت‌وگوی ما فارسی است ولی محصول طبق BRIEF.md فقط انگلیسی است. فقط primary-1 و dark-1 را به‌عنوان سوابق فرضی فعال در نظر بگیر. آیا باید نمونهٔ فارسی، راست‌به‌چپ یا چند زبان دیگر هم طراحی شود؟ فقط توضیح بده؛ چیزی نساز و فایل‌ها را تغییر نده. گونهٔ دوزبانه و locale-1 فعال نیستند.",
+      "invariants": [
+        "uses English LTR sole-supported-language brief rather than Persian conversation as product authority",
+        "records secondary language layout as not applicable with monolingual product source instead of mandatory extra variants",
+        "does not activate bilingual variant or locale-1 simply because copied records exist",
+        "does not create artifacts change files or fabricate approval and rendered evidence",
+        "preserves accepted primary dark scopes and product features"
       ]
     },
     {
@@ -134,9 +175,9 @@
       "prompt": "Use the supplied Workroom brief to begin design discovery. I know nothing about design; recommend a suitable foundation and help me choose without a technical questionnaire. Do not build the application yet.",
       "invariants": [
         "reuses supplied product audience roles features identity languages and constraints before asking",
-        "gives a primary recommendation with product-specific rationale and meaningful limited alternatives or custom preference",
+        "gives one primary recommendation with product-specific rationale and room for corrections or delegation without mandatory alternatives",
         "separates UX needs from proposed visual defaults and asks only material unanswered questions",
-        "plans light and dark from first samples without claiming a sample or runtime panel already exists",
+        "records dark needs early but plans primary approval before derived dark review without claiming samples or runtime panel exist",
         "ends with a focused initial brief and nonblocking unknowns rather than an exhaustive questionnaire"
       ]
     },
@@ -185,7 +226,7 @@
         "records English as default and sole supported product language with LTR direction",
         "does not add Persian RTL fonts or localization features based on conversation language",
         "keeps real font availability unverified when no font assets are supplied",
-        "plans light and dark samples in the actual product language"
+        "plans one primary-language responsive proposal then dark after approval without simultaneous language or theme variants"
       ]
     },
     {
@@ -195,7 +236,7 @@
       "prompt": "Use the explicitly bilingual variant. English remains default; English and Persian are supported. Begin the foundation brief without designing separate unrelated themes for each language.",
       "invariants": [
         "records English default English LTR and Persian RTL explicitly",
-        "plans representative content mixed-script fields and light and dark coverage without claiming rendered validation",
+        "records later representative content and mixed-script risks with secondary review only after primary dark approvals and named owner authorization without claiming rendering",
         "routes required Persian-language judgment to the existing persian-writing specialist without duplicating its methodology",
         "keeps one coherent design system and preserves the supplied features and roles"
       ]

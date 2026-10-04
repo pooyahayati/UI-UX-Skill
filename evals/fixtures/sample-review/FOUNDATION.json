@@ -1,0 +1,31 @@
+{
+  "source": "foundation-note-1",
+  "status": "fictional scoped stakeholder decision; not sample approval or rendered proof",
+  "primaryLanguage": "en",
+  "primaryDirection": "ltr",
+  "primaryTheme": "light",
+  "density": "balanced",
+  "typography": {
+    "family": "system-ui, sans-serif",
+    "bodyPx": 16,
+    "titlePx": 28,
+    "bodyLineHeight": 1.6,
+    "weights": [400, 700],
+    "actualFontResolution": "not inspected"
+  },
+  "lightColors": {
+    "canvas": "#f1f5f4",
+    "surface": "#ffffff",
+    "text": "#182f2e",
+    "mutedText": "#4e6562",
+    "border": "#8a9e99",
+    "action": "#12685b",
+    "onAction": "#ffffff"
+  },
+  "spacingPx": [8, 12, 16, 24, 32],
+  "radiusPx": 12,
+  "primaryActionLabels": "visible text; no icon-only replacement",
+  "motion": "low; respect reduced motion",
+  "darkValues": "not yet derived or approved",
+  "scope": "appearance foundation only; no new features, runtime panel or visual sample approval"
+}
