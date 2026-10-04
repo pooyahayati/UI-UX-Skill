@@ -9,9 +9,9 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Last updated: **2026-10-04**.
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
-- Implementation: **In progress**; **0 of 9 correction stages completed**.
-- Active implementation stage: **R0**.
-- Next implementation stage: **R1 — Adaptive discovery**, after evidenced R0 acceptance.
+- Implementation: **In progress**; **1 of 9 correction stages completed**.
+- Active implementation stage: **None**.
+- Next implementation stage: **R1 — Adaptive discovery**, ready on the working branch after local R0 acceptance; not yet integrated into `main`.
 - Current authorized delivery: local R0 implementation on `codex/r0-controlled-kickoff`, following the owner's explicit instruction to start. Push, merge, release, deployment, and installed-Skill updates are not authorized by this kickoff.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
@@ -25,7 +25,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 
 | Stage | Deliverable | Status | Dependencies | Accountable role | Completed on | Acceptance evidence / PR |
 | --- | --- | --- | --- | --- | --- | --- |
-| R0 | Controlled kickoff, policy consistency, and ownership | In progress | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | Not completed | [R0 execution record](#r0-execution-record) |
+| R0 | Controlled kickoff, policy consistency, and ownership | Completed | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | 2026-10-04 | [R0 execution record](#r0-execution-record) |
 | R1 | Adaptive discovery and professional recommendations | Not started | R0 | Design role; engineering lead accepts | Not completed | Not recorded |
 | R2 | Living `DESIGN.md` contract and profile migration | Not started | R1 | Design role; one handbook writer | Not completed | Not recorded |
 | R3 | Comparable visual directions and versioned approval | Not started | R1, R2 | Design role; product owner approves | Not completed | Not recorded |
@@ -137,13 +137,13 @@ Owner: engineering lead / maintainer. Prerequisites: explicit implementation-sta
 
 Tasks:
 
-- [ ] Recheck upstream source, applicable instructions, branch, local/upstream SHAs, dirty state, and protected user changes; record the implementation baseline.
-- [ ] Work on an authorized branch with the `codex/` prefix; preserve `main` and unrelated work.
-- [ ] Reconcile the limited correction exception with the roadmap and README while preserving completed historical stages and evaluation limitations.
-- [ ] Update the release validator's active-freeze contract to recognize the explicit limited exception without weakening Product Type isolation, historical-stage preservation, or the no-new-specialists boundary. The current validator requires the legacy freeze to remain active; this dependency must not be overlooked.
-- [ ] Define full-foundation versus narrow-change routing, the admin-panel activation boundary, and audit/backend exclusions with distinguishable examples.
-- [ ] Define lead/subagent authority, a bounded early-design handoff, unavailable-tool fallback, and one-writer ownership.
-- [ ] Record acceptance criteria, stage-update responsibilities, and a later versioning decision; do not bump the version just to start the workstream.
+- [x] Recheck upstream source, applicable instructions, branch, local/upstream SHAs, dirty state, and protected user changes; record the implementation baseline.
+- [x] Work on an authorized branch with the `codex/` prefix; preserve `main` and unrelated work.
+- [x] Reconcile the limited correction exception with the roadmap and README while preserving completed historical stages and evaluation limitations.
+- [x] Update the release validator's active-freeze contract to recognize the explicit limited exception without weakening Product Type isolation, historical-stage preservation, or the no-new-specialists boundary. The legacy freeze remains active outside the bounded exception.
+- [x] Define full-foundation versus narrow-change routing, the admin-panel activation boundary, and audit/backend exclusions with distinguishable examples.
+- [x] Define lead/subagent authority, a bounded early-design handoff, unavailable-tool fallback, and one-writer ownership.
+- [x] Record acceptance criteria, stage-update responsibilities, and a later versioning decision; do not bump the version just to start the workstream.
 
 Output: accepted implementation scope, consistent development policy, ownership/handoff contract, and actual baseline check results.
 
@@ -158,7 +158,14 @@ Exit: the implementation scope is authorized; policy documents and validators no
 - Scope: `README.md`, `ROADMAP.md`, `CHANGELOG.md`, the existing Head/discovery/runtime/audit/specialist references, release-policy validation and its regression tests, and the shared CI validation step. No product UI, registries, dependencies, versions, or release automation changes.
 - Acceptance: the limited exception is explicit and bounded; full/narrow/no-admin/audit/backend examples are distinguishable; lead authority and one-writer handoff are clear; inconsistent policy/progress is rejected; protected validators pass and the reviewed diff remains inside this scope.
 - Baseline: all eight repository validators passed before edits; existing evaluation results are structural/source-based evidence only. Live upstream still points to the baseline above.
-- Evidence: pending focused regression, protected validation, and final diff review. No independent agent, rendered UI, or device evaluation is claimed for this policy-only stage.
+- Accepted locally: 2026-10-04 by the current engineering lead, after reviewing the scoped diff against the acceptance criteria. This is engineering acceptance of R0, not owner approval of a visual design or release.
+- Implementation commit: `805a1d50e2e541764435bd1d054c7e2d691cecb9`. The subsequent roadmap-only commit records acceptance; its identity is retained in Git history rather than invented before commit creation.
+- Changed paths: `README.md`, `ROADMAP.md`, `CHANGELOG.md`, `skills/ui-ux-skill/SKILL.md`, `references/discovery-and-profile.md`, `references/runtime-ui-governance.md`, `references/existing-product-audit.md`, `references/specialist-routing.md`, `scripts/validate_release.py`, `scripts/roadmap_policy.py`, `scripts/test_roadmap_policy.py`, `.github/workflows/validate-skill.yml`. Short reference paths are relative to the canonical Skill folder.
+- Checks: `python -B -X utf8 scripts/test_roadmap_policy.py` passed 11 tests, including bounded-scope rejection, preserved history/limitations, valid completion, missing evidence, invalid/missing/duplicate stages, out-of-order completion, counter/active/next-stage mismatch. The eight commands under Existing verification to preserve all exited zero; eval checks validate recorded structure, not fresh model/browser behavior.
+- Package evidence: isolated local archives passed CRC and SHA256 checks; all 71 canonical Skill files matched source bytes in both packages and version metadata remained `3.1.1`. Operational outputs stay outside the repository; these are unreleased verification artifacts, not a new public release or installation.
+- Review: one activation contract is routed by the Head/runtime/audit references; the same-Skill handoff preserves lead acceptance and one writer. Historical stages/limitations and product/specialist registries are unchanged. Impact was checked directly through source, references, validators, and packaging; no generated Graphify evidence is claimed.
+- Limitations: the official local quick validator could not import `yaml` (`PyYAML` unavailable); no dependency was installed. The existing release validator checked the unchanged frontmatter schema/Thin Head contract. Official CI validation remains pending a separately authorized push/PR; R0 acceptance does not waive the later candidate/release gate. No independent agent, rendered UI, or device evaluation is claimed or required for this policy-only stage.
+- Repository purity: no forbidden tracked/staged artifacts; the tool reported a warning for an unconfigured optional local Git-exclude block. No repository/host exclusion settings were changed.
 - Delivery: local only. No new PR, Issue, milestone, release, deployment, or installation has been created; no merge is authorized.
 
 ### R1 — Adaptive discovery and designer recommendations
@@ -495,11 +502,12 @@ Planning readiness:
 Still pending:
 
 - [x] Explicit authorization to start Skill capability corrections; the owner instructed the coding agent to start on 2026-10-04.
-- [ ] Execution and evidenced acceptance of R0–R8.
+- [x] Execution and local evidenced acceptance of R0.
+- [ ] Execution and evidenced acceptance of R1–R8.
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** execute and accept R0 on the working branch before starting R1. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
+**Next implementation action:** implement R1 adaptive discovery on the working branch, reusing the locally accepted R0 contract. R0 has not been pushed or merged. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 
