@@ -4,6 +4,13 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Visual sample and approval contract (R3, in progress)
+
+- Added a conditional comparable-sample workflow with professional recommendations, actual product language/direction, both themes from first samples and executable selected-sample evidence before broad rollout.
+- Distinguished direction selection, revision-scoped sample approval and implementation authority; preserved pending revisions and hypothetical-feature boundaries in the handbook template.
+- Added six raw forward-evaluation cases and preparation regressions for exact inputs/prompts and preservation of existing review evidence. They do not execute a model or render a sample.
+- R3's executable/rendered evaluation and real scoped approval remain pending. Instruction coverage is not a completed product design; no release/version bump or installed-Skill change is included.
+
 ### Living design handbook (R2)
 
 - Added a routed `DESIGN.md` lifecycle, early output template, single-writer authority and scoped decision/sample/evidence provenance.

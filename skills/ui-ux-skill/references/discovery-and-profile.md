@@ -86,7 +86,7 @@ Return a compact brief containing:
 
 Initial numeric values may be justified proposals or existing approved tokens, never precise measurements invented from an ambiguous image. Prefer readable named presets for a novice; expose detailed sizes/spacing when the product or owner actually needs them. Include intended configurable versus locked choices under the activation contract, but do not claim the R5 panel already exists.
 
-Reuse existing durable design documentation rather than creating a competing approved profile. This brief feeds the living `DESIGN.md` lifecycle in `design-handbook.md`; preserve valid legacy decisions and provenance through its compatibility boundary. Recommend substantial-work delegation through the existing bounded handoff, without implicitly launching another agent.
+Reuse existing durable design documentation rather than creating a competing approved profile. This brief feeds the living `DESIGN.md` lifecycle in `design-handbook.md`; preserve valid legacy decisions and provenance through its compatibility boundary. Continue to [comparable samples and approval](design-foundation-workflow.md) once the sample-relevant choices are clear. Recommend substantial-work delegation through the existing bounded handoff, without implicitly launching another agent.
 
 ## Product route first
 

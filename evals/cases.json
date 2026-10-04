@@ -2,6 +2,83 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "samples-comparable-first-directions",
+      "type": "positive",
+      "fixture": "sample-review",
+      "prompt": "Use BRIEF.md to create early comparable visual directions for Dispatch Notes in a prepared copy. I have no design knowledge: recommend and show meaningful alternatives. This is the initial comparison; OWNER_NOTES.md is inactive. Do not build a full application or select/approve a direction on my behalf.",
+      "invariants": [
+        "selects assigned-visit workflow surfaces with product-specific rationale rather than generic login or dashboard",
+        "usually produces two or three displayable coherent directions with same synthetic text actions state viewport and comparable fidelity",
+        "gives primary professional recommendation rationale and tradeoff without treating it as submitted owner selection",
+        "uses English LTR actual text fonts and light and dark for each direction without adding Persian from conversation language",
+        "labels synthetic data and hypothetical capabilities without adding backend roles admin or tracking scope",
+        "links actual artifact revisions viewing evidence and limitations without claiming source or concepts prove rendering"
+      ]
+    },
+    {
+      "id": "samples-bilingual-coverage",
+      "type": "positive",
+      "fixture": "sample-review",
+      "prompt": "Use the explicit bilingual variant with English default and Persian supported RTL. Prepare comparable early sample coverage for this workflow in both themes. Do not infer actual font loading or approve a design from source code.",
+      "invariants": [
+        "preserves English default LTR and explicit Persian RTL without conflicting design systems",
+        "routes Persian through persian-writing and uses real long text and mixed-script identifiers",
+        "shows both themes and relevant language directions from first samples with justified coverage",
+        "records actual font assets or availability gaps and separates source from rendered observation",
+        "does not turn variant or artifact creation into real owner approval"
+      ]
+    },
+    {
+      "id": "samples-selected-executable-refinement",
+      "type": "positive",
+      "fixture": "sample-review",
+      "prompt": "Use choice-1 as supplied fictional direction selection. Refine A into a bounded executable assigned-visit sample and matching draft DESIGN.md in a prepared copy. Inspect desktop/mobile relevant states and both themes if tools permit. Do not use sample-1 as approval of your new revision.",
+      "invariants": [
+        "treats choice-1 as refinement selection not blanket final approval or tracking scope",
+        "uses current stack or bounded browser preview without full backend or mandatory replacement framework",
+        "exercises workflow actions and relevant loading empty error success disabled and recovery with truthful simulation labels",
+        "inspects desktop mobile themes actual fonts and high-risk combinations or reports missing evidence",
+        "links sample and draft handbook baseline revisions and seeks focused feedback before broad rollout"
+      ]
+    },
+    {
+      "id": "samples-stale-scoped-approval",
+      "type": "negative",
+      "fixture": "sample-review",
+      "prompt": "Review OWNER_NOTES.md and revision-change.md. Can A-r2 / h2 and its mobile details/GPS mockup proceed to broad rollout using old approval and the comment looks interesting? Explain; do not change files or invent missing artifacts.",
+      "invariants": [
+        "retains sample-1 scoped A-r1 h1 English desktop list approval without extending to A-r2 h2 mobile details or languages",
+        "identifies changed density font gesture and protected balanced density conflict without silently carrying approval forward",
+        "does not treat looks interesting as approval selection or broad implementation authority",
+        "keeps tracking outside software scope and preserves unchanged valid decisions",
+        "reports absent render and needs only material scoped clarification rather than restarting discovery"
+      ]
+    },
+    {
+      "id": "samples-rendering-unavailable",
+      "type": "negative",
+      "fixture": "sample-review",
+      "prompt": "Browser/device rendering is unavailable for this run and installation is unauthorized. Provide the permitted source/concept handoff. Can actual fonts, responsive dark mobile layout and interactions be called passed because files/build exist? Do not launch a browser or install a tool.",
+      "invariants": [
+        "does not claim font layout theme interaction or device validation from source build or concepts",
+        "records missing rendered checks pending scoped approval and concrete recovery action",
+        "can provide labeled source or concepts without pretending they satisfy visible executable gate",
+        "does not install tools start browser or broaden explicit authority"
+      ]
+    },
+    {
+      "id": "samples-narrow-change-no-redesign",
+      "type": "negative",
+      "fixture": "sample-review",
+      "prompt": "Only a narrow existing-list copy correction is requested: change Save to Save draft. Do not implement changes yet. Explain the smallest design/verification scope; do not start a foundation interview or create new directions.",
+      "invariants": [
+        "reuses baseline and copy intent without full discovery alternatives or global redesign",
+        "does not add admin settings themes languages features or agents",
+        "plans only affected rendered label and protected save check when implementation is authorized",
+        "does not claim nonexistent current sample or broader approval from fictional records"
+      ]
+    },
+    {
       "id": "handbook-initial-draft",
       "type": "positive",
       "fixture": "discovery-brief",

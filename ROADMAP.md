@@ -2,7 +2,7 @@
 
 This is the repository's durable roadmap and stage-progress reference. It preserves the completed capability-building history and defines the agreed correction workstream for design discovery, a living product design handbook, visual approval, and configurable appearance.
 
-Implementation was explicitly authorized after roadmap publication. The tracker below distinguishes accepted R0–R2 work (R0/R1 integrated, R2 local) from the still-planned R3–R8 capabilities. Publishing or editing this document alone does not change installed Skill behavior or authorize push, merge, or release.
+Implementation was explicitly authorized after roadmap publication. The tracker below distinguishes integrated R0–R2 work, active R3 work, and still-planned R4–R8 capabilities. Publishing or editing this document alone does not change installed Skill behavior or authorize push, merge, or release.
 
 ## Current state
 
@@ -10,9 +10,9 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **In progress**; **3 of 9 correction stages completed**.
-- Active implementation stage: **None**.
-- Next implementation stage: **R3 — Comparable visual directions**, ready after local R2 acceptance; not yet started.
-- Current authorized delivery: the owner authorized merging R0/R1 and proceeding to R2 on 2026-10-04. R0/R1 are integrated through PR #19; R2 is completed locally on `codex/r2-living-design-handbook`, not pushed/merged. Release, deployment, installed-Skill updates and automatic merge of future stages remain outside this instruction.
+- Active implementation stage: **R3**.
+- Next implementation stage: **R4 — Incremental decisions and bounded handoffs**, after R3 acceptance. The immediate next action is the remaining R3 executable/rendered approval evaluation.
+- Current authorized delivery: the owner authorized merging R2 and proceeding to R3 on 2026-10-04. R0/R1 are integrated through PR #19; R2 is integrated through PR #20. R3 runs on `codex/r3-visual-directions-approval`; merging R3, release, deployment and installed-Skill updates require separate authority.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
 - Historical Stages 1–6: **Completed as recorded**, with the Stage 6 source-based evaluation limitations preserved below.
@@ -28,7 +28,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | R0 | Controlled kickoff, policy consistency, and ownership | Completed | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | 2026-10-04 | [R0 execution record](#r0-execution-record) |
 | R1 | Adaptive discovery and professional recommendations | Completed | Locally accepted R0 | Current design role; engineering lead accepts; single writer | 2026-10-04 | [R1 execution record](#r1-execution-record) |
 | R2 | Living `DESIGN.md` contract and profile migration | Completed | Integrated R1 | Current design role; one handbook writer | 2026-10-04 | [R2 execution record](#r2-execution-record) |
-| R3 | Comparable visual directions and versioned approval | Not started | R1, R2 | Design role; product owner approves | Not completed | Not recorded |
+| R3 | Comparable visual directions and versioned approval | In progress | R1, R2 | Design role; product owner approves | Not completed | [R3 execution record](#r3-execution-record) |
 | R4 | Incremental decisions and bounded agent handoffs | Not started | R2, R3 | Engineering lead | Not completed | Not recorded |
 | R5 | Parametric appearance governance with real consumers | Not started | R2, R4 | Engineering lead with design input | Not completed | Not recorded |
 | R6 | Editable semantic icons and icon families | Not started | R5 | Engineering lead with design input | Not completed | Not recorded |
@@ -265,6 +265,28 @@ Exit: another agent can identify approved/open decisions without the chat; migra
 - Package evidence: two isolated archives passed CRC/SHA256, exact membership and byte matching for all 73 canonical Skill files, including the routed contract/template. Embedded versions remain `3.1.1`; these external verification artifacts do not replace the public release or installed Skill.
 - Limitations: no independent model, real owner approval, product UI/rendered languages/themes/fonts, runtime panel or arbitrary product-parser migration is claimed. The local official quick validator remains unavailable without `PyYAML`; R0/R1 CI success does not validate unpublished R2. Required candidate behavioral/visual/runtime gates remain pending for their authorized stages.
 - Repository purity: no forbidden tracked/staged artifacts; the existing optional local Git-exclude warning remains. No dependencies, host tools, local exclusion policy or installed skills were changed. No R2 PR, Issue or milestone was created; delivery is local only.
+
+### R2 integration checkpoint
+
+- Owner authorization: merge and proceed to R3, 2026-10-04. Earlier R2 local-only notes are historical checkpoints.
+- [PR #20](https://github.com/pooyahayati/UI-UX-Skill/pull/20) merged at exact reviewed head `63d5f43cfdd17d9bc4cba6948ff792917ef0ed1d`; merge commit `b487880a18e095d4e01569c975393b685fad433e`. Local `main` was fast-forwarded to matching `origin/main` before the R3 branch was created.
+- [PR validation](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37196913773) passed for that head, including official quick validation and synthetic migration tests. The event-conditioned installer smoke step was skipped. This closes R2's remote validation gap, not its independent model/rendered/customer-approval limitations.
+- [Post-merge workflow](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37196971332) succeeded for the merge commit, including official quick validation and ephemeral CI installer smoke. Publication was skipped because the existing `v3.1.1` release still targets `d2420e9c60230fb2a667dff971f60a8bbbaaa1de`; no new release or local host installation occurred.
+
+### R3 execution record
+
+- Started: 2026-10-04 from R2 merge `b487880a18e095d4e01569c975393b685fad433e`, clean branch `codex/r3-visual-directions-approval`. The current coding agent remains the sole implementation writer; no subagent was started.
+- Retained plan: implement one conditional sample/approval reference; route it from Head/discovery/handbook and adapt the existing output template; supply raw independent-evaluation scenarios for comparability, default versus supported languages, both themes, unavailable rendering and revision-scoped approval; verify raw preparation isolation, links and protected validators; then build/inspect representative executable samples and exercise the approval boundary before stage acceptance.
+- Protected scope: no new Product Types/specialists, stack/framework mandate, runtime panel, feature expansion, version bump, release or host installation. Sample selection, scoped visual approval and broad implementation authorization must remain distinct.
+- Acceptance retained: R3's exit below still requires actual displayable comparable directions, executable selected sample, revision-matched handbook, representative rendered coverage and real scoped approval. Instruction/fixture completion alone cannot close it.
+- Preflight: engineering Skill `v1.3.1` verified current without installation/update. Instruction-maintenance selection is empty; the source Skill is the artifact being maintained, not an installed candidate execution. Router signals from unrelated existing browser/PHP/WordPress evaluation fixtures do not establish a product/platform for this work. The active correction requirements and relevant roadmap sections were inspected directly; no Graphify output is claimed.
+- Current checkpoint: the conditional [sample/approval workflow](skills/ui-ux-skill/references/design-foundation-workflow.md), Head/discovery/handbook routes and existing `DESIGN.md` output template are implemented. Six `samples-*` forward cases use [raw sample-review inputs](evals/fixtures/sample-review/README.md), with initial-comparison notes inactive and the bilingual variant explicitly opt-in. No authored after-answer or rendered sample is supplied as input.
+- Accepted partial slice: the current engineering lead reviewed instruction routing, scope, selection/approval/rollout separation, pending-revision handling, actual-language/theme obligations and raw-input isolation. This accepts the local contract/preparation change, not the R3 stage exit or a product design. No executable sample, fresh model evaluation or real owner design approval has yet been produced; the R3 task checkboxes remain unchecked.
+- Checks: eight protected repository validators and 11 roadmap-policy regressions passed. Two new preparation tests passed (all six cases receive exact raw files and prompts; an existing run's review evidence is preserved on refusal), plus all four prior synthetic migration tests. The temporary-directory tests ran with authorized elevated Windows access; no production data or host installation was touched. All eight local links across the conditional references/template resolve inside the portable Skill.
+- Fixture coverage: 73 total cases across 13 raw fixture directories. These are structurally validated and prepared input definitions, not 73 executed model outcomes. Historical Stage 6 results were revalidated structurally, not rerun. CI includes the preparation regression but has not run for this unpublished R3 branch. Official quick validation is separately unavailable locally without `PyYAML`; R2 CI does not validate R3.
+- Candidate packages: after LF normalization of touched text, both external verification archives passed CRC/SHA256, exact membership and byte matching for 74 portable Skill files, including the new conditional workflow. Versions remain `3.1.1`; these are test packages, not a publication or installed-Skill update. Raw bilingual input passed the Persian prose lint with zero findings.
+- Repository purity: no forbidden tracked/staged artifacts; the pre-existing optional local-exclude warning remains and no exclude configuration was changed. R3 is a local partial delivery, not pushed/merged; no R3 PR, Issue or milestone was created. Generated archives and test/preflight state stay outside source control.
+- Next permitted slice: generate comparable visible directions from an isolated raw case, then exercise a selected executable sample and revision-matched handbook with observed theme/language/mobile/state evidence. Any sample selection/approval must have its own real scoped source; fictional fixture records cannot stand in for approval by this repository's owner. R3 remains `In progress`; R4 is not started.
 
 ### R3 — Visual directions, representative prototype, and approval
 
