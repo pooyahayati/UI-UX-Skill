@@ -118,6 +118,26 @@ Prefer an existing coherent icon family.
 
 Centralize semantic icon choices where product meaning matters.
 
+When owner appearance management is in scope, include a prepared family selector
+and a visible gallery for individual semantic assignments. Keep meaning (search,
+add, edit, delete, settings, directional or open/closed use) separate from the
+asset/library identifier. Each use offers meaningful prepared variants; changing
+an image must not rename or change the operation.
+
+All applicable shared components and independent consumers use the same owned
+mapping/adapter. Report actually checked instances; one replaced page import is
+not configurable icons. Incomplete families resolve a meaningful known fallback,
+with current/fallback identity visible to the owner. Preserve accessible labels
+and state pairs; mirror only genuinely directional semantics.
+
+Expose size, semantic color and stroke only for consumers/assets that support
+them. Keep contrast, focus and target floors protected; hide or disable ineffective
+stroke editing for solid assets and explain the capability. Reuse the draft,
+validation, publication, persistence, history and rollback contract in
+`runtime-ui-governance.md`; inspect both themes and real changed consumers.
+Extending a stored schema must preserve valid prior appearance values and
+historical snapshots through bounded compatibility, not silent resets.
+
 Do not make arbitrary owner-uploaded SVG code executable inside the application.
 
 ## Runtime configuration adapter

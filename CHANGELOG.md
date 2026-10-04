@@ -9,7 +9,7 @@ All notable user-facing and technical changes to this project are documented her
 - Extended the existing runtime contract with per-setting ownership, prepared values, real consumer adapters, coherent publication, conflicts and identifiable fallback. Preserved broad/admin, narrow-change and no-admin scope boundaries.
 - Added an isolated stdlib/SQLite browser fixture and 17 real store/HTTP regressions for private drafts, publication, history, rollback/reset, persistence, authorization/isolation and malformed/corrupt input. No production login, new dependency or general theme builder.
 - Added three raw planning cases and a separate fresh forward review. Browser checks cover supported settings, private-versus-published effects, dark publication, measured narrow layout and cancel/confirm/reset/rollback; these do not certify full R7/R8 or actual customer approval.
-- R5 received scoped lead acceptance after final source review, candidate-bound native scan, exact package checks and successful implementation CI; passing integration of its acceptance update is recorded separately. Editable icons and required typography/native-confirm evidence remain later obligations. Version/release/tag and installed packages are unchanged.
+- R5 received scoped lead acceptance after final source review, candidate-bound native scan, exact package checks and successful CI; it integrated through PR #24 with passing merge/installer checks and skipped publication. R6 contract preparation has begun; executable editable icons and required typography/native-confirm evidence remain later obligations. Version/release/tag and installed packages are unchanged.
 
 ### Incremental design decisions and bounded handoffs (R4 preparation)
 
