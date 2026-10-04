@@ -2,7 +2,7 @@
 
 **UI/UX Skill** is an instruction-only Skill and skills-only Plugin package maintained by Pooya Hayati.
 
-Last updated: 2026-09-20
+Last updated: 2026-10-04
 
 ## Data collection
 
@@ -20,7 +20,7 @@ If a user independently enables tools, MCP servers, repositories, or services wh
 
 The Skill may instruct the agent to inspect or modify frontend project files when the user requests implementation work.
 
-It may create or update a local `design-profile.md` to preserve approved or delegated design decisions and their provenance.
+Within authorized project work, it may create or update a local `DESIGN.md` to preserve initial proposals, approved or scoped delegated decisions, open questions, source links and provenance. Valid legacy `design-profile.md` or established design documentation is migrated compatibly only within scope; it is not automatically deleted or transmitted to the maintainer.
 
 If a product implements runtime UI governance, owner design configuration, user preferences, saved views, audit history, or version history, that data is stored and governed by the user's own application architecture. The maintainer does not receive those records through this package.
 

@@ -8,7 +8,9 @@ This module owns the token model. Product Packs and Shared Rules consume tokens 
 
 Use this conceptual flow:
 
-`Design Profile -> Primitive Tokens -> Semantic Tokens -> Component Tokens -> Product Variants -> Resolved Runtime Tokens -> Components -> Product Surfaces`
+`Design Handbook -> Primitive Tokens -> Semantic Tokens -> Component Tokens -> Product Variants -> Resolved Runtime Tokens -> Components -> Product Surfaces`
+
+The handbook records accepted intent and links to real token sources; it is not a parallel editable token-value database. See [handbook authority and migration](../design-handbook.md).
 
 Do not let pages consume raw design configuration directly.
 

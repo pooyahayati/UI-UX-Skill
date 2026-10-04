@@ -1,0 +1,5 @@
+{
+  "density": {"default": "balanced"},
+  "typography": {"bodyFamily": "system-ui"},
+  "color": {"actionPrimary": "#2563eb"}
+}

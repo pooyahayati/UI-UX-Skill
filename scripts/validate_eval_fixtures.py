@@ -52,6 +52,7 @@ required_fixtures = {
     "real-world-mobile",
     "real-world-wordpress",
     "discovery-brief",
+    "legacy-handbook",
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
 missing = sorted(required_fixtures - existing)
@@ -98,6 +99,27 @@ except (OSError, ET.ParseError) as exc:
     errors.append(f"Discovery reference missing or invalid: {exc}")
 if (discovery / "unavailable-reference.png").exists():
     errors.append("Missing-reference scenario must retain its absent attachment")
+
+# Handbook artifacts/forward inputs only; no model or product migration is run.
+handbook_cases = {
+    "handbook-initial-draft": "discovery-brief",
+    "handbook-legacy-compatible": "legacy-handbook",
+    "handbook-conflicting-authority": "legacy-handbook",
+    "handbook-runtime-separation": "legacy-handbook",
+}
+for case_id, fixture in handbook_cases.items():
+    case = next((c for c in manifest["cases"] if c.get("id") == case_id), None)
+    if case is None or case.get("fixture") != fixture:
+        errors.append(f"{case_id}: missing handbook case or wrong raw fixture")
+legacy = EVALS / "fixtures/legacy-handbook"
+for name in ("PROJECT.md", "OWNER.md", "design-profile.md", "ui-tokens.json",
+             "tools/profile_reader.py", "variants/conflicting-design.md"):
+    if not (legacy / name).is_file():
+        errors.append(f"Handbook fixture missing {name}")
+try:
+    json.loads((legacy / "ui-tokens.json").read_text(encoding="utf-8"))
+except (OSError, ValueError) as exc:
+    errors.append(f"Handbook token source missing or invalid: {exc}")
 
 for case in manifest.get("cases", []):
     if case.get("id") not in required_isolation_cases:

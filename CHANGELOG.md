@@ -4,6 +4,13 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Living design handbook (R2)
+
+- Added a routed `DESIGN.md` lifecycle, early output template, single-writer authority and scoped decision/sample/evidence provenance.
+- Replaced the competing legacy profile schema instructions with compatible migration guidance; aligned existing audit, specialist, token-foundation and privacy consumers.
+- Kept handbook intent separate from executable values and published product configuration; routine admin changes do not require manual handbook edits.
+- Added raw legacy/conflict inputs, a source-reviewed migration example and concrete fixture consumer/link/value-preservation regressions. These are not independent Skill conformance or rendered product evidence; no runtime panel, release or host installation is included.
+
 ### Adaptive discovery (R1)
 
 - Added inspect-first, recommendation-first discovery with product-specific questions, focused stopping conditions, initial defaults and scoped delegation/provenance.

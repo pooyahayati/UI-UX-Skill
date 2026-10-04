@@ -10,9 +10,9 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **In progress**; **2 of 9 correction stages completed**.
-- Active implementation stage: **None**.
-- Next implementation stage: **R2 — Living DESIGN.md**, ready after local R1 acceptance; not yet started.
-- Current authorized delivery: R1 completed locally on `codex/r0-controlled-kickoff`, following the owner's instruction to proceed to the next stage. Further stage work awaits the next instruction. Push, merge, release, deployment, and installed-Skill updates remain unauthorized.
+- Active implementation stage: **R2**.
+- Next implementation stage: **R3 — Comparable visual directions**, after evidenced R2 acceptance.
+- Current authorized delivery: the owner authorized merging R0/R1 and proceeding to R2 on 2026-10-04. R0/R1 are integrated through PR #19; R2 is local implementation on `codex/r2-living-design-handbook`. Release, deployment, installed-Skill updates and automatic merge of future stages remain outside this instruction.
 - Product handbook filename: **`DESIGN.md`**, with this exact capitalization.
 - Additional external specialists: **None planned**. The existing conditional `persian-writing` route remains.
 - Historical Stages 1–6: **Completed as recorded**, with the Stage 6 source-based evaluation limitations preserved below.
@@ -27,7 +27,7 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | --- | --- | --- | --- | --- | --- | --- |
 | R0 | Controlled kickoff, policy consistency, and ownership | Completed | Owner authorized kickoff; valid working checkout | Engineering lead / maintainer (single implementation writer) | 2026-10-04 | [R0 execution record](#r0-execution-record) |
 | R1 | Adaptive discovery and professional recommendations | Completed | Locally accepted R0 | Current design role; engineering lead accepts; single writer | 2026-10-04 | [R1 execution record](#r1-execution-record) |
-| R2 | Living `DESIGN.md` contract and profile migration | Not started | R1 | Design role; one handbook writer | Not completed | Not recorded |
+| R2 | Living `DESIGN.md` contract and profile migration | In progress | Integrated R1 | Current design role; one handbook writer | Not completed | [R2 execution record](#r2-execution-record) |
 | R3 | Comparable visual directions and versioned approval | Not started | R1, R2 | Design role; product owner approves | Not completed | Not recorded |
 | R4 | Incremental decisions and bounded agent handoffs | Not started | R2, R3 | Engineering lead | Not completed | Not recorded |
 | R5 | Parametric appearance governance with real consumers | Not started | R2, R4 | Engineering lead with design input | Not completed | Not recorded |
@@ -242,6 +242,20 @@ Minimum handbook content:
 Output: handbook contract, a reusable template, and a migration scenario.
 
 Exit: another agent can identify approved/open decisions without the chat; migration preserves meaning and authority; admin changes are not tied to manually editing the document. Attach template/fixture results and the migration evidence.
+
+### R0/R1 integration checkpoint
+
+- Owner authorization: merge and proceed to the next stage, 2026-10-04. Earlier local-only notes above are historical checkpoints, not the current integration state.
+- [PR #19](https://github.com/pooyahayati/UI-UX-Skill/pull/19) merged with exact reviewed head `94d09795e603154331518e8de5711339465f39cc`; merge commit `336a50ba3db54e2c8b05d82e4cf087098ae1c0a7`. Local `main` was fast-forwarded to the same live `origin/main` before the R2 branch was created.
+- [CI run](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37194969743) succeeded for that PR head, including official quick validation and package checks. The installer smoke step was skipped by the existing event condition; no host installation or release occurred. This closes the R0/R1 CI gap, not their independent behavioral/rendered evidence limitations.
+
+### R2 execution record
+
+- Started: 2026-10-04 from the verified merge commit above, with a clean working tree on `codex/r2-living-design-handbook`. One implementation/handbook writer; no subagent or external specialist added.
+- Plan/spec: add one routed lifecycle/migration reference and a reusable draft template; replace the competing legacy schema instructions with that route; reconcile existing audit, specialist, design-system and privacy consumers; supply raw legacy/conflict inputs and an inspectable before/after migration example; validate links, fixture preparation, regressions and exact packages; review and record acceptance. No actual product migration, runtime configuration, visual samples, dependencies, registries or version changes.
+- Acceptance: exact canonical `DESIGN.md` path and single writer; early draft with product/UX/foundation/language/theme coverage; scoped decision/sample/evidence provenance; resumable without chat history; compatible migration preserving valid decisions and inspected consumers without silent overwrite or deletion; actual token/storage authorities remain outside the handbook. The roadmap is the retained stage plan, not a duplicate operational plan.
+- Impact/risk: instruction/output-document compatibility across routed resources and packaging; no customer data, application schema or production configuration is migrated. Source/reference/fixture/package impact is inspected directly instead of claiming a generated Graphify graph. Independent model behavior remains unverified unless actually evaluated.
+- Evidence and stage acceptance: pending.
 
 ### R3 — Visual directions, representative prototype, and approval
 
@@ -526,7 +540,7 @@ Still pending:
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
 
-**Next implementation action:** on the owner's next instruction, implement R2's living `DESIGN.md` contract and compatible profile migration on the working branch, reusing locally accepted R0/R1. Neither stage has been pushed or merged. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
+**Next implementation action:** finish the authorized local R2 contract/template and compatible migration scenario on its branch, using integrated R0/R1. The first visible capability result is the initial handbook and representative light/dark samples in real product languages by R3; a large admin application or all backend features are not prerequisites for that design proof.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 

@@ -12,7 +12,9 @@ Machine-readable registry:
 
 Use this conceptual flow:
 
-`Design Profile -> Primitive Tokens -> Semantic Tokens -> Component Tokens -> Product Variants -> Resolved Runtime Tokens -> Components -> Product Surfaces`
+`Design Handbook -> Primitive Tokens -> Semantic Tokens -> Component Tokens -> Product Variants -> Resolved Runtime Tokens -> Components -> Product Surfaces`
+
+Use `design-handbook.md` for canonical `DESIGN.md` authority and legacy-profile compatibility. The registry's existing `design-profile` architecture identifier denotes this design-intent contract, not a second required filename or a live value database; it remains unchanged for compatibility. Link real value sources instead of duplicating their executable values in the handbook.
 
 When runtime customization exists:
 

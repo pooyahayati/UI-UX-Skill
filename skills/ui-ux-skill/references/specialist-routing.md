@@ -28,7 +28,7 @@ If a lower-level specialist discovers a conflict or material risk, return the co
 When no higher-level Head contract is supplied, this Skill owns:
 
 - UI/UX task framing
-- UI/UX discovery and design-profile decisions
+- UI/UX discovery and design-handbook decisions
 - UI/UX approval mode
 - specialist selection
 - UI implementation guidance
@@ -168,7 +168,7 @@ For substantial early discovery/sample work, strongly recommend that the enginee
 
 Proceed only when agent use is authorized and the capability exists. A recommendation is not permission to spawn an agent or create a separate user-owned chat. Otherwise the lead performs the same scoped work directly and reports that no subagent was used; do not make delegation itself a blocker.
 
-The assignment identifies the product, audience/roles, approved goals/features, stack, default/supported languages and directions, existing assets/decisions, protected constraints, representative workflows, acceptance criteria, and exact owned paths. Name the canonical handbook path and baseline revision when established; until R2 migration is implemented, preserve the existing profile rather than silently creating competing authorities.
+The assignment identifies the product, audience/roles, approved goals/features, stack, default/supported languages and directions, existing assets/decisions, protected constraints, representative workflows, acceptance criteria, and exact owned paths. Name the canonical handbook path and baseline revision when established; use `design-handbook.md` for migration and preserve a valid legacy baseline until its consumers are verified rather than silently creating competing authorities.
 
 Assign exactly one handbook writer for a given revision. Other agents return proposed changes instead of racing to edit shared decisions. Give only the permissions needed for the assignment; do not authorize unrelated dependencies, backend changes, publication, or broader software scope.
 
@@ -195,10 +195,10 @@ Do not declare the entire software objective complete. The higher-level Head own
 
 When operating under a higher-level Head, follow its repository-purity and state-storage policy.
 
-For `design-profile.md`:
+For canonical `DESIGN.md` and necessary legacy compatibility documents:
 
-- an approved, durable project design profile may be committed when it is meaningful project documentation;
-- draft discovery notes, temporary audit output, screenshots, generated reports, and specialist scratch state should remain outside the product repository unless the project explicitly requires them;
+- a meaningful durable project handbook, including its initial draft and scoped approval history, belongs with product documentation under the project policy;
+- temporary discovery scratch, audit output, screenshots, generated reports and specialist operational state remain outside the product repository unless explicitly required as product assets;
 - do not create durable documents merely to satisfy process.
 
 ## Conflict handling
