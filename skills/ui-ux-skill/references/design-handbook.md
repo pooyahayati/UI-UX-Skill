@@ -24,7 +24,7 @@ For a meaningful decision retain its subject/value or real source, state, ration
 
 Explicit delegation applies only to its named decision/scope. Silence, preselection, image upload, implementation acceptance and a general agent recommendation do not approve the visual design. Record actual owner approval/delegation evidence and exact sample revision when it exists; a decision delegated without a sample is not proof of rendered fit. Never invent an approver, timestamp, sample or evidence URL to fill the template.
 
-Increment the handbook revision for meaningful contract changes; preserve the last approved baseline and show which proposed changes are not yet active. Link the inspected Skill version when known, but do not invent it or couple document revisions to software releases. Track samples by their real path/identifier/revision and language/theme/viewport coverage; `planned`, `not run`, `unavailable` and `observed` must remain distinguishable. Approval is not a claim that every test, permission or software feature is verified.
+Increment the handbook revision for meaningful contract changes; preserve the last approved baseline and show which proposed changes are not yet active. Link the inspected Skill version when known, but do not invent it or couple document revisions to software releases. Track samples by their real path/identifier/revision and language/theme/viewport coverage; `planned`, `not run`, `unavailable` and `observed` must remain distinguishable. Use [the sample/approval workflow](design-foundation-workflow.md) for comparison, executable coverage and the selection/approval/rollout boundary. Approval is not a claim that every test, permission or software feature is verified.
 
 ## Contract versus values
 

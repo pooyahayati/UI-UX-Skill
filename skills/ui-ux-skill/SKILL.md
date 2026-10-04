@@ -78,7 +78,7 @@ Read as needed:
 
 Typical flow:
 
-`Inspect -> Discover -> Decide -> Foundation -> Representative Surface -> Roll Out -> QA`
+`Inspect -> Discover -> Draft DESIGN.md -> Compare Samples -> Refine -> Approve Revision -> Roll Out -> QA`
 
 ### Existing product — audit only
 
@@ -207,6 +207,8 @@ For new products or strategic redesigns, use `references/discovery-and-profile.m
 Inspect known decisions before questioning. Use product-relevant recommendation-first discovery, record actual product languages/directions and light/dark expectations, and keep reference-image inference and proposed defaults distinct from owner approval. Return a focused initial brief rather than an exhaustive questionnaire.
 
 For durable foundation work, read `references/design-handbook.md` for the early `DESIGN.md` draft, single-writer/approval contract and compatible legacy-profile migration. Its output template is routed there; a draft is not owner approval or active runtime configuration.
+
+Before broad rollout, read `references/design-foundation-workflow.md` for comparable visible directions, executable selected samples in real product languages and both themes, and revision-scoped approval. Direction selection, sample approval and implementation authorization are distinct; concepts/builds do not prove rendered behavior.
 
 For existing products without an approved handbook, use an observed baseline for corrective work rather than forcing full rediscovery or document migration.
 

@@ -64,11 +64,22 @@ Use `proposed`, `approved`, `delegated`, `observed`, `unresolved` or `superseded
 
 ## Samples and approval
 
-| Sample location / revision | Language / direction / theme / viewport | Feedback / selected direction | Actual approval evidence / scope | Checks / limitations |
-| --- | --- | --- | --- | --- |
-| None produced | Coverage planned, not observed | None recorded | None recorded | Not run |
+| Direction ID / sample location / revision / fidelity | Comparable workflow / content | Language / direction / theme / viewport | Actual viewing evidence / gaps |
+| --- | --- | --- | --- |
+| None produced | Not recorded | Coverage planned, not observed | Not viewed |
 
-Keep proposed sample changes distinct from the approved baseline. Implementation acceptance is not visual approval.
+- Professional recommendation / product-fit reason / tradeoff: not recorded.
+- Direction selection or scoped delegation / real source: none recorded.
+- Selected executable sample and matching handbook baseline: none recorded.
+- Actual sample approval / actor / source / date / covered scope / exclusions: none recorded.
+- Broad implementation authority / remaining gates: not recorded; not implied by selection.
+- Proposed changes against last approved baseline / affected decisions needing approval: not recorded.
+
+| Sample revision | Language / direction / theme / viewport / state | Action or viewing method / font evidence | Actual result / capture location / limitation |
+| --- | --- | --- | --- |
+| None produced | Not recorded | Not run | No rendered proof claimed |
+
+Keep proposed sample changes distinct from the approved baseline. Hypothetical capabilities and synthetic data must be labeled. Implementation acceptance is not visual approval; concepts/builds do not prove actual fonts, layout or behavior.
 
 ## Configurability and protected boundaries
 

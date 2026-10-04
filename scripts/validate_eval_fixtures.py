@@ -53,6 +53,7 @@ required_fixtures = {
     "real-world-wordpress",
     "discovery-brief",
     "legacy-handbook",
+    "sample-review",
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
 missing = sorted(required_fixtures - existing)
@@ -120,6 +121,21 @@ try:
     json.loads((legacy / "ui-tokens.json").read_text(encoding="utf-8"))
 except (OSError, ValueError) as exc:
     errors.append(f"Handbook token source missing or invalid: {exc}")
+
+# Forward-input availability only, not model conformance or visual approval.
+sample_cases = {
+    "samples-comparable-first-directions", "samples-bilingual-coverage",
+    "samples-selected-executable-refinement", "samples-stale-scoped-approval",
+    "samples-rendering-unavailable", "samples-narrow-change-no-redesign",
+}
+for case_id in sample_cases:
+    case = next((c for c in manifest["cases"] if c.get("id") == case_id), None)
+    if case is None or case.get("fixture") != "sample-review":
+        errors.append(f"{case_id}: missing sample case or wrong raw fixture")
+for name in ("README.md", "BRIEF.md", "OWNER_NOTES.md", "variants/bilingual.md",
+             "variants/revision-change.md"):
+    if not (EVALS / "fixtures/sample-review" / name).is_file():
+        errors.append(f"Sample-review fixture missing {name}")
 
 for case in manifest.get("cases", []):
     if case.get("id") not in required_isolation_cases:

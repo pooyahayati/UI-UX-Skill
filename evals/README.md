@@ -125,9 +125,17 @@ That walkthrough is a current-session implementation-agent source review, not a 
 
 ## R2 handbook cases and compatibility example
 
+R2's historical local-only limitations below are supplemented by PR #20 CI and the roadmap's integration checkpoint; model/rendered limitations remain.
+
 The `handbook-*` cases use raw `discovery-brief` or `legacy-handbook` inputs. The authored after-artifacts in `handbook/example/` are separate from raw fixtures and must not be given to forward evaluators. `scripts/test_handbook_migration.py` exercises actual fixture parser compatibility (including the broken pointer-only replacement), unchanged token/owner bytes and local after-document links. It does not execute a model or prove an arbitrary product migration.
 
 Prepare new cases in isolated copies. Full candidate conformance, real visual approval and runtime behavior remain pending; revalidating old Stage 6 records does not test these new cases. The example is a current-session source-based mapping with explicit gaps, not an independent agent outcome.
+
+## R3 comparable samples and approval cases
+
+The six `samples-*` cases use only raw `fixtures/sample-review/` inputs. The base is English/LTR; the bilingual variant explicitly supplies Persian/RTL. Supplied fictional owner notes are scoped scenario inputs, not current artifacts or approval of newly generated samples. No authored comparison or expected response is part of that fixture.
+
+Prepare each case separately. Observe actual generated directions, text/scenario comparability, theme/language coverage, executable actions and sample/handbook revision linkage; inspect specific refusals of stale or overly broad approval. Score behavior and evidence, not instruction headings. Keep source checks, prepared inputs, fresh model results, rendered proof and real product-owner approval distinct. Preparing these cases does not run a model or complete R3; old Stage 6 results do not cover them.
 
 ## Stage 6 real-world evaluation
 
