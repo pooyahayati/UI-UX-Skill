@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PREPARE = ROOT / "scripts/prepare_eval_run.py"
 RAW_ROOT = ROOT / "evals/fixtures"
 RAW_FILES = {
+    "material-components": {"README.md", "BRIEF.md", "STACKS.md"},
     "material-foundations": {"README.md", "OPERATIONS.md", "LEARNING.md", "TOKENS.json"},
     "material-activation": {"README.md", "BRIEF.md"},
     "real-world-wordpress": {"README.md", "plugin.php", "admin.css"},

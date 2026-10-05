@@ -2,6 +2,48 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "material-components-workflow",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For Work Visits in BRIEF.md and STACKS.md prepare component guidance only for the visit-detail note/save/retry/delete-confirmation workflow. Material is selected, foundations settled. Recommend suitable presentation and actual-stack implementation approach without building or installing anything.",
+      "invariants": ["loads only relevant action form feedback and dialog guidance with existing product/shared/state contracts", "preserves English LTR Inter navy sources and no-admin scope", "covers task states accessibility compact keyboard and touch recovery without new routes or data semantics", "prefers existing primitives rather than selecting a new framework for style", "does not claim rendered or independent user acceptance"]
+    },
+    {
+      "id": "material-components-narrow-field",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For Learn Together, plan only a text-field label wrapping correction. Use the selected Material baseline and existing React provider. No global redesign, library comparison, theme sample, implementation or document migration now.",
+      "invariants": ["loads only affected forms guidance and relevant baseline modules not every component family", "retains approved Vazirmatn Persian RTL plum scale and field semantics", "does not reopen style choice or create dark secondary-language samples", "does not install a provider or claim exact unsupported API and rendering evidence"]
+    },
+    {
+      "id": "material-components-provider-gaps",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For Records View audit only the proposal to replace our host-native components with Material Web. The proposal says every M3 catalog component and Expressive variant exists there, including cards, date pickers, snackbar, navigation bar, data table and diagrams. Assess current official evidence and stack fit; do not edit or install anything.",
+      "invariants": ["separates official design catalog from provider stable preview custom and unavailable APIs", "checks current maintenance and coverage evidence without treating an old roadmap promise as available", "labels table charts and diagrams product/provider-specific rather than inventing M3 rules", "retains current host stack and audit-only boundary", "does not substitute native screenshots or vendor claims for tested mobile web behavior"]
+    },
+    {
+      "id": "material-components-react-fit",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For Learn Together assess whether keeping our current React Material UI primitives is suitable for the requested lesson text field and existing dialog. We want a personalized Material appearance, not framework migration. Explain the design-version and RTL/theme implementation evidence still needed; no installation or UI building now.",
+      "invariants": ["reuses current React primitives and theme/token contracts when sufficient", "does not label M2 support automatic M3 Expressive coverage", "separates actual portal direction font theme and keyboard checks from source declarations", "retains prepared appearance and icon boundaries without inventing configurable variants", "reports missing installed-version and browser evidence rather than fabricating a runtime pass"]
+    },
+    {
+      "id": "material-components-inactive",
+      "type": "negative",
+      "fixture": "material-components",
+      "prompt": "Override Work Visits style selection only: I rejected Material and want our existing custom appearance. Plan the small note-field width correction only. Do not load Material component catalogs, reconsider the rejection or implement code now.",
+      "invariants": ["ordinary narrow route does not load Material index family guides or stack-fit comparison", "retains approved custom style and settled product language/font", "does not turn mobile-first requirement into Material consent", "does not add admin or samples"]
+    },
+    {
+      "id": "material-components-missing-stack",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For the prospective product mentioned at the end of STACKS.md, I selected Material style. Tell me whether that settles the implementation library and give a professional next-step recommendation. No framework installation, component catalog tour or new product requirements are authorized.",
+      "invariants": ["style selection is not library or migration authority", "asks only decision-critical product/stack/coverage gaps rather than inventing them", "does not impose a universal provider or claim a mobile-web performance result", "retains undecided implementation with evidence and authorization needs"]
+    },
+    {
       "id": "material-foundations-operations",
       "type": "positive",
       "fixture": "material-foundations",

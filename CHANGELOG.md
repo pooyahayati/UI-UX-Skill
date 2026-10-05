@@ -4,6 +4,19 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Scoped Material components and implementation fit (R9.3)
+
+- Added a navigable live-catalog index, six selectively loaded workflow-family
+  guides and a stack-fit decision reference. Existing Product/Shared behavior,
+  tokens/states, approved language/theme sequence and prepared owner boundaries
+  remain authoritative; custom/provider-specific data patterns are labeled.
+- Recorded dated official provider coverage/maintenance limits, including
+  incomplete Material Web coverage and Material UI's M2 baseline; no dependency,
+  universal library default, migration or additional specialist selected.
+- Added raw component/stack-fit preparation cases and local source review.
+  Actual samples/runtime adapters/full behavioral-rendered acceptance remain
+  R9.4–R9.6. Version/release/install and push/merge remain separate authority.
+
 ### Personalized Material foundations and selected research (R9.2)
 
 - Added conditionally routed foundation guidance for actual tasks/audiences,

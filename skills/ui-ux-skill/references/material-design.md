@@ -84,12 +84,17 @@ not load the whole foundation workflow. Use [selected research](design-research.
 only for an active question; the same index is useful outside Material without
 activating this overlay.
 
-Activation and foundation/research guidance are available locally. Component
-guidance, samples, runtime adapters and independent/rendered acceptance remain
-separate R9.3–R9.6 work. Do not claim those guides or implemented controls exist
-from this reference. Do not preload the official catalog; consult official pages
-only for a concrete authorized design need and label unsupported/custom patterns
-honestly.
+For selected Material with component work in scope, use the lean
+[component index](material-components.md), then only the affected workflow family.
+Read [stack fit](material-stack-fit.md) only for an actual implementation/provider
+decision. Do not load families for recommended/unaccepted, rejected, inactive or
+backend-only work. Audit-only use remains read-only; narrow tasks retain scope.
+
+Activation, foundations/research and scoped component instructions are available
+locally. Samples, runtime adapters and independent/rendered acceptance remain
+separate R9.4–R9.6 work. A guide does not establish implemented controls. Do not
+preload the official catalog; consult official pages only for a concrete need
+and label unsupported/custom patterns honestly.
 
 Official source starting points checked 2026-10-06:
 [Material Design](https://m3.material.io/) and

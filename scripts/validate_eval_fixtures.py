@@ -42,6 +42,7 @@ for case in manifest.get("cases", []):
             errors.append(f"{case_id}: fixture {fixture} is missing README.md")
 
 required_fixtures = {
+    "material-components",
     "material-foundations",
     "material-activation",
     "existing-dashboard",
@@ -81,6 +82,20 @@ required_foundation_cases = {
 missing_foundations = sorted(required_foundation_cases - seen)
 if missing_foundations:
     errors.append("Missing raw Material foundation cases: " + ", ".join(missing_foundations))
+required_component_cases = {
+    "material-components-workflow", "material-components-narrow-field",
+    "material-components-provider-gaps", "material-components-react-fit",
+    "material-components-inactive", "material-components-missing-stack",
+}
+missing_components = sorted(required_component_cases - seen)
+if missing_components:
+    errors.append("Missing raw Material component cases: " + ", ".join(missing_components))
+for case in manifest.get("cases", []):
+    if case.get("id") in required_component_cases and case.get("fixture") != "material-components":
+        errors.append(f"{case['id']}: must use the exact raw material-components fixture")
+for name in ("README.md", "BRIEF.md", "STACKS.md"):
+    if not (EVALS / "fixtures/material-components" / name).is_file():
+        errors.append(f"Material component fixture missing {name}")
 for case in manifest.get("cases", []):
     if case.get("id") in required_foundation_cases and case.get("fixture") != "material-foundations":
         errors.append(f"{case['id']}: must use the exact raw material-foundations fixture")
