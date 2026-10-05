@@ -1,6 +1,6 @@
 # Design evidence remediation plan
 
-Prepared: 2026-10-04. Current checkpoint: 2026-10-05. QF01–QF03 and QF06/QF07 are Verified for the bounded outcomes recorded below; QF04/QF05 remain Unverified required R7 obligations.
+Prepared: 2026-10-04. Current checkpoint: 2026-10-06. QF01–QF03 and QF06/QF07 are Verified for the bounded outcomes recorded below; QF04 is Owner accepted, with technical metadata limitations preserved. QF05 has owner-reported manual evidence as recorded in the current checkpoint.
 
 ## Purpose and authority
 
@@ -49,7 +49,7 @@ All tasks started as **Not started**; current progress is recorded below. Engine
 | QF01 | First | Trustworthy capture protocol and reproduced affected contexts | Implementation authority and preserved evidence | R3 evidence follow-up; R7 integrated QA | Verified |
 | QF02 | High | Bounded essential-control contrast correction and conflict handling | Reliable rendered evidence from QF01 for acceptance | R3 foundation review; R4 scoped decisions | Verified |
 | QF03 | High | Mixed-script free-text readability/data-preservation review | QF01 | R3 localized sample; R7 direction QA | Verified |
-| QF04 | Medium | Actual font evidence or explicit bounded limitation | QF01; real assets/environment access where needed | R3 sample evidence; R7 typography QA | Unverified |
+| QF04 | Medium | Actual font evidence or explicit bounded limitation | QF01; real assets/environment access where needed | R3 sample evidence; R7 typography QA | Owner accepted; metadata limitations retained |
 | QF05 | High | Observable completion cancel/confirm checks | QF01; documented supported interaction tooling | R3 executable slice; R7 interaction QA | Unverified |
 | QF06 | High | Usable exact baseline fixture and missing-baseline boundary | Existing fixture coverage review; approval-source availability | R3 approval; R4 continuation inputs | Verified |
 | QF07 | Final | Affected regressions, continuation observations and lead reconciliation | Required outcomes from QF01–QF06 for the selected scope | R4 acceptance; later R8 candidate gate | Verified |
@@ -274,3 +274,14 @@ QF04 gains separate new-Vazirmatn wide/narrow visual observations, not original
 per-glyph/control face metadata. Do not repeat the same owner tests or erase
 historical limitations. Original required metadata and remaining integrated
 coverage still block whole R7/R8 acceptance; unrelated validators do not waive it.
+
+### Subsequent explicit owner acceptance
+
+The owner stopped further font testing, explicitly instructed that this test be
+treated as approved, and will report any later problem for correction. QF04 is
+therefore **Owner accepted** for this bounded review. Missing technical metadata
+remains an evidence limitation, not a reason to request more font screenshots or
+block this review. This explicit reconciliation supersedes the earlier QF04
+blocking disposition without rewriting historical observations or claiming a
+technical pass. Reopen only for a concrete newly reported/observed font defect;
+other R7/R8 obligations are not accepted by this decision.

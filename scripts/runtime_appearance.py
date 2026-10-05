@@ -500,7 +500,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self.response(303, b"", "text/plain", {
                     "Location": "/", "Set-Cookie": f"fixture_session={token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=3600"})
             assets = {"/": ("index.html", "text/html"), "/reader": ("index.html", "text/html"),
-                      "/app.js": ("app.js", "text/javascript"), "/app.css": ("app.css", "text/css")}
+                      "/app.js": ("app.js", "text/javascript"), "/app.css": ("app.css", "text/css"),
+                      "/dialog-focus.js": ("dialog-focus.js", "text/javascript")}
             if self.command == "GET" and path in assets:
                 file, mime = assets[path]
                 return self.response(200, (FIXTURE / file).read_bytes(), mime)

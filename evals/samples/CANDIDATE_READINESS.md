@@ -193,9 +193,39 @@ manager obtains Head/UI source records but fails an unrelated due inventory
 archive transfer; no full preflight/compatibility acceptance is manufactured.
 No PyYAML installation, dependency addition or installed-Skill change occurred.
 
-R7 original-font metadata, qualified representative capture/access and overlay
-keyboard acceptance remain unresolved. The owner-reported original native
+The font review is now **Owner accepted** by the subsequent explicit owner
+decision recorded in the [integrated review](INTEGRATED_QUALITY_REVIEW.md#owner-acceptance-of-the-font-review--2026-10-06).
+Historical original-font metadata limitations remain disclosed, but additional
+font testing is not a blocker for that review and must not be requested again
+without a concrete newly reported/observed defect. Qualified representative
+capture/access remains unresolved. The overlay keyboard gap is now repaired and
+covered by actual scoped browser cycles plus 11 shipped-handler DOM-model
+assertions; see the [recovery record](INTEGRATED_QUALITY_REVIEW.md#keyboard-repair-and-bounded-recovery--2026-10-06).
+Invalid narrow/intermediate captures are still excluded. The owner-reported original native
 save/cancel/accept check is attributed manual evidence, with the final completion
 state independently visible, not an automated native-dialog recovery claim.
 Candidate CI/security/delivery must be tied to the actual reviewed commit when
 run. A draft review PR does not remove the dependent R7/R8 acceptance gates.
+
+## Keyboard follow-up candidate — 2026-10-06
+
+The owner's all-remaining-work request produced the focused modal keyboard
+repair, fixed static asset delivery, actual scoped browser confirmation/cancel
+checks and CI coverage for 11 executable DOM-model assertions. Fresh affected
+regressions pass: 11 roadmap, 4 migration, 7 raw-input, 3 sample-asset and 20
+runtime tests. Release/product/shared/design/specialist/fixture/historical-result
+validators, JavaScript syntax and whitespace review pass. The 88 definitions/17
+fixtures and five historical product results are structural evidence, not new
+model executions. Repository purity has no forbidden tracked/staged files;
+the pre-existing local-exclude warning remains.
+
+No canonical Skill resource changed in this follow-up; the prior bounded
+independent forward returns remain reusable for those same bytes, not new browser
+outcomes. Exact committed-source package and security identities belong to the
+current draft PR handoff; do not inherit the earlier commit's CI/scan result as
+the new commit's result. Official local validation still lacks yaml; candidate
+CI runs its existing official-tool check without a local installation.
+
+R7 is still blocked on qualified narrow/intermediate capture, as documented in
+the linked recovery record. R8 final acceptance and passing stage integration
+are consequently pending; no release, tag, installed update or R9 kickoff.

@@ -294,6 +294,11 @@ class HTTPBoundary(unittest.TestCase):
                 "draft": self.store.draft("a", "owner-a"), "other": self.store.published("b")}
 
     def test_allow_private_preview_publish_and_public_reader(self):
+        code, script, script_headers = self.call("/dialog-focus.js")
+        self.assertEqual(code, 200)
+        self.assertEqual(script, (Path(__file__).resolve().parents[1] / "evals/fixtures/runtime-appearance/dialog-focus.js").read_bytes())
+        self.assertIn("text/javascript", script_headers["Content-Type"])
+        self.assertIn("frame-ancestors 'none'", script_headers["Content-Security-Policy"])
         code, draft, headers = self.call(method="PUT", body=self.draft_body(), token=self.owner_token)
         self.assertEqual(code, 200)
         self.assertIn("script-src 'self'", headers["Content-Security-Policy"])

@@ -10,7 +10,7 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **In progress**; **7 of 9 correction stages completed**.
-- Active implementation stage: **R7**. Acceptance is blocked by required outstanding QF04/QF05 and representative QA evidence. One implementation writer remains; these checks are not waived.
+- Active implementation stage: **R7**. Font review is Owner accepted and original completion has attributed owner manual evidence. The dialog keyboard gap is repaired; qualified narrow/intermediate visual evidence remains outstanding. One implementation writer remains.
 - Next implementation stage: **R8 — Behavioral evaluation, packaging, and release readiness**. Its independent preparation is now authorized and running; dependent stage acceptance still requires R7 acceptance. No maintainer taste choice for a fictional product is requested.
 - Current execution focus: **R8 independent preparation**, explicitly requested by the owner on 2026-10-05. Package/structural checks and new raw evaluation coverage proceed without claiming R7 complete. The formal dependency tracker remains conservative; no gate or release permission is weakened. See the [R8 checkpoint](#r8-preparation-checkpoint--2026-10-05).
 - Latest remaining-work checkpoint: the owner renewed R7/R8 finalization on 2026-10-06 after reporting three successful manual tests. Their screenshots and attributed results are now recorded, 45 entrypoint tests/structural validators pass, and both working-source packages still exactly match all 75 Skill resources. Original font metadata, qualified responsive capture and overlay keyboard acceptance remain unresolved; no stage completion is inferred. See the [current reconciliation](#r7r8-evidence-reconciliation--2026-10-06).
@@ -727,6 +727,35 @@ accepted only for their named scope. A review PR may carry this candidate and
 run CI, but it must not merge as accepted R7/R8 while required gaps remain. No new
 release, tag, release-asset upload, deployment, installation or R9 kickoff.
 
+### Keyboard repair and remaining capture gate — 2026-10-06
+
+The owner authorized all remaining R7/R8 work. The focused modal Tab repair now
+has 11 shipped-handler behavior assertions, actual single/two-button cycles,
+visible focus return and synthetic private-save/cancel/publish observations.
+All 45 affected Python tests and protected validators pass. Source auth/CSRF,
+cookie, tenant and frame-denial controls remain unchanged; only one fixed static
+script route was added. New CI coverage executes the keyboard regression.
+See the [scoped recovery record](evals/samples/INTEGRATED_QUALITY_REVIEW.md#keyboard-repair-and-bounded-recovery--2026-10-06)
+and [candidate assessment](evals/samples/CANDIDATE_READINESS.md#keyboard-follow-up-candidate--2026-10-06).
+
+Qualified narrow/intermediate rasters are still unavailable: actual geometry is
+recorded, but returned images clip or displace content. Supported alternatives
+were exhausted without changing product foundations, editing screenshots or
+weakening security. This required gate stays open. R7/R8 are not marked complete
+or merged on that basis; independent candidate packaging/security/CI may proceed.
+
+### Explicit owner acceptance of the font review — 2026-10-06
+
+The owner stopped further font testing, instructed that the existing test be
+considered approved, and will report any later problem for correction. QF04 is
+**Owner accepted**, with the historical technical metadata limitations retained;
+it is not a newly executed or metadata-verified test. Additional font evidence
+is no longer a blocker for this bounded review by explicit owner reconciliation.
+Do not request another screenshot or repeat this test without a concrete newly
+reported/observed font defect. See the [acceptance record](evals/samples/INTEGRATED_QUALITY_REVIEW.md#owner-acceptance-of-the-font-review--2026-10-06).
+Other independent R7/R8 obligations and integration gates remain unchanged;
+this decision does not itself mark both stages complete or authorize R9/release.
+
 ## Planned post-correction extension — R9: Optional Material Design
 
 Planning decision: 2026-10-05. Owner: engineering lead / maintainer, using the existing UI/UX Skill. Status: **Not started**. Prerequisites: evidenced R7 and R8 acceptance and an authorized R9 implementation kickoff. A ready R8 candidate need not be released to satisfy this prerequisite; release, installation, and deployment remain separate decisions.
@@ -1004,7 +1033,7 @@ Still pending:
 - [ ] Any separately required integration, release, deployment, or installation authority.
 - [ ] After evidenced R7/R8 acceptance and authorized kickoff, execute R9.1–R9.6 and record actual acceptance; no R9 implementation is established by this roadmap update.
 
-**Next implementation action:** complete required R7 language/direction/theme/typography/native-confirmation coverage from confirmed passing PR #25 integration. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the runtime appearance fixture, not fabricated claims about the fictional R3/R4 previews.
+**Next implementation action:** recover qualified narrow/intermediate rendered evidence through a capable permitted capture surface, then reconcile dependent R8 readiness and passing integration. The 2026-10-06 keyboard repair is covered by actual dialog cycles and regression assertions; it must not be mistaken for recovery of failed captures. QF04 is Owner accepted; do not repeat the font test or require further font screenshots. Preserve QF05's attributed owner manual success and visible completion state without inventing automated native-dialog evidence. The owner authorized passing merges but prohibited a new release; retain 3.1.1. Do not change foundations or weaken frame/security controls merely to accommodate tooling.
 
 **After R8 acceptance:** the next planned extension is R9.1, subject to authorized R9 kickoff and bounded policy reconciliation. Material remains optional per product; Google Design supplies selected research context. Do not skip R7/R8 or infer a release/install/merge decision from this future plan.
 

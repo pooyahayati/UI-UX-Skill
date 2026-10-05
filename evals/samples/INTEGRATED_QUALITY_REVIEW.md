@@ -1,5 +1,6 @@
 # R7 integrated quality — partial execution, 2026-10-05
 
+Latest execution: [keyboard repair and capture limit](#keyboard-repair-and-bounded-recovery--2026-10-06).
 Latest owner evidence: [manual review receipt](#owner-manual-review--2026-10-06).
 
 Current continuation: see [post-roadmap continuation](#post-roadmap-continuation--2026-10-05).
@@ -368,3 +369,73 @@ The restored control observation is separate from that intermediate status.
 No publication or rollback was performed. Temporary viewport override was reset
 and the agent-created tab closed. Required original glyph metadata and qualified
 visual/access checks remain; no R7 acceptance follows from these partial checks.
+
+## Owner acceptance of the font review — 2026-10-06
+
+After explicitly stopping further font testing, the owner instructed the lead to
+consider this test approved and said that any later problem would be reported
+for correction. Disposition: **Owner accepted** for the existing font review
+(QF04). No further screenshot, Rendered Fonts capture or repeat test is requested
+for this acceptance. The outstanding metadata collection is no longer a blocker
+for this bounded review, by this explicit owner decision.
+
+This is an attributed acceptance, not a new technical inspection: the historical
+glyph/weight observations and their limitations remain unchanged. It does not
+assert missing per-glyph/control metadata was obtained or approve all R7/R8
+outcomes. Reopen this font review only for a newly reported or observed concrete
+font defect; acceptance alone is not a reason to repeat it. Other independent
+stage obligations retain their existing scope.
+
+## Keyboard repair and bounded recovery — 2026-10-06
+
+The owner authorized completing all remaining R7/R8 work. The font test stays
+Owner accepted; it was not repeated. One implementation writer, no installation,
+new specialist, release or R9 work. Web-application/interaction-access and shared
+accessibility/responsive/motion guidance were used; unrelated Product Packs were
+not loaded. Existing Persian prose methodology was reused, not copied into Head.
+
+A fresh synthetic store reproduced the single-button modal cycle: native Tab
+and Shift+Tab alternated between Close and BODY. No background action was
+activated, but the visible in-dialog focus destination disappeared. A small
+`dialog-focus.js` handler now wraps Tab at the enabled, visible tab-stop boundary
+of actual modal dialogs only. Native Escape, modal inertness, dialog forms and
+existing focus-return handlers remain authoritative. The server adds only a
+fixed static script asset; permissions, cookies, framing denial and CSRF are
+unchanged. A shipped-handler DOM-model test executes 11 behavior assertions,
+including single/multiple targets, backward wrapping, disabled/hidden/negative
+tabindex exclusion, Escape, closed and non-modal behavior. It is not browser QA.
+
+The original port retained an old document despite reload/redirect attempts:
+direct HTTP served the new asset while the browser still exposed only app.js.
+Those observations were not attributed to the repaired source. A new isolated
+port/store (8784) exposed both actual script elements and recovered verification.
+On the repaired sample, four forward/backward Tab actions stayed inside the
+single-button dialog; the two-button publication dialog cycled Confirm/Cancel
+in both directions. Escape restored visible focus to each trigger. Cancel kept
+private draft 1 and public version 0. A separate actual confirmation published
+version 1, removed the saved draft and made the dark 20/36/18 compact snapshot
+visible on the reader route. A wait for a guessed status string timed out; the
+actual server-confirmed status and version were then read, not a false failure
+or reason to repeat publication. Final reader Tab/Shift+Tab through the supported
+focused locator stayed inside with visible focus; Escape restored the trigger.
+
+The wide reader/overlay viewport raster was inspected successfully. At actual
+768x844 (requested 614x675, DPR about 0.8), document client/scroll widths are
+749/749 and dialog widths 598/598. At actual 320x844 (requested 256x675), they
+are 301/301 and 286/286; the measured modal rectangle is within the viewport.
+These are geometry observations, not trustworthy responsive screenshots. Narrow
+rasters clip the heading despite its positive DOM top; intermediate rasters
+have displaced content and extra padding. Hidden/visible, viewport/full-page,
+explicit clip and native screenshot paths did not establish qualified capture.
+Control+Home also failed to recover it. Keep failed originals externally and
+stop this path; no image was edited to disguise the mismatch and no framing or
+security control was weakened for an iframe workaround.
+
+R7 therefore remains **Blocked on qualified representative rendered evidence**,
+not on font approval or the repaired keyboard issue. R8 independent source,
+regression and package preparation can continue but cannot establish dependent
+stage acceptance. Native assistive-technology/OS forced-colors and OS motion
+sessions remain unperformed, not accessibility certification. Existing motion
+source guards and contrast/runtime tests remain separately scoped evidence.
+Private captures/state are under the external r7-r8-close-20261006 operations
+directory. No broad stage completion or passing merge is inferred.
