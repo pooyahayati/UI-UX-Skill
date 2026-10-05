@@ -174,6 +174,7 @@ Read references only when the task requires them.
 
 ### Load only when materially relevant
 
+- `references/design-research.md` — only for a concrete design question needing research; usable with any style and never automatic Material selection.
 - `references/implementation-strategies.md`
 - `references/runtime-ui-governance.md`
 - `references/personalization-and-data-ux.md`

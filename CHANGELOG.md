@@ -4,6 +4,19 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Personalized Material foundations and selected research (R9.2)
+
+- Added conditionally routed foundation guidance for actual tasks/audiences,
+  approved brand/fonts/scales, semantic roles, language/direction and sequential
+  dark planning, preserving existing token/state/runtime contracts.
+- Added a small style-independent official research index with questions,
+  practical inferences, source/context limitations and review dates; an article
+  does not select Material or approve the product's design.
+- Added raw foundation cases and an explicitly authored contrasting-product
+  review, not independent model/rendered evidence. Component guides, samples,
+  runtime Material adapters and full acceptance remain R9.3–R9.6. No dependency,
+  version/release/installation or push/merge is included in this checkpoint.
+
 ### Optional Material activation (R9.1)
 
 - Added a thin conditional local style route and explicit selected,

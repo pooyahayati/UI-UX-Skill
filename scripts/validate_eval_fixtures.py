@@ -42,6 +42,7 @@ for case in manifest.get("cases", []):
             errors.append(f"{case_id}: fixture {fixture} is missing README.md")
 
 required_fixtures = {
+    "material-foundations",
     "material-activation",
     "existing-dashboard",
     "owner-config",
@@ -72,7 +73,17 @@ required_material_cases = {
 missing_material = sorted(required_material_cases - seen)
 if missing_material:
     errors.append("Missing raw Material activation cases: " + ", ".join(missing_material))
+required_foundation_cases = {
+    "material-foundations-operations", "material-foundations-learning",
+    "material-foundations-contrast", "material-foundations-nonmaterial-research",
+    "material-foundations-narrow-reuse", "material-foundations-audit-conflict",
+}
+missing_foundations = sorted(required_foundation_cases - seen)
+if missing_foundations:
+    errors.append("Missing raw Material foundation cases: " + ", ".join(missing_foundations))
 for case in manifest.get("cases", []):
+    if case.get("id") in required_foundation_cases and case.get("fixture") != "material-foundations":
+        errors.append(f"{case['id']}: must use the exact raw material-foundations fixture")
     if case.get("id") in required_material_cases:
         expected_fixture = ("real-world-wordpress" if case["id"] == "material-wordpress-host-boundary"
                             else "material-activation")

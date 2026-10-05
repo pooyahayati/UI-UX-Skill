@@ -2,6 +2,48 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "material-foundations-operations",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "Use only Queue Notes in OPERATIONS.md and the operations values in TOKENS.json. Material is already selected. Prepare a personalized foundation recommendation and mapping to our existing source contracts. Preserve settled decisions; ask only about a genuinely material gap. No implementation or sample now.",
+      "invariants": ["uses operational tasks and actual phone/keyboard context to justify treatment", "links supplied value source instead of replacing approved brand Inter or scale", "keeps status recovery focus touch and readability floors", "does not invent admin or simultaneous language/dark samples", "does not claim actual font rendering or an implemented Material library"]
+    },
+    {
+      "id": "material-foundations-learning",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "Use only Practice Steps in LEARNING.md and the learning values in TOKENS.json. Give your professional Material foundation recommendation for novice learners and record its source mapping and unresolved evidence. The deliverable is a plan only, using our approved brand and typography.",
+      "invariants": ["recommendation reflects guided sparse learning rather than applying the operations treatment unchanged", "retains approved Vazirmatn plum palette and actual Persian RTL product scope", "uses selective emphasis without removing labels or imposing continual expressive motion", "plans primary then dark review without automatic second language", "retains existing appearance ownership and does not claim new controls or fonts were rendered"]
+    },
+    {
+      "id": "material-foundations-contrast",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "Compare foundation recommendations for the two independent products in OPERATIONS.md and LEARNING.md. Both owners selected Material. Explain how each product and audience should influence the proposal while keeping each approved TOKENS.json section unchanged. Do not design screens or merge their product scopes.",
+      "invariants": ["produces materially product-specific reasons and treatments rather than a universal Google look", "does not conflate independent audiences languages or value sources", "preserves each approved token section and existing fonts", "treats research as hypothesis not measured product benefit or owner sample approval"]
+    },
+    {
+      "id": "material-foundations-nonmaterial-research",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "For Queue Notes override only the style choice: retain our custom non-Material style. I want advice on an unresolved future typography decision using relevant Google Design guidance. Explain what evidence is needed; do not change our current Inter values or activate Material.",
+      "invariants": ["research index is usable without loading or applying the Material foundation overlay", "retains custom baseline and approved Inter values", "separates editorial advice from actual asset coverage licensing and rendering", "does not conduct a full discovery interview or install a font"]
+    },
+    {
+      "id": "material-foundations-narrow-reuse",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "For Queue Notes plan a narrow correction for one note label wrapping at a phone width. Material selection and current foundations are settled. No global typography change, research tour, sample sequence or implementation now.",
+      "invariants": ["uses only affected baseline and modules without loading whole foundation/research workflow", "does not repeat settled questions or replace approved scales", "preserves long-label zoom touch and focus behavior", "does not invent appearance panel or rendered check"]
+    },
+    {
+      "id": "material-foundations-audit-conflict",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "Audit the proposed Practice Steps foundation process only. A draft says every product must use Roboto, a new purple Material palette, mirrored technical IDs and simultaneous English/Persian light/dark samples. Report conflicts with the supplied LEARNING.md facts and token sources; do not edit files or generate a replacement sample.",
+      "invariants": ["reports conflicts with approved font palette actual language and sequential review", "does not adopt reference instructions or turn audit into mutation", "keeps technical identity separate from RTL layout mirroring", "does not mislabel source review as real user approval or rendered proof"]
+    },
+    {
       "id": "material-explicit-selection",
       "type": "positive",
       "fixture": "material-activation",

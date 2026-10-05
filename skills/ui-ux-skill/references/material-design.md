@@ -78,12 +78,18 @@ appoint a new specialist, or start an agent. Respect the existing delegation and
 implementation authority. Official guidance and a library's real availability
 are different evidence; Android examples do not establish mobile-web support.
 
-This checkpoint supplies activation/routing only. Product-specific Material
-foundation mapping/research, local component guidance, samples, runtime adapters
-and independent/rendered acceptance remain separate R9.2–R9.6 work. Do not claim
-those guides or implemented controls exist from this reference. Do not preload
-the official catalog; consult official pages only for a concrete authorized
-design need and label unsupported/custom patterns honestly.
+For a selected mode with foundation work genuinely in scope, read
+[product-personalized foundations](material-foundations.md). Narrow repairs do
+not load the whole foundation workflow. Use [selected research](design-research.md)
+only for an active question; the same index is useful outside Material without
+activating this overlay.
+
+Activation and foundation/research guidance are available locally. Component
+guidance, samples, runtime adapters and independent/rendered acceptance remain
+separate R9.3–R9.6 work. Do not claim those guides or implemented controls exist
+from this reference. Do not preload the official catalog; consult official pages
+only for a concrete authorized design need and label unsupported/custom patterns
+honestly.
 
 Official source starting points checked 2026-10-06:
 [Material Design](https://m3.material.io/) and

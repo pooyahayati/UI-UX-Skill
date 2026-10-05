@@ -54,6 +54,8 @@ for path in [
     f"skills/{SKILL_NAME}/agents/openai.yaml",
     f"skills/{SKILL_NAME}/references/design-handbook.md",
     f"skills/{SKILL_NAME}/references/material-design.md",
+    f"skills/{SKILL_NAME}/references/material-foundations.md",
+    f"skills/{SKILL_NAME}/references/design-research.md",
     f"skills/{SKILL_NAME}/references/design-foundation-workflow.md",
     f"skills/{SKILL_NAME}/assets/templates/DESIGN.md",
     "submission/TEST_CASES.md",

@@ -77,6 +77,7 @@ Claude Code:
 - **[Design System Registry](skills/ui-ux-skill/design-system.json)** — machine-readable local design-system modules
 - **[Design System Architecture](skills/ui-ux-skill/references/design-system-architecture.md)** — token hierarchy, themes, states, variants, governance, and runtime boundaries
 - **[Optional Material activation](skills/ui-ux-skill/references/material-design.md)** — selected/recommended/rejected/inactive states and scope protection; component guides and full mode acceptance are later R9 packages
+- **[Material foundations](skills/ui-ux-skill/references/material-foundations.md)** — product-personalized mapping into existing tokens; **[selected research](skills/ui-ux-skill/references/design-research.md)** informs concrete questions with any style
 - **[Real-World Evaluation](evals/real-world/RESULTS.md)** — five-product evaluation results and limitations
 - **[Specialist Registry](skills/ui-ux-skill/specialists.json)** — machine-readable specialist sources and triggers
 - **[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)** — Head/Specialist authority, fallback, and freshness rules

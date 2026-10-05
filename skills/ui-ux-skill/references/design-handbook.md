@@ -24,6 +24,12 @@ For a meaningful decision retain its subject/value or real source, state, ration
 
 When an optional Material style decision is genuinely in scope, use [its activation contract](material-design.md). Record recommendation, acceptance or named delegation, rejection and actual selected style separately in the existing decision table. The candidate is not the active baseline; inactive products need no Material-specific document or new authority.
 
+For actually adopted external design research, retain the active question,
+official source/review date, relevant finding versus product-specific inference,
+limitation, adoption state and affected scope/revision. Use
+[selected research](design-research.md) only when relevant; source citations are
+not owner consent, product measurements or another live token-value authority.
+
 Explicit delegation applies only to its named decision/scope. Silence, preselection, image upload, implementation acceptance and a general agent recommendation do not approve the visual design. Record actual owner approval/delegation evidence and exact sample revision when it exists; a decision delegated without a sample is not proof of rendered fit. Never invent an approver, timestamp, sample or evidence URL to fill the template.
 
 Increment the handbook revision for meaningful contract changes; preserve the last approved baseline and show which proposed changes are not yet active. Link the inspected Skill version when known, but do not invent it or couple document revisions to software releases. Track samples by phase, real path/identifier/revision, applied foundation sources, parent approved baseline, feedback/corrections and language/theme/viewport coverage; `planned`, `not run`, `unavailable` and `observed` must remain distinguishable. Use [the sequential sample/approval workflow](design-foundation-workflow.md) for phase gates, executable coverage and the approval/rollout boundary. Approval is not a claim that every test, permission or software feature is verified.
