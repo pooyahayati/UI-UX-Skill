@@ -10,8 +10,10 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **In progress**; **7 of 9 correction stages completed**.
-- Active implementation stage: **None**. R6 has scoped delivery acceptance; R7 has not started. Its kickoff requires current passing CI and confirmed PR #25 integration. One implementation writer remains.
-- Next implementation stage: **R7 — Language, direction, theme, and integrated quality**. Not started; final integrated gate follows R6. No maintainer taste choice for a fictional product is requested.
+- Active implementation stage: **R7**. Acceptance is blocked by required outstanding QF04/QF05 and representative QA evidence. One implementation writer remains; these checks are not waived.
+- Next implementation stage: **R8 — Behavioral evaluation, packaging, and release readiness**. Its independent preparation is now authorized and running; dependent stage acceptance still requires R7 acceptance. No maintainer taste choice for a fictional product is requested.
+- Current execution focus: **R8 independent preparation**, explicitly requested by the owner on 2026-10-05. Package/structural checks and new raw evaluation coverage proceed without claiming R7 complete. The formal dependency tracker remains conservative; no gate or release permission is weakened. See the [R8 checkpoint](#r8-preparation-checkpoint--2026-10-05).
+- Latest remaining-work checkpoint: the owner renewed R7/R8 finalization on 2026-10-06 after reporting three successful manual tests. Their screenshots and attributed results are now recorded, 45 entrypoint tests/structural validators pass, and both working-source packages still exactly match all 75 Skill resources. Original font metadata, qualified responsive capture and overlay keyboard acceptance remain unresolved; no stage completion is inferred. See the [current reconciliation](#r7r8-evidence-reconciliation--2026-10-06).
 - Planned post-correction extension: **R9 — Optional, product-personalized Material Design**. Not started; follows evidenced acceptance of R7 and R8. The owner authorized this roadmap addition on 2026-10-05, not implementation, installation, publication, or an expansion of the active R0–R8 exception. See the [R9 plan](#planned-post-correction-extension--r9-optional-material-design).
 - Roadmap delivery authorization: on 2026-10-05 the owner explicitly requested sending and merging the R9 plan before continuing R7. This does not authorize R9 implementation or a new release.
 - Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22; R4 through PR #23; R5 through PR #24 at `61eacadece92e187434d72c5c58a9c44e55e2007`. R6 delivery is [PR #25](https://github.com/pooyahayati/UI-UX-Skill/pull/25) from `codex/r6-editable-semantic-icons`; its scoped acceptance is recorded below, and integration is gated by current CI. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
@@ -36,8 +38,8 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | R4 | Incremental decisions and bounded agent handoffs | Completed | R2, R3; scoped continuation and separate lead review accepted | Engineering lead (single writer) | 2026-10-05 | [R4 forward review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) |
 | R5 | Parametric appearance governance with real consumers | Completed | R2, integrated R4 | Engineering lead with design input | 2026-10-05 | [R5 delivery acceptance](#r5-delivery-acceptance--2026-10-05) |
 | R6 | Editable semantic icons and icon families | Completed | Integrated R5 | Engineering lead with design input | 2026-10-05 | [R6 delivery acceptance](#r6-delivery-acceptance--2026-10-05) |
-| R7 | Integrated language, direction, theme, and visual quality | Not started | Contracts begin in R1/R3; final gate after R6 | Design role; engineering lead accepts | Not completed | Not recorded |
-| R8 | Behavioral evaluation, package verification, release readiness | Not started | R0–R7 | Engineering lead / maintainer | Not completed | Not recorded |
+| R7 | Integrated language, direction, theme, and visual quality | Blocked | Contracts begin in R1/R3; final gate after R6 | Design role; engineering lead accepts | Not completed | [R7 execution checkpoint](#r7-execution-checkpoint--2026-10-05) |
+| R8 | Behavioral evaluation, package verification, release readiness | Not started | R0–R7; independent preparation authorized | Engineering lead / maintainer | Not completed | [R8 preparation only](#r8-preparation-checkpoint--2026-10-05) |
 
 Identify language, direction, accessibility and theme needs during discovery. Review one responsive primary-language/direction design first, using settled foundations; derive dark mode after primary approval; review secondary language/layout only after dark approval, confirmed need and owner authorization. Monolingual products need no extra locale sample. R7 integrates required approved contexts; define stage-relevant checks throughout, not only at R8.
 
@@ -524,7 +526,66 @@ approval or an independent application security-specialist return.
 - Rendered selection, consumers, fallback, native keyboard disclosure, supported visual controls, private/light/dark publication, process reopen, rollback and icon-only defaults are recorded above. The confirmed own loopback server was stopped. Required QF04/QF05 and R7 language/direction/integrated coverage remain; R8 still needs full candidate behavioral/package readiness evidence.
 - Owner explicitly requested this merge and prohibited a new release. Rechecked public release v3.1.1, release ID 401413402, published 2026-10-01T22:50:31Z and asset IDs 604289137/604289138/604289139 unchanged. Do not bump versions, tag, dispatch publication, upload, deploy or install. R7 is the next executable stage after confirmed passing integration.
 
+### R6 integration checkpoint — 2026-10-05
+
+[PR #25](https://github.com/pooyahayati/UI-UX-Skill/pull/25) merged at reviewed head
+`662e0dfdf908400666c0b203d915121c77fca5a4`, merge
+`9e662fb4f551b15883b43cd93e3647c7869c2a94`.
+[Final PR CI](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37244639365)
+and [merge CI](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37244736477)
+succeeded. Publish release was skipped; version, public tag and assets remain
+unchanged. This closes the integration gate above, not R7/R8.
+
+### R7 execution checkpoint — 2026-10-05
+
+One writer started integrated verification from the R6 merge. The representative
+matrix covers the actual English-only runtime product and separate preserved
+synthetic Persian samples; no extra language, proposal or capability is inferred
+from Persian conversation. Capture, CSS/font readiness, actual glyph identity
+and native-dialog branches remain separate evidence. QF04/QF05 are required and
+currently Unverified. Preparation does not establish rendered outcomes or
+complete any R7 checkbox.
+
+The [partial integrated review](evals/samples/INTEGRATED_QUALITY_REVIEW.md)
+records actual large-text/compact preview, light/dark overlay, keyboard return,
+disclosure and saved-draft reload checks. Narrow captures with contradictory or
+blank rasters are excluded from positive visual evidence; layout geometry is
+reported separately. The QA context-selection and language-boundary instructions
+were updated, with 31 existing tests passing. This is progress, not R7 acceptance:
+required original QF04/QF05 and remaining representative rendered contexts stay
+open. No new release, commit, push or merge is established by these local checks.
+
+Latest bounded continuation recovered the read-only preparation freshness PASS
+without installation or an added specialist. Exact Persian/Latin copy-paste and
+simulated failed-save/retry behavior passed on the separate Vazirmatn revision.
+A fresh isolated English runtime draft at maximum configured text, compact
+density and dark theme survived reload while public version 0 stayed unchanged;
+Escape returned visible focus to the overlay trigger. Whole keyboard containment
+and exact-size narrow/intermediate captures remain unverified: contradictory
+rasters are retained and excluded, not resized into evidence. The existing
+execution plan now separately marks these completed subchecks and remaining
+required QF04/QF05/matrix obligations. No whole R7 task or acceptance is inferred.
+
+Subsequent roadmap-only [PR #26](https://github.com/pooyahayati/UI-UX-Skill/pull/26)
+merged with passing checks at `2e62e9b4cb0a8d7d77a172dbc1a913f544d20e7f`.
+R7 continues on an isolated branch from that baseline; the original dirty
+checkout is preserved. The [continuation record](evals/samples/INTEGRATED_QUALITY_REVIEW.md#post-roadmap-continuation--2026-10-05)
+records fresh 31-test/structural checks, unchanged source identities, current
+browser capability limits and actual release-publication skip. Required font
+identity/native-confirm evidence still blocks acceptance; no fresh rendered
+pass, R7 integration, R8 kickoff or R9 implementation is inferred.
+
 ### R7 — Language, direction, theme, and integrated quality
+
+Owner clarification — 2026-10-05: new Persian foundations default to Vazirmatn
+unless the product already has an accepted alternative. Deliver real licensed
+font assets/weights in the applicable samples. In-scope owner Design and
+Appearance settings must support validated font upload/selection, preview,
+publication and reset through the existing runtime contract, not scattered
+hard-coded families. This adds a Skill instruction requirement; it does not
+retroactively establish uploads in the prepared-font-only R5/R6 runtime fixture.
+Its original evidence stays bounded. A newly revised Persian sample must retain
+the earlier system-font sample and cannot waive its pending QF04/QF05 checks.
 
 Owner: design role; engineering lead accepts. Contracts start in R1/R3; final integration follows R6.
 
@@ -564,6 +625,107 @@ Tasks:
 Output: fresh behavioral results, representative executable evidence, exact validated candidate packages, and an accurate readiness report.
 
 Exit: no unexplained required failure remains in protected behavior, approval, settings, icons, language, or themes; mandatory claims have appropriate evidence. Record outstanding external authority rather than treating preparation as publication.
+
+### R8 preparation checkpoint — 2026-10-05
+
+The owner explicitly requested the next stage while R7's required checks remained
+unverified. The lead reconciles that request as permission for independent R8
+preparation, not retrospective R7 completion or final candidate acceptance.
+The conservative tracker therefore retains blocked R7 and dependent R8 kickoff;
+the current execution focus is the useful R8 work that does not need those checks.
+
+- Existing structural validators pass; 11 roadmap tests, four handbook tests,
+  seven input-preservation tests, three authored-asset tests and 20 runtime
+  store/HTTP tests pass. The expanded input-preservation entrypoint was rerun
+  successfully after adding the new raw cases. No production data was used.
+- Two new raw cases cover the unsettled Persian default/owner-upload plan and
+  preservation of an already approved brand font. Fixture structure now covers
+  88 cases/17 fixtures, not 88 executed model results. The owner subsequently
+  authorized fresh independent forward execution. One fresh evaluator completed
+  both planning requests without answer keys/prior reports; separate lead review
+  of the actual outputs accepts 2 cases / 10 scoped invariants. This same-session
+  result is not whole-candidate or runtime acceptance. See the
+  [font forward review](evals/samples/FONT_FORWARD_REVIEW.md).
+- Both uncommitted working-source candidate ZIPs were built twice externally.
+  All 75 Skill resources match source byte-for-byte in each package, inventories
+  and CRCs pass, version remains 3.1.1 and repeated builds are byte-identical.
+  This is packaging evidence, not an installation, canonical Git-byte extraction,
+  new release, full behavioral acceptance or current CI. See the
+  [candidate readiness review](evals/samples/CANDIDATE_READINESS.md).
+- Official quick validation cannot run locally because PyYAML is unavailable;
+  no dependency is installed. Historical five-product result validation is
+  structural only, not a fresh five-product execution. Actual default-branch
+  state and candidate CI have not been refreshed by these local checks.
+- The four changed packaged resources received bounded lead source review;
+  all 75 canonical resources remain identical to the verified snapshot/package
+  digests. No observed font-case failure requires another Skill correction.
+- Required R7 evidence, broader candidate behavior/final review and
+  exact-candidate delivery/scan/CI gates remain open. R9 is not started; no new
+  release, installation, push or merge is established here.
+
+### R7/R8 remaining-work continuation — 2026-10-05
+
+The owner explicitly authorized completing the remaining evidence and integrating
+passing R7/R8 work, with no new release. Recovery obtained actual DevTools
+Rendered Fonts for the preserved original Persian h1 and body: SegoeUI-Bold
+and SegoeUI respectively. This is partial QF04 evidence, not proof of the new
+Vazirmatn revision or all original contexts. Physical Escape then stopped native
+control. After the owner resumed, the safety reviewer still rejected inspection;
+explicit scoped reactivation permission was requested and no tool bypass used.
+Original native cancel/accept and remaining representative access/capture checks
+remain required. See [R7 recovery](evals/samples/INTEGRATED_QUALITY_REVIEW.md#native-font-recovery-and-explicit-stop--2026-10-05).
+
+Unaffected R8 work produced five fresh forward planning requests across three
+evaluator sessions. Separate lead review accepts product routing, protected
+semantics, restrained recommendations and honest handoffs; actual applications
+were not supplied or tested. Read logs and recommendations are scoped per case;
+shared sessions are disclosed. See [five-route review](evals/samples/ROUTE_FORWARD_REVIEW.md).
+
+Fresh 45-test regression and structural checks pass. Both exact working-source
+ZIPs still match all 75 canonical resources and repeat builds are byte-identical.
+Native Trivy 0.75.0, verified against official latest stable, secret-scanned the
+extracted plugin tree with zero findings; all 82 tree members match the exact
+ZIP. This is not a full-repository/future Git-normalized scan. Official local
+quick validation remains unavailable without PyYAML; no dependency installed.
+Live upstream was fetched and matches the continuation HEAD, zero ahead/behind.
+Full details and remaining gates are in [candidate readiness](evals/samples/CANDIDATE_READINESS.md#fresh-continuation-and-final-source-preparation--2026-10-05).
+
+Disposition: R7 Blocked; R8 independent preparation reviewed but dependent
+acceptance pending. No completion, source commit/push/PR/current candidate CI,
+merge, release, installed update or R9 implementation is established here.
+
+### R7/R8 evidence reconciliation — 2026-10-06
+
+The owner requested finalization after reporting the three offered manual tests
+OK. [Attributed owner evidence](evals/samples/INTEGRATED_QUALITY_REVIEW.md#owner-manual-review--2026-10-06)
+records the exact three screenshot hashes, original-English completion result and
+separate new Persian wide/narrow list observations. The tests are not requested
+again solely because automation failed. Broad manual success is not fabricated
+per-glyph metadata, exact viewport or original-sample coverage.
+
+- Fresh existing checks pass: 11 roadmap, 4 migration, 7 raw-input, 3 authored
+  asset and 20 runtime tests; protected validators pass, including 88 definitions
+  and 17 fixtures. Temporary-directory sandbox failure was recovered through a
+  specifically authorized isolated run without modifying tests/security.
+- Live upstream read confirms the unchanged baseline main and no open PR before
+  delivery. Package re-verification finds all 75 current Skill resources exactly
+  equal to both existing reproducible candidates. Version remains 3.1.1.
+- Fresh English runtime work uses a new external synthetic store. Large text
+  20/36/18 with compact density, dark private preview and private draft save/reload
+  work while public version 0 stays unchanged. Native overlay opens on Close and
+  Escape returns visible focus. Tab/Shift+Tab expose BODY between control focus;
+  no background-control activation was observed, but strict containment is not
+  certified. Requested 768x844 exposes 960x1055/DPR0.8 and a padded raster; it is
+  excluded from requested-size acceptance. No product is changed to suit tooling.
+- Local official quick validation still cannot import yaml. Read-only freshness
+  preparation recovered Head/UI source records but aborts on an unrelated daily
+  inventory archive download; whole preflight is unavailable, not PASS. No host
+  software or installed Skill is changed. Candidate CI remains a distinct gate.
+
+Disposition: required R7 evidence is still open; R8 independent checks are
+accepted only for their named scope. A review PR may carry this candidate and
+run CI, but it must not merge as accepted R7/R8 while required gaps remain. No new
+release, tag, release-asset upload, deployment, installation or R9 kickoff.
 
 ## Planned post-correction extension — R9: Optional Material Design
 
@@ -842,7 +1004,7 @@ Still pending:
 - [ ] Any separately required integration, release, deployment, or installation authority.
 - [ ] After evidenced R7/R8 acceptance and authorized kickoff, execute R9.1–R9.6 and record actual acceptance; no R9 implementation is established by this roadmap update.
 
-**Next implementation action:** confirm PR #25's final acceptance-head CI and passing integration, then perform required R7 language/direction/theme/typography/native-confirmation coverage. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the runtime appearance fixture, not fabricated claims about the fictional R3/R4 previews.
+**Next implementation action:** complete required R7 language/direction/theme/typography/native-confirmation coverage from confirmed passing PR #25 integration. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the runtime appearance fixture, not fabricated claims about the fictional R3/R4 previews.
 
 **After R8 acceptance:** the next planned extension is R9.1, subject to authorized R9 kickoff and bounded policy reconciliation. Material remains optional per product; Google Design supplies selected research context. Do not skip R7/R8 or infer a release/install/merge decision from this future plan.
 

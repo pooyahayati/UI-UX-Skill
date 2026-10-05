@@ -242,3 +242,35 @@ QF07 Verified for affected R4 regressions and lead reconciliation: all five orig
 QF04/QF05 remain Unverified and required at R7. Responsible: engineering lead. Reason for scoped deferral: actual font identity and native completion branches are unchanged and do not determine the accepted local feedback/proposal/handoff contract; current controls cannot establish their required evidence. Trigger: before accepting the affected typography/completion surfaces, obtain actual glyph-font/weight inspection and distinct explicit cancel/accept observations on their exact source. No optional relabeling, tool substitution, silent waiver or claim that the old failed interaction recovered. Browser preview work here exercised save/failure/refresh only; viewport reset and tab close succeeded. Required final candidate acceptance cannot claim these checks passed without new evidence.
 
 Current next action: publish/review/merge the accepted R4 slice with unchanged version and real candidate-bound checks, then enter R5. No new release, font installation, additional specialist or production action is authorized by this checkpoint.
+
+## R7 recovery checkpoint — 2026-10-05
+
+R4–R6 have subsequently integrated with passing CI; those stage outcomes do not
+retroactively prove QF04/QF05. See [R7 partial execution](INTEGRATED_QUALITY_REVIEW.md).
+Original primary/Persian HTML hashes still match preserved QF evidence. Current
+browser capability inspection exposes no actual glyph-font/weight inspector;
+no new working original-native-confirm path was established or retried merely
+to repeat the prior timeout. New runtime HTML overlay observations are separate.
+Both required outcomes remain Unverified, engineering-lead-owned, triggered
+before dependent R7 acceptance. No font substitution, installation or silent
+waiver; unaffected scoped checks continue without declaring R7/R8 complete.
+
+After the separately authorized roadmap-only PR #26 merge, the
+[R7 continuation](INTEGRATED_QUALITY_REVIEW.md#post-roadmap-continuation--2026-10-05)
+rechecked the preserved source hashes and currently available browser/tool
+capabilities. No new actual-font inspector or working original-confirm path
+became available. These are still required Unverified outcomes, not accepted
+because 31 unrelated contract/progress tests pass. An alternate capable
+browser/developer surface or equivalent concrete manual/platform evidence is
+needed; do not repeat the same unsupported timeout or replace the source.
+
+## Owner evidence reconciliation — 2026-10-06
+
+The owner reports the three offered manual tests OK. The exact screenshots and
+their scoped observations are recorded in the [integrated review](INTEGRATED_QUALITY_REVIEW.md#owner-manual-review--2026-10-06).
+QF05 now has attributed owner save/cancel/accept evidence and a visibly matching
+final completion state; this is not a new automated native-dialog branch result.
+QF04 gains separate new-Vazirmatn wide/narrow visual observations, not original
+per-glyph/control face metadata. Do not repeat the same owner tests or erase
+historical limitations. Original required metadata and remaining integrated
+coverage still block whole R7/R8 acceptance; unrelated validators do not waive it.

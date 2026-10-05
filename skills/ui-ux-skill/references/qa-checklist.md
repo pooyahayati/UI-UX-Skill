@@ -30,6 +30,36 @@ Record what was actually checked:
 
 Do not imply coverage that was not performed.
 
+## Integrated context selection
+
+Start from the current product-language/direction and theme decisions in
+`DESIGN.md`, or the observed baseline for corrective work without an approved
+handbook. Conversation language is not a product-language requirement. Do not
+add a translation or mirrored layout just to fill a QA matrix; follow
+`design-foundation-workflow.md` for approval dependencies before reviewing new
+variants. Keep a bilingual product's authorized contexts in one design system.
+
+Choose representative combinations by affected consumers and failure risk,
+not a blind Cartesian product. A useful row binds the actual source and
+handbook/config revision to route, language/direction, theme, viewport, state,
+role, method, observed result and remaining limitation. Planned rows are not
+passes. Explain excluded critical contexts and who must recover required gaps.
+
+For configurable appearance, include a supported typography/density boundary
+combination on narrow layouts and a theme-sensitive control, overlay and data
+consumer. Verify keyboard/state/recovery behavior separately from appearance;
+do not substitute a newly added dialog for an unmet original-dialog check.
+Use the existing sections below and `visual-regression.md` rather than a second
+checklist or approval document. Link scoped results from the handbook; recorded
+QA evidence is not customer approval or the active runtime value store.
+
+Distinguish requested viewport, actual layout dimensions and accepted raster.
+DOM geometry without a trustworthy capture supports only geometry, not visual
+acceptance. Keep font identity/weight, actual assistive technology, zoom,
+forced-colors and reduced-motion checks separate from CSS/source inspection.
+Unavailable required evidence remains pending; unrelated passing rows cannot
+close it.
+
 ## Product routing
 
 Read `../product-types.json` and `product-routing.md`.

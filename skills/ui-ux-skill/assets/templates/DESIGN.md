@@ -42,6 +42,10 @@ Keep assumptions separate from decisions. Do not copy private customer data or u
 | --- | --- | --- | --- | --- |
 | Not recorded | Unknown | Availability unverified | Derive from product | Inspect before sample |
 
+For a Persian-facing foundation with no accepted alternative, default to
+Vazirmatn and identify licensed asset sources and real weights. Do not overwrite
+existing typography or infer a Persian product from the conversation.
+
 ## Visual foundation
 
 Record relevant style/personality, semantic color roles, typography roles/scale, density/spacing, surfaces/borders/radius/shadows, responsive priorities and motion/reduced-motion expectations. Values remain proposals until actually accepted. When sources exist, link them instead of duplicating live token values.
@@ -96,6 +100,14 @@ Use existing product roles; do not invent an admin backend. Classify controls as
 | Not recorded | Not decided | Preserve business/security/accessibility floors | No source inspected | Not implemented |
 
 Routine admin values belong to active product configuration/version history, not this file. Record changes here only when the approved contract changes.
+
+When owner appearance management is in scope, document font upload/selection:
+existing permission and tenant scope, supported formats/limits, validated asset
+registry and role mapping, private preview/publication, retained history, fallback
+and reset to the default. Mark each capability planned or actually implemented;
+a prepared-font selector alone is not font-upload support. Apply
+`references/runtime-ui-governance.md#owner-font-assets` from the Skill as the
+contract, rather than copying upload procedures into this handbook.
 
 ## Implementation sources and verification
 
