@@ -25,6 +25,10 @@ class RoadmapPolicyTests(unittest.TestCase):
         cls.roadmap = re.sub(r"^- Implementation:.*$", "- Implementation: **In progress**; **0 of 9 correction stages completed**.", cls.roadmap, flags=re.M)
         cls.roadmap = re.sub(r"^- Active implementation stage:.*$", "- Active implementation stage: **R0**.", cls.roadmap, flags=re.M)
         cls.roadmap = re.sub(r"^- Next implementation stage:.*$", "- Next implementation stage: **R1 — Adaptive discovery**.", cls.roadmap, flags=re.M)
+        for row in re.findall(r"^\| R9\.\d+ \|.*$", cls.roadmap, re.M):
+            fields = row.split("|")
+            fields[3], fields[5] = " Not started ", " Not recorded "
+            cls.roadmap = cls.roadmap.replace(row, "|".join(fields))
 
     def rejected(self, text, expected, readme=None):
         errors = validate_policy(self.readme if readme is None else readme, text)
@@ -105,6 +109,68 @@ class RoadmapPolicyTests(unittest.TestCase):
     def test_history_limitations_and_frozen_product_boundary_are_preserved(self):
         self.rejected(self.roadmap.replace("did not independently execute", "independently executed"), "Historical evaluation limitations")
         self.rejected(self.roadmap + "\n## Future Product Types\n", "must not advertise future Product Types")
+
+    def test_r9_exception_is_separate_and_bounded(self):
+        for before, after, expected in (
+            ("**Separate R9 exception:** Optional Material Design only.",
+             "**Separate R9 exception:** All styles and libraries.", "Separate R9 stabilization"),
+            ("- optional Material activation and routing;", "- framework migration;", "Separate R9 scope"),
+            ("- bounded behavioral/rendered evaluation and candidate readiness.",
+             "- bounded behavioral/rendered evaluation and candidate readiness.\n- any capability;", "Separate R9 scope"),
+            ("**R9 kickoff:** Authorized local R9.1 implementation on 2026-10-06 after accepted R7/R8.",
+             "**R9 kickoff:** Inherited old merge permission.", "Separate R9 stabilization"),
+        ):
+            self.rejected(self.current_roadmap.replace(before, after), expected)
+        self.rejected(self.current_roadmap, "README stabilization policy missing",
+                      self.readme.replace("Separate R9 exception: optional Material Design only.", "Unlimited expansion."))
+
+    def test_r9_cannot_start_before_accepted_corrections(self):
+        row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R8 |"))
+        fields = row.split("|")
+        fields[3] = " Not started "
+        self.rejected(self.current_roadmap.replace(row, "|".join(fields)), "accepted R7/R8")
+
+    def test_r9_package_identity_status_order_and_evidence(self):
+        row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R9.1 |"))
+        fields = row.split("|")
+        fields[3], fields[5] = " Completed ", " [Undated evidence](#r91-execution-record--2026-10-06) "
+        for text, expected in (
+            (self.current_roadmap.replace("| R9.6 |", "| R9.5 |", 1), "R9 package tracker"),
+            (self.current_roadmap.replace(row, "|".join(fields)), "completion needs valid dated"),
+        ):
+            self.rejected(text, expected)
+        row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R9.6 |"))
+        fields = row.split("|")
+        fields[3], fields[5] = " In progress ", " [Execution](#record) "
+        self.rejected(self.current_roadmap.replace(row, "|".join(fields)), "prerequisite packages")
+
+    def test_r9_overall_cannot_complete_early(self):
+        row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R9 |"))
+        fields = row.split("|")
+        fields[3], fields[6] = " Completed ", " 2026-10-06 "
+        self.rejected(self.current_roadmap.replace(row, "|".join(fields)), "R9 overall status")
+
+    def test_dated_first_package_acceptance_does_not_complete_extension(self):
+        row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R9.1 |"))
+        fields = row.split("|")
+        fields[3] = " Completed "
+        fields[5] = " [2026-10-06 scoped acceptance](#record) "
+        self.assertEqual(validate_policy(self.readme,
+                                        self.current_roadmap.replace(row, "|".join(fields))), [])
+
+    def test_r9_invalid_status_and_parallel_active_packages_are_rejected(self):
+        row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R9.1 |"))
+        fields = row.split("|")
+        fields[3] = " Almost done "
+        self.rejected(self.current_roadmap.replace(row, "|".join(fields)), "invalid package status")
+        # Both-active scenario is invalid independently of prerequisite failures.
+        first_fields = row.split("|")
+        first_fields[3] = " In progress "
+        first = self.current_roadmap.replace(row, "|".join(first_fields))
+        second = next(line for line in first.splitlines() if line.startswith("| R9.2 |"))
+        second_fields = second.split("|")
+        second_fields[3], second_fields[5] = " In progress ", " [Execution](#record) "
+        self.rejected(first.replace(second, "|".join(second_fields)), "at most one active")
 
 
 if __name__ == "__main__":

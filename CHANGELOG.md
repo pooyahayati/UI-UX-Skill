@@ -4,6 +4,17 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Optional Material activation (R9.1)
+
+- Added a thin conditional local style route and explicit selected,
+  recommended/unaccepted, rejected and inactive states. Named delegation,
+  reference inference, sample approval and library authority remain separate.
+- Reused handbook decision provenance and existing product/scope boundaries;
+  no Product Pack, specialist, dependency, runtime consumer or admin panel added.
+- Reconciled a separate bounded R9 policy/tracker and added policy/raw-input
+  regressions. Source/package checks are not model or rendered acceptance;
+  R9.2–R9.6 remain undelivered. No version, release or installed Skill change.
+
 ### Editable semantic icons (R6 executable checkpoint)
 
 - Added prepared original outline/solid artwork, semantic family/per-use mappings,

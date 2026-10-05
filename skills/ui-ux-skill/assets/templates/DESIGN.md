@@ -66,6 +66,14 @@ Document relevant controls/variants/states, accessibility constraints and semant
 
 Use `proposed`, `approved`, `delegated`, `observed`, `unresolved` or `superseded`. A known choice needs no new interview. Delegation covers only its named scope.
 
+If an optional Material decision is in scope, retain its mode state (`selected`,
+`recommended-unaccepted`, `rejected` or `inactive`) separately from the decision
+lifecycle below. Record candidate/recommendation, actual selected style,
+product/audience rationale, acceptance or named delegation and scope/revision;
+an image or copied template is not selection. Use the Skill's conditional
+Material activation contract. Omit this detail when irrelevant. Selection does
+not choose a library, approve a sample or activate runtime configuration.
+
 | Subject / value or source | State | Rationale / constraints | Real source / actor / date | Scope / handbook or sample revision |
 | --- | --- | --- | --- | --- |
 | Not recorded | unresolved | Not recorded | No approval claimed | Not recorded |

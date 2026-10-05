@@ -44,7 +44,9 @@ Inactive Product Packs are not preloaded. Specialist routing is evaluated indepe
 
 ## Feature freeze
 
-Limited correction exception: R0–R8 only. The owner authorized design foundation, the living `DESIGN.md` handbook, visual approval, and safe parametric appearance management. Outside this exception, the `3.1.x` stabilization policy remains active; no new Product Types, additional external design specialists, or general-purpose page builder are authorized.
+Limited correction exception: R0–R8 only. The owner authorized design foundation, the living `DESIGN.md` handbook, visual approval, and safe parametric appearance management. Outside this exception, stabilization maintenance remains the default, except for the separately named R9 exception below.
+
+Separate R9 exception: optional Material Design only. The owner authorized the R9.1 local implementation kickoff on 2026-10-06 after R7/R8 acceptance. The six-package plan covers optional activation, personalized foundations/research, scoped component guidance, sequential samples, existing runtime appearance contracts and bounded evaluation. It is not a general capability exception; no new Product Types, additional external design specialists, or general-purpose page builder are authorized. Sending/merging, release, installation and deployment require their own actual authority.
 
 See [Roadmap](ROADMAP.md) for actual stage progress and acceptance evidence. Planned capabilities are not yet delivered. The released version remains `3.1.1`; source changes require separate candidate validation, versioning, and publication authorization.
 
@@ -74,6 +76,7 @@ Claude Code:
 - **[Shared UI Routing](skills/ui-ux-skill/references/shared-product-rules.md)** — scope loading, precedence, and non-duplication policy
 - **[Design System Registry](skills/ui-ux-skill/design-system.json)** — machine-readable local design-system modules
 - **[Design System Architecture](skills/ui-ux-skill/references/design-system-architecture.md)** — token hierarchy, themes, states, variants, governance, and runtime boundaries
+- **[Optional Material activation](skills/ui-ux-skill/references/material-design.md)** — selected/recommended/rejected/inactive states and scope protection; component guides and full mode acceptance are later R9 packages
 - **[Real-World Evaluation](evals/real-world/RESULTS.md)** — five-product evaluation results and limitations
 - **[Specialist Registry](skills/ui-ux-skill/specialists.json)** — machine-readable specialist sources and triggers
 - **[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)** — Head/Specialist authority, fallback, and freshness rules

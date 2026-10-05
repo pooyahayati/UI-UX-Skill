@@ -2,6 +2,76 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "material-explicit-selection",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "Use the supplied Field Notes facts. As owner I select Material for the upcoming UI proposal, preserving our approved fonts, palette and spacing. Give only a scoped plan and handbook decision update; do not implement the app yet.",
+      "invariants": ["classifies the product before using a local Material overlay", "records explicit selection separately from sample approval and implementation authority", "preserves approved foundations and no-admin scope", "does not install a library or claim rendered evidence"]
+    },
+    {
+      "id": "material-recommendation-unaccepted",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes a previous agent recommended Material because technicians need familiar phone controls. I have not accepted that recommendation. Explain its fit and tradeoffs and what decision is needed; do not change the current design.",
+      "invariants": ["distinguishes recommendation from owner acceptance", "retains existing baseline without applying Material or loading its component catalog", "gives product and audience rationale rather than a universal default", "records unaccepted proposal without approving a sample"]
+    },
+    {
+      "id": "material-accepted-recommendation",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes the proposed Material direction was explained to me in terms of technician tasks and phone use. As owner I accept Material for that proposal scope. Prepare the next-step plan only; preserve the settled brand and existing stack.",
+      "invariants": ["records recommendation and actual acceptance separately", "selection is bounded to the proposal and does not authorize app implementation", "keeps monolingual primary then derived dark sequence", "does not force Google colors Roboto a dependency or a new admin panel"]
+    },
+    {
+      "id": "material-named-delegation",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes I explicitly delegate the choice of presentation style for the initial proposal to you, including whether Material fits. Recommend and choose with product/audience reasons, preserve existing foundations, and record what you actually chose. No implementation, library installation or sample approval is delegated.",
+      "invariants": ["records named delegated decision and actual selected style separately", "may choose Material only within named style scope with reasons", "does not reinterpret delegation as sample approval or implementation authority", "does not assert a style was selected before making its actual decision"]
+    },
+    {
+      "id": "material-rejected-reference",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes I reject the Material recommendation. A Material-looking reference I mentioned was only to show readable labels; retain our custom style. Plan a small label-spacing correction only.",
+      "invariants": ["records rejection without inferring Material approval from the reference", "does not load or apply Material component guidance", "retains approved custom baseline and narrow task", "does not force a repeated style interview or new admin panel"]
+    },
+    {
+      "id": "material-inactive-narrow",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes plan a fix for a note field that overflows a narrow phone. Keep the approved custom design. You may choose a local spacing correction; no broader design decision is delegated.",
+      "invariants": ["ordinary narrow work does not load Material references", "mobile-first alone does not select Material", "spacing autonomy is not global style delegation", "does not trigger rediscovery sample phases or an admin backend"]
+    },
+    {
+      "id": "material-selected-narrow",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "Override only the style-history fact: Field Notes already has an owner-approved Material baseline recorded in its DESIGN.md. Plan a narrow fix for one overflowing note label; preserve all other settled decisions. No code or broad redesign now.",
+      "invariants": ["reuses evidenced selected baseline only within affected component scope", "does not reopen discovery or impose a global redesign", "does not invent component guides or rendered conformance from activation instructions", "requires actual source inspection before claiming implementation verification"]
+    },
+    {
+      "id": "material-audit-only",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "Field Notes has an owner-approved Material baseline (override the brief's custom style history). Audit the proposed responsive design process only. Do not create or modify any handbook, source, assets or settings.",
+      "invariants": ["consults selected overlay only for the relevant audit", "does not mutate or create DESIGN.md", "reports unavailable rendering and source evidence honestly", "does not treat audit authority as implementation or library consent"]
+    },
+    {
+      "id": "material-wordpress-host-boundary",
+      "type": "positive",
+      "fixture": "real-world-wordpress",
+      "prompt": "Audit only this plugin's settings surface in wp-admin. I am considering Material for a future plugin-owned workspace but have not selected it. Keep native host styling and permissions. Do not change files or design the workspace now.",
+      "invariants": ["keeps WordPress primary route and native host authority", "unaccepted Material consideration does not apply an overlay", "does not restyle wp-admin or create a new Product Pack", "audit remains read-only and no future workspace is implemented"]
+    },
+    {
+      "id": "material-backend-only",
+      "type": "negative",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes diagnose a backend note-export timeout only. A future Material redesign is unrelated to this request. Do not work on frontend design or files.",
+      "invariants": ["does not activate UI UX Skill or Material route for backend-only work", "does not inspect unrelated Product Packs or component catalogs", "does not create a handbook panel sample or frontend migration"]
+    },
+    {
       "id": "runtime-appearance-persian-font-upload",
       "type": "positive",
       "fixture": "runtime-appearance-brief",

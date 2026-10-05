@@ -42,6 +42,7 @@ for case in manifest.get("cases", []):
             errors.append(f"{case_id}: fixture {fixture} is missing README.md")
 
 required_fixtures = {
+    "material-activation",
     "existing-dashboard",
     "owner-config",
     "rtl-table",
@@ -60,6 +61,23 @@ required_fixtures = {
     "runtime-appearance-brief",
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
+# Coverage/preparation, not independent model acceptance of these cases.
+required_material_cases = {
+    "material-explicit-selection", "material-recommendation-unaccepted",
+    "material-accepted-recommendation", "material-named-delegation",
+    "material-rejected-reference", "material-inactive-narrow",
+    "material-selected-narrow", "material-audit-only",
+    "material-wordpress-host-boundary", "material-backend-only",
+}
+missing_material = sorted(required_material_cases - seen)
+if missing_material:
+    errors.append("Missing raw Material activation cases: " + ", ".join(missing_material))
+for case in manifest.get("cases", []):
+    if case.get("id") in required_material_cases:
+        expected_fixture = ("real-world-wordpress" if case["id"] == "material-wordpress-host-boundary"
+                            else "material-activation")
+        if case.get("fixture") != expected_fixture:
+            errors.append(f"{case['id']}: must use its exact raw {expected_fixture} fixture")
 for case_id, raw in (("runtime-appearance-admin-planning", "ADMIN.md"),
                      ("runtime-appearance-icon-planning", "ICONS.md"),
                      ("runtime-appearance-narrow-boundary", "NARROW.md"),
