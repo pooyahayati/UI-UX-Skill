@@ -1,6 +1,6 @@
 # Design evidence remediation plan
 
-Prepared: 2026-10-04. Current checkpoint: 2026-10-05. QF01–QF03 and QF06/QF07 are Verified for the bounded outcomes recorded below; QF04/QF05 remain Unverified required R7 obligations.
+Prepared: 2026-10-04. Current checkpoint: 2026-10-06. QF01–QF03 and QF06/QF07 are Verified for the bounded outcomes recorded below; QF04 is Owner accepted, with technical metadata limitations preserved. QF05 has owner-reported manual evidence as recorded in the current checkpoint.
 
 ## Purpose and authority
 
@@ -49,7 +49,7 @@ All tasks started as **Not started**; current progress is recorded below. Engine
 | QF01 | First | Trustworthy capture protocol and reproduced affected contexts | Implementation authority and preserved evidence | R3 evidence follow-up; R7 integrated QA | Verified |
 | QF02 | High | Bounded essential-control contrast correction and conflict handling | Reliable rendered evidence from QF01 for acceptance | R3 foundation review; R4 scoped decisions | Verified |
 | QF03 | High | Mixed-script free-text readability/data-preservation review | QF01 | R3 localized sample; R7 direction QA | Verified |
-| QF04 | Medium | Actual font evidence or explicit bounded limitation | QF01; real assets/environment access where needed | R3 sample evidence; R7 typography QA | Unverified |
+| QF04 | Medium | Actual font evidence or explicit bounded limitation | QF01; real assets/environment access where needed | R3 sample evidence; R7 typography QA | Owner accepted; metadata limitations retained |
 | QF05 | High | Observable completion cancel/confirm checks | QF01; documented supported interaction tooling | R3 executable slice; R7 interaction QA | Unverified |
 | QF06 | High | Usable exact baseline fixture and missing-baseline boundary | Existing fixture coverage review; approval-source availability | R3 approval; R4 continuation inputs | Verified |
 | QF07 | Final | Affected regressions, continuation observations and lead reconciliation | Required outcomes from QF01–QF06 for the selected scope | R4 acceptance; later R8 candidate gate | Verified |
@@ -242,3 +242,63 @@ QF07 Verified for affected R4 regressions and lead reconciliation: all five orig
 QF04/QF05 remain Unverified and required at R7. Responsible: engineering lead. Reason for scoped deferral: actual font identity and native completion branches are unchanged and do not determine the accepted local feedback/proposal/handoff contract; current controls cannot establish their required evidence. Trigger: before accepting the affected typography/completion surfaces, obtain actual glyph-font/weight inspection and distinct explicit cancel/accept observations on their exact source. No optional relabeling, tool substitution, silent waiver or claim that the old failed interaction recovered. Browser preview work here exercised save/failure/refresh only; viewport reset and tab close succeeded. Required final candidate acceptance cannot claim these checks passed without new evidence.
 
 Current next action: publish/review/merge the accepted R4 slice with unchanged version and real candidate-bound checks, then enter R5. No new release, font installation, additional specialist or production action is authorized by this checkpoint.
+
+## R7 recovery checkpoint — 2026-10-05
+
+R4–R6 have subsequently integrated with passing CI; those stage outcomes do not
+retroactively prove QF04/QF05. See [R7 partial execution](INTEGRATED_QUALITY_REVIEW.md).
+Original primary/Persian HTML hashes still match preserved QF evidence. Current
+browser capability inspection exposes no actual glyph-font/weight inspector;
+no new working original-native-confirm path was established or retried merely
+to repeat the prior timeout. New runtime HTML overlay observations are separate.
+Both required outcomes remain Unverified, engineering-lead-owned, triggered
+before dependent R7 acceptance. No font substitution, installation or silent
+waiver; unaffected scoped checks continue without declaring R7/R8 complete.
+
+After the separately authorized roadmap-only PR #26 merge, the
+[R7 continuation](INTEGRATED_QUALITY_REVIEW.md#post-roadmap-continuation--2026-10-05)
+rechecked the preserved source hashes and currently available browser/tool
+capabilities. No new actual-font inspector or working original-confirm path
+became available. These are still required Unverified outcomes, not accepted
+because 31 unrelated contract/progress tests pass. An alternate capable
+browser/developer surface or equivalent concrete manual/platform evidence is
+needed; do not repeat the same unsupported timeout or replace the source.
+
+## Owner evidence reconciliation — 2026-10-06
+
+The owner reports the three offered manual tests OK. The exact screenshots and
+their scoped observations are recorded in the [integrated review](INTEGRATED_QUALITY_REVIEW.md#owner-manual-review--2026-10-06).
+QF05 now has attributed owner save/cancel/accept evidence and a visibly matching
+final completion state; this is not a new automated native-dialog branch result.
+QF04 gains separate new-Vazirmatn wide/narrow visual observations, not original
+per-glyph/control face metadata. Do not repeat the same owner tests or erase
+historical limitations. Original required metadata and remaining integrated
+coverage still block whole R7/R8 acceptance; unrelated validators do not waive it.
+
+### Subsequent explicit owner acceptance
+
+The owner stopped further font testing, explicitly instructed that this test be
+treated as approved, and will report any later problem for correction. QF04 is
+therefore **Owner accepted** for this bounded review. Missing technical metadata
+remains an evidence limitation, not a reason to request more font screenshots or
+block this review. This explicit reconciliation supersedes the earlier QF04
+blocking disposition without rewriting historical observations or claiming a
+technical pass. Reopen only for a concrete newly reported/observed font defect;
+other R7/R8 obligations are not accepted by this decision.
+
+### Final manual reconciliation — 2026-10-06
+
+The owner subsequently confirmed the offered dark published-reader overlay
+checks at narrow/intermediate sizes and explicitly instructed that the report
+count as review confirmation. The [final R7 matrix](INTEGRATED_QUALITY_REVIEW.md#final-representative-coverage-and-lead-acceptance)
+records this as attributed manual evidence, not new screenshots or automation.
+The lead accepts QF05's original manual save/cancel/accept report and matching
+completion screenshot for that scoped interaction; historical failed automated
+native-confirm observations remain. QF04 stays Owner accepted without further
+tests. QF01–QF03/QF06–QF07 retain their bounded prior Verified outcomes.
+
+The final R7/R8 stage decisions reconcile the independent keyboard, responsive,
+behavioral and package gates separately. No later font/owner test is requested
+absent a concrete new defect. Failed automated rasters stay excluded; no
+production/AT certification, font-upload implementation or new release is
+implied. Passing authorized integration remains an actual delivery check.

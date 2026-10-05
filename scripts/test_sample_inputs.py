@@ -15,6 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PREPARE = ROOT / "scripts/prepare_eval_run.py"
 RAW_ROOT = ROOT / "evals/fixtures"
 RAW_FILES = {
+    "runtime-appearance-brief": {"README.md", "ADMIN.md", "ICONS.md", "NARROW.md",
+                                 "NO_ADMIN.md", "PERSIAN_FONT.md", "FONT_EXISTING.md"},
     "sample-review": {"README.md", "BRIEF.md", "OWNER_NOTES.md", "FOUNDATION.json",
                       "variants/bilingual.md", "variants/revision-change.md"},
     "incremental-design": {"README.md", "BRIEF.md", "DESIGN.md", "OWNER_NOTES.md", "ui-tokens.json"},
@@ -22,7 +24,8 @@ RAW_FILES = {
                             "OWNER_NOTES.md", "BASELINE.json", "index.html"},
 }
 MANIFEST = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
-CASES = [c for c in MANIFEST["cases"] if c["id"].startswith(("samples-", "incremental-"))]
+CASES = [c for c in MANIFEST["cases"]
+         if c["id"].startswith(("samples-", "incremental-", "runtime-appearance-"))]
 
 
 def files(root: Path) -> dict[str, bytes]:

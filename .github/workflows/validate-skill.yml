@@ -33,6 +33,9 @@ jobs:
       - name: Runtime appearance contract, persistence and trusted HTTP boundary
         run: python3 scripts/test_runtime_appearance.py
 
+      - name: Runtime dialog keyboard regression (DOM model)
+        run: node scripts/test_runtime_dialogs.mjs
+
       - name: Product route and isolation validation
         run: python3 scripts/validate_product_routes.py
 

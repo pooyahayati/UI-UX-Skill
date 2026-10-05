@@ -125,6 +125,19 @@ A candidate should not ship with an unexplained Fail in:
 - claims of visual/UX validation without evidence
 
 
+## R8 candidate preparation
+
+The raw `runtime-appearance-persian-font-upload` and
+`runtime-appearance-preserve-approved-font` cases add coverage for the current
+Persian default/upload contract and preservation of an already approved font.
+Use only their named raw brief and the current candidate Skill. Do not supply
+the manifest invariants, implementation examples or earlier conclusions to an
+independent evaluator. Preparation/binding tests do not execute that evaluator.
+
+The owner authorized continuing next-stage preparation while required R7 gaps
+remain open. R8 package/structural work may proceed; whole-candidate acceptance
+still requires the outstanding evidence. No new release or installation.
+
 ## R1 adaptive discovery cases
 
 The `discovery-*` cases use raw synthetic inputs in `fixtures/discovery-brief/`. Prepare each with `prepare_eval_run.py`; give future independent evaluators only the case prompt, candidate Skill and raw fixture, not the illustrative responses in `discovery/WALKTHROUGHS.md`.
@@ -187,3 +200,8 @@ python3 scripts/validate_eval_result.py evals/real-world/result.json
 ```
 
 The recorded 2026-10-02 run is an in-session source-based ChatGPT / GPT-5.6 Sol evaluation, not an independent fresh Codex/Claude/browser/device run. Do not infer rendered or device validation from that record.
+
+R8's [fresh five-route forward review](samples/ROUTE_FORWARD_REVIEW.md) separately
+records five raw planning requests across three independent-from-lead sessions,
+actual scoped lead review and byte bindings. It does not replace the historical
+result.json or imply fresh application/device coverage or all-case conformance.

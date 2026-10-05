@@ -80,8 +80,49 @@ Reasonable owner-configurable areas can include:
 
 ### Typography
 - allowlisted local font family/pair
+- owner-uploaded font family/pair admitted through the validation lifecycle below
 - approved type-scale preset
 - compact/balanced/comfortable sizing preset
+
+### Owner font assets
+
+When owner Design and Appearance settings are in scope, provide font upload and
+selection without requiring component-code edits. For Persian defaults, follow
+`rtl-ltr-typography.md`; another accepted product font remains authoritative.
+Do not reinterpret an allowlist as a permanently developer-only catalog:
+validated uploads may become selectable scoped assets.
+
+Use the existing trusted authorization/tenant and asset-storage boundaries.
+Accept only supported font formats, enforce byte/count limits, validate actual
+font content rather than trusting a filename or client MIME type, and retain
+the required licensing/embedding information. Generate safe storage identifiers;
+never accept raw CSS, arbitrary external URLs, executable files or unsanitized
+family names as configuration. Bound any parsing/conversion and fail closed.
+Use the platform's established upload protections, including CSRF where relevant;
+[OWASP's upload guidance](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
+informs implementation, not a claim that a parser or uploaded file is safe.
+
+Register a validated asset ID with its actual family, styles/weight coverage,
+script support and delivery location. Store that ID/role mapping in versioned
+owner configuration; resolve trusted font declarations at the shared token
+boundary for body, headings, controls and independent data/overlay consumers.
+Do not require operating-system font installation on the owner or client device.
+
+Upload first creates a private, validated candidate, not a public active font.
+Preview representative product-language text, real weights, mixed-script values,
+controls and relevant responsive/theme states; check loading failure and layout
+reflow before publishing through the normal draft lifecycle. A rejected or failed
+upload must leave published configuration unchanged with an actionable message.
+Cancellation does not publish. Publication must retain history and support reset
+to the product default and rollback. Preserve assets needed by published/history
+revisions; replacing a font must not destructively overwrite them.
+
+Record supported upload formats/limits, permission/scope, default, role mapping,
+fallback and implementation status in `DESIGN.md`; routine selections belong to
+runtime history. Test authorized upload/select/preview/publish/reopen/reset and
+the relevant denial, malformed/unsupported/oversized file, cross-scope and
+missing-asset cases. A static preview or selector over prepared fonts does not
+prove that font upload, trusted persistence or publication is implemented.
 
 ### Editable icons
 

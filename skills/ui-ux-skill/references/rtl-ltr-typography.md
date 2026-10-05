@@ -1,6 +1,8 @@
 # RTL, LTR, Localization, and Typography
 
-Treat Persian RTL and English LTR as first-class modes.
+Treat the product's actual supported languages and directions as first-class
+contexts. Persian RTL and English LTR are examples, not mandatory paired modes;
+an English-only product does not gain Persian UI from a Persian conversation.
 
 ## Persian language routing
 
@@ -9,6 +11,16 @@ When Persian-facing language work is in scope, route it to the REQUIRED `persian
 This reference does not duplicate Persian-language rules. It remains responsible only for UI/UX direction architecture, mixed-direction layout behavior, responsive behavior, and typography-system integration.
 
 Head-level UI/UX constraints take precedence over any overlapping lower-level specialist guidance.
+
+For a new Persian-facing foundation without an already accepted font choice,
+use Vazirmatn as the default. Reuse supplied/accepted product typography when
+present; do not silently replace it or apply Persian defaults to other languages.
+Deliver the licensed font assets and real required weights, not only its family
+name in CSS. Record the default and actual asset source in `DESIGN.md` and apply
+them to the first relevant sample. The owner may replace this default through
+the validated font-upload lifecycle in `runtime-ui-governance.md#owner-font-assets`
+when an owner Design and Appearance panel is in scope. No host font installation
+is implied.
 
 ## Direction architecture
 

@@ -2,6 +2,32 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "runtime-appearance-persian-font-upload",
+      "type": "positive",
+      "fixture": "runtime-appearance-brief",
+      "prompt": "Use only PERSIAN_FONT.md as the raw product request. Prepare the requested foundation recommendation, initial handbook and appearance implementation plan in an output directory. No application implementation, installation or publication is authorized. Do not inspect authored examples, runtime fixtures, tests or review results.",
+      "invariants": [
+        "uses the web-application route and actual Persian RTL monolingual scope without inventing English secondary layouts",
+        "professionally recommends Vazirmatn for the unsettled Persian font foundation and separates the recommendation from owner approval",
+        "records real font asset weight license and affected consumer verification needs without claiming supplied or rendered fonts",
+        "plans validated owner-scoped uploaded fonts as selectable assets through the existing trusted lifecycle without raw executable CSS URLs or invented host installation",
+        "keeps preview publication persistence history reset fallback and upload failure preservation distinct from the static handbook",
+        "defines actual allow deny malformed oversized cross-scope asset and missing-font checks while leaving planned outcomes unverified"
+      ]
+    },
+    {
+      "id": "runtime-appearance-preserve-approved-font",
+      "type": "negative",
+      "fixture": "runtime-appearance-brief",
+      "prompt": "Use only FONT_EXISTING.md as the raw product request. Provide the requested bounded recommendation and handbook delta in an output directory. Do not implement, install, publish or inspect authored samples or review results.",
+      "invariants": [
+        "preserves the supplied approved Persian brand font rather than silently replacing it with the new-product Vazirmatn default",
+        "keeps the requested font-upload extension inside existing owner authorization asset storage and draft publication recovery boundaries",
+        "does not reopen unrelated palette spacing language theme or product scope or demand a new full discovery questionnaire",
+        "records the new upload capability as planned with missing source and runtime evidence instead of claiming existing implementation or approval of changed assets"
+      ]
+    },
+    {
       "id": "runtime-appearance-icon-planning",
       "type": "positive",
       "fixture": "runtime-appearance-brief",
