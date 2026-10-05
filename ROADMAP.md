@@ -12,6 +12,8 @@ Implementation was explicitly authorized after roadmap publication. The tracker 
 - Implementation: **In progress**; **7 of 9 correction stages completed**.
 - Active implementation stage: **None**. R6 has scoped delivery acceptance; R7 has not started. Its kickoff requires current passing CI and confirmed PR #25 integration. One implementation writer remains.
 - Next implementation stage: **R7 — Language, direction, theme, and integrated quality**. Not started; final integrated gate follows R6. No maintainer taste choice for a fictional product is requested.
+- Planned post-correction extension: **R9 — Optional, product-personalized Material Design**. Not started; follows evidenced acceptance of R7 and R8. The owner authorized this roadmap addition on 2026-10-05, not implementation, installation, publication, or an expansion of the active R0–R8 exception. See the [R9 plan](#planned-post-correction-extension--r9-optional-material-design).
+- Roadmap delivery authorization: on 2026-10-05 the owner explicitly requested sending and merging the R9 plan before continuing R7. This does not authorize R9 implementation or a new release.
 - Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22; R4 through PR #23; R5 through PR #24 at `61eacadece92e187434d72c5c58a9c44e55e2007`. R6 delivery is [PR #25](https://github.com/pooyahayati/UI-UX-Skill/pull/25) from `codex/r6-editable-semantic-icons`; its scoped acceptance is recorded below, and integration is gated by current CI. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
 - Dependency disposition: the [six-case R4 review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) records actual bounded forward execution, separate lead acceptance and shared-session limitations. No specialist was added or policy/test gate weakened; one writer and completed prerequisites remain enforced.
 - Quality follow-up: [QF01–QF07](evals/samples/REMEDIATION_PLAN.md) preserve all historical evidence. QF01–QF03 and QF06/QF07 have bounded Verified outcomes; QF04/QF05 remain Unverified required R7 typography/native-confirmation obligations with explicit owner/reason/trigger, not waivers. The separately authorized installed Persian specialist update to 1.4.0 remains verified with its full prior backup. Source review, rendered save/refresh checks and current installation do not prove actual glyph-font/weight or completion-dialog branches. No additional external design specialist or other installation was performed.
@@ -38,6 +40,14 @@ This table is the canonical stage status. Task checkboxes below describe progres
 | R8 | Behavioral evaluation, package verification, release readiness | Not started | R0–R7 | Engineering lead / maintainer | Not completed | Not recorded |
 
 Identify language, direction, accessibility and theme needs during discovery. Review one responsive primary-language/direction design first, using settled foundations; derive dark mode after primary approval; review secondary language/layout only after dark approval, confirmed need and owner authorization. Monolingual products need no extra locale sample. R7 integrates required approved contexts; define stage-relevant checks throughout, not only at R8.
+
+### Planned extension tracker
+
+R9 is a separate follow-up, not a tenth correction stage or an excuse to defer R7/R8 evidence. The correction count remains 7 of 9; R9 has no completed implementation packages. Apply the same progress-update protocol below to R9 and its packages once their execution is authorized.
+
+| Stage | Deliverable | Status | Dependencies | Accountable role | Completed on | Acceptance evidence / PR |
+| --- | --- | --- | --- | --- | --- | --- |
+| R9 | Optional Material Design module, product personalization, component guidance, and curated design-research references | Not started | Accepted R7 and R8; authorized R9 kickoff | Engineering lead / maintainer; current design role advises | Not completed | Planning only; [R9 scope and gates](#planned-post-correction-extension--r9-optional-material-design) |
 
 ### Mandatory progress-update protocol
 
@@ -555,6 +565,115 @@ Output: fresh behavioral results, representative executable evidence, exact vali
 
 Exit: no unexplained required failure remains in protected behavior, approval, settings, icons, language, or themes; mandatory claims have appropriate evidence. Record outstanding external authority rather than treating preparation as publication.
 
+## Planned post-correction extension — R9: Optional Material Design
+
+Planning decision: 2026-10-05. Owner: engineering lead / maintainer, using the existing UI/UX Skill. Status: **Not started**. Prerequisites: evidenced R7 and R8 acceptance and an authorized R9 implementation kickoff. A ready R8 candidate need not be released to satisfy this prerequisite; release, installation, and deployment remain separate decisions.
+
+Objective: add an optional local Material Design mode that helps the agent recommend and deliver personalized, mobile-first responsive web-app interfaces. Product needs, audience, brand, settled foundations, and the existing stack remain authoritative. Material is a design-system choice, not a new Product Type, external specialist, mandatory dependency, or universal house style.
+
+The initial request authorized an English roadmap update only. The owner's subsequent instruction separately authorizes sending and merging this roadmap, then completing R7; it does not start R9, change the installed Skill, choose a library, or authorize a new version, tag, release, deployment, or production change. Preserve the current no-new-release restriction. At an authorized R9 kickoff, reconcile the stabilization policy, README, and policy validators for this specifically bounded extension before capability changes; do not silently enlarge the R0–R8 exception.
+
+### R9 package tracker
+
+Keep one implementation writer. Record actual checks, changed paths, dated acceptance, and PR/integration state per package; planned tasks and source links are not execution evidence. Update this table and the overall R9 row without rewriting completed correction history.
+
+| Package | Deliverable | Status | Dependencies | Acceptance record |
+| --- | --- | --- | --- | --- |
+| R9.1 | Bounded activation, routing, and policy consistency | Not started | Accepted R7/R8; authorized kickoff | Not recorded |
+| R9.2 | Product-personalized foundations and curated research | Not started | Accepted R9.1 | Not recorded |
+| R9.3 | Scoped component guidance and stack-fit assessment | Not started | Accepted R9.2 | Not recorded |
+| R9.4 | Sequential responsive samples and handbook integration | Not started | Accepted R9.2/R9.3 | Not recorded |
+| R9.5 | Material appearance controls through existing runtime contracts | Not started | Accepted R9.4; preserved R5/R6 contracts | Not recorded |
+| R9.6 | Behavioral/rendered evaluation and candidate readiness | Not started | Accepted R9.1–R9.5 | Not recorded |
+
+### R9.1 — Bounded activation and local routing
+
+- [ ] Recheck the accepted R7/R8 evidence, current checkout, protected changes, relevant instructions, upstream guidance, and actual implementation authority. Do not inherit an earlier merge/release permission as authority for this extension.
+- [ ] Reconcile the named R9 scope with README, roadmap, and policy/regression validators while retaining historical statuses, separate trackers, protected routes, and publication gates.
+- [ ] Activate Material when the owner explicitly selects it, or after the agent recommends it with a product/audience rationale and the owner accepts. Record recommendation, delegation, rejection, and actual selection separately in `DESIGN.md`; a supplied reference image is not automatic style approval.
+- [ ] Keep the default and all non-Material routes intact. Use a thin conditional local reference route; do not preload the whole catalog, unrelated Product Packs, or every style module.
+- [ ] Preserve narrow-change, audit-only, backend-only, host-compatible, and no-admin boundaries. Do not add a specialist, user-owned chat, frontend migration, cloud service, or general-purpose page builder.
+
+Output / exit: an optional mode with distinguishable selected, recommended-but-unaccepted, rejected, and inactive behavior; policy and routing agree on its bounded authority.
+
+### R9.2 — Personalized foundations and selected design research
+
+- [ ] Reuse discovery and approved assets before asking focused new questions about audience, core tasks, brand personality, information density, device/connectivity conditions, and desired calm versus expressive presentation. Give one professional recommendation and rationale; a novice need not choose technical tokens or supply a complete brief.
+- [ ] Map Material color roles, typography, spacing/density, shape/elevation, state treatment, icons, and purposeful motion into the existing semantic-token contracts. Reuse the approved palette, real font assets, sizes, spacing, and product constraints; do not impose Google colors, Roboto, large rounded shapes, or expressive animation on every product.
+- [ ] Adapt only actual product languages/directions. Plan semantic dark-mode roles without showing simultaneous light/dark/secondary proposals. Keep readability, contrast, focus, touch targets, reduced motion, and content meaning as protected floors.
+- [ ] Add a small, selectively routed Google Design research/resource index. For each retained entry, record its relevant question, practical recommendation, context/limitations, official URL, and review date. These editorial examples inform decisions, not universal standards or owner approval; no copied site archive or mandatory reading list.
+- [ ] Keep the research index usable outside Material when relevant. Distinguish Material specifications, product-specific case studies, and implementation-library evidence; record adopted rationale and exceptions in `DESIGN.md` without duplicating live runtime values.
+
+Output / exit: product-specific foundations linked to existing value sources. Contrasting audiences can receive meaningfully different recommendations under Material, while language coverage, accessibility, and the settled baseline remain intact.
+
+### R9.3 — Component guidance and implementation fit
+
+- [ ] Create a navigable component index tied to the current official Material catalog, with concise local guidance for the components required by representative product workflows. Prioritize actions, navigation, forms/selection, feedback/progress, overlays, and content containers; a full inventory does not require copying every manual into context.
+- [ ] Reuse style-independent Product Pack, Shared Rule, and component-state behavior. Add a Material overlay for appearance and supported variants rather than duplicating general interaction/accessibility contracts or creating a second design system.
+- [ ] For each authored component guide, cover purpose/use limits, anatomy, suitable variants, relevant states/recovery, responsive behavior, touch/keyboard/accessibility, actual language/direction, light/dark treatment, meaningful icons/motion, prepared admin controls, a representative example, official source, and implementation availability. Explicitly label custom/product-specific patterns and unavailable components; do not invent Material rules for tables, charts, or diagrams.
+- [ ] Load only guides for the affected screen/workflow. Preserve labels and semantic meaning; a visually expressive control is not permission to hide actions, change navigation, or weaken behavior.
+- [ ] Separate style selection from library selection. Prefer the existing stack; compare only genuinely suitable implementation routes and recheck maintenance, component coverage, browser support, accessibility, theming, bundle cost, licensing, and exit cost before an authorized dependency decision. Native Android examples and a Material badge do not prove mobile-web suitability.
+
+Output / exit: usable, scoped component instructions and an evidence-backed stack-fit decision. No automatic package installation, framework migration, or assumption that every official component exists in every library.
+
+### R9.4 — Sequential samples, corrections, and `DESIGN.md`
+
+- [ ] Choose important screens from the actual product's core journeys and breadth. Prepare one responsive primary proposal with the approved language/direction, real text/fonts, settled foundations, and justified mobile/wider viewport priorities; mark synthetic data and hypothetical features.
+- [ ] Check the main task flow as well as appearance. A polished early sample may reveal preferences, but visual approval alone does not validate information architecture, usability, backend readiness, or production performance.
+- [ ] Receive focused corrections and revision-scoped primary approval; then derive dark mode from that accepted baseline and obtain its scoped approval. Only afterward, confirm need and owner authority for any secondary language or layout. A monolingual product receives no invented second-language design.
+- [ ] Record the selected mode, product personalization, relevant component guides, actual sources, exceptions, sample revisions, approval provenance, and value/configuration links in the living `DESIGN.md`. Reopen only genuinely new or conflicting decisions during development.
+- [ ] Reuse the existing authorized same-Skill handoff when substantial design work merits delegation; maintain one handbook writer and an honest no-subagent fallback. This roadmap does not launch a design agent.
+
+Output / exit: inspectable samples and a canonical handbook agree on the actually approved revision and sequence. Fixture/workflow acceptance remains distinct from real customer preference approval.
+
+### R9.5 — Bounded admin appearance and icons
+
+- [ ] Extend the R5/R6 parameter contracts and real consumers, not a parallel settings engine. For in-scope products with admin, prepare connected controls for palette/theme, available font families/roles/sizes, supported density/spacing, borders/radius/elevation, existing component variants, and approved motion levels.
+- [ ] Retain editable icon families and per-use semantic assignments with an approved gallery, supported visual properties, meaningful fallback, accessible labels, and selective directional mirroring. Material Symbols is an available option, not a mandatory icon family; unprepared assets/libraries still need authorized code/build work.
+- [ ] Show real affected consumers in draft preview and after publication/refresh. Routine supported edits must not require changing component/page source or manually editing `DESIGN.md`; the handbook describes intent/contracts, not the active settings database.
+- [ ] Preserve trusted permissions, tenant/user boundaries, validation, private drafts, published revision/history, safe defaults, reset, migration, and rollback. Reject arbitrary CSS/JavaScript, unsafe asset input, invalid values, and appearance choices that violate protected floors.
+- [ ] Do not invent an admin/backend for a product without one or turn a narrow existing-product correction into a global appearance project. Reuse host-appropriate approved surfaces and report follow-up scope honestly.
+
+Output / exit: prepared Material appearance choices and icon edits demonstrably reach real consumers, persist, and reverse safely, without regressions to existing configuration or business behavior.
+
+### R9.6 — Behavioral, rendered, and package acceptance
+
+- [ ] Preserve the R0–R8 regressions and add meaningful activation/isolation cases: explicitly selected Material; recommendation awaiting acceptance; rejected/inactive Material; and narrow/audit/backend work that must not load or apply the mode.
+- [ ] Use contrasting product/audience briefs to evaluate personalization and rationale. Preserve sequential primary/dark/authorized-secondary approval, actual-language typography/direction, responsive navigation/forms/overlays, and important component states. Do not require an irrelevant Cartesian matrix.
+- [ ] Validate the actual mobile-web implementation: representative compact/wider browser layouts, keyboard/touch interaction, content fit, loading/recovery, reduced motion, and justified constrained-device/network behavior. Native-platform screenshots or successful builds alone are insufficient.
+- [ ] Exercise connected runtime edits, persistence, private drafts, invalid/unauthorized denial, semantic icon fallback, compatible prior configuration, and rollback. Keep rendered, behavioral, authorization, and stored-state evidence separate.
+- [ ] Recheck official references and provider support; verify portable routed resources and newly added guides inside the exact candidate packages. Reuse unaffected R8 evidence only with explicit scope/freshness reasoning; an old package result cannot prove the new resources are delivered.
+- [ ] Run authorized fresh forward evaluation where available; retain real findings and independent-agent/device/browser limitations. Review the diff, context loading, compatibility, version classification, and exact permitted delivery actions. Do not bump a version or publish merely to complete planning.
+
+Output / exit: dated package-level evidence and separate lead acceptance for the optional mode, with no unresolved required regression. Complete R9 only after all packages meet their exits; source/candidate readiness, owner approval, integration, release, and installation remain distinct outcomes.
+
+### R9 planned destination impact
+
+These are prospective destinations, not files created or instructions activated by this update. Short paths below are relative to `skills/ui-ux-skill/`; add a resource only when it has a distinct maintained purpose.
+
+| Destination | Planned responsibility |
+| --- | --- |
+| `SKILL.md`, `references/design-presets.md`, `references/design-system-architecture.md` | Thin opt-in routing; retain existing product/token precedence |
+| Proposed `references/material-design.md` and scoped component references | Local Material overlay, component index, selective loading, and stack-fit boundaries |
+| Proposed `references/design-research-resources.md` | Small style-independent Google Design reference index with context and source dates |
+| Existing discovery, foundation, handbook, and `assets/templates/DESIGN.md` resources | Selected mode, personalization, delta questions, and existing sequential approval contract |
+| Existing runtime-governance, implementation, theme, typography, and icon resources/fixtures | Connected parameters, semantic assets, compatibility, and protected consumers |
+| Repository `README.md`, policy/route/resource validators, evaluations, and package checks | Explicit authorized scope, inactive-mode isolation, honest acceptance, and portable resources |
+
+Change registries only if their routing contracts actually change. Do not add entries to `specialists.json` or build unused guide scaffolds. Keep source/runtime ownership in the existing architecture.
+
+### R9 selected official source starting points
+
+Treat this as a curated starting index, not a mandatory fetch at every task. Recheck the relevant current specification, language coverage, licenses, and library evidence at implementation or dependency selection; record observation dates instead of permanent upstream-version pins.
+
+- [Material Design 3](https://m3.material.io/): selected style foundations and official component guidance.
+- [Material Symbols](https://developers.google.com/fonts/docs/material_symbols): optional prepared icon assets and supported properties.
+- [Material Web repository](https://github.com/material-components/material-web) and [its roadmap](https://github.com/material-components/material-web/blob/main/docs/roadmap.md): implementation coverage and maintenance, not the definition of Material itself. The repository README observed on 2026-10-05 reports maintenance mode pending new maintainers; do not make it the unconditional web default.
+- [Google Design research on expressive Material](https://design.google/library/expressive-material-design-google-research): audience/context-sensitive use of expressive treatment; published findings are not guaranteed outcomes for our products.
+- [Google Design web-font selection](https://design.google/library/choosing-web-fonts-beginners-guide): project, content, and language criteria; Latin examples do not establish Persian readability.
+- [Google Design global accessibility](https://design.google/library/designing-global-accessibility-part-1) and [device/connectivity context](https://design.google/library/designing-global-accessibility-part-2): product-relevant discovery and representative testing, not fixed universal device requirements.
+- [Google Design on code as a design material](https://design.google/library/code-is-a-design-material) and [Gemini visual cues](https://design.google/library/gemini-ai-visual-design): prototype/strategy distinctions and purposeful motion; do not copy Google branding or product-specific aesthetics as generic rules.
+
 ## Planned destination-file impact
 
 This is an impact map, not permission to change every listed file now. New files are justified only when they separate a meaningful responsibility. Keep the entrypoint short and route conditional detail; retain product-specific rules inside the active Product Pack.
@@ -707,6 +826,7 @@ Planning readiness:
 - [x] Handbook migration, runtime-storage separation, scoped admin delivery, and editable icons have distinct acceptance criteria.
 - [x] The stage-status update protocol and evidence discipline are defined.
 - [x] Existing narrow/audit/backend boundaries and the no-new-specialists decision are preserved.
+- [x] The owner-requested R9 follow-up is planned after R7/R8, with six unstarted packages, optional activation, product personalization, component guidance, curated research, runtime controls, and explicit acceptance/authority gates.
 
 Still pending:
 
@@ -720,8 +840,11 @@ Still pending:
 - [ ] Execution and evidenced acceptance of R7/R8; R6 scoped acceptance is recorded above.
 - [ ] Fresh correction behavior/rendered/runtime evidence and exact candidate package verification.
 - [ ] Any separately required integration, release, deployment, or installation authority.
+- [ ] After evidenced R7/R8 acceptance and authorized kickoff, execute R9.1–R9.6 and record actual acceptance; no R9 implementation is established by this roadmap update.
 
 **Next implementation action:** confirm PR #25's final acceptance-head CI and passing integration, then perform required R7 language/direction/theme/typography/native-confirmation coverage. The owner authorized passing merges but prohibited a new release; retain 3.1.1 and recheck publication skip at each merge. [QF04/QF05](evals/samples/REMEDIATION_PLAN.md#qf06qf07-and-scoped-r4-acceptance-checkpoint--2026-10-05) remain Unverified, owned by the engineering lead and required before dependent R7 typography/completion acceptance. Do not repeat unsupported font/dialog paths, change foundations merely to accommodate tooling, or infer a prior dialog branch. R4's integrated workflow acceptance does not certify those unchanged surfaces or finish R8. Actual persistence/trusted write checks belong to the runtime appearance fixture, not fabricated claims about the fictional R3/R4 previews.
+
+**After R8 acceptance:** the next planned extension is R9.1, subject to authorized R9 kickoff and bounded policy reconciliation. Material remains optional per product; Google Design supplies selected research context. Do not skip R7/R8 or infer a release/install/merge decision from this future plan.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 
@@ -932,3 +1055,5 @@ Not authorized outside the named correction scope:
 `persian-writing` remains the only external specialist.
 
 Any capability expansion beyond the named correction scope requires a separate explicit decision; it must not be added implicitly through maintenance or this exception.
+
+The separately owner-requested [R9 follow-up](#planned-post-correction-extension--r9-optional-material-design) is recorded as future planning only. It does not alter this active R0–R8 implementation exception. Its specifically bounded policy change belongs to an authorized R9.1 kickoff after R7/R8 acceptance; no additional external design specialist or general-purpose page builder is planned.
