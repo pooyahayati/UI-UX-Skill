@@ -1,15 +1,17 @@
-# R7 integrated quality — partial execution, 2026-10-05
+# R7 integrated quality — scoped acceptance, 2026-10-06
 
-Latest execution: [keyboard repair and capture limit](#keyboard-repair-and-bounded-recovery--2026-10-06).
-Latest owner evidence: [manual review receipt](#owner-manual-review--2026-10-06).
+Latest decision: [final matrix and lead acceptance](#final-representative-coverage-and-lead-acceptance).
+Latest owner evidence: [reader overlay manual confirmation](#reader-overlay-owner-confirmation--2026-10-06).
 
 Current continuation: see [post-roadmap continuation](#post-roadmap-continuation--2026-10-05).
 The original rendered observations below remain historical, source-bound
 evidence; they were not rerun or promoted by this continuation.
 
-Disposition: **In progress**, not stage acceptance. One engineering writer from
-R6 merge `9e662fb4f551b15883b43cd93e3647c7869c2a94`. No customer approval,
-production certification, fresh full-candidate model evaluation or new release.
+Disposition: **Scoped R7 acceptance** by the engineering lead on 2026-10-06.
+Historical partial checkpoints below retain their original dates/methods; the
+final section reconciles their gates rather than rewriting failed observations.
+No customer design approval, production certification, fresh full-candidate
+model evaluation or new release is claimed.
 
 ## Context and source
 
@@ -439,3 +441,54 @@ sessions remain unperformed, not accessibility certification. Existing motion
 source guards and contrast/runtime tests remain separately scoped evidence.
 Private captures/state are under the external r7-r8-close-20261006 operations
 directory. No broad stage completion or passing merge is inferred.
+
+## Reader overlay owner confirmation — 2026-10-06
+
+After requesting preparation, the owner was given `http://localhost:8784/reader`
+and two explicit manual contexts: width/height 320x844 and 768x844. The requested
+actions were Open overlay example, inspect complete text and Close example,
+then close the dialog. The owner replied that it was correct and explicitly
+instructed that the reply be treated as review confirmation. The lead accepts
+that as reported manual success for both offered contexts. No new screenshot,
+browser-version metadata, independently measured viewport or owner keyboard
+sequence was supplied; none is invented. The offered screenshot request is
+superseded by this explicit owner disposition, not silently ignored.
+
+Preparation used the unchanged repaired runtime source at
+`584de988fdd26f40efb68be4eb0bfd838255bb49`, the retained external synthetic
+runtime-revision2 store and loopback-only port 8784. Fresh read-only HTTP
+observations confirmed page status 200, the dialog-focus script reference,
+published version 1 / source published, dark theme, compact density,
+20/36/18 text roles and reduced motion. Reader requires no shared access token;
+the server-selected viewer principal cannot edit. No configuration, foundation,
+security header or product source was changed for the owner check.
+
+## Final representative coverage and lead acceptance
+
+| Selected context | Qualified evidence and binding | Boundary / disposition |
+| --- | --- | --- |
+| English/LTR primary and narrow refinement | R3/R4 separately reviewed source/handbook revisions; actual list/editor/save/failure/retry/reload and narrow/wide observations in sequential/incremental reviews | Workflow/source/rendered slice, not server persistence or customer taste approval |
+| Authorized Persian/RTL adaptation and mixed identifiers | R3/R4 sequence/isolation results, QF03 source-preserving observations, owner wide/narrow Vazirmatn-revision images and explicit QF04 acceptance | Real Persian text and supplied raster review; technical face metadata is not fabricated; no mandatory second locale for English-only runtime |
+| Light/dark runtime consumers | R5/R6 source-bound actual panel, forms/table/data/diagram/icon consumers, draft/private versus reader publication, rollback/default/fallback and tenant/denial checks | Prepared English/LTR synthetic product only; SVG labels and semantic roles, not every chart/logo or locale |
+| Large-text compact light/dark wide overlay | Independently inspected accepted wide rasters and actual keyboard focus/close observations, latest repaired-source record above | Complete inspected viewport segment, not all pages/states |
+| Dark published reader and overlay, narrow/intermediate | Owner-reported manual confirmation of the offered 320x844 and 768x844 tests on published version 1 with 20/36/18 compact config | Accepted manual visual/action review; exact dimensions are offered/reported, not newly instrumented or captured |
+| Single/two-stop dialog keyboard and cancel/publication | Actual repaired browser Tab/Shift+Tab/Escape/focus-return, cancel preserving draft1/public0, confirmation producing public1; 11 shipped-handler model assertions | Native browser observation plus separate model regression, not native assistive-technology testing |
+| Original completion interaction | Owner save/cancel/accept report and independently inspected matching final completion screenshot | Accepted attributed manual outcome; earlier automated native-confirm failure remains historical |
+| Contrast, targets, icon direction and motion floors | QF02 control-border repair, R5/R6 contrast/value/target guards, actual state/disclosure/icon observations and current source/runtime tests | Contrast/guard scope only; OS forced-colors/motion, full browser zoom and screen reader not executed |
+
+The engineering lead accepts R7 after reconciling this risk-selected matrix.
+No observed required defect remains in the bounded Skill/synthetic-fixture
+scope: QF04 has explicit owner acceptance, QF05 has reported manual branch
+success, modal focus has actual repair/regression evidence and the final manual
+reader review supplies the missing responsive observation. The methods are not
+interchangeable; owner approval does not turn invalid captures into valid ones.
+Retain all failed images and historic unknowns. Reopen an affected review for a
+concrete new defect, not because unclaimed metadata or certification is absent.
+
+This is not WCAG certification, cross-browser/native-device conformance or
+production acceptance. OS assistive technology, forced colors/system motion,
+full zoom/orientation matrices and every language/theme/state permutation are
+not tested. Font-upload behavior is a reviewed Skill instruction/plan, not an
+implemented feature in the prepared-font runtime fixture. No broader product
+redesign or new language/theme is approved by this stage decision. R8 delivery
+checks and passing authorized integration are recorded separately.

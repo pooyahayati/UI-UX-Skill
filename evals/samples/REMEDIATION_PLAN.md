@@ -285,3 +285,20 @@ block this review. This explicit reconciliation supersedes the earlier QF04
 blocking disposition without rewriting historical observations or claiming a
 technical pass. Reopen only for a concrete newly reported/observed font defect;
 other R7/R8 obligations are not accepted by this decision.
+
+### Final manual reconciliation — 2026-10-06
+
+The owner subsequently confirmed the offered dark published-reader overlay
+checks at narrow/intermediate sizes and explicitly instructed that the report
+count as review confirmation. The [final R7 matrix](INTEGRATED_QUALITY_REVIEW.md#final-representative-coverage-and-lead-acceptance)
+records this as attributed manual evidence, not new screenshots or automation.
+The lead accepts QF05's original manual save/cancel/accept report and matching
+completion screenshot for that scoped interaction; historical failed automated
+native-confirm observations remain. QF04 stays Owner accepted without further
+tests. QF01–QF03/QF06–QF07 retain their bounded prior Verified outcomes.
+
+The final R7/R8 stage decisions reconcile the independent keyboard, responsive,
+behavioral and package gates separately. No later font/owner test is requested
+absent a concrete new defect. Failed automated rasters stay excluded; no
+production/AT certification, font-upload implementation or new release is
+implied. Passing authorized integration remains an actual delivery check.

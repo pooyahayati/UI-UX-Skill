@@ -1,9 +1,11 @@
-# R8 candidate preparation review
+# R8 candidate readiness and scoped acceptance
 
-Latest reconciliation: [2026-10-06 checkpoint](#current-finalization-checkpoint--2026-10-06).
+Latest decision: [final scoped readiness](#final-scoped-readiness--2026-10-06).
 
 Date: 2026-10-05. Owner/reviewer: engineering lead, one implementation writer.
-Disposition: preparation progressing; whole-candidate acceptance not granted.
+Disposition: bounded R8 candidate readiness accepted on 2026-10-06; historical
+preparation records below are not retroactively relabeled. Integration, release,
+deployment and installation remain separate outcomes.
 
 ## Authority and sequencing
 
@@ -229,3 +231,76 @@ CI runs its existing official-tool check without a local installation.
 R7 is still blocked on qualified narrow/intermediate capture, as documented in
 the linked recovery record. R8 final acceptance and passing stage integration
 are consequently pending; no release, tag, installed update or R9 kickoff.
+
+## Final scoped readiness — 2026-10-06
+
+The owner explicitly confirms the two offered reader/overlay manual checks;
+the [R7 final matrix](INTEGRATED_QUALITY_REVIEW.md#final-representative-coverage-and-lead-acceptance)
+records attributed methods, unchanged implementation source, published state
+and separate engineering acceptance. R7 is therefore a completed prerequisite,
+not inferred from package success. The engineering lead accepts R8's candidate
+scope after reviewing the actual accumulated diff, scenarios, raw independent
+returns, executable checks and exact package bindings. This does not claim
+all 88 definitions were freshly run, a real customer design was approved or
+the synthetic applications are production-complete.
+
+### Correction scenario reconciliation
+
+| Catalog scenarios | Actual evidence | Accepted scope / exclusions |
+| --- | --- | --- |
+| E01–E02 | R1 discovery source-reviewed walkthroughs/raw inputs; fresh R8 font-planning recommendations and handbook outputs | Product-specific recommendation and bounded reference inference; initial eight walkthroughs are authored examples, not independent runs |
+| E03–E05 | R3 sequential forward review, R8 five-route returns, R7 owner language/font evidence | Product language beats chat language; primary/dark/secondary authorization, real Persian/RTL sample; not simultaneous mandatory variants |
+| E06–E08 | R3 nine raw scenarios, actual sample/handbook source inspection and rendered simulated editor; R4 executable continuation | Settled foundations, one proposal, explicit synthetic data and revision-scoped approval; no fictional approval promoted to real owner authority |
+| E09 | Actual four-test legacy handbook migration suite and R2 reviewed contract | Compatible canonical authority/provenance, conflict preservation; not a production document migration |
+| E10–E12 | R4 six raw continuation/handoff scenarios and separate lead review | Delta-only decisions, stale-return rejection, one writer and direct fallback; sessions are not six isolated cross-model trials |
+| E13–E14 | R5 runtime forward review, real appearance panel/consumers, refresh/restart and store/HTTP assertions | In-scope admin delivery and source-preserving prepared settings; no font-upload implementation in this fixture |
+| E15 | R6 icon forward/source/rendered review and store/consumer tests | Prepared family/per-use mapping, meaningful fallback, semantic labels/direction, unchanged guards; not arbitrary SVG upload |
+| E16–E18 | Actual R5/R6/R7 draft/preview/publication/cancel/rollback/restart/fallback observations and runtime store/HTTP tests | Real synthetic persisted revisions/privacy/denial/recovery, not phrases or production data |
+| E19 | Reviewed runtime contract and fixture capability boundary | Import is not offered; conditional scenario is not applicable, not an executed import pass |
+| E20 | R7 final representative matrix, prior scoped dark consumer observations and final owner narrow/intermediate report | Supported themes/languages across separate bound samples; not every Cartesian combination, AT or device certification |
+| E21–E23 | R3 narrow case, R4 fallback, R5 narrow/no-admin returns, R8 five-route isolation and actual tenant/role denial tests | No forced discovery/backend/admin expansion; protected actors/tenants remain enforced |
+| E24 | Exact Git-source packages, inventories, bytes, CRC, two-build reproducibility and matching 3.1.1 metadata | Candidate packaging, not local installation, release asset replacement or deployment |
+
+Prior separately accepted returns remain reusable only while their relevant
+candidate resources/control contracts match. The fresh R8 two-case font and
+five-route reviews compare all 75 frozen resources to the canonical candidate;
+the keyboard follow-up and this acceptance update change no packaged Skill
+resource. No new agent was needed or spawned for these documentation changes.
+The old five-product JSON remains structural/historical evidence, not this
+forward evaluation. Missing device/model/session identity and shared-session
+isolation limitations remain in the linked reviews.
+
+### Exact implementation candidate and remaining delivery verification
+
+Reviewed implementation head: `584de988fdd26f40efb68be4eb0bfd838255bb49`.
+Fresh checks on that head: 45 affected Python entrypoint tests, 11 dialog-model
+assertions, metadata/product/shared/design/specialist/fixture/result validators,
+syntax and whitespace. The 88 definitions/17 fixtures are structurally valid.
+No forbidden tracked/staged artifacts; optional local-exclude WARN remains.
+Official local quick validation lacks yaml; no dependency was installed.
+[Exact-head CI](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37377646914/job/111990925170)
+passed its unchanged official validator and packaging steps instead.
+
+Two builds from an exact Git archive of that implementation passed 75 canonical
+resource comparisons, 75 portable / 82 plugin members, exact source bytes, CRC
+and byte reproducibility. Portable SHA256:
+`93bab5d929df7f82724904b58ef7798f2d399216b4c000f6c3bac86c4b6c5e19`;
+plugin SHA256:
+`88264b0b8fdb5f2b81305e98e40548eb7183deffde96e158b18adcd2a433919c`.
+Exact extraction native Trivy 0.75.0 secret-only scan: zero findings; private
+report SHA256 `d022d912c1ff7efe20c372777290c55fc5c4f084da98596632a907b650df1f4d`.
+This is not whole-application vulnerability certification. The verifier's
+generic working-source label is not input provenance: its actual source was
+the named Git archive extraction retained outside product Git.
+
+These are implementation-head results, not fabricated runs on the subsequent
+documentation commit. Before merge, final documentation must pass the unchanged
+policy/regression validators, exact-source native secret scan and actual current
+PR CI. Rebind package bytes and reused forward evidence to final source. Keep
+exact final Git/artifact/CI/merge identities in the external operational handoff
+and PR. The owner authorizes passing integration of PR #27, not a new release,
+tag, upload, deployment, installation or R9 implementation. Versions remain
+3.1.1. No generated Graphify/currentness claim; direct source/reference/test/
+package relationships were reviewed. No unexplained required behavioral failure
+remains in this scoped candidate; production/AT/host-specific capabilities are
+explicit limitations rather than hidden passes.
