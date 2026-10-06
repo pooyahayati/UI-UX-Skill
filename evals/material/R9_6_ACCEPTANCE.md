@@ -1,8 +1,11 @@
 # R9.6 — Local verification and remaining acceptance gate
 
-Date: 2026-10-06. Status: **In progress, not full mode acceptance**.
+Date: 2026-10-06. Initial checkpoint status: **In progress, not full mode acceptance**.
 This is engineering-lead source review, executable regression and browser
 observation. It is not an independent fresh-agent result or customer approval.
+The subsequent authorized [forward review and scoped acceptance](R9_6_FORWARD_REVIEW.md)
+closes the representative behavioral gate. The evidence and initial disposition
+below remain historical; R9.6 is now scoped engineering-complete, not integrated.
 
 ## Authority and source
 
@@ -119,7 +122,7 @@ No new Skill semantics/runtime engine was changed by this test/report package;
 version remains 3.1.1. An eventual release still needs its own classification,
 changelog and authority. Current local checks are not new GitHub CI.
 
-## Remaining gate and separate lead disposition
+## Initial remaining gate and separate lead disposition (superseded)
 
 Lead accepts the **local verification slice**, not full R9.6 or optional-mode
 behavioral readiness. No new runtime defect was reproduced. Required forward
@@ -138,3 +141,17 @@ lead then independently scores the retained outputs, resolves any required
 finding and records full or scoped acceptance honestly. Additional device claims
 remain unverified unless actually tested. Integration, release and installation
 are separate next permissions, not implied by that review.
+
+## Final scoped disposition — 2026-10-06
+
+The owner subsequently approved one read-only independent evaluator. The linked
+[six-case forward review](R9_6_FORWARD_REVIEW.md) retains actual responses,
+attributed resource reads, separate lead scoring and the F01 reference-order
+observation. Correct product routing, preserved foundations and bounded consent
+decisions were observed; strict loader-order compliance is not established.
+The lead accepts the representative R9.6 exit using that independent slice plus
+this local evidence and exact Skill package binding. All six R9 packages have
+scoped engineering acceptance, not universal model/device conformance or actual
+customer approval. R9.5/R9.6 integration, current-head GitHub CI and any release,
+deployment or installation remain separate. No test/source gate or version was
+relaxed to close this stage; settled R7/R8 reviews are not reopened.
