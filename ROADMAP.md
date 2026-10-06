@@ -12,11 +12,11 @@ Implementation was explicitly authorized after roadmap publication. R0–R8 now 
 - Implementation: **Completed**; **9 of 9 correction stages completed**.
 - Active implementation stage: **None**. R7 and R8 are accepted for their documented Skill/synthetic-fixture scope. Owner-reported narrow/intermediate review closes the remaining manual visual gate; failed automated captures remain excluded.
 - Next implementation stage: **None** in R0–R8. R9 uses the separate package tracker below.
-- Current execution focus: R9.1–R9.4 are integrated through [PR #28](https://github.com/pooyahayati/UI-UX-Skill/pull/28) at `7c8fa2aaa64ed05ea711aeef58f82601728fc7b8`. R9.5 bounded runtime adapters are locally accepted at `29c07d4771eb4e064936091ffe438325c5173537`. R9.6 received scoped engineering acceptance on 2026-10-06 after local checks and an owner-authorized six-case independent forward review; its reference-order observation is retained, not strict loading-order conformance. All six R9 packages are accepted; R9.5/R9.6 integration remains pending on `codex/r9-material-acceptance`. Specimen primary remains proposed, dark unstarted and secondary N/A; source completion is not customer approval. No new release, deployment or installed-Skill update is inferred.
+- Current execution focus: R9.1–R9.4 are integrated through [PR #28](https://github.com/pooyahayati/UI-UX-Skill/pull/28) at `7c8fa2aaa64ed05ea711aeef58f82601728fc7b8`; R9.5/R9.6 are integrated through [PR #29](https://github.com/pooyahayati/UI-UX-Skill/pull/29) at `28d925e4e8b16523d3ba0e66dc4445632c4b84cf`. All six R9 packages have bounded engineering acceptance and passing exact-head/post-merge checks. The independent review's reference-order observation is retained, not strict loading-order conformance. No active implementation stage remains; stabilization and future owner-authorized delivery are separate. Specimen primary remains proposed, dark unstarted and secondary N/A; Skill completion is not customer approval. No new release, deployment or local installed-Skill update occurred.
 - Latest remaining-work checkpoint: the owner explicitly reported the two offered reader/overlay checks correct and instructed that the report count as review confirmation. See [R7 acceptance](#r7-final-scoped-acceptance--2026-10-06) and [R8 readiness](evals/samples/CANDIDATE_READINESS.md#final-scoped-readiness--2026-10-06) for method, source binding, scenario reconciliation and limitations.
-- Post-correction extension: **R9 — Optional, product-personalized Material Design**. Completed for bounded engineering scope on 2026-10-06, not integrated delivery or universal conformance. The owner separately authorized package continuation and one read-only independent evaluator; new delivery authority is not inferred. The earlier 2026-10-05 instruction authorized the roadmap, not implementation. See the [R9 plan](#planned-post-correction-extension--r9-optional-material-design).
+- Post-correction extension: **R9 — Optional, product-personalized Material Design**. Completed and integrated for bounded engineering scope on 2026-10-06, not universal conformance or customer approval. The owner separately authorized package continuation, one read-only independent evaluator and passing R9.5/R9.6 integration. The earlier 2026-10-05 instruction authorized the roadmap, not implementation. See the [R9 plan](#planned-post-correction-extension--r9-optional-material-design).
 - Roadmap delivery authorization: on 2026-10-05 the owner explicitly requested sending and merging the R9 plan before continuing R7. This does not authorize R9 implementation or a new release.
-- Latest R9 delivery authority: on 2026-10-06 the owner explicitly approved sending R9.5/R9.6 and merging after successful current-head checks. [PR #29](https://github.com/pooyahayati/UI-UX-Skill/pull/29) carries the accepted local candidate and this delivery record; integration remains pending until the actual merge. No new release, tag, installation or deployment is authorized.
+- Latest R9 delivery authority: on 2026-10-06 the owner explicitly approved sending R9.5/R9.6 and merging after successful current-head checks. [PR #29](https://github.com/pooyahayati/UI-UX-Skill/pull/29) was merged after those checks; [post-merge validation](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37401651859) succeeded and publication was skipped. No new release, tag, local installation or deployment is authorized.
 - Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22; R4 through PR #23; R5 through PR #24 at `61eacadece92e187434d72c5c58a9c44e55e2007`. R6 delivery is [PR #25](https://github.com/pooyahayati/UI-UX-Skill/pull/25) from `codex/r6-editable-semantic-icons`; its scoped acceptance is recorded below, and integration is gated by current CI. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
 - Dependency disposition: the [six-case R4 review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) records actual bounded forward execution, separate lead acceptance and shared-session limitations. No specialist was added or policy/test gate weakened; one writer and completed prerequisites remain enforced.
 - Quality follow-up: [QF01–QF07](evals/samples/REMEDIATION_PLAN.md) preserve all historical evidence. QF01–QF03 and QF06/QF07 have bounded Verified outcomes; QF04 is Owner accepted and QF05 is accepted from attributed manual save/cancel/accept evidence plus the supplied final-state image. Neither decision fabricates technical font metadata or automated native-dialog recovery. No further font test is required absent a concrete defect. No additional external specialist or installation was performed.
@@ -50,7 +50,7 @@ R9 is a separate follow-up, not a tenth correction stage. The correction count r
 
 | Stage | Deliverable | Status | Dependencies | Accountable role | Completed on | Acceptance evidence / PR |
 | --- | --- | --- | --- | --- | --- | --- |
-| R9 | Optional Material Design module, product personalization, component guidance, and curated design-research references | Completed | Accepted R7 and R8; authorized R9 kickoff | Engineering lead / maintainer; current design role advises | 2026-10-06 | [R9.6 scoped acceptance](evals/material/R9_6_FORWARD_REVIEW.md); R9.5/R9.6 integration pending |
+| R9 | Optional Material Design module, product personalization, component guidance, and curated design-research references | Completed | Accepted R7 and R8; authorized R9 kickoff | Engineering lead / maintainer; current design role advises | 2026-10-06 | [R9.6 scoped acceptance](evals/material/R9_6_FORWARD_REVIEW.md); [integrated R9.5/R9.6](#r95r96-delivery-checkpoint--2026-10-06) |
 
 ### Mandatory progress-update protocol
 
@@ -825,8 +825,8 @@ Keep one implementation writer. Record actual checks, changed paths, dated accep
 | R9.2 | Product-personalized foundations and curated research | Completed | Accepted R9.1 | [2026-10-06 scoped source-guidance acceptance](evals/material/R9_2_FOUNDATIONS.md); integrated PR #28 |
 | R9.3 | Scoped component guidance and stack-fit assessment | Completed | Accepted R9.2 | [2026-10-06 instruction acceptance](evals/material/R9_3_COMPONENTS.md); integrated PR #28, not full mode acceptance |
 | R9.4 | Sequential responsive samples and handbook integration | Completed | Accepted R9.2/R9.3 | [2026-10-06 source/workflow acceptance](evals/material/R9_4_SAMPLES.md); integrated PR #28, specimen approval unresolved |
-| R9.5 | Material appearance controls through existing runtime contracts | Completed | Accepted R9.4; preserved R5/R6 contracts | [2026-10-06 scoped local acceptance](evals/material/R9_5_RUNTIME.md); integration pending |
-| R9.6 | Behavioral/rendered evaluation and candidate readiness | Completed | Accepted R9.1–R9.5 | [2026-10-06 scoped acceptance](evals/material/R9_6_FORWARD_REVIEW.md) |
+| R9.5 | Material appearance controls through existing runtime contracts | Completed | Accepted R9.4; preserved R5/R6 contracts | [2026-10-06 scoped acceptance](evals/material/R9_5_RUNTIME.md); integrated PR #29 |
+| R9.6 | Behavioral/rendered evaluation and candidate readiness | Completed | Accepted R9.1–R9.5 | [2026-10-06 scoped acceptance](evals/material/R9_6_FORWARD_REVIEW.md); integrated PR #29 |
 
 ### R9.1 — Bounded activation and local routing
 
@@ -1042,6 +1042,31 @@ the lead accepts R9.6 and all six R9 packages for bounded engineering scope.
 This supplements rather than rewrites the initial checkpoint. R9.5/R9.6 remain
 local; new push/merge/CI, release, installation and deployment are not inferred.
 
+### R9.5/R9.6 delivery checkpoint — 2026-10-06
+
+After scoped acceptance, the owner explicitly authorized sending and merging
+the remaining changes after successful checks. [PR #29](https://github.com/pooyahayati/UI-UX-Skill/pull/29)
+was merged at `28d925e4e8b16523d3ba0e66dc4445632c4b84cf` from reviewed head
+`3d34a2ee6b559e7c5ec127ae0577a26e8c8a038a`. Its
+[exact-head validation](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37401544000)
+passed all project gates, including official quick validation and exact archive
+checks. The merged tree matched that head exactly.
+
+[Post-merge workflow](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37401651859)
+also succeeded, including trusted runtime regressions, official quick validation,
+archive/version checks and the event-conditioned temporary CI installer smoke.
+That temporary runner check is not an update to the owner's local installed
+Skill. The existing v3.1.1 release was detected; Publish release was skipped.
+No new version, tag, release assets, host installation or deployment occurred.
+
+This resolves prior acceptance-time integration/remote-validation gaps, without
+rewriting their historical records. All R9 packages are accepted and integrated;
+F01, six-case/shared-session limitations, untested devices/AT and proposed
+specimen approval remain as documented. Exact-current GitHub checks do not turn
+historical structural evaluation into a new model run or repair excluded captures.
+The original dirty checkout/main remained untouched; delivery used the isolated
+worktree. No new Issue/milestone or Graphify freshness result was invented.
+
 ### R9 planned destination impact
 
 These are prospective destinations, not files created or instructions activated by this update. Short paths below are relative to `skills/ui-ux-skill/`; add a resource only when it has a distinct maintained purpose.
@@ -1236,9 +1261,9 @@ Still pending:
 - [x] Scoped R7/R8 correction behavior/rendered/runtime evidence and exact candidate package verification, with the recorded manual acceptance and limitations preserved; these do not prove the new R9 mode.
 - [x] Authorized passing R7/R8 integration through PR #27, verified at the merge and post-merge run. R9 integration and any release, deployment or installation require separate authority.
 - [x] Complete the separate R9 engineering workstream: R9.1–R9.4 are integrated through PR #28; R9.5/R9.6 have scoped local acceptance, including the authorized independent forward slice and retained limitations.
-- [ ] Integrate locally accepted R9.5/R9.6 after explicit delivery authority and current exact-head checks. Local completion is not a merge, release or installation.
+- [x] Integrate accepted R9.5/R9.6 after explicit delivery authority and successful exact-head checks: PR #29 and its post-merge workflow passed. Publication skipped; local installation/release are separate.
 
-**Next delivery action:** Authorized delivery is now [PR #29](https://github.com/pooyahayati/UI-UX-Skill/pull/29): require successful exact-head checks before merge and verify the actual post-merge workflow/publication skip. Its six-case independent review and separate lead acceptance are complete, with F01 and device/validation limits retained. Preserve connected runtime/compatibility and accepted owner/font evidence. R9.1–R9.4 are merged through PR #28; their checks do not validate this new head. Retain 3.1.1; no release/install/deploy is authorized.
+**Next delivery action:** None remains for the authorized R0–R8 correction/R9 integration scope. PR #29 and its post-merge checks completed the remaining integration. Preserve connected runtime/compatibility, F01 and device/validation limits, and accepted owner/font evidence. Future stabilization fixes are evidence-driven; a capability-version/release decision, local installation or deployment needs separate owner authority. Retain 3.1.1; no release/install/deploy is authorized.
 
 **After R8 acceptance:** R9.1 received authorized local kickoff and scoped source/policy acceptance; R9.2–R9.6 each received a separate next-stage instruction. R9.1–R9.4 integration received explicit owner authority. Material remains optional per product; Google Design supplies selected research context. Do not infer independent-agent, release/install/merge authority from package completion.
 
