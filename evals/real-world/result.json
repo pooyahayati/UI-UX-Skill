@@ -1,11 +1,13 @@
 {
-  "skillVersion": "3.1.1",
+  "skillVersion": "3.2.0",
+  "sourceEvaluationVersion": "3.1.1",
+  "releaseBinding": "Current manifest compatibility binding only. The original host/model/date and case evidence below are retained historical observations, not a fresh 3.2.0 model run.",
   "host": "ChatGPT",
   "model": "GPT-5.6 Sol",
   "date": "2026-10-02",
   "evaluationMode": "in-session source-based behavioral evaluation",
   "independence": "not an independent fresh Codex/Claude session",
-  "notes": "The 3.1.1 patch changes installed-version metadata only and does not change UI/UX behavior. The five representative production-like fixtures and the 3.1.0 stabilization architecture were structurally revalidated in-session. Browser/device rendering was not available in this connector workflow; no rendered validation is claimed.",
+  "notes": "Release 3.2.0 structurally revalidates this retained five-case record against the current manifest; this is not a fresh model evaluation or rendered/device check. Original source evaluation: 3.1.1, 2026-10-02, with the host/model below unchanged. Historical note: the 3.1.1 patch changed installed-version metadata only and did not change UI/UX behavior; the five representative production-like fixtures and the 3.1.0 stabilization architecture were structurally revalidated in-session. Browser/device rendering was unavailable in that connector workflow; no rendered validation is claimed. Current R0-R8/R9 scoped forward and browser evidence is separately linked from ROADMAP.md.",
   "cases": [
     {
       "id": "real-world-dashboard-evaluation",
