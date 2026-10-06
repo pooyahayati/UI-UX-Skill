@@ -58,6 +58,7 @@ async function perform(action) {
 }
 
 function applyTokens(root, tokens) {
+  root.dataset.treatment = tokens.treatment;
   for (const [key, value] of Object.entries(tokens)) {
     if (key.startsWith("--") || key === "color-scheme") root.style.setProperty(key, value);
   }
@@ -154,7 +155,7 @@ function renderVisualizations(root, tokens) {
   ["Draft", "Review", "Publish"].forEach((name, index) => {
     const x = 5 + index * 110;
     const filled = tokens.diagramStyle === "filled";
-    diagram.append(svgElement("rect", { x, y: 10, width: 90, height: 54, rx: tokens["--radius"], fill: filled ? tokens["--action"] : tokens["--surface"], stroke: tokens["--border"], "stroke-width": tokens["--border-width"] }));
+    diagram.append(svgElement("rect", { x, y: 10, width: 90, height: 54, rx: tokens["--radius"], fill: filled ? tokens["--action"] : tokens["--surface-container"], stroke: tokens["--border"], "stroke-width": tokens["--border-width"] }));
     diagram.append(svgElement("text", { x: x + 45, y: 43, "text-anchor": "middle", fill: filled ? tokens["--inverse"] : tokens["--text"], "font-family": tokens["--font"], "font-size": tokens["--label-size"] }, name));
   });
 }
@@ -186,7 +187,7 @@ function renderControls() {
     if (spec.group !== group) {
       group = spec.group;
       const details = document.createElement("details");
-      details.open = group === "Brand" || group === "Typography" || group === "Icons";
+      details.open = group === "Brand" || group === "Typography" || group === "Icons" || group === "Presentation";
       const summary = document.createElement("summary"); summary.textContent = group;
       content = document.createElement("div"); details.append(summary, content); container.append(details);
     }

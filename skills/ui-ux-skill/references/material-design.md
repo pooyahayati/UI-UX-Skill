@@ -94,9 +94,14 @@ For selected Material with new/broad sample work in scope, read
 [sample/handbook integration](material-samples.md). It reuses the canonical
 sequential phases; narrow/audit/backend work does not load this guide.
 
-Activation, foundations/research, component and sample instructions are available
-locally. Runtime adapters and full independent/rendered mode acceptance remain
-separate R9.5/R9.6 work. A guide does not establish implemented controls. Do not
+For selected Material with runtime appearance work actually in scope, read
+[bounded runtime adapters](material-runtime.md). Reuse existing governance and
+connected prepared consumers; do not load this for an unrelated narrow fix,
+backend-only task or a product without an authorized appearance surface.
+
+Activation, foundations/research, component, sample and runtime instructions are
+available locally. Full independent/rendered mode acceptance remains separate
+R9.6 work. A guide does not establish implemented controls in a product. Do not
 preload the official catalog; consult official pages only for a concrete need
 and label unsupported/custom patterns honestly.
 

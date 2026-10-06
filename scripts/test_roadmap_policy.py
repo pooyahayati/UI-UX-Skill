@@ -142,13 +142,23 @@ class RoadmapPolicyTests(unittest.TestCase):
         row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R9.6 |"))
         fields = row.split("|")
         fields[3], fields[5] = " In progress ", " [Execution](#record) "
-        self.rejected(self.current_roadmap.replace(row, "|".join(fields)), "prerequisite packages")
+        text = self.current_roadmap.replace(row, "|".join(fields))
+        # Keep this negative prerequisite scenario stable after R9.5 completion.
+        prerequisite = next(line for line in text.splitlines() if line.startswith("| R9.5 |"))
+        prerequisite_fields = prerequisite.split("|")
+        prerequisite_fields[3], prerequisite_fields[5] = " Not started ", " Not recorded "
+        self.rejected(text.replace(prerequisite, "|".join(prerequisite_fields)), "prerequisite packages")
 
     def test_r9_overall_cannot_complete_early(self):
         row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R9 |"))
         fields = row.split("|")
         fields[3], fields[6] = " Completed ", " 2026-10-06 "
-        self.rejected(self.current_roadmap.replace(row, "|".join(fields)), "R9 overall status")
+        text = self.current_roadmap.replace(row, "|".join(fields))
+        # Preserve a genuinely unfinished prerequisite after all packages complete.
+        package = next(line for line in text.splitlines() if line.startswith("| R9.6 |"))
+        package_fields = package.split("|")
+        package_fields[3], package_fields[5] = " Not started ", " Not recorded "
+        self.rejected(text.replace(package, "|".join(package_fields)), "R9 overall status")
 
     def test_dated_first_package_acceptance_does_not_complete_extension(self):
         row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R9.1 |"))

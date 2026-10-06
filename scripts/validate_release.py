@@ -59,6 +59,7 @@ for path in [
     f"skills/{SKILL_NAME}/references/material-components.md",
     f"skills/{SKILL_NAME}/references/material-stack-fit.md",
     f"skills/{SKILL_NAME}/references/material-samples.md",
+    f"skills/{SKILL_NAME}/references/material-runtime.md",
     f"skills/{SKILL_NAME}/references/material-components/actions.md",
     f"skills/{SKILL_NAME}/references/material-components/navigation.md",
     f"skills/{SKILL_NAME}/references/material-components/forms.md",
@@ -147,7 +148,8 @@ if material_path.is_file():
                  ["| Selected |", "| Recommended, unaccepted |", "| Rejected |",
                   "| Inactive |", "**Targeted correction:**", "**Audit only:**",
                   "**Backend only:**", "**WordPress/host UI:**", "**No admin:**",
-                  "Selection is not implementation-library approval"],
+                  "Selection is not implementation-library approval",
+                  "[bounded runtime adapters](material-runtime.md)"],
                  "Material activation resource")
 
 require_text(

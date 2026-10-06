@@ -20,9 +20,10 @@ LEGACY_DEFAULTS = dict(schema=1, palette="ocean", font="system", bodySize=16,
                 lineHeight=1.6, density="balanced", spacing=16, radius=8,
                 border=1, shadow="soft", buttonStyle="filled", theme="light",
                 motion="reduced", chartStyle="bars", diagramStyle="outlined")
-DEFAULTS = dict(LEGACY_DEFAULTS, schema=2, iconFamily="outline", iconSize=20,
+ICON_DEFAULTS = dict(LEGACY_DEFAULTS, schema=2, iconFamily="outline", iconSize=20,
                 iconTone="inherit", iconStroke=2,
                 **{use + "Icon": "plain" for use in USES})
+DEFAULTS = dict(ICON_DEFAULTS, schema=3, treatment="baseline", headingFont="inherit")
 
 # Human contract and default source; none of these choices can alter permissions.
 SETTING_SPECS = [
@@ -55,6 +56,13 @@ SETTING_SPECS.extend([
 SETTING_SPECS.extend((use + "Icon", label + " icon", "Icons", VARIANTS,
                       "all " + use + " uses, including private/published surfaces and overlays")
                      for use, label in USES.items())
+ICON_SPECS = list(SETTING_SPECS)
+SETTING_SPECS.extend([
+    ("treatment", "Owned surface treatment", "Presentation", ["baseline", "material"],
+     "owned product header, fields, disclosure, diagram and overlay; not host UI"),
+    ("headingFont", "Heading font role", "Presentation", ["inherit", "serif"],
+     "product and overlay headings; body/labels/chart retain the body font"),
+])
 SPECS = {row[0]: row for row in SETTING_SPECS}
 PALETTES = {
     "ocean": ("#145f86", "#8bd3ff"),
@@ -125,10 +133,17 @@ def resolve(config):
     colors = THEMES[config["theme"]]
     action = PALETTES[config["palette"]][config["theme"] == "dark"]
     height, row = {"compact": (44, 44), "balanced": (48, 52), "comfortable": (56, 64)}[config["density"]]
+    material = config["treatment"] == "material"
+    if material:
+        height = max(height, 48)  # Prepared fixture touch floor, not a universal web unit rule.
+    font = "system-ui, sans-serif" if config["font"] == "system" else "Georgia, serif"
+    container = ("#263746" if config["theme"] == "dark" else "#eef0f3") if material else colors["surface"]
     tokens = {"--" + key: value for key, value in colors.items()}
     tokens.update({"--action": action, "--focus": action, "--chart-series": action,
                    "--chart-label": colors["text"], "--chart-grid": colors["border"],
-                   "--font": "system-ui, sans-serif" if config["font"] == "system" else "Georgia, serif",
+                   "--font": font,
+                   "--heading-font": font if config["headingFont"] == "inherit" else "Georgia, serif",
+                   "--surface-container": container, "--field-background": container,
                    "--body-size": f'{config["bodySize"]}px', "--heading-size": f'{config["headingSize"]}px',
                    "--label-size": f'{config["labelSize"]}px', "--body-weight": str(config["bodyWeight"]),
                    "--heading-weight": str(config["headingWeight"]), "--line-height": str(config["lineHeight"]),
@@ -144,7 +159,7 @@ def resolve(config):
                    "iconStroke": config["iconStroke"] if config["iconFamily"] == "outline" else 2,
                    "icons": resolve_icons(config),
                    "color-scheme": config["theme"], "chartStyle": config["chartStyle"],
-                   "diagramStyle": config["diagramStyle"]})
+                   "diagramStyle": config["diagramStyle"], "treatment": config["treatment"]})
     return tokens
 
 
@@ -167,7 +182,10 @@ def stored_config(raw):
         # Read-time normalization only: strict old snapshot first, preserve every
         # valid old value, add prepared new fields, never rewrite historical bytes.
         legacy = _validate(config, LEGACY_DEFAULTS, LEGACY_SPECS)
-        return validate({**DEFAULTS, **legacy, "schema": 2})
+        return validate({**DEFAULTS, **legacy, "schema": DEFAULTS["schema"]})
+    if type(config) is dict and type(config.get("schema")) is int and config["schema"] == 2:
+        previous = _validate(config, ICON_DEFAULTS, ICON_SPECS)
+        return validate({**DEFAULTS, **previous, "schema": DEFAULTS["schema"]})
     return validate(config)
 
 

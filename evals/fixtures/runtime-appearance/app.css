@@ -30,6 +30,12 @@ summary { cursor: pointer; min-block-size: 44px; padding-block: 8px; font-weight
 .reader-region { margin-block: 32px; max-inline-size: 920px; }
 .product-surface { font-family: var(--font); color: var(--text); background: var(--surface); font-size: var(--body-size); font-weight: var(--body-weight); line-height: var(--line-height); }
 .surface-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space); }
+.product-surface h1, .product-surface h2, .product-surface h3, #surface-dialog h2 { font-family: var(--heading-font, var(--font)); }
+.product-surface[data-treatment="material"] .surface-heading { background: var(--surface-container); padding: var(--space); border-radius: var(--radius); }
+.product-surface[data-treatment="material"] input { background: var(--field-background); }
+.product-surface[data-treatment="material"] .product-details, #surface-dialog[data-treatment="material"] { background: var(--surface-container); }
+.product-surface[data-treatment="material"] .product-details { padding: var(--space); border-radius: var(--radius); }
+.product-surface[data-treatment="material"] .product-details > summary { min-block-size: var(--control-height); }
 .brand-mark { display: inline-grid; place-items: center; inline-size: 40px; block-size: 40px; background: var(--action); color: var(--inverse); border-radius: var(--radius); }
 .table-scroll { overflow-x: auto; }
 table { border-collapse: collapse; inline-size: 100%; text-align: start; }
