@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>هم‌آموز | نمونهٔ اولیهٔ طراحی</title>
+  <link rel="stylesheet" href="../../fixtures/material-samples/tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">رفتن به محتوای اصلی</a>
+  <header class="shell topbar">
+    <a class="brand" href="#lessons" aria-label="هم‌آموز، درس‌های من">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v15M3 4c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 2-3-3-6-3-9-2Z"/></svg>
+      هم‌آموز
+    </a>
+    <span class="phase">پیشنهاد اولیه · تأیید نشده</span>
+  </header>
+  <main class="shell" id="main">
+    <p class="notice">نمونهٔ نمایشی با محتوای ساختگی؛ ذخیره و پایان تمرین شبیه‌سازی می‌شوند. چیزی به سرور ارسال نمی‌شود و با بازخوانی صفحه از بین می‌رود.</p>
+    <section id="lessons" aria-labelledby="list-title">
+      <div class="intro"><p class="eyebrow">یادگیری با قدم‌های کوچک</p>
+        <h1 id="list-title" tabindex="-1">امروز، یک قدم جلوتر</h1>
+        <p class="muted">یک درس کوتاه بخوانید و با یک تمرین ساده، آن را به کار بگیرید.</p>
+      </div>
+      <div class="layout">
+        <article class="card lesson-card" id="lesson-card">
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 120 96"><rect x="20" y="12" width="80" height="72" rx="12"/><path d="M40 36h40M40 48h30M40 60h20"/><circle cx="91" cy="74" r="15"/><path d="m84 74 5 5 8-10"/></svg></div>
+          <div><p class="eyebrow">درس اول · حدود پنج دقیقه</p><h2>از آرزو تا یک هدف روشن</h2>
+            <p class="muted">یاد بگیرید خواستهٔ کلی را به یک کار کوچک و مشخص تبدیل کنید.</p>
+            <div class="card-bottom"><span class="tag">آمادهٔ شروع</span><a class="button primary" href="#lesson">شروع درس</a></div>
+          </div>
+        </article>
+        <aside class="context card"><h2>قرار نیست همه‌چیز را یک‌باره یاد بگیرید</h2><p>همین یک تمرین کافی است. پاسخ‌تان می‌تواند کوتاه باشد؛ لازم نیست از ابتدا کامل باشد.</p></aside>
+      </div>
+      <p id="list-state" role="status" hidden></p>
+    </section>
+    <section id="lesson" aria-labelledby="lesson-title" hidden>
+      <a class="back" href="#lessons"><span aria-hidden="true">→</span> بازگشت به درس‌ها</a>
+      <div class="intro"><p class="eyebrow">درس اول · تمرین امروز</p><h1 id="lesson-title" tabindex="-1">از آرزو تا یک هدف روشن</h1><p class="muted">شناسهٔ تمرین: <bdi lang="en" dir="ltr">LESSON-01</bdi></p></div>
+      <div class="layout">
+        <article class="card exercise">
+          <h2>یک هدف کوچک انتخاب کنید</h2>
+          <p>«می‌خواهم بیشتر یاد بگیرم» یک خواستهٔ کلی است. هدف روشن می‌گوید چه کاری را، در چه زمانی انجام می‌دهید.</p>
+          <details class="hint"><summary>یک مثال ببینم</summary><p>«امروز ده دقیقه تمرین می‌کنم و یک نکته را با زبان خودم می‌نویسم.»</p></details>
+          <form id="answer-form" novalidate>
+            <label for="answer">امروز چه کار کوچکی انجام می‌دهید؟</label>
+            <p class="muted help" id="answer-help">با یک جمله شروع کنید؛ حداکثر ۶۰۰ نویسه.</p>
+            <textarea id="answer" name="answer" rows="4" maxlength="600" dir="auto" aria-describedby="answer-help answer-status" required></textarea>
+            <p id="answer-status" class="status" role="status" aria-live="polite">پاسخی ثبت نشده است.</p>
+            <div class="actions"><button class="primary" id="save" type="submit">ذخیرهٔ پاسخ</button><button class="secondary" id="finish" type="button" disabled aria-describedby="finish-help">پایان این تمرین</button></div>
+            <p class="muted help" id="finish-help">برای پایان تمرین، ابتدا پاسخ را در همین نمونه ذخیره کنید.</p>
+            <div class="result" id="result" hidden><h2>نتیجهٔ نمایشی</h2><p id="result-text"></p><p id="saved-answer"></p></div>
+          </form>
+        </article>
+        <aside class="context card"><h2>یک پاسخ واقعی، نه یک پاسخ بی‌نقص</h2><p>کاری را بنویسید که امروز فرصت انجامش را دارید. این نمونه پاسخ را نمره‌گذاری نمی‌کند.</p></aside>
+      </div>
+    </section>
+    <noscript><p>برای آزمودن ذخیره و رفت‌وبرگشت بین درس‌ها، اجرای جاوااسکریپت لازم است. این نمونه بک‌اند ندارد.</p></noscript>
+  </main>
+  <footer class="shell">
+    <details class="review"><summary>کنترل‌های آزمون نمونه</summary><label class="check"><input type="checkbox" id="fail-next"> شبیه‌سازی خطا در ذخیرهٔ بعدی</label><label for="list-mode">وضعیت نمایشی فهرست</label><select id="list-mode"><option value="ready">آماده</option><option value="loading">در حال دریافت</option><option value="empty">بدون درس</option></select><p>این کنترل‌ها تنظیمات مالک سامانه نیستند و هیچ تأییدی ثبت نمی‌کنند.</p></details>
+    <p class="meta">نسخهٔ نمونه: <bdi dir="ltr">primary-r1</bdi> · دفترچه: <bdi dir="ltr">h1</bdi> · فقط طرح اصلی فارسی و روشن</p>
+    <p><a href="DESIGN.md">دفترچهٔ طراحی</a></p>
+  </footer>
+</body>
+</html>

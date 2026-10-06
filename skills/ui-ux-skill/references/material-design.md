@@ -90,9 +90,13 @@ Read [stack fit](material-stack-fit.md) only for an actual implementation/provid
 decision. Do not load families for recommended/unaccepted, rejected, inactive or
 backend-only work. Audit-only use remains read-only; narrow tasks retain scope.
 
-Activation, foundations/research and scoped component instructions are available
-locally. Samples, runtime adapters and independent/rendered acceptance remain
-separate R9.4–R9.6 work. A guide does not establish implemented controls. Do not
+For selected Material with new/broad sample work in scope, read
+[sample/handbook integration](material-samples.md). It reuses the canonical
+sequential phases; narrow/audit/backend work does not load this guide.
+
+Activation, foundations/research, component and sample instructions are available
+locally. Runtime adapters and full independent/rendered mode acceptance remain
+separate R9.5/R9.6 work. A guide does not establish implemented controls. Do not
 preload the official catalog; consult official pages only for a concrete need
 and label unsupported/custom patterns honestly.
 

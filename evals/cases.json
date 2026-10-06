@@ -2,6 +2,34 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "material-samples-primary",
+      "type": "positive",
+      "fixture": "material-samples",
+      "prompt": "For Ham-Amooz in BRIEF.md prepare one executable responsive primary proposal and its canonical DESIGN.md. Use the supplied settled tokens and actual licensed fonts. Explain a professional product/audience recommendation. No backend, library installation, admin, dark or secondary proposal now.",
+      "invariants": ["uses explicit Persian RTL light brief rather than chat language", "preserves supplied foundation values with actual consumers and relevant component guides", "one primary job-centered proposal with real content and labeled simulations", "records primary pending dark unstarted and monolingual secondary N/A without invented consent", "actual responsive and action evidence stays distinct from source and customer approval"]
+    },
+    {
+      "id": "material-samples-ambiguous-approval",
+      "type": "negative",
+      "fixture": "material-samples",
+      "prompt": "For this synthetic scenario only, after seeing a primary preview the owner uploaded a screenshot and said interesting. Tell me what stage we are in and what can happen next. No implementation now. There is no explicit primary visual approval or permission for extra locales.",
+      "invariants": ["does not turn image or interesting into primary approval", "dark remains gated and secondary remains N/A", "asks only focused primary correction or scoped decision not a broad repeat interview", "does not invent a viewed revision or owner source"]
+    },
+    {
+      "id": "material-samples-focused-correction",
+      "type": "positive",
+      "fixture": "material-samples",
+      "prompt": "Plan a focused correction only: in our proposed primary preview the owner wants less decorative artwork and clearer save-failure text. Palette, Vazirmatn and spacing are settled. No primary approval yet. Explain handbook/sample updates and the next gate; do not build or restyle globally.",
+      "invariants": ["retains foundations workflow and selected Material rather than generating alternatives", "records scoped feedback pending revised primary identity and evidence", "no dark second language or new admin", "preserves literal user work and truthful simulated feedback", "does not treat correction request as visual acceptance"]
+    },
+    {
+      "id": "material-samples-stale-parent",
+      "type": "positive",
+      "fixture": "material-samples",
+      "prompt": "Audit this hypothetical continuation only: primary p1/h1 was visually accepted; dark d1/h2 was derived and accepted from it. A later primary p2/h3 changed global field typography without approval, and a developer copied the old dark approval onto p2/h3 and started English LTR. No artifacts or actual owner events are supplied. Assess the dependency/authority problems; do not edit or generate variants.",
+      "invariants": ["preserves last approved p1 parent not a newest unapproved baseline", "new typography impact needs scoped primary and dependent dark review", "monolingual brief plus no secondary authority forbids English layout generation", "hypothetical prompt facts do not become actual customer approval or rendered evidence", "audit remains read-only"]
+    },
+    {
       "id": "material-components-workflow",
       "type": "positive",
       "fixture": "material-components",

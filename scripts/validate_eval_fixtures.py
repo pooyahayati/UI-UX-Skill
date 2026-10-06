@@ -42,6 +42,7 @@ for case in manifest.get("cases", []):
             errors.append(f"{case_id}: fixture {fixture} is missing README.md")
 
 required_fixtures = {
+    "material-samples",
     "material-components",
     "material-foundations",
     "material-activation",
@@ -87,6 +88,15 @@ required_component_cases = {
     "material-components-provider-gaps", "material-components-react-fit",
     "material-components-inactive", "material-components-missing-stack",
 }
+required_material_samples = {"material-samples-primary", "material-samples-ambiguous-approval",
+                             "material-samples-focused-correction", "material-samples-stale-parent"}
+for case_id in required_material_samples:
+    matches = [c for c in manifest.get("cases", []) if c.get("id") == case_id]
+    if len(matches) != 1 or matches[0].get("fixture") != "material-samples":
+        errors.append(f"{case_id}: missing case or wrong raw Material samples fixture")
+for name in ("README.md", "BRIEF.md", "tokens.css"):
+    if not (EVALS / "fixtures/material-samples" / name).is_file():
+        errors.append(f"Material sample raw fixture missing {name}")
 missing_components = sorted(required_component_cases - seen)
 if missing_components:
     errors.append("Missing raw Material component cases: " + ", ".join(missing_components))

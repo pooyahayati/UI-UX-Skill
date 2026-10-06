@@ -93,6 +93,12 @@ not choose a library, approve a sample or activate runtime configuration.
 - Broad implementation authority / remaining gates: not recorded; not implied by selection.
 - Proposed changes against last approved baseline / affected decisions needing approval: not recorded.
 
+For selected Material sample work, reuse these rows to link the relevant component
+guides and official source/review date, distinguish product inference and custom/
+provider exceptions, and identify actual token/config consumers. Bind each phase
+approval to sample plus handbook revision and its approved parent; a style choice
+alone is not sample approval. Omit this overlay for inactive or narrow work.
+
 | Sample revision | Language / direction / theme / viewport / state | Action or viewing method / font evidence | Actual result / capture location / limitation |
 | --- | --- | --- | --- |
 | None produced | Not recorded | Not run | No rendered proof claimed |

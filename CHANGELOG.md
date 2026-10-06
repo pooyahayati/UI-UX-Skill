@@ -4,6 +4,18 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Sequential Material samples and handbook integration (R9.4)
+
+- Added conditional sample guidance and handbook traceability using the existing
+  primary → dark → needed/authorized-secondary gates, not another design authority.
+- Added one native, authored Persian primary learning specimen with settled
+  foundation consumption, licensed fonts, responsive list/detail and simulated
+  validation/save/failure/retry/result. No actual customer approval is invented;
+  dark remains unstarted and the monolingual secondary phase is N/A.
+- Added raw continuation cases, phase/asset regression tests and CI wiring.
+  Structural tests are not consent or independent model evidence; runtime owner
+  adapters/full mode evaluation remain R9.5/R9.6. No release/install/push/merge.
+
 ### Scoped Material components and implementation fit (R9.3)
 
 - Added a navigable live-catalog index, six selectively loaded workflow-family

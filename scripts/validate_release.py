@@ -58,6 +58,7 @@ for path in [
     f"skills/{SKILL_NAME}/references/design-research.md",
     f"skills/{SKILL_NAME}/references/material-components.md",
     f"skills/{SKILL_NAME}/references/material-stack-fit.md",
+    f"skills/{SKILL_NAME}/references/material-samples.md",
     f"skills/{SKILL_NAME}/references/material-components/actions.md",
     f"skills/{SKILL_NAME}/references/material-components/navigation.md",
     f"skills/{SKILL_NAME}/references/material-components/forms.md",
