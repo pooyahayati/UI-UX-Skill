@@ -256,6 +256,63 @@ class PersistedLifecycle(unittest.TestCase):
         self.assertIsNone(self.store.draft("a", "owner-a"))
         self.assertEqual(len(self.store.history("a", 50)), 1)
 
+    def test_material_concurrent_owners_do_not_mix_style_or_foundations(self):
+        material = dict(DEFAULTS, treatment="material", headingFont="serif",
+                        palette="plum", theme="dark", motion="reduced",
+                        iconFamily="solid", settingsIcon="badge")
+        baseline = dict(DEFAULTS, palette="forest", spacing=24, density="compact")
+        first = self.save(config=material)
+        second = self.save("owner-a-peer", config=baseline)
+        barrier = threading.Barrier(2)
+        def publish(actor, draft):
+            barrier.wait(timeout=5)
+            try:
+                self.store.publish("a", actor, draft["draftRevision"])
+                return actor
+            except AppearanceError as error:
+                self.assertEqual(error.code, "BASE_CONFLICT")
+                return None
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            futures = [pool.submit(publish, "owner-a", first),
+                       pool.submit(publish, "owner-a-peer", second)]
+            winners = [future.result() for future in futures]
+        self.assertEqual(sum(winner is not None for winner in winners), 1)
+        expected = material if "owner-a" in winners else baseline
+        current = Store(self.path).published("a")
+        self.assertEqual((current["revision"], current["config"], current["tokens"]),
+                         (1, expected, resolve(expected)))
+        loser = "owner-a-peer" if "owner-a" in winners else "owner-a"
+        self.assertIsNotNone(self.store.draft("a", loser))
+        self.assertEqual(self.store.published("b")["config"], DEFAULTS)
+        restored = self.store.rollback("a", "owner-a", 0, 1)
+        self.assertEqual((restored["revision"], restored["config"]), (2, DEFAULTS))
+        self.assertEqual(len(self.store.history("a", 50)), 3)
+
+    def test_corrupt_active_material_recovers_whole_prior_material_without_rewrite(self):
+        previous = dict(DEFAULTS, treatment="material", palette="forest",
+                        headingFont="serif", motion="reduced", density="compact",
+                        iconFamily="solid", settingsIcon="badge")
+        first = self.save(config=previous)
+        self.store.publish("a", "owner-a", first["draftRevision"])
+        second = self.save(base=1, config=dict(previous, palette="plum", theme="dark"))
+        self.store.publish("a", "owner-a", second["draftRevision"])
+        with self.store.connection(True) as db:
+            original = db.execute("SELECT config FROM versions WHERE tenant='a' AND revision=1").fetchone()[0]
+            db.execute("UPDATE versions SET config=? WHERE tenant='a' AND revision=2",
+                       ('{"schema":3,"treatment":"material"}',))
+        recovered = Store(self.path).published("a")
+        self.assertEqual((recovered["source"], recovered["revision"], recovered["config"]),
+                         ("history-fallback", 1, previous))
+        self.assertEqual(recovered["tokens"], resolve(previous))
+        self.assertEqual(recovered["tokens"]["--duration"], "0ms")
+        self.assertTrue(recovered["tokens"]["icons"]["settings"]["fallback"])
+        self.assertFalse(self.store.history("a", 50)[0]["valid"])
+        with self.store.connection() as db:
+            self.assertEqual(db.execute("SELECT config FROM versions WHERE tenant='a' AND revision=1").fetchone()[0], original)
+            self.assertEqual(db.execute("SELECT revision FROM active WHERE tenant='a'").fetchone()[0], 2)
+        # Read recovery never silently repairs the pointer or publishes a draft.
+        self.assertEqual(self.store.published("b")["config"], DEFAULTS)
+
     def test_invalid_missing_and_failed_load_are_whole_fallbacks(self):
         draft = self.save()
         self.store.publish("a", "owner-a", draft["draftRevision"])
