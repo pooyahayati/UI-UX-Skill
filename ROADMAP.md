@@ -12,9 +12,9 @@ Implementation was explicitly authorized after roadmap publication. R0–R8 now 
 - Implementation: **Completed**; **9 of 9 correction stages completed**.
 - Active implementation stage: **None**. R7 and R8 are accepted for their documented Skill/synthetic-fixture scope. Owner-reported narrow/intermediate review closes the remaining manual visual gate; failed automated captures remain excluded.
 - Next implementation stage: **None** in R0–R8. R9 uses the separate package tracker below.
-- Current execution focus: R9.4 sequential samples/handbook scope is locally accepted on `codex/r9-material-samples`, based on accepted local R9.3 at `e75f59fe044f94fc099d6b9579f910a8ded0e1e7`. R9.5 is next, not started. Specimen primary is proposed, dark unstarted and secondary N/A; source completion is not customer approval. R9 source work is not pushed/merged into `main`; merged main remains the separately verified R7/R8 baseline. No R9 push/merge, release, deployment or installed-Skill update is inferred.
+- Current execution focus: R9.1–R9.4 are integrated through [PR #28](https://github.com/pooyahayati/UI-UX-Skill/pull/28) at `7c8fa2aaa64ed05ea711aeef58f82601728fc7b8`. R9.5 bounded runtime adapters are locally accepted on `codex/r9-material-runtime`, based on that exact merge; new integration remains pending. R9.6 is next, not started. Specimen primary remains proposed, dark unstarted and secondary N/A; source completion is not customer approval. No new release, deployment or installed-Skill update is inferred.
 - Latest remaining-work checkpoint: the owner explicitly reported the two offered reader/overlay checks correct and instructed that the report count as review confirmation. See [R7 acceptance](#r7-final-scoped-acceptance--2026-10-06) and [R8 readiness](evals/samples/CANDIDATE_READINESS.md#final-scoped-readiness--2026-10-06) for method, source binding, scenario reconciliation and limitations.
-- Post-correction extension: **R9 — Optional, product-personalized Material Design**. In progress under the separate bounded exception: after the local R9.3 handoff, the owner separately requested R9.4 on 2026-10-06. Current implementation scope is R9.4 only. The earlier 2026-10-05 instruction authorized the roadmap, not implementation. See the [R9 plan](#planned-post-correction-extension--r9-optional-material-design).
+- Post-correction extension: **R9 — Optional, product-personalized Material Design**. In progress under the separate bounded exception: on 2026-10-06 the owner requested merging prepared R9.1–R9.4 and proceeding to R9.5. Current new implementation scope is R9.5 only. The earlier 2026-10-05 instruction authorized the roadmap, not implementation. See the [R9 plan](#planned-post-correction-extension--r9-optional-material-design).
 - Roadmap delivery authorization: on 2026-10-05 the owner explicitly requested sending and merging the R9 plan before continuing R7. This does not authorize R9 implementation or a new release.
 - Current authorized delivery: the owner requested remaining corrections, passing merges and practical defaults, with no new release. R0/R1 are integrated through PR #19; R2 through PR #20; earlier R3 contract through PR #21; corrected R3 through PR #22; R4 through PR #23; R5 through PR #24 at `61eacadece92e187434d72c5c58a9c44e55e2007`. R6 delivery is [PR #25](https://github.com/pooyahayati/UI-UX-Skill/pull/25) from `codex/r6-editable-semantic-icons`; its scoped acceptance is recorded below, and integration is gated by current CI. Version/tag/release assets stay unchanged; deployment and further installed-Skill changes remain separate.
 - Dependency disposition: the [six-case R4 review](evals/samples/INCREMENTAL_FORWARD_REVIEW.md) records actual bounded forward execution, separate lead acceptance and shared-session limitations. No specialist was added or policy/test gate weakened; one writer and completed prerequisites remain enforced.
@@ -49,7 +49,7 @@ R9 is a separate follow-up, not a tenth correction stage. The correction count r
 
 | Stage | Deliverable | Status | Dependencies | Accountable role | Completed on | Acceptance evidence / PR |
 | --- | --- | --- | --- | --- | --- | --- |
-| R9 | Optional Material Design module, product personalization, component guidance, and curated design-research references | In progress | Accepted R7 and R8; authorized R9 kickoff | Engineering lead / maintainer; current design role advises | Not completed | [R9.4 continuation](#r94-execution-record--2026-10-06); R9.5/R9.6 not started |
+| R9 | Optional Material Design module, product personalization, component guidance, and curated design-research references | In progress | Accepted R7 and R8; authorized R9 kickoff | Engineering lead / maintainer; current design role advises | Not completed | [R9.5 continuation](#r95-execution-record--2026-10-06); R9.1–R9.4 integrated, R9.6 not started |
 
 ### Mandatory progress-update protocol
 
@@ -820,11 +820,11 @@ Keep one implementation writer. Record actual checks, changed paths, dated accep
 
 | Package | Deliverable | Status | Dependencies | Acceptance record |
 | --- | --- | --- | --- | --- |
-| R9.1 | Bounded activation, routing, and policy consistency | Completed | Accepted R7/R8; authorized kickoff | [2026-10-06 scoped source/policy acceptance](evals/material/R9_1_ACTIVATION.md); integration pending |
-| R9.2 | Product-personalized foundations and curated research | Completed | Accepted R9.1 | [2026-10-06 scoped source-guidance acceptance](evals/material/R9_2_FOUNDATIONS.md); integration pending |
-| R9.3 | Scoped component guidance and stack-fit assessment | Completed | Accepted R9.2 | [2026-10-06 local instruction acceptance](evals/material/R9_3_COMPONENTS.md); not full mode/runtime acceptance |
-| R9.4 | Sequential responsive samples and handbook integration | Completed | Accepted R9.2/R9.3 | [2026-10-06 local source/workflow acceptance](evals/material/R9_4_SAMPLES.md); real specimen approval remains unresolved; not pushed/merged |
-| R9.5 | Material appearance controls through existing runtime contracts | Not started | Accepted R9.4; preserved R5/R6 contracts | Not recorded |
+| R9.1 | Bounded activation, routing, and policy consistency | Completed | Accepted R7/R8; authorized kickoff | [2026-10-06 scoped source/policy acceptance](evals/material/R9_1_ACTIVATION.md); integrated PR #28 |
+| R9.2 | Product-personalized foundations and curated research | Completed | Accepted R9.1 | [2026-10-06 scoped source-guidance acceptance](evals/material/R9_2_FOUNDATIONS.md); integrated PR #28 |
+| R9.3 | Scoped component guidance and stack-fit assessment | Completed | Accepted R9.2 | [2026-10-06 instruction acceptance](evals/material/R9_3_COMPONENTS.md); integrated PR #28, not full mode acceptance |
+| R9.4 | Sequential responsive samples and handbook integration | Completed | Accepted R9.2/R9.3 | [2026-10-06 source/workflow acceptance](evals/material/R9_4_SAMPLES.md); integrated PR #28, specimen approval unresolved |
+| R9.5 | Material appearance controls through existing runtime contracts | Completed | Accepted R9.4; preserved R5/R6 contracts | [2026-10-06 scoped local acceptance](evals/material/R9_5_RUNTIME.md); integration pending |
 | R9.6 | Behavioral/rendered evaluation and candidate readiness | Not started | Accepted R9.1–R9.5 | Not recorded |
 
 ### R9.1 — Bounded activation and local routing
@@ -955,13 +955,43 @@ customer gates. Exact-commit package/Git evidence is external to avoid self-refe
 
 ### R9.5 — Bounded admin appearance and icons
 
-- [ ] Extend the R5/R6 parameter contracts and real consumers, not a parallel settings engine. For in-scope products with admin, prepare connected controls for palette/theme, available font families/roles/sizes, supported density/spacing, borders/radius/elevation, existing component variants, and approved motion levels.
-- [ ] Retain editable icon families and per-use semantic assignments with an approved gallery, supported visual properties, meaningful fallback, accessible labels, and selective directional mirroring. Material Symbols is an available option, not a mandatory icon family; unprepared assets/libraries still need authorized code/build work.
-- [ ] Show real affected consumers in draft preview and after publication/refresh. Routine supported edits must not require changing component/page source or manually editing `DESIGN.md`; the handbook describes intent/contracts, not the active settings database.
-- [ ] Preserve trusted permissions, tenant/user boundaries, validation, private drafts, published revision/history, safe defaults, reset, migration, and rollback. Reject arbitrary CSS/JavaScript, unsafe asset input, invalid values, and appearance choices that violate protected floors.
-- [ ] Do not invent an admin/backend for a product without one or turn a narrow existing-product correction into a global appearance project. Reuse host-appropriate approved surfaces and report follow-up scope honestly.
+- [x] Extend the R5/R6 parameter contracts and real consumers, not a parallel settings engine. For in-scope products with admin, prepare connected controls for palette/theme, available font families/roles/sizes, supported density/spacing, borders/radius/elevation, existing component variants, and approved motion levels.
+- [x] Retain editable icon families and per-use semantic assignments with an approved gallery, supported visual properties, meaningful fallback, accessible labels, and selective directional mirroring. Material Symbols is an available option, not a mandatory icon family; unprepared assets/libraries still need authorized code/build work.
+- [x] Show real affected consumers in draft preview and after publication/refresh. Routine supported edits must not require changing component/page source or manually editing `DESIGN.md`; the handbook describes intent/contracts, not the active settings database.
+- [x] Preserve trusted permissions, tenant/user boundaries, validation, private drafts, published revision/history, safe defaults, reset, migration, and rollback. Reject arbitrary CSS/JavaScript, unsafe asset input, invalid values, and appearance choices that violate protected floors.
+- [x] Do not invent an admin/backend for a product without one or turn a narrow existing-product correction into a global appearance project. Reuse host-appropriate approved surfaces and report follow-up scope honestly.
 
 Output / exit: prepared Material appearance choices and icon edits demonstrably reach real consumers, persist, and reverse safely, without regressions to existing configuration or business behavior.
+
+### R9 integration checkpoint — 2026-10-06
+
+The owner explicitly requested merging prepared R9.1–R9.4 and continuing.
+[PR #28](https://github.com/pooyahayati/UI-UX-Skill/pull/28) merged at exact reviewed
+head `ac54922e5cd91542e5cb7bca60744893e859c96d`, merge
+`7c8fa2aaa64ed05ea711aeef58f82601728fc7b8`.
+[PR CI](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37394128649) and
+[merge CI](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37394244648)
+passed, including official quick validation and merge-bound ephemeral installer
+smoke. Publish release was skipped; existing version/tag/assets remain unchanged.
+This resolves preceding R9.1–R9.4 acceptance-time integration-pending statements,
+which remain historical records. The isolated worktree starts R9.5 from the
+verified merge; unrelated original checkout and local main are not reset.
+
+### R9.5 execution record — 2026-10-06
+
+The owner authorized next-stage continuation. Scope: one local writer extending
+existing R5/R6 catalog, resolver and owned consumers, not a new admin/settings
+engine/provider. Schema 3 adds prepared Material treatment and heading font role;
+baseline remains default and complete schemas 1/2 normalize without historical
+rewrites. [Stage evidence](evals/material/R9_5_RUNTIME.md) separates 24 passing
+runtime tests, 11 passing DOM-model keyboard assertions and actual browser
+private/public/theme/mobile/reset/rollback observations. Final regressions passed
+(61 Python test methods and all scoped validators/harness checks); repeat-build
+88/95-member working-source archives passed exact source/inventory/CRC checks.
+Lead accepts the R9.5 scoped exit locally; new R9.5 push/merge/CI are pending.
+Official local quick validation remains unavailable (`yaml`), not a pass. R9.6 is not
+started; no independent-agent, production font upload, exact OS glyph identity,
+library conformity, customer approval or new R9.5 CI/merge is claimed.
 
 ### R9.6 — Behavioral, rendered, and package acceptance
 
@@ -1167,11 +1197,11 @@ Still pending:
 - [x] Execution and evidenced scoped acceptance of R7/R8; see the final acceptance and scenario reconciliation above.
 - [x] Scoped R7/R8 correction behavior/rendered/runtime evidence and exact candidate package verification, with the recorded manual acceptance and limitations preserved; these do not prove the new R9 mode.
 - [x] Authorized passing R7/R8 integration through PR #27, verified at the merge and post-merge run. R9 integration and any release, deployment or installation require separate authority.
-- [ ] Complete the separate R9 workstream: R9.1–R9.4 have scoped local source/workflow acceptance; R9.5/R9.6, full mode acceptance and integration remain open.
+- [ ] Complete the separate R9 workstream: R9.1–R9.4 are integrated through PR #28; R9.5 is locally accepted, new integration and R9.6/full mode acceptance remain open.
 
-**Next delivery action:** R9.4 local source/workflow scope is accepted; preserve its inspectable primary and honest phase status. Next unstarted implementation package is R9.5, bounded existing admin appearance and icons, subject to a next-stage instruction. Sending/merge need actual authority. PR #27 is merged at `13710a2abcc51f2fdaac6d7524774d734a1aa1ef`; its post-merge checks passed and publication was skipped. Do not repeat accepted font or owner manual tests absent a concrete defect. Retain 3.1.1; no release/install/deploy is authorized.
+**Next delivery action:** R9.5 has scoped local acceptance; preserve its tested connected runtime and compatibility boundaries. R9.6 is next unstarted package and needs its next-stage instruction. R9.1–R9.4 are merged through PR #28 with passing exact-head/post-merge checks and skipped publication. Do not repeat accepted font or owner manual tests absent a concrete defect. Retain 3.1.1; no release/install/deploy or new R9.5 push/merge is inferred.
 
-**After R8 acceptance:** R9.1 received authorized local kickoff and scoped source/policy acceptance; R9.2, R9.3 and R9.4 each received a separate next-stage instruction. Material remains optional per product; Google Design supplies selected research context. Do not infer release/install/merge authority from package completion.
+**After R8 acceptance:** R9.1 received authorized local kickoff and scoped source/policy acceptance; R9.2–R9.5 each received a separate next-stage instruction. R9.1–R9.4 integration received explicit owner authority. Material remains optional per product; Google Design supplies selected research context. Do not infer release/install/merge authority from package completion.
 
 No calendar duration or cost is promised. This roadmap defines the execution sequence and acceptance conditions; estimate schedule after the authorized scope and available tooling are confirmed.
 
@@ -1396,4 +1426,4 @@ Allowed R9 scope:
 - appearance controls through existing runtime contracts;
 - bounded behavioral/rendered evaluation and candidate readiness.
 
-The separate [R9 follow-up](#planned-post-correction-extension--r9-optional-material-design) does not rewrite or enlarge the historical R0–R8 exception. Its six packages have their own tracker and prerequisite gates; after R9.3 scoped handoff the owner separately authorized local R9.4 continuation on 2026-10-06. The current authorized implementation package is R9.4 only. Outside the two named exceptions, stabilization maintenance only. No additional external design specialist, new Product Type or general-purpose page builder is authorized. Push/merge, release, installation and deployment need their own actual authority; earlier delivery permission is not silently inherited.
+The separate [R9 follow-up](#planned-post-correction-extension--r9-optional-material-design) does not rewrite or enlarge the historical R0–R8 exception. Its six packages have their own tracker and prerequisite gates; on 2026-10-06 the owner separately authorized merging prepared R9.1–R9.4 and local R9.5 continuation. The current new implementation package is R9.5 only. Outside the two named exceptions, stabilization maintenance only. No additional external design specialist, new Product Type or general-purpose page builder is authorized. Further push/merge, release, installation and deployment need their own actual authority; earlier delivery permission is not silently inherited.

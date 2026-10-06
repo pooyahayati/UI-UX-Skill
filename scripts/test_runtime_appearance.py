@@ -9,7 +9,7 @@ import threading
 import time
 import unittest
 
-from runtime_appearance import AppearanceError, DEFAULTS, LEGACY_DEFAULTS, FixtureServer, Store, catalog, resolve, stored_config, validate
+from runtime_appearance import AppearanceError, DEFAULTS, ICON_DEFAULTS, LEGACY_DEFAULTS, FixtureServer, Store, catalog, resolve, stored_config, validate
 
 
 class ConfigurationContract(unittest.TestCase):
@@ -52,7 +52,7 @@ class ConfigurationContract(unittest.TestCase):
         normalized = stored_config(json.dumps(legacy))
         for key in legacy.keys() - {"schema"}:
             self.assertEqual(normalized[key], legacy[key])
-        self.assertEqual((normalized["schema"], normalized["iconFamily"]), (2, "outline"))
+        self.assertEqual((normalized["schema"], normalized["iconFamily"]), (3, "outline"))
         for bad in [dict(legacy, schema=True), dict(legacy, schema=99), dict(legacy, radius=900),
                     dict(legacy, iconFamily="solid"), {"schema": 1}, LEGACY_DEFAULTS]:
             # Valid legacy storage is supported; old requests are intentionally not.
@@ -80,13 +80,42 @@ class ConfigurationContract(unittest.TestCase):
         def contrast(a, b):
             hi, lo = sorted([luminance(a), luminance(b)], reverse=True)
             return (hi + .05) / (lo + .05)
-        for palette in ("ocean", "forest", "plum"):
-            for theme in ("light", "dark"):
-                tokens = resolve(dict(DEFAULTS, palette=palette, theme=theme))
-                for foreground in ("--text", "--muted", "--danger", "--action"):
-                    self.assertGreaterEqual(contrast(tokens[foreground], tokens["--surface"]), 4.5)
-                self.assertGreaterEqual(contrast(tokens["--border"], tokens["--surface"]), 3)
-                self.assertGreaterEqual(contrast(tokens["--primary-text"], tokens["--primary-bg"]), 4.5)
+        for treatment in ("baseline", "material"):
+            for palette in ("ocean", "forest", "plum"):
+                for theme in ("light", "dark"):
+                    tokens = resolve(dict(DEFAULTS, treatment=treatment, palette=palette, theme=theme))
+                    for surface in ("--surface", "--surface-container", "--field-background"):
+                        for foreground in ("--text", "--muted", "--danger", "--action"):
+                            self.assertGreaterEqual(contrast(tokens[foreground], tokens[surface]), 4.5)
+                        self.assertGreaterEqual(contrast(tokens["--border"], tokens[surface]), 3)
+                    self.assertGreaterEqual(contrast(tokens["--primary-text"], tokens["--primary-bg"]), 4.5)
+
+    def test_material_preserves_foundations_and_separates_heading_role(self):
+        baseline = resolve(dict(DEFAULTS, palette="forest", spacing=24, radius=0, density="compact"))
+        material = resolve(dict(DEFAULTS, palette="forest", spacing=24, radius=0, density="compact",
+                                treatment="material", headingFont="serif"))
+        changed = {key for key in material if material[key] != baseline[key]}
+        self.assertEqual(changed, {"--surface-container", "--field-background", "--heading-font",
+                                   "--control-height", "treatment"})
+        self.assertEqual((baseline["--control-height"], material["--control-height"]), ("44px", "48px"))
+        self.assertEqual(material["--font"], baseline["--font"])
+        self.assertEqual(resolve(dict(DEFAULTS, font="serif"))["--heading-font"], "Georgia, serif")
+        for key, value in [("treatment", "material-expressive"), ("treatment", "<style>"),
+                           ("headingFont", "https://invalid/font.woff"), ("headingFont", True)]:
+            with self.subTest(key=key), self.assertRaises(AppearanceError):
+                validate(dict(DEFAULTS, **{key: value}))
+
+    def test_complete_schema_two_storage_not_requests_is_normalized(self):
+        old = dict(ICON_DEFAULTS, iconFamily="solid", settingsIcon="badge", theme="dark")
+        normalized = stored_config(json.dumps(old))
+        self.assertEqual(normalized, {**DEFAULTS, **old, "schema": 3})
+        self.assertEqual(normalized["treatment"], "baseline")
+        for bad in [dict(old, treatment="material"), dict(old, iconSize=99),
+                    {key: value for key, value in old.items() if key != "searchIcon"}]:
+            with self.assertRaises(AppearanceError):
+                stored_config(json.dumps(bad))
+        with self.assertRaises(AppearanceError):
+            validate(old)
 
 
 class PersistedLifecycle(unittest.TestCase):
@@ -156,6 +185,31 @@ class PersistedLifecycle(unittest.TestCase):
         self.assertIsNone(history[0]["changedFields"])
         self.assertFalse(history[1]["valid"])
         self.assertNotIn("config", history[1])
+
+    def test_schema_two_material_migration_private_reset_restart_and_rollback(self):
+        previous = dict(ICON_DEFAULTS, palette="plum", iconFamily="solid", settingsIcon="badge")
+        raw = json.dumps(previous, indent=2)
+        with self.store.connection(True) as db:
+            db.execute("UPDATE versions SET config=? WHERE tenant='a' AND revision=0", (raw,))
+            db.execute("INSERT INTO drafts VALUES ('a','owner-a',7,0,?)", (raw,))
+        reopened = Store(self.path)
+        normalized = stored_config(raw)
+        self.assertEqual(reopened.draft("a", "owner-a")["config"], normalized)
+        candidate = dict(normalized, treatment="material", headingFont="serif", density="compact")
+        saved = reopened.save("a", "owner-a", candidate, 0, 7)
+        self.assertEqual(reopened.published("a")["config"], normalized)
+        reopened.publish("a", "owner-a", saved["draftRevision"])
+        fresh = Store(self.path)
+        self.assertEqual(fresh.published("a")["config"], candidate)
+        self.assertCountEqual(fresh.history("a", 50)[0]["changedFields"], ["treatment", "headingFont", "density"])
+        reset = fresh.reset("a", "owner-a", 1, 0)
+        self.assertEqual(reset["config"], DEFAULTS)
+        self.assertEqual(fresh.published("a")["config"], candidate)
+        fresh.discard("a", "owner-a", reset["draftRevision"])
+        self.assertEqual(fresh.rollback("a", "owner-a", 0, 1)["config"], normalized)
+        with fresh.connection() as db:
+            self.assertEqual(db.execute("SELECT config FROM versions WHERE tenant='a' AND revision=0").fetchone()[0], raw)
+        self.assertEqual(fresh.published("b")["config"], DEFAULTS)
 
     def test_stale_draft_and_base_never_overwrite(self):
         own = self.save()
@@ -337,6 +391,31 @@ class HTTPBoundary(unittest.TestCase):
             self.assertEqual(self.call(resource)[0], 401)
             self.assertEqual(self.call(resource, token=self.viewer_token)[0], 403)
             self.assertEqual(self.call(resource, token=self.owner_token, tenant="b")[0], 403)
+
+    def test_material_http_lifecycle_and_denials_use_existing_authority(self):
+        candidate = dict(DEFAULTS, treatment="material", headingFont="serif", theme="dark",
+                         density="compact", iconFamily="solid", settingsIcon="badge")
+        before = self.protected()
+        for token, expected in [(None, 401), (self.viewer_token, 403), (self.other_token, 403)]:
+            self.assertEqual(self.call("previews", "POST", {"config": candidate}, token)[0], expected)
+            self.assertEqual(self.protected(), before)
+        for bad in [dict(candidate, treatment="url(javascript:alert(1))"), ICON_DEFAULTS,
+                    dict(candidate, css="body{display:none}"), dict(candidate, headingFont="../font.woff")]:
+            self.assertEqual(self.call("previews", "POST", {"config": bad}, self.owner_token)[0], 422)
+            self.assertEqual(self.protected(), before)
+        code, preview, _ = self.call("previews", "POST", {"config": candidate}, self.owner_token)
+        self.assertEqual((code, preview["tokens"]["treatment"]), (200, "material"))
+        self.assertEqual(self.protected(), before)
+        code, draft, _ = self.call("draft", "PUT", {"config": candidate, "baseRevision": 0, "draftRevision": 0}, self.owner_token)
+        self.assertEqual(code, 200)
+        self.assertEqual(self.call("published")[1]["config"], DEFAULTS)
+        code, published, _ = self.call("publications", "POST", {"draftRevision": draft["draftRevision"]}, self.owner_token)
+        self.assertEqual((code, published["config"]), (200, candidate))
+        self.assertEqual(self.call("published")[1]["tokens"], preview["tokens"])
+        self.assertTrue(published["tokens"]["icons"]["settings"]["fallback"])
+        self.assertEqual(self.call("published", tenant="b")[1]["config"], DEFAULTS)
+        self.assertEqual(self.call("rollbacks", "POST", {"revision": 0, "baseRevision": 1}, self.owner_token)[0], 200)
+        self.assertEqual(self.call("published")[1]["config"], DEFAULTS)
 
     def test_malformed_unsafe_oversized_wrong_method_and_pagination(self):
         before = self.protected()

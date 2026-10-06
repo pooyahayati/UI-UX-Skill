@@ -40,14 +40,22 @@ from artwork; only back/closed-disclosure semantics are direction-mirrored.
 
 - Each owner has a private saved draft and base published revision. Preview is
   explicitly private and never changes the public reader or other owner's draft.
-- Saving a complete schema-2 draft is explicit. Validation errors preserve stored
+- Saving a complete schema-3 draft is explicit. Validation errors preserve stored
   draft/published/history state. Saving over a changed draft requires its revision.
-- Complete valid schema-1 stored snapshots/drafts normalize on read into schema 2,
+- Complete valid schema-1/2 stored snapshots/drafts normalize on read into schema 3,
   preserving every prior appearance value and original historical bytes. Missing,
   extra or invalid old fields are not silently repaired. New requests must supply
   the current complete schema; stale legacy clients need to reload the catalog.
   Rollback copies a valid normalized old snapshot into a new version. No startup
   write-back or silent reset occurs.
+- Schema 3 adds baseline/material owned-surface treatment and inherit/serif heading
+  role. Defaults preserve the old baseline/body font. Material-derived container,
+  field, disclosure, diagram and overlay roles keep existing palette/size/spacing/
+  shape/variant settings. Compact Material controls remain at least 48 CSS px;
+  baseline compact controls retain 44 px. This custom prepared adapter does not
+  certify M3/library conformity. Original icons remain independently configurable;
+  Material Symbols is not installed. [R9.5 evidence](../../material/R9_5_RUNTIME.md)
+  records actual coverage; R9.6 full mode readiness is separate.
 - Size/color controls affect declared consumers while primary foreground/target
   floors remain locked. Solid stroke editing is disabled; the retained outline
   width is dormant and an outline fallback uses its prepared width. Icon-only

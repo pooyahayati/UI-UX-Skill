@@ -23,6 +23,15 @@ fallbacks are owned by `scripts/runtime_icons.py`; configuration stores allowed
 identifiers only. Shared/private/public/dialog consumers use the same SVG adapter.
 Routine panel changes do not update this handbook or component source.
 
+R9.5 extends that catalog, not this file as a settings database: baseline/material
+owned-surface treatment and inherit/serif heading role. Baseline remains default;
+Material is a prepared synthetic-test choice, not a globally approved product
+style. Container/field/overlay roles, heading typography and diagram fill connect
+to the same resolver; settled brand/body/size/shape/spacing/icon choices remain.
+Schema-1/2 snapshots normalize read-only to schema 3 without rewriting history.
+Generic font stacks are still prepared choices, not an upload capability or a
+claim of actual OS glyph identity. See [R9.5 evidence](../../material/R9_5_RUNTIME.md).
+
 Owner configuration is tenant-scoped for the sample product and its owned preview.
 Other tenants, authentication, routes, sample data meaning, focus/target/readability
 floors and breakpoint logic remain locked. No user overrides are offered in R5;
