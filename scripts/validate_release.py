@@ -53,6 +53,18 @@ for path in [
     f"skills/{SKILL_NAME}/specialists.json",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
     f"skills/{SKILL_NAME}/references/design-handbook.md",
+    f"skills/{SKILL_NAME}/references/material-design.md",
+    f"skills/{SKILL_NAME}/references/material-foundations.md",
+    f"skills/{SKILL_NAME}/references/design-research.md",
+    f"skills/{SKILL_NAME}/references/material-components.md",
+    f"skills/{SKILL_NAME}/references/material-stack-fit.md",
+    f"skills/{SKILL_NAME}/references/material-samples.md",
+    f"skills/{SKILL_NAME}/references/material-components/actions.md",
+    f"skills/{SKILL_NAME}/references/material-components/navigation.md",
+    f"skills/{SKILL_NAME}/references/material-components/forms.md",
+    f"skills/{SKILL_NAME}/references/material-components/feedback.md",
+    f"skills/{SKILL_NAME}/references/material-components/overlays.md",
+    f"skills/{SKILL_NAME}/references/material-components/content.md",
     f"skills/{SKILL_NAME}/references/design-foundation-workflow.md",
     f"skills/{SKILL_NAME}/assets/templates/DESIGN.md",
     "submission/TEST_CASES.md",
@@ -124,6 +136,19 @@ else:
 body_lines = skill_text.split("---", 2)[-1].splitlines()
 if len(body_lines) >= 500:
     error(f"SKILL.md body should stay under 500 lines; got {len(body_lines)}")
+
+# Source/resource integrity only; not an independent agent behavior check.
+require_text(skill_text, ["## Optional style overlay", "references/material-design.md",
+                         "not the default", "Backend-only work never activates"],
+             "Conditional Material Head route")
+material_path = SKILL / "references/material-design.md"
+if material_path.is_file():
+    require_text(material_path.read_text(encoding="utf-8"),
+                 ["| Selected |", "| Recommended, unaccepted |", "| Rejected |",
+                  "| Inactive |", "**Targeted correction:**", "**Audit only:**",
+                  "**Backend only:**", "**WordPress/host UI:**", "**No admin:**",
+                  "Selection is not implementation-library approval"],
+                 "Material activation resource")
 
 require_text(
     skill_text,

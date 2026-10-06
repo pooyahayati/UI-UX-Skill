@@ -18,6 +18,19 @@ CORRECTION_SCOPE = {
     "visual approval",
     "safe parametric appearance management",
 }
+R9_SCOPE = {
+    "optional Material activation and routing",
+    "product-personalized foundations and curated research",
+    "scoped component guidance and stack-fit assessment",
+    "sequential responsive samples and handbook integration",
+    "appearance controls through existing runtime contracts",
+    "bounded behavioral/rendered evaluation and candidate readiness",
+}
+R9_DEPENDENCIES = {
+    "R9.1": set(), "R9.2": {"R9.1"}, "R9.3": {"R9.2"},
+    "R9.4": {"R9.2", "R9.3"}, "R9.5": {"R9.4"},
+    "R9.6": {f"R9.{i}" for i in range(1, 6)},
+}
 STATES = {"Not started", "In progress", "Blocked", "Completed", "Reopened"}
 DEPENDENCIES = {
     "R0": set(), "R1": {"R0"}, "R2": {"R1"}, "R3": {"R1", "R2"},
@@ -50,7 +63,7 @@ def validate_policy(readme: str, roadmap: str) -> list[str]:
     for term in (
         "**Status:** Active with limited correction exception",
         "**Correction exception:** Authorized for R0–R8 only.",
-        "**Outside this exception:** Stabilization maintenance only.",
+        "**Outside this exception:** Stabilization maintenance only, except for the separately named R9 exception below.",
         "new Product Types", "new major capability families", "persian-writing",
         "deduplication", "context isolation", "additional external design specialists",
     ):
@@ -60,10 +73,21 @@ def validate_policy(readme: str, roadmap: str) -> list[str]:
     items = [] if not scope else re.findall(r"^- (.+?)[;.]?\s*$", scope[1], re.M)
     if len(items) != len(CORRECTION_SCOPE) or set(items) != CORRECTION_SCOPE:
         errors.append("Authorized correction scope must contain exactly the four agreed areas")
+    r9_scope = re.search(r"^Allowed R9 scope:\s*\n((?:\s*\n)?(?:- [^\n]+\n)+)", freeze, re.M)
+    r9_items = [] if not r9_scope else re.findall(r"^- (.+?)[;.]?\s*$", r9_scope[1], re.M)
+    if len(r9_items) != len(R9_SCOPE) or set(r9_items) != R9_SCOPE:
+        errors.append("Separate R9 scope must contain exactly the six agreed areas")
+    for term in ("**Separate R9 exception:** Optional Material Design only.",
+                 "**R9 kickoff:** Authorized local R9.1 implementation on 2026-10-06 after accepted R7/R8.",
+                 "Outside the two named exceptions, stabilization maintenance only.",
+                 "earlier delivery permission is not silently inherited"):
+        if term not in freeze:
+            errors.append(f"Separate R9 stabilization policy missing: {term}")
     if "## Future Product Types" in roadmap:
         errors.append("ROADMAP must not advertise future Product Types during stabilization")
     policy = section(readme, "Feature freeze")
     for term in ("Limited correction exception: R0–R8 only.", "Outside this exception",
+                 "Separate R9 exception: optional Material Design only.",
                  "no new Product Types", "additional external design specialists",
                  "general-purpose page builder", "[Roadmap](ROADMAP.md)"):
         if term not in policy:
@@ -119,4 +143,70 @@ def validate_policy(readme: str, roadmap: str) -> list[str]:
     next_stage = re.search(r"^\- Next implementation stage: \*\*(None|R\d+)\b", roadmap, re.M)
     if not next_stage or next_stage[1] != (remaining[0] if remaining else "None"):
         errors.append("Next implementation stage must agree with the canonical tracker")
+    errors.extend(validate_r9_progress(roadmap, statuses))
+    return errors
+
+
+def validate_r9_progress(roadmap: str, correction_statuses: dict[str, str]) -> list[str]:
+    """Keep the extension separate and require real prerequisite/evidence records."""
+    errors = []
+    tracker = re.search(r"^### R9 package tracker\s*\n(.*?)(?=^### |^## |\Z)",
+                        roadmap, re.M | re.S)
+    rows = [] if not tracker else re.findall(r"^\| (R9\.\d+) \| (.+)\|\s*$", tracker[1], re.M)
+    if [row[0] for row in rows] != list(R9_DEPENDENCIES):
+        errors.append("R9 package tracker must contain R9.1–R9.6 exactly once and in order")
+    statuses = {}
+    for package, tail in rows:
+        fields = [value.strip() for value in tail.split("|")]
+        if len(fields) != 4:
+            errors.append(f"{package}: tracker must have five columns")
+            continue
+        _, status, _, evidence = fields
+        statuses[package] = status
+        if status not in STATES:
+            errors.append(f"{package}: invalid package status {status!r}")
+        if status != "Not started" and not re.search(r"\[[^\]]+\]\([^)]+\)", evidence):
+            errors.append(f"{package}: started package needs an execution/evidence link")
+        if status == "Completed":
+            # A dated anchor target is not a dated acceptance statement.
+            visible_evidence = re.sub(r"\]\([^)]+\)", "]", evidence)
+            dates = re.findall(r"\b\d{4}-\d{2}-\d{2}\b", visible_evidence)
+            try:
+                dated = bool(dates) and all(calendar_date.fromisoformat(value) for value in dates)
+            except ValueError:
+                dated = False
+            if not dated:
+                errors.append(f"{package}: completion needs valid dated acceptance evidence")
+        if status in {"Completed", "In progress", "Blocked", "Reopened"}:
+            if any(correction_statuses.get(dep) != "Completed" for dep in ("R7", "R8")):
+                errors.append(f"{package}: accepted R7/R8 are required before execution")
+    for package, status in statuses.items():
+        if status != "Not started" and any(statuses.get(dep) != "Completed"
+                                           for dep in R9_DEPENDENCIES.get(package, set())):
+            errors.append(f"{package}: prerequisite packages must be Completed")
+    if sum(status in {"In progress", "Blocked", "Reopened"} for status in statuses.values()) > 1:
+        errors.append("R9 must have at most one active implementation package")
+    overall_rows = re.findall(r"^\| R9 \| (.+)\|\s*$", roadmap, re.M)
+    if len(overall_rows) != 1:
+        errors.append("Separate R9 overall tracker must contain R9 exactly once")
+        return errors
+    overall = [value.strip() for value in overall_rows[0].split("|")]
+    if len(overall) != 6:
+        errors.append("R9 overall tracker must have seven columns")
+        return errors
+    _, state, _, owner, date, evidence = overall
+    if state not in STATES or not owner or owner in {"TBD", "Not recorded"}:
+        errors.append("R9 overall status and accountable owner must be valid")
+    started = any(value != "Not started" for value in statuses.values())
+    complete = len(statuses) == 6 and all(value == "Completed" for value in statuses.values())
+    if ((state == "Not started" and started) or (state == "Completed" and not complete)
+            or (state not in {"Not started", "Completed"} and (not started or complete))):
+        errors.append("R9 overall status must agree with its six-package tracker")
+    if state == "Completed":
+        try:
+            dated = bool(re.fullmatch(r"\d{4}-\d{2}-\d{2}", date)) and bool(calendar_date.fromisoformat(date))
+        except ValueError:
+            dated = False
+        if not dated or not re.search(r"\[[^\]]+\]\([^)]+\)", evidence):
+            errors.append("R9 overall completion needs a dated evidence link")
     return errors

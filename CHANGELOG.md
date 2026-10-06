@@ -4,6 +4,55 @@ All notable user-facing and technical changes to this project are documented her
 
 ## [Unreleased]
 
+### Sequential Material samples and handbook integration (R9.4)
+
+- Added conditional sample guidance and handbook traceability using the existing
+  primary → dark → needed/authorized-secondary gates, not another design authority.
+- Added one native, authored Persian primary learning specimen with settled
+  foundation consumption, licensed fonts, responsive list/detail and simulated
+  validation/save/failure/retry/result. No actual customer approval is invented;
+  dark remains unstarted and the monolingual secondary phase is N/A.
+- Added raw continuation cases, phase/asset regression tests and CI wiring.
+  Structural tests are not consent or independent model evidence; runtime owner
+  adapters/full mode evaluation remain R9.5/R9.6. No release/install/push/merge.
+
+### Scoped Material components and implementation fit (R9.3)
+
+- Added a navigable live-catalog index, six selectively loaded workflow-family
+  guides and a stack-fit decision reference. Existing Product/Shared behavior,
+  tokens/states, approved language/theme sequence and prepared owner boundaries
+  remain authoritative; custom/provider-specific data patterns are labeled.
+- Recorded dated official provider coverage/maintenance limits, including
+  incomplete Material Web coverage and Material UI's M2 baseline; no dependency,
+  universal library default, migration or additional specialist selected.
+- Added raw component/stack-fit preparation cases and local source review.
+  Actual samples/runtime adapters/full behavioral-rendered acceptance remain
+  R9.4–R9.6. Version/release/install and push/merge remain separate authority.
+
+### Personalized Material foundations and selected research (R9.2)
+
+- Added conditionally routed foundation guidance for actual tasks/audiences,
+  approved brand/fonts/scales, semantic roles, language/direction and sequential
+  dark planning, preserving existing token/state/runtime contracts.
+- Added a small style-independent official research index with questions,
+  practical inferences, source/context limitations and review dates; an article
+  does not select Material or approve the product's design.
+- Added raw foundation cases and an explicitly authored contrasting-product
+  review, not independent model/rendered evidence. Component guides, samples,
+  runtime Material adapters and full acceptance remain R9.3–R9.6. No dependency,
+  version/release/installation or push/merge is included in this checkpoint.
+
+### Optional Material activation (R9.1)
+
+- Added a thin conditional local style route and explicit selected,
+  recommended/unaccepted, rejected and inactive states. Named delegation,
+  reference inference, sample approval and library authority remain separate.
+- Reused handbook decision provenance and existing product/scope boundaries;
+  no Product Pack, specialist, dependency, runtime consumer or admin panel added.
+- Reconciled a separate bounded R9 policy/tracker and added policy/raw-input
+  regressions. Source/package checks are not model or rendered acceptance;
+  R9.2–R9.6 remain undelivered. No version, release or installed Skill change.
+
 ### Editable semantic icons (R6 executable checkpoint)
 
 - Added prepared original outline/solid artwork, semantic family/per-use mappings,

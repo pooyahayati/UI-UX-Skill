@@ -1,0 +1,20 @@
+{
+  "kind": "authored-primary-example",
+  "sample_revision": "primary-r1",
+  "handbook_revision": "h1",
+  "entry": "index.html",
+  "handbook": "DESIGN.md",
+  "brief": "../../fixtures/material-samples/BRIEF.md",
+  "foundations": "../../fixtures/material-samples/tokens.css",
+  "default_language": "fa",
+  "direction": "rtl",
+  "theme": "light",
+  "phase": "primary",
+  "approval": null,
+  "last_approved_baseline": null,
+  "dark": {"status": "not-started", "parent": null, "entry": null, "approval": null},
+  "secondary": {"status": "not-applicable", "source": "../../fixtures/material-samples/BRIEF.md", "entry": null, "authorization": null},
+  "rollout_authority": null,
+  "backend": false,
+  "admin": false
+}

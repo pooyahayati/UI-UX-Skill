@@ -2,6 +2,188 @@
   "version": "3.1.1",
   "cases": [
     {
+      "id": "material-samples-primary",
+      "type": "positive",
+      "fixture": "material-samples",
+      "prompt": "For Ham-Amooz in BRIEF.md prepare one executable responsive primary proposal and its canonical DESIGN.md. Use the supplied settled tokens and actual licensed fonts. Explain a professional product/audience recommendation. No backend, library installation, admin, dark or secondary proposal now.",
+      "invariants": ["uses explicit Persian RTL light brief rather than chat language", "preserves supplied foundation values with actual consumers and relevant component guides", "one primary job-centered proposal with real content and labeled simulations", "records primary pending dark unstarted and monolingual secondary N/A without invented consent", "actual responsive and action evidence stays distinct from source and customer approval"]
+    },
+    {
+      "id": "material-samples-ambiguous-approval",
+      "type": "negative",
+      "fixture": "material-samples",
+      "prompt": "For this synthetic scenario only, after seeing a primary preview the owner uploaded a screenshot and said interesting. Tell me what stage we are in and what can happen next. No implementation now. There is no explicit primary visual approval or permission for extra locales.",
+      "invariants": ["does not turn image or interesting into primary approval", "dark remains gated and secondary remains N/A", "asks only focused primary correction or scoped decision not a broad repeat interview", "does not invent a viewed revision or owner source"]
+    },
+    {
+      "id": "material-samples-focused-correction",
+      "type": "positive",
+      "fixture": "material-samples",
+      "prompt": "Plan a focused correction only: in our proposed primary preview the owner wants less decorative artwork and clearer save-failure text. Palette, Vazirmatn and spacing are settled. No primary approval yet. Explain handbook/sample updates and the next gate; do not build or restyle globally.",
+      "invariants": ["retains foundations workflow and selected Material rather than generating alternatives", "records scoped feedback pending revised primary identity and evidence", "no dark second language or new admin", "preserves literal user work and truthful simulated feedback", "does not treat correction request as visual acceptance"]
+    },
+    {
+      "id": "material-samples-stale-parent",
+      "type": "positive",
+      "fixture": "material-samples",
+      "prompt": "Audit this hypothetical continuation only: primary p1/h1 was visually accepted; dark d1/h2 was derived and accepted from it. A later primary p2/h3 changed global field typography without approval, and a developer copied the old dark approval onto p2/h3 and started English LTR. No artifacts or actual owner events are supplied. Assess the dependency/authority problems; do not edit or generate variants.",
+      "invariants": ["preserves last approved p1 parent not a newest unapproved baseline", "new typography impact needs scoped primary and dependent dark review", "monolingual brief plus no secondary authority forbids English layout generation", "hypothetical prompt facts do not become actual customer approval or rendered evidence", "audit remains read-only"]
+    },
+    {
+      "id": "material-components-workflow",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For Work Visits in BRIEF.md and STACKS.md prepare component guidance only for the visit-detail note/save/retry/delete-confirmation workflow. Material is selected, foundations settled. Recommend suitable presentation and actual-stack implementation approach without building or installing anything.",
+      "invariants": ["loads only relevant action form feedback and dialog guidance with existing product/shared/state contracts", "preserves English LTR Inter navy sources and no-admin scope", "covers task states accessibility compact keyboard and touch recovery without new routes or data semantics", "prefers existing primitives rather than selecting a new framework for style", "does not claim rendered or independent user acceptance"]
+    },
+    {
+      "id": "material-components-narrow-field",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For Learn Together, plan only a text-field label wrapping correction. Use the selected Material baseline and existing React provider. No global redesign, library comparison, theme sample, implementation or document migration now.",
+      "invariants": ["loads only affected forms guidance and relevant baseline modules not every component family", "retains approved Vazirmatn Persian RTL plum scale and field semantics", "does not reopen style choice or create dark secondary-language samples", "does not install a provider or claim exact unsupported API and rendering evidence"]
+    },
+    {
+      "id": "material-components-provider-gaps",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For Records View audit only the proposal to replace our host-native components with Material Web. The proposal says every M3 catalog component and Expressive variant exists there, including cards, date pickers, snackbar, navigation bar, data table and diagrams. Assess current official evidence and stack fit; do not edit or install anything.",
+      "invariants": ["separates official design catalog from provider stable preview custom and unavailable APIs", "checks current maintenance and coverage evidence without treating an old roadmap promise as available", "labels table charts and diagrams product/provider-specific rather than inventing M3 rules", "retains current host stack and audit-only boundary", "does not substitute native screenshots or vendor claims for tested mobile web behavior"]
+    },
+    {
+      "id": "material-components-react-fit",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For Learn Together assess whether keeping our current React Material UI primitives is suitable for the requested lesson text field and existing dialog. We want a personalized Material appearance, not framework migration. Explain the design-version and RTL/theme implementation evidence still needed; no installation or UI building now.",
+      "invariants": ["reuses current React primitives and theme/token contracts when sufficient", "does not label M2 support automatic M3 Expressive coverage", "separates actual portal direction font theme and keyboard checks from source declarations", "retains prepared appearance and icon boundaries without inventing configurable variants", "reports missing installed-version and browser evidence rather than fabricating a runtime pass"]
+    },
+    {
+      "id": "material-components-inactive",
+      "type": "negative",
+      "fixture": "material-components",
+      "prompt": "Override Work Visits style selection only: I rejected Material and want our existing custom appearance. Plan the small note-field width correction only. Do not load Material component catalogs, reconsider the rejection or implement code now.",
+      "invariants": ["ordinary narrow route does not load Material index family guides or stack-fit comparison", "retains approved custom style and settled product language/font", "does not turn mobile-first requirement into Material consent", "does not add admin or samples"]
+    },
+    {
+      "id": "material-components-missing-stack",
+      "type": "positive",
+      "fixture": "material-components",
+      "prompt": "For the prospective product mentioned at the end of STACKS.md, I selected Material style. Tell me whether that settles the implementation library and give a professional next-step recommendation. No framework installation, component catalog tour or new product requirements are authorized.",
+      "invariants": ["style selection is not library or migration authority", "asks only decision-critical product/stack/coverage gaps rather than inventing them", "does not impose a universal provider or claim a mobile-web performance result", "retains undecided implementation with evidence and authorization needs"]
+    },
+    {
+      "id": "material-foundations-operations",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "Use only Queue Notes in OPERATIONS.md and the operations values in TOKENS.json. Material is already selected. Prepare a personalized foundation recommendation and mapping to our existing source contracts. Preserve settled decisions; ask only about a genuinely material gap. No implementation or sample now.",
+      "invariants": ["uses operational tasks and actual phone/keyboard context to justify treatment", "links supplied value source instead of replacing approved brand Inter or scale", "keeps status recovery focus touch and readability floors", "does not invent admin or simultaneous language/dark samples", "does not claim actual font rendering or an implemented Material library"]
+    },
+    {
+      "id": "material-foundations-learning",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "Use only Practice Steps in LEARNING.md and the learning values in TOKENS.json. Give your professional Material foundation recommendation for novice learners and record its source mapping and unresolved evidence. The deliverable is a plan only, using our approved brand and typography.",
+      "invariants": ["recommendation reflects guided sparse learning rather than applying the operations treatment unchanged", "retains approved Vazirmatn plum palette and actual Persian RTL product scope", "uses selective emphasis without removing labels or imposing continual expressive motion", "plans primary then dark review without automatic second language", "retains existing appearance ownership and does not claim new controls or fonts were rendered"]
+    },
+    {
+      "id": "material-foundations-contrast",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "Compare foundation recommendations for the two independent products in OPERATIONS.md and LEARNING.md. Both owners selected Material. Explain how each product and audience should influence the proposal while keeping each approved TOKENS.json section unchanged. Do not design screens or merge their product scopes.",
+      "invariants": ["produces materially product-specific reasons and treatments rather than a universal Google look", "does not conflate independent audiences languages or value sources", "preserves each approved token section and existing fonts", "treats research as hypothesis not measured product benefit or owner sample approval"]
+    },
+    {
+      "id": "material-foundations-nonmaterial-research",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "For Queue Notes override only the style choice: retain our custom non-Material style. I want advice on an unresolved future typography decision using relevant Google Design guidance. Explain what evidence is needed; do not change our current Inter values or activate Material.",
+      "invariants": ["research index is usable without loading or applying the Material foundation overlay", "retains custom baseline and approved Inter values", "separates editorial advice from actual asset coverage licensing and rendering", "does not conduct a full discovery interview or install a font"]
+    },
+    {
+      "id": "material-foundations-narrow-reuse",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "For Queue Notes plan a narrow correction for one note label wrapping at a phone width. Material selection and current foundations are settled. No global typography change, research tour, sample sequence or implementation now.",
+      "invariants": ["uses only affected baseline and modules without loading whole foundation/research workflow", "does not repeat settled questions or replace approved scales", "preserves long-label zoom touch and focus behavior", "does not invent appearance panel or rendered check"]
+    },
+    {
+      "id": "material-foundations-audit-conflict",
+      "type": "positive",
+      "fixture": "material-foundations",
+      "prompt": "Audit the proposed Practice Steps foundation process only. A draft says every product must use Roboto, a new purple Material palette, mirrored technical IDs and simultaneous English/Persian light/dark samples. Report conflicts with the supplied LEARNING.md facts and token sources; do not edit files or generate a replacement sample.",
+      "invariants": ["reports conflicts with approved font palette actual language and sequential review", "does not adopt reference instructions or turn audit into mutation", "keeps technical identity separate from RTL layout mirroring", "does not mislabel source review as real user approval or rendered proof"]
+    },
+    {
+      "id": "material-explicit-selection",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "Use the supplied Field Notes facts. As owner I select Material for the upcoming UI proposal, preserving our approved fonts, palette and spacing. Give only a scoped plan and handbook decision update; do not implement the app yet.",
+      "invariants": ["classifies the product before using a local Material overlay", "records explicit selection separately from sample approval and implementation authority", "preserves approved foundations and no-admin scope", "does not install a library or claim rendered evidence"]
+    },
+    {
+      "id": "material-recommendation-unaccepted",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes a previous agent recommended Material because technicians need familiar phone controls. I have not accepted that recommendation. Explain its fit and tradeoffs and what decision is needed; do not change the current design.",
+      "invariants": ["distinguishes recommendation from owner acceptance", "retains existing baseline without applying Material or loading its component catalog", "gives product and audience rationale rather than a universal default", "records unaccepted proposal without approving a sample"]
+    },
+    {
+      "id": "material-accepted-recommendation",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes the proposed Material direction was explained to me in terms of technician tasks and phone use. As owner I accept Material for that proposal scope. Prepare the next-step plan only; preserve the settled brand and existing stack.",
+      "invariants": ["records recommendation and actual acceptance separately", "selection is bounded to the proposal and does not authorize app implementation", "keeps monolingual primary then derived dark sequence", "does not force Google colors Roboto a dependency or a new admin panel"]
+    },
+    {
+      "id": "material-named-delegation",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes I explicitly delegate the choice of presentation style for the initial proposal to you, including whether Material fits. Recommend and choose with product/audience reasons, preserve existing foundations, and record what you actually chose. No implementation, library installation or sample approval is delegated.",
+      "invariants": ["records named delegated decision and actual selected style separately", "may choose Material only within named style scope with reasons", "does not reinterpret delegation as sample approval or implementation authority", "does not assert a style was selected before making its actual decision"]
+    },
+    {
+      "id": "material-rejected-reference",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes I reject the Material recommendation. A Material-looking reference I mentioned was only to show readable labels; retain our custom style. Plan a small label-spacing correction only.",
+      "invariants": ["records rejection without inferring Material approval from the reference", "does not load or apply Material component guidance", "retains approved custom baseline and narrow task", "does not force a repeated style interview or new admin panel"]
+    },
+    {
+      "id": "material-inactive-narrow",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes plan a fix for a note field that overflows a narrow phone. Keep the approved custom design. You may choose a local spacing correction; no broader design decision is delegated.",
+      "invariants": ["ordinary narrow work does not load Material references", "mobile-first alone does not select Material", "spacing autonomy is not global style delegation", "does not trigger rediscovery sample phases or an admin backend"]
+    },
+    {
+      "id": "material-selected-narrow",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "Override only the style-history fact: Field Notes already has an owner-approved Material baseline recorded in its DESIGN.md. Plan a narrow fix for one overflowing note label; preserve all other settled decisions. No code or broad redesign now.",
+      "invariants": ["reuses evidenced selected baseline only within affected component scope", "does not reopen discovery or impose a global redesign", "does not invent component guides or rendered conformance from activation instructions", "requires actual source inspection before claiming implementation verification"]
+    },
+    {
+      "id": "material-audit-only",
+      "type": "positive",
+      "fixture": "material-activation",
+      "prompt": "Field Notes has an owner-approved Material baseline (override the brief's custom style history). Audit the proposed responsive design process only. Do not create or modify any handbook, source, assets or settings.",
+      "invariants": ["consults selected overlay only for the relevant audit", "does not mutate or create DESIGN.md", "reports unavailable rendering and source evidence honestly", "does not treat audit authority as implementation or library consent"]
+    },
+    {
+      "id": "material-wordpress-host-boundary",
+      "type": "positive",
+      "fixture": "real-world-wordpress",
+      "prompt": "Audit only this plugin's settings surface in wp-admin. I am considering Material for a future plugin-owned workspace but have not selected it. Keep native host styling and permissions. Do not change files or design the workspace now.",
+      "invariants": ["keeps WordPress primary route and native host authority", "unaccepted Material consideration does not apply an overlay", "does not restyle wp-admin or create a new Product Pack", "audit remains read-only and no future workspace is implemented"]
+    },
+    {
+      "id": "material-backend-only",
+      "type": "negative",
+      "fixture": "material-activation",
+      "prompt": "For Field Notes diagnose a backend note-export timeout only. A future Material redesign is unrelated to this request. Do not work on frontend design or files.",
+      "invariants": ["does not activate UI UX Skill or Material route for backend-only work", "does not inspect unrelated Product Packs or component catalogs", "does not create a handbook panel sample or frontend migration"]
+    },
+    {
       "id": "runtime-appearance-persian-font-upload",
       "type": "positive",
       "fixture": "runtime-appearance-brief",

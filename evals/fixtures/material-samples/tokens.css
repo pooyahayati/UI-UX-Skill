@@ -1,0 +1,28 @@
+/* Settled synthetic foundations; single executable value source. */
+:root {
+  --font: "Vazirmatn", system-ui, sans-serif;
+  --canvas: #faf7fb;
+  --surface: #ffffff;
+  --container: #eee4f2;
+  --text: #302735;
+  --muted: #625768;
+  --primary: #713b80;
+  --on-primary: #ffffff;
+  --outline: #827287;
+  --divider: #ded3e2;
+  --focus: #562066;
+  --danger: #a12032;
+  --success: #235c3e;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --radius-control: 12px;
+  --radius-surface: 24px;
+  --body-size: 17px;
+  --caption-size: 14px;
+  --title-size: 30px;
+  --control-height: 48px;
+  --reading-width: 68rem;
+  color-scheme: light;
+}

@@ -42,6 +42,10 @@ for case in manifest.get("cases", []):
             errors.append(f"{case_id}: fixture {fixture} is missing README.md")
 
 required_fixtures = {
+    "material-samples",
+    "material-components",
+    "material-foundations",
+    "material-activation",
     "existing-dashboard",
     "owner-config",
     "rtl-table",
@@ -60,6 +64,56 @@ required_fixtures = {
     "runtime-appearance-brief",
 }
 existing = {p.name for p in (EVALS / "fixtures").iterdir() if p.is_dir()}
+# Coverage/preparation, not independent model acceptance of these cases.
+required_material_cases = {
+    "material-explicit-selection", "material-recommendation-unaccepted",
+    "material-accepted-recommendation", "material-named-delegation",
+    "material-rejected-reference", "material-inactive-narrow",
+    "material-selected-narrow", "material-audit-only",
+    "material-wordpress-host-boundary", "material-backend-only",
+}
+missing_material = sorted(required_material_cases - seen)
+if missing_material:
+    errors.append("Missing raw Material activation cases: " + ", ".join(missing_material))
+required_foundation_cases = {
+    "material-foundations-operations", "material-foundations-learning",
+    "material-foundations-contrast", "material-foundations-nonmaterial-research",
+    "material-foundations-narrow-reuse", "material-foundations-audit-conflict",
+}
+missing_foundations = sorted(required_foundation_cases - seen)
+if missing_foundations:
+    errors.append("Missing raw Material foundation cases: " + ", ".join(missing_foundations))
+required_component_cases = {
+    "material-components-workflow", "material-components-narrow-field",
+    "material-components-provider-gaps", "material-components-react-fit",
+    "material-components-inactive", "material-components-missing-stack",
+}
+required_material_samples = {"material-samples-primary", "material-samples-ambiguous-approval",
+                             "material-samples-focused-correction", "material-samples-stale-parent"}
+for case_id in required_material_samples:
+    matches = [c for c in manifest.get("cases", []) if c.get("id") == case_id]
+    if len(matches) != 1 or matches[0].get("fixture") != "material-samples":
+        errors.append(f"{case_id}: missing case or wrong raw Material samples fixture")
+for name in ("README.md", "BRIEF.md", "tokens.css"):
+    if not (EVALS / "fixtures/material-samples" / name).is_file():
+        errors.append(f"Material sample raw fixture missing {name}")
+missing_components = sorted(required_component_cases - seen)
+if missing_components:
+    errors.append("Missing raw Material component cases: " + ", ".join(missing_components))
+for case in manifest.get("cases", []):
+    if case.get("id") in required_component_cases and case.get("fixture") != "material-components":
+        errors.append(f"{case['id']}: must use the exact raw material-components fixture")
+for name in ("README.md", "BRIEF.md", "STACKS.md"):
+    if not (EVALS / "fixtures/material-components" / name).is_file():
+        errors.append(f"Material component fixture missing {name}")
+for case in manifest.get("cases", []):
+    if case.get("id") in required_foundation_cases and case.get("fixture") != "material-foundations":
+        errors.append(f"{case['id']}: must use the exact raw material-foundations fixture")
+    if case.get("id") in required_material_cases:
+        expected_fixture = ("real-world-wordpress" if case["id"] == "material-wordpress-host-boundary"
+                            else "material-activation")
+        if case.get("fixture") != expected_fixture:
+            errors.append(f"{case['id']}: must use its exact raw {expected_fixture} fixture")
 for case_id, raw in (("runtime-appearance-admin-planning", "ADMIN.md"),
                      ("runtime-appearance-icon-planning", "ICONS.md"),
                      ("runtime-appearance-narrow-boundary", "NARROW.md"),

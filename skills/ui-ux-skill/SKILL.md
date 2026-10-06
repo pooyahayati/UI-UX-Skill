@@ -61,6 +61,10 @@ Multiple Product Packs are allowed only when the current deliverable genuinely s
 
 The global registry classifies products. Internal product routing belongs only to the activated Product Pack.
 
+## Optional style overlay
+
+Material is optional, not the default for mobile-first products. Read `references/material-design.md` only for an actual Material selection/recommendation decision or an evidenced selected baseline relevant to the affected UI. Explicit owner selection, accepted recommendation or named style delegation must precede application; an unaccepted recommendation, rejected/inactive mode or supplied image does not authorize it. Preserve normal non-Material routing and approved foundations. Backend-only work never activates the overlay. This is a local style route, not a Product Pack, external specialist or library/install decision.
+
 ## Task modes
 
 Choose the smallest mode that satisfies the request.
@@ -170,6 +174,7 @@ Read references only when the task requires them.
 
 ### Load only when materially relevant
 
+- `references/design-research.md` — only for a concrete design question needing research; usable with any style and never automatic Material selection.
 - `references/implementation-strategies.md`
 - `references/runtime-ui-governance.md`
 - `references/personalization-and-data-ux.md`

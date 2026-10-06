@@ -59,6 +59,12 @@ Inspect product documents, the existing profile/handbook, approved requirements,
 
 "Use your recommendation" delegates the identified choice, not all future design decisions, new product capabilities or protected constraints. Record the scope and actual instruction. Overall visual approval still belongs to a specific sample revision, not this initial brief.
 
+If Material is actually selected and foundation work is in scope, use
+[its personalized overlay](material-foundations.md), preserving the activation
+and approved baseline. For a specific unresolved design question, use
+[selected research](design-research.md) with any style; consulting it does not
+select Material or require another interview.
+
 ### Product language and themes
 
 Record the default language, supported languages, direction for each, actual text/font availability and relevant formats (digits, dates/calendar, currency/timezone). Language of conversation is independent: Persian discussion can describe an English/LTR product. Do not assume a second language, RTL, Persian fonts or localization features that the product does not support.

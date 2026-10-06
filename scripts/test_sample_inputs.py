@@ -15,6 +15,11 @@ ROOT = Path(__file__).resolve().parents[1]
 PREPARE = ROOT / "scripts/prepare_eval_run.py"
 RAW_ROOT = ROOT / "evals/fixtures"
 RAW_FILES = {
+    "material-samples": {"README.md", "BRIEF.md", "tokens.css"},
+    "material-components": {"README.md", "BRIEF.md", "STACKS.md"},
+    "material-foundations": {"README.md", "OPERATIONS.md", "LEARNING.md", "TOKENS.json"},
+    "material-activation": {"README.md", "BRIEF.md"},
+    "real-world-wordpress": {"README.md", "plugin.php", "admin.css"},
     "runtime-appearance-brief": {"README.md", "ADMIN.md", "ICONS.md", "NARROW.md",
                                  "NO_ADMIN.md", "PERSIAN_FONT.md", "FONT_EXISTING.md"},
     "sample-review": {"README.md", "BRIEF.md", "OWNER_NOTES.md", "FOUNDATION.json",
@@ -25,7 +30,7 @@ RAW_FILES = {
 }
 MANIFEST = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 CASES = [c for c in MANIFEST["cases"]
-         if c["id"].startswith(("samples-", "incremental-", "runtime-appearance-"))]
+         if c["id"].startswith(("samples-", "incremental-", "runtime-appearance-", "material-"))]
 
 
 def files(root: Path) -> dict[str, bytes]:

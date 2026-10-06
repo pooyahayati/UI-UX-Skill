@@ -1,0 +1,60 @@
+@font-face { font-family: "Vazirmatn"; src: url("../../samples/dispatch-notes/fonts/Vazirmatn-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Vazirmatn"; src: url("../../samples/dispatch-notes/fonts/Vazirmatn-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--canvas); color: var(--text); font: 400 var(--body-size)/1.85 var(--font); font-synthesis: none; }
+button, textarea, select { font: inherit; color: inherit; }
+a { color: var(--primary); text-underline-offset: .25em; }
+.shell { max-inline-size: var(--reading-width); margin-inline: auto; padding-inline: var(--space-3); }
+.topbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2); padding-block: var(--space-3); border-block-end: 1px solid var(--divider); }
+.brand { display: inline-flex; align-items: center; gap: var(--space-1); font-size: 22px; font-weight: 700; text-decoration: none; }
+.brand svg { inline-size: 28px; block-size: 28px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.phase, .tag { font-size: var(--caption-size); padding: 4px var(--space-2); border-radius: var(--radius-control); background: var(--container); color: var(--primary); }
+.notice { font-size: var(--caption-size); color: var(--muted); border-inline-start: 3px solid var(--outline); padding-inline-start: var(--space-2); margin-block: var(--space-3); }
+.intro { margin-block: var(--space-4); }
+h1 { font-size: var(--title-size); line-height: 1.6; margin-block: var(--space-1); }
+h2 { font-size: 21px; line-height: 1.7; margin-block: 0 var(--space-1); }
+p { margin-block: var(--space-1) var(--space-2); overflow-wrap: anywhere; }
+.eyebrow, .muted, .help { color: var(--muted); }
+.eyebrow { font-size: var(--caption-size); }
+.layout { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: var(--space-3); align-items: start; }
+.card { background: var(--surface); border: 1px solid var(--divider); border-radius: var(--radius-surface); padding: var(--space-3); min-inline-size: 0; }
+.lesson-card { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: var(--space-3); }
+.art { background: var(--container); color: var(--primary); border-radius: var(--radius-control); display: grid; place-items: center; align-self: start; block-size: 112px; }
+.art svg { inline-size: 100%; max-inline-size: 120px; fill: var(--surface); stroke: currentColor; stroke-width: 2; }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); flex-wrap: wrap; margin-block-start: var(--space-3); }
+.context { background: var(--container); border: none; }
+.context h2 { font-size: 18px; }
+button, .button { min-block-size: var(--control-height); border-radius: var(--radius-control); padding: var(--space-1) var(--space-3); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; text-align: center; border: 1px solid transparent; }
+.primary { color: var(--on-primary); background: var(--primary); font-weight: 700; }
+.secondary { color: var(--primary); border-color: var(--outline); background: var(--surface); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+button:not(:disabled):hover, .button:hover { text-decoration: underline; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+textarea:focus-visible { outline-offset: 2px; }
+textarea { display: block; inline-size: 100%; resize: vertical; min-block-size: 144px; border: 1px solid var(--outline); border-radius: var(--radius-control); background: var(--surface); padding: var(--space-2); }
+textarea[aria-invalid="true"] { border: 2px solid var(--danger); }
+label { display: block; font-weight: 700; }
+.help { font-size: var(--caption-size); }
+.hint { margin-block: var(--space-3); border-block: 1px solid var(--divider); padding-block: var(--space-1); }
+summary { cursor: pointer; min-block-size: var(--control-height); display: list-item; padding-block: var(--space-1); }
+.hint summary { color: var(--primary); }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.actions button { flex: 1 1 200px; }
+.status { min-block-size: 2em; font-size: var(--caption-size); margin-block: var(--space-2); }
+.status[data-kind="error"] { color: var(--danger); }
+.status[data-kind="success"] { color: var(--success); }
+.result { margin-block-start: var(--space-3); border-block-start: 1px solid var(--divider); padding-block-start: var(--space-2); }
+#saved-answer { white-space: pre-wrap; }
+.back { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--control-height); }
+footer { margin-block: var(--space-4); color: var(--muted); font-size: var(--caption-size); }
+.review { border-block-start: 1px solid var(--divider); padding-block: var(--space-2); }
+.review select { min-block-size: var(--control-height); border: 1px solid var(--outline); border-radius: var(--radius-control); padding-inline: var(--space-2); max-inline-size: 100%; background: var(--surface); }
+.check { display: flex; align-items: center; gap: var(--space-1); min-block-size: var(--control-height); font-weight: 400; }
+.check input { inline-size: 22px; block-size: 22px; }
+.skip { position: absolute; inset-block-start: -100px; background: var(--surface); padding: var(--space-2); z-index: 2; }
+.skip:focus { inset-block-start: 0; }
+@media (max-width: 760px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { .shell { padding-inline: var(--space-2); } .lesson-card { grid-template-columns: minmax(0, 1fr); } .art { inline-size: 96px; block-size: 88px; } .intro { margin-block: var(--space-3); } .card-bottom { align-items: stretch; } .card-bottom .button { inline-size: 100%; } }
+@media (forced-colors: active) { .card, .context, .tag, .phase, .art { border: 1px solid CanvasText; } button:disabled { opacity: 1; color: GrayText; } }
+/* No authored animation; reduced-motion behavior is equivalent without a toggle. */
