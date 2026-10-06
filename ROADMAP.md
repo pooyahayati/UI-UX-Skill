@@ -7,6 +7,7 @@ Implementation was explicitly authorized after roadmap publication. R0–R8 now 
 ## Current state
 
 - Last updated: **2026-10-06**.
+- Latest release authority: on 2026-10-06 the owner requested a new release after checking that all agreed stages are recorded/final and no required implementation work remains. Audit confirms R0–R8/R9 accepted and integrated, no open GitHub PR/Issue at kickoff, and final main checks passed. Prepare **3.2.0**, a compatible capability minor, with exact-candidate package/security/CI gates before publication. This supersedes earlier no-new-release delivery restrictions for this release only; no local installation or deployment is authorized.
 - Implementation baseline: **v3.1.1** at `16cfced8a166ab59eadfd7b38b899b046ba334f6`; local and live upstream `main` matched with a clean working tree at kickoff.
 - Planning: **Complete**; the agreed requirements, stage outputs, dependencies, and acceptance gates are documented below.
 - Implementation: **Completed**; **9 of 9 correction stages completed**.
@@ -1248,7 +1249,7 @@ Planning readiness:
 - [x] Existing narrow/audit/backend boundaries and the no-new-specialists decision are preserved.
 - [x] The owner-requested R9 follow-up was planned after R7/R8 with six initially unstarted packages; the later R9.1 kickoff and source/policy acceptance are recorded separately without claiming the full mode is delivered.
 
-Still pending:
+Completed implementation and integration checklist:
 
 - [x] Explicit authorization to start Skill capability corrections; the owner instructed the coding agent to start on 2026-10-04.
 - [x] Execution and local evidenced acceptance of R0.
@@ -1263,7 +1264,7 @@ Still pending:
 - [x] Complete the separate R9 engineering workstream: R9.1–R9.4 are integrated through PR #28; R9.5/R9.6 have scoped local acceptance, including the authorized independent forward slice and retained limitations.
 - [x] Integrate accepted R9.5/R9.6 after explicit delivery authority and successful exact-head checks: PR #29 and its post-merge workflow passed. Publication skipped; local installation/release are separate.
 
-**Next delivery action:** None remains for the authorized R0–R8 correction/R9 integration scope. PR #29 and its post-merge checks completed the remaining integration. Preserve connected runtime/compatibility, F01 and device/validation limits, and accepted owner/font evidence. Future stabilization fixes are evidence-driven; a capability-version/release decision, local installation or deployment needs separate owner authority. Retain 3.1.1; no release/install/deploy is authorized.
+**Next delivery action:** Publish the owner-authorized compatible **3.2.0** release only after fresh exact-source package/security checks and successful current-head CI. No required R0–R8/R9 implementation stage remains; PR #29 and its post-merge checks completed the remaining capability integration. Preserve connected runtime/compatibility, F01 and device/validation limits, and accepted owner/font evidence. Future stabilization fixes are evidence-driven; local installation or deployment still needs separate authority.
 
 **After R8 acceptance:** R9.1 received authorized local kickoff and scoped source/policy acceptance; R9.2–R9.6 each received a separate next-stage instruction. R9.1–R9.4 integration received explicit owner authority. Material remains optional per product; Google Design supplies selected research context. Do not infer independent-agent, release/install/merge authority from package completion.
 

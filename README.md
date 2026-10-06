@@ -1,7 +1,7 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-3.1.1-blue)
+![Version](https://img.shields.io/badge/version-3.2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production interfaces.
@@ -48,7 +48,7 @@ Limited correction exception: R0–R8 only. The owner authorized design foundati
 
 Separate R9 exception: optional Material Design only. The owner authorized the R9.1 local implementation kickoff on 2026-10-06 after R7/R8 acceptance. The six-package plan covers optional activation, personalized foundations/research, scoped component guidance, sequential samples, existing runtime appearance contracts and bounded evaluation. It is not a general capability exception; no new Product Types, additional external design specialists, or general-purpose page builder are authorized. Sending/merging, release, installation and deployment require their own actual authority.
 
-See [Roadmap](ROADMAP.md) for actual stage progress and acceptance evidence. Planned capabilities are not yet delivered. The released version remains `3.1.1`; source changes require separate candidate validation, versioning, and publication authorization.
+See [Roadmap](ROADMAP.md) for actual stage progress and acceptance evidence. R0–R8 and all six R9 packages are completed and integrated within their documented scope. Version `3.2.0` is the owner-authorized compatible capability release; publication requires exact-candidate validation and security checks, not just completed task labels.
 
 ## Quick use
 
@@ -76,10 +76,11 @@ Claude Code:
 - **[Shared UI Routing](skills/ui-ux-skill/references/shared-product-rules.md)** — scope loading, precedence, and non-duplication policy
 - **[Design System Registry](skills/ui-ux-skill/design-system.json)** — machine-readable local design-system modules
 - **[Design System Architecture](skills/ui-ux-skill/references/design-system-architecture.md)** — token hierarchy, themes, states, variants, governance, and runtime boundaries
-- **[Optional Material activation](skills/ui-ux-skill/references/material-design.md)** — selected/recommended/rejected/inactive states and scope protection; full mode acceptance remains later R9 work
+- **[Optional Material activation](skills/ui-ux-skill/references/material-design.md)** — selected/recommended/rejected/inactive states and scope protection; bounded R9 acceptance and its limitations are recorded in the roadmap
 - **[Material foundations](skills/ui-ux-skill/references/material-foundations.md)** — product-personalized mapping into existing tokens; **[selected research](skills/ui-ux-skill/references/design-research.md)** informs concrete questions with any style
 - **[Material components](skills/ui-ux-skill/references/material-components.md)** — selective workflow-family guidance and live-catalog links; **[stack fit](skills/ui-ux-skill/references/material-stack-fit.md)** separates style from provider choice
 - **[Material samples](skills/ui-ux-skill/references/material-samples.md)** — one foundation-aligned primary proposal, revision-scoped gates and handbook integration; [authored primary example](evals/material/ham-amooz/DESIGN.md) retains honest pending approval
+- **[Material runtime](skills/ui-ux-skill/references/material-runtime.md)** — bounded appearance/heading/icon adapters through existing draft, validation, publication, history and rollback contracts; not a universal theme builder
 - **[Real-World Evaluation](evals/real-world/RESULTS.md)** — five-product evaluation results and limitations
 - **[Specialist Registry](skills/ui-ux-skill/specialists.json)** — machine-readable specialist sources and triggers
 - **[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)** — Head/Specialist authority, fallback, and freshness rules
@@ -88,7 +89,7 @@ Claude Code:
 
 ## Current source
 
-**v3.1.1**
+**v3.2.0**
 
 Canonical repository: **pooyahayati/UI-UX-Skill**  
 Canonical Skill slug: **`ui-ux-skill`**

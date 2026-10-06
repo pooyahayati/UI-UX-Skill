@@ -2,7 +2,30 @@
 
 All notable user-facing and technical changes to this project are documented here.
 
-## [Unreleased]
+## [3.2.0] - 2026-10-06
+
+### Design foundations, living handbook and controlled appearance
+
+- Completed and integrated R0–R8: adaptive product-aware discovery with professional recommendations, one living `DESIGN.md`, scoped decision provenance and incremental handoffs.
+- Review one responsive primary-language/direction proposal using settled foundations; derive dark after primary approval and add a secondary language/layout only when needed and authorized. Preserve narrow fixes, read-only audits, backend exclusion and existing stack/permissions.
+- Added bounded appearance guidance and a synthetic executable fixture for real consumers, private drafts, validation, publication, history, rollback, prepared font choices and editable semantic icon families/assignments. Routine approved runtime changes are separate from handbook edits; this is not a production admin engine or arbitrary font-upload implementation.
+- Preserved compatible prior profile/configuration values and isolated product routing. Persian-facing products retain the required `persian-writing` route; no extra specialist or mandatory framework/library added.
+
+### Optional, product-personalized Material Design
+
+- Completed and integrated R9.1–R9.6: explicit selected/unaccepted/rejected/inactive activation, audience-specific foundations, curated research, six scoped component families, provider-fit guidance and sequential samples.
+- Added bounded Material runtime adapters and compatible schema-3 fixture reads with strict prior-schema validation, private/published consumer separation, semantic fallback and whole-snapshot recovery. Concurrent publication and corrupt-active-history regressions retain data/tenant boundaries.
+- Material is optional per product, not the default. Style selection is not library adoption, sample approval, implementation authority or permission to restyle host UI.
+
+### Verification and limits
+
+- Scoped independent forward reviews, representative browser/runtime observations, accepted owner/manual reviews and exact-source package verification are linked from `ROADMAP.md`; required engineering stages are complete. Historical result structure is not a fresh all-case model run.
+- R9's six-case shared-session review retains nonblocking F01 reference-read ordering and device/assistive-technology limits. No universal conformance or hypothetical customer taste approval is claimed; the authored primary example remains proposed, with dark unstarted and monolingual secondary N/A.
+- Compatible minor version: Skill/plugin identities and existing product boundaries remain unchanged. Release artifacts must pass current exact-head CI and candidate-bound native security checks; local installation/deployment is separate.
+
+### Historical development checkpoints (before final acceptance)
+
+The dated workstream notes below preserve earlier partial states, not outstanding tasks or the current release disposition. Their pending claims are superseded by the final acceptance/integration records in `ROADMAP.md`.
 
 ### Sequential Material samples and handbook integration (R9.4)
 
