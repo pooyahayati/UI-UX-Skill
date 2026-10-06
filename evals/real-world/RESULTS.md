@@ -1,10 +1,16 @@
 # Stage 6 Real-World Evaluation Results
 
-Candidate: UI/UX Skill v3.1.1  
+Original evaluation candidate: UI/UX Skill v3.1.1
 Date: 2026-10-02  
 Host: ChatGPT  
 Model: GPT-5.6 Sol  
 Mode: in-session source-based behavioral evaluation
+
+Release compatibility binding: v3.2.0. `result.json` identifies the current
+manifest version while retaining `sourceEvaluationVersion`, original host,
+model, date and case evidence. Current validation is structural reuse, not a
+fresh five-product model run. Separate R0–R8/R9 forward/rendered acceptance
+and limitations are recorded in `ROADMAP.md`.
 
 | Product | Case | Result | Primary finding |
 | --- | --- | --- | --- |
