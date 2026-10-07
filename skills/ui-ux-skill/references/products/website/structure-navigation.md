@@ -43,7 +43,7 @@ A visitor should be able to predict where a navigation item leads from its label
 
 ## Navigation
 
-Read `../shared/navigation-wayfinding.md` for the cross-product navigation contract.
+Read `../../shared/navigation-wayfinding.md` for the cross-product navigation contract.
 
 Website-specific navigation must additionally resolve:
 
@@ -189,7 +189,7 @@ For long pages, support scanning with meaningful headings rather than excessive 
 
 ## Content hierarchy and scanning
 
-Read `../shared/content-hierarchy-progressive-disclosure.md` for the cross-product hierarchy contract.
+Read `../../shared/content-hierarchy-progressive-disclosure.md` for the cross-product hierarchy contract.
 
 Website specialization:
 

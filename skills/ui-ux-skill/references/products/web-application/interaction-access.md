@@ -61,7 +61,7 @@ Use native HTML behavior when it adequately solves the task.
 
 ## Feedback and notifications
 
-Read `../shared/feedback-status.md`.
+Read `../../shared/feedback-status.md`.
 
 Web-application specialization:
 
@@ -74,7 +74,7 @@ Do not let a toast become the only record of a critical application failure.
 
 ## Responsive web behavior
 
-Read `../shared/responsive-adaptation.md` and `../shared/navigation-wayfinding.md`.
+Read `../../shared/responsive-adaptation.md` and `../../shared/navigation-wayfinding.md`.
 
 Web-application specialization must decide how:
 
@@ -116,7 +116,7 @@ When a product begins empty or unconfigured:
 
 ## Motion and transition feedback
 
-Read `../shared/motion.md`.
+Read `../../shared/motion.md`.
 
 For repeated-use web applications, keep motion subordinate to task speed, focus continuity, and state clarity.
 
@@ -124,7 +124,7 @@ Avoid motion that delays frequent commands or creates false progress.
 
 ## Accessibility interaction contracts
 
-Read `../shared/accessibility-interaction.md` for the design contract and `../accessibility.md` for QA/evidence.
+Read `../../shared/accessibility-interaction.md` for the design contract and `../../accessibility.md` for QA/evidence.
 
 Web-application specialization must additionally validate:
 

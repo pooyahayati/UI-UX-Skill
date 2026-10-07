@@ -122,7 +122,7 @@ Autosave must communicate failure and conflict states.
 
 ## State model
 
-Read `../shared/state-recovery.md` and `../shared/feedback-status.md`.
+Read `../../shared/state-recovery.md` and `../../shared/feedback-status.md`.
 
 The Web Application Product Pack additionally owns:
 
