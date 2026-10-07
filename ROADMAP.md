@@ -10,9 +10,9 @@ Current status, completed stages and maintenance boundaries. Detailed execution 
 - Implementation: **Completed**; **9 of 9 correction stages completed**. This count covers R0–R8 only, not the new maintenance backlog.
 - Active implementation stage: **None**. The R0–R8 tracker is closed; R10 activity is tracked separately below.
 - Next implementation stage: **None**; all six R9 packages are completed and integrated. The next maintenance package is **R10.1**.
-- Next delivery action: **Owner-authorized documentation integration after checks pass.** Start R10.1 only on an implementation instruction; release, installation and deployment remain separate actions.
+- Next delivery action: **Complete the authorized documentation checkpoint through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34), then await an R10.1 implementation instruction.** The PR records actual integration/check state; release, installation and deployment remain separate actions.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
-- Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`. R10 planning is prepared on `codex/audit-remediation-roadmap` for authorized documentation-only integration; Skill/package/release versions remain unchanged.
+- Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`. R10 planning delivery is tracked by [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34) from `codex/audit-remediation-roadmap`; Skill/package/release versions remain unchanged.
 
 ### Correction stage tracker
 
@@ -64,7 +64,7 @@ Bounded stabilization maintenance for the five findings from the 2026-10-07 deep
 - Active remediation package: **None**.
 - Next remediation package: **R10.1 — Safe release packaging**.
 - Accountable role: **Engineering lead / maintainer, one implementation writer**. Additional agents are not required or authorized by this plan.
-- Delivery state: **Documentation-only integration authorized.** The delivery PR is authoritative for its actual merge/check state; no R10 fix, version bump, release or installation is included.
+- Delivery state: **Owner-authorized documentation checkpoint: [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34).** The PR is authoritative for its actual merge/check state; no R10 fix, version bump, release or installation is included.
 
 | Package | Audit finding / deliverable | Severity | Status | Execution prerequisite | Acceptance evidence |
 | --- | --- | --- | --- | --- | --- |
