@@ -449,6 +449,32 @@ class HTTPBoundary(unittest.TestCase):
             self.assertEqual(self.call(resource, token=self.viewer_token)[0], 403)
             self.assertEqual(self.call(resource, token=self.owner_token, tenant="b")[0], 403)
 
+    def test_reviewed_recovery_keeps_newer_fields_and_rejects_another_base_move(self):
+        _, draft, _ = self.call(method="PUT", body=self.draft_body(), token=self.owner_token)
+        _, peer, _ = self.call(method="PUT", body=dict(self.draft_body(), config=dict(DEFAULTS, spacing=24)), token=self.peer_token)
+        self.assertEqual(self.call("publications", "POST", {"draftRevision": peer["draftRevision"]}, self.peer_token)[0], 200)
+        stale = {"config": draft["config"], "baseRevision": 0, "draftRevision": draft["draftRevision"]}
+        before = self.protected()
+        self.assertEqual(self.call(method="PUT", body=stale, token=self.owner_token)[0], 409)
+        self.assertEqual(self.protected(), before)
+        current = self.call("published")[1]
+        # Client explicitly chose its palette and current spacing, not the whole stale snapshot.
+        reviewed = dict(stale, config=dict(current["config"], palette="forest"), baseRevision=current["revision"])
+        self.assertEqual(self.call("rollbacks", "POST", {"revision": 0, "baseRevision": 1}, self.peer_token)[0], 200)
+        before = self.protected()
+        self.assertEqual(self.call(method="PUT", body=reviewed, token=self.owner_token)[0], 409)
+        self.assertEqual(self.protected(), before)
+        current = self.call("published")[1]
+        reviewed.update(config=dict(current["config"], palette="forest"), baseRevision=current["revision"])
+        code, recovered, _ = self.call(method="PUT", body=reviewed, token=self.owner_token)
+        self.assertEqual(code, 200)
+        self.assertEqual(self.call("published")[1], current)
+        self.assertEqual(self.call(token=self.peer_token)[1], None)
+        code, active, _ = self.call("publications", "POST", {"draftRevision": recovered["draftRevision"]}, self.owner_token)
+        self.assertEqual((code, active["revision"], active["config"]["palette"]), (200, 3, "forest"))
+        self.assertEqual(len(self.store.history("a", 50)), 4)
+        self.assertEqual(self.store.published("b")["config"], DEFAULTS)
+
     def test_material_http_lifecycle_and_denials_use_existing_authority(self):
         candidate = dict(DEFAULTS, treatment="material", headingFont="serif", theme="dark",
                          density="compact", iconFamily="solid", settingsIcon="badge")

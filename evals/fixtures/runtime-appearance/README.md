@@ -62,6 +62,21 @@ from artwork; only back/closed-disclosure semantics are direction-mirrored.
   defaults affect local icon choices only and require normal preview/save/publish.
 - Publish consumes the exact saved draft revision and base active revision in one
   transaction. A stale base returns 409; it never overwrites another publication.
+- Reload server state preserves current draft inputs, including unsaved changes,
+  and their original base. A moved base or saved-draft revision disables ordinary
+  save/publication and offers **Review and reconcile changes**. This reads the
+  latest published snapshot and the owner's saved draft without writing either.
+  The dialog shows published/input differences and saved-draft differences; every
+  published/input difference requires an explicit keep-current or use-input choice.
+  It does not infer intent from an unavailable historical base. Unchanged fields
+  retain current values. **Save reviewed private draft** compares both observed
+  revisions, saves privately, and still requires separate publication. Cancel
+  keeps saved/local state. A new conflict or unknown write outcome preserves
+  inputs and requires a refreshed comparison before another recovery save.
+- Rollback preserves saved and unsaved draft inputs and uses the same recovery
+  path. Discard/reset remain deliberate alternatives, not prerequisites for
+  recovery. Full browser navigation can still lose unsaved inputs after its
+  existing unload warning; this fixture does not add offline draft storage.
 - Publication/rollback is not safe to blindly retry after a lost response: refresh
   active/history first. Rollback appends a new validated snapshot; history survives.
 - Reset produces a private defaults draft, not a publication. Discard removes only
@@ -120,6 +135,23 @@ not commit/share it. Open that link locally, then use Design and Appearance. Rea
 view is a separate route and always uses published values. Stop the server when
 finished. Server binding is fixed to 127.0.0.1; non-loopback flags are not offered.
 Tests use fresh temporary stores and actual HTTP boundaries, not production state.
+
+### Recovery regression checks
+
+Run `node scripts/test_runtime_recovery.mjs` for actual shipped handlers with a
+modeled DOM/HTTP boundary and `python scripts/test_runtime_appearance.py` for
+real persistence/HTTP checks. Both are wired into existing CI. Neither is a
+substitute for the actual-browser acceptance below.
+
+`node scripts/test_runtime_recovery_browser.mjs` runs the two-owner UI workflow
+against a fresh loopback server and disposable database. It requires an already
+available `playwright` module, Python and compatible Chromium browser; it never
+installs/downloads them. Optional environment overrides: `PLAYWRIGHT_MODULE`
+(module path), `PYTHON` (executable), `BROWSER_EXECUTABLE` (installed browser),
+and `RECOVERY_ARTIFACT_DIR` (external screenshot directory). It uses isolated
+browser contexts, retains no credentials in reports, and closes its browser/server
+and removes only its own temporary store. This optional local browser runner is
+not executed by CI and is not an additional shipped runtime dependency.
 
 ## Required acceptance and recorded limits
 

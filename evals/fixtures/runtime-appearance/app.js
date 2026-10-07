@@ -1,6 +1,7 @@
 "use strict";
 const $ = id => document.getElementById(id);
-const state = { session: null, catalog: null, published: null, draft: null, dirty: false, busy: false };
+const state = { session: null, catalog: null, published: null, draft: null, dirty: false, busy: false,
+  editBaseRevision: null, conflict: false, recovery: null };
 const isReader = location.pathname === "/reader";
 let confirmationAction = null;
 let confirmationTrigger = null;
@@ -22,6 +23,7 @@ async function request(resource, method = "GET", body) {
   catch (_) { throw new Error("Response could not be verified. Preserve inputs and reconcile server state before retrying."); }
   if (!response.ok) {
     const error = new Error(result.error.message);
+    error.code = result.error.code;
     error.details = result.error.details;
     throw error;
   }
@@ -40,7 +42,9 @@ async function perform(action) {
   updateActions();
   try { await action(); }
   catch (error) {
+    if (["BASE_CONFLICT", "DRAFT_CONFLICT"].includes(error.code)) state.conflict = true;
     status(error.message, true);
+    if ($("recovery").open) $("recovery-error").textContent = error.message;
     for (const spec of (state.catalog ? state.catalog.settings : [])) {
       const control = $("setting-" + spec.key);
       const message = $("error-" + spec.key);
@@ -236,12 +240,17 @@ function fillControls(config) {
 
 function updateActions() {
   const locked = state.busy;
-  for (const id of ["save", "preview", "reset", "reload", "compact", "preset", "rollback", "icon-defaults"]) $(id).disabled = locked;
-  $("publish").disabled = locked || !state.draft || state.dirty;
+  const stale = state.conflict || (state.editBaseRevision !== null && state.published && state.editBaseRevision !== state.published.revision);
+  for (const id of ["save", "preview", "reset", "reload", "compact", "preset", "rollback", "icon-defaults", "reconcile", "recovery-refresh", "recovery-cancel"]) $(id).disabled = locked;
+  $("save").disabled = locked || stale;
+  $("publish").disabled = locked || stale || !state.draft || state.dirty;
+  $("recovery-save").disabled = locked || !state.recovery || state.recovery.stale;
+  for (const field of (state.recovery ? state.recovery.fields : [])) field.select.disabled = locked;
   $("discard").disabled = locked || !state.draft;
   for (const spec of (state.catalog ? state.catalog.settings : [])) $("setting-" + spec.key).disabled = locked;
   updateIconGallery();
   $("draft-state").textContent = state.dirty ? "Unsaved edits. Save before publication; refresh can lose these edits." : state.draft ? `Saved private draft ${state.draft.draftRevision}; based on published version ${state.draft.baseRevision}.` : "No saved draft. Published values remain active.";
+  $("recovery-notice").hidden = !stale;
   if (state.catalog && state.published && !isReader && state.session.canEdit) {
     const config = readConfig();
     const changes = state.catalog.settings.filter(spec => config[spec.key] !== state.published.config[spec.key]);
@@ -278,14 +287,89 @@ async function preview() {
   $("preview-state").textContent = "PRIVATE PREVIEW · not published · visible to this owner only";
 }
 
-async function reload() {
+async function reload(preserve = true) {
+  const keep = preserve && state.editBaseRevision !== null && (state.dirty || state.draft || state.conflict);
   await refreshPublished();
-  state.draft = await request("draft");
-  fillControls(state.draft ? state.draft.config : state.published.config);
-  state.dirty = false;
+  const draft = await request("draft");
+  if (keep) {
+    state.conflict = state.conflict || state.editBaseRevision !== state.published.revision ||
+      (draft?.draftRevision ?? 0) !== (state.draft?.draftRevision ?? 0);
+  } else {
+    state.draft = draft;
+    state.editBaseRevision = draft ? draft.baseRevision : state.published.revision;
+    fillControls(draft ? draft.config : state.published.config);
+    state.dirty = false;
+    state.conflict = state.editBaseRevision !== state.published.revision;
+  }
   await preview(); await refreshHistory();
   updateActions();
 }
+
+// No inferred three-way merge: old bases can be outside the available history.
+// Every difference requires an explicit decision against the freshly read snapshot.
+async function beginRecovery() {
+  const local = readConfig();
+  const [published, draft] = await Promise.all([request("published"), request("draft")]);
+  if (published.source !== "published") throw new Error("Restore valid published storage before reviewing recovery.");
+  const fields = [];
+  $("recovery-fields").replaceChildren();
+  for (const spec of state.catalog.settings) {
+    if (local[spec.key] === published.config[spec.key]) continue;
+    const label = document.createElement("label");
+    label.htmlFor = "recovery-" + spec.key;
+    label.textContent = `${spec.label}: published ${published.config[spec.key]}; your input ${local[spec.key]}`;
+    const select = document.createElement("select"); select.id = label.htmlFor;
+    for (const [value, text] of [["", "Choose explicitly"], ["current", "Keep current published value"], ["local", "Use my input"]]) {
+      const option = document.createElement("option"); option.value = value; option.textContent = text; select.append(option);
+    }
+    select.value = "";
+    label.append(select); $("recovery-fields").append(label);
+    fields.push({ key: spec.key, select });
+  }
+  state.recovery = { local, published, draft, fields, stale: false };
+  $("recovery-summary").textContent = `Review against published version ${published.revision}. The original base is not used to infer your intent. Choose each difference; unchanged fields retain current values. Saving replaces only your own private draft ${draft?.draftRevision ?? "(none)"}, not the publication. Cancel keeps your existing draft and inputs.`;
+  const savedDifferences = draft ? state.catalog.settings.filter(spec => draft.config[spec.key] !== local[spec.key]) : [];
+  $("recovery-saved").textContent = savedDifferences.length ? "Your current saved draft differs from these inputs: " + savedDifferences.map(spec => `${spec.label}: saved ${draft.config[spec.key]}, input ${local[spec.key]}`).join("; ") : "Your saved private draft has no additional differences from these inputs.";
+  $("recovery-error").textContent = "";
+  if (!$("recovery").open) $("recovery").showModal();
+  updateActions();
+}
+
+async function afterDraftSaved(message) {
+  try { await preview(); await refreshHistory(); status(message); }
+  catch (_) { status(message + " Preview/history refresh failed; reload to verify them before publication.", true); }
+}
+
+async function saveRecovery() {
+  const review = state.recovery;
+  if (!review || review.stale) throw new Error("Refresh comparison and review choices before retrying.");
+  const config = { ...review.published.config };
+  for (const field of review.fields) {
+    if (!["current", "local"].includes(field.select.value)) throw new Error("Choose a value for every difference before saving.");
+    if (field.select.value === "local") config[field.key] = review.local[field.key];
+  }
+  let saved;
+  try {
+    saved = await request("draft", "PUT", { config, baseRevision: review.published.revision,
+      draftRevision: review.draft?.draftRevision ?? 0 });
+  } catch (error) {
+    // No automatic retry, even when the write outcome is unknown.
+    review.stale = true;
+    throw error;
+  }
+  state.draft = saved; state.editBaseRevision = saved.baseRevision;
+  state.published = review.published; state.dirty = false; state.conflict = false;
+  fillControls(saved.config);
+  $("recovery").close();
+  await afterDraftSaved("Reviewed choices saved as a private draft. Review publication separately; nothing was published.");
+}
+
+$("reconcile").addEventListener("click", () => perform(beginRecovery));
+$("recovery-refresh").addEventListener("click", () => perform(beginRecovery));
+$("recovery-save").addEventListener("click", () => perform(saveRecovery));
+$("recovery-cancel").addEventListener("click", () => { if (!state.busy) $("recovery").close(); });
+$("recovery").addEventListener("cancel", event => { if (state.busy) event.preventDefault(); });
+$("recovery").addEventListener("close", () => { state.recovery = null; $("reconcile").focus(); });
 
 function confirmChange(title, description, trigger, action) {
   confirmationAction = action; confirmationTrigger = trigger;
@@ -302,19 +386,19 @@ $("surface-dialog").addEventListener("close", () => { if (overlayTrigger) overla
 $("settings-form").addEventListener("submit", event => event.preventDefault());
 $("preview").addEventListener("click", () => perform(preview));
 $("save").addEventListener("click", () => perform(async () => {
-  state.draft = await request("draft", "PUT", { config: readConfig(), baseRevision: state.draft ? state.draft.baseRevision : state.published.revision, draftRevision: state.draft ? state.draft.draftRevision : 0 });
-  state.dirty = false; await preview(); await refreshHistory(); status("Private draft saved. Published appearance is unchanged.");
+  state.draft = await request("draft", "PUT", { config: readConfig(), baseRevision: state.editBaseRevision, draftRevision: state.draft ? state.draft.draftRevision : 0 });
+  state.dirty = false; await afterDraftSaved("Private draft saved. Published appearance is unchanged.");
 }));
 $("publish").addEventListener("click", event => confirmChange("Publish appearance for this tenant?", $("diff").textContent + " Other owners' drafts are not published. A new history version will be created.", event.currentTarget, async () => {
   const accepted = await request("publications", "POST", { draftRevision: state.draft.draftRevision });
-  await reload();
+  await reload(false);
   if (state.published.source !== "published" || state.published.revision !== accepted.revision) {
     status("Publication was acknowledged, but the active reader is degraded or has moved. Reconcile history before retrying.", true);
   } else status("Appearance published and confirmed by the server. Readers can refresh to see this version.");
 }));
-$("discard").addEventListener("click", () => perform(async () => {
+$("discard").addEventListener("click", event => confirmChange("Discard your saved draft and local inputs?", "This deliberately replaces your inputs with current published values. Publication and history are unchanged.", event.currentTarget, async () => {
   await request("draft", "DELETE", { draftRevision: state.draft.draftRevision });
-  await reload(); status("Your saved draft was discarded. Published appearance and history are unchanged.");
+  await reload(false); status("Your saved draft was discarded. Published appearance and history are unchanged.");
 }));
 $("preset").addEventListener("click", () => { fillControls(state.catalog.defaults); state.dirty = true; updateActions(); });
 $("compact").addEventListener("click", () => { $("setting-density").value = "compact"; state.dirty = true; updateActions(); });
@@ -327,7 +411,8 @@ $("icon-defaults").addEventListener("click", () => {
 });
 $("reset").addEventListener("click", event => confirmChange("Stage appearance defaults?", "This replaces your private draft with prepared defaults. It does not publish or delete history. Unsaved local edits will be replaced.", event.currentTarget, async () => {
   state.draft = await request("resets", "POST", { baseRevision: state.published.revision, draftRevision: state.draft ? state.draft.draftRevision : 0 });
-  fillControls(state.draft.config); state.dirty = false; await preview(); await refreshHistory(); status("Defaults saved as a private draft. Review before publishing.");
+  state.editBaseRevision = state.draft.baseRevision; state.conflict = false;
+  fillControls(state.draft.config); state.dirty = false; await afterDraftSaved("Defaults saved as a private draft. Review before publishing.");
 }));
 $("rollback").addEventListener("click", event => {
   const revision = Number($("history-choice").value);
@@ -339,10 +424,9 @@ $("rollback").addEventListener("click", event => {
     } else status("Rollback confirmed. A new active version was appended; history is preserved.");
   });
 });
-$("reload").addEventListener("click", event => {
-  if (state.dirty) confirmChange("Replace unsaved edits with server state?", "Unsaved local edits will be lost. Saved private draft and published history remain.", event.currentTarget, async () => { await reload(); status("Server state reloaded."); });
-  else perform(async () => { await reload(); status("Server state reloaded."); });
-});
+$("reload").addEventListener("click", () => perform(async () => {
+  await reload(); status("Server state refreshed; existing draft inputs were preserved. Review differences if the base or saved draft changed.");
+}));
 $("refresh-reader").addEventListener("click", () => perform(async () => { await refreshPublished(); if (state.published.source === "published") status("Published values refreshed. Private drafts remain private."); }));
 window.addEventListener("beforeunload", event => { if (state.dirty) { event.preventDefault(); event.returnValue = ""; } });
 
