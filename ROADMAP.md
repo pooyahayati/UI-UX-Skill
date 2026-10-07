@@ -10,7 +10,7 @@ Current status, completed stages and maintenance boundaries. Detailed execution 
 - Implementation: **Completed**; **9 of 9 correction stages completed**. This count covers R0–R8 only, not the new maintenance backlog.
 - Active implementation stage: **None**. The R0–R8 tracker is closed; R10 activity is tracked separately below.
 - Next implementation stage: **None**; all six R9 packages are completed and integrated. The next maintenance package is **R10.2**.
-- Next delivery action: **Hold integration, publication and local installation/update until all five R10 repairs are completed and finalized.** This owner instruction supersedes per-package delivery; implementation proceeds one package at a time.
+- Next delivery action: **Integrate accepted R10.1, then implement R10.2 locally**, explicitly authorized by the owner on 2026-10-07. This overrides the earlier integration hold for R10.1 only. Publication and local installation/update remain held until all five R10 repairs are completed and finalized.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
 - Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`. R10 planning delivery is tracked by [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34) from `codex/audit-remediation-roadmap`; Skill/package/release versions remain unchanged.
 
@@ -64,7 +64,7 @@ Bounded stabilization maintenance for the five findings from the 2026-10-07 deep
 - Active remediation package: **None**; R10.1 local verification is complete.
 - Next remediation package: **R10.2 — Resource route integrity**.
 - Accountable role: **Engineering lead / maintainer, one implementation writer**. Additional agents are not required or authorized by this plan.
-- Delivery state: **Planning integrated through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34) at `4f13176`; local implementation branch `codex/r10-remediation`.** No R10 fix is pushed or merged. Version stays `3.2.0`; release and local installation/update are held until final R10 acceptance.
+- Delivery state: **Planning integrated through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34) at `4f13176`; accepted R10.1 on `codex/r10-remediation` is authorized for CI-gated integration.** The integration PR records actual check/merge state. Version stays `3.2.0`; release and local installation/update are held until final R10 acceptance.
 
 | Package | Audit finding / deliverable | Severity | Status | Execution prerequisite | Acceptance evidence |
 | --- | --- | --- | --- | --- | --- |

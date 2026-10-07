@@ -6,7 +6,7 @@ Prepared 2026-10-07. This document defines the work and acceptance criteria for 
 
 Remove the five evidenced failure modes with bounded fixes and regression coverage. Preserve the existing design workflow, product scope, historical evidence and installation boundaries. This is stabilization maintenance, not a redesign or a new capability family.
 
-The owner authorized planning and its documentation-only integration through PR #34, then authorized local R10.1 implementation on 2026-10-07. Work proceeds one package at a time. Hold all remediation merges, new publication and local Skill installation/update until every R10 fix is completed and finalized. Final integration and local update follow that workstream gate, not individual package acceptance. Do not bump release metadata or publish during an intermediate package.
+The owner authorized planning and its documentation-only integration through PR #34, then local R10.1 implementation on 2026-10-07 with delivery held. The subsequent explicit instruction authorizes integration of accepted R10.1 and local implementation of R10.2, overriding the earlier integration hold for R10.1 only. Work proceeds one package at a time. New publication and local Skill installation/update remain held until every R10 fix is completed and finalized. Do not bump release metadata or publish during an intermediate package. Later implementation acceptance alone does not authorize another merge.
 
 Planning deliverables are this execution plan, the R10 tracker, an isolated local branch and verified document consistency. Implementation deliverables are the scoped fixes, regression tests and recorded acceptance described below; they do not exist merely because they are planned.
 
