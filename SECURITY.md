@@ -2,35 +2,16 @@
 
 ## Supported versions
 
-Security-related fixes are applied to the latest published version of UI/UX Skill.
-
-| Version | Supported |
-| --- | --- |
-| 2.x | Yes |
-| 1.x | No — migrate to 2.x |
+Security-related fixes target the [latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest). Older releases are not maintained; update to the current stable version.
 
 ## Reporting a security issue
 
-This repository contains design and agent instructions rather than a network service, but security-sensitive issues can still matter—for example, unsafe installation guidance, insecure workflow recommendations, or instructions that could expose secrets.
+Do not publish secrets, private data or sensitive exploit details in a public issue. Use GitHub private vulnerability reporting or a Security Advisory if available; otherwise open a minimal public issue requesting a private contact channel.
 
-Please do not publish sensitive exploit details in a public issue.
-
-If GitHub private vulnerability reporting or a Security Advisory is available for this repository, use that channel. Otherwise, open a public issue with only a minimal description and request a private contact channel.
-
-Please include:
-
-- affected file and section
-- affected version
-- expected safe behavior
-- impact
-- minimal reproduction details that do not expose secrets
+Include affected version/file/section, expected safe behavior, impact and a minimal reproduction without credentials or private data.
 
 ## Scope
 
-Security reports are especially useful for:
+This repository contains agent guidance and synthetic executable fixtures, not a hosted production service. Report unsafe installation/dependency guidance, exposed credentials, insecure authorization recommendations, examples that weaken application security or arbitrary-code runtime customization.
 
-- secret or credential handling guidance
-- unsafe dependency or installation behavior
-- insecure authentication or authorization UI guidance
-- instructions that could weaken application security
-- unsafe examples involving API keys, tokens, cookies, or local files
+A passing structural validator or secret scan is not certification that every downstream product is secure.

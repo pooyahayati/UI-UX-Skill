@@ -1,196 +1,60 @@
-# How to Install
+# How to Install / Update
 
-This document contains installation, update, migration, and verification instructions for **UI/UX Skill**.
+Canonical source: [pooyahayati/UI-UX-Skill](https://github.com/pooyahayati/UI-UX-Skill), directory `skills/ui-ux-skill/`, Skill name `ui-ux-skill`.
 
-## Canonical source
+Prefer the [latest stable release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest) for routine installation. Use a named commit only when intentionally testing development source.
 
-Repository:
+## Codex
 
-`https://github.com/pooyahayati/UI-UX-Skill`
+Ask `$skill-installer` to install `skills/ui-ux-skill` from the canonical repository at the latest stable release tag.
 
-Canonical Skill path:
-
-`skills/ui-ux-skill/`
-
-Machine-readable Skill name:
-
-`ui-ux-skill`
-
-Installed Skill version source:
-
-`skills/ui-ux-skill/VERSION`
-
-After installation, the same file is present at the installed Skill root. Version questions should be answered from that local file rather than inferred from the repository branch.
-
-## OpenAI Codex
-
-Install with `$skill-installer` from:
-
-```text
+Repository path for discovery:
 https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill
-```
 
-Then invoke:
+Invoke with `$ui-ux-skill`, for example: “Use $ui-ux-skill to inspect this product and improve the affected form without changing its workflow.”
 
-```text
-$ui-ux-skill
-```
+Skills normally live under `$CODEX_HOME/skills` (default `~/.codex/skills`). The installed Skill root must contain `SKILL.md` and `VERSION`; the source version file is `skills/ui-ux-skill/VERSION`. Read the local file for installed-version questions, not the repository branch or latest-release label. The Skill is available on the next turn.
 
-Example:
+## Claude
 
-```text
-Use $ui-ux-skill to classify this product and improve its UI/UX using the required Product Pack.
-```
+- **Claude.ai / Claude Desktop:** download the Claude-ready Skill ZIP from the stable release, upload under **Customize → Skills**, then enable it.
+- **Claude Code:** extract the ZIP into `~/.claude/skills/` or `<project>/.claude/skills/`; invoke `/ui-ux-skill`.
 
-If Codex does not detect the Skill immediately, restart Codex or start a new session.
+## Safe updates and legacy migration
 
-To verify the installed version directly:
+1. Resolve the current stable tag and download/install into a separate staging directory. Verify version, source identity, archive integrity/checksums and required resources before touching the active copy.
+2. Preserve any local customization or engineering-Head integration. If the Skill is managed by a Head, use its authorized update path rather than discarding its contract.
+3. Move the existing directory to a clearly named backup **outside auto-discovered Skill directories**, then place the verified replacement at the canonical path. On failure, restore the backup. Retain it until the new copy is verified.
+4. Verify the installed `VERSION`, manifest and resources. Replace the uploaded package similarly for Claude.ai/Desktop; replace the verified directory for Claude Code.
+
+Do not delete a working installation before its replacement is verified.
+
+Version 2.0 renamed `production-dashboard-ui-ux-skill` to `ui-ux-skill`. For a legacy installation, verify the new nested Skill first, back up the old copy outside discovery paths, and use the new invocation. Avoid two active copies unless intentionally testing migration.
+
+## Persian specialist
+
+For Persian-facing UI, `persian-writing` is REQUIRED and remains independent; do not vendor it into this repository.
+
+Ask `$skill-installer` to install from [ali2000hos/persian-writing](https://github.com/ali2000hos/persian-writing), path `.`, install name `persian-writing`. Sources/triggers are in [specialists.json](skills/ui-ux-skill/specialists.json); specialist versions are not pinned.
+
+From the repository root:
 
 ```bash
-cat "${CODEX_HOME:-$HOME/.codex}/skills/ui-ux-skill/VERSION"
+python3 scripts/validate_specialists.py
+python3 scripts/validate_specialists.py --check-upstream
+python3 scripts/validate_specialists.py --check-codex --require-required-installed --require-current
 ```
 
-If `CODEX_HOME` is unset, its usual default is `~/.codex`.
+Use repeated `--installed-root <path>` to inspect another root. The checker resolves stable release or current default branch; an unavailable check is not proof of freshness.
 
-## Claude.ai / Claude Desktop
-
-1. Open the latest published GitHub Release.
-2. Download the Claude-ready Skill ZIP.
-3. Upload it from **Customize → Skills**.
-4. Enable the Skill.
-
-## Claude Code
-
-Extract the Claude-ready ZIP into either:
-
-```text
-~/.claude/skills/
-```
-
-or a project-local directory:
-
-```text
-<project>/.claude/skills/
-```
-
-Then invoke:
-
-```text
-/ui-ux-skill
-```
-
-## Updating
-
-Always prefer the latest stable version from the canonical repository.
-
-For Codex:
-
-1. Remove the currently installed `ui-ux-skill` if the installer cannot overwrite it.
-2. Reinstall from the canonical path above.
-3. Restart Codex or open a new session if needed.
-
-For Claude.ai / Claude Desktop, replace the uploaded Skill with the ZIP from the newest published Release.
-
-For Claude Code, replace the installed Skill directory with the newest Claude-ready package.
-
-## Migrating from the legacy slug
-
-Version 2.0 changed the technical Skill slug:
-
-```text
-production-dashboard-ui-ux-skill
-→
-ui-ux-skill
-```
-
-If an older installation still uses `production-dashboard-ui-ux-skill`:
-
-1. remove the legacy installed Skill;
-2. install from `skills/ui-ux-skill/`;
-3. invoke it as `$ui-ux-skill` in Codex or `/ui-ux-skill` in Claude Code.
-
-Do not keep both legacy and current copies installed unless you are intentionally testing migration behavior.
-
-## Verifying the repository
-
-Repository validation:
+## Repository checks and publication
 
 ```bash
 python3 scripts/validate_release.py
 python3 scripts/validate_eval_fixtures.py
-python3 scripts/package_release.py --output dist
+python3 scripts/package_release.py --output <new-external-output-directory>
 ```
 
-CI also runs OpenAI's current Skill validator and a real Codex installer smoke test on pushes to `main`.
+The packager replaces its output directory: use a fresh dedicated location, never a source or installation directory. CI also runs the official quick validator and a temporary Codex installer smoke test on main pushes; this does not update the owner's installed copy.
 
-## Specialist dependencies
-
-This Skill keeps product-design knowledge local. The only external specialist is `persian-writing`. The machine-readable registry is:
-
-`skills/ui-ux-skill/specialists.json`
-
-For Persian-facing UI, `persian-writing` is REQUIRED and remains an independent Skill:
-
-`https://github.com/ali2000hos/persian-writing`
-
-Do not copy it into this repository. Install or update it from its canonical repository so upstream improvements remain available.
-
-### Codex: install Persian specialist
-
-The current `persian-writing` Skill lives at the repository root. Ask `$skill-installer` to install:
-
-```text
-Repository: ali2000hos/persian-writing
-Path: .
-Install name: persian-writing
-```
-
-Codex installs Skills under `$CODEX_HOME/skills` (default `~/.codex/skills`).
-
-### Check specialist sources
-
-Validate the registry only:
-
-```bash
-python3 scripts/validate_specialists.py
-```
-
-Resolve every specialist against its current canonical upstream source:
-
-```bash
-python3 scripts/validate_specialists.py --check-upstream
-```
-
-Check a Codex installation against current upstream:
-
-```bash
-python3 scripts/validate_specialists.py --check-codex --require-current
-```
-
-To require all REQUIRED specialists to be installed as well:
-
-```bash
-python3 scripts/validate_specialists.py \
-  --check-codex \
-  --require-required-installed \
-  --require-current
-```
-
-You can inspect another Skill installation root with repeated `--installed-root <path>`.
-
-Specialists are never version-pinned in the Head. The checker resolves the latest stable GitHub Release when one exists; otherwise it uses the source repository's current default branch.
-
-
-## Release publishing
-
-GitHub Releases are generated automatically from the repository `VERSION` after validated changes reach `main`.
-
-The release workflow:
-
-1. validates the Skill, Product Routes, and Specialist Registry;
-2. packages the Claude-ready Skill ZIP and portable Plugin ZIP;
-3. checks whether the matching `v<version>` Release already exists;
-4. creates the matching tag and GitHub Release when it does not;
-5. attaches the ZIP archives and `SHA256SUMS.txt`.
-
-Do not manually create a different tag for the same source version.
+After authorized, validated changes reach `main`, the release workflow reads `VERSION`, builds Skill/plugin ZIPs and `SHA256SUMS.txt`, and creates `v<version>` only if its release does not exist. Existing releases are skipped, not overwritten. Do not create a competing tag for the same version. See [current status](ROADMAP.md).
