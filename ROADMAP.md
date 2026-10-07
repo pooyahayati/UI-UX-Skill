@@ -5,14 +5,14 @@ Current status, completed stages and maintenance boundaries. Detailed execution 
 ## Current state
 
 - Last updated: **2026-10-07**.
-- Current release: **[v3.2.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.2.1)**, published 2026-10-07; local update verified.
-- Current objective: **Prepare owner-requested 3.3.0 presentation release.** R10 is already delivered in 3.2.1. The new scope is the README cover, reader-focused documentation and verified release/local update; no new UI capability.
+- Current release: **[v3.3.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.3.0)**, published 2026-10-07; local update verified.
+- Current objective: **Completed.** R10 repairs, reader-focused documentation, the owner-accepted README cover, 3.3.0 publication and local update are delivered; no new UI capability is implied.
 - Implementation: **Completed**; **9 of 9 correction stages completed**. This count covers R0–R8 only, not the new maintenance backlog.
 - Active implementation stage: **None**. The R0–R8 tracker is closed; R10 activity is tracked separately below.
 - Next implementation stage: **None**; all six R9 packages and all five R10 repairs are completed and integrated.
-- Next delivery action: **Verify and publish 3.3.0, then update the local installation.** The owner explicitly requested this version, a cover with Persian creator credit and another documentation review; they subsequently accepted the generated 1672×941 size instead of 1920×1080. R10 delivery remains complete; 3.3.0 publication/install are not yet claimed.
+- Next delivery action: **None.** The owner-requested version, documentation review, cover and local update are complete. The owner accepted the generated 1672×941 cover instead of the initial 1920×1080 request. Further changes need a new scoped request.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
-- Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`; R10 planning through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34); final release documentation and metadata through [PR #39](https://github.com/pooyahayati/UI-UX-Skill/pull/39).
+- Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33); R10 planning through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34); R10 release through [PR #39](https://github.com/pooyahayati/UI-UX-Skill/pull/39); public README refinement and cover through [PR #40](https://github.com/pooyahayati/UI-UX-Skill/pull/40).
 
 ### Correction stage tracker
 
@@ -99,6 +99,15 @@ Detailed [requirements](docs/archive/ROADMAP-2026-10-06.md#agreed-correction-req
 - All five R10 findings have scoped regression acceptance and verified integration/publication/local installation. No fresh all-scenario agent evaluation or universal device certification is claimed.
 
 ## Release checkpoint
+
+### v3.3.0 presentation release — 2026-10-07
+
+- [PR #40](https://github.com/pooyahayati/UI-UX-Skill/pull/40), head `b43096b0a3a99ef307e76eabdf761fca69e60401`, merged at `9fdecba53cd329e6c7270991537e7207243dce1e`. [Exact-head validation](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37608457427) and [publication workflow](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37608553935) passed. Stable release published at `2026-10-07T10:37:15Z`.
+- Owner-selected version for presentation/documentation improvements, not a new behavioral capability. Reviewed 12 reader-facing documents and verified 115 local link targets; this does not claim exhaustive external URL/anchor availability. The README now links to, rather than duplicates, internal development policy. Detailed scope checks remain active in the roadmap validator.
+- The [cover and generation brief](docs/images/README.md) retain explicit acceptance of 1672×941 output, correct Persian credit and illustrative provenance. Full PNG integrity and exact merged bytes passed; SHA256 `24f588a8ab452b8a89e1268cc8094f60c44e15c8f959831d96636962739a7226`. The documentation image is excluded from installed packages.
+- Final local suite: 132 tests on Windows (128 passed, four native-symlink privilege skips) and offline Linux (130 passed, two Windows-only skips), nine structural validators, 11 keyboard assertions and 11 recovery scenarios. Source/candidate/extracted-release native secret scans passed with Trivy 0.75.0, zero findings. Historical model/device and Graphify limitations remain as recorded for 3.2.1.
+- Actual downloaded 88-member Skill and 95-member plugin ZIPs matched the canonical release Git blobs, CRC, SHA256SUMS and embedded versions; both extracted consumers passed resource-route checks. Skill SHA256 `b6b42c5e087f7a2b4d688494eff73aa8372ea79e4dae012610ff5c19ed9d6be0`; plugin SHA256 `65ba06f5d00544ac0facd2b7efcf084d13b840545a1d503909b35b5053dc5165`.
+- Official exact-tag installer staging matched every published Skill resource. The existing Head lifecycle updated only `ui-ux-skill` to 3.3.0 at the release commit; all 90 installed resources, unchanged Head contract/preface, active version and recoverable previous-install backup were verified. No other Skill was updated. Published 3.2.1 artifacts remain unchanged.
 
 ### v3.2.1 maintenance delivery — 2026-10-07
 
