@@ -10,9 +10,9 @@ Current status, completed stages and maintenance boundaries. Detailed execution 
 - Implementation: **Completed**; **9 of 9 correction stages completed**. This count covers R0–R8 only, not the new maintenance backlog.
 - Active implementation stage: **None**. The R0–R8 tracker is closed; R10 activity is tracked separately below.
 - Next implementation stage: **None**; all six R9 packages and all five R10 repairs are locally completed. R10.5 still needs remote delivery verification.
-- Next delivery action: **Review and integrate R10.5 with exact-head CI, then finalize the release/install gate.** The owner authorized R10.4 integration and continuation into R10.5. No R10.5 push, merge, new version publication or local installation/update has occurred; these delivery outcomes must be verified separately.
+- Next delivery action: **Integrate R10.5 and publish compatible patch 3.2.1 after final CI/security/package checks, then verify the local update.** The owner explicitly authorized documentation review, merge, new publication and local installation on 2026-10-07. Publication and installation are pending, not inferred from local acceptance.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
-- Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`. R10 planning delivery is tracked by [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34) from `codex/audit-remediation-roadmap`; Skill/package/release versions remain unchanged.
+- Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`; R10 planning through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34). Current source/package candidate is `3.2.1`; published/installed outcomes are tracked separately.
 
 ### Correction stage tracker
 
@@ -59,12 +59,12 @@ See the [R9 plan and execution record](docs/archive/ROADMAP-2026-10-06.md#planne
 
 Bounded stabilization maintenance for the five findings from the 2026-10-07 deep audit, not a new capability exception or a reopening of all R7/R8/R9 acceptance. The owner integrated the plan, then authorized local R10.1 work with all remediation integration/publication/local updates held until final R10 acceptance.
 
-- Planning readiness: **Ready for implementation handoff**; see [scope, tasks, regression scenarios and exit criteria](docs/AUDIT_REMEDIATION.md).
+- Planning readiness: **Execution completed**; see [scope, tasks, regression scenarios and exit criteria](docs/AUDIT_REMEDIATION.md).
 - Remediation implementation: **Completed**; **5 of 5 packages completed** (R10.1–R10.4 integrated; R10.5 locally accepted).
 - Active remediation package: **None**; local fixes and the combined local gate are complete.
 - Next remediation package: **None**; final remote integration, release and installation remain separate delivery gates.
 - Accountable role: **Engineering lead / maintainer, one implementation writer**. Additional agents are not required or authorized by this plan.
-- Delivery state: **R10.1 integrated through [PR #35](https://github.com/pooyahayati/UI-UX-Skill/pull/35) at `14d78cb`; R10.2 through [PR #36](https://github.com/pooyahayati/UI-UX-Skill/pull/36) at `ab20b75`; R10.3 through [PR #37](https://github.com/pooyahayati/UI-UX-Skill/pull/37) at `d813e33`; R10.4 through [PR #38](https://github.com/pooyahayati/UI-UX-Skill/pull/38) at `e88693e`.** R10.4 [pre-merge checks](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37602004111) and [post-merge checks](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37602163431) passed; publication was skipped. R10.5 is locally completed on `codex/r10-5-specialist-integrity`, not pushed or remotely CI-verified. Version stays `3.2.0`; no release or local installation/update has been performed for R10.
+- Delivery state: **R10.1 integrated through [PR #35](https://github.com/pooyahayati/UI-UX-Skill/pull/35) at `14d78cb`; R10.2 through [PR #36](https://github.com/pooyahayati/UI-UX-Skill/pull/36) at `ab20b75`; R10.3 through [PR #37](https://github.com/pooyahayati/UI-UX-Skill/pull/37) at `d813e33`; R10.4 through [PR #38](https://github.com/pooyahayati/UI-UX-Skill/pull/38) at `e88693e`.** R10.4 [pre-merge checks](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37602004111) and [post-merge checks](https://github.com/pooyahayati/UI-UX-Skill/actions/runs/37602163431) passed; publication was skipped. R10.5 and the authorized `3.2.1` release candidate are under final delivery verification on `codex/r10-5-specialist-integrity`; publication and local update are not yet claimed.
 
 | Package | Audit finding / deliverable | Severity | Status | Execution prerequisite | Acceptance evidence |
 | --- | --- | --- | --- | --- | --- |

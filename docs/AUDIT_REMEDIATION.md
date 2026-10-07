@@ -295,6 +295,8 @@ If publication is later authorized, perform the relevant current local source/ar
 
 ## Start and resume protocol
 
+**Final delivery authorization (2026-10-07):** after all five local repairs and the combined acceptance gate, the owner explicitly requested documentation review, merge, a new release and local update. This supersedes the intermediate publication/install hold above. Compatible patch `3.2.1` is selected; final CI, native source/extracted-package scans, published artifact verification and integration-preserving installation remain required. Earlier dated records retain their then-current pending states; current outcomes belong in `ROADMAP.md`.
+
 1. Use `codex/audit-remediation-roadmap` for the local planning handoff. Inspect dirty files and main divergence before starting; preserve any owner edits. Use a scoped `codex/` implementation branch at kickoff if the plan branch has been integrated.
 2. On an implementation instruction, mark only R10.1 `In progress`; record the actual owner, baseline, scope and checks. Start with its non-destructive failing regression, not a package run pointed at existing folders.
 3. Complete one package at a time in the roadmap's order. If source evidence changes the diagnosis or a fix needs broader authority, update the affected plan and surface that decision rather than expanding silently.

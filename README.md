@@ -1,12 +1,14 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-3.2.0-blue)
+![Version](https://img.shields.io/badge/version-3.2.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A product-aware **UI/UX Head** for designing, auditing and improving real interfaces. Works standalone or as a bounded specialist under an engineering Head.
 
-Current source: **v3.2.0** · Skill slug: `ui-ux-skill` · [Published release](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.2.0)
+Current source: **v3.2.1** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
+
+The 3.2.1 maintenance update repairs packaging safety, packaged resource routes, stale-draft recovery, evaluation verdict consistency and whole-package specialist verification. See [release notes](CHANGELOG.md) and [delivery status](ROADMAP.md).
 
 ## Product coverage
 
