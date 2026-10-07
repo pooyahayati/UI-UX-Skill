@@ -20,7 +20,20 @@ python3 scripts/validate_eval_result.py <recorded-result.json>
 python3 scripts/validate_eval_result.py <recorded-result.json> --require-all
 ```
 
-Use `--require-all` only for a genuinely complete current-manifest run. The historical five-case record is not a full current-candidate run. JSON validation checks structure/completeness, not truthful evidence.
+Use `--require-all` only for a genuinely complete current-manifest run. The historical five-case record is not a full current-candidate run. Validation checks structure, completeness and internal consistency, not truthful evidence or release acceptance. Exit code 0 permits a coherent recorded failure; exit code 1 means malformed, contradictory or (with `--require-all`) incomplete input. Summaries include all four verdict counts and recorded/current case coverage.
+
+### Verdict consistency
+
+Each recorded case must contain every manifest invariant exactly once, using its exact text. Unknown/duplicate cases, unknown/duplicate invariants and duplicate JSON fields are rejected; omitted cases are allowed only without `--require-all`. Empty reports are not evaluations. The schema describes the JSON shape; `validate_eval_result.py` additionally enforces manifest identity and these cross-record rules:
+
+| Case result | Required invariant outcomes |
+| --- | --- |
+| `pass` | All `pass`; notes cannot excuse a failed, partial or untested requirement. |
+| `fail` | Any `fail` requires this case result. A conservative case-level failure without a failed invariant is allowed only with nonblank case `notes` explaining the additional failure. |
+| `partial` | No `fail`, with at least one `partial`, or a mixture of `pass` and `not-testable`. If every invariant passed, nonblank case `notes` must explain the additional limitation. All-untested requirements cannot be called partial. |
+| `not-testable` | Every required invariant is `not-testable`; do not hide tested outcomes. |
+
+Notes are recorded explanations, not machine-verified proof. A reviewer still assesses their justification and evidence. No new acceptance CLI is needed: the existing real-world validator retains its stricter historical evidence/no-failure gate and also uses the shared consistency check. CI runs both checks without promoting the historical subset to a current full run.
 
 ## Inputs versus examples
 

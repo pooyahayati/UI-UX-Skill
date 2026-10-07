@@ -70,6 +70,9 @@ jobs:
           python3 scripts/validate_real_world_evaluation.py
           python3 scripts/validate_eval_result.py evals/real-world/result.json
 
+      - name: Recorded evaluation verdict consistency regressions
+        run: python3 scripts/test_eval_result.py
+
       - name: Eval harness smoke test
         run: |
           python3 scripts/prepare_eval_run.py existing-safe-improvement --output "$RUNNER_TEMP/uiux-eval"
