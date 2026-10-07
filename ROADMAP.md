@@ -11,7 +11,7 @@ Current status, completed stages and maintenance boundaries. Detailed execution 
 - Next implementation stage: **None**; all six R9 packages are completed and integrated.
 - Next delivery action: **None for the agreed capability/release scope.** New integration, release, installation and deployment require their own authority.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
-- Current maintenance: owner-requested documentation cleanup on `codex/documentation-cleanup`, verified locally on 2026-10-07; not merged or released. Skill/package versions remain unchanged.
+- Documentation maintenance: owner-requested cleanup on `codex/documentation-cleanup`, verified locally on 2026-10-07. Owner authorized integration through a current-head CI-gated pull request; its GitHub record tracks delivery. Skill/package/release versions remain unchanged.
 
 ### Correction stage tracker
 
