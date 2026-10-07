@@ -2,7 +2,8 @@
 
 ## Candidate
 
-- Skill version: 3.1.1
+- Skill version: <read the candidate Skill-root VERSION>
+- Candidate commit / package identity:
 - Host: Codex / Claude Code / Claude.ai
 - Model:
 - Date:

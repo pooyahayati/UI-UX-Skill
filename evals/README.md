@@ -66,7 +66,7 @@ Score observable behavior/evidence as Pass, Partial, Fail or Not testable, not e
 
 ## Retained evidence limits
 
-- Historical 2026-10-02 five-product results are source-based, in-session observations, not fresh independent browser/device runs. Later structural rebinding to 3.2.0 does not rerun the model.
+- Historical 2026-10-02 five-product results are source-based, in-session observations, not fresh independent browser/device runs. Later structural rebinding (including 3.2.1) does not rerun the model.
 - Later scoped forward/manual/browser/runtime results have their own candidate bindings and methods. Five routes or six Material cases do not imply all current cases ran.
 - R9 preserves F01 reference-order and shared-session/device/assistive-technology limits. The Material specimen remains proposed, dark unstarted, secondary N/A.
 - Engineering stage acceptance does not approve customer taste, certify every production parser/runtime, implement arbitrary font uploads or prove real-device accessibility. Preserve accepted owner/font evidence; do not reopen it without a concrete defect.

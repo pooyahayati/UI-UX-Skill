@@ -8,6 +8,8 @@ on:
     paths:
       - "skills/ui-ux-skill/specialists.json"
       - "scripts/validate_specialists.py"
+      - "scripts/specialist_integrity.py"
+      - "scripts/test_specialists.py"
       - ".github/workflows/specialist-freshness.yml"
 
 permissions:

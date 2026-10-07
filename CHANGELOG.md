@@ -2,11 +2,13 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
-## [Unreleased]
+## [3.2.1] - 2026-10-07
 
+- Completed the five R10 audit repairs: reject unsafe/existing package destinations and preserve prior data; repair and independently validate packaged resource routes; preserve intended appearance edits during stale-draft recovery; reject contradictory evaluation verdicts; compare complete specialist packages against one immutable upstream commit.
+- Added defect/failure-path regressions and integrated them into CI. Specialist checks remain read-only; local integrations are not overwritten or silently certified as upstream-identical.
 - Simplified README, roadmap/status, release notes, installation, contribution and evaluation guidance; retained full development history in dated archives.
 - Corrected stale supported-version text and documented verify-before-replace installation updates.
-- Documentation only; Skill behavior, package versions and published artifacts unchanged.
+- Historical five-product results retain their original model/date/source provenance; current-version structural binding is not a fresh full-model or universal device evaluation. No new product type, specialist, library or production admin engine.
 
 ## [3.2.0] - 2026-10-06
 

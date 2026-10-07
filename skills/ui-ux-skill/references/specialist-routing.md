@@ -140,6 +140,8 @@ Latest means the latest stable/released version when the source publishes stable
 
 The Head MUST NOT vendor specialist content merely to guarantee a version. Freshness is managed by installation/update checks, not by copying specialist instructions into the Head.
 
+An entrypoint match alone does not verify a specialist package. The repository checker binds the registry's package subtree to one current upstream commit and compares all required resource bytes, reporting entrypoint, package and freshness evidence separately. Strict checks inspect every named installation root. Missing/modified resources, unsupported links and unavailable reads cannot be called current. Local additions and Head edits remain preserved but are not automatically certified; use the managing Head's integration-aware check rather than overwriting its contract to obtain an exact match. The checker is read-only, and any repair/update still needs the actual host/user authorization. See the repository installation guide for checker limits and result meanings; do not infer a successful install from a successful source check.
+
 ## Specialist handoff contract
 
 A lower-level specialist should receive only the context it needs.

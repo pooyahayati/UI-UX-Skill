@@ -60,7 +60,9 @@ jobs:
         run: python3 scripts/validate_design_system.py
 
       - name: Specialist registry validation
-        run: python3 scripts/validate_specialists.py
+        run: |
+          python3 scripts/test_specialists.py
+          python3 scripts/validate_specialists.py
 
       - name: Behavioral eval fixture and isolation validation
         run: python3 scripts/validate_eval_fixtures.py
