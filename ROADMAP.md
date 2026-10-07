@@ -1,17 +1,18 @@
 # UI/UX Skill Roadmap
 
-Current status, completed stages and maintenance boundaries. Detailed execution notes are in the [dated archive](docs/archive/ROADMAP-2026-10-06.md); archived pending states are not current blockers.
+Current status, completed stages and maintenance boundaries. Detailed execution notes are in the [dated archive](docs/archive/ROADMAP-2026-10-06.md); archived pending states are not current blockers. The current maintenance objective is [R10 audit remediation](#r10-audit-remediation).
 
 ## Current state
 
 - Last updated: **2026-10-07**.
 - Current release: **[v3.2.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.2.0)**, published 2026-10-06.
-- Implementation: **Completed**; **9 of 9 correction stages completed**.
-- Active implementation stage: **None**.
-- Next implementation stage: **None**; all six R9 packages are completed and integrated.
-- Next delivery action: **None for the agreed capability/release scope.** New integration, release, installation and deployment require their own authority.
+- Current objective: **Prepare the five-finding R10 remediation workstream.** The plan is ready for handoff; fixes have not started.
+- Implementation: **Completed**; **9 of 9 correction stages completed**. This count covers R0–R8 only, not the new maintenance backlog.
+- Active implementation stage: **None**. The R0–R8 tracker is closed; R10 activity is tracked separately below.
+- Next implementation stage: **None**; all six R9 packages are completed and integrated. The next maintenance package is **R10.1**.
+- Next delivery action: **Owner-authorized documentation integration after checks pass.** Start R10.1 only on an implementation instruction; release, installation and deployment remain separate actions.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
-- Documentation maintenance: owner-requested cleanup on `codex/documentation-cleanup`, verified locally on 2026-10-07. Owner authorized integration through a current-head CI-gated pull request; its GitHub record tracks delivery. Skill/package/release versions remain unchanged.
+- Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`. R10 planning is prepared on `codex/audit-remediation-roadmap` for authorized documentation-only integration; Skill/package/release versions remain unchanged.
 
 ### Correction stage tracker
 
@@ -54,6 +55,29 @@ Optional per product, not a mobile-first default or automatic library adoption. 
 
 See the [R9 plan and execution record](docs/archive/ROADMAP-2026-10-06.md#planned-post-correction-extension--r9-optional-material-design) for original tasks and exit criteria.
 
+## R10 audit remediation
+
+Bounded stabilization maintenance for the five findings from the 2026-10-07 deep audit, not a new capability exception or a reopening of all R7/R8/R9 acceptance. The owner requested roadmap preparation and subsequently authorized its integration; this documentation checkpoint does not implement the fixes.
+
+- Planning readiness: **Ready for implementation handoff**; see [scope, tasks, regression scenarios and exit criteria](docs/AUDIT_REMEDIATION.md).
+- Remediation implementation: **Not started**; **0 of 5 packages completed**.
+- Active remediation package: **None**.
+- Next remediation package: **R10.1 — Safe release packaging**.
+- Accountable role: **Engineering lead / maintainer, one implementation writer**. Additional agents are not required or authorized by this plan.
+- Delivery state: **Documentation-only integration authorized.** The delivery PR is authoritative for its actual merge/check state; no R10 fix, version bump, release or installation is included.
+
+| Package | Audit finding / deliverable | Severity | Status | Execution prerequisite | Acceptance evidence |
+| --- | --- | --- | --- | --- | --- |
+| R10.1 | [F01: protect package output and preserve data on failure](docs/AUDIT_REMEDIATION.md#r101-safe-release-packaging) | High | Not started | Implementation instruction; inspect current source | Not run |
+| R10.2 | [F02: repair and validate packaged resource routes](docs/AUDIT_REMEDIATION.md#r102-resource-route-integrity) | High | Not started | Accepted R10.1 for safe consumer-package checks | Not run |
+| R10.3 | [F03: recover stale appearance drafts without losing intended edits](docs/AUDIT_REMEDIATION.md#r103-stale-draft-recovery) | Medium | Not started | R10.2 accepted in the agreed execution order | Not run |
+| R10.4 | [F04: reject contradictory behavioral-evaluation verdicts](docs/AUDIT_REMEDIATION.md#r104-consistent-evaluation-verdicts) | Medium | Not started | R10.3 accepted in the agreed execution order | Not run |
+| R10.5 | [F05: verify the specialist package, not only its entrypoint](docs/AUDIT_REMEDIATION.md#r105-specialist-package-integrity) | Medium | Not started | R10.4 accepted; final integrated verification | Not run |
+
+The sequence is a single-writer delivery order, not a claim that every package has a code dependency on its predecessor. R10.2's packaged-resource verification does depend on safe packaging. Each package needs its defect regression and affected existing checks before completion. R10.5 also closes the [integrated acceptance gate](docs/AUDIT_REMEDIATION.md#integrated-acceptance-and-delivery-boundary); it cannot complete the workstream with another finding unresolved.
+
+Keep current statuses, counts, active/next package and dated acceptance links here. The detailed plan is not a competing status ledger. Earlier audit checks are a baseline, not proof that any R10 finding is fixed.
+
 ## Design contract
 
 - Inspect existing decisions; ask only product-relevant missing questions and recommend professional defaults.
@@ -72,6 +96,7 @@ Detailed [requirements](docs/archive/ROADMAP-2026-10-06.md#agreed-correction-req
 - Structural checks, model observations, rendered/runtime tests and owner approval are distinct. The [historical five-product result](evals/real-world/RESULTS.md) retains its original version/date/model provenance.
 - The [authored Material specimen](evals/material/ham-amooz/DESIGN.md) is proposed, dark unstarted and secondary N/A. These are hypothetical product approval states, not unfinished Skill engineering stages.
 - Product behavior, permissions, data integrity, active-route isolation and existing stack choices remain protected. No external design specialist was added; `persian-writing` remains required for Persian-facing UI.
+- The five R10 findings remain open until their own regression evidence is accepted. Prior passing suites do not invalidate the audit reproductions; this preparation changes no Skill/runtime source and claims no remediation success.
 
 ## Release checkpoint
 
@@ -100,7 +125,7 @@ The [QF01–QF07 remediation record](evals/samples/REMEDIATION_PLAN.md) and [his
 
 1. Before an authorized stage, inspect current source, applicable instructions and prerequisite evidence; record stage, owner, scope, dependencies and acceptance criteria.
 2. Record actual partial work and blockers. `Completed` requires dated evidence, relevant checks and lead acceptance; real product-owner approval must be attributed.
-3. Update tracker/count/next action together. Keep maintenance separate from the completed capability-stage count.
+3. Update tracker/count/next action together. Keep R10 maintenance separate from the completed R0–R8/R9 capability-stage counts; record each R10 package's dated acceptance, checked revision, actual checks and unresolved limits.
 4. Keep proposed/local work distinct from passing integration. Do not infer delivery permission from completion; never invent PRs, CI results or approvals.
 5. Preserve old evidence in the dated archive; use `Reopened` for invalidated acceptance. Keep caches/generated reports outside product source.
 
