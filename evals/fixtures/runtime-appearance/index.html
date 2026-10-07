@@ -19,6 +19,8 @@
           <h2 id="settings-title">Your private draft</h2>
           <p>Only this owner can read the draft. Publishing changes this tenant's product, not another tenant.</p>
           <p id="draft-state"></p>
+          <p id="recovery-notice" class="note" hidden>Published values or your saved draft changed. Your inputs are preserved. Review differences before saving or publishing.</p>
+          <button id="reconcile">Review and reconcile changes</button>
           <div class="toolbar"><button id="preset">Use balanced defaults</button><button id="compact">Use compact preset</button></div>
           <form id="settings-form"><div id="settings-fields"></div></form>
           <button id="icon-defaults">Stage icon defaults only</button>
@@ -53,6 +55,17 @@
   <dialog id="confirmation" aria-labelledby="confirmation-title">
     <h2 id="confirmation-title">Review change</h2><p id="confirmation-text"></p>
     <form method="dialog" class="toolbar"><button value="cancel" autofocus>Cancel</button><button id="confirm-action" value="confirm" class="primary">Confirm change</button></form>
+  </dialog>
+  <dialog id="recovery" aria-labelledby="recovery-title" aria-describedby="recovery-summary">
+    <h2 id="recovery-title">Reconcile your appearance choices</h2>
+    <p id="recovery-summary"></p><p id="recovery-saved" class="note"></p>
+    <p id="recovery-error" role="alert"></p>
+    <div id="recovery-fields"></div>
+    <div class="toolbar">
+      <button id="recovery-cancel" autofocus>Cancel review</button>
+      <button id="recovery-refresh">Refresh comparison</button>
+      <button id="recovery-save" class="primary">Save reviewed private draft</button>
+    </div>
   </dialog>
   <dialog id="surface-dialog" aria-labelledby="surface-dialog-title">
     <h2 id="surface-dialog-title">Product overlay example</h2><p>This overlay consumes the same resolved appearance as its source surface.</p>
