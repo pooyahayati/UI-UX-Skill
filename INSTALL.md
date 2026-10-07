@@ -45,7 +45,24 @@ python3 scripts/validate_specialists.py --check-upstream
 python3 scripts/validate_specialists.py --check-codex --require-required-installed --require-current
 ```
 
-Use repeated `--installed-root <path>` to inspect another root. The checker resolves stable release or current default branch; an unavailable check is not proof of freshness.
+Use repeated `--installed-root <path>` to inspect other roots. This is a read-only checker: it never installs, overwrites, deletes or executes specialist files.
+
+### Specialist package integrity
+
+The checker resolves the latest stable release (or default branch only when no stable release exists) **once to an immutable commit**. It reads that commit's Git tree under the registry's `skill_path`, including every tracked file in that package subtree. Sibling packages are excluded. A registry path of `.` explicitly declares the repository root as the package, so its tracked supporting files are included. No archive extraction or resource-code execution is involved.
+
+Local raw bytes are compared using Git blob identities, including binary assets and line endings; matching only `SKILL.md` is insufficient. File executable permissions are not compared across hosts. The result separately reports entrypoint match, package state and observed upstream commit:
+
+- `CURRENT`: all declared package paths/bytes match, with no uncertified additions.
+- `DIFFERS`: missing or modified upstream-owned files; this does not infer whether the cause is age, deliberate customization or corruption.
+- `UPSTREAM_MATCH_WITH_ADDITIONS`: upstream-owned files match, but local additions (including a Head contract) are not certified.
+- `MISSING` / `UNVERIFIED`: absent installation, unsupported links/types, unreadable files or unavailable upstream evidence. Neither means current.
+
+Both strict flags require an explicit target via `--check-codex` or `--installed-root`. `--require-required-installed` requires a valid named entrypoint in **each** inspected root; it does not certify the other resources. `--require-current` additionally requires exact package identity/presence in **each** root for required specialists. One valid copy never certifies a different broken copy. Without strict flags, known differences/missing copies are reported without failing the registry check; unavailable/malformed checks still exit nonzero.
+
+Local additions are retained and listed. Modified upstream files, including Head-edited `SKILL.md`, are never silently normalized or waived. Use the engineering Head's own integration-aware verification when applicable; a failed exact-match check does not authorize overwriting customization. Only untracked Git metadata and Python runtime caches are excluded from comparison, never missing required upstream files.
+
+Limits per package: 10,000 tree/scan entries, depth 32, 32 MiB per file, 128 MiB total local/upstream file bytes, 1 MiB entrypoint and 8 MiB per API response; requests have a 20-second timeout, no redirects or automatic retries. Traversal/Windows aliases, case collisions, symlinks/junctions and submodules are unsupported, not accepted as current. Inspect trusted stable local directories: this is a point-in-time check, not a filesystem snapshot or protection against hostile concurrent ancestor/file replacement. An upstream update after commit resolution requires a new check; no persistent version pin is added.
 
 ## Repository checks and publication
 

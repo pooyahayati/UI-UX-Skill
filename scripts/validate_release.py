@@ -79,6 +79,7 @@ for path in [
     "scripts/validate_shared_rules.py",
     "scripts/validate_design_system.py",
     "scripts/validate_specialists.py",
+    "scripts/specialist_integrity.py",
     "scripts/validate_eval_fixtures.py",
     "scripts/validate_real_world_evaluation.py",
     "scripts/validate_eval_result.py",
