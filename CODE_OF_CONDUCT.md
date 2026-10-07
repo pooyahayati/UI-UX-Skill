@@ -1,6 +1,6 @@
 # Code of Conduct
 
-Production Dashboard UI/UX Skill is intended to be a practical, professional open-source project.
+UI/UX Skill is intended to be a practical, professional open-source project.
 
 Contributors and participants are expected to:
 

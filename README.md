@@ -4,103 +4,57 @@
 ![Version](https://img.shields.io/badge/version-3.2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A production-oriented **Product-Aware UI/UX Head Skill** for designing, auditing, improving, and validating websites, dashboards, web applications, mobile applications, WordPress plugin/admin UI, and other production interfaces.
+A product-aware **UI/UX Head** for designing, auditing and improving real interfaces. Works standalone or as a bounded specialist under an engineering Head.
 
-It can work independently or as a UI/UX specialist under a higher-level engineering Head.
+Current source: **v3.2.0** · Skill slug: `ui-ux-skill` · [Published release](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.2.0)
 
 ## Product coverage
 
-| Product | What this Skill accounts for |
+| Product | Focus |
 | --- | --- |
-| **Website** | Corporate/organization, service-business, product/brand, personal-brand/portfolio, publication/content, campaign/landing surfaces; information architecture, navigation, homepage/hero, landing/detail/editorial composition, content hierarchy, CTA/conversion, forms and lead generation, contact/support, trust/proof, pricing, site search, SEO-aware structure, structured data/breadcrumbs, internal linking, responsive media, performance, progressive enhancement, accessibility, privacy/consent, localization, Persian/RTL, edge pages, and Website QA. |
-| **Dashboard** | Executive, analytical, operational, monitoring/NOC, CRM/pipeline, and admin/management modes; decision hierarchy, Data Trust UX, metric contracts, targets/baselines, filters, drill-down/traceability, tables/work queues, charts, cross-filtering, alerts, live updates, saved views/personalization, role-aware presentation, responsive dashboard architecture, accessibility, and RTL/mixed-direction data. |
-| **Web Application** | Application shell and information architecture, browser history, URL/deep-link state, routed workflows, drafts/autosave/unsaved changes, state and recovery, long-running jobs, concurrency/conflicts, forms, search/filter/sort/saved state, overlays, keyboard/focus, custom interactions, destructive/reversible actions, file operations, feedback, responsive behavior, authentication/session/permissions, onboarding, motion, accessibility, and Persian/mixed-language behavior. |
-| **Mobile Application** | Shared mobile UX plus local iOS/iPadOS, Android, and cross-platform rules; navigation intent, touch/reachability, safe areas/system UI, keyboard/IME, permissions, connectivity/offline/sync, lifecycle/state restoration, long-running work, deep links, notifications, dense-data adaptation, motion/haptics, VoiceOver/TalkBack, text scaling, large-screen/resizable behavior, and platform adaptation. |
-| **WordPress Plugin / Admin UI** | Native settings extensions, plugin workspaces, and hybrid surfaces; wp-admin integration, menu/entry-point decisions, settings/configuration, onboarding/integrations, diagnostics/Site Health, background work, capabilities and permission-facing UX, Settings API semantics, notices, privacy/data lifecycle, reset/delete/uninstall behavior, updates/migrations, compatibility/dependencies, import/export, Multisite/Network Admin, responsive wp-admin, accessibility, localization, Persian/RTL, and appearance behavior. |
-| **Shared foundation** | Product routing, scope-relevant Shared UI Rules for navigation/forms/feedback/state/destructive actions/accessibility/responsive adaptation/motion/content hierarchy, modular Design System foundations for tokens/typography/themes/density/component states/responsive variants/governance, new and existing-product workflows, personalization, runtime UI governance, visual regression, evidence-based QA, and preservation of business logic, permissions, data meaning, and user-authored changes. |
+| **Website** | Navigation, content hierarchy, conversion/trust, SEO-aware structure and accessible responsive pages. |
+| **Dashboard** | Decision hierarchy, trustworthy metrics, tables/charts, filters, live states and role-aware work queues. |
+| **Web Application** | Routed workflows, URL/state continuity, drafts, forms, recovery, keyboard/focus and permission-facing UX. |
+| **Mobile Application** | iOS/Android/cross-platform adaptation, touch, lifecycle/offline behavior and accessible adaptive layouts. |
+| **WordPress Plugin / Admin UI** | Native admin integration, settings, onboarding, diagnostics, capabilities and Multisite. |
+| **Shared foundation** | Shared UI Rules, Design System tokens/themes/states, responsive/RTL behavior and bounded appearance governance. |
 
-For Persian-facing UI, the external **`persian-writing`** Skill is required for Persian-language validation. It is the only external specialist; product design knowledge remains local.
+Inactive Product Packs are not preloaded. Only the active product's modules and scope-relevant shared rules are loaded. For Persian-facing UI, `persian-writing` is required; it is the only external specialist.
 
-## Architecture
+## Design workflow
 
-```text
-Higher-level Engineering Head
-            ↓
-        UI/UX Skill
-        (UI/UX Head)
-            ↓
-       Product Router
-            ↓
-   Active Product Pack only
-            ↓
- Scope-relevant local modules
-            ↓
- Scope-relevant Shared UI Rules
-            ↓
- Relevant Design System modules
-```
+1. Inspect the product, audience and settled decisions; ask focused questions and recommend suitable defaults.
+2. Maintain one living `DESIGN.md`. Review one responsive primary-language/direction sample using approved foundations.
+3. Refine and approve that revision, then review dark mode. Add a second language/layout only when needed and authorized.
+4. Implement and validate the affected workflow. In-scope products with admin can use prepared, permissioned appearance/font/icon controls.
 
-Inactive Product Packs are not preloaded. Specialist routing is evaluated independently only when its trigger is active.
-
-## Feature freeze
-
-Limited correction exception: R0–R8 only. The owner authorized design foundation, the living `DESIGN.md` handbook, visual approval, and safe parametric appearance management. Outside this exception, stabilization maintenance remains the default, except for the separately named R9 exception below.
-
-Separate R9 exception: optional Material Design only. The owner authorized the R9.1 local implementation kickoff on 2026-10-06 after R7/R8 acceptance. The six-package plan covers optional activation, personalized foundations/research, scoped component guidance, sequential samples, existing runtime appearance contracts and bounded evaluation. It is not a general capability exception; no new Product Types, additional external design specialists, or general-purpose page builder are authorized. Sending/merging, release, installation and deployment require their own actual authority.
-
-See [Roadmap](ROADMAP.md) for actual stage progress and acceptance evidence. R0–R8 and all six R9 packages are completed and integrated within their documented scope. Version `3.2.0` is the owner-authorized compatible capability release; publication requires exact-candidate validation and security checks, not just completed task labels.
+Material Design is [optional and product-personalized](skills/ui-ux-skill/references/material-design.md), not a universal default or automatic library choice. Existing stack, permissions, business logic and user data remain protected. Guidance and synthetic fixtures are not a turnkey production theme/admin engine.
 
 ## Quick use
 
-Codex:
+Codex: `$ui-ux-skill` · Claude Code: `/ui-ux-skill`
 
-```text
-$ui-ux-skill
-```
-
-Claude Code:
-
-```text
-/ui-ux-skill
-```
+Example: “Use this Skill to inspect our web app and improve the mobile visit form without changing its workflow or permissions.”
 
 ## Documentation
 
-- **[Roadmap](ROADMAP.md)** — correction-stage progress, acceptance evidence, preserved history, and bounded stabilization exception
-- **[How to Install / Update](INSTALL.md)** — installation, updates, migration from the old slug, and verification
-- **[Updates & Changelog](CHANGELOG.md)** — release-by-release changes
-- **[Skill Specification](skills/ui-ux-skill/SKILL.md)** — canonical Skill behavior and routing
-- **[Product Registry](skills/ui-ux-skill/product-types.json)** — machine-readable product routes and required Product Packs
-- **[Product Routing](skills/ui-ux-skill/references/product-routing.md)** — product classification, isolation, and multi-route rules
-- **[Shared UI Registry](skills/ui-ux-skill/shared-rules.json)** — machine-readable cross-product UI rule modules
-- **[Shared UI Routing](skills/ui-ux-skill/references/shared-product-rules.md)** — scope loading, precedence, and non-duplication policy
-- **[Design System Registry](skills/ui-ux-skill/design-system.json)** — machine-readable local design-system modules
-- **[Design System Architecture](skills/ui-ux-skill/references/design-system-architecture.md)** — token hierarchy, themes, states, variants, governance, and runtime boundaries
-- **[Optional Material activation](skills/ui-ux-skill/references/material-design.md)** — selected/recommended/rejected/inactive states and scope protection; bounded R9 acceptance and its limitations are recorded in the roadmap
-- **[Material foundations](skills/ui-ux-skill/references/material-foundations.md)** — product-personalized mapping into existing tokens; **[selected research](skills/ui-ux-skill/references/design-research.md)** informs concrete questions with any style
-- **[Material components](skills/ui-ux-skill/references/material-components.md)** — selective workflow-family guidance and live-catalog links; **[stack fit](skills/ui-ux-skill/references/material-stack-fit.md)** separates style from provider choice
-- **[Material samples](skills/ui-ux-skill/references/material-samples.md)** — one foundation-aligned primary proposal, revision-scoped gates and handbook integration; [authored primary example](evals/material/ham-amooz/DESIGN.md) retains honest pending approval
-- **[Material runtime](skills/ui-ux-skill/references/material-runtime.md)** — bounded appearance/heading/icon adapters through existing draft, validation, publication, history and rollback contracts; not a universal theme builder
-- **[Real-World Evaluation](evals/real-world/RESULTS.md)** — five-product evaluation results and limitations
-- **[Specialist Registry](skills/ui-ux-skill/specialists.json)** — machine-readable specialist sources and triggers
-- **[Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)** — Head/Specialist authority, fallback, and freshness rules
-- **[Contributing](CONTRIBUTING.md)** — contribution workflow
-- **[Security](SECURITY.md)** — supported versions and security reporting
+- [How to Install / Update](INSTALL.md)
+- [Roadmap](ROADMAP.md) — current status, completed stages, evidence and next action
+- [Updates & Changelog](CHANGELOG.md) — concise releases and linked history
+- [Skill Specification](skills/ui-ux-skill/SKILL.md) — canonical behavior and conditional routing
+- [Product Registry](skills/ui-ux-skill/product-types.json) · [Shared UI Registry](skills/ui-ux-skill/shared-rules.json) · [Design System Registry](skills/ui-ux-skill/design-system.json)
+- [Specialist Routing](skills/ui-ux-skill/references/specialist-routing.md)
+- [Evaluation guide](evals/README.md) — raw inputs, checks, results and limitations
+- [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Support](SUPPORT.md)
 
-## Current source
+## Feature freeze
 
-**v3.2.0**
+Limited correction exception: R0–R8 only. The design-foundation, living-handbook, visual-approval and safe appearance work is completed.
 
-Canonical repository: **pooyahayati/UI-UX-Skill**  
-Canonical Skill slug: **`ui-ux-skill`**
+Separate R9 exception: optional Material Design only. All six packages are completed within their documented engineering scope.
 
-GitHub Releases are published automatically from the current `VERSION` after validated changes reach `main`.
+Outside this exception, stabilization maintenance is the default: no new Product Types, additional external design specialists or general-purpose page builder. Completion is not fresh delivery authority. See [Roadmap](ROADMAP.md) for scope and evidence.
 
-## Author
+## Author and license
 
-**Pooya Hayati | پویا حیاتی**  
-https://pooyahayati.com
-
-## License
-
-MIT
+Pooya Hayati · [Website](https://pooyahayati.com) · MIT
