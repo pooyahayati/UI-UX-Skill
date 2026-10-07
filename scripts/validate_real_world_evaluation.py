@@ -5,6 +5,8 @@ import json
 import sys
 from pathlib import Path
 
+from validate_eval_result import unique_object, validate_result
+
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "ui-ux-skill"
 EVALS = ROOT / "evals"
@@ -17,7 +19,7 @@ def error(message: str) -> None:
 
 def load_json(path: Path):
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_object)
     except Exception as exc:
         error(f"Cannot parse {path.relative_to(ROOT)}: {exc}")
         return {}
@@ -28,6 +30,10 @@ cases_manifest = load_json(EVALS / "cases.json")
 product_registry = load_json(SKILL / "product-types.json")
 shared_registry = load_json(SKILL / "shared-rules.json")
 design_registry = load_json(SKILL / "design-system.json")
+
+# This historical acceptance gate is stricter than generic result recording,
+# but must not bypass the common identity and verdict-consistency contract.
+errors.extend(validate_result(result, manifest=cases_manifest))
 
 if manifest.get("schema_version") != 1:
     error("real-world manifest schema_version must be 1")
