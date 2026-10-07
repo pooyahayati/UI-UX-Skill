@@ -6,11 +6,11 @@ Current status, completed stages and maintenance boundaries. Detailed execution 
 
 - Last updated: **2026-10-07**.
 - Current release: **[v3.2.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.2.0)**, published 2026-10-06.
-- Current objective: **Prepare the five-finding R10 remediation workstream.** The plan is ready for handoff; fixes have not started.
+- Current objective: **Complete the five-finding R10 remediation workstream locally before delivery.** R10.1 is locally accepted; R10.2–R10.5 remain queued.
 - Implementation: **Completed**; **9 of 9 correction stages completed**. This count covers R0–R8 only, not the new maintenance backlog.
 - Active implementation stage: **None**. The R0–R8 tracker is closed; R10 activity is tracked separately below.
-- Next implementation stage: **None**; all six R9 packages are completed and integrated. The next maintenance package is **R10.1**.
-- Next delivery action: **Complete the authorized documentation checkpoint through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34), then await an R10.1 implementation instruction.** The PR records actual integration/check state; release, installation and deployment remain separate actions.
+- Next implementation stage: **None**; all six R9 packages are completed and integrated. The next maintenance package is **R10.2**.
+- Next delivery action: **Integrate accepted R10.1, then implement R10.2 locally**, explicitly authorized by the owner on 2026-10-07. This overrides the earlier integration hold for R10.1 only. Publication and local installation/update remain held until all five R10 repairs are completed and finalized.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
 - Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`. R10 planning delivery is tracked by [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34) from `codex/audit-remediation-roadmap`; Skill/package/release versions remain unchanged.
 
@@ -57,18 +57,18 @@ See the [R9 plan and execution record](docs/archive/ROADMAP-2026-10-06.md#planne
 
 ## R10 audit remediation
 
-Bounded stabilization maintenance for the five findings from the 2026-10-07 deep audit, not a new capability exception or a reopening of all R7/R8/R9 acceptance. The owner requested roadmap preparation and subsequently authorized its integration; this documentation checkpoint does not implement the fixes.
+Bounded stabilization maintenance for the five findings from the 2026-10-07 deep audit, not a new capability exception or a reopening of all R7/R8/R9 acceptance. The owner integrated the plan, then authorized local R10.1 work with all remediation integration/publication/local updates held until final R10 acceptance.
 
 - Planning readiness: **Ready for implementation handoff**; see [scope, tasks, regression scenarios and exit criteria](docs/AUDIT_REMEDIATION.md).
-- Remediation implementation: **Not started**; **0 of 5 packages completed**.
-- Active remediation package: **None**.
-- Next remediation package: **R10.1 — Safe release packaging**.
+- Remediation implementation: **In progress**; **1 of 5 packages completed** (local acceptance, not integration).
+- Active remediation package: **None**; R10.1 local verification is complete.
+- Next remediation package: **R10.2 — Resource route integrity**.
 - Accountable role: **Engineering lead / maintainer, one implementation writer**. Additional agents are not required or authorized by this plan.
-- Delivery state: **Owner-authorized documentation checkpoint: [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34).** The PR is authoritative for its actual merge/check state; no R10 fix, version bump, release or installation is included.
+- Delivery state: **Planning integrated through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34) at `4f13176`; accepted R10.1 on `codex/r10-remediation` is authorized for CI-gated integration.** The integration PR records actual check/merge state. Version stays `3.2.0`; release and local installation/update are held until final R10 acceptance.
 
 | Package | Audit finding / deliverable | Severity | Status | Execution prerequisite | Acceptance evidence |
 | --- | --- | --- | --- | --- | --- |
-| R10.1 | [F01: protect package output and preserve data on failure](docs/AUDIT_REMEDIATION.md#r101-safe-release-packaging) | High | Not started | Implementation instruction; inspect current source | Not run |
+| R10.1 | [F01: protect package output and preserve data on failure](docs/AUDIT_REMEDIATION.md#r101-safe-release-packaging) | High | Completed | Owner-authorized local kickoff; baseline `4f13176` | [2026-10-07 local verification](docs/AUDIT_REMEDIATION.md#r101-verification-record-2026-10-07); remote CI/integration held |
 | R10.2 | [F02: repair and validate packaged resource routes](docs/AUDIT_REMEDIATION.md#r102-resource-route-integrity) | High | Not started | Accepted R10.1 for safe consumer-package checks | Not run |
 | R10.3 | [F03: recover stale appearance drafts without losing intended edits](docs/AUDIT_REMEDIATION.md#r103-stale-draft-recovery) | Medium | Not started | R10.2 accepted in the agreed execution order | Not run |
 | R10.4 | [F04: reject contradictory behavioral-evaluation verdicts](docs/AUDIT_REMEDIATION.md#r104-consistent-evaluation-verdicts) | Medium | Not started | R10.3 accepted in the agreed execution order | Not run |
@@ -96,7 +96,7 @@ Detailed [requirements](docs/archive/ROADMAP-2026-10-06.md#agreed-correction-req
 - Structural checks, model observations, rendered/runtime tests and owner approval are distinct. The [historical five-product result](evals/real-world/RESULTS.md) retains its original version/date/model provenance.
 - The [authored Material specimen](evals/material/ham-amooz/DESIGN.md) is proposed, dark unstarted and secondary N/A. These are hypothetical product approval states, not unfinished Skill engineering stages.
 - Product behavior, permissions, data integrity, active-route isolation and existing stack choices remain protected. No external design specialist was added; `persian-writing` remains required for Persian-facing UI.
-- The five R10 findings remain open until their own regression evidence is accepted. Prior passing suites do not invalidate the audit reproductions; this preparation changes no Skill/runtime source and claims no remediation success.
+- R10.1 has scoped local regression acceptance; the remaining four findings are open. Prior passing suites do not invalidate their audit reproductions. No fresh all-scenario agent evaluation or R10 release/install success is claimed.
 
 ## Release checkpoint
 

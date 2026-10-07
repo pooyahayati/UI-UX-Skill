@@ -55,6 +55,15 @@ python3 scripts/validate_eval_fixtures.py
 python3 scripts/package_release.py --output <new-external-output-directory>
 ```
 
-The packager replaces its output directory: use a fresh dedicated location, never a source or installation directory. CI also runs the official quick validator and a temporary Codex installer smoke test on main pushes; this does not update the owner's installed copy.
+The packager requires a **nonexistent destination with an existing parent**. It refuses existing files/directories (even empty ones), repository/ancestor/source paths and symlink/junction paths. Choose a new output name for each run; there is no overwrite/force option. CI also runs the official quick validator and a temporary Codex installer smoke test on main pushes; this does not update the owner's installed copy.
+
+### Packaging safety and limits
+
+- Prefer an absolute external destination. Relative paths resolve from the repository root; only a fresh top-level `dist` is permitted inside it for existing CI consumers. The parent must already exist; the command does not create missing ancestor directories.
+- Required package inputs, repository/Skill/plugin version agreement and copied source trees are checked before staging. Source symlinks and Windows reparse points, including junctions, are refused rather than followed.
+- Archives and checksums are built in an invocation-owned temporary sibling. Only the complete staged directory is renamed to the requested destination. Detected copy/archive/checksum/publication failures preserve earlier outputs and source files; cleanup targets only the owned staging directory, never the requested output.
+- Use trusted local source and destination-parent directories that cannot be changed by another actor during the command. Path validation and a final existence check do **not** provide descriptor-based protection against hostile concurrent ancestor swaps; on POSIX a rename can also race with another process creating an empty destination. Shared/untrusted mutable hierarchies are unsupported. An interrupted process may leave its temporary staging folder; inspect it before any manual cleanup.
+
+### Publication
 
 After authorized, validated changes reach `main`, the release workflow reads `VERSION`, builds Skill/plugin ZIPs and `SHA256SUMS.txt`, and creates `v<version>` only if its release does not exist. Existing releases are skipped, not overwritten. Do not create a competing tag for the same version. See [current status](ROADMAP.md).

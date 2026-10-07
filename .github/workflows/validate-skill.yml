@@ -21,6 +21,9 @@ jobs:
       - name: Roadmap policy regression tests
         run: python3 scripts/test_roadmap_policy.py
 
+      - name: Release packaging path safety and failure preservation
+        run: python3 scripts/test_package_release.py
+
       - name: Synthetic handbook migration compatibility
         run: python3 scripts/test_handbook_migration.py
 

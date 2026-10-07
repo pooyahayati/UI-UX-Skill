@@ -6,7 +6,7 @@ Prepared 2026-10-07. This document defines the work and acceptance criteria for 
 
 Remove the five evidenced failure modes with bounded fixes and regression coverage. Preserve the existing design workflow, product scope, historical evidence and installation boundaries. This is stabilization maintenance, not a redesign or a new capability family.
 
-The owner authorized planning and project preparation, then explicitly authorized documentation integration: commit, push, pull request and merge after checks pass. Implementation starts on a subsequent implementation instruction. No code/test/workflow change, version bump, release or installed-Skill update is authorized by this documentation checkpoint.
+The owner authorized planning and its documentation-only integration through PR #34, then local R10.1 implementation on 2026-10-07 with delivery held. The subsequent explicit instruction authorizes integration of accepted R10.1 and local implementation of R10.2, overriding the earlier integration hold for R10.1 only. Work proceeds one package at a time. New publication and local Skill installation/update remain held until every R10 fix is completed and finalized. Do not bump release metadata or publish during an intermediate package. Later implementation acceptance alone does not authorize another merge.
 
 Planning deliverables are this execution plan, the R10 tracker, an isolated local branch and verified document consistency. Implementation deliverables are the scoped fixes, regression tests and recorded acceptance described below; they do not exist merely because they are planned.
 
@@ -50,6 +50,25 @@ Planning deliverables are this execution plan, the R10 tracker, an isolated loca
 - A new dedicated output succeeds; both archives retain expected member layout/version, CRC integrity and matching checksums.
 
 **Exit:** all negative preservation checks and the successful package check pass; no broad recursive deletion remains reachable through the documented output argument. Record the exact supported replacement policy and tested platforms.
+
+## R10.1 verification record (2026-10-07)
+
+Local acceptance by the engineering lead on `codex/r10-remediation`, based on merged plan `4f13176284a1d3588497a653099a9dde006b8374`. This is scoped implementation acceptance, not integration or publication. The [roadmap](../ROADMAP.md#r10-audit-remediation) remains the only current status tracker.
+
+**Accepted behavior:** no replacement policy exists: every existing output is refused, even an empty directory. Only fresh external destinations or the existing CI convention of a fresh top-level `dist` are allowed, under an already-existing parent. Inputs and version agreement are preflighted; builds stage in invocation-owned temporary siblings. Cleanup never receives the caller's output directory. Symlinks/reparse points and Windows device/stream/spelling aliases are refused. See [supported hierarchy and concurrency limits](../INSTALL.md#packaging-safety-and-limits).
+
+**Impact/security review:** the CLI output argument and source metadata cross filesystem boundaries; source files, old artifacts and unrelated owner files are protected assets. Native callers are the two existing workflow jobs; each has its own fresh checkout, so refusal of a reused `dist` does not break their documented flow. ZIP/member names, fixed timestamps, embedded versions and checksum format remain compatible. There is no current local Graphify graph, so callers, config, source and test assertions were traced directly. No independent agent review is claimed; a separate lead diff/security review found and closed the mixed-separator Windows device-path bypass before acceptance. No new dependency or installed-Skill change was needed.
+
+**Reproductions and checks:**
+
+- The new `test_existing_output_is_rejected_before_any_recursive_delete` failed against the audited packager at its intercepted `shutil.rmtree(out)` call; no real output deletion was allowed. It passes against the fix. The mixed-separator Windows alias regression also failed on the first candidate and passes after normalization.
+- Windows / Python 3.12.14: `python -B -m unittest discover -s scripts -p "test_*.py"` ran 84 tests: 82 passed, two native-symlink tests skipped because the host lacks symlink creation privilege. The Windows junction and path-alias cases passed. Test execution needed normal host permissions after the sandbox denied access to a newly created disposable temp fixture.
+- Existing offline Linux container / Python 3.11: `python -B scripts/test_package_release.py -v` ran 16 tests: 14 passed, the two Windows-only tests skipped. Both actual symlink cases passed. The preinstalled image `python:3.11-slim`, identity `sha256:da047cb8f9d1d98e5c070f5300ba9f7274e33b8fc0e5be5ed88740aed1b95ba9`, ran without network, downloads or writable source mounts. These complementary runs cover all 16 test methods; they do not claim every filesystem/OS is certified.
+- Fault scenarios cover copy, archive entry write, checksum write, staging permission and final rename errors; prior packages and source snapshots remain unchanged. A destination created during build is preserved. Missing inputs, mismatched/malformed versions and unsafe plugin names fail before staging.
+- Fresh final-source packaging outside the repository produced the 88-member Skill ZIP and 95-member plugin ZIP. Both passed CRC, exact source-member byte comparisons and SHA256SUMS checks; both unpacked Skill versions and plugin metadata remain `3.2.0`. These are local candidates, not published releases or installed copies.
+- `node scripts/test_runtime_dialogs.mjs`: 11 DOM-model assertions passed, not browser QA. `python -B scripts/validate_release.py`, the 17-test roadmap policy suite and `git diff --check` passed. The new packager suite is wired into the existing validation workflow; remote CI is deliberately not run/passed as part of this local-only checkpoint.
+
+**Reviewed source identities:** normalized Git blob `cb09383354a4cf30668e1565f0e184af886aecaa` for `scripts/package_release.py`; `3c7dc20add7edddc5fc78160e0397a6f22fdbc0e` for `scripts/test_package_release.py`. No claim is made that the four remaining R10 findings are fixed. Hostile concurrent source/ancestor mutation remains outside the trusted-local packaging contract; final workstream CI, delivery scans, integration and local update remain gated by completion of R10.2–R10.5.
 
 ## R10.2: Resource route integrity
 

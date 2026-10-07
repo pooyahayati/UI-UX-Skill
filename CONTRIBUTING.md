@@ -27,11 +27,12 @@ From the repository root:
 ```bash
 python3 scripts/validate_release.py
 python3 scripts/test_roadmap_policy.py
+python3 scripts/test_package_release.py
 python3 scripts/validate_eval_fixtures.py
 python3 scripts/package_release.py --output <new-external-output-directory>
 ```
 
-Use a fresh dedicated package directory: the packager replaces existing output. Run affected Product/Shared/Design/Specialist validators and relevant regressions; CI also runs the official Skill quick validator.
+Use a nonexistent dedicated output under an existing parent; the packager refuses every existing destination, including empty directories, rather than deleting or replacing it. Prefer an external output; the only allowed in-repository destination is a fresh top-level `dist` for CI. Relative paths are relative to the repository, not the shell's working directory. See [packaging safety and limits](INSTALL.md#packaging-safety-and-limits). Run affected Product/Shared/Design/Specialist validators and relevant regressions; CI also runs the official Skill quick validator.
 
 For meaningful behavior changes, use the [evaluation guide](evals/README.md) and `scripts/prepare_eval_run.py`; keep raw inputs separate from expected answers and validate actual recorded results with `scripts/validate_eval_result.py`. Structural checks are not model/rendered/owner-approval evidence.
 
