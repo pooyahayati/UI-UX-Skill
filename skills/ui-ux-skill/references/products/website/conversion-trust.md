@@ -114,7 +114,7 @@ Do not use:
 
 ## Forms and lead generation
 
-Read `../shared/forms-data-entry.md` and `../shared/feedback-status.md`.
+Read `../../shared/forms-data-entry.md` and `../../shared/feedback-status.md`.
 
 Website lead-generation specialization:
 

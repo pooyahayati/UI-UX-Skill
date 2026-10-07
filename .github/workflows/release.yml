@@ -48,6 +48,9 @@ jobs:
         run: |
           unzip -t dist/ui-ux-skill-claude-v*.zip
           unzip -t dist/ui-ux-plugin-v*.zip
+          unzip -q dist/ui-ux-skill-claude-v*.zip -d "$RUNNER_TEMP/uiux-skill-consumer"
+          unzip -q dist/ui-ux-plugin-v*.zip -d "$RUNNER_TEMP/uiux-plugin-consumer"
+          python3 scripts/validate_resource_routes.py --skill-root "$RUNNER_TEMP/uiux-skill-consumer/ui-ux-skill" --skill-root "$RUNNER_TEMP/uiux-plugin-consumer/ui-ux/skills/ui-ux-skill"
           EXPECTED_VERSION="$(tr -d '\r\n' < VERSION)"
           test "$(unzip -p dist/ui-ux-skill-claude-v*.zip ui-ux-skill/VERSION | tr -d '\r\n')" = "$EXPECTED_VERSION"
           test "$(unzip -p dist/ui-ux-plugin-v*.zip ui-ux/skills/ui-ux-skill/VERSION | tr -d '\r\n')" = "$EXPECTED_VERSION"

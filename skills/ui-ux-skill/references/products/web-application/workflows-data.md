@@ -51,7 +51,7 @@ Do not invent collaboration semantics that the backend does not implement.
 
 ## Forms and data entry
 
-Read `../shared/forms-data-entry.md`.
+Read `../../shared/forms-data-entry.md`.
 
 Web-application specialization must additionally define:
 
@@ -84,7 +84,7 @@ Avoid hidden active filters that make data appear missing.
 
 ## Destructive and reversible actions
 
-Read `../shared/destructive-high-impact-actions.md`.
+Read `../../shared/destructive-high-impact-actions.md`.
 
 Web-application specialization should distinguish object deletion from:
 

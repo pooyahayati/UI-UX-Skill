@@ -28,6 +28,8 @@ From the repository root:
 python3 scripts/validate_release.py
 python3 scripts/test_roadmap_policy.py
 python3 scripts/test_package_release.py
+python3 scripts/test_resource_routes.py
+python3 scripts/validate_resource_routes.py
 python3 scripts/validate_eval_fixtures.py
 python3 scripts/package_release.py --output <new-external-output-directory>
 ```
@@ -37,6 +39,16 @@ Use a nonexistent dedicated output under an existing parent; the packager refuse
 For meaningful behavior changes, use the [evaluation guide](evals/README.md) and `scripts/prepare_eval_run.py`; keep raw inputs separate from expected answers and validate actual recorded results with `scripts/validate_eval_result.py`. Structural checks are not model/rendered/owner-approval evidence.
 
 For documentation moves, preserve source/evidence, update local links/anchors and keep current status separate from history. Do not weaken checks to make a rewrite pass.
+
+### Packaged resource routing checks
+
+`validate_resource_routes.py` checks the canonical Skill by default. Repeat `--skill-root <unpacked-skill-root>` to inspect independent consumers. CI checks source and freshly extracted roots from both ZIP formats; it never uses repository files as fallback for a consumer's missing resource. Existing Product/Shared/Design validators continue to own registry policy and behavioral wording.
+
+Supported declarations are simple inline Markdown links/images (including angle-bracket destinations, encoded spaces and optional titles), literal inline-code file paths, and existing registry `reference` / `required_references` fields. Markdown links resolve from their declaring file; explicit `./` and `../` inline paths do too. Inline `references/`, `assets/`, `agents/` paths and `VERSION` resolve from the Skill root; bare resource filenames resolve from the declaring file. Registry paths are Skill-root relative. Diagnostics identify the file, line or registry, and target.
+
+External web/mail/tel links, same-document anchors, fenced examples, command snippets, placeholders/globs and bare product outputs `DESIGN.md` / `design-profile.md` are not packaged dependencies. Two exact explanatory repository-tool mentions are excluded in their declaring references: `scripts/runtime_appearance.py` and `scripts/validate_specialists.py`. This is not an exclusion for all scripts or broken paths. Explicit Markdown links to these names still require a real packaged file. Template Markdown is inspected, including its explicit Skill-root references.
+
+This bounded checker does not parse every CommonMark form (reference-style/HTML links, multiline destinations or balanced nested parentheses), validate anchor existence/external URLs, check arbitrary registry schemas, or prove model behavior. Add support and regression coverage when introducing a new instruction-resource syntax; do not silently treat a failing required route as an example. Missing/unreadable roots/resources, path escapes, symlink/reparse resources and scan errors fail validation.
 
 ## Pull requests
 

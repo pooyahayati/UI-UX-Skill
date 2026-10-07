@@ -6,7 +6,7 @@ This module contains existing Website Product Pack guidance extracted for progre
 
 ## Responsive behavior
 
-Read `../shared/responsive-adaptation.md`.
+Read `../../shared/responsive-adaptation.md`.
 
 Website-specific responsive decisions must additionally preserve:
 
@@ -128,7 +128,7 @@ Provide graceful fallback for:
 
 ## Motion
 
-Read `../shared/motion.md`.
+Read `../../shared/motion.md`.
 
 Website specialization:
 

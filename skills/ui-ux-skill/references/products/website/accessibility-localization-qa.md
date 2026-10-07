@@ -6,7 +6,7 @@ This module contains existing Website Product Pack guidance extracted for progre
 
 ## Accessibility
 
-Read `../shared/accessibility-interaction.md` for the cross-product interaction floor and `../accessibility.md` for QA/evidence.
+Read `../../shared/accessibility-interaction.md` for the cross-product interaction floor and `../../accessibility.md` for QA/evidence.
 
 Website specialization must additionally validate:
 
@@ -96,7 +96,7 @@ Do not treat the RTL version as a mirrored screenshot.
 
 ## Error, unavailable, and edge pages
 
-Read `../shared/state-recovery.md`.
+Read `../../shared/state-recovery.md`.
 
 Website-specific recovery should cover representative:
 
