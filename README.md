@@ -49,13 +49,9 @@ Example: “Use this Skill to inspect our web app and improve the mobile visit f
 - [Evaluation guide](evals/README.md) — raw inputs, checks, results and limitations
 - [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Support](SUPPORT.md)
 
-## Feature freeze
+## Project status
 
-Limited correction exception: R0–R8 only. The design-foundation, living-handbook, visual-approval and safe appearance work is completed.
-
-Separate R9 exception: optional Material Design only. All six packages are completed within their documented engineering scope.
-
-Outside this exception, stabilization maintenance is the default: no new Product Types, additional external design specialists or general-purpose page builder. Completion is not fresh delivery authority. See [Roadmap](ROADMAP.md) for scope and evidence.
+The current focus is stability, bug fixes and usability improvements. See the [Roadmap](ROADMAP.md) for development status and scope, or [Contributing](CONTRIBUTING.md) to propose a change.
 
 ## Author and license
 

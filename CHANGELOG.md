@@ -2,6 +2,10 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
+## [Unreleased]
+
+- Replaced internal stage/authorization prose in the public README with a short project-status pointer. Detailed development limits remain in the roadmap and contribution guide; document-policy checks protect that separation. Recorded verified 3.2.1 publication and local installation; published packages are unchanged.
+
 ## [3.2.1] - 2026-10-07
 
 - Completed the five R10 audit repairs: reject unsafe/existing package destinations and preserve prior data; repair and independently validate packaged resource routes; preserve intended appearance edits during stale-draft recovery; reject contradictory evaluation verdicts; compare complete specialist packages against one immutable upstream commit.

@@ -53,9 +53,17 @@ class RoadmapPolicyTests(unittest.TestCase):
         text = self.roadmap.replace("**Status:** Completed", "**Status:** Planned", 1)
         self.rejected(text, "must remain Completed")
 
-    def test_readme_cannot_keep_unqualified_legacy_freeze(self):
-        text = self.readme.replace("Limited correction exception: R0–R8 only.", "All capabilities frozen.")
-        self.rejected(self.roadmap, "README stabilization policy missing", readme=text)
+    def test_readme_preserves_navigation_to_canonical_policy(self):
+        for before in ("stability", "[Roadmap](ROADMAP.md)", "[Contributing](CONTRIBUTING.md)"):
+            text = self.readme.replace(before, "Removed")
+            self.assertNotEqual(text, self.readme)
+            self.rejected(self.roadmap, "README project-status navigation missing", readme=text)
+
+    def test_readme_does_not_duplicate_internal_stage_policy(self):
+        for text in (self.readme + "\n## Feature freeze\nInternal exception rules.\n",
+                     self.readme.replace("The current focus", "R0 and R9.6 completed. The current focus")):
+            self.assertNotEqual(text, self.readme)
+            self.rejected(self.roadmap, "internal stage/authority", readme=text)
 
     def test_tracker_rejects_missing_duplicate_and_invalid_stages(self):
         row = next(line for line in self.roadmap.splitlines() if line.startswith("| R1 |"))
@@ -121,8 +129,6 @@ class RoadmapPolicyTests(unittest.TestCase):
              "**R9 kickoff:** Inherited old merge permission.", "Separate R9 stabilization"),
         ):
             self.rejected(self.current_roadmap.replace(before, after), expected)
-        self.rejected(self.current_roadmap, "README stabilization policy missing",
-                      self.readme.replace("Separate R9 exception: optional Material Design only.", "Unlimited expansion."))
 
     def test_r9_cannot_start_before_accepted_corrections(self):
         row = next(line for line in self.current_roadmap.splitlines() if line.startswith("| R8 |"))

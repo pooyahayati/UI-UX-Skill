@@ -85,13 +85,14 @@ def validate_policy(readme: str, roadmap: str) -> list[str]:
             errors.append(f"Separate R9 stabilization policy missing: {term}")
     if "## Future Product Types" in roadmap:
         errors.append("ROADMAP must not advertise future Product Types during stabilization")
-    policy = section(readme, "Feature freeze")
-    for term in ("Limited correction exception: R0–R8 only.", "Outside this exception",
-                 "Separate R9 exception: optional Material Design only.",
-                 "no new Product Types", "additional external design specialists",
-                 "general-purpose page builder", "[Roadmap](ROADMAP.md)"):
+    # Detailed authority/scope is owned and validated above in ROADMAP, not
+    # duplicated in the public product introduction.
+    policy = section(readme, "Project status")
+    for term in ("stability", "[Roadmap](ROADMAP.md)", "[Contributing](CONTRIBUTING.md)"):
         if term not in policy:
-            errors.append(f"README stabilization policy missing: {term}")
+            errors.append(f"README project-status navigation missing: {term}")
+    if section(readme, "Feature freeze") or re.search(r"\bR\d+(?:\.\d+)?\b", policy):
+        errors.append("README must keep internal stage/authority details in ROADMAP")
 
     # Restrict parsing to the canonical tracker; do not count stage IDs in prose.
     tracker = re.search(r"^### Correction stage tracker\s*\n(.*?)(?=^### |^## |\Z)",

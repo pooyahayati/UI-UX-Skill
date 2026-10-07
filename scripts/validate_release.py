@@ -307,7 +307,7 @@ require_text(
         "| **WordPress Plugin / Admin UI** |",
         "| **Shared foundation** |",
         "Inactive Product Packs are not preloaded",
-        "## Feature freeze",
+        "## Project status",
         "persian-writing",
         "UI/UX Head",
         "Shared UI Rules",
