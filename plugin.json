@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ui-ux",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "description": "Product-aware UI/UX Head Skill with isolated local Product Packs, scope-routed Shared UI Rules, a modular Design System, and evidence-based validation.",
   "author": {
     "name": "Pooya Hayati",

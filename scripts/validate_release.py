@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import re
+import struct
 import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -293,6 +294,15 @@ validate_svg("composerIcon")
 
 # README is the concise public entrypoint.
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
+hero = require("docs/images/ui-ux-skill-hero.png")
+if hero.is_file():
+    # Owner accepted the generated size; validate the file, not HTML attributes.
+    header = hero.read_bytes()[:24]
+    if (len(header) != 24 or header[:8] != b"\x89PNG\r\n\x1a\n"
+            or header[12:16] != b"IHDR" or struct.unpack(">II", header[16:24]) != (1672, 941)):
+        error("README cover must be the owner-accepted 1672x941 PNG")
+if "(docs/images/ui-ux-skill-hero.png)" not in readme.split("# UI/UX Skill", 1)[0]:
+    error("README must display the local cover above the title")
 if len(readme.splitlines()) > 120:
     error(f"README should stay concise (<=120 lines); got {len(readme.splitlines())}")
 

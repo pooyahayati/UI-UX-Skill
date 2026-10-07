@@ -6,11 +6,11 @@ Current status, completed stages and maintenance boundaries. Detailed execution 
 
 - Last updated: **2026-10-07**.
 - Current release: **[v3.2.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.2.1)**, published 2026-10-07; local update verified.
-- Current objective: **Completed R10 delivery.** All five repairs are integrated, released and included in the verified local update.
+- Current objective: **Prepare owner-requested 3.3.0 presentation release.** R10 is already delivered in 3.2.1. The new scope is the README cover, reader-focused documentation and verified release/local update; no new UI capability.
 - Implementation: **Completed**; **9 of 9 correction stages completed**. This count covers R0–R8 only, not the new maintenance backlog.
 - Active implementation stage: **None**. The R0–R8 tracker is closed; R10 activity is tracked separately below.
 - Next implementation stage: **None**; all six R9 packages and all five R10 repairs are completed and integrated.
-- Next delivery action: **None for R10.** The owner-authorized merge, publication and local update are verified below. Further capability work requires a new scoped request.
+- Next delivery action: **Verify and publish 3.3.0, then update the local installation.** The owner explicitly requested this version, a cover with Persian creator credit and another documentation review; they subsequently accepted the generated 1672×941 size instead of 1920×1080. R10 delivery remains complete; 3.3.0 publication/install are not yet claimed.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
 - Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33) at `ce5bfb5`; R10 planning through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34); final release documentation and metadata through [PR #39](https://github.com/pooyahayati/UI-UX-Skill/pull/39).
 

@@ -1,14 +1,14 @@
+![UI/UX Skill: responsive interfaces, design tokens and a living design handbook. Created by Pooya Hayati.](docs/images/ui-ux-skill-hero.png)
+
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-3.2.1-blue)
+![Version](https://img.shields.io/badge/version-3.3.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A product-aware **UI/UX Head** for designing, auditing and improving real interfaces. Works standalone or as a bounded specialist under an engineering Head.
 
-Current source: **v3.2.1** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
-
-The 3.2.1 maintenance update repairs packaging safety, packaged resource routes, stale-draft recovery, evaluation verdict consistency and whole-package specialist verification. See [release notes](CHANGELOG.md) and [delivery status](ROADMAP.md).
+Current source: **v3.3.0** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
 
 ## Product coverage
 

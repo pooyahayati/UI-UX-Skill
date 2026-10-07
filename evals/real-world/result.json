@@ -1,7 +1,7 @@
 {
-  "skillVersion": "3.2.1",
+  "skillVersion": "3.3.0",
   "sourceEvaluationVersion": "3.1.1",
-  "releaseBinding": "3.2.1 manifest compatibility binding only. The original host/model/date, notes and case evidence below remain historical observations, not a fresh 3.2.1 model run. The previous 3.2.0 structural revalidation is retained in notes.",
+  "releaseBinding": "3.3.0 manifest compatibility binding only. The original host/model/date, notes and case evidence below remain historical observations, not a fresh 3.3.0 model run. The previous 3.2.0 structural revalidation is retained in notes.",
   "host": "ChatGPT",
   "model": "GPT-5.6 Sol",
   "date": "2026-10-02",
