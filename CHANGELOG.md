@@ -2,6 +2,13 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
+## [3.3.0] - 2026-10-07
+
+- Added an owner-accepted 1672×941 README cover illustrating responsive interfaces, design foundations and the living handbook, with the Persian creator credit for Pooya Hayati. The owner accepted the generated dimensions instead of the initially requested 1920×1080. This repository-only illustration is not bundled into the installed Skill or plugin.
+- Replaced internal stage/authorization prose in the public README with a short project-status pointer. Detailed development limits remain in the roadmap and contribution guide; document-policy checks protect that separation.
+- Reviewed public installation, contribution, evaluation, security, support, privacy and terms pages; retained applicable instructions and historical evidence. Recorded verified 3.2.1 delivery without overwriting its published artifacts.
+- Release number 3.3.0 is explicitly owner-selected. This is a presentation/documentation release on the completed R10 fixes, not a new UI capability or a fresh model benchmark; portable Skill guidance is unchanged from 3.2.1 apart from version metadata.
+
 ## [3.2.1] - 2026-10-07
 
 - Completed the five R10 audit repairs: reject unsafe/existing package destinations and preserve prior data; repair and independently validate packaged resource routes; preserve intended appearance edits during stale-draft recovery; reject contradictory evaluation verdicts; compare complete specialist packages against one immutable upstream commit.

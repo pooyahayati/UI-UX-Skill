@@ -1,14 +1,14 @@
+![UI/UX Skill: responsive interfaces, design tokens and a living design handbook. Created by Pooya Hayati.](docs/images/ui-ux-skill-hero.png)
+
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-3.2.1-blue)
+![Version](https://img.shields.io/badge/version-3.3.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A product-aware **UI/UX Head** for designing, auditing and improving real interfaces. Works standalone or as a bounded specialist under an engineering Head.
 
-Current source: **v3.2.1** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
-
-The 3.2.1 maintenance update repairs packaging safety, packaged resource routes, stale-draft recovery, evaluation verdict consistency and whole-package specialist verification. See [release notes](CHANGELOG.md) and [delivery status](ROADMAP.md).
+Current source: **v3.3.0** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
 
 ## Product coverage
 
@@ -49,13 +49,9 @@ Example: “Use this Skill to inspect our web app and improve the mobile visit f
 - [Evaluation guide](evals/README.md) — raw inputs, checks, results and limitations
 - [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Support](SUPPORT.md)
 
-## Feature freeze
+## Project status
 
-Limited correction exception: R0–R8 only. The design-foundation, living-handbook, visual-approval and safe appearance work is completed.
-
-Separate R9 exception: optional Material Design only. All six packages are completed within their documented engineering scope.
-
-Outside this exception, stabilization maintenance is the default: no new Product Types, additional external design specialists or general-purpose page builder. Completion is not fresh delivery authority. See [Roadmap](ROADMAP.md) for scope and evidence.
+The current focus is stability, bug fixes and usability improvements. See the [Roadmap](ROADMAP.md) for development status and scope, or [Contributing](CONTRIBUTING.md) to propose a change.
 
 ## Author and license
 
