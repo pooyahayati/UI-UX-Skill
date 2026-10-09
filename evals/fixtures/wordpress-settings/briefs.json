@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "purpose": "Raw inputs prepared before WPS behavior edits; no intended answers or claimed execution results.",
+  "briefs": [
+    {
+      "id": "WP-01",
+      "request": "Design a new single-site plugin settings page with a report title and one notification toggle. English is the product language. Keep it easy for a site administrator."
+    },
+    {
+      "id": "WP-02",
+      "request": "Design settings for report identity, delivery scheduling and an optional technical endpoint. Group the options by the administrator's task."
+    },
+    {
+      "id": "WP-03",
+      "request": "A delivery address is editable only when email notifications are enabled. Turning notifications off must retain the saved address."
+    },
+    {
+      "id": "WP-04",
+      "request": "The settings request fails on first load. Show an actionable state without exposing suggested defaults as stored settings."
+    },
+    {
+      "id": "WP-05",
+      "request": "Save a valid title and an invalid email; then simulate a rejected request. The administrator must be able to correct the form."
+    },
+    {
+      "id": "WP-06",
+      "request": "An administrator double-clicks Save, edits a field while the request is running, and later tries to leave with unsaved work."
+    },
+    {
+      "id": "WP-07",
+      "request": "A subscriber tries to read and update settings. An administrator replaces or removes a saved synthetic credential and resets only one section."
+    },
+    {
+      "id": "WP-08",
+      "request": "The specimen declares WordPress 6.8 as its minimum. Check it there and on the current stable version without activating the Gutenberg plugin."
+    },
+    {
+      "id": "WP-09",
+      "request": "Design a Persian plugin settings form inside real wp-admin. Include a long label, technical URL and a reset dialog at a narrow width."
+    },
+    {
+      "id": "WP-10",
+      "request": "Audit an existing HTML settings page, then fix only a clipped label. No complete redesign was requested."
+    },
+    {
+      "id": "WP-11",
+      "request": "Two settings sections have values. Save one while the other has unsaved edits; check retained persisted and draft values."
+    },
+    {
+      "id": "WP-12",
+      "request": "The server stores an update but its response is lost. The administrator needs to discover whether the update took effect."
+    },
+    {
+      "id": "WP-13",
+      "request": "Two administrators load the same settings revision and change the same value. Preserve both intentions during conflict recovery."
+    },
+    {
+      "id": "WP-14",
+      "request": "Inspect a short form and a multi-topic form at normal and narrow wp-admin widths against their recorded visual criteria."
+    },
+    {
+      "id": "ISO-01",
+      "request": "Improve a public website, standalone web app, dashboard and native mobile form independently. No WordPress surface is involved."
+    },
+    {
+      "id": "ISO-02",
+      "request": "Fix a public WordPress storefront layout. Do not change administration screens."
+    },
+    {
+      "id": "ISO-03",
+      "request": "Improve only a plugin diagnostics/operations screen showing a background job and logs."
+    },
+    {
+      "id": "ISO-04",
+      "request": "A plugin has settings and an operational work queue. Redesign its settings only, leaving the work queue intact."
+    },
+    {
+      "id": "ISO-05",
+      "request": "Review source and extracted packages for changes outside the approved WordPress settings scope."
+    }
+  ]
+}

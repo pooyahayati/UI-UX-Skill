@@ -1,0 +1,26 @@
+@font-face { font-family: Vazirmatn; src: url("fonts/Vazirmatn-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Vazirmatn; src: url("fonts/Vazirmatn-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+#wps-root { --wps-space: 24px; max-inline-size: 880px; color: #1d2327; font-size: 16px; line-height: 1.7; }
+#wps-root[lang="fa"], #wps-root[lang="fa"] *, .wps-modal-fa, .wps-modal-fa * { font-family: Vazirmatn, sans-serif; font-synthesis: none; letter-spacing: normal; }
+#wps-root h1 { font-size: 24px; line-height: 1.6; margin-block: 16px 8px; }
+#wps-root h2 { font-size: 19px; line-height: 1.6; margin-block: 0 16px; }
+#wps-root .wps-intro { max-inline-size: 68ch; margin-block-end: 24px; }
+#wps-root .wps-section { background: #fff; border: 1px solid #c3c4c7; padding: var(--wps-space); margin-block-end: var(--wps-space); }
+#wps-root .wps-fields { max-inline-size: 560px; }
+#wps-root .components-base-control { margin-block-end: 20px; }
+#wps-root input, #wps-root select, #wps-root button, .wps-modal button { font: inherit; }
+#wps-root .components-base-control__label { font-size: 16px; font-weight: 700; text-transform: none; }
+#wps-root .components-base-control__help { font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; }
+#wps-root .components-notice { margin-inline: 0; margin-block: 12px 20px; }
+#wps-root .wps-actions, .wps-modal .wps-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-block-start: 20px; }
+#wps-root .components-button, .wps-modal .components-button { min-block-size: 40px; height: auto; white-space: normal; padding-block: 8px; line-height: 1.5; }
+#wps-root .wps-technical input { direction: ltr; text-align: start; }
+#wps-root .wps-review { margin-block-start: 32px; border-block-start: 1px solid #c3c4c7; padding-block-start: 16px; }
+.wps-modal [dir="rtl"] { text-align: start; }
+.wps-modal p { overflow-wrap: anywhere; line-height: 1.8; }
+@media (max-width: 600px) {
+  #wps-root { --wps-space: 16px; font-size: 16px; }
+  #wps-root h1 { font-size: 22px; }
+  #wps-root .wps-actions .components-button { flex: 1 1 160px; justify-content: center; }
+  #wps-root .wps-section { inline-size: auto; }
+}

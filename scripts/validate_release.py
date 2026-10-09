@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from roadmap_policy import validate_policy
+from roadmap_policy import validate_current_roadmap, validate_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAME = "ui-ux-skill"
@@ -382,9 +382,11 @@ require_text(
     "submission/SUBMISSION_CHECKLIST.md",
 )
 
-# Preserved history, bounded correction exception, and canonical progress.
+# Closed checkpoint policy remains checked; live WPS progress has its own ledger.
 roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
-ERRORS.extend(validate_policy(readme, roadmap))
+history = (ROOT / "docs/archive/ROADMAP-2026-10-09.md").read_text(encoding="utf-8")
+ERRORS.extend(validate_policy(readme, history))
+ERRORS.extend(validate_current_roadmap(roadmap))
 
 # Current version must have a changelog entry. During development, newer work may remain Unreleased.
 changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")

@@ -21,6 +21,11 @@ jobs:
       - name: Roadmap policy regression tests
         run: python3 scripts/test_roadmap_policy.py
 
+      - name: WordPress settings evidence and isolation regressions
+        run: |
+          python3 evals/wordpress-settings/test_contracts.py
+          node evals/wordpress-settings/test_model.cjs
+
       - name: Release packaging path safety and failure preservation
         run: python3 scripts/test_package_release.py
 

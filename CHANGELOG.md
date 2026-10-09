@@ -2,6 +2,14 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
+## [3.4.0] - 2026-10-10
+
+- Completed WPS-0–WPS-6: stable public WordPress components for new/authorized redesigned plugin-owned settings, including simple forms; task-oriented grouping and handbook-based visual criteria. Audits, narrow fixes, public and operational surfaces retain their existing scope.
+- Strengthened initial-load, section-preserving saves, duplicate protection, newer-edit retention, uncertain-commit reconciliation and applicable two-administrator conflict guidance without mandating a backend/storage migration.
+- Added a bounded component/compatibility guide and runnable synthetic simple/multi-topic specimen in real WordPress administration. Verified WordPress 6.8/7.1.3, selected controls, Persian RTL/Vazirmatn, normal/narrow layouts, keyboard/modal behavior and server-side permission/data boundaries.
+- Added nineteen method-labeled outcomes, content-bound evidence and dedicated CI regressions; all eighty-five protected Skill resources remain unchanged. Same-session source review and selected browser evidence are not an independent model benchmark or universal accessibility certification.
+- Simplified the live roadmap and preserved completed history in an archive. This release does not install a production plugin, migrate real sites or upgrade the locally installed Skill.
+
 ## [3.3.0] - 2026-10-07
 
 - Added an owner-accepted 1672×941 README cover illustrating responsive interfaces, design foundations and the living handbook, with the Persian creator credit for Pooya Hayati. The owner accepted the generated dimensions instead of the initially requested 1920×1080. This repository-only illustration is not bundled into the installed Skill or plugin.

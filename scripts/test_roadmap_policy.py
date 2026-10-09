@@ -3,16 +3,17 @@ from pathlib import Path
 import re
 import unittest
 
-from roadmap_policy import validate_policy
+from roadmap_policy import validate_current_roadmap, validate_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-class RoadmapPolicyTests(unittest.TestCase):
+class HistoricalRoadmapPolicyTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        cls.current_roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+        # Preserve the original scope/progress regression scenarios in the archive.
+        cls.current_roadmap = (ROOT / "docs/archive/ROADMAP-2026-10-09.md").read_text(encoding="utf-8")
         # Stable kickoff fixture: later stage updates must not change these scenarios.
         cls.roadmap = cls.current_roadmap
         for row in re.findall(r"^\| R\d+ \|.*$", cls.roadmap, re.M):
@@ -187,6 +188,102 @@ class RoadmapPolicyTests(unittest.TestCase):
         second_fields = second.split("|")
         second_fields[3], second_fields[5] = " In progress ", " [Execution](#record) "
         self.rejected(first.replace(second, "|".join(second_fields)), "at most one active")
+
+
+class CurrentRoadmapTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.live_roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+        # Mutation scenarios stay stable as real packages progress; test the live
+        # document independently rather than requiring it to remain unstarted.
+        cls.roadmap = cls.live_roadmap
+        for row in re.findall(r"^\| WPS-\d+ \|.*$", cls.roadmap, re.M):
+            fields = row.split("|")
+            fields[3], fields[5] = " Not started ", " Not recorded "
+            cls.roadmap = cls.roadmap.replace(row, "|".join(fields))
+        for key, value in {
+            "Completed WPS packages": "0 of 7",
+            "Active WPS package": "None",
+            "Next WPS package": "WPS-0",
+            "Execution authority": "Awaiting an owner instruction to execute WPS",
+        }.items():
+            cls.roadmap = re.sub(rf"^\| {re.escape(key)} \|.*$", f"| {key} | {value} |", cls.roadmap, flags=re.M)
+
+    def change_row(self, text, package, status, evidence="Not recorded"):
+        row = next(line for line in text.splitlines() if line.startswith(f"| {package} |"))
+        fields = row.split("|")
+        fields[3], fields[5] = f" {status} ", f" {evidence} "
+        return text.replace(row, "|".join(fields))
+
+    def rejected(self, text, expected):
+        self.assertNotEqual(text, self.roadmap)
+        errors = validate_current_roadmap(text)
+        self.assertTrue(any(expected in error for error in errors), errors)
+
+    def authorized(self):
+        return self.roadmap.replace("Awaiting an owner instruction to execute WPS",
+                                    "[Owner-authorized kickoff](#execution-record)")
+
+    def test_current_ledger_passes(self):
+        self.assertEqual(validate_current_roadmap(self.live_roadmap), [])
+        self.assertEqual(validate_current_roadmap(self.roadmap), [])
+
+    def test_missing_duplicate_and_invalid_rows(self):
+        for text in (self.roadmap.replace("| WPS-6 |", "| WPS-5 |"),
+                     self.roadmap.replace("| WPS-6 |", "| Removed |")):
+            self.rejected(text, "exactly once")
+        self.rejected(self.change_row(self.roadmap, "WPS-0", "Almost done"), "invalid status")
+
+    def test_count_active_next_and_duplicate_summary(self):
+        for before, after, expected in (
+            ("| 0 of 7 |", "| 1 of 7 |", "completed count"),
+            ("| Active WPS package | None |", "| Active WPS package | WPS-0 |", "Active WPS"),
+            ("| Next WPS package | WPS-0 |", "| Next WPS package | WPS-6 |", "Next WPS"),
+            ("| Completed WPS packages | 0 of 7 |", "| Completed WPS packages | 0 of 7 |\n| Completed WPS packages | 0 of 7 |", "Duplicate"),
+        ):
+            self.rejected(self.roadmap.replace(before, after), expected)
+
+    def test_execution_needs_authority_and_evidence(self):
+        self.rejected(self.change_row(self.roadmap, "WPS-0", "In progress"), "execution/evidence link")
+        self.rejected(self.change_row(self.roadmap, "WPS-0", "In progress", "[Record](#record)"),
+                      "linked owner execution authority")
+
+    def test_completed_evidence_requires_visible_valid_date(self):
+        for evidence in ("[Record](#2026-10-09)", "[2026-02-30 acceptance](#record)", "2026-10-09 no link"):
+            text = self.change_row(self.authorized(), "WPS-0", "Completed", evidence)
+            self.assertTrue(validate_current_roadmap(text))
+            expected = "execution/evidence link" if "no link" in evidence else "valid dated"
+            self.rejected(text, expected)
+
+    def test_out_of_order_and_parallel_work(self):
+        text = self.change_row(self.authorized(), "WPS-1", "In progress", "[Record](#record)")
+        self.rejected(text, "prerequisite packages")
+        text = self.change_row(text, "WPS-0", "In progress", "[Record](#record)")
+        self.rejected(text, "single active")
+
+    def test_valid_partial_and_complete_ledgers(self):
+        text = self.change_row(self.authorized(), "WPS-0", "In progress", "[Record](#record)")
+        text = text.replace("| Active WPS package | None |", "| Active WPS package | WPS-0 |")
+        text = text.replace("| Next WPS package | WPS-0 |", "| Next WPS package | WPS-1 |")
+        self.assertEqual(validate_current_roadmap(text), [])
+        text = self.authorized()
+        for index in range(7):
+            text = self.change_row(text, f"WPS-{index}", "Completed", "[2026-10-09 acceptance](#record)")
+        text = text.replace("| 0 of 7 |", "| 7 of 7 |")
+        text = text.replace("| Next WPS package | WPS-0 |", "| Next WPS package | None |")
+        self.assertEqual(validate_current_roadmap(text), [])
+
+    def test_blocked_and_reopened_states_remain_active(self):
+        for state in ("Blocked", "Reopened"):
+            text = self.change_row(self.authorized(), "WPS-0", state, "[Record](#record)")
+            text = text.replace("| Active WPS package | None |", "| Active WPS package | WPS-0 |")
+            text = text.replace("| Next WPS package | WPS-0 |", "| Next WPS package | WPS-1 |")
+            self.assertEqual(validate_current_roadmap(text), [])
+
+    def test_history_and_delivery_boundaries_preserved(self):
+        self.rejected(self.roadmap.replace("docs/archive/ROADMAP-2026-10-09.md", "missing.md"), "preserved checkpoint")
+        self.rejected(self.roadmap.replace("Completion does not authorize push/merge, publication, installation or deployment",
+                                          "Completion authorizes delivery"), "authority boundary")
 
 
 if __name__ == "__main__":

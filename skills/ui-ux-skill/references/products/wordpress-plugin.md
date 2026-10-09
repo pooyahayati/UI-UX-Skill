@@ -32,6 +32,14 @@ Use for:
 - license/account configuration;
 - reset/default operations.
 
+For new or explicitly authorized redesigned plugin-owned settings/configuration
+surfaces inside `wp-admin`, stable public `@wordpress/components` controls are
+required, including simple forms. The settings module routes its component guide
+only for that surface. Audit-only work reports gaps; narrow fixes preserve their
+requested boundary. Do not impose the mandate or guide on diagnostics, operations,
+public themes/storefronts, block-editor extensions or other products merely because
+they use WordPress. In hybrid plugins, apply it only to the settings portion.
+
 ### Onboarding / integrations
 
 Load:

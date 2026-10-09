@@ -48,6 +48,7 @@ def section(text: str, heading: str) -> str:
 
 
 def validate_policy(readme: str, roadmap: str) -> list[str]:
+    """Validate the preserved historical checkpoint and public README navigation."""
     errors: list[str] = []
     for heading in HISTORICAL_STAGES:
         block = section(roadmap, heading)
@@ -145,6 +146,77 @@ def validate_policy(readme: str, roadmap: str) -> list[str]:
     if not next_stage or next_stage[1] != (remaining[0] if remaining else "None"):
         errors.append("Next implementation stage must agree with the canonical tracker")
     errors.extend(validate_r9_progress(roadmap, statuses))
+    return errors
+
+
+def validate_current_roadmap(roadmap: str) -> list[str]:
+    """Validate the live WPS ledger separately from closed historical stages."""
+    errors = []
+    current = section(roadmap, "Current state")
+    summary = {}
+    for key, value in re.findall(r"^\| ([^|]+) \| ([^|]+) \|\s*$", current, re.M):
+        if key in summary:
+            errors.append(f"Duplicate current-state field: {key}")
+        summary[key] = value.strip()
+    tracker = section(roadmap, "WordPress settings extension (WPS)")
+    rows = re.findall(r"^\| (WPS-\d+) \| (.+)\|\s*$", tracker, re.M)
+    expected = [f"WPS-{i}" for i in range(7)]
+    if [name for name, _ in rows] != expected:
+        errors.append("WPS tracker must contain WPS-0–WPS-6 exactly once and in order")
+    statuses = {}
+    link = r"\[[^\]]+\]\([^)]+\)"
+    for name, tail in rows:
+        fields = [value.strip() for value in tail.split("|")]
+        if len(fields) != 4:
+            errors.append(f"{name}: tracker must have five columns")
+            continue
+        _, status, prerequisite, evidence = fields
+        statuses[name] = status
+        if status not in STATES:
+            errors.append(f"{name}: invalid status {status!r}")
+        required = ("Owner instruction to execute WPS" if name == "WPS-0"
+                    else f"Accepted WPS-{int(name[4:]) - 1}")
+        if required not in prerequisite:
+            errors.append(f"{name}: missing execution prerequisite")
+        if status != "Not started" and not re.search(link, evidence):
+            errors.append(f"{name}: started package needs an execution/evidence link")
+        if status == "Completed":
+            visible = re.sub(r"\]\([^)]+\)", "]", evidence)
+            dates = re.findall(r"\b\d{4}-\d{2}-\d{2}\b", visible)
+            try:
+                dated = bool(dates) and all(calendar_date.fromisoformat(value) for value in dates)
+            except ValueError:
+                dated = False
+            if not dated:
+                errors.append(f"{name}: completion needs valid dated acceptance evidence")
+    for index, name in enumerate(expected):
+        if statuses.get(name, "Not started") != "Not started":
+            if any(statuses.get(previous) != "Completed" for previous in expected[:index]):
+                errors.append(f"{name}: prerequisite packages must be Completed")
+    completed = sum(value == "Completed" for value in statuses.values())
+    active = [name for name in expected if statuses.get(name) in {"In progress", "Blocked", "Reopened"}]
+    remaining = [name for name in expected if statuses.get(name) != "Completed" and name not in active]
+    if summary.get("Completed WPS packages") != f"{completed} of 7":
+        errors.append("WPS completed count must agree with the tracker")
+    if len(active) > 1 or summary.get("Active WPS package") != (active[0] if active else "None"):
+        errors.append("Active WPS package must match the single active tracker row")
+    if summary.get("Next WPS package") != (remaining[0] if remaining else "None"):
+        errors.append("Next WPS package must agree with the tracker")
+    authority = summary.get("Execution authority", "")
+    if not authority:
+        errors.append("WPS execution authority must be recorded")
+    elif any(value != "Not started" for value in statuses.values()):
+        if "Awaiting" in authority or not re.search(link, authority):
+            errors.append("Started WPS work requires linked owner execution authority")
+    if not summary.get("Accountable role"):
+        errors.append("WPS accountable role must be recorded")
+    history = section(roadmap, "Completed history")
+    if "docs/archive/ROADMAP-2026-10-09.md" not in history:
+        errors.append("Completed history must link to the preserved checkpoint")
+    for term in ("completed R0–R8 and R9 exceptions are not new authority",
+                 "Completion does not authorize push/merge, publication, installation or deployment"):
+        if term not in section(roadmap, "Scope and acceptance rules"):
+            errors.append(f"Current roadmap authority boundary missing: {term}")
     return errors
 
 

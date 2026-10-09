@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-10",
+  "base_commit": "4e20b3f5524120a5c2559a8bd525c30e66c43d3c",
+  "candidate_binding": "Canonical content hashes; commit/merge binding is recorded in EXECUTION.md after integration.",
+  "fresh_model_evaluation": false,
+  "candidate_skill_hashes": {
+    "references/products/wordpress-plugin.md": "94d5f38fec877ae9783476119e1327614e45b915406918811b53daa955c4a656",
+    "references/products/wordpress/components.md": "90c4770145b78c3cd4dafd6bd0fe8535488d8bce86770064b89de88c9709353a",
+    "references/products/wordpress/settings.md": "6987747e9d3434bf62dd45c10837e678aba6b8d385a6418d02762abe4c4bc138"
+  },
+  "fixture_hashes": {
+    "app.js": "718518c2c6baadbec4f547b041d20387637009c21a8717c665ee68a6811ae1ae",
+    "index.asset.php": "3fdcdbb233db97b5c80a7b72bc060845805bf533ae81c52486d55a92d1ae8fe3",
+    "model.js": "01e7bd08d9fbb557e994c91206973ac140cccaaca7f1ec64b8ebdf62c8f8e80b",
+    "style.css": "0c6b3ac496b471afa493be334dad283757f11d03ef31e64b3110b1a02c9015eb",
+    "wps-specimen.php": "e8f450291d7260fcf131cc753f1f0db77f61b7e427cdd4a2edfc90793426bcdb",
+    "fonts/OFL.txt": "e6f4ce7b6c830d5a25a4f8ac777c267cd7d3c180bc2a7150ca57cbb9b280c4b7",
+    "fonts/Vazirmatn-Bold.ttf": "f635fdbea28f265de395ba83b4b1570dcf2f58d13c65469e61903b1c2d2ae723",
+    "fonts/Vazirmatn-Regular.ttf": "b69fd4c680b8f3f225feabcc655a2c585d97627b8f5f5c0f9985e894069f3a56"
+  },
+  "package_checks": [
+    {
+      "file": "ui-ux-plugin-v3.3.0.zip",
+      "sha256": "e189c3510a67b06e14f19c1443c269a54a61dfc2567f9349b0b02cdd72c05df2",
+      "members": 96,
+      "protected_resources": 85
+    },
+    {
+      "file": "ui-ux-skill-claude-v3.3.0.zip",
+      "sha256": "7a7037ac3d5dfb6c028a037a94b23fbddc8136a44e08bc79bcaa17adade1fd76",
+      "members": 89,
+      "protected_resources": 85
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "ISO-01",
+      "status": "passed",
+      "accepted": true,
+      "method": "source-trace",
+      "detail": "Other product routes and protected resources do not load the settings-components guide.",
+      "evidence": "SOURCE_REVIEW.md"
+    },
+    {
+      "id": "ISO-02",
+      "status": "passed",
+      "accepted": true,
+      "method": "source-trace",
+      "detail": "Public WordPress surfaces do not satisfy the owned-admin-settings activation boundary.",
+      "evidence": "SOURCE_REVIEW.md"
+    },
+    {
+      "id": "ISO-03",
+      "status": "passed",
+      "accepted": true,
+      "method": "source-trace",
+      "detail": "Diagnostics/operations keep their unchanged modules; only settings calls the new guide.",
+      "evidence": "SOURCE_REVIEW.md"
+    },
+    {
+      "id": "ISO-04",
+      "status": "passed",
+      "accepted": true,
+      "method": "source-trace",
+      "detail": "Hybrid product activation is restricted to its settings surface, not the operational workspace.",
+      "evidence": "SOURCE_REVIEW.md"
+    },
+    {
+      "id": "ISO-05",
+      "status": "passed",
+      "accepted": true,
+      "method": "package-diff",
+      "detail": "All 85 protected source resources and both extracted packages match the canonical pre-edit baseline; the three allowed behavior resources match candidate source.",
+      "evidence": "baseline.json and package_checks"
+    },
+    {
+      "id": "WP-01",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Simple form uses real TextControl/ToggleControl/Button; no tabs.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-02",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Identity/delivery sections and secondary technical disclosure.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-03",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Dependent email explains prerequisite and retains stored value.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-04",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "First-load failure blocks default-looking controls; retry recovers.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-05",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Server validation and confirmed rejection preserve input and avoid false success. A late validation error reopens a user-collapsed secondary panel.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-06",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "One request for duplicate clicks; newer edits and unsaved-navigation guard retained.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-07",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Capability/nonce denial preserves data; secret replacement/removal stays masked; reset preserves other sections.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-08",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Basic controls, save and modal run on 6.8 and 7.1.3 without Gutenberg; PHP 8.3.35.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-09",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Persian real-admin narrow layout, local regular/bold fonts, mixed-direction endpoint and modal Tab/Escape/return focus.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-10",
+      "status": "passed",
+      "accepted": true,
+      "method": "source-trace",
+      "detail": "Audit and narrow-fix authority preserves the existing page/storage; mandate gap reported, no full migration.",
+      "evidence": "SOURCE_REVIEW.md"
+    },
+    {
+      "id": "WP-11",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Saving identity preserves unrelated stored and unsaved delivery values.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-12",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Actual aborted response after server commit reconciles by request ID without losing newer input.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-13",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Two real admin sessions expose conflict and require deliberate rebase before saving retained intent.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    },
+    {
+      "id": "WP-14",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Both variants captured at 1440/390 widths and 200% CSS zoom stress; no horizontal document overflow.",
+      "accepted": true,
+      "evidence": "evidence/browser-results.json"
+    }
+  ],
+  "limitations": [
+    "Source traces use the current lead session, not independent model evaluation.",
+    "Real-admin browser evidence covers Edge, two declared WordPress hosts, synthetic data and selected keyboard/layout states; no universal browser/device or assistive-technology certification.",
+    "Specimen engineering acceptance is not an owner-approved production design or plugin migration."
+  ]
+}
