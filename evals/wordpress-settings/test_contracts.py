@@ -71,6 +71,15 @@ def report_errors(report):
 
 
 class WPSContracts(unittest.TestCase):
+    def test_historical_evaluation_content_unchanged(self):
+        baseline = json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))
+        for rel, binding in baseline["protected_evaluation_content"].items():
+            content = json.loads((ROOT / rel).read_text(encoding="utf-8"))
+            for field in binding["exclude_release_fields"]:
+                content.pop(field)
+            data = json.dumps(content, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
+            self.assertEqual(hashlib.sha256(data).hexdigest(), binding["sha256"], rel)
+
     def test_protected_source_identity(self):
         baseline = json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))
         self.assertEqual(isolation_errors(ROOT / "skills/ui-ux-skill", baseline), [])

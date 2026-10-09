@@ -87,7 +87,7 @@ Implementation uses this allowlist under the recorded kickoff authorization. The
 
 Protected content includes `SKILL.md`, product/shared/design-system registries, shared rules, design-system modules, specialist routing, other product packs, other WordPress modules, Material guidance, existing cross-product fixtures/manifests, historical evaluations, shared validators, packaging tools, the README, and version files. CI remains protected except for the additive invocation named above; new workflows, dependencies, secrets, permissions or infrastructure require a separate scope decision.
 
-The separately authorized release endpoint permits version manifests, concise README coverage/version and changelog updates after WPS acceptance, as recorded in the execution authorization. This is release preparation, not an expansion of Skill behavior scope.
+The separately authorized release endpoint permits version manifests, concise README coverage/version and changelog updates after WPS acceptance, as recorded in the execution authorization. Version manifests include the existing evaluation-manifest and historical-result release-compatibility fields; cases, verdicts and original provenance stay unchanged. This is release preparation, not an expansion of Skill behavior scope or a fresh historical evaluation.
 
 Run existing checks and use other products' inputs read-only where relevant. Do not modify their expectations to accommodate the new requirement. Reuse shared evaluation tools without edits when compatible. Any preparation needed only by this suite belongs in its dedicated directory; do not claim an existing validator automatically covers a newly added suite.
 

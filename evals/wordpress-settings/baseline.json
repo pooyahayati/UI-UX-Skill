@@ -8,6 +8,10 @@
     "skills/ui-ux-skill/references/products/wordpress/settings.md",
     "skills/ui-ux-skill/references/products/wordpress/components.md"
   ],
+  "protected_evaluation_content": {
+    "evals/cases.json": {"exclude_release_fields": ["version"], "sha256": "30c3478b4c75e9e6692dfcefb71c0c570f7ef0a1fb7f444029d330a1790ffaeb"},
+    "evals/real-world/result.json": {"exclude_release_fields": ["skillVersion", "releaseBinding"], "sha256": "3591b431a2f7f420abac4f91d1f59cde95106b19dd454dfedbc8641ddcbf87eb"}
+  },
   "protected_skill_hashes": {
     "skills/ui-ux-skill/SKILL.md": "a4839ec46fbb0629bcddea3d96eeb2b95f6600e01f61ef4653e4c87224366907",
     "skills/ui-ux-skill/agents/openai.yaml": "e5d69eec417367b23ac8a508847483cf2863af8735a63566433b23df5de2a064",

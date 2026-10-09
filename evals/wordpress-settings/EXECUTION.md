@@ -10,6 +10,8 @@ Scope is `pooyahayati/UI-UX-Skill`, through this endpoint or until revised. Empt
 
 Release preparation may update the existing version manifests, README version/coverage and changelog after WPS acceptance. Select 3.4.0 for the new bounded settings capability; this does not authorize unrelated behavior or CI changes. The native final-source and extracted-artifact security gate remains required before release.
 
+The first exact-candidate CI exposed two existing evaluation release bindings: `evals/cases.json.version` must match root VERSION, and `evals/real-world/result.json.skillVersion` must match that manifest. Release preparation therefore includes only those version fields and the existing explanatory `releaseBinding` text. Original cases, prompts, invariants, verdicts, source-evaluation version, host/model/date and evidence remain unchanged; no historical result is presented as fresh 3.4.0 behavior. No shared validator is changed to bypass the mismatch.
+
 ## WPS-0 — 2026-10-10
 
 - Baseline: `4e20b3f5524120a5c2559a8bd525c30e66c43d3c`; branch `codex/wordpress-settings-implementation`. The preceding local roadmap cleanup is preserved and will be integrated with this work.
@@ -65,4 +67,6 @@ The official quick validator could not run in local Python or the existing test 
 
 ## Integration and publication
 
-Pending the authorized exact-candidate CI, merge and published-download verification. Do not interpret local acceptance as publication or an installed-Skill update.
+PR #43 first candidate `eb09ff62c7512735eddb3585db5ce7dbad1e8333`: CI run `38001706422` correctly rejected the unsynchronized evaluation version. Its WPS gate and all earlier existing gates passed, but later steps were not claimed successful. Synchronized the three release-binding fields described above, reproduced both affected validators locally, and compared all other evaluation content to the pre-edit Git baseline. Added a dedicated hash regression preserving original cases/evidence after stripping only those release fields (9 dedicated tests).
+
+Pending corrected exact-candidate CI, merge and published-download verification. Do not interpret local acceptance as publication or an installed-Skill update.
