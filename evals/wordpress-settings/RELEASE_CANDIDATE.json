@@ -1,0 +1,20 @@
+{
+  "version": "3.4.0",
+  "checks": [
+    {
+      "file": "ui-ux-plugin-v3.4.0.zip",
+      "sha256": "98b73df119efc0bbd16803f19ddc333544f4c06c8fdb674c2d9f8b170bc9aed1",
+      "members": 96,
+      "crc": "passed",
+      "canonical_source_identity": "passed"
+    },
+    {
+      "file": "ui-ux-skill-claude-v3.4.0.zip",
+      "sha256": "4bb760fc9e91721a5e110f60b2392bea1ebb319158cf70874491fea75ebf24bf",
+      "members": 89,
+      "crc": "passed",
+      "canonical_source_identity": "passed"
+    }
+  ],
+  "scope": "Actual supplied archives, checksum manifest and complete canonical source identity; not browser/model evidence"
+}

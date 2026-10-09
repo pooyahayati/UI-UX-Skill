@@ -8,11 +8,11 @@ The [WordPress settings tracker in the project roadmap](../ROADMAP.md#wordpress-
 
 ## Authority and settled decisions
 
-The owner authorized preparing this plan in English and integrating it into the Git project with an updated project roadmap. That authorization covers this documentation change and its integration, not implementation of the planned Skill changes.
+The initial English plan was integrated through PR #42; the 2026-10-09 cleanup clarified the tracker and planning refinements. On 2026-10-10 the owner authorized completing all seven packages and publishing the verified GitHub release. See the [durable authorization and scope](../evals/wordpress-settings/EXECUTION.md#execution-authorization--2026-10-10), which supersedes the earlier plan-only state.
 
 The component-library decision is settled: stable public components from `@wordpress/components` are mandatory for newly designed and explicitly authorized redesigned plugin settings surfaces. Do not reopen that choice merely because a form is small.
 
-A subsequent instruction to execute this roadmap activates WPS-0. It does not automatically authorize migration of a real plugin, host-software installation, further remote integration, release, deployment, or updating the installed Skill. Reuse actual authorization already present in the executing session rather than asking repeatedly.
+The current instruction activates WPS-0 and authorizes branch/commit/push/PR/merge and project release through the stated endpoint. It does not authorize migration of a real plugin, host-software installation, production deployment/data changes or an installed-Skill update. Reuse valid authorization rather than asking repeatedly.
 
 Use one lead implementation agent. This plan does not authorize additional agents or messages to other chats. A main agent can discover the work through `ROADMAP.md`, read this plan, and start the next eligible stage once execution is authorized.
 
@@ -20,7 +20,7 @@ Use one lead implementation agent. This plan does not authorize additional agent
 
 - Repository: `pooyahayati/UI-UX-Skill`.
 - Canonical Skill source: `skills/ui-ux-skill/`.
-- Inspected baseline: `f937d2e666a08ffaaf2958b9554d4ec1a214c54c`, version `3.3.0`.
+- Planning-review baseline: `4e20b3f5524120a5c2559a8bd525c30e66c43d3c` (integrated PR #42), version `3.3.0`; the initial plan inspected `f937d2e666a08ffaaf2958b9554d4ec1a214c54c`.
 - The baseline is evidence, not a permanent version pin. Refresh the repository state, applicable instructions, and affected files at kickoff.
 - Existing WordPress guidance already covers intent-based grouping, capability boundaries, explicit saving, error recovery, accessibility, and inspection inside `wp-admin`. Extend and connect those rules; do not duplicate their shared methodology.
 - Preserve user-authored changes and unrelated worktrees. Choose a clean suitable checkout or isolated branch for implementation.
@@ -59,7 +59,7 @@ A demonstrated technical obstacle requires a concrete compatibility finding and 
 
 ## File allowlist and protected surfaces
 
-### Future Skill behavior changes
+### Skill behavior allowlist
 
 | Path | Permitted change |
 | --- | --- |
@@ -81,10 +81,13 @@ The settings module exposes the guide when component selection, settings design,
 | `evals/fixtures/wordpress-settings/**` | Raw briefs and runnable WordPress-settings specimens; fixture-local dependencies only when needed |
 | `docs/WORDPRESS_SETTINGS_ROADMAP.md` | This plan and its scoped acceptance detail |
 | `ROADMAP.md` | WPS current state, tracker, next action, and links; preserve other workstream history and policy |
+| `.github/workflows/validate-skill.yml` | Add only the dedicated WPS check invocation using the existing job/runtime; preserve every existing gate, permission and trigger |
 
-This planning integration changes only the two Markdown documents inside the Git project. Future implementation may use the allowlist above after kickoff.
+Implementation uses this allowlist under the recorded kickoff authorization. The roadmap cleanup separately archives historical detail and adapts roadmap-policy checks to the live tracker; that maintenance does not authorize later changes to shared validators.
 
-Protected content includes `SKILL.md`, product/shared/design-system registries, shared rules, design-system modules, specialist routing, other product packs, other WordPress modules, Material guidance, existing cross-product fixtures/manifests, historical evaluations, packaging tools, CI workflows, the README, and version files.
+Protected content includes `SKILL.md`, product/shared/design-system registries, shared rules, design-system modules, specialist routing, other product packs, other WordPress modules, Material guidance, existing cross-product fixtures/manifests, historical evaluations, shared validators, packaging tools, the README, and version files. CI remains protected except for the additive invocation named above; new workflows, dependencies, secrets, permissions or infrastructure require a separate scope decision.
+
+The separately authorized release endpoint permits version manifests, concise README coverage/version and changelog updates after WPS acceptance, as recorded in the execution authorization. Version manifests include the existing evaluation-manifest and historical-result release-compatibility fields; cases, verdicts and original provenance stay unchanged. This is release preparation, not an expansion of Skill behavior scope or a fresh historical evaluation.
 
 Run existing checks and use other products' inputs read-only where relevant. Do not modify their expectations to accommodate the new requirement. Reuse shared evaluation tools without edits when compatible. Any preparation needed only by this suite belongs in its dedicated directory; do not claim an existing validator automatically covers a newly added suite.
 
@@ -101,6 +104,10 @@ Semantic HTML remains appropriate for layout, headings, and simple structure. A 
 Verify each chosen component and prop against the supported WordPress versions at implementation time. Experimental/private APIs and suppressing compatibility warnings are not the default path.
 
 Visual quality should come from readable typography, useful grouping, consistent spacing, and clear action hierarchy. Do not add tabs, cards, columns, shadows, or dialogs solely because the library makes them available. This work does not invent plugin dark mode or a new appearance-control panel.
+
+Define observable visual criteria for both a simple form and a multi-topic page before rendering: content and field widths, heading hierarchy, label/help/error placement, section spacing, and the location and scope of save actions. Derive values from the product's approved `DESIGN.md`, existing host context and actual content; do not invent a universal template or silently replace approved tokens. If decisions are missing, recommend bounded defaults and record them as proposals until accepted.
+
+For each specimen, compare the rendered normal/narrow admin states against those criteria. Long labels and error messages must remain readable without overlapping controls; primary actions must remain discoverable and clearly apply to the intended settings. Library usage alone is not visual acceptance.
 
 ### Settings organization and findability
 
@@ -121,6 +128,10 @@ Choose a coherent save model. Distinguish initial/loading, modified, saving, suc
 Do not mask an initial-load failure with defaults that look like saved values. Control submission until valid current state is available. Preserve safe user input after failure and provide correction or retry.
 
 Prevent unintended duplicate submission. Do not overwrite newer user edits with an earlier request's response. Handle navigation with unsaved changes according to the product's real save contract.
+
+Saving one section must preserve unrelated sections and omitted values according to the existing storage contract. A dropped response may mean the server saved successfully: distinguish an unknown outcome from a confirmed rejection, retain safe input and reconcile with authoritative state before claiming success or blindly repeating a potentially non-idempotent action.
+
+When simultaneous administration is a realistic product scenario, inspect the existing conflict policy and demonstrate its behavior with two editors. Do not silently overwrite newer saved values or imply conflict protection the backend lacks. If reliable recovery needs a new storage/versioning contract, record the gap and request the bounded backend change separately; this plan does not authorize an automatic concurrency-control rewrite. Mark a scenario not applicable only with product evidence.
 
 Associate errors with their fields, make errors in other tabs or collapsed groups discoverable, and do not make a transient toast the only way to understand the outcome.
 
@@ -154,7 +165,7 @@ There are seven packages, WPS-0 through WPS-6. Their live statuses, active packa
 
 **Prerequisite:** owner instruction to execute this roadmap.
 
-**Work:** inspect current source, instructions, user changes, and the three behavior paths; record the base revision and hashes of protected files; prepare positive and negative scenario inputs before behavior edits. Record the narrowly authorized WPS scope in the project tracker.
+**Work:** inspect current source, instructions, user changes, and the three behavior paths; record the base revision and hashes of protected files; prepare positive and negative scenario inputs before behavior edits. Identify existing save/storage/conflict contracts and available real-admin environments. Define the dedicated suite entry point and confirm that its CI invocation fits the additive-only exception. Record the narrowly authorized WPS scope in the project tracker.
 
 **Output:** reproducible baseline, expected changed-file allowlist, and raw evaluation inputs in the dedicated suite.
 
@@ -174,9 +185,9 @@ There are seven packages, WPS-0 through WPS-6. Their live statuses, active packa
 
 **Prerequisite:** accepted WPS-1.
 
-**Work:** refine existing grouping, section/tab selection, progressive disclosure, dependent controls, saving, errors, and recovery rules. Add examples only when they clarify a real decision.
+**Work:** refine grouping, section/tab selection, progressive disclosure, dependent controls, saving, errors, and recovery. Specify simple/multi-topic visual criteria against the existing handbook. Cover section isolation, unknown save outcomes and applicable concurrent editing without changing the backend contract. Add examples only when they clarify a real decision.
 
-**Output:** observable contracts for finding a setting, understanding its effect, and saving reliably.
+**Output:** observable contracts for finding a setting, understanding its effect, visual hierarchy, save-action scope, and data-preserving recovery.
 
 **Exit:** short inputs do not produce unnecessary navigation; multi-topic inputs follow user intent; errors remain findable and safe input survives failed saving. Shared form methodology is referenced rather than copied.
 
@@ -194,11 +205,11 @@ There are seven packages, WPS-0 through WPS-6. Their live statuses, active packa
 
 **Prerequisites:** accepted WPS-3 and an authorized local test environment.
 
-**Work:** build an isolated specimen with bounded real settings, grouping, a dependent field, saving, and a reproducible failure path. Simple and multi-topic forms may be variants of one specimen.
+**Work:** build an isolated specimen with bounded real settings, grouping, a dependent field, saving, and reproducible failure paths. Include both simple and multi-topic variants; they may share one specimen. Implement controlled demonstrations of section-preserving saves and response-loss recovery; include concurrent editors where applicable.
 
 **Output:** a documented runnable/installable specimen, exact environment versions, and valid captures of representative states. Use synthetic data.
 
-**Exit:** observe the screen at normal and narrow admin widths; exercise load, edit, successful/failed saving, keyboard access, and overlays; inspect Persian/mixed-direction content in the Persian specimen.
+**Exit:** compare both variants at normal and narrow admin widths against the WPS-2 visual criteria; exercise load, edit, successful/failed and unknown-outcome saving, section preservation, keyboard access, and overlays. Inspect Persian/mixed-direction content in the Persian specimen and record evidence for concurrent editing or its justified non-applicability.
 
 A successful build, mock screenshot, or standalone page outside `wp-admin` does not complete this package. Record available evidence and leave the required criterion open if the environment is unavailable. Do not install host software without existing authorization.
 
@@ -206,11 +217,11 @@ A successful build, mock screenshot, or standalone page outside `wp-admin` does 
 
 **Prerequisite:** accepted WPS-4.
 
-**Work:** run the scenario inventory against the candidate; inspect loaded resources, decisions, and changes; run relevant existing structural checks; compare source and package content with the baseline.
+**Work:** run the scenario inventory against the candidate; inspect loaded resources, decisions, and changes; run relevant existing structural checks; compare source and package content with the baseline. Add dedicated deterministic regression checks and the narrowly permitted CI invocation; verify that a deliberate failing case produces a nonzero exit and fails the dedicated step without weakening existing gates.
 
 **Output:** per-scenario outcomes with method, candidate revision, concrete evidence, and limitations. Preparing a prompt is not executing a model.
 
-**Exit:** no unexplained failures in activation, the mandate, data preservation, capabilities, or isolation; protected files remain byte-identical. Distinguish real agent observations from text checks or manual source review.
+**Exit:** no unexplained failures in activation, the mandate, data preservation, capabilities, or isolation; protected files remain byte-identical. The dedicated automated gate runs locally and is wired into existing CI. Runtime/manual/agent evidence remains separate from deterministic checks; an automation pass cannot replace the real-admin visual review. Before remote integration is authorized, report remote CI as unverified rather than claiming it ran.
 
 A fresh independent session is preferred when authorized and available. This plan does not itself authorize spawning an agent or creating/messaging another chat. If evaluation uses the current session, record that limitation rather than claiming independence.
 
@@ -228,7 +239,7 @@ A later requested publication or installation must satisfy the project's gates f
 
 ## Planned acceptance scenarios
 
-These are future tests, not completed results.
+This inventory defines required outcomes, not results. Actual methods, acceptance and limitations are recorded in the dedicated evaluation report.
 
 | ID | Starting point or action | Required observable outcome |
 | --- | --- | --- |
@@ -242,6 +253,10 @@ These are future tests, not completed results.
 | WP-08 | Minimum supported and current stable WordPress versions | Compatible controls/styles/shared dependencies without a hidden editor-plugin requirement |
 | WP-09 | Narrow Persian admin, long labels, technical values, and an overlay | Readable direction, usable focus and keyboard interaction in real admin context |
 | WP-10 | Audit or narrow correction of a legacy settings page | Report the mandate gap without an unauthorized full migration or storage change |
+| WP-11 | Save one section while another contains existing or unsaved values | Preserve unrelated persisted values and unsaved user edits; payload omissions do not erase other settings |
+| WP-12 | Server commits a save but its response is lost | Show an unknown outcome, retain safe input and reconcile authoritative state; no false success or blind unsafe repeat |
+| WP-13 | Two administrators edit overlapping values, when supported/relevant | Exercise the documented conflict policy and recovery; expose missing protection instead of inventing it or rewriting storage without authority |
+| WP-14 | Render simple and multi-topic variants at normal/narrow admin widths | Meet recorded handbook-based width, typography, spacing, hierarchy and save-action criteria; no overlap or unnecessary navigation |
 | ISO-01 | Separate website, web-app, dashboard, and mobile requests | No new WordPress guide loading, library mandate, or settings-layout requirement |
 | ISO-02 | Public-facing WordPress UI change | No activation of the admin-settings mandate |
 | ISO-03 | Diagnostics-only or operations-only plugin task | Existing route preserved; settings-components guide not imposed |
@@ -265,6 +280,10 @@ Use the relevant existing tools after inspecting their current interfaces:
 
 Record actual arguments, input revision, exit status, and scope. Existing validators do not automatically cover this suite. Run dedicated scenarios separately; do not edit shared validators to manufacture coverage or a pass.
 
+Keep the dedicated deterministic entry point under `evals/wordpress-settings/`. During WPS-0 select its exact command and test method; during WPS-5 add that command to the existing validation job under the narrow CI exception. Prefer the existing runtime/standard library. Reject malformed or contradictory evidence and include deliberate negative cases, not only happy-path fixtures. A stub, constant-success check or absent suite is not an acceptance gate.
+
+Document which scenarios are automated, runtime-observed, manually inspected or agent-evaluated. Test the pass and failure paths locally before handoff; verify the exact-candidate remote gate when remote integration is subsequently authorized, before any later release. A need for extra infrastructure, packages or broader CI changes must be resolved explicitly, not silently skipped.
+
 Keep generated builds, caches, temporary captures, and scan reports outside product source. Retain selected durable evidence with provenance under the dedicated evaluation directory. Other products' tests may run read-only; their fixtures and expected behavior must not be rewritten.
 
 ## Progress, escalation, and rollback
@@ -277,7 +296,7 @@ Reassess scope when a protected file must change, the mandate leaks to another r
 
 Rollback is limited to the workstream's own changes on its working branch. Do not reset unrelated work, delete user changes, or modify the installed Skill as a rollback shortcut.
 
-At handoff, report the branch, local/upstream revisions, ahead/behind state, dirty/committed/pushed state, relevant checks, and any real PR/merge identifiers. Report unavailable evidence explicitly. No new release, installation, or Graphify run is implied by this documentation-only integration.
+At handoff, report the branch, local/upstream revisions, ahead/behind state, dirty/committed/pushed state, relevant checks, and actual PR/merge identifiers. Publication follows the separately recorded release authorization and exact-target gates; an installed-Skill update or Graphify run is not implied.
 
 ## References and evidence limits
 
