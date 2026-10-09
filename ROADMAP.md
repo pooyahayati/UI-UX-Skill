@@ -4,13 +4,14 @@ Current status, completed stages and maintenance boundaries. Detailed execution 
 
 ## Current state
 
-- Last updated: **2026-10-07**.
+- Last updated: **2026-10-09**.
 - Current release: **[v3.3.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.3.0)**, published 2026-10-07; local update verified.
-- Current objective: **Completed.** R10 repairs, reader-focused documentation, the owner-accepted README cover, 3.3.0 publication and local update are delivered; no new UI capability is implied.
+- Current objective: **WordPress settings planning.** The owner requested an English implementation roadmap and its Git integration. The [WPS plan and tracker](#wordpress-settings-extension-wps) define the bounded next workstream; Skill implementation has not started. R10 repairs and 3.3.0 delivery remain completed.
 - Implementation: **Completed**; **9 of 9 correction stages completed**. This count covers R0–R8 only, not the new maintenance backlog.
 - Active implementation stage: **None**. The R0–R8 tracker is closed; R10 activity is tracked separately below.
 - Next implementation stage: **None**; all six R9 packages and all five R10 repairs are completed and integrated.
-- Next delivery action: **None.** The owner-requested version, documentation review, cover and local update are complete. The owner accepted the generated 1672×941 cover instead of the initial 1920×1080 request. Further changes need a new scoped request.
+- Next WordPress settings package: **WPS-0**, after an explicit instruction to execute the plan; **0 of 7 WPS packages completed**. This is separate from the historical correction, R9 and R10 counts.
+- Next delivery action: **No implementation delivery scheduled.** WPS planning is the current documentation task; implementation awaits its own kickoff. The 3.3.0 release and local update remain complete, including the owner-accepted 1672×941 cover instead of the initial 1920×1080 request.
 - Product handbook: **`DESIGN.md`**. Product-specific approval is separate from Skill engineering acceptance.
 - Documentation maintenance: cleanup integrated through [PR #33](https://github.com/pooyahayati/UI-UX-Skill/pull/33); R10 planning through [PR #34](https://github.com/pooyahayati/UI-UX-Skill/pull/34); R10 release through [PR #39](https://github.com/pooyahayati/UI-UX-Skill/pull/39); public README refinement and cover through [PR #40](https://github.com/pooyahayati/UI-UX-Skill/pull/40).
 
@@ -77,6 +78,32 @@ Bounded stabilization maintenance for the five findings from the 2026-10-07 deep
 The sequence is a single-writer delivery order, not a claim that every package has a code dependency on its predecessor. R10.2's packaged-resource verification does depend on safe packaging. Each package needs its defect regression and affected existing checks before completion. R10.5 also closes the [integrated acceptance gate](docs/AUDIT_REMEDIATION.md#integrated-acceptance-and-delivery-boundary); it cannot complete the workstream with another finding unresolved.
 
 Keep current statuses, counts, active/next package and dated acceptance links here. The detailed plan is not a competing status ledger. Earlier audit checks are a baseline, not proof that any R10 finding is fixed.
+
+## WordPress settings extension (WPS)
+
+Detailed scope, file boundaries, work and exit criteria: [WordPress Plugin Settings Roadmap](docs/WORDPRESS_SETTINGS_ROADMAP.md).
+
+- Planning authority: the owner requested the English plan, an updated project roadmap and Git integration on **2026-10-09**.
+- Settled product decision: stable public `@wordpress/components` controls are mandatory for new and explicitly authorized redesigned plugin-owned settings surfaces inside `wp-admin`, including simple forms.
+- Implementation: **Not started; 0 of 7 packages completed.** Active WPS package: **None**. Next: **WPS-0**, pending an owner instruction to execute this roadmap.
+- Owner: **Engineering lead / maintainer, one implementation writer**. The plan does not authorize additional agents or messages to other chats.
+- Isolation: only the WordPress settings route may gain new behavior. Other products, shared rules, global routing, other WordPress surfaces and historical acceptance remain protected.
+- Planning integration changes only this roadmap and its linked English plan. It is not implementation, product-design approval, a release, or an installed-Skill update.
+- The stabilization boundary remains active until a scoped implementation instruction is recorded here. A later WPS kickoff authorizes only the plan's named WordPress settings scope; it does not broaden earlier R0-R8/R9 exceptions or permit changes to other products.
+
+This is the single current WPS status ledger. Keep its count, active/next package and dated acceptance links consistent; the detailed plan does not maintain a competing tracker. Preparing the plan does not complete WPS-0.
+
+| Package | Deliverable | Status | Execution prerequisite | Acceptance evidence |
+| --- | --- | --- | --- | --- |
+| WPS-0 | Baseline, protected files and bounded kickoff | Not started | Owner instruction to execute WPS | Not recorded |
+| WPS-1 | Mandatory components and settings-only routing | Not started | Accepted WPS-0 | Not recorded |
+| WPS-2 | Settings organization and interaction contract | Not started | Accepted WPS-1 | Not recorded |
+| WPS-3 | Stable component and compatibility guidance | Not started | Accepted WPS-2 | Not recorded |
+| WPS-4 | Runnable specimen inside real WordPress admin | Not started | Accepted WPS-3; authorized test environment | Not recorded |
+| WPS-5 | Behavioral evaluation and cross-product isolation | Not started | Accepted WPS-4 | Not recorded |
+| WPS-6 | Local acceptance and reviewable handoff | Not started | Accepted WPS-5 | Not recorded |
+
+At kickoff, recheck the current source and user changes before following [WPS-0](docs/WORDPRESS_SETTINGS_ROADMAP.md#wps-0-baseline-and-bounded-kickoff). Do not change Skill instructions simply because this plan is present in the repository.
 
 ## Design contract
 
