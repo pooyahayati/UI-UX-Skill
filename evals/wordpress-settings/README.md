@@ -22,3 +22,7 @@ Selected real-admin captures: [simple desktop](evidence/persian-simple-1440.png)
 [multi-topic narrow](evidence/persian-multi-390.png), [reset dialog](evidence/persian-reset-dialog-390.png),
 and [200% owned-surface CSS zoom stress](evidence/persian-zoom-200.png).
 These are synthetic engineering evidence, not production design approval.
+
+Release evidence: [local candidate checks](RELEASE_CANDIDATE.json) and
+[actual published v3.4.0 downloads](RELEASE_PUBLISHED.json). Their archive hashes
+are kept separate; canonical content, versions and source/tag binding were verified.

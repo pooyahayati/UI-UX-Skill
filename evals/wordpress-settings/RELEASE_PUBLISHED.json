@@ -1,0 +1,35 @@
+{
+  "publication": {
+    "tag": "v3.4.0",
+    "commit": "32986b62e9d22a291cb41329b2f592201f7bdc7b",
+    "source_tree": "7b19fe7eb311b7c13aae4fee712b9a2ca2bfce35",
+    "published_at_utc": "2026-10-09T22:59:56Z",
+    "ci_run": 38002130047,
+    "url": "https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.4.0"
+  },
+  "security": {
+    "scanner": "native Trivy 0.75.0",
+    "scanners": ["secret"],
+    "blocking_findings": 0,
+    "other_findings": 0,
+    "actual_extracted_download_report_sha256": "c1bd9246c53e3a5bcd8d0c1a9b2b7b59195590560803e99d13b8a0991ca8668b"
+  },
+  "version": "3.4.0",
+  "checks": [
+    {
+      "file": "ui-ux-plugin-v3.4.0.zip",
+      "sha256": "92c14c5ca087c29c01c552b2c1c8913aa818ade8b279bd50cb215405b35307fe",
+      "members": 96,
+      "crc": "passed",
+      "canonical_source_identity": "passed"
+    },
+    {
+      "file": "ui-ux-skill-claude-v3.4.0.zip",
+      "sha256": "9001cec871131bfcd302f3b006edf94080a26b9d38cc91bfe9e4d26e7731ac96",
+      "members": 89,
+      "crc": "passed",
+      "canonical_source_identity": "passed"
+    }
+  ],
+  "scope": "Actual supplied archives, checksum manifest and complete canonical source identity; not browser/model evidence"
+}

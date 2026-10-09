@@ -7,15 +7,15 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Item | State |
 | --- | --- |
 | Updated | 2026-10-10 |
-| Released baseline | [v3.3.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.3.0); publication and local update verified 2026-10-07 |
-| Current workstream | WordPress plugin settings UX (WPS) |
-| Planning readiness | Plan prepared; detailed scope and exit criteria linked below |
+| Released baseline | [v3.4.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.4.0); actual published artifacts verified 2026-10-10 |
+| Current workstream | WordPress plugin settings UX (WPS) — completed |
+| Planning readiness | All implementation and delivery criteria verified |
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
 | Execution authority | [Owner-authorized execution and release](evals/wordpress-settings/EXECUTION.md#execution-authorization--2026-10-10) |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | Local acceptance complete; exact-candidate CI, merge and release verification pending; no local installation |
+| Delivery | PR #43 merged; v3.4.0 published and downloads verified; local installed Skill remains 3.3.0 |
 
 ## WordPress settings extension (WPS)
 
@@ -33,15 +33,11 @@ The [detailed implementation plan](docs/WORDPRESS_SETTINGS_ROADMAP.md) owns scop
 | WPS-5 | Behavioral, data-preservation and isolation evaluation; dedicated CI gate | Completed | Accepted WPS-4 | [2026-10-10 evaluation acceptance](evals/wordpress-settings/EXECUTION.md#wps-5--2026-10-10) |
 | WPS-6 | Local acceptance, package verification and reviewable handoff | Completed | Accepted WPS-5 | [2026-10-10 local acceptance](evals/wordpress-settings/EXECUTION.md#wps-6--2026-10-10) |
 
-### Current action: Integration and release
+### Current action: No pending WPS work
 
-All seven implementation packages are locally accepted. Complete the authorized delivery:
+All seven packages and the authorized GitHub release are complete. [Delivery evidence](evals/wordpress-settings/EXECUTION.md#integration-and-publication) includes exact-candidate CI, merge/tag binding, installer smoke checks and independent verification of actual downloads.
 
-1. Push the reviewable branch and verify exact-candidate remote CI.
-2. Merge only after passing checks; publish through the existing release workflow.
-3. Download and independently verify the actual published artifacts and record provenance.
-
-See [WPS-6 exit criteria](docs/WORDPRESS_SETTINGS_ROADMAP.md#wps-6-local-acceptance-and-reviewable-handoff).
+No further WPS implementation, local installation or deployment is queued. Stabilization maintenance remains the default; any new work needs its own scope and authority.
 
 ## Scope and acceptance rules
 
@@ -68,6 +64,7 @@ These rows summarize closed work, not pending tasks. Historical limitations and 
 | <a id="r10-audit-remediation"></a>R10: five audit repairs | Completed; 5 of 5 packages, 2026-10-07 | [Acceptance and integration](docs/archive/ROADMAP-2026-10-09.md#r10-audit-remediation); [detailed regressions](docs/AUDIT_REMEDIATION.md) |
 | <a id="release-checkpoint"></a>Releases 3.2.0, 3.2.1 and 3.3.0 | Published; recorded artifact and local-install checks completed | [Release provenance, hashes and limits](docs/archive/ROADMAP-2026-10-09.md#release-checkpoint) |
 | Initial WPS planning | Integrated, 2026-10-09; implementation not started | [PR #42](https://github.com/pooyahayati/UI-UX-Skill/pull/42) |
+| WPS-0–WPS-6 and release 3.4.0 | Completed and published, 2026-10-10; 7 of 7 packages | [Acceptance, source/runtime limits and release provenance](evals/wordpress-settings/EXECUTION.md); [published package checks](evals/wordpress-settings/RELEASE_PUBLISHED.json) |
 
 The historical five-product evaluation was source-based in the same session, not an independent browser/device run. R7/R8 and R9 acceptance is bounded to its recorded evidence; hypothetical specimen approvals are not unfinished Skill stages. See [full limitations](docs/archive/ROADMAP-2026-10-09.md#acceptance-and-known-limits).
 
