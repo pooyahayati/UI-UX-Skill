@@ -48,6 +48,62 @@ def isolation_errors(skill_root, baseline):
     return errors
 
 
+def current_source_baseline(baseline, delta):
+    """Keep the WPS checkpoint intact; bind the separately authorized successor.
+
+    Exact hashes still protect every resource. This is source integrity, not
+    a rerun or transfer of the historical WPS behavioral acceptance.
+    """
+    allowed = {
+        "skills/ui-ux-skill/references/products/dashboard.md",
+        "skills/ui-ux-skill/references/implementation-strategies.md",
+        "skills/ui-ux-skill/references/shadcn-ui.md",
+    }
+    if (delta.get("schema_version") != 1 or delta.get("normalization") != "git-lf"
+            or delta.get("decision") != "ROADMAP.md#shadcnui-dashboard-default"
+            or delta.get("authorized_on") != "2026-10-16"
+            or set(delta.get("changes", {})) != allowed):
+        raise ValueError("Invalid shadcn source delta or authorization scope")
+    updated = copy.deepcopy(baseline)
+    for name, binding in delta["changes"].items():
+        if (binding.get("previous_sha256") != baseline["protected_skill_hashes"].get(name)
+                or not re.fullmatch(r"[a-f0-9]{64}", str(binding.get("sha256", "")))):
+            raise ValueError("Source delta does not bind the retained baseline: " + name)
+        updated["protected_skill_hashes"][name] = binding["sha256"]
+    return updated
+
+
+def motion_source_baseline(baseline, delta):
+    """Bind the authorized motion successor without rewriting earlier evidence."""
+    allowed = {
+        "skills/ui-ux-skill/references/shared/motion.md",
+        "skills/ui-ux-skill/references/implementation-strategies.md",
+        "skills/ui-ux-skill/references/shadcn-ui.md",
+        "skills/ui-ux-skill/references/runtime-ui-governance.md",
+        "skills/ui-ux-skill/assets/templates/DESIGN.md",
+        "skills/ui-ux-skill/references/interactive-motion.md",
+    }
+    if (delta.get("schema_version") != 1 or delta.get("normalization") != "git-lf"
+            or delta.get("decision") != "ROADMAP.md#interactive-motion"
+            or delta.get("authorized_on") != "2026-10-16"
+            or set(delta.get("changes", {})) != allowed):
+        raise ValueError("Invalid motion source delta or authorization scope")
+    updated = copy.deepcopy(baseline)
+    for name, binding in delta["changes"].items():
+        if (binding.get("previous_sha256") != baseline["protected_skill_hashes"].get(name)
+                or not re.fullmatch(r"[a-f0-9]{64}", str(binding.get("sha256", "")))):
+            raise ValueError("Motion delta does not bind the retained baseline: " + name)
+        updated["protected_skill_hashes"][name] = binding["sha256"]
+    return updated
+
+
+def active_source_baseline():
+    baseline = json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))
+    shadcn = json.loads((ROOT / "evals/shadcn/source-delta.json").read_text(encoding="utf-8"))
+    motion = json.loads((ROOT / "evals/motion/source-delta.json").read_text(encoding="utf-8"))
+    return motion_source_baseline(current_source_baseline(baseline, shadcn), motion)
+
+
 def report_errors(report):
     errors = []
     if report.get("schema_version") != 1 or report.get("fresh_model_evaluation") is not False:
@@ -81,8 +137,64 @@ class WPSContracts(unittest.TestCase):
             self.assertEqual(hashlib.sha256(data).hexdigest(), binding["sha256"], rel)
 
     def test_protected_source_identity(self):
+        self.assertEqual(isolation_errors(ROOT / "skills/ui-ux-skill", active_source_baseline()), [])
+
+    def test_successor_scope_rejects_wrong_parent_extra_paths_and_missing_changes(self):
         baseline = json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))
+        before = copy.deepcopy(baseline)
+        delta = json.loads((ROOT / "evals/shadcn/source-delta.json").read_text(encoding="utf-8"))
+        current = current_source_baseline(baseline, delta)
+        self.assertEqual(baseline, before)
+        for name, digest in before["protected_skill_hashes"].items():
+            if name not in delta["changes"]:
+                self.assertEqual(current["protected_skill_hashes"][name], digest)
+        bad_parent = copy.deepcopy(delta)
+        next(iter(bad_parent["changes"].values()))["previous_sha256"] = "0" * 64
+        extra = copy.deepcopy(delta)
+        extra["changes"]["skills/ui-ux-skill/SKILL.md"] = {"sha256": "0" * 64}
+        missing = copy.deepcopy(delta)
+        missing["changes"].pop(next(iter(missing["changes"])))
+        for bad in [bad_parent, extra, missing, {**delta, "decision": "unrelated"}]:
+            with self.assertRaises(ValueError):
+                current_source_baseline(baseline, bad)
+
+    def test_successor_content_mismatch_is_not_exempted(self):
+        baseline = active_source_baseline()
         self.assertEqual(isolation_errors(ROOT / "skills/ui-ux-skill", baseline), [])
+        changed = set()
+        for rel in ["evals/shadcn/source-delta.json", "evals/motion/source-delta.json"]:
+            changed.update(json.loads((ROOT / rel).read_text(encoding="utf-8"))["changes"])
+        for name in changed:
+            mismatched = copy.deepcopy(baseline)
+            mismatched["protected_skill_hashes"][name] = "0" * 64
+            errors = isolation_errors(ROOT / "skills/ui-ux-skill", mismatched)
+            self.assertEqual(errors, ["Protected resource changed: " + name.removeprefix("skills/ui-ux-skill/")])
+
+    def test_motion_successor_preserves_parent_and_rejects_scope_or_chain_changes(self):
+        original = json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))
+        shadcn = json.loads((ROOT / "evals/shadcn/source-delta.json").read_text(encoding="utf-8"))
+        baseline = current_source_baseline(original, shadcn)
+        before = copy.deepcopy(baseline)
+        delta = json.loads((ROOT / "evals/motion/source-delta.json").read_text(encoding="utf-8"))
+        updated = motion_source_baseline(baseline, delta)
+        self.assertEqual(baseline, before)
+        for name, digest in before["protected_skill_hashes"].items():
+            if name not in delta["changes"]:
+                self.assertEqual(updated["protected_skill_hashes"][name], digest)
+        with self.assertRaises(ValueError):
+            motion_source_baseline(original, delta)  # Cannot skip the shadcn parent.
+        wrong_parent = copy.deepcopy(delta)
+        next(iter(wrong_parent["changes"].values()))["previous_sha256"] = "0" * 64
+        extra = copy.deepcopy(delta)
+        extra["changes"]["skills/ui-ux-skill/SKILL.md"] = {"sha256": "0" * 64}
+        missing = copy.deepcopy(delta)
+        missing["changes"].pop(next(iter(missing["changes"])))
+        malformed = copy.deepcopy(delta)
+        next(iter(malformed["changes"].values()))["sha256"] = "not-a-hash"
+        for bad in [wrong_parent, extra, missing, malformed, {**delta, "decision": "unrelated"},
+                    {**delta, "authorized_on": "unknown"}, {**delta, "normalization": "none"}]:
+            with self.assertRaises(ValueError):
+                motion_source_baseline(baseline, bad)
 
     def test_isolation_detects_modified_missing_and_extra_resources(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -203,9 +315,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--skill-root", type=Path)
     parser.add_argument("--check-report", type=Path)
+    parser.add_argument("--current-source", action="store_true", help="Include the authorized post-WPS source deltas; default checks the original WPS checkpoint")
     args, rest = parser.parse_known_args()
     if args.skill_root or args.check_report:
-        failures = isolation_errors(args.skill_root, json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))) if args.skill_root else report_errors(json.loads(args.check_report.read_text(encoding="utf-8")))
+        baseline = json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))
+        if args.current_source:
+            baseline = active_source_baseline()
+        failures = isolation_errors(args.skill_root, baseline) if args.skill_root else report_errors(json.loads(args.check_report.read_text(encoding="utf-8")))
         for failure in failures:
             print(failure, file=sys.stderr)
         raise SystemExit(bool(failures))

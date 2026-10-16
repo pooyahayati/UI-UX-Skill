@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "decision": "ROADMAP.md#shadcnui-dashboard-default",
+  "authorized_on": "2026-10-16",
+  "normalization": "git-lf",
+  "changes": {
+    "skills/ui-ux-skill/references/products/dashboard.md": {
+      "previous_sha256": "d0b9a6c9312441b7bd0b7ff8380ba6eefe4292448edcdebeefd02ec1365b54d0",
+      "sha256": "b04a3a091f08508ad437532cc38457b6090b582d8aec94557bd85c5e597edded"
+    },
+    "skills/ui-ux-skill/references/implementation-strategies.md": {
+      "previous_sha256": "cea489031ec8d53eb8621d3f645117dede9d0632840b32ef44bdb9216fd224c1",
+      "sha256": "7bab238140fb8d6dee65e06767479c604def381280dd807726204f83a229f5ba"
+    },
+    "skills/ui-ux-skill/references/shadcn-ui.md": {
+      "previous_sha256": null,
+      "sha256": "fb6ecda4775bf0890a257af9b67602ebcb9e106ab76ffaf5f755027be71ff7a6"
+    }
+  }
+}

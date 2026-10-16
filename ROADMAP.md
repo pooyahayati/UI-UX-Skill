@@ -6,16 +6,57 @@ The live work queue is below. Completed work is summarized in [history](#complet
 
 | Item | State |
 | --- | --- |
-| Updated | 2026-10-10 |
+| Updated | 2026-10-16 |
 | Released baseline | [v3.4.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.4.0); actual published artifacts verified 2026-10-10 |
-| Current workstream | WordPress plugin settings UX (WPS) — completed |
-| Planning readiness | All implementation and delivery criteria verified |
+| Current workstream | Release 3.5.0: shadcn/ui and interactive motion |
+| Planning readiness | Implementation accepted; release verification and authorized delivery in progress |
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
-| Execution authority | [Owner-authorized execution and release](evals/wordpress-settings/EXECUTION.md#execution-authorization--2026-10-10) |
+| Execution authority | [Release and local update](#release-350); [interactive motion addition](#interactive-motion); [shadcn/ui addition](#shadcnui-dashboard-default) |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | PR #43 merged; v3.4.0 published and downloads verified; local installed Skill remains 3.3.0 |
+| Delivery | v3.5.0 source prepared; publication and verified local update pending |
+
+## Release 3.5.0
+
+**Owner authorization, 2026-10-16:** commit, push and merge the shadcn/ui and interactive-motion changes, publish a new release, then update this Skill locally. This supersedes the delivery exclusions in the two original source-only decisions below for these additions only. Preserve existing local Head integration and a recoverable backup; do not update unrelated skills or product dependencies. Version 3.5.0 is the additive-feature release after 3.4.0.
+
+| Step | State | Acceptance / evidence |
+| --- | --- | --- |
+| Final source, metadata, regression and native security verification | Completed | [2026-10-16 candidate checks and limitations](docs/releases/3.5.0.md#local-candidate-checks-2026-10-16) |
+| Commit, push, PR checks and merge | In progress | Exact candidate checks and reviewed diff before merge |
+| Automated GitHub release and downloaded-artifact verification | Not started | Merge/tag binding, ZIP/source checks and security |
+| Managed local update and closeout | Not started | Installed version/source integrity, retained integration and backup |
+
+The release workflow on `main` is the sole publisher for this version. Do not create competing tags or overwrite existing assets. A failed required check stops the affected delivery action; preserve the previous release/install until its replacement is verified.
+
+## Interactive motion
+
+**Owner decision, 2026-10-16:** add the agreed interactive-animation guidance, with Motion and Animate UI chosen by product need and accessibility/owner-setting safeguards. This authorizes the bounded Skill source, documentation and evaluation update; it does not authorize new product dependencies, external specialists, publication or local installation. The shadcn/ui dashboard foundation decision remains valid and separate.
+
+Plan: add one conditionally loaded implementation reference; connect existing motion, implementation, shadcn and appearance routes plus the handbook template; verify selection/no-install cases, reduced/off and owner/user/OS boundaries, protected-source isolation and packaged resource reachability. Preserve historical WPS and shadcn checkpoint evidence; record later changes as a separate exact-parent delta, not an exemption.
+
+| Work | State | Evidence / next action |
+| --- | --- | --- |
+| Guidance, owner policy and handbook routing | Completed | [Implementation and ten-case source review](evals/motion/REVIEW.md#scenario-review) |
+| Source isolation, regression and package checks | Completed | [2026-10-16 checks and limitations](evals/motion/REVIEW.md#verification-record); original historical evidence retained |
+| Integration / release / local installation | In progress | Authorized by the later [3.5.0 delivery decision](#release-350) |
+
+Acceptance: compatible products choose the smallest useful motion treatment, not automatic dependencies; explicit choices and existing/native stacks remain authoritative; all claimed consumers honor reduced/off behavior; owner controls are bounded and cannot weaken accessibility; handbook/approval sequencing is preserved. Checks must distinguish Skill guidance from actual product runtime evidence.
+
+## shadcn/ui dashboard default
+
+**Owner decision, 2026-10-16:** add shadcn/ui guidance in the appropriate Skill location and make it the dashboard default unless the user explicitly instructs otherwise. This is the bounded authority for this addition; it supersedes stabilization-only scope for the named change, not for unrelated features or delivery actions.
+
+The Dashboard Product Pack owns default selection. A shared implementation reference owns component adoption, personalization, RTL/dark/mobile checks and owner-control mapping. Explicit user alternatives win; established stacks, scoped repair boundaries and WordPress host requirements remain protected. No new Product Type, external specialist or application dependency is added.
+
+| Work | State | Evidence / next action |
+| --- | --- | --- |
+| Dashboard default and implementation guide | Completed | [2026-10-16 source/scenario and consumer checks](evals/shadcn/REVIEW.md) |
+| Regression and scope preservation | Completed | [2026-10-16 verification and limits](evals/shadcn/REVIEW.md#verification-record); historical WPS evidence retained |
+| Integration / release / local installation | In progress | Authorized by the later [3.5.0 delivery decision](#release-350) |
+
+Acceptance: compatible new dashboards choose shadcn/ui without another library-choice question; explicit alternatives and existing-stack/host constraints are respected; templates do not override approved foundations; primary/dark/secondary review stays sequential. [Scoped cases and review](evals/shadcn/REVIEW.md) retain evidence limits.
 
 ## WordPress settings extension (WPS)
 

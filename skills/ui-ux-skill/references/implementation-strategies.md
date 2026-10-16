@@ -44,16 +44,19 @@ For utility-based systems:
 
 If runtime theming is required, prefer variables under the utility layer rather than regenerating every class at runtime.
 
-## shadcn-style component stacks
+## shadcn/ui component foundations
 
-When a project already uses CSS-variable-based component foundations:
+Read [shadcn/ui guidance](shadcn-ui.md) when it is selected, already used on the affected surface, or the active Dashboard Product Pack applies its default. Other product routes may use it when selected and compatible; this does not activate dashboard methodology or make it a universal product default.
 
-- preserve the existing component primitives
-- map brand/semantic tokens into the shared variable layer
-- normalize component variants instead of editing each screen
-- treat generated/default styling as a starting point, not final product design
+The guide owns component adoption, semantic theme mapping, RTL, relevant QA and local-code maintenance. Preserve the existing stack and explicit user choices; do not migrate solely to use a component kit.
 
-Do not migrate solely to use a specific component kit.
+## Interactive web motion
+
+When interactive animation or owner motion controls are in scope, read
+[interactive motion guidance](interactive-motion.md). Start with existing behavior
+and CSS; choose Motion for a concrete compatible interaction need and Animate UI
+only for selected suitable components. Keep provider selection separate from the
+component foundation, and resolve reduced/off behavior across all consumers.
 
 ## Theme-object libraries
 

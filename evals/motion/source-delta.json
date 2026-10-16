@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "decision": "ROADMAP.md#interactive-motion",
+  "authorized_on": "2026-10-16",
+  "normalization": "git-lf",
+  "changes": {
+    "skills/ui-ux-skill/references/shared/motion.md": {
+      "previous_sha256": "3863c505ed43817cbe26d851bde0328ee5b0d1ac199af8420575e1d89f7d76dd",
+      "sha256": "46e0edd55bcfd70317825d8cc97c28fde0ae4fd98b5c60b9fe35665e727ec1a4"
+    },
+    "skills/ui-ux-skill/references/implementation-strategies.md": {
+      "previous_sha256": "7bab238140fb8d6dee65e06767479c604def381280dd807726204f83a229f5ba",
+      "sha256": "e2ff2dcadc73eeb921b57b61f557b30ff14a020c8ec5760aa31b3f003c1b1561"
+    },
+    "skills/ui-ux-skill/references/shadcn-ui.md": {
+      "previous_sha256": "fb6ecda4775bf0890a257af9b67602ebcb9e106ab76ffaf5f755027be71ff7a6",
+      "sha256": "25238f2d286685ed426cb686fbcc66792b10b4a3e2ff4d6b893ab83db449f517"
+    },
+    "skills/ui-ux-skill/references/runtime-ui-governance.md": {
+      "previous_sha256": "8a9214c114e6c07e8af60d095f1e43d299fe8039b887d262b19dd8322236e203",
+      "sha256": "869c6d9baae9a0ce7de6e6429bf5e44967a9178cb1df355e15b845e51d5e16c6"
+    },
+    "skills/ui-ux-skill/assets/templates/DESIGN.md": {
+      "previous_sha256": "467ec2d7b65ff4c860e9d58b718de76ee0dadf89e8aac429ad7f82b2d6ae2b6a",
+      "sha256": "718f00256eb4583be9b3f30f38ad58de48adc35eacce00d17374ee6a86a4f53b"
+    },
+    "skills/ui-ux-skill/references/interactive-motion.md": {
+      "previous_sha256": null,
+      "sha256": "bd8416366414958c01e0e0d984a4a4b93448bb9d47479550a1d04711d88cdff8"
+    }
+  }
+}
