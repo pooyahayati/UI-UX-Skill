@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "normalization": "git-lf",
+  "decision": "ROADMAP.md#r11-audit-remediation",
+  "authorized_on": "2026-10-16",
+  "changes": {
+    "skills/ui-ux-skill/LICENSE": {
+      "previous_sha256": null,
+      "sha256": "62c149a3a65bbd3b2f545e7279838b76ede79d3aac3ac786a5eaff21e7e583b7"
+    }
+  }
+}

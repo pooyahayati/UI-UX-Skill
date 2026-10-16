@@ -30,4 +30,19 @@ Accepted 2026-10-16 after source review, deterministic regressions and real-admi
 
 ## R11.2
 
-Started after R11.1 acceptance. Scope: canonical notice, package preflight and independent consumer/direct-install completeness checks; no release tag or active installation change yet.
+Accepted 2026-10-16 after R11.1. The independent completeness regression first failed with `Standalone distribution must include the full license notice`, then passed against corrected source.
+
+| Acceptance | Evidence |
+| --- | --- |
+| PK-A1–A2 | Canonical `skills/ui-ux-skill/LICENSE` matches the full root notice. Actual candidate ZIPs contain it: standalone 92 files, plugin 99. A separately copied direct-install subtree and independently extracted ZIP roots pass resource validation without Head injection. |
+| PK-A3 | Package preflight rejects missing, empty, truncated and altered notices before staging. Consumer tests reject removed/empty/truncated/wrong-attribution archive notices even after recomputing their checksums. The reviewed notice identity prevents matching truncated source copies from redefining success. |
+| PK-A4 | Both actual candidate ZIPs pass CRC, checksum, exact members, canonical-source bytes and embedded-version checks; extracted resources resolve. Skill source additions are restricted by the exact [license delta](../evals/wordpress-settings/r11-license-delta.json); no historical source/evaluation record was rewritten. |
+| PK-A5 | Packaging suite: 18 tests, 16 passed / two native-symlink skips on Windows. Existing junction/path, refusal and failure-preservation checks pass. Dedicated integrity suite: 15 passed. Linux CI still must execute the native symlink cases before integration. |
+
+Commands: `python -B scripts/test_package_release.py`, `python -B evals/wordpress-settings/test_contracts.py`, `scripts/package_release.py --output <fresh-external-dir>`, `evals/wordpress-settings/verify_packages.py --directory <actual-output>` and `validate_resource_routes.py --skill-root <each-extracted-or-staged-root>`. CI now invokes actual-ZIP consumer verification; the main-push installer smoke also compares the installed notice.
+
+These are unreleased candidate artifacts carrying the then-current 3.5.0 metadata, not replacements for published 3.5.0 assets. Final-version packages and published downloads require their own delivery verification. No active local installation changed.
+
+## R11.3
+
+Started after R11.2 acceptance. Prepare a bounded independent behavior suite using existing raw inputs; freeze the selected cases, reviewer criteria and candidate Skill before evaluation.

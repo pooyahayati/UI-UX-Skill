@@ -9,10 +9,10 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Updated | 2026-10-16 |
 | Released baseline | [v3.5.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.5.0); published artifacts and local installation verified 2026-10-16 |
 | Current workstream | [R11: three audit remediations](#r11-audit-remediation); implementation and delivery authorized |
-| Planning readiness | Scope, acceptance criteria and verification defined in the [R11 plan](docs/R11_AUDIT_REMEDIATION.md); next implementation entry is R11.1 |
-| Completed R11 packages | 1 of 3 |
-| Active R11 package | R11.2 |
-| Next R11 package | R11.3 |
+| Planning readiness | Scope, acceptance criteria and verification defined in the [R11 plan](docs/R11_AUDIT_REMEDIATION.md); implementation evidence in the [execution record](docs/R11_EXECUTION.md) |
+| Completed R11 packages | 2 of 3 |
+| Active R11 package | R11.3 |
+| Next R11 package | Combined verification and authorized delivery |
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
@@ -31,12 +31,12 @@ The [R11 implementation plan](docs/R11_AUDIT_REMEDIATION.md) contains the audite
 | Package | Deliverable | Status | Entry condition | Acceptance / next action |
 | --- | --- | --- | --- | --- |
 | R11.1 | Preserve peer changes during WordPress specimen conflict recovery | Completed | Accepted 2026-10-16 | [21 real-admin observations, handler/model regressions and 14 integrity tests](docs/R11_EXECUTION.md#r111) |
-| R11.2 | Include the license notice in every standalone distribution path | In progress | Authorized; accepted R11.1 | [Notice completeness, staged installation and package preservation](docs/R11_AUDIT_REMEDIATION.md#r112-complete-distribution-notices); [execution](docs/R11_EXECUTION.md#r112) |
-| R11.3 | Add repeatable behavioral evaluation for shadcn/ui and interactive motion | Not started | Authorized execution; freeze raw cases, scoring criteria and candidate identity before evaluation | [Independent outputs, negative cases and regression integration](docs/R11_AUDIT_REMEDIATION.md#r113-repeatable-behavioral-evaluation) |
+| R11.2 | Include the license notice in every standalone distribution path | Completed | Accepted 2026-10-16 | [Notice, package/direct-stage verification and regressions](docs/R11_EXECUTION.md#r112) |
+| R11.3 | Add repeatable behavioral evaluation for shadcn/ui and interactive motion | In progress | Authorized; accepted R11.2 | [Independent outputs, negative cases and regression integration](docs/R11_AUDIT_REMEDIATION.md#r113-repeatable-behavioral-evaluation); [execution](docs/R11_EXECUTION.md#r113) |
 
 Execute in the listed priority order, one active package at a time. A package is complete only with its recorded acceptance evidence, not because its implementation or plan exists. An unavailable required check remains unverified; unrelated passing checks cannot substitute for it. If a blocked check requires resequencing independent work, record the reason and actual active/next package without marking the blocked package complete.
 
-**Next action:** complete R11.2, then run R11.3. Final combined readiness and the authorized delivery remain subject to the [R11 closeout gates](docs/R11_AUDIT_REMEDIATION.md#combined-acceptance-and-delivery-boundary).
+**Next action:** complete R11.3, then verify the combined candidate and deliver. Final combined readiness and the authorized delivery remain subject to the [R11 closeout gates](docs/R11_AUDIT_REMEDIATION.md#combined-acceptance-and-delivery-boundary).
 
 ## Release 3.5.0
 

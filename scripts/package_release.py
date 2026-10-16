@@ -15,6 +15,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAME = "ui-ux-skill"
 LEGAL_FILES = ("LICENSE", "PRIVACY.md", "TERMS.md", "SUPPORT.md")
+# Bind the complete existing MIT notice and attribution, independently of inventory.
+# An intentional license change must update this reviewed contract too.
+LICENSE_NOTICE_SHA256 = "62c149a3a65bbd3b2f545e7279838b76ede79d3aac3ac786a5eaff21e7e583b7"
+
+
+def validate_license_notice(root: Path) -> bytes:
+    paths = [root / "LICENSE", root / "skills" / SKILL_NAME / "LICENSE"]
+    for path in paths:
+        reject_links(path)
+    notice = paths[0].read_bytes().replace(b"\r\n", b"\n")
+    if hashlib.sha256(notice).hexdigest() != LICENSE_NOTICE_SHA256:
+        raise ValueError("Canonical license notice is incomplete or differs from the reviewed notice")
+    if paths[1].read_bytes().replace(b"\r\n", b"\n") != notice:
+        raise ValueError("Standalone license notice must match the complete canonical notice")
+    return notice
 
 
 def reject_links(path: Path) -> None:
@@ -81,7 +96,7 @@ def source_files(src: Path):
 
 def validate_sources(root: Path) -> tuple[str, str]:
     skill = root / "skills" / SKILL_NAME
-    required = [root / "VERSION", root / "plugin.json", skill / "VERSION", skill / "SKILL.md",
+    required = [root / "VERSION", root / "plugin.json", skill / "VERSION", skill / "SKILL.md", skill / "LICENSE",
                 root / "assets/logo.svg", root / "assets/composer-icon.svg",
                 *(root / name for name in LEGAL_FILES)]
     for path in required:
@@ -103,6 +118,7 @@ def validate_sources(root: Path) -> tuple[str, str]:
     for tree in (skill, root / "assets"):
         for _ in source_files(tree):
             pass
+    validate_license_notice(root)
     return version, name
 
 def copy_file(src: Path, dst: Path) -> None:

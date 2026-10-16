@@ -36,6 +36,8 @@ class PackageReleaseTests(unittest.TestCase):
             **{name: "Fixture legal text\n" for name in
                ("LICENSE", "PRIVACY.md", "TERMS.md", "SUPPORT.md")},
         }
+        notice = (packager.ROOT / "LICENSE").read_text(encoding="utf-8")
+        files.update({"LICENSE": notice, "skills/ui-ux-skill/LICENSE": notice})
         for name, text in files.items():
             target = self.root / name
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -56,6 +58,15 @@ class PackageReleaseTests(unittest.TestCase):
                 packager.main()
         self.assertEqual(caught.exception.code, 1)
         self.assertEqual(sentinel.read_bytes(), b"preserve me")
+
+    def test_repository_standalone_and_direct_install_include_full_notice(self):
+        # Independent required notice, not an inventory derived from the flawed payload.
+        expected = (packager.ROOT / "LICENSE").read_bytes().replace(b"\r\n", b"\n")
+        output = packager.package_release(self.base / "actual-source", root=packager.ROOT)
+        with zipfile.ZipFile(output[0]) as archive:
+            self.assertTrue("ui-ux-skill/LICENSE" in archive.namelist(), "Standalone distribution must include the full license notice")
+            self.assertEqual(archive.read("ui-ux-skill/LICENSE").replace(b"\r\n", b"\n"), expected)
+        self.assertEqual((packager.ROOT / "skills/ui-ux-skill/LICENSE").read_bytes().replace(b"\r\n", b"\n"), expected)
 
     def snapshot(self):
         return {str(p.relative_to(self.base)): p.read_bytes() if p.is_file() else None
@@ -96,13 +107,22 @@ class PackageReleaseTests(unittest.TestCase):
 
     def test_missing_required_inputs_are_rejected_before_staging(self):
         for name in ("VERSION", "plugin.json", "skills/ui-ux-skill/VERSION",
-                     "skills/ui-ux-skill/SKILL.md", "assets/logo.svg",
+                     "skills/ui-ux-skill/SKILL.md", "skills/ui-ux-skill/LICENSE", "assets/logo.svg",
                      "assets/composer-icon.svg", *packager.LEGAL_FILES):
             path = self.root / name
             original = path.read_bytes()
             path.unlink()
             with self.subTest(name=name):
                 self.assert_refused_without_writes(self.base / "output")
+            path.write_bytes(original)
+
+    def test_empty_truncated_and_mismatched_notices_are_refused_before_writes(self):
+        for path in (self.root / "LICENSE", self.skill / "LICENSE"):
+            original = path.read_bytes()
+            for data in (b"", original[:100], original.replace(b"Pooya Hayati", b"Wrong attribution")):
+                path.write_bytes(data)
+                with self.subTest(path=path.name, length=len(data)):
+                    self.assert_refused_without_writes(self.base / "bad-notice-output")
             path.write_bytes(original)
 
     def test_invalid_versions_plugin_names_and_json_are_rejected(self):
