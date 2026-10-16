@@ -3,12 +3,12 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-3.4.0-blue)
+![Version](https://img.shields.io/badge/version-3.5.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A product-aware **UI/UX Head** for designing, auditing and improving real interfaces. Works standalone or as a bounded specialist under an engineering Head.
 
-Current source: **v3.4.0** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
+Current source: **v3.5.0** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
 
 ## Product coverage
 
@@ -22,6 +22,10 @@ Current source: **v3.4.0** · Skill slug: `ui-ux-skill` · [Latest published rel
 | **Shared foundation** | Shared UI Rules, Design System tokens/themes/states, responsive/RTL behavior and bounded appearance governance. |
 
 Inactive Product Packs are not preloaded. Only the active product's modules and scope-relevant shared rules are loaded. For Persian-facing UI, `persian-writing` is required; it is the only external specialist.
+
+[shadcn/ui](skills/ui-ux-skill/references/shadcn-ui.md) is the dashboard component-foundation default unless the user explicitly chooses otherwise. The guide personalizes components to the product's approved foundations, with RTL, dark-mode, mobile and owner-control guidance. Existing stacks and host constraints remain protected; this default does not authorize automatic migration.
+
+[Interactive motion guidance](skills/ui-ux-skill/references/interactive-motion.md) uses CSS first, with Motion and selected Animate UI components only when the product needs them. It covers accessible reduced/off behavior and bounded owner motion presets, not mandatory animation dependencies or an installed settings engine.
 
 New or explicitly redesigned plugin-owned WordPress settings use stable public `@wordpress/components`, including short forms. The [scoped component guide](skills/ui-ux-skill/references/products/wordpress/components.md) preserves existing storage, permissions and other surfaces; an audit or narrow fix does not authorize migration. [Real-admin examples and evidence](evals/wordpress-settings/README.md) show the bounded behavior.
 

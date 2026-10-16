@@ -62,6 +62,14 @@ Record relevant style/personality, semantic color roles, typography roles/scale,
 
 Document relevant controls/variants/states, accessibility constraints and semantic icon assignments/families. Include charts/diagrams only where approved workflows need them. Link real components/registries when available; document gaps honestly.
 
+When interactive motion is in scope, record the task/state it explains, selected
+provider or no-library rationale, actual duration/easing/preset sources,
+reduced/off alternatives, interruption/focus behavior and directional meaning.
+For owner controls, use the configurability rows below to retain the allowed
+levels, owner/user/OS precedence, real consumers and implementation evidence.
+Keep these as product-specific decisions; do not copy a provider catalog or
+declare runtime controls implemented merely by filling this template.
+
 ## Decisions and provenance
 
 Use `proposed`, `approved`, `delegated`, `observed`, `unresolved` or `superseded`. A known choice needs no new interview. Delegation covers only its named scope.

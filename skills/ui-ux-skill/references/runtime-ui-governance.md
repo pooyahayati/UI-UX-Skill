@@ -138,7 +138,15 @@ arbitrary uploaded SVG/code is not an appearance control.
 - compact/balanced/comfortable density
 - approved radius preset
 - approved surface/elevation preset
-- motion level
+
+### Motion
+
+For web appearance controls, use [the motion setting contract](interactive-motion.md#owner-settings-and-handbook):
+prepared off/subtle/standard levels, supported real consumers and protected
+owner/user/OS precedence. Reduced motion is an accessibility constraint, not a
+branding override. Reuse the lifecycle below; do not expose engine code, arbitrary
+timings or a runtime library selector. In other platforms, retain native motion
+policy and the [shared rules](shared/motion.md).
 
 ### Navigation presentation
 - expanded/compact default

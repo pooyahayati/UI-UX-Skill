@@ -2,6 +2,11 @@
 
 Use when animation, transition, haptic, scroll effects, animated feedback, or reduced-motion behavior is materially in scope.
 
+For interactive web animation, provider selection or owner motion controls, read
+[interactive motion implementation](../interactive-motion.md). It maps these
+rules to optional CSS/Motion/Animate UI choices and a shared reduced/off policy;
+it does not select a library for every product or override native host behavior.
+
 ## Purpose before motion
 
 Motion should communicate one or more of:

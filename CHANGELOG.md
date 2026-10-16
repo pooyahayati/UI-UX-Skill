@@ -2,6 +2,13 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
+## [3.5.0] - 2026-10-16
+
+- Added product-driven interactive motion guidance: existing behavior/CSS first, optional Motion and selected Animate UI components, with reduced/off alternatives, interruption/focus/state safeguards and platform/RTL boundaries.
+- Connected motion choices and bounded owner presets to the existing runtime governance and `DESIGN.md` template; owner settings cannot override reduced-motion preferences. Added scoped evaluation cases and source-integrity coverage; product runtime implementation remains a separate task.
+- Added a focused shadcn/ui implementation guide and the dashboard component-foundation default, with explicit user overrides and existing-stack/WordPress-host protections.
+- Connected component selection to the living handbook, semantic themes, prepared owner controls, RTL, responsive behavior and sequential primary/dark/secondary review. No runtime library or additional specialist is installed by this guidance.
+
 ## [3.4.0] - 2026-10-10
 
 - Completed WPS-0–WPS-6: stable public WordPress components for new/authorized redesigned plugin-owned settings, including simple forms; task-oriented grouping and handbook-based visual criteria. Audits, narrow fixes, public and operational surfaces retain their existing scope.

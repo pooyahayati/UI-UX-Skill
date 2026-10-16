@@ -6,6 +6,14 @@ This Product Pack owns shared dashboard UX and routes the current dashboard to o
 
 Dashboard design knowledge is maintained locally in this repository. Do not depend on an external design Skill for dashboard design.
 
+## Default component foundation
+
+Use **shadcn/ui by default** when choosing a component foundation for a dashboard, unless the user explicitly selects another library or rejects it. Apply this default without repeatedly asking the user to choose a library. It does not select a visual style, approve a sample or replace the dashboard's task-based design.
+
+For new dashboards, inspect stack/host compatibility and use this default where supported. For existing dashboards, reuse an established library and settled engineering decisions; an audit or narrow repair does not authorize migration. If a real platform constraint prevents adoption, explain the constraint and propose the closest compatible approach instead of silently substituting a preference or changing frameworks. In a WordPress-admin/dashboard multi-route task, the WordPress host and settings component requirements take precedence.
+
+Read [shadcn/ui implementation guidance](../shadcn-ui.md) when selecting/adopting it or changing its affected components. Do not load it for an unrelated metric, data or copy correction. Record the choice, explicit override or compatibility exception in the existing `DESIGN.md` decision record.
+
 Read the shared detailed component/pattern reference when dashboard components or workflows are in scope:
 
 `../dashboard-patterns.md`
