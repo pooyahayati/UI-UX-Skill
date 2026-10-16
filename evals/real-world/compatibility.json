@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "scope": "historical-structural-compatibility-only",
+  "recordedVersion": "3.5.0",
+  "currentManifestVersion": "3.5.1",
+  "recordSha256": "6060b966d99c41ce36b2fb34ddc3f9ebf69572c0edf34ac46bfe69a491547f2b",
+  "manifestSha256": "c961f85e371f72fa4f568413bea3a832269c66af672e0265bcfee5fe49943c12",
+  "notes": "The historical result remains unchanged, including its original evaluation/version limitations. This sidecar asserts structural compatibility with the current case inventory, not fresh model, runtime, browser or owner approval. Fresh R11 selected behavior evidence is recorded separately in evals/ui-foundations."
+}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -120,16 +121,54 @@ def unique_object(pairs: list[tuple[str, object]]) -> dict:
     return value
 
 
+def content_hash(value: object) -> str:
+    """Bind JSON content without requiring a platform-specific newline encoding."""
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
+
+
+def validate_historical(result: object, binding: object, *, manifest: dict = cases_manifest,
+                        require_all: bool = False) -> list[str]:
+    """Explicit compatibility, never a fresh evaluation or a generic version waiver."""
+    if not isinstance(result, dict) or not isinstance(binding, dict):
+        return ["Historical result and compatibility binding must be objects"]
+    if (binding.get("schema_version") != 1
+            or binding.get("scope") != "historical-structural-compatibility-only"
+            or binding.get("recordedVersion") != result.get("skillVersion")
+            or binding.get("currentManifestVersion") != manifest.get("version")
+            or binding.get("recordSha256") != content_hash(result)
+            or binding.get("manifestSha256") != content_hash(manifest)):
+        return ["Historical compatibility identity/version mismatch"]
+    # Keep all current case/verdict requirements; adjust only this explicitly
+    # bound historical version comparison, without modifying either input.
+    return validate_result(result, manifest={**manifest, "version": result["skillVersion"]}, require_all=require_all)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Validate recorded eval structure and verdict consistency, not acceptance or evidence truth.")
     parser.add_argument("result")
     parser.add_argument("--require-all", action="store_true",
                         help="Require every current manifest case; does not require passing outcomes.")
+    parser.add_argument("--suite", choices=["default", "ui-foundations"], default="default")
+    parser.add_argument("--binding", help="Explicit historical compatibility sidecar; default suite only")
+    parser.add_argument("--accept", action="store_true", help="Require selected ui-foundations evidence to pass; does not run a model")
     args = parser.parse_args()
     try:
         result = json.loads(Path(args.result).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
-        errors = validate_result(result, require_all=args.require_all)
+        selected_manifest = cases_manifest
+        if args.binding and args.suite != "default":
+            raise ValueError("--binding cannot qualify a fresh ui-foundations evaluation")
+        if args.accept and args.suite != "ui-foundations":
+            raise ValueError("--accept is only for the bounded ui-foundations suite")
+        if args.suite == "ui-foundations":
+            from behavior_evaluation import manifest, validate_record
+            selected_manifest = manifest()
+            errors = validate_record(result, Path(args.result).resolve().parent, accept=args.accept, require_all=args.require_all)
+        elif args.binding:
+            binding = json.loads(Path(args.binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+            errors = validate_historical(result, binding, require_all=args.require_all)
+        else:
+            errors = validate_result(result, require_all=args.require_all)
     except (OSError, ValueError) as exc:
         errors = [f"Cannot read result: {exc}"]
 
@@ -141,9 +180,13 @@ def main() -> None:
 
     counts = {verdict: sum(x["result"] == verdict for x in result["cases"]) for verdict in VALID}
     print("Behavioral eval result is structurally valid and internally consistent (not acceptance). "
-          f"Cases={len(result['cases'])}/{len(cases_manifest['cases'])} "
+          f"Cases={len(result['cases'])}/{len(selected_manifest['cases'])} "
           f"Pass={counts['pass']} Fail={counts['fail']} Partial={counts['partial']} "
           f"Not-testable={counts['not-testable']}")
+    if args.accept:
+        print("Selected recorded outcomes pass the evidence-integrity gate; independent reviewer acceptance is still required.")
+    if args.binding:
+        print("Historical structural compatibility only; this is not a fresh evaluation of the current candidate.")
     failures = [x["id"] for x in result["cases"] if x["result"] == "fail"]
     if failures:
         print("Failed cases:", ", ".join(failures))

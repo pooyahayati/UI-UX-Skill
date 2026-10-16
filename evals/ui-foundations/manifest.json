@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "selection": "Thirteen raw requests cover the six R11 decision families and distinct providers, host constraints and failure paths. No case is counted as a browser/runtime test.",
+  "unexecuted": {
+    "S03": "Narrow audit/no migration sampled by M07; this exact Vue label prompt is not run.",
+    "S05": "Explicit non-dashboard adoption not sampled by this dashboard/motion run.",
+    "S06": "Native Swift correction not sampled; WordPress host boundary sampled by S04.",
+    "M08": "WordPress/GSAP multi-surface choice not sampled; host and explicit alternatives sampled separately.",
+    "M09": "This exact first-sample request is not run; handbook/primary/dark decisions sampled by S01/S07."
+  },
+  "cases": [
+    {"id": "S01", "invariants": ["Recommend shadcn/ui for this compatible new dashboard without a redundant library-choice question.", "Preserve approved Persian RTL, Vazirmatn, teal and compact foundations; propose one responsive primary sample, not simultaneous dark/secondary alternatives."]},
+    {"id": "S02", "invariants": ["Honor explicit Mantine and English LTR without recommending a shadcn replacement.", "Keep visual sample approval pending and use primary review before dark or optional secondary review."]},
+    {"id": "S04", "invariants": ["Use stable public WordPress components for plugin-owned settings and respect host semantics for the status summary.", "Preserve storage, capabilities and nonces; no framework migration, installation or execution."]},
+    {"id": "S07", "invariants": ["Separate personalized Material appearance from library choice; apply the compatible dashboard default.", "Map settled palette, density and semantic icons to the handbook and bounded owner controls.", "Keep primary approval before dark review; do not infer secondary-language approval or install authority."]},
+    {"id": "S08", "invariants": ["Preserve customized shadcn source and owner mappings; extend locally rather than regenerate components.", "Treat RTL/portals as a compatibility check, preserve fonts/tokens and avoid claiming an unperformed browser check."]},
+    {"id": "M01", "invariants": ["Prefer existing CSS for the small disclosure/feedback change; do not add Motion or redesign by default.", "Reduced/off behavior cannot control authoritative save state; preserve truthful unknown outcomes and independent completion/focus handling."]},
+    {"id": "M02", "invariants": ["Justify optional Motion by task tracking/layout change rather than blanket decoration; keep dependency choice conditional.", "Provide non-drag actions, reduced/off alternatives, remote-update stability and relevant mobile checks."]},
+    {"id": "M03", "invariants": ["Adopt only needed Animate UI controls after checking existing Motion and primitive APIs; preserve customized source and semantic owner icons.", "Preserve Persian RTL/font/spacing, inspect portals and keyboard/focus, and honor reduced/off without claiming execution."]},
+    {"id": "M04", "invariants": ["Owner off and user off remain off; OS reduction limits owner standard and changes are handled live.", "Apply resolved behavior to CSS loaders, icons and portals; interrupted closing preserves focus and logical state."]},
+    {"id": "M05", "invariants": ["MotionConfig reduction alone is not full off; suppress decorative fades/shimmer and non-Motion animation consumers too.", "Decouple focus, cleanup and save outcomes from animation-end callbacks; prevent duplicate operations and reconcile unknown commits."]},
+    {"id": "M06", "invariants": ["Reject executable custom animation input and unbounded durations; use validated bounded declarative controls.", "Keep drafts private until authorized atomic publication and preserve old preferences, failed-load fallback, conflict handling and rollback history."]},
+    {"id": "M07", "invariants": ["Keep Vue, English-only scope and existing transitions; assess the bottleneck instead of assuming React-specific libraries help.", "Report only; do not modify the app, add a backend or create an appearance panel."]},
+    {"id": "M10", "invariants": ["Use a safe consistent SSR/first-paint baseline before OS preference/config is known; avoid hydration mismatch and a standard-motion flash.", "Apply preference changes to CSS and copied controls; config failure and route cleanup preserve usable content, focus and truthful operation state."]}
+  ]
+}

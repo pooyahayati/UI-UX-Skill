@@ -33,7 +33,23 @@ Each recorded case must contain every manifest invariant exactly once, using its
 | `partial` | No `fail`, with at least one `partial`, or a mixture of `pass` and `not-testable`. If every invariant passed, nonblank case `notes` must explain the additional limitation. All-untested requirements cannot be called partial. |
 | `not-testable` | Every required invariant is `not-testable`; do not hide tested outcomes. |
 
-Notes are recorded explanations, not machine-verified proof. A reviewer still assesses their justification and evidence. No new acceptance CLI is needed: the existing real-world validator retains its stricter historical evidence/no-failure gate and also uses the shared consistency check. CI runs both checks without promoting the historical subset to a current full run.
+Notes are recorded explanations, not machine-verified proof. A reviewer still assesses their justification and evidence. The real-world validator retains its stricter historical evidence/no-failure gate and the shared consistency check. Its original result/version stays unchanged; [compatibility.json](real-world/compatibility.json) separately binds the exact historical JSON and current case inventory. The generic validator requires `--binding evals/real-world/compatibility.json` for that record; unbound version mismatches still fail. This does not promote the historical subset to a current run.
+
+### Selected independent UI-foundation suite
+
+The [selection manifest](ui-foundations/manifest.json) freezes 13 of the 18 existing shadcn/motion requests and 27 reviewer criteria, covering all six R11 decision families. Five exact prompts remain explicitly unexecuted. This is separate from the 114-case general inventory, not 114 passing executions.
+
+```bash
+python3 scripts/prepare_eval_run.py S01 --suite ui-foundations --output <fresh-external-case-directory>
+python3 scripts/test_behavior_evaluation.py
+python3 scripts/validate_eval_result.py evals/ui-foundations/result.json --suite ui-foundations --accept
+```
+
+Provide a fresh evaluator only `evaluator/PROMPT.txt` and `evaluator/skill/`, plus required routed external specialization. `RUN.json`, the selection manifest, prior outputs and review notes stay outside its allowed inputs. Preparation checks exact prompt/candidate bytes and rejects extra files in the input tree; it is an integrity check, not a sandbox preventing an agent from reading elsewhere.
+
+Retain the actual response and a consumed-resource list. Review decisions against the withheld criteria, recording concrete evidence for every outcome. The [result record](ui-foundations/result.json) binds raw inputs, preparation/rubric, actual output, candidate tree and declared per-case source dependencies; changes to consumed sources invalidate affected cases. Shared entrypoint/version/routing changes invalidate all selected cases; resource inventory changes also require review. Review the mapping if an unread resource becomes relevant: hashes cannot determine semantic impact or prove read history.
+
+The ordinary validator permits coherent failed/partial/untested records. `--accept` additionally requires all selected cases and passing required outcomes with matching output/source evidence. CI checks these saved records and focused negatives; it does not rerun a model, make paid calls, certify application runtime behavior or approve a visual design. Lead acceptance still requires reading the actual responses. See the [execution record](../docs/R11_EXECUTION.md#r113) for invocation, environment and limits.
 
 ## Inputs versus examples
 

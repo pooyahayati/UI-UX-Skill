@@ -76,10 +76,15 @@ jobs:
       - name: Real-world product isolation evaluation
         run: |
           python3 scripts/validate_real_world_evaluation.py
-          python3 scripts/validate_eval_result.py evals/real-world/result.json
+          python3 scripts/validate_eval_result.py evals/real-world/result.json --binding evals/real-world/compatibility.json
 
       - name: Recorded evaluation verdict consistency regressions
         run: python3 scripts/test_eval_result.py
+
+      - name: Independent selected UI foundation evidence integrity
+        run: |
+          python3 scripts/test_behavior_evaluation.py
+          python3 scripts/validate_eval_result.py evals/ui-foundations/result.json --suite ui-foundations --accept
 
       - name: Eval harness smoke test
         run: |
