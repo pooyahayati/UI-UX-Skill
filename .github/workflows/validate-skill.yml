@@ -25,6 +25,7 @@ jobs:
         run: |
           python3 evals/wordpress-settings/test_contracts.py
           node evals/wordpress-settings/test_model.cjs
+          node evals/wordpress-settings/test_conflict.cjs
 
       - name: Release packaging path safety and failure preservation
         run: python3 scripts/test_package_release.py

@@ -126,6 +126,22 @@ def report_errors(report):
     return errors
 
 
+def fixture_successor(historical, delta):
+    """Only the two R11.1 fixture changes may succeed the immutable WPS record."""
+    if (delta.get("schema_version") != 1 or delta.get("normalization") != "git-lf"
+            or delta.get("decision") != "ROADMAP.md#r11-audit-remediation"
+            or delta.get("authorized_on") != "2026-10-16"
+            or set(delta.get("changes", {})) != {"app.js", "model.js"}):
+        raise ValueError("Invalid R11 fixture successor scope")
+    current = dict(historical)
+    for name, binding in delta["changes"].items():
+        if (binding.get("previous_sha256") != historical.get(name)
+                or not re.fullmatch(r"[a-f0-9]{64}", str(binding.get("sha256", "")))):
+            raise ValueError("R11 fixture successor does not bind its parent")
+        current[name] = binding["sha256"]
+    return current
+
+
 class WPSContracts(unittest.TestCase):
     def test_historical_evaluation_content_unchanged(self):
         baseline = json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))
@@ -259,7 +275,42 @@ class WPSContracts(unittest.TestCase):
             self.assertEqual(hashlib.sha256(canonical_bytes(ROOT / "skills/ui-ux-skill" / rel)).hexdigest(), digest)
         fixture = ROOT / "evals/fixtures/wordpress-settings/plugin"
         actual = {p.relative_to(fixture).as_posix(): hashlib.sha256(p.read_bytes() if p.suffix == ".ttf" else canonical_bytes(p)).hexdigest() for p in fixture.rglob("*") if p.is_file()}
-        self.assertEqual(result["fixture_hashes"], actual)
+        delta = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        self.assertEqual(fixture_successor(result["fixture_hashes"], delta), actual)
+
+    def test_r11_fixture_successor_rejects_missing_extra_and_wrong_parent(self):
+        historical = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))["fixture_hashes"]
+        delta = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        before = copy.deepcopy(historical)
+        current = fixture_successor(historical, delta)
+        self.assertEqual(before, historical)
+        for name in set(historical) - {"app.js", "model.js"}:
+            self.assertEqual(current[name], historical[name])
+        missing = copy.deepcopy(delta); missing["changes"].pop("model.js")
+        extra = copy.deepcopy(delta); extra["changes"]["style.css"] = delta["changes"]["app.js"]
+        parent = copy.deepcopy(delta); parent["changes"]["app.js"]["previous_sha256"] = "0" * 64
+        malformed = copy.deepcopy(delta); malformed["changes"]["app.js"]["sha256"] = "invalid"
+        for bad in [missing, extra, parent, malformed, {**delta, "decision": "unrelated"}]:
+            with self.assertRaises(ValueError):
+                fixture_successor(historical, bad)
+
+    def test_r11_runtime_evidence_is_bound_to_current_fixture(self):
+        historical = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))["fixture_hashes"]
+        delta = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        browser = json.loads((HERE / "evidence/r11-browser-results.json").read_text(encoding="utf-8"))
+        self.assertEqual(browser["recorded_on"], "2026-10-16")
+        self.assertEqual(browser["runner_sha256"], hashlib.sha256(canonical_bytes(HERE / "run_browser.cjs")).hexdigest())
+        self.assertEqual(browser["fixture_hashes"], fixture_successor(historical, delta))
+        self.assertEqual(browser["javascript_errors"], [])
+        self.assertEqual(browser["console_warnings"], [])
+        expected = {f"WP-{i:02d}" for i in range(1, 15)} - {"WP-10"}
+        expected |= {"R11-CONFLICT-current", "R11-CONFLICT-minimum", "R11-CONFLICT-RTL"}
+        rows = [r for r in browser["observations"] if not r["id"].startswith("VIEW-")]
+        self.assertEqual(len(rows), len(expected))
+        self.assertEqual({r["id"] for r in rows}, expected)
+        self.assertTrue(all(r["status"] == "passed" and r["method"] == "real-admin-browser" and r["detail"] for r in rows))
+        for name in ["current-en", "current-en-390", "minimum-en", "minimum-en-390", "current-fa-390"]:
+            self.assertTrue((HERE / "evidence" / ("r11-conflict-" + name + ".png")).read_bytes().startswith(b"\x89PNG\r\n\x1a\n"))
 
     def test_runtime_record_matches_accepted_outcomes(self):
         result = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))

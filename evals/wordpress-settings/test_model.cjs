@@ -29,4 +29,39 @@ const editedSecret = M.copy(secret); editedSecret.advanced.credential = "newer-s
 const retained = M.acknowledge(editedSecret, {section: "advanced", uiValues: secret.advanced}, secretReply);
 assert.equal(retained.advanced.credential, "newer-synthetic-intent");
 assert.equal(retained.advanced.credentialAction, "replace");
-process.stdout.write("Draft reconciliation checks passed: newer edits, unrelated sections, reset and credentials.\n");
+const peer = M.copy(state); peer.revision = 2; peer.settings.advanced.endpoint = "https://peer.example.test";
+peer.settings.delivery.enabled = true;
+const local = M.copy(draft); local.delivery.email = "local@example.test";
+let merged = M.reconcile(local, state, peer);
+assert.deepEqual(merged.conflicts, []);
+assert.equal(merged.draft.advanced.endpoint, peer.settings.advanced.endpoint);
+assert.equal(merged.draft.delivery.enabled, true);
+assert.equal(merged.draft.delivery.email, "local@example.test");
+assert.equal(M.dirty(merged.draft, peer, "advanced"), false);
+assert.equal(local.advanced.endpoint, state.settings.advanced.endpoint);
+local.advanced.endpoint = "https://local.example.test";
+merged = M.reconcile(local, state, peer);
+assert.deepEqual(merged.conflicts, ["advanced.endpoint"]);
+for (const choice of ["stored", "local"]) {
+    const resolved = M.reconcile(local, state, peer, {"advanced.endpoint": choice});
+    assert.deepEqual(resolved.conflicts, []);
+    assert.equal(resolved.draft.advanced.endpoint, choice === "local" ? local.advanced.endpoint : peer.settings.advanced.endpoint);
+}
+assert.deepEqual(M.reconcile(local, state, peer, {"advanced.endpoint": "invalid"}).conflicts, ["advanced.endpoint"]);
+local.advanced.endpoint = peer.settings.advanced.endpoint;
+assert.deepEqual(M.reconcile(local, state, peer).conflicts, []); // Identical edits are not conflicts.
+for (const action of ["replace", "remove"]) {
+    const secretDraft = M.copy(draft); secretDraft.advanced.credentialAction = action; secretDraft.advanced.credential = "synthetic-only";
+    const review = M.reconcile(secretDraft, state, peer);
+    assert.deepEqual(review.conflicts, ["advanced.credentialAction"]);
+    assert.equal(JSON.stringify(review.changes).includes("synthetic-only"), false);
+    const keepStored = M.reconcile(secretDraft, state, peer, {"advanced.credentialAction": "stored"});
+    assert.equal(keepStored.draft.advanced.credentialAction, "keep");
+    assert.equal(keepStored.draft.advanced.credential, "");
+    assert.equal(M.reconcile(secretDraft, state, peer, {"advanced.credentialAction": "local"}).draft.advanced.credentialAction, action);
+}
+const maskedBase = M.copy(state); maskedBase.settings.advanced.credentialConfigured = true;
+const maskedPeer = M.copy(maskedBase); maskedPeer.revision++;
+const maskedDraft = M.draftFrom(maskedBase); maskedDraft.advanced.credentialAction = "remove";
+assert.deepEqual(M.reconcile(maskedDraft, maskedBase, maskedPeer).conflicts, ["advanced.credentialAction"]);
+process.stdout.write("Draft reconciliation checks passed: acknowledgement, independent/overlapping edits, unchanged sections and masked credential decisions.\n");

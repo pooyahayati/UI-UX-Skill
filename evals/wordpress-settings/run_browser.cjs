@@ -46,6 +46,77 @@ async function api(page, data, nonceOverride) {
 }
 const waitState = (page, state) => page.locator("#wps-root[data-state=" + state + "]").waitFor();
 const record = (id, detail) => observations.push({id, status: "passed", method: "real-admin-browser", detail});
+async function conflictRegression(browser, base, pass, service) {
+    const aContext = await browser.newContext({viewport: {width: 1440, height: 1100}}), bContext = await browser.newContext();
+    try {
+        const a = await login(aContext, base, "wps-admin", pass), b = await login(bContext, base, "wps-second", pass);
+        await open(a, base); await open(b, base);
+        for (const page of [a, b]) { await page.getByRole("button", {name: "Technical connection settings", exact: true}).click(); }
+        await a.locator("#wps-title").fill("Unrelated retained draft");
+        await a.getByLabel("Credential action", {exact: true}).selectOption("replace");
+        await a.locator("#wps-credential").fill("synthetic-conflict-only");
+        await b.locator("#wps-endpoint").fill("https://peer-one.example.test");
+        await b.getByRole("button", {name: "Save technical settings", exact: true}).click(); await waitState(b, "saved");
+        await a.getByRole("button", {name: "Save technical settings", exact: true}).click(); await waitState(a, "conflict");
+        const before = (await api(a, {operation: "load"})).body.data;
+        const opener = a.getByRole("button", {name: "Review newer values", exact: true});
+        await opener.focus(); await a.keyboard.press("Enter");
+        const modal = a.getByRole("dialog");
+        assert.match(await modal.innerText(), /https:\/\/peer-one.example.test/);
+        assert.equal((await modal.innerText()).includes("synthetic-conflict-only"), false);
+        for (let i = 0; i < 8; i++) { await a.keyboard.press("Tab"); assert.equal(await modal.evaluate(n => n.contains(document.activeElement)), true); }
+        await a.screenshot({path: path.join(output, "conflict-" + service + "-en.png"), fullPage: true});
+        await a.setViewportSize({width: 390, height: 844});
+        assert.equal(await modal.evaluate(n => n.scrollWidth > n.clientWidth + 1), false);
+        await a.screenshot({path: path.join(output, "conflict-" + service + "-en-390.png"), fullPage: true});
+        await a.setViewportSize({width: 1440, height: 1100});
+        await a.keyboard.press("Escape");
+        assert.equal(await opener.evaluate(n => n === document.activeElement), true);
+        assert.deepEqual((await api(a, {operation: "load"})).body.data, before);
+        assert.equal(await a.locator("#wps-credential").inputValue(), "synthetic-conflict-only");
+        assert.equal(await a.getByRole("button", {name: "Keep edits on the newer revision", exact: true}).isDisabled(), true);
+        await opener.click(); await modal.getByLabel("Resolution: Credential action", {exact: true}).selectOption("local");
+        await modal.getByRole("button", {name: "Keep edits on the newer revision", exact: true}).click();
+        // A second peer write after review must still trip the existing server CAS.
+        await b.locator("#wps-endpoint").fill("https://peer-two.example.test");
+        await b.getByRole("button", {name: "Save technical settings", exact: true}).click(); await waitState(b, "saved");
+        await a.getByRole("button", {name: "Save technical settings", exact: true}).click(); await waitState(a, "conflict");
+        await opener.click(); assert.match(await modal.innerText(), /https:\/\/peer-two.example.test/);
+        await modal.getByLabel("Resolution: Credential action", {exact: true}).selectOption("local");
+        await modal.getByRole("button", {name: "Keep edits on the newer revision", exact: true}).click();
+        await a.getByRole("button", {name: "Save technical settings", exact: true}).click(); await waitState(a, "saved");
+        const after = (await api(a, {operation: "load"})).body.data;
+        assert.equal(after.settings.advanced.endpoint, "https://peer-two.example.test");
+        assert.equal(after.settings.advanced.credentialConfigured, true);
+        assert.equal(await a.locator("#wps-title").inputValue(), "Unrelated retained draft");
+        await a.getByRole("button", {name: "Save report", exact: true}).click(); await waitState(a, "saved");
+        record("R11-CONFLICT-" + service, "Two real administrators: untouched endpoint retained across two revisions; credential intent explicit/masked; cancel, Tab/Escape/return focus and unrelated draft preserved; English review at 1440/390px without overflow.");
+        if (service === "current") {
+            await a.setViewportSize({width: 390, height: 844});
+            await a.goto(base + "/wp-admin/options-general.php?page=wps-specimen"); await waitState(a, "ready");
+            await a.getByRole("button", {name: "تنظیمات اتصال فنی", exact: true}).click();
+            await a.locator("#wps-endpoint").fill("https://my-endpoint.example.test");
+            let snapshot = (await api(b, {operation: "load"})).body.data;
+            await api(b, {operation: "save", section: "advanced", revision: snapshot.revision, requestId: crypto.randomUUID(),
+                values: {endpoint: "https://new-peer.example.test", credentialAction: "keep", credential: ""}});
+            snapshot = (await api(b, {operation: "load"})).body.data;
+            await api(b, {operation: "save", section: "delivery", revision: snapshot.revision, requestId: crypto.randomUUID(),
+                values: {enabled: !snapshot.settings.delivery.enabled, email: snapshot.settings.delivery.email}});
+            await a.getByRole("button", {name: "ذخیرهٔ فنی", exact: true}).click(); await waitState(a, "conflict");
+            const faOpener = a.getByRole("button", {name: "مشاهدهٔ مقادیر جدید", exact: true}); await faOpener.click();
+            assert.match(await modal.innerText(), /https:\/\/new-peer.example.test/);
+            assert.match(await modal.innerText(), /ارسال ایمیلی گزارش فعال باشد/);
+            const layout = await modal.evaluate(n => ({direction: getComputedStyle(n).direction, overflow: n.scrollWidth > n.clientWidth + 1}));
+            assert.equal(layout.direction, "rtl"); assert.equal(layout.overflow, false);
+            await a.screenshot({path: path.join(output, "conflict-current-fa-390.png"), fullPage: true});
+            await modal.getByLabel("انتخاب مقدار: نشانی دریافت گزارش", {exact: true}).selectOption("local");
+            await modal.getByRole("button", {name: "حفظ ویرایش با نسخهٔ جدید", exact: true}).click();
+            await a.getByRole("button", {name: "ذخیرهٔ فنی", exact: true}).click(); await waitState(a, "saved");
+            assert.equal((await api(a, {operation: "load"})).body.data.settings.advanced.endpoint, "https://my-endpoint.example.test");
+            record("R11-CONFLICT-RTL", "Persian 390px review exposes endpoint and enabled changes without overflow; explicit local endpoint choice survives save.");
+        }
+    } finally { await aContext.close(); await bContext.close(); }
+}
 (async () => {
     for (const service of ["current", "minimum"]) {
         execFileSync(docker, ["exec", "uiux-wps-specimen-" + service + "-1", "php", "/fixture/bootstrap.php", "--reset"], {stdio: "pipe"});
@@ -175,7 +246,10 @@ const record = (id, detail) => observations.push({id, status: "passed", method: 
         await second.getByRole("button", {name: "Review newer values"}).click();
         assert.match(await second.getByRole("dialog").innerText(), /First administrator/);
         await second.keyboard.press("Escape");
-        await second.getByRole("button", {name: "Keep edits on the newer revision"}).click();
+        assert.equal(await second.getByRole("button", {name: "Keep edits on the newer revision"}).isDisabled(), true);
+        await second.getByRole("button", {name: "Review newer values"}).click();
+        await second.getByRole("dialog").getByLabel("Resolution: Report title", {exact: true}).selectOption("local");
+        await second.getByRole("dialog").getByRole("button", {name: "Keep edits on the newer revision"}).click();
         await second.getByRole("button", {name: "Save report", exact: true}).click(); await waitState(second, "saved");
         assert.equal((await api(page, {operation: "load"})).body.data.settings.general.title, "Second administrator");
         await secondContext.close();
@@ -264,6 +338,8 @@ const record = (id, detail) => observations.push({id, status: "passed", method: 
         await page.evaluate(() => { document.querySelector("#wps-root").style.zoom = "1"; });
         record("WP-09", "Persian real-admin narrow layout, local regular/bold fonts, mixed-direction endpoint and modal Tab/Escape/return focus.");
         record("WP-14", "Both variants captured at 1440/390 widths and 200% CSS zoom stress; no horizontal document overflow.");
+        await conflictRegression(browser, base, pass, "current");
+        await conflictRegression(browser, "http://127.0.0.1:8791", password("minimum"), "minimum");
         assert.deepEqual(errors, [], "Browser JavaScript errors");
         assert.deepEqual([...new Set(warnings)], [], "Component compatibility warnings must be resolved, not hidden");
         assert.deepEqual(fixtureHashes(), fixtureStart, "Specimen source changed during browser verification");

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "normalization": "git-lf",
+  "decision": "ROADMAP.md#r11-audit-remediation",
+  "authorized_on": "2026-10-16",
+  "changes": {
+    "app.js": {
+      "previous_sha256": "718518c2c6baadbec4f547b041d20387637009c21a8717c665ee68a6811ae1ae",
+      "sha256": "bccde0e309037e22517f7558af4d54e9df05551505a222e5738ec50a21b0e8e9"
+    },
+    "model.js": {
+      "previous_sha256": "01e7bd08d9fbb557e994c91206973ac140cccaaca7f1ec64b8ebdf62c8f8e80b",
+      "sha256": "6d2401235f027608ae6896d55fea72c9af3eddc56c2947329ced473e35022ae5"
+    }
+  }
+}
