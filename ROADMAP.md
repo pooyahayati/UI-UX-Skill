@@ -7,15 +7,15 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Item | State |
 | --- | --- |
 | Updated | 2026-10-16 |
-| Released baseline | [v3.4.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.4.0); actual published artifacts verified 2026-10-10 |
-| Current workstream | Release 3.5.0: shadcn/ui and interactive motion |
-| Planning readiness | Implementation accepted; release verification and authorized delivery in progress |
+| Released baseline | [v3.5.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.5.0); published artifacts and local installation verified 2026-10-16 |
+| Current workstream | None; authorized shadcn/ui and interactive-motion delivery complete |
+| Planning readiness | No pending implementation or delivery package |
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
 | Execution authority | [Release and local update](#release-350); [interactive motion addition](#interactive-motion); [shadcn/ui addition](#shadcnui-dashboard-default) |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | v3.5.0 source prepared; publication and verified local update pending |
+| Delivery | v3.5.0 merged, published and installed locally; [verification record](docs/releases/3.5.0.md) |
 
 ## Release 3.5.0
 
@@ -24,9 +24,9 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Step | State | Acceptance / evidence |
 | --- | --- | --- |
 | Final source, metadata, regression and native security verification | Completed | [2026-10-16 candidate checks and limitations](docs/releases/3.5.0.md#local-candidate-checks-2026-10-16) |
-| Commit, push, PR checks and merge | In progress | Exact candidate checks and reviewed diff before merge |
-| Automated GitHub release and downloaded-artifact verification | Not started | Merge/tag binding, ZIP/source checks and security |
-| Managed local update and closeout | Not started | Installed version/source integrity, retained integration and backup |
+| Commit, push, PR checks and merge | Completed | [PR #45](https://github.com/pooyahayati/UI-UX-Skill/pull/45); exact-head CI and merge recorded |
+| Automated GitHub release and downloaded-artifact verification | Completed | [Merge/tag, actual downloads and native scan](docs/releases/3.5.0.md#github-publication-and-downloaded-artifacts) |
+| Managed local update and closeout | Completed | [91 upstream files, integration, compatibility and retained backup](docs/releases/3.5.0.md#verified-local-installation) |
 
 The release workflow on `main` is the sole publisher for this version. Do not create competing tags or overwrite existing assets. A failed required check stops the affected delivery action; preserve the previous release/install until its replacement is verified.
 
@@ -40,7 +40,7 @@ Plan: add one conditionally loaded implementation reference; connect existing mo
 | --- | --- | --- |
 | Guidance, owner policy and handbook routing | Completed | [Implementation and ten-case source review](evals/motion/REVIEW.md#scenario-review) |
 | Source isolation, regression and package checks | Completed | [2026-10-16 checks and limitations](evals/motion/REVIEW.md#verification-record); original historical evidence retained |
-| Integration / release / local installation | In progress | Authorized by the later [3.5.0 delivery decision](#release-350) |
+| Integration / release / local installation | Completed | Authorized by the later [3.5.0 delivery decision](#release-350); [verified delivery](docs/releases/3.5.0.md) |
 
 Acceptance: compatible products choose the smallest useful motion treatment, not automatic dependencies; explicit choices and existing/native stacks remain authoritative; all claimed consumers honor reduced/off behavior; owner controls are bounded and cannot weaken accessibility; handbook/approval sequencing is preserved. Checks must distinguish Skill guidance from actual product runtime evidence.
 
@@ -54,7 +54,7 @@ The Dashboard Product Pack owns default selection. A shared implementation refer
 | --- | --- | --- |
 | Dashboard default and implementation guide | Completed | [2026-10-16 source/scenario and consumer checks](evals/shadcn/REVIEW.md) |
 | Regression and scope preservation | Completed | [2026-10-16 verification and limits](evals/shadcn/REVIEW.md#verification-record); historical WPS evidence retained |
-| Integration / release / local installation | In progress | Authorized by the later [3.5.0 delivery decision](#release-350) |
+| Integration / release / local installation | Completed | Authorized by the later [3.5.0 delivery decision](#release-350); [verified delivery](docs/releases/3.5.0.md) |
 
 Acceptance: compatible new dashboards choose shadcn/ui without another library-choice question; explicit alternatives and existing-stack/host constraints are respected; templates do not override approved foundations; primary/dark/secondary review stays sequential. [Scoped cases and review](evals/shadcn/REVIEW.md) retain evidence limits.
 
@@ -106,6 +106,7 @@ These rows summarize closed work, not pending tasks. Historical limitations and 
 | <a id="release-checkpoint"></a>Releases 3.2.0, 3.2.1 and 3.3.0 | Published; recorded artifact and local-install checks completed | [Release provenance, hashes and limits](docs/archive/ROADMAP-2026-10-09.md#release-checkpoint) |
 | Initial WPS planning | Integrated, 2026-10-09; implementation not started | [PR #42](https://github.com/pooyahayati/UI-UX-Skill/pull/42) |
 | WPS-0–WPS-6 and release 3.4.0 | Completed and published, 2026-10-10; 7 of 7 packages | [Acceptance, source/runtime limits and release provenance](evals/wordpress-settings/EXECUTION.md); [published package checks](evals/wordpress-settings/RELEASE_PUBLISHED.json) |
+| Dashboard shadcn/ui default, optional interactive motion and release 3.5.0 | Completed, merged, published and installed locally, 2026-10-16 | [Exact source, CI, downloaded packages, security and managed-install verification](docs/releases/3.5.0.md) |
 
 The historical five-product evaluation was source-based in the same session, not an independent browser/device run. R7/R8 and R9 acceptance is bounded to its recorded evidence; hypothetical specimen approvals are not unfinished Skill stages. See [full limitations](docs/archive/ROADMAP-2026-10-09.md#acceptance-and-known-limits).
 
