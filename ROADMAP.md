@@ -7,18 +7,18 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Item | State |
 | --- | --- |
 | Updated | 2026-10-16 |
-| Released baseline | [v3.5.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.5.0); published artifacts and local installation verified 2026-10-16 |
-| Current workstream | [R11: three audit remediations](#r11-audit-remediation); implementation and delivery authorized |
-| Planning readiness | Scope, acceptance criteria and verification defined in the [R11 plan](docs/R11_AUDIT_REMEDIATION.md); implementation evidence in the [execution record](docs/R11_EXECUTION.md) |
+| Released baseline | [v3.5.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.5.1); published artifacts and managed local installation verified 2026-10-16 |
+| Current workstream | [R11: three audit remediations](#r11-audit-remediation); implementation and delivery complete |
+| Acceptance | All three packages satisfy the [R11 plan](docs/R11_AUDIT_REMEDIATION.md); [implementation evidence](docs/R11_EXECUTION.md) and [verified delivery](docs/releases/3.5.1.md) are recorded separately |
 | Completed R11 packages | 3 of 3 |
 | Active R11 package | None |
-| Next R11 package | None; authorized release delivery remains |
+| Next R11 package | None |
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
-| Execution authority | [R11 implementation, merge, release and managed local update](#r11-audit-remediation) |
+| Execution authority | [R11 implementation and delivery authorization](#r11-audit-remediation) fulfilled; no new workstream authorized by completion |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | v3.5.1 candidate accepted locally; exact-head CI, merge, publication and managed install pending. v3.5.0 remains the released/installed baseline until those checks pass. |
+| Delivery | v3.5.1 merged, published and installed locally; exact-head/main CI, downloaded packages, installation compatibility and backup verified |
 
 ## R11 audit remediation
 
@@ -36,7 +36,7 @@ The [R11 implementation plan](docs/R11_AUDIT_REMEDIATION.md) contains the audite
 
 Execute in the listed priority order, one active package at a time. A package is complete only with its recorded acceptance evidence, not because its implementation or plan exists. An unavailable required check remains unverified; unrelated passing checks cannot substitute for it. If a blocked check requires resequencing independent work, record the reason and actual active/next package without marking the blocked package complete.
 
-**Next action:** complete final combined verification, exact-head CI and reviewed merge; let the existing workflow publish v3.5.1, independently verify its downloads, then update only the managed local Skill. [Release evidence](docs/releases/3.5.1.md) separates candidate, integration, publication and installation. The [R11 closeout gates](docs/R11_AUDIT_REMEDIATION.md#combined-acceptance-and-delivery-boundary) remain required.
+**Next action:** none within R11. [Release evidence](docs/releases/3.5.1.md) records the completed candidate, integration, publication and installation checks against the [closeout gates](docs/R11_AUDIT_REMEDIATION.md#combined-acceptance-and-delivery-boundary). Future changes need their own scope; the five unselected behavioral prompts remain explicitly unexecuted, not a hidden R11 completion claim.
 
 ## Release 3.5.0
 
@@ -129,6 +129,7 @@ These rows summarize closed work, not pending tasks. Historical limitations and 
 | Initial WPS planning | Integrated, 2026-10-09; implementation not started | [PR #42](https://github.com/pooyahayati/UI-UX-Skill/pull/42) |
 | WPS-0–WPS-6 and release 3.4.0 | Completed and published, 2026-10-10; 7 of 7 packages | [Acceptance, source/runtime limits and release provenance](evals/wordpress-settings/EXECUTION.md); [published package checks](evals/wordpress-settings/RELEASE_PUBLISHED.json) |
 | Dashboard shadcn/ui default, optional interactive motion and release 3.5.0 | Completed, merged, published and installed locally, 2026-10-16 | [Exact source, CI, downloaded packages, security and managed-install verification](docs/releases/3.5.0.md) |
+| R11.1–R11.3 and corrective release 3.5.1 | Completed, merged, published and installed locally, 2026-10-16; 3 of 3 packages | [Stage acceptance and limits](docs/R11_EXECUTION.md); [PR, CI, published artifacts and managed-install verification](docs/releases/3.5.1.md) |
 
 The historical five-product evaluation was source-based in the same session, not an independent browser/device run. R7/R8 and R9 acceptance is bounded to its recorded evidence; hypothetical specimen approvals are not unfinished Skill stages. See [full limitations](docs/archive/ROADMAP-2026-10-09.md#acceptance-and-known-limits).
 
