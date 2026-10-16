@@ -139,6 +139,11 @@ class ResourceRouteTests(unittest.TestCase):
             path = repo / relative
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(value, encoding="utf-8")
+        # A resource-routing fixture must still satisfy the real distribution's
+        # complete-notice contract; a placeholder cannot represent a valid ZIP.
+        notice = package_release.ROOT / "LICENSE"
+        shutil.copyfile(notice, repo / "LICENSE")
+        shutil.copyfile(notice, repo / "skills/ui-ux-skill/LICENSE")
         out = self.base / "packages"
         artifacts = package_release.package_release(out, root=repo)
         unpacked = self.base / "unpacked"

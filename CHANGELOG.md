@@ -2,6 +2,13 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
+## [3.5.1] - 2026-10-16
+
+- Corrected concurrent-edit recovery in the synthetic WordPress settings specimen: retain independent peer/local changes, require explicit overlapping-field and masked credential choices, and keep revision checks, cancellation and later edits intact.
+- Included the full MIT notice in the canonical Skill subtree for direct installation and both archive formats, with preflight and independent consumer regressions for missing or altered notices.
+- Added 13 fresh-context shadcn/motion evaluations with 27 reviewed criteria, retained real outputs and source/input bindings, plus negative regressions and a saved-evidence CI gate. Five unselected requests remain explicitly unexecuted; this is not a browser/runtime animation certification.
+- Preserved historical evaluation provenance using a separate exact-content compatibility record. No new application dependency, guidance redesign or production-plugin migration is introduced. Delivery status and evidence remain in the roadmap.
+
 ## [3.5.0] - 2026-10-16
 
 - Added product-driven interactive motion guidance: existing behavior/CSS first, optional Motion and selected Animate UI components, with reduced/off alternatives, interruption/focus/state safeguards and platform/RTL boundaries.

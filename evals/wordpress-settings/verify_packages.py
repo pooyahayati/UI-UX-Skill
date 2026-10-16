@@ -4,11 +4,15 @@ import hashlib
 import json
 from pathlib import Path
 import zipfile
+import sys
 
 from test_contracts import ROOT, canonical_bytes
+sys.path.insert(0, str(ROOT / "scripts"))
+from package_release import validate_license_notice
 
 
 def verify(directory):
+    notice = validate_license_notice(ROOT)
     version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     names = {f"ui-ux-skill-claude-v{version}.zip", f"ui-ux-plugin-v{version}.zip"}
     sums = {}
@@ -32,6 +36,8 @@ def verify(directory):
         if plugin:
             expected.update({"ui-ux/" + rel: ROOT / rel for rel in ["plugin.json", "assets/logo.svg", "assets/composer-icon.svg", "LICENSE", "PRIVACY.md", "TERMS.md", "SUPPORT.md"]})
         with zipfile.ZipFile(archive) as zipped:
+            if prefix + "LICENSE" not in zipped.namelist() or zipped.read(prefix + "LICENSE").replace(b"\r\n", b"\n") != notice:
+                raise ValueError("Missing or incomplete standalone license notice")
             if zipped.testzip() is not None or len(zipped.namelist()) != len(expected) or set(zipped.namelist()) != set(expected):
                 raise ValueError("Corrupt, duplicate or unexpected package members")
             for member, src in expected.items():

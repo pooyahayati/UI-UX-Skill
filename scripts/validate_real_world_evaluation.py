@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from validate_eval_result import unique_object, validate_result
+from validate_eval_result import unique_object, validate_historical
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "ui-ux-skill"
@@ -33,7 +33,7 @@ design_registry = load_json(SKILL / "design-system.json")
 
 # This historical acceptance gate is stricter than generic result recording,
 # but must not bypass the common identity and verdict-consistency contract.
-errors.extend(validate_result(result, manifest=cases_manifest))
+errors.extend(validate_historical(result, load_json(REAL / "compatibility.json"), manifest=cases_manifest))
 
 if manifest.get("schema_version") != 1:
     error("real-world manifest schema_version must be 1")
@@ -150,8 +150,8 @@ for item in cases:
         if module_id not in design_ids:
             error(f"{case_id}: unknown design-system module: {module_id}")
 
-if result.get("skillVersion") != cases_manifest.get("version"):
-    error("real-world result skillVersion must match eval manifest version")
+# The exact historical record and current manifest are bound above. Its recorded
+# version is intentionally not relabelled as a newly executed current-version run.
 if result.get("host") != "ChatGPT":
     error("recorded Stage 6 result must identify the actual host")
 if result.get("model") != "GPT-5.6 Sol":

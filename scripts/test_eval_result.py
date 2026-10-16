@@ -191,7 +191,7 @@ class EvalResultTests(unittest.TestCase):
                 case["invariants"].append(deepcopy(case["invariants"][0]))
             elif variant == "valid-failure":
                 case["result"] = case["invariants"][0]["result"] = "fail"
-                self.assertEqual(self.errors(value), [])
+                self.assertEqual(self.errors(value, manifest={**MANIFEST, "version": original["skillVersion"]}), [])
 
             raw = json.dumps(value)
             if variant == "duplicate-json":
@@ -218,13 +218,42 @@ class EvalResultTests(unittest.TestCase):
                 self.assertIn("validation failed", result.stdout)
 
     def test_unchanged_historical_subset(self):
+        from validate_eval_result import validate_historical
         path = ROOT / "evals/real-world/result.json"
         before = path.read_bytes()
         value = json.loads(before)
-        self.assertEqual(self.errors(value), [])
+        binding_path = ROOT / "evals/real-world/compatibility.json"
+        binding = json.loads(binding_path.read_text(encoding="utf-8"))
+        self.assertIn("skillVersion does not match eval manifest", self.errors(value))
+        self.assertEqual(validate_historical(value, binding), [])
+        self.assertTrue(validate_historical(value, binding, require_all=True))
         self.assertTrue(self.errors(value, require_all=True))
-        self.assertEqual(self.cli(value).returncode, 0)
+        self.assertEqual(self.cli(value).returncode, 1)
+        self.assertEqual(self.cli(value, "--binding", str(binding_path)).returncode, 0)
         self.assertEqual(path.read_bytes(), before)
+
+    def test_historical_binding_is_exact_not_a_version_bypass(self):
+        from validate_eval_result import validate_historical
+        value = json.loads((ROOT / "evals/real-world/result.json").read_text(encoding="utf-8"))
+        binding = json.loads((ROOT / "evals/real-world/compatibility.json").read_text(encoding="utf-8"))
+        for key in ("recordSha256", "manifestSha256", "recordedVersion", "currentManifestVersion", "scope", "schema_version"):
+            broken = {**binding, key: "wrong"}
+            self.assertTrue(validate_historical(value, broken), key)
+        modified = deepcopy(value)
+        modified["notes"] += " changed"
+        self.assertTrue(validate_historical(modified, binding))
+        modified_manifest = deepcopy(MANIFEST)
+        modified_manifest["cases"][0]["invariants"].append("new requirement")
+        self.assertTrue(validate_historical(value, binding, manifest=modified_manifest))
+        self.assertTrue(validate_historical(value, []))
+
+    def test_historical_binding_cannot_mask_incoherence(self):
+        from validate_eval_result import content_hash, validate_historical
+        value = json.loads((ROOT / "evals/real-world/result.json").read_text(encoding="utf-8"))
+        binding = json.loads((ROOT / "evals/real-world/compatibility.json").read_text(encoding="utf-8"))
+        value["cases"][0]["invariants"][0]["result"] = "fail"
+        binding["recordSha256"] = content_hash(value)
+        self.assertTrue(validate_historical(value, binding))
 
 
 if __name__ == "__main__":

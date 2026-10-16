@@ -13,7 +13,7 @@ https://github.com/pooyahayati/UI-UX-Skill/tree/main/skills/ui-ux-skill
 
 Invoke with `$ui-ux-skill`, for example: “Use $ui-ux-skill to inspect this product and improve the affected form without changing its workflow.”
 
-Skills normally live under `$CODEX_HOME/skills` (default `~/.codex/skills`). The installed Skill root must contain `SKILL.md` and `VERSION`; the source version file is `skills/ui-ux-skill/VERSION`. Read the local file for installed-version questions, not the repository branch or latest-release label. The Skill is available on the next turn.
+Skills normally live under `$CODEX_HOME/skills` (default `~/.codex/skills`). The installed Skill root must contain `SKILL.md`, `VERSION` and the complete `LICENSE`; the source version file is `skills/ui-ux-skill/VERSION`. Read the local file for installed-version questions, not the repository branch or latest-release label. The Skill is available on the next turn.
 
 ## Claude
 
@@ -78,6 +78,7 @@ The packager requires a **nonexistent destination with an existing parent**. It 
 
 - Prefer an absolute external destination. Relative paths resolve from the repository root; only a fresh top-level `dist` is permitted inside it for existing CI consumers. The parent must already exist; the command does not create missing ancestor directories.
 - Required package inputs, repository/Skill/plugin version agreement and copied source trees are checked before staging. Source symlinks and Windows reparse points, including junctions, are refused rather than followed.
+- The canonical Skill directory includes the complete MIT notice for direct installation and both ZIP formats. Packaging verifies it against the root notice and the reviewed notice identity; consumer verification rejects missing/truncated/changed notices independently of member inventory and regenerated checksums. An intentional license/attribution change requires an explicit update to that contract.
 - Archives and checksums are built in an invocation-owned temporary sibling. Only the complete staged directory is renamed to the requested destination. Detected copy/archive/checksum/publication failures preserve earlier outputs and source files; cleanup targets only the owned staging directory, never the requested output.
 - Use trusted local source and destination-parent directories that cannot be changed by another actor during the command. Path validation and a final existence check do **not** provide descriptor-based protection against hostile concurrent ancestor swaps; on POSIX a rename can also race with another process creating an empty destination. Shared/untrusted mutable hierarchies are unsupported. An interrupted process may leave its temporary staging folder; inspect it before any manual cleanup.
 

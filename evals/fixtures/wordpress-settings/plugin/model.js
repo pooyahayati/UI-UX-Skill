@@ -27,7 +27,30 @@
         const base = draftFrom(state)[section];
         return JSON.stringify(draft[section]) !== JSON.stringify(base);
     }
-    const api = {copy, draftFrom, acknowledge, dirty};
+    function reconcile(draft, base, current, choices = {}) {
+        const next = copy(draft), changes = [], conflicts = [];
+        for (const [section, key] of [["general", "title"], ["delivery", "enabled"], ["delivery", "email"], ["advanced", "endpoint"]]) {
+            const original = base.settings[section][key], local = draft[section][key], stored = current.settings[section][key];
+            const id = section + "." + key, conflict = local !== original && stored !== original && local !== stored;
+            if (local !== original || stored !== original) { changes.push({id, section, key, local, stored, conflict}); }
+            if (local === original || local === stored) { next[section][key] = stored; }
+            else if (conflict) {
+                if (choices[id] === "stored") { next[section][key] = stored; }
+                else if (choices[id] !== "local") { conflicts.push(id); }
+            }
+        }
+        next.advanced.credentialConfigured = current.settings.advanced.credentialConfigured;
+        // Presence cannot reveal a peer's secret replacement. On a stale revision,
+        // explicitly confirm any local replace/remove intent without exposing values.
+        if (draft.advanced.credentialAction !== "keep" && current.revision !== base.revision) {
+            const id = "advanced.credentialAction";
+            changes.push({id, section: "advanced", key: "credentialAction", local: draft.advanced.credentialAction, stored: "keep", conflict: true});
+            if (choices[id] === "stored") { next.advanced.credentialAction = "keep"; next.advanced.credential = ""; }
+            else if (choices[id] !== "local") { conflicts.push(id); }
+        }
+        return {draft: next, changes, conflicts};
+    }
+    const api = {copy, draftFrom, acknowledge, dirty, reconcile};
     if (typeof module !== "undefined" && module.exports) { module.exports = api; }
     else { scope.WPSModel = api; }
 })(typeof window === "undefined" ? globalThis : window);

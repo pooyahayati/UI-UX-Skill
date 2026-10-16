@@ -101,7 +101,24 @@ def active_source_baseline():
     baseline = json.loads((HERE / "baseline.json").read_text(encoding="utf-8"))
     shadcn = json.loads((ROOT / "evals/shadcn/source-delta.json").read_text(encoding="utf-8"))
     motion = json.loads((ROOT / "evals/motion/source-delta.json").read_text(encoding="utf-8"))
-    return motion_source_baseline(current_source_baseline(baseline, shadcn), motion)
+    license_delta = json.loads((HERE / "r11-license-delta.json").read_text(encoding="utf-8"))
+    return license_source_baseline(motion_source_baseline(current_source_baseline(baseline, shadcn), motion), license_delta)
+
+
+def license_source_baseline(baseline, delta):
+    name = "skills/ui-ux-skill/LICENSE"
+    if (delta.get("schema_version") != 1 or delta.get("normalization") != "git-lf"
+            or delta.get("decision") != "ROADMAP.md#r11-audit-remediation"
+            or delta.get("authorized_on") != "2026-10-16" or set(delta.get("changes", {})) != {name}):
+        raise ValueError("Invalid R11 license successor scope")
+    binding = delta["changes"][name]
+    if (name in baseline["protected_skill_hashes"] or binding.get("previous_sha256") is not None
+            or "previous_sha256" not in binding
+            or binding.get("sha256") != "62c149a3a65bbd3b2f545e7279838b76ede79d3aac3ac786a5eaff21e7e583b7"):
+        raise ValueError("Invalid R11 license addition or content")
+    updated = copy.deepcopy(baseline)
+    updated["protected_skill_hashes"][name] = binding["sha256"]
+    return updated
 
 
 def report_errors(report):
@@ -124,6 +141,22 @@ def report_errors(report):
         if row.get("method") != expected_method:
             errors.append("Outcome method does not meet its required evidence boundary")
     return errors
+
+
+def fixture_successor(historical, delta):
+    """Only the two R11.1 fixture changes may succeed the immutable WPS record."""
+    if (delta.get("schema_version") != 1 or delta.get("normalization") != "git-lf"
+            or delta.get("decision") != "ROADMAP.md#r11-audit-remediation"
+            or delta.get("authorized_on") != "2026-10-16"
+            or set(delta.get("changes", {})) != {"app.js", "model.js"}):
+        raise ValueError("Invalid R11 fixture successor scope")
+    current = dict(historical)
+    for name, binding in delta["changes"].items():
+        if (binding.get("previous_sha256") != historical.get(name)
+                or not re.fullmatch(r"[a-f0-9]{64}", str(binding.get("sha256", "")))):
+            raise ValueError("R11 fixture successor does not bind its parent")
+        current[name] = binding["sha256"]
+    return current
 
 
 class WPSContracts(unittest.TestCase):
@@ -162,7 +195,7 @@ class WPSContracts(unittest.TestCase):
         baseline = active_source_baseline()
         self.assertEqual(isolation_errors(ROOT / "skills/ui-ux-skill", baseline), [])
         changed = set()
-        for rel in ["evals/shadcn/source-delta.json", "evals/motion/source-delta.json"]:
+        for rel in ["evals/shadcn/source-delta.json", "evals/motion/source-delta.json", "evals/wordpress-settings/r11-license-delta.json"]:
             changed.update(json.loads((ROOT / rel).read_text(encoding="utf-8"))["changes"])
         for name in changed:
             mismatched = copy.deepcopy(baseline)
@@ -195,6 +228,23 @@ class WPSContracts(unittest.TestCase):
                     {**delta, "authorized_on": "unknown"}, {**delta, "normalization": "none"}]:
             with self.assertRaises(ValueError):
                 motion_source_baseline(baseline, bad)
+
+    def test_license_successor_rejects_extra_missing_content_and_reapplication(self):
+        baseline = active_source_baseline()
+        baseline["protected_skill_hashes"].pop("skills/ui-ux-skill/LICENSE")
+        delta = json.loads((HERE / "r11-license-delta.json").read_text(encoding="utf-8"))
+        before = copy.deepcopy(baseline)
+        updated = license_source_baseline(baseline, delta)
+        self.assertEqual(baseline, before)
+        self.assertEqual(len(updated["protected_skill_hashes"]), len(before["protected_skill_hashes"]) + 1)
+        with self.assertRaises(ValueError):
+            license_source_baseline(updated, delta)
+        wrong = copy.deepcopy(delta); wrong["changes"]["skills/ui-ux-skill/LICENSE"]["sha256"] = "0" * 64
+        parent = copy.deepcopy(delta); parent["changes"]["skills/ui-ux-skill/LICENSE"]["previous_sha256"] = "0" * 64
+        extra = copy.deepcopy(delta); extra["changes"]["skills/ui-ux-skill/SKILL.md"] = {"sha256": "0" * 64}
+        for bad in [wrong, parent, extra, {**delta, "changes": {}}, {**delta, "decision": "unrelated"}]:
+            with self.assertRaises(ValueError):
+                license_source_baseline(baseline, bad)
 
     def test_isolation_detects_modified_missing_and_extra_resources(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -259,7 +309,42 @@ class WPSContracts(unittest.TestCase):
             self.assertEqual(hashlib.sha256(canonical_bytes(ROOT / "skills/ui-ux-skill" / rel)).hexdigest(), digest)
         fixture = ROOT / "evals/fixtures/wordpress-settings/plugin"
         actual = {p.relative_to(fixture).as_posix(): hashlib.sha256(p.read_bytes() if p.suffix == ".ttf" else canonical_bytes(p)).hexdigest() for p in fixture.rglob("*") if p.is_file()}
-        self.assertEqual(result["fixture_hashes"], actual)
+        delta = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        self.assertEqual(fixture_successor(result["fixture_hashes"], delta), actual)
+
+    def test_r11_fixture_successor_rejects_missing_extra_and_wrong_parent(self):
+        historical = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))["fixture_hashes"]
+        delta = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        before = copy.deepcopy(historical)
+        current = fixture_successor(historical, delta)
+        self.assertEqual(before, historical)
+        for name in set(historical) - {"app.js", "model.js"}:
+            self.assertEqual(current[name], historical[name])
+        missing = copy.deepcopy(delta); missing["changes"].pop("model.js")
+        extra = copy.deepcopy(delta); extra["changes"]["style.css"] = delta["changes"]["app.js"]
+        parent = copy.deepcopy(delta); parent["changes"]["app.js"]["previous_sha256"] = "0" * 64
+        malformed = copy.deepcopy(delta); malformed["changes"]["app.js"]["sha256"] = "invalid"
+        for bad in [missing, extra, parent, malformed, {**delta, "decision": "unrelated"}]:
+            with self.assertRaises(ValueError):
+                fixture_successor(historical, bad)
+
+    def test_r11_runtime_evidence_is_bound_to_current_fixture(self):
+        historical = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))["fixture_hashes"]
+        delta = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        browser = json.loads((HERE / "evidence/r11-browser-results.json").read_text(encoding="utf-8"))
+        self.assertEqual(browser["recorded_on"], "2026-10-16")
+        self.assertEqual(browser["runner_sha256"], hashlib.sha256(canonical_bytes(HERE / "run_browser.cjs")).hexdigest())
+        self.assertEqual(browser["fixture_hashes"], fixture_successor(historical, delta))
+        self.assertEqual(browser["javascript_errors"], [])
+        self.assertEqual(browser["console_warnings"], [])
+        expected = {f"WP-{i:02d}" for i in range(1, 15)} - {"WP-10"}
+        expected |= {"R11-CONFLICT-current", "R11-CONFLICT-minimum", "R11-CONFLICT-RTL"}
+        rows = [r for r in browser["observations"] if not r["id"].startswith("VIEW-")]
+        self.assertEqual(len(rows), len(expected))
+        self.assertEqual({r["id"] for r in rows}, expected)
+        self.assertTrue(all(r["status"] == "passed" and r["method"] == "real-admin-browser" and r["detail"] for r in rows))
+        for name in ["current-en", "current-en-390", "minimum-en", "minimum-en-390", "current-fa-390"]:
+            self.assertTrue((HERE / "evidence" / ("r11-conflict-" + name + ".png")).read_bytes().startswith(b"\x89PNG\r\n\x1a\n"))
 
     def test_runtime_record_matches_accepted_outcomes(self):
         result = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))
@@ -284,6 +369,9 @@ class WPSContracts(unittest.TestCase):
             (root / "VERSION").write_text("3.4.0\n", encoding="utf-8")
             (skill / "VERSION").write_text("3.4.0\n", encoding="utf-8")
             (skill / "SKILL.md").write_text("protected\n", encoding="utf-8")
+            notice = canonical_bytes(ROOT / "LICENSE")
+            (skill / "LICENSE").write_bytes(notice)
+            (root / "LICENSE").write_bytes(notice)
             sums = []
             for plugin in [False, True]:
                 name = "ui-ux-plugin-v3.4.0.zip" if plugin else "ui-ux-skill-claude-v3.4.0.zip"
@@ -295,13 +383,29 @@ class WPSContracts(unittest.TestCase):
                         for rel in ["plugin.json", "assets/logo.svg", "assets/composer-icon.svg", "LICENSE", "PRIVACY.md", "TERMS.md", "SUPPORT.md"]:
                             file = root / rel
                             file.parent.mkdir(parents=True, exist_ok=True)
-                            file.write_text("test\n", encoding="utf-8")
+                            file.write_bytes(notice if rel == "LICENSE" else b"test\n")
                             zipped.write(file, "ui-ux/" + rel)
                 sums.append(hashlib.sha256((root / name).read_bytes()).hexdigest() + "  " + name)
             manifest = root / "SHA256SUMS.txt"
             manifest.write_text("\n".join(sums), encoding="utf-8")
             with patch.object(verify_packages, "ROOT", root):
                 self.assertEqual(len(verify_packages.verify(root)["checks"]), 2)
+                standalone = root / "ui-ux-skill-claude-v3.4.0.zip"
+                good_archive = standalone.read_bytes()
+                for replacement in (None, b"", notice[:80], notice.replace(b"Pooya Hayati", b"Wrong owner")):
+                    with zipfile.ZipFile(standalone, "w") as zipped:
+                        for file in skill.iterdir():
+                            if file.name == "LICENSE":
+                                if replacement is not None:
+                                    zipped.writestr("ui-ux-skill/LICENSE", replacement)
+                            else:
+                                zipped.write(file, "ui-ux-skill/" + file.name)
+                    corrected = [hashlib.sha256(standalone.read_bytes()).hexdigest() + "  " + standalone.name, sums[1]]
+                    manifest.write_text("\n".join(corrected), encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, "license"):
+                        verify_packages.verify(root)
+                standalone.write_bytes(good_archive)
+                manifest.write_text("\n".join(sums), encoding="utf-8")
                 manifest.write_text("\n".join(sums).replace(sums[0][:64], "0" * 64), encoding="utf-8")
                 with self.assertRaises(ValueError):
                     verify_packages.verify(root)

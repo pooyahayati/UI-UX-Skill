@@ -18,6 +18,9 @@
         rejected: ["ذخیره انجام نشد. ورودی‌ها حفظ شده‌اند؛ خطا را اصلاح و دوباره تلاش کنید.", "Save was rejected. Your input is retained; correct the issue and retry."], invalid: ["مقدار معتبر وارد کنید.", "Enter a valid value."],
         unknown: ["نتیجهٔ ذخیره مشخص نیست؛ ممکن است سرور آن را انجام داده باشد. پیش از ارسال دوباره، وضعیت را بررسی کنید.", "The save outcome is unknown; the server may have committed it. Check stored state before resubmitting."], reconcile: ["بررسی نتیجهٔ ذخیره", "Check saved outcome"],
         conflict: ["مدیر دیگری تنظیمات را تغییر داده است. ویرایش شما حفظ شده؛ پیش از ذخیره، مقادیر جدید را بررسی کنید.", "Another administrator changed settings. Your edits are retained; review the newer values before saving."], reviewCurrent: ["مشاهدهٔ مقادیر جدید", "Review newer values"], keepEdits: ["حفظ ویرایش با نسخهٔ جدید", "Keep edits on the newer revision"], currentValues: ["مقادیر ذخیره‌شدهٔ جدید", "Newer stored values"],
+        resolution: ["انتخاب مقدار", "Resolution"], choose: ["انتخاب کنید", "Choose a value"], useLocal: ["ویرایش من حفظ شود", "Use my edit"], useStored: ["مقدار جدید ذخیره‌شده استفاده شود", "Use newer stored value"],
+        localValue: ["ویرایش شما", "Your edit"], storedValue: ["مقدار جدید ذخیره‌شده", "Newer stored value"], on: ["فعال", "Enabled"], off: ["غیرفعال", "Disabled"],
+        secretReview: ["مقدار حساس نمایش داده نمی‌شود و ممکن است مدیر دیگر آن را تغییر داده باشد. اقدام خود را تأیید کنید.", "Stored credentials are hidden and may have changed. Confirm your intended action."],
         reset: ["بازنشانی بخش ارسال", "Reset delivery section"], resetTitle: ["بازنشانی تنظیمات ارسال؟", "Reset delivery settings?"], resetText: ["فقط بخش ارسال به مقادیر اولیه برمی‌گردد. عنوان گزارش و اتصال فنی تغییر نمی‌کنند.", "Only delivery returns to defaults. Report identity and technical settings remain unchanged."], cancel: ["انصراف", "Cancel"], confirm: ["بازنشانی بخش ارسال", "Reset delivery section"], close: ["بستن", "Close"],
         review: ["کنترل‌های آزمون", "Test review controls"], fault: ["رفتار درخواست آزمایشی", "Test request behavior"], normal: ["ذخیرهٔ عادی", "Normal save"], reject: ["رد درخواست بدون تغییر داده", "Reject without modifying data"], responseLoss: ["ذخیره با پاسخ نامعلوم", "Commit with uncertain response"], delay: ["تأخیر برای آزمون ویرایش هم‌زمان", "Delay to test edits during saving"]
     };
@@ -38,9 +41,11 @@
         const [server, setServer] = useState(null), [draft, setDraft] = useState(null), [status, setStatus] = useState("loading");
         const [busy, setBusy] = useState(false), [errors, setErrors] = useState({}), [fault, setFault] = useState("none");
         const [conflict, setConflict] = useState(null), [dialog, setDialog] = useState(null);
+        const [resolutions, setResolutions] = useState({});
         const [advancedOpen, setAdvancedOpen] = useState(false);
         const draftRef = useRef(null), inFlight = useRef(false), pending = useRef(null);
         const updateDraft = (value) => { draftRef.current = value; setDraft(value); };
+        const receiveConflict = (value) => { setConflict(value); setResolutions({}); setStatus("conflict"); };
         const dirty = server && draft ? ["general", "delivery", "advanced"].some(s => M.dirty(draft, server, s)) : false;
         useEffect(() => {
             const guard = (event) => { if (dirty || status === "unknown") { event.preventDefault(); event.returnValue = ""; } };
@@ -57,7 +62,7 @@
                     if (current.lastRequestId === pending.current.requestId) {
                         updateDraft(M.acknowledge(draftRef.current, pending.current, current));
                         setServer(current); pending.current = null; setStatus("saved");
-                    } else { setConflict(current); setStatus("conflict"); }
+                    } else { receiveConflict(current); }
                 } else { setServer(current); updateDraft(M.draftFrom(current)); setStatus("ready"); }
             } catch (_) { setStatus(server ? "unknown" : "load-error"); }
             finally { inFlight.current = false; setBusy(false); }
@@ -65,6 +70,7 @@
         useEffect(() => { load(true); }, []);
         function edit(section, key, value) {
             updateDraft({...draftRef.current, [section]: {...draftRef.current[section], [key]: value}});
+            setResolutions({});
             setErrors(old => { const next = {...old}; delete next[key]; return next; });
         }
         async function submit(section, reset = false) {
@@ -79,7 +85,7 @@
                 updateDraft(M.acknowledge(draftRef.current, sent, reply)); setServer(reply); pending.current = null; setStatus("saved");
             } catch (error) {
                 const detail = error.detail || {};
-                if (detail.code === "conflict") { setConflict(detail.current); setStatus("conflict"); }
+                if (detail.code === "conflict") { receiveConflict(detail.current); }
                 else if (["validation", "rejected", "denied", "nonce", "invalid_fields", "invalid_values", "invalid_request", "save_failed"].includes(detail.code)) {
                     setStatus("rejected"); setErrors(detail.fields || {});
                     const field = Object.keys(detail.fields || {})[0];
@@ -102,13 +108,20 @@
         root.dataset.state = status;
         if (!draft) { return h("div", null, h("h1", null, t("heading")), notice(status === "load-error" ? "loadFailed" : "loading", status === "load-error" ? "error" : "info"),
             status === "load-error" ? button("retry", () => load(false), {disabled: busy}) : h(Spinner)); }
+        const review = conflict ? M.reconcile(draft, server, conflict, resolutions) : null;
+        function adoptConflict() {
+            const merged = M.reconcile(draftRef.current, server, conflict, resolutions);
+            if (merged.conflicts.length || inFlight.current) { return; }
+            updateDraft(merged.draft); setServer(conflict); setConflict(null); setResolutions({});
+            pending.current = null; setDialog(null); setStatus("ready");
+        }
         const nodes = [h("h1", {key: "title"}, t("heading")), h("p", {className: "wps-intro", key: "intro"}, t("intro")), h("p", {key: "synthetic"}, t("synthetic"))];
         if (status === "saving") { nodes.push(notice("saving")); }
         if (status === "saved") { nodes.push(notice("saved", "success")); }
         if (status === "rejected") { nodes.push(notice("rejected", "error")); }
         if (status === "unknown") { nodes.push(notice("unknown", "warning"), button("reconcile", () => load(false), {disabled: busy})); }
         if (conflict) { nodes.push(notice("conflict", "warning"), h("div", {className: "wps-actions"}, button("reviewCurrent", () => setDialog("conflict")),
-            button("keepEdits", () => { setServer(conflict); setConflict(null); pending.current = null; setStatus("ready"); }))); }
+            button("keepEdits", adoptConflict, {disabled: busy || review.conflicts.length > 0}))); }
         if (dirty) { nodes.push(h("p", {key: "unsaved", className: "wps-unsaved", role: "status"}, t("unsaved"))); }
         const toggle = h(ToggleControl, {__nextHasNoMarginBottom: true, label: t("enabled"), checked: draft.delivery.enabled, onChange: value => edit("delivery", "enabled", value)});
         nodes.push(section("general", [input("general", "title", "title", "titleHelp"), ...(cfg.variant === "simple" ? [toggle] : []), h("div", {className: "wps-actions"}, save("general", "saveGeneral"), ...(cfg.variant === "simple" ? [save("delivery", "saveDelivery")] : []))]));
@@ -127,8 +140,18 @@
         if (dialog) {
             nodes.push(h(Modal, {key: "dialog", title: t(dialog === "reset" ? "resetTitle" : "currentValues"), onRequestClose: () => setDialog(null), className: "wps-modal" + (fa ? " wps-modal-fa" : ""), lang: cfg.lang, dir: fa ? "rtl" : "ltr"},
                 h("div", {lang: cfg.lang, dir: fa ? "rtl" : "ltr"}, dialog === "reset" ? h("p", null, t("resetText")) :
-                    h("div", null, h("p", null, t("title") + ": " + conflict.settings.general.title), h("p", null, t("email") + ": ", h("bdi", null, conflict.settings.delivery.email))),
-                    h("div", {className: "wps-actions"}, button(dialog === "reset" ? "cancel" : "close", () => setDialog(null)), dialog === "reset" ? button("confirm", () => submit("delivery", true), {variant: "primary"}) : null))));
+                    h("div", null, ...review.changes.map(row => {
+                        const label = t(row.key === "credentialAction" ? "secretAction" : row.key);
+                        const display = value => row.key === "enabled" ? t(value ? "on" : "off") : row.key === "credentialAction" ? t(value) : value;
+                        return h("div", {key: row.id, className: "wps-conflict-field"}, h("h3", null, label),
+                            h("p", null, t("storedValue") + ": ", h("bdi", null, display(row.stored))),
+                            h("p", null, t("localValue") + ": ", h("bdi", null, display(row.local))),
+                            row.key === "credentialAction" ? h("p", null, t("secretReview"), " ", t(conflict.settings.advanced.credentialConfigured ? "configured" : "absent")) : null,
+                            row.conflict ? h(SelectControl, {...controlStyle, label: t("resolution") + ": " + label, value: resolutions[row.id] || "",
+                                options: [{value: "", label: t("choose")}, {value: "local", label: t("useLocal")}, {value: "stored", label: t("useStored")}],
+                                onChange: value => setResolutions(old => ({...old, [row.id]: value}))}) : null);
+                    })),
+                    h("div", {className: "wps-actions"}, button(dialog === "reset" ? "cancel" : "close", () => setDialog(null)), dialog === "reset" ? button("confirm", () => submit("delivery", true), {variant: "primary"}) : button("keepEdits", adoptConflict, {variant: "primary", disabled: busy || review.conflicts.length > 0})))));
         }
         return h("div", null, ...nodes);
     }

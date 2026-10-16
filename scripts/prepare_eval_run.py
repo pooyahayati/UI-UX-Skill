@@ -14,7 +14,16 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Prepare a behavioral-eval fixture and run manifest.")
     parser.add_argument("case_id")
     parser.add_argument("--output", required=True)
+    parser.add_argument("--suite", choices=["default", "ui-foundations"], default="default")
     args = parser.parse_args()
+
+    if args.suite == "ui-foundations":
+        from behavior_evaluation import prepare
+        try:
+            print(prepare(args.case_id, Path(args.output)))
+        except (OSError, ValueError) as error:
+            parser.exit(1, f"Preparation failed: {error}\n")
+        return
 
     manifest = json.loads(CASES_PATH.read_text(encoding="utf-8"))
     case = next((item for item in manifest["cases"] if item["id"] == args.case_id), None)

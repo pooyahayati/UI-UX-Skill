@@ -8,14 +8,35 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | --- | --- |
 | Updated | 2026-10-16 |
 | Released baseline | [v3.5.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.5.0); published artifacts and local installation verified 2026-10-16 |
-| Current workstream | None; authorized shadcn/ui and interactive-motion delivery complete |
-| Planning readiness | No pending implementation or delivery package |
+| Current workstream | [R11: three audit remediations](#r11-audit-remediation); implementation and delivery authorized |
+| Planning readiness | Scope, acceptance criteria and verification defined in the [R11 plan](docs/R11_AUDIT_REMEDIATION.md); implementation evidence in the [execution record](docs/R11_EXECUTION.md) |
+| Completed R11 packages | 3 of 3 |
+| Active R11 package | None |
+| Next R11 package | None; authorized release delivery remains |
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
-| Execution authority | [Release and local update](#release-350); [interactive motion addition](#interactive-motion); [shadcn/ui addition](#shadcnui-dashboard-default) |
+| Execution authority | [R11 implementation, merge, release and managed local update](#r11-audit-remediation) |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | v3.5.0 merged, published and installed locally; [verification record](docs/releases/3.5.0.md) |
+| Delivery | v3.5.1 candidate accepted locally; exact-head CI, merge, publication and managed install pending. v3.5.0 remains the released/installed baseline until those checks pass. |
+
+## R11 audit remediation
+
+**Owner decision, 2026-10-16:** update the roadmap for the three findings from the latest deep audit and prepare step-by-step fixes with explicit acceptance criteria. This instruction authorizes planning/documentation only. Implementation starts with a subsequent instruction; earlier release/install permissions retain their original completed scope and are not extended to R11.
+
+**Superseding execution decision, 2026-10-16:** the owner explicitly authorized R11.1 through R11.3 in order, followed by merge, a new release, then a managed local update of this Skill. This supersedes the planning-only restriction for R11, not its acceptance criteria. Branch/commit/push/PR operations are included in that delivery; unrelated skills, production sites and product dependencies remain outside scope. Preserve local Head integration and a recoverable installation backup. [Execution evidence](docs/R11_EXECUTION.md) records checks and stage acceptance.
+
+The [R11 implementation plan](docs/R11_AUDIT_REMEDIATION.md) contains the audited baseline, finding evidence, affected paths, protected contracts, observable acceptance and required checks. Two findings are confirmed defects; the third is a behavioral-test coverage risk, not a demonstrated routing/motion defect. This table is the **only live R11 status ledger**.
+
+| Package | Deliverable | Status | Entry condition | Acceptance / next action |
+| --- | --- | --- | --- | --- |
+| R11.1 | Preserve peer changes during WordPress specimen conflict recovery | Completed | Accepted 2026-10-16 | [21 real-admin observations, handler/model regressions and 14 integrity tests](docs/R11_EXECUTION.md#r111) |
+| R11.2 | Include the license notice in every standalone distribution path | Completed | Accepted 2026-10-16 | [Notice, package/direct-stage verification and regressions](docs/R11_EXECUTION.md#r112) |
+| R11.3 | Add repeatable behavioral evaluation for shadcn/ui and interactive motion | Completed | Accepted 2026-10-16 | [13 independent outputs, 27 criteria and 15 negative/integrity tests](docs/R11_EXECUTION.md#r113) |
+
+Execute in the listed priority order, one active package at a time. A package is complete only with its recorded acceptance evidence, not because its implementation or plan exists. An unavailable required check remains unverified; unrelated passing checks cannot substitute for it. If a blocked check requires resequencing independent work, record the reason and actual active/next package without marking the blocked package complete.
+
+**Next action:** complete final combined verification, exact-head CI and reviewed merge; let the existing workflow publish v3.5.1, independently verify its downloads, then update only the managed local Skill. [Release evidence](docs/releases/3.5.1.md) separates candidate, integration, publication and installation. The [R11 closeout gates](docs/R11_AUDIT_REMEDIATION.md#combined-acceptance-and-delivery-boundary) remain required.
 
 ## Release 3.5.0
 
@@ -74,11 +95,11 @@ The [detailed implementation plan](docs/WORDPRESS_SETTINGS_ROADMAP.md) owns scop
 | WPS-5 | Behavioral, data-preservation and isolation evaluation; dedicated CI gate | Completed | Accepted WPS-4 | [2026-10-10 evaluation acceptance](evals/wordpress-settings/EXECUTION.md#wps-5--2026-10-10) |
 | WPS-6 | Local acceptance, package verification and reviewable handoff | Completed | Accepted WPS-5 | [2026-10-10 local acceptance](evals/wordpress-settings/EXECUTION.md#wps-6--2026-10-10) |
 
-### Current action: No pending WPS work
+### Original WPS workstream complete
 
 All seven packages and the authorized GitHub release are complete. [Delivery evidence](evals/wordpress-settings/EXECUTION.md#integration-and-publication) includes exact-candidate CI, merge/tag binding, installer smoke checks and independent verification of actual downloads.
 
-No further WPS implementation, local installation or deployment is queued. Stabilization maintenance remains the default; any new work needs its own scope and authority.
+The original WPS packages stay closed with their historical evidence. The later specimen conflict defect is corrected separately in [R11.1](#r11-audit-remediation); it does not invalidate the narrower title-conflict test that previously passed or authorize a production-plugin migration. Current Skill delivery authority comes from the superseding R11 decision, not this historical WPS checkpoint.
 
 ## Scope and acceptance rules
 
@@ -88,6 +109,7 @@ No further WPS implementation, local installation or deployment is queued. Stabi
 - Keep primary-language/direction review, later dark-mode review and optional secondary-language approval sequential. Existing acceptance remains scoped; do not reopen accepted font tests without a concrete defect.
 - Source checks, agent observations, rendered/runtime evidence and owner approval are distinct. Example-product approval is not Skill engineering acceptance.
 - Completion does not authorize push/merge, publication, installation or deployment. Preserve user changes; do not infer new delivery permission from historical approvals.
+- R11 is bounded to its three audited findings and the tests/documentation needed to verify and deliver them under the explicit execution decision above. It does not reopen completed design approvals or authorize unrelated features.
 
 ## Completed history
 
@@ -112,7 +134,7 @@ The historical five-product evaluation was source-based in the same session, not
 
 ## Updating this roadmap
 
-- Allowed package states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. Only one WPS package is active at a time; an unstarted prerequisite alone is not a blocker.
+- Allowed package states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. Keep one active implementation package in the current workstream; an unstarted prerequisite alone is not a blocker. The historical WPS ledger and live R11 ledger remain separate.
 - Update the package row, completed count, active/next package and authority together. Started work needs an execution-record link; completion needs dated acceptance evidence and satisfied prerequisites.
 - Record the checked revision, actual checks, remaining limits and lead acceptance in the linked record. Keep local changes separate from integration/publication evidence.
 - Retain useful completed evidence in tables/archives, not repeated execution prose. Archives are historical snapshots, never competing live trackers.
