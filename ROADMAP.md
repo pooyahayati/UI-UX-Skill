@@ -7,8 +7,8 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Item | State |
 | --- | --- |
 | Updated | 2026-11-01 |
-| Released baseline | [v3.5.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.5.1); published artifacts and managed local installation verified 2026-10-16 |
-| Current workstream | R12 implementation complete; [3.6.0 delivery](docs/releases/3.6.0.md) authorized and in progress |
+| Released baseline | [v3.6.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.6.0); published artifacts and managed local installation verified 2026-11-01 |
+| Current workstream | R12 implementation and [3.6.0 delivery](docs/releases/3.6.0.md) complete |
 | Acceptance | All six packages accepted 2026-11-01; evidence and explicit limits in the [R12 execution record](docs/R12_EXECUTION.md) |
 | Completed R12 packages | 6 of 6 |
 | Active R12 package | None |
@@ -22,7 +22,7 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Next WPS package | None |
 | Execution authority | Historical [R11 implementation and delivery authorization](#r11-audit-remediation) is fulfilled; the separate R12 instruction above governs current work |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | v3.6.0 candidate; owner authorized commit/push/merge, publication and managed local update. v3.5.1 remains published until verified release completion |
+| Delivery | R12 merged through PR #49; v3.6.0 published and installed locally with verified backup and Head integration |
 
 ## R12 WordPress admin design and settings findability
 
@@ -45,12 +45,12 @@ The [R12 plan](docs/R12_WORDPRESS_ADMIN_DESIGN.md) owns scope, proposed file bou
 
 | Delivery step | Status | Evidence / next action |
 | --- | --- | --- |
-| Candidate metadata, compatibility, package and native security checks | Completed | [Candidate evidence](docs/releases/3.6.0.md#candidate-verification); final committed-source scan precedes push |
-| Commit, push, exact-head PR checks and merge | In progress | Local candidate accepted; exact-head CI and merge pending |
-| Main workflow, release/tag and actual downloaded artifacts | Not started | Existing workflow is sole publisher |
-| Managed local update, backup and closeout | Not started | Requires verified published artifacts |
+| Candidate metadata, compatibility, package and native security checks | Completed | [Candidate and final source evidence](docs/releases/3.6.0.md#candidate-verification) |
+| Commit, push, exact-head PR checks and merge | Completed | [PR #49](https://github.com/pooyahayati/UI-UX-Skill/pull/49); [integration evidence](docs/releases/3.6.0.md#integration-and-publication) |
+| Main workflow, release/tag and actual downloaded artifacts | Completed | [Published download verification](docs/releases/3.6.0.md#published-artifacts) |
+| Managed local update and recoverable backup | Completed | [Installation and compatibility](docs/releases/3.6.0.md#managed-local-installation) |
 
-**Next action:** complete the authorized 3.6.0 delivery. No fixed UI template, extra language, automatic dark theme, framework migration or new external design specialist is implied. The existing settings-only `@wordpress/components` requirement is preserved.
+**Next action:** none within R12 or its delivery. Future changes need their own scope. No fixed UI template, extra language, automatic dark theme, framework migration or new external design specialist is implied. The existing settings-only `@wordpress/components` requirement is preserved.
 
 ## R11 audit remediation
 
@@ -163,6 +163,7 @@ These rows summarize closed work, not pending tasks. Historical limitations and 
 | WPS-0–WPS-6 and release 3.4.0 | Completed and published, 2026-10-10; 7 of 7 packages | [Acceptance, source/runtime limits and release provenance](evals/wordpress-settings/EXECUTION.md); [published package checks](evals/wordpress-settings/RELEASE_PUBLISHED.json) |
 | Dashboard shadcn/ui default, optional interactive motion and release 3.5.0 | Completed, merged, published and installed locally, 2026-10-16 | [Exact source, CI, downloaded packages, security and managed-install verification](docs/releases/3.5.0.md) |
 | R11.1–R11.3 and corrective release 3.5.1 | Completed, merged, published and installed locally, 2026-10-16; 3 of 3 packages | [Stage acceptance and limits](docs/R11_EXECUTION.md); [PR, CI, published artifacts and managed-install verification](docs/releases/3.5.1.md) |
+| R12.1–R12.6 and release 3.6.0 | Completed, merged, published and installed locally, 2026-11-01; 6 of 6 packages | [Stage acceptance and limits](docs/R12_EXECUTION.md); [delivery evidence](docs/releases/3.6.0.md) |
 
 The historical five-product evaluation was source-based in the same session, not an independent browser/device run. R7/R8 and R9 acceptance is bounded to its recorded evidence; hypothetical specimen approvals are not unfinished Skill stages. See [full limitations](docs/archive/ROADMAP-2026-10-09.md#acceptance-and-known-limits).
 
