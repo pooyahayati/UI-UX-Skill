@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-01",
+  "method": "independent-rendered-ui-task",
+  "evaluator": "/root/r12_final_tasks",
+  "raw_input_sha256": "23729977a49a08dd89fee4eca31cf5adc70c0a058ff914aa8a054f0573441ba2",
+  "fixture_hashes": {
+    "app.js": "3a3c1258508afbe4de6f7a756572b740b31fa0fa98889f87a74a2a33c088b3d7",
+    "discovery.js": "a0c419e89497338f6e4e9a749d097523c5ba99991b33b70aafe1fc622d21cfa1",
+    "index.asset.php": "3fdcdbb233db97b5c80a7b72bc060845805bf533ae81c52486d55a92d1ae8fe3",
+    "model.js": "6d2401235f027608ae6896d55fea72c9af3eddc56c2947329ced473e35022ae5",
+    "style.css": "079ab5458773c654020cc74b733eb9b246e344034b5ebdd9c6986d6f6fd8bc74",
+    "workspace.js": "cbecaa8fbd8d48d718ecbcd8ab890338664a913c9d197bcb583633ea5db79a2b",
+    "wps-specimen.php": "be905fe36d8ef8499411f390209f7e1be150ea885c17e56c3a8b527e51317391",
+    "fonts/OFL.txt": "e6f4ce7b6c830d5a25a4f8ac777c267cd7d3c180bc2a7150ca57cbb9b280c4b7",
+    "fonts/Vazirmatn-Bold.ttf": "f635fdbea28f265de395ba83b4b1570dcf2f58d13c65469e61903b1c2d2ae723",
+    "fonts/Vazirmatn-Regular.ttf": "b69fd4c680b8f3f225feabcc655a2c585d97627b8f5f5c0f9985e894069f3a56"
+  },
+  "behavior_hashes": {
+    "references/products/wordpress-plugin.md": "118544ca97739175652a70bf1886d9be0bda5d7d510e7fe83ed27b69b43b674c",
+    "references/products/wordpress/components.md": "2bb83f33af3bdb316969f94b13687f1c07a6fcd2f32ce3d36427e84fed8ef9bf",
+    "references/products/wordpress/settings.md": "60ed330b406722685da569b5c2520c95b885f131cbec4b84f2cea5130c0ee12b"
+  },
+  "facilitator_hints": 0,
+  "artifacts": {
+    "r12-task/report.md": "4e59dfe1b7ef10b589dbc8b2c89dd1c9948eefd7aba365bb7c967507ebfaa32b",
+    "r12-task/trace.json": "a7134c0df77d6c7dfb653cf5949432f6a406afb1971a0f7ea4ef639403c4c5ad",
+    "r12-task/01-initial-settings.png": "4e93d546dfc2b74fcb71fcab55303e96ce47b9912f018c3873e7e4e12dfb7ebe",
+    "r12-task/02-webhook-search-title-draft.png": "6c8b70416ea1e71dbd93080bd2ac30ebdda0c167caf8d0d326a88bb5a1e812bd",
+    "r12-task/03-after-return-attempt.png": "bb9b926065a48f3c4d66caf4d28134f7df051b1cfbe13e855d89ab578654c68f",
+    "r12-task/04-technical-error-guidance.png": "fdea96ca51ed2e91b49f93d59deec088c75583dcd4b10c8a245f3bfdb710cb2a",
+    "r12-task/05-report-draft-with-global-error.png": "cec41085dee93038646962ae2f664b0ad4cba3144ce7860c5d16a3f546a28316",
+    "r12-task/06-technical-saved-title-still-dirty.png": "d6e845a4bd067a15722d00aa92ac987dd5997eadda8d6fd6054c3bdf0cafa62d",
+    "r12-task/07-title-draft-after-technical-save.png": "dd01bded60f814bc356e5ac5a46266e0c24e0316816ccf7e4d392d7db973cd0b",
+    "r12-task/08-recipient-search.png": "bef45c99a3836750e8230efc469fe16bb43ad69d8a96806a88cd28506e34b224",
+    "r12-task/09-recipient-field.png": "7c4bddc5b0b25d29c0403be0329d6881c46110815dbae154f34b8064eae9d778",
+    "r12-task/10-delivery-saved.png": "ca8a48371f5b1a1b3d5637dedfbc0e9bdcafdf3a7f51d98d05fdcc9ded0bf877",
+    "r12-task/11-reloaded-delivery.png": "2d42778600e0c76f063ed08044581ebb393b0aa61140a1adf791909a79c1a7c1",
+    "r12-task/12-reloaded-title.png": "d203a2a156d6542e525eb988380982d7434b11ec36cdb838fbade7a61c0c900c",
+    "r12-task/13-reloaded-connection.png": "934544a5dcd0322883149756ee6c4d359da36037b70050916a249c7b52de55c6"
+  },
+  "outcomes": [
+    {
+      "id": "alias-discovery",
+      "status": "passed",
+      "evidence": "Trace 2–3 and 14–15: raw webhook/recipient terms found applicable actual fields without destination hints."
+    },
+    {
+      "id": "error-recovery",
+      "status": "passed",
+      "evidence": "Trace 7–9: persistent error button reached/focused the HTTP field; visible HTTPS help supplied the correction, absent from raw task."
+    },
+    {
+      "id": "draft-retention",
+      "status": "passed",
+      "evidence": "Trace 7 and 11: requested title survived error/navigation and connection save, with its own save action still enabled."
+    },
+    {
+      "id": "section-save",
+      "status": "passed",
+      "evidence": "Trace 9–18: connection, title and conditional email recipient saved separately using visible section controls; no unrelated/test/credential changes."
+    },
+    {
+      "id": "reload-verification",
+      "status": "passed",
+      "evidence": "Trace 20–22: exact requested title, corrected HTTPS endpoint, enabled email and requested recipient persisted with save buttons disabled."
+    }
+  ],
+  "review": "Lead read the actual complete trace/report and inspected representative captures. Source was frozen before login; setup pause supplied no task solution. This is an independent agent task, not human usability or timing certification.",
+  "limitations": [
+    "One automation assumption that reload would show the report section caused a timeout; the retained delivery URL was correct and visible navigation recovered without value changes.",
+    "The task captured saving before navigation and an error afterwards, not continuous pending-section visibility. Controlled D02/D05 independently verify delayed-save/navigation and hidden-error behavior.",
+    "Browser launch required technical environment assistance; no setting destination or correction hints were supplied."
+  ]
+}

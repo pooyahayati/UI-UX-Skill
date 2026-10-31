@@ -150,7 +150,7 @@ def validate_policy(readme: str, roadmap: str) -> list[str]:
 
 
 def validate_current_roadmap(roadmap: str) -> list[str]:
-    """Validate the live WPS ledger separately from closed historical stages."""
+    """Validate current package ledgers without reinterpreting historical stages."""
     errors = []
     current = section(roadmap, "Current state")
     summary = {}
@@ -158,11 +158,34 @@ def validate_current_roadmap(roadmap: str) -> list[str]:
         if key in summary:
             errors.append(f"Duplicate current-state field: {key}")
         summary[key] = value.strip()
-    tracker = section(roadmap, "WordPress settings extension (WPS)")
-    rows = re.findall(r"^\| (WPS-\d+) \| (.+)\|\s*$", tracker, re.M)
-    expected = [f"WPS-{i}" for i in range(7)]
+    errors.extend(validate_ordered_packages(
+        section(roadmap, "WordPress settings extension (WPS)"), summary,
+        "WPS", [f"WPS-{i}" for i in range(7)], r"WPS-\d+",
+        "Owner instruction to execute WPS", "Execution authority"))
+    errors.extend(validate_ordered_packages(
+        section(roadmap, "R12 WordPress admin design and settings findability"), summary,
+        "R12", [f"R12.{i}" for i in range(1, 7)], r"R12\.\d+",
+        "Owner instruction to implement R12", "R12 execution authority"))
+    if not summary.get("Accountable role"):
+        errors.append("WPS accountable role must be recorded")
+    history = section(roadmap, "Completed history")
+    if "docs/archive/ROADMAP-2026-10-09.md" not in history:
+        errors.append("Completed history must link to the preserved checkpoint")
+    for term in ("completed R0–R8 and R9 exceptions are not new authority",
+                 "Completion does not authorize push/merge, publication, installation or deployment"):
+        if term not in section(roadmap, "Scope and acceptance rules"):
+            errors.append(f"Current roadmap authority boundary missing: {term}")
+    return errors
+
+
+def validate_ordered_packages(tracker: str, summary: dict[str, str], series: str,
+                              expected: list[str], row_pattern: str,
+                              kickoff: str, authority_key: str) -> list[str]:
+    """Shared five-column ledger contract; each workstream owns its authority."""
+    errors = []
+    rows = re.findall(rf"^\| ({row_pattern}) \| (.+)\|\s*$", tracker, re.M)
     if [name for name, _ in rows] != expected:
-        errors.append("WPS tracker must contain WPS-0–WPS-6 exactly once and in order")
+        errors.append(f"{series} tracker must contain {expected[0]}–{expected[-1]} exactly once and in order")
     statuses = {}
     link = r"\[[^\]]+\]\([^)]+\)"
     for name, tail in rows:
@@ -174,9 +197,9 @@ def validate_current_roadmap(roadmap: str) -> list[str]:
         statuses[name] = status
         if status not in STATES:
             errors.append(f"{name}: invalid status {status!r}")
-        required = ("Owner instruction to execute WPS" if name == "WPS-0"
-                    else f"Accepted WPS-{int(name[4:]) - 1}")
-        if required not in prerequisite:
+        index = expected.index(name) if name in expected else -1
+        required = kickoff if index == 0 else f"Accepted {expected[index - 1]}"
+        if index < 0 or required not in prerequisite:
             errors.append(f"{name}: missing execution prerequisite")
         if status != "Not started" and not re.search(link, evidence):
             errors.append(f"{name}: started package needs an execution/evidence link")
@@ -196,27 +219,19 @@ def validate_current_roadmap(roadmap: str) -> list[str]:
     completed = sum(value == "Completed" for value in statuses.values())
     active = [name for name in expected if statuses.get(name) in {"In progress", "Blocked", "Reopened"}]
     remaining = [name for name in expected if statuses.get(name) != "Completed" and name not in active]
-    if summary.get("Completed WPS packages") != f"{completed} of 7":
-        errors.append("WPS completed count must agree with the tracker")
-    if len(active) > 1 or summary.get("Active WPS package") != (active[0] if active else "None"):
-        errors.append("Active WPS package must match the single active tracker row")
-    if summary.get("Next WPS package") != (remaining[0] if remaining else "None"):
-        errors.append("Next WPS package must agree with the tracker")
-    authority = summary.get("Execution authority", "")
+    if summary.get(f"Completed {series} packages") != f"{completed} of {len(expected)}":
+        errors.append(f"{series} completed count must agree with the tracker")
+    if len(active) > 1 or summary.get(f"Active {series} package") != (active[0] if active else "None"):
+        errors.append(f"Active {series} package must match the single active tracker row")
+    if summary.get(f"Next {series} package") != (remaining[0] if remaining else "None"):
+        errors.append(f"Next {series} package must agree with the tracker")
+    authority = summary.get(authority_key, "")
     if not authority:
-        errors.append("WPS execution authority must be recorded")
+        errors.append(f"{series} execution authority must be recorded")
     elif any(value != "Not started" for value in statuses.values()):
-        if "Awaiting" in authority or not re.search(link, authority):
-            errors.append("Started WPS work requires linked owner execution authority")
-    if not summary.get("Accountable role"):
-        errors.append("WPS accountable role must be recorded")
-    history = section(roadmap, "Completed history")
-    if "docs/archive/ROADMAP-2026-10-09.md" not in history:
-        errors.append("Completed history must link to the preserved checkpoint")
-    for term in ("completed R0–R8 and R9 exceptions are not new authority",
-                 "Completion does not authorize push/merge, publication, installation or deployment"):
-        if term not in section(roadmap, "Scope and acceptance rules"):
-            errors.append(f"Current roadmap authority boundary missing: {term}")
+        if (re.search(r"\b(?:awaiting|planning/documentation only)\b", authority, re.I)
+                or not re.search(link, authority)):
+            errors.append(f"Started {series} work requires linked owner execution authority")
     return errors
 
 

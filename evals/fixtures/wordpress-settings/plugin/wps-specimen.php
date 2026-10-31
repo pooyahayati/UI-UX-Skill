@@ -36,13 +36,21 @@ add_action('admin_menu', function () {
 add_action('admin_enqueue_scripts', function ($hook) {
     if ($hook !== 'settings_page_wps-specimen' || !current_user_can('manage_options')) { return; }
     $asset = require __DIR__ . '/index.asset.php';
+    $variant = isset($_GET['variant']) ? sanitize_key(wp_unslash($_GET['variant'])) : 'multi';
+    if (!in_array($variant, array('simple', 'multi', 'discovery', 'workspace'), true)) { $variant = 'multi'; }
     wp_enqueue_script('wps-model', plugins_url('model.js', __FILE__), array(), $asset['version'], true);
-    wp_enqueue_script('wps-app', plugins_url('app.js', __FILE__), array_merge(array('wps-model'), $asset['dependencies']), $asset['version'], true);
+    $local_dependencies = array('wps-model');
+    if ($variant === 'discovery' || $variant === 'workspace') {
+        $entry = $variant === 'discovery' ? 'discovery' : 'workspace';
+        wp_enqueue_script('wps-' . $entry, plugins_url($entry . '.js', __FILE__), $asset['dependencies'], $asset['version'], true);
+        $local_dependencies[] = 'wps-' . $entry;
+    }
+    wp_enqueue_script('wps-app', plugins_url('app.js', __FILE__), array_merge($local_dependencies, $asset['dependencies']), $asset['version'], true);
     wp_enqueue_style('wps-style', plugins_url('style.css', __FILE__), array('wp-components'), $asset['version']);
     $lang = isset($_GET['lang']) && sanitize_key(wp_unslash($_GET['lang'])) === 'en' ? 'en' : 'fa';
     wp_localize_script('wps-app', 'WPSConfig', array('ajaxUrl' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('wps_specimen'), 'lang' => $lang,
-        'variant' => isset($_GET['variant']) && sanitize_key(wp_unslash($_GET['variant'])) === 'simple' ? 'simple' : 'multi',
+        'variant' => $variant,
         'initialFault' => isset($_GET['fault']) && sanitize_key(wp_unslash($_GET['fault'])) === 'load' ? 'load' : 'none'));
 });
 

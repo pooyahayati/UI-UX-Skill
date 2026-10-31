@@ -42,7 +42,7 @@ The [selection manifest](ui-foundations/manifest.json) freezes 13 of the 18 exis
 ```bash
 python3 scripts/prepare_eval_run.py S01 --suite ui-foundations --output <fresh-external-case-directory>
 python3 scripts/test_behavior_evaluation.py
-python3 scripts/validate_eval_result.py evals/ui-foundations/result.json --suite ui-foundations --accept
+python3 scripts/validate_eval_result.py evals/ui-foundations/r12-result.json --suite ui-foundations --accept --release-binding evals/r12-release-version.json
 ```
 
 Provide a fresh evaluator only `evaluator/PROMPT.txt` and `evaluator/skill/`, plus required routed external specialization. `RUN.json`, the selection manifest, prior outputs and review notes stay outside its allowed inputs. Preparation checks exact prompt/candidate bytes and rejects extra files in the input tree; it is an integrity check, not a sandbox preventing an agent from reading elsewhere.
@@ -50,6 +50,21 @@ Provide a fresh evaluator only `evaluator/PROMPT.txt` and `evaluator/skill/`, pl
 Retain the actual response and a consumed-resource list. Review decisions against the withheld criteria, recording concrete evidence for every outcome. The [result record](ui-foundations/result.json) binds raw inputs, preparation/rubric, actual output, candidate tree and declared per-case source dependencies; changes to consumed sources invalidate affected cases. Shared entrypoint/version/routing changes invalidate all selected cases; resource inventory changes also require review. Review the mapping if an unread resource becomes relevant: hashes cannot determine semantic impact or prove read history.
 
 The ordinary validator permits coherent failed/partial/untested records. `--accept` additionally requires all selected cases and passing required outcomes with matching output/source evidence. CI checks these saved records and focused negatives; it does not rerun a model, make paid calls, certify application runtime behavior or approve a visual design. Lead acceptance still requires reading the actual responses. See the [execution record](../docs/R11_EXECUTION.md#r113) for invocation, environment and limits.
+
+R12's [successor record](ui-foundations/r12-result.json) contains one fresh S04
+response and twelve unchanged historical case records. A paired per-case
+`candidate` snapshot and distinct `outputFile` bind the new response without
+rewriting the historical top-level candidate or output. All current consumed
+resources must still match; an override is not a stale-source exemption.
+The [original result](ui-foundations/result.json) remains historical. Separate
+[R12 raw requests and reviewed outputs](wordpress-settings/README.md#r12-current-evidence)
+cover five WordPress design decisions; neither suite claims customer implementation.
+
+The [3.6.0 release binding](r12-release-version.json) preserves those original
+outputs and candidate identities across the canonical `VERSION`-only bump.
+It binds the exact prior/current full trees and retained result contents;
+changed guidance, inventory, raw requests, outputs or preparation still fail.
+This is explicit metadata compatibility, not a new model or browser run.
 
 ## Inputs versus examples
 

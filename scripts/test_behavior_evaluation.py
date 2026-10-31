@@ -5,10 +5,31 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from behavior_evaluation import (ROOT, SUITE, COMMON_PATHS, canonical, digest, manifest,
                                  prepare, preparation_errors, run_bytes, run_record,
                                  snapshot, tree_digest, validate_record)
+from release_version_binding import (content_digest, release_predecessor, version_digest)
+
+
+UI_RECORD = "evals/ui-foundations/r12-result.json"
+WPS_RECORD = "evals/wordpress-settings/r12-behavior-results.json"
+
+
+def release_binding_for(ui, wps, previous):
+    """Synthetic release transition only; never writes model evidence."""
+    return {
+        "schema_version": 1, "normalization": "git-lf", "scope": "r12-release-version-only",
+        "decision": "docs/releases/3.6.0.md#authority", "recorded_version": "3.5.1",
+        "release_version": "3.6.0", "version_change": {
+            "path": "VERSION", "previous_sha256": version_digest("3.5.1"),
+            "sha256": version_digest("3.6.0")},
+        "candidate_before_sha256": tree_digest(previous),
+        "candidate_after_sha256": tree_digest({**previous, "VERSION": version_digest("3.6.0")}),
+        "records": {UI_RECORD: content_digest(ui), WPS_RECORD: content_digest(wps)},
+        "notes": "Synthetic metadata-only compatibility, not execution evidence.",
+    }
 
 
 class BehaviorEvaluationTests(unittest.TestCase):
@@ -160,6 +181,208 @@ class BehaviorEvaluationTests(unittest.TestCase):
             value = deepcopy(self.result)
             value["cases"][0][field] = item
             self.assertTrue(self.errors(value))
+
+    def refreshed_case(self):
+        """Synthetic partial rerun; preserve the old snapshot and actual output."""
+        name = "references/products/wordpress/settings.md"
+        old = next(case for case in self.result["cases"] if case["id"] == "S04")
+        old["sourcePaths"].append(name)
+        with (self.root / "skills/ui-ux-skill" / name).open("ab") as stream:
+            stream.write(b"\nChanged settings guidance for a synthetic unit test.\n")
+        value = deepcopy(self.result)
+        fresh = next(case for case in value["cases"] if case["id"] == "S04")
+        files = snapshot(self.root / "skills/ui-ux-skill")
+        fresh["candidate"] = {"files": files, "sha256": tree_digest(files)}
+        preparation = prepare("S04", self.base / "fresh-S04", self.root)
+        fresh["preparationSha256"] = digest(canonical(preparation / "RUN.json"))
+        fresh["outputFile"] = "S04-r12.md"
+        output = b"Fresh synthetic output for validator tests, not model evidence.\n"
+        (self.record_dir / "outputs" / fresh["outputFile"]).write_bytes(output)
+        fresh["outputSha256"] = digest(output)
+        fresh["evaluatorId"] = "fresh-unit-only-S04"
+        return value, fresh
+
+    def test_partial_rerun_preserves_unchanged_cases_and_historical_candidate(self):
+        value, fresh = self.refreshed_case()
+        self.assertEqual(self.errors(value, accept=True), [])
+        self.assertEqual(value["candidate"], self.result["candidate"])
+        self.assertEqual([c for c in value["cases"] if c["id"] != "S04"],
+                         [c for c in self.result["cases"] if c["id"] != "S04"])
+        self.assertTrue((self.record_dir / "outputs/S04.md").is_file())
+        self.assertNotEqual(fresh["candidate"], value["candidate"])
+        self.assertEqual(self.errors(accept=True),
+                         ["S04: stale/missing consumed source references/products/wordpress/settings.md"])
+
+    def test_override_requires_full_valid_snapshot_and_new_output_name(self):
+        value, fresh = self.refreshed_case()
+        for candidate in (None, [], {}, {"files": [], "sha256": "bad"},
+                          {**fresh["candidate"], "sha256": "0" * 64}):
+            changed = deepcopy(value)
+            next(c for c in changed["cases"] if c["id"] == "S04")["candidate"] = candidate
+            self.assertTrue(any("candidate override" in e for e in self.errors(changed)), candidate)
+        changed = deepcopy(value)
+        override = next(c for c in changed["cases"] if c["id"] == "S04")["candidate"]
+        override["files"].pop("LICENSE")
+        override["sha256"] = tree_digest(override["files"])
+        self.assertTrue(any("changed resource inventory" in e for e in self.errors(changed)))
+        for field in ("candidate", "outputFile"):
+            changed = deepcopy(value)
+            next(c for c in changed["cases"] if c["id"] == "S04").pop(field)
+            self.assertTrue(any("must be paired" in e for e in self.errors(changed)), field)
+
+    def test_override_preparation_and_consumed_sources_are_independently_bound(self):
+        value, fresh = self.refreshed_case()
+        fresh["preparationSha256"] = next(c for c in self.result["cases"] if c["id"] == "S04")["preparationSha256"]
+        self.assertTrue(any("S04: stale preparation/rubric" in e for e in self.errors(value)))
+        # Even a coherent preparation cannot make a stale consumed source current.
+        fresh["candidate"] = deepcopy(self.result["candidate"])
+        self.assertTrue(any("S04: stale/missing consumed source" in e for e in self.errors(value)))
+        with (self.root / "skills/ui-ux-skill/SKILL.md").open("ab") as stream:
+            stream.write(b"\nChanged shared guidance invalidates all consumers.\n")
+        self.assertEqual(sum("stale/missing consumed source SKILL.md" in e for e in self.errors(value)), 13)
+
+    def test_output_override_rejects_paths_wrong_case_and_historical_filename(self):
+        value, fresh = self.refreshed_case()
+        for filename in (None, [], "", "S04.md", "S01-r12.md", "../S04-r12.md",
+                         "subdir/S04-r12.md", r"..\S04-r12.md", "C:/S04-r12.md", "/S04-r12.md"):
+            fresh["outputFile"] = filename
+            self.assertTrue(any("invalid or escaping outputFile" in e for e in self.errors(value)), filename)
+
+    def test_fresh_output_is_required_and_content_bound(self):
+        value, fresh = self.refreshed_case()
+        output = self.record_dir / "outputs" / fresh["outputFile"]
+        output.unlink()
+        self.assertTrue(any("S04: missing actual output" in e for e in self.errors(value)))
+        for content in (b"", b"Changed fresh output"):
+            output.write_bytes(content)
+            self.assertTrue(any("S04: missing/changed actual output" in e for e in self.errors(value)))
+
+    def test_resolved_output_escape_is_rejected(self):
+        value, fresh = self.refreshed_case()
+        output = self.record_dir / "outputs" / fresh["outputFile"]
+        outside = self.base / "outside-output.md"
+        outside.write_bytes(output.read_bytes())
+        # Exercise the resolved containment boundary independently of whether
+        # the host permits creating symlinks (Windows may require privileges).
+        resolve = Path.resolve
+        def redirected(path, *args, **kwargs):
+            return outside if path == output else resolve(path, *args, **kwargs)
+        with patch.object(Path, "resolve", redirected):
+            self.assertTrue(any("invalid or escaping outputFile" in e for e in self.errors(value)))
+
+    def released_case(self):
+        for path in (self.root / "VERSION", self.root / "skills/ui-ux-skill/VERSION"):
+            path.write_text("3.5.1\n", encoding="utf-8")
+        self.manifest = manifest(self.root)
+        files = snapshot(self.root / "skills/ui-ux-skill")
+        self.result["skillVersion"] = "3.5.1"
+        self.result["candidate"] = {"files": files, "sha256": tree_digest(files)}
+        for row, case in zip(self.result["cases"], self.manifest["cases"]):
+            row["preparationSha256"] = digest(run_bytes(run_record(case, files)))
+        result, fresh = self.refreshed_case()
+        binding = release_binding_for(result, {"candidate": fresh["candidate"]}, fresh["candidate"]["files"])
+        for path in (self.root / "VERSION", self.root / "skills/ui-ux-skill/VERSION"):
+            path.write_text("3.6.0\n", encoding="utf-8")
+        return result, binding
+
+    def test_release_metadata_bridge_preserves_original_records_and_per_case_candidates(self):
+        result, binding = self.released_case()
+        before = deepcopy(result)
+        self.assertTrue(self.errors(result, accept=True))
+        self.assertEqual(self.errors(result, accept=True, release_binding=binding), [])
+        self.assertEqual(result, before)
+        self.assertNotEqual(result["candidate"], next(row for row in result["cases"] if row["id"] == "S04")["candidate"])
+        self.assertTrue((self.record_dir / "outputs/S04.md").is_file())
+
+    def test_release_bridge_does_not_relax_output_preparation_or_override_checks(self):
+        result, binding = self.released_case()
+        for field, item in (("preparationSha256", "0" * 64), ("outputFile", "S04.md"),
+                            ("candidate", {"files": {}, "sha256": "0" * 64})):
+            changed = deepcopy(result)
+            next(row for row in changed["cases"] if row["id"] == "S04")[field] = item
+            # Even a deliberately rebound synthetic record must retain the
+            # independent preparation/output/complete-candidate checks.
+            rebound = deepcopy(binding)
+            rebound["records"][UI_RECORD] = content_digest(changed)
+            self.assertTrue(self.errors(changed, accept=True, release_binding=rebound), field)
+        (self.record_dir / "outputs/S04-r12.md").write_bytes(b"replacement\n")
+        self.assertTrue(any("actual output" in e for e in self.errors(result, release_binding=binding)))
+
+
+class ReleaseVersionBindingTests(unittest.TestCase):
+    def setUp(self):
+        self.previous = {"VERSION": version_digest("3.5.1"), "SKILL.md": "a" * 64}
+        candidate = {"files": self.previous, "sha256": tree_digest(self.previous)}
+        self.ui = {"skillVersion": "3.5.1", "cases": [{"id": "S04", "candidate": candidate}]}
+        self.wps = {"candidate": candidate}
+        self.actual = {**self.previous, "VERSION": version_digest("3.6.0")}
+        self.binding = release_binding_for(self.ui, self.wps, self.previous)
+
+    def check(self, result=None, actual=None, binding=None, record=UI_RECORD, current_version="3.6.0"):
+        return release_predecessor(self.ui if result is None else result,
+                                   self.actual if actual is None else actual,
+                                   self.binding if binding is None else binding,
+                                   record=record, current_version=current_version)
+
+    def test_exact_transition_is_non_mutating_and_covers_both_records(self):
+        before = deepcopy((self.ui, self.wps, self.actual, self.binding))
+        self.assertEqual(self.check(), self.previous)
+        self.assertEqual(self.check(result=self.wps, record=WPS_RECORD), self.previous)
+        self.assertEqual((self.ui, self.wps, self.actual, self.binding), before)
+
+    def test_non_version_changes_and_inventory_changes_are_rejected(self):
+        for actual in ({**self.actual, "SKILL.md": "b" * 64},
+                       {**self.actual, "new.md": "b" * 64}, {"VERSION": self.actual["VERSION"]}):
+            with self.assertRaises(ValueError):
+                self.check(actual=actual)
+            rebound = deepcopy(self.binding)
+            rebound["candidate_after_sha256"] = tree_digest(actual)
+            rebound["candidate_before_sha256"] = tree_digest({**actual, "VERSION": version_digest("3.5.1")})
+            with self.assertRaises(ValueError):
+                self.check(actual=actual, binding=rebound)
+
+    def test_wrong_identity_parent_target_scope_and_record_are_rejected(self):
+        for key, value in (("schema_version", 2), ("normalization", "none"),
+                           ("scope", "general-compatibility"), ("decision", "elsewhere"),
+                           ("recorded_version", "3.5.0"), ("release_version", "3.6.1"),
+                           ("candidate_before_sha256", "0" * 64),
+                           ("candidate_after_sha256", "0" * 64), ("notes", "")):
+            with self.assertRaises(ValueError, msg=key):
+                self.check(binding={**self.binding, key: value})
+        for current in ("3.5.1", "3.6.1", None):
+            with self.assertRaises(ValueError):
+                self.check(current_version=current)
+        for record in ("evals/ui-foundations/result.json", "../r12-result.json", WPS_RECORD):
+            with self.assertRaises(ValueError):
+                self.check(record=record)
+        for changed in ({**self.ui, "skillVersion": "3.6.0"}, {**self.ui, "cases": []}):
+            with self.assertRaises(ValueError):
+                self.check(result=changed)
+
+    def test_missing_extra_malformed_and_changed_bindings_are_rejected(self):
+        mutations = [None, [], {}, {**self.binding, "extra": True}]
+        for key in self.binding:
+            changed = deepcopy(self.binding); changed.pop(key); mutations.append(changed)
+        for key in ("path", "previous_sha256", "sha256"):
+            changed = deepcopy(self.binding); changed["version_change"][key] = "wrong"; mutations.append(changed)
+        for records in ({UI_RECORD: content_digest(self.ui)}, {**self.binding["records"], "other": "a" * 64},
+                        {**self.binding["records"], UI_RECORD: "0" * 64}, []):
+            mutations.append({**self.binding, "records": records})
+        for changed in mutations:
+            with self.assertRaises(ValueError):
+                release_predecessor(self.ui, self.actual, changed, record=UI_RECORD, current_version="3.6.0")
+        with self.assertRaises(ValueError):
+            self.check(actual={**self.actual, "VERSION": version_digest("3.6.0")[:-1] + "x"})
+
+    def test_actual_release_tree_and_retained_r12_records(self):
+        binding = json.loads((ROOT / "evals/r12-release-version.json").read_text(encoding="utf-8"))
+        actual = snapshot(ROOT / "skills/ui-ux-skill")
+        version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+        for record in (UI_RECORD, WPS_RECORD):
+            result = json.loads((ROOT / record).read_text(encoding="utf-8"))
+            previous = release_predecessor(result, actual, binding, record=record, current_version=version)
+            self.assertEqual(set(previous), set(actual))
+            self.assertEqual([name for name in previous if previous[name] != actual[name]], ["VERSION"])
 
 
 if __name__ == "__main__":

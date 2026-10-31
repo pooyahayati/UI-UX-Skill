@@ -53,6 +53,36 @@ and errors findable when their field is in another tab or collapsed section.
 
 Settings search is justified by actual volume/findability, not by convention.
 
+When discovery is difficult, index only authorized setting names, help and curated
+user-intent aliases, grouped by their user-facing destination. Include common
+phrasing (for example webhook → connection endpoint); do not expose option keys,
+secrets, entered values or metadata hidden by capabilities. Apply permission
+filtering before matching/counting, and enforce the same capability on the server.
+Normalize appropriate locale differences for matching only: Persian ی/ي, ک/ك,
+diacritics and spaces/half-spaces; keep the displayed label/value unchanged.
+
+A result must open the actual group/disclosure and identify the destination field,
+not merely show a matching snippet. Move keyboard focus to that field; when it is
+disabled or inherited, focus its explanation/prerequisite without enabling it.
+Support result selection, dismissal and focus return; an ordinary labelled search
+plus a list of links/buttons is preferable to an incomplete combobox. Announce
+result counts/no results without moving focus on each keystroke. Clearing search
+restores useful navigation. Never silently select an ambiguous result.
+
+Section changes, search and back navigation must preserve unsaved edits and ongoing
+save/recovery state. Keep draft ownership above the changing panel; use only stable
+non-sensitive destination identifiers in URLs, not values or credentials. Do not
+add browser storage for draft persistence without its own approved privacy contract.
+Reveal late validation errors in hidden groups, focus the actual invalid field and
+retain other edits. Keep save scope, unsaved status, uncertain outcomes and conflict
+recovery visible across navigation; a new search must not dismiss those states.
+
+Test actual tasks with raw wording rather than telling reviewers the destination.
+Record success, wrong turns and help needed; compare measured time/steps with a
+retained baseline only when claiming improvement. Agent discovery is not human
+usability certification. Reorganize repeated wrong destinations before adding more
+navigation layers. Short forms should remain straightforward without search.
+
 Common groups may include:
 
 - General

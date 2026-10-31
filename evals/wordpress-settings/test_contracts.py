@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+from datetime import date
 import hashlib
 import json
 from pathlib import Path
@@ -19,6 +20,18 @@ EXPECTED = {f"WP-{i:02d}" for i in range(1, 15)} | {f"ISO-{i:02d}" for i in rang
 BEHAVIOR = {
     "references/products/wordpress-plugin.md", "references/products/wordpress/settings.md",
     "references/products/wordpress/components.md",
+}
+R12_FIXTURE_CHANGES = {"app.js", "style.css", "wps-specimen.php", "discovery.js", "workspace.js"}
+R12_PARENT_HASHES = {
+    "baseline.json": "7f9c912937e0bc65487d98194b6f3c10593daf530c9eaea3f8e1971da88dc570",
+    "RESULTS.json": "7946519749a5f7c2677b47671666fab09b73a58efd0b1e855dbe52fa4ce2b2ac",
+    "r11-fixture-delta.json": "5da598e8b69efc00653f0596c207ccf833577980041a73a3379fdbef6a85cec7",
+    "r11-license-delta.json": "dad8e38265e8997f5195ac6732193a045414d0c016597c77c005252b3cb5cea2",
+    "evidence/r11-browser-results.json": "8f7f8cec1079bf9320543248ff249e67c39450169bfa68c9f5077a5260023ed4",
+}
+R12_DISCOVERY_IDS = {f"D{i:02d}" for i in range(1, 12)}
+R12_REGRESSION_IDS = ({f"WP-{i:02d}" for i in range(1, 15)} - {"WP-10"}) | {
+    "R11-CONFLICT-current", "R11-CONFLICT-minimum", "R11-CONFLICT-RTL",
 }
 
 
@@ -157,6 +170,75 @@ def fixture_successor(historical, delta):
             raise ValueError("R11 fixture successor does not bind its parent")
         current[name] = binding["sha256"]
     return current
+
+
+def r12_successor(behavior_parent, fixture_parent, delta):
+    """Bind only the authorized R12 changes to the retained WPS/R11 parents.
+
+    This produces expected source identities; acceptance still requires fresh
+    runtime records and their independent source/runner checks below.
+    """
+    if (delta.get("schema_version") != 1 or delta.get("normalization") != "git-lf"
+            or delta.get("decision") != "docs/R12_EXECUTION.md#authority"
+            or delta.get("authorized_on") != "2026-11-01"
+            or delta.get("parents") != R12_PARENT_HASHES
+            or set(delta.get("skill_changes", {})) != BEHAVIOR
+            or set(delta.get("fixture_changes", {})) != R12_FIXTURE_CHANGES
+            or set(behavior_parent) != BEHAVIOR):
+        raise ValueError("Invalid R12 successor scope or retained-parent binding")
+    updated = []
+    for parent, changes, additions in (
+        (behavior_parent, delta["skill_changes"], set()),
+        (fixture_parent, delta["fixture_changes"], {"discovery.js", "workspace.js"}),
+    ):
+        current = dict(parent)
+        for name, binding in changes.items():
+            if (not isinstance(binding, dict) or "previous_sha256" not in binding
+                    or (name not in parent) != (name in additions)
+                    or binding["previous_sha256"] != parent.get(name)
+                    or not re.fullmatch(r"[a-f0-9]{64}", str(binding.get("sha256", "")))
+                    or binding["sha256"] == parent.get(name)):
+                raise ValueError("R12 successor does not bind its exact parent: " + name)
+            current[name] = binding["sha256"]
+        updated.append(current)
+    return tuple(updated)
+
+
+def r12_runtime_errors(report, behavior, fixture, runner_sha256, expected_ids):
+    """Check fresh runtime evidence against the exact successor and runner."""
+    errors = []
+    try:
+        recorded = report.get("recorded_on", "")
+        dated = bool(re.fullmatch(r"\d{4}-\d{2}-\d{2}", recorded)) and date.fromisoformat(recorded) >= date(2026, 11, 1)
+    except (ValueError, TypeError):
+        dated = False
+    if report.get("schema_version") != 1 or not dated:
+        errors.append("R12 runtime record needs its schema and a valid post-authorization date")
+    if report.get("behavior_hashes") != behavior or report.get("fixture_hashes") != fixture:
+        errors.append("R12 runtime record does not bind the successor source")
+    if report.get("runner_sha256") != runner_sha256:
+        errors.append("R12 runtime record does not bind its actual runner")
+    if report.get("javascript_errors") != [] or report.get("console_warnings") != []:
+        errors.append("R12 runtime errors or warnings are unresolved or missing")
+    rows = report.get("observations")
+    if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
+        return errors + ["R12 runtime observation inventory is missing or malformed"]
+    ids = [row.get("id") for row in rows]
+    if (any(not isinstance(name, str) for name in ids)
+            or len(ids) != len(set(ids))
+            or {name for name in ids if not name.startswith("VIEW-")} != expected_ids):
+        errors.append("R12 runtime observations are missing, duplicate or out of scope")
+    def has_detail(row):
+        detail = row.get("detail")
+        # The legacy runner records viewport geometry as an object. Required
+        # behavioral observations still need an actual explanatory string.
+        if isinstance(row.get("id"), str) and row["id"].startswith("VIEW-") and isinstance(detail, dict):
+            return bool(detail)
+        return isinstance(detail, str) and bool(detail.strip())
+
+    if any(row.get("status") != "passed" or not has_detail(row) for row in rows):
+        errors.append("R12 runtime observation is failed or lacks actual detail")
+    return errors
 
 
 class WPSContracts(unittest.TestCase):
@@ -305,12 +387,15 @@ class WPSContracts(unittest.TestCase):
         result = json.loads(report.read_text(encoding="utf-8"))
         self.assertEqual(report_errors(result), [])
         self.assertEqual(set(result["candidate_skill_hashes"]), BEHAVIOR)
-        for rel, digest in result["candidate_skill_hashes"].items():
+        r11 = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        r12 = json.loads((HERE / "r12-source-fixture-delta.json").read_text(encoding="utf-8"))
+        behavior, expected_fixture = r12_successor(
+            result["candidate_skill_hashes"], fixture_successor(result["fixture_hashes"], r11), r12)
+        for rel, digest in behavior.items():
             self.assertEqual(hashlib.sha256(canonical_bytes(ROOT / "skills/ui-ux-skill" / rel)).hexdigest(), digest)
         fixture = ROOT / "evals/fixtures/wordpress-settings/plugin"
         actual = {p.relative_to(fixture).as_posix(): hashlib.sha256(p.read_bytes() if p.suffix == ".ttf" else canonical_bytes(p)).hexdigest() for p in fixture.rglob("*") if p.is_file()}
-        delta = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
-        self.assertEqual(fixture_successor(result["fixture_hashes"], delta), actual)
+        self.assertEqual(expected_fixture, actual)
 
     def test_r11_fixture_successor_rejects_missing_extra_and_wrong_parent(self):
         historical = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))["fixture_hashes"]
@@ -328,7 +413,7 @@ class WPSContracts(unittest.TestCase):
             with self.assertRaises(ValueError):
                 fixture_successor(historical, bad)
 
-    def test_r11_runtime_evidence_is_bound_to_current_fixture(self):
+    def test_r11_runtime_evidence_remains_bound_to_its_historical_fixture(self):
         historical = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))["fixture_hashes"]
         delta = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
         browser = json.loads((HERE / "evidence/r11-browser-results.json").read_text(encoding="utf-8"))
@@ -345,6 +430,36 @@ class WPSContracts(unittest.TestCase):
         self.assertTrue(all(r["status"] == "passed" and r["method"] == "real-admin-browser" and r["detail"] for r in rows))
         for name in ["current-en", "current-en-390", "minimum-en", "minimum-en-390", "current-fa-390"]:
             self.assertTrue((HERE / "evidence" / ("r11-conflict-" + name + ".png")).read_bytes().startswith(b"\x89PNG\r\n\x1a\n"))
+
+    def test_r12_retains_immutable_parent_records(self):
+        for name, digest in R12_PARENT_HASHES.items():
+            self.assertEqual(hashlib.sha256(canonical_bytes(HERE / name)).hexdigest(), digest, name)
+
+    def test_r12_captures_bind_actual_images(self):
+        report = json.loads((HERE / "evidence/r12-browser-results.json").read_text(encoding="utf-8"))
+        captures = report["captures"]
+        self.assertEqual(len(captures), 11)
+        names = [capture["file"] for capture in captures]
+        self.assertEqual(len(set(names)), len(names))
+        for capture in captures:
+            name = capture["file"]
+            self.assertRegex(name, r"^r12-[a-z0-9-]+\.png$")
+            self.assertEqual(hashlib.sha256((HERE / "evidence" / name).read_bytes()).hexdigest(), capture["sha256"])
+            self.assertFalse(capture["overflow"])
+
+    def test_r12_runtime_records_bind_the_actual_successor_and_runners(self):
+        historical = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))
+        r11 = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        delta = json.loads((HERE / "r12-source-fixture-delta.json").read_text(encoding="utf-8"))
+        behavior, fixture = r12_successor(historical["candidate_skill_hashes"],
+                                          fixture_successor(historical["fixture_hashes"], r11), delta)
+        for record, runner, ids in (
+            ("r12-browser-results.json", "run_discovery.cjs", R12_DISCOVERY_IDS),
+            ("r12-regression-results.json", "run_browser.cjs", R12_REGRESSION_IDS),
+        ):
+            report = json.loads((HERE / "evidence" / record).read_text(encoding="utf-8"))
+            self.assertEqual(r12_runtime_errors(report, behavior, fixture,
+                                               hashlib.sha256(canonical_bytes(HERE / runner)).hexdigest(), ids), [], record)
 
     def test_runtime_record_matches_accepted_outcomes(self):
         result = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))
@@ -413,6 +528,101 @@ class WPSContracts(unittest.TestCase):
                 (skill / "SKILL.md").write_text("changed\n", encoding="utf-8")
                 with self.assertRaises(ValueError):
                     verify_packages.verify(root)
+
+
+class R12SuccessorContracts(unittest.TestCase):
+    def setUp(self):
+        historical = json.loads((HERE / "RESULTS.json").read_text(encoding="utf-8"))
+        r11 = json.loads((HERE / "r11-fixture-delta.json").read_text(encoding="utf-8"))
+        self.behavior = historical["candidate_skill_hashes"]
+        self.wps_fixture = historical["fixture_hashes"]
+        self.fixture = fixture_successor(self.wps_fixture, r11)
+        # Synthetic hashes exercise the contract only. They are never written
+        # as candidate evidence or accepted runtime results.
+        self.delta = {
+            "schema_version": 1, "normalization": "git-lf",
+            "decision": "docs/R12_EXECUTION.md#authority", "authorized_on": "2026-11-01",
+            "parents": dict(R12_PARENT_HASHES),
+            "skill_changes": {name: {"previous_sha256": self.behavior[name], "sha256": "a" * 64}
+                              for name in BEHAVIOR},
+            "fixture_changes": {name: {"previous_sha256": self.fixture.get(name), "sha256": "b" * 64}
+                                for name in R12_FIXTURE_CHANGES},
+        }
+
+    def test_successor_preserves_parents_and_unchanged_fixture(self):
+        before = copy.deepcopy((self.behavior, self.fixture, self.delta))
+        behavior, fixture = r12_successor(self.behavior, self.fixture, self.delta)
+        self.assertEqual(before, (self.behavior, self.fixture, self.delta))
+        self.assertEqual(set(behavior), BEHAVIOR)
+        self.assertEqual(set(fixture) - set(self.fixture), {"discovery.js", "workspace.js"})
+        for name in set(self.fixture) - R12_FIXTURE_CHANGES:
+            self.assertEqual(fixture[name], self.fixture[name])
+        with self.assertRaises(ValueError):
+            r12_successor(behavior, fixture, self.delta)  # Not a replayable blanket exemption.
+
+    def test_rejects_missing_extra_wrong_parent_and_malformed_changes(self):
+        for group in ("skill_changes", "fixture_changes"):
+            name = next(iter(self.delta[group]))
+            mutations = []
+            missing = copy.deepcopy(self.delta); missing[group].pop(name); mutations.append(missing)
+            extra = copy.deepcopy(self.delta); extra[group]["unexpected.js"] = {"sha256": "a" * 64}; mutations.append(extra)
+            parent = copy.deepcopy(self.delta); parent[group][name]["previous_sha256"] = "0" * 64; mutations.append(parent)
+            no_parent = copy.deepcopy(self.delta); no_parent[group][name].pop("previous_sha256"); mutations.append(no_parent)
+            malformed = copy.deepcopy(self.delta); malformed[group][name]["sha256"] = "not-a-hash"; mutations.append(malformed)
+            unchanged = copy.deepcopy(self.delta); unchanged[group][name]["sha256"] = unchanged[group][name]["previous_sha256"]; mutations.append(unchanged)
+            for bad in mutations:
+                with self.subTest(group=group, delta=bad):
+                    with self.assertRaises(ValueError):
+                        r12_successor(self.behavior, self.fixture, bad)
+        with self.assertRaises(ValueError):
+            r12_successor(self.behavior, self.wps_fixture, self.delta)  # Cannot bypass the R11 parent.
+
+    def test_rejects_changed_authority_or_parent_records(self):
+        for field, value in (("schema_version", 2), ("normalization", "none"),
+                             ("decision", "inherited permission"), ("authorized_on", "2026-10-16"),
+                             ("parents", {}), ("parents", {**R12_PARENT_HASHES, "RESULTS.json": "0" * 64})):
+            with self.subTest(field=field):
+                with self.assertRaises(ValueError):
+                    r12_successor(self.behavior, self.fixture, {**self.delta, field: value})
+
+    def test_runtime_rejects_stale_sources_runners_missing_or_failed_observations(self):
+        behavior, fixture = r12_successor(self.behavior, self.fixture, self.delta)
+        runner_hash = "c" * 64
+        for ids in (R12_DISCOVERY_IDS, R12_REGRESSION_IDS):
+            report = {
+                "schema_version": 1, "recorded_on": "2026-11-01", "runner_sha256": runner_hash,
+                "behavior_hashes": behavior, "fixture_hashes": fixture,
+                "javascript_errors": [], "console_warnings": [],
+                "observations": [{"id": name, "status": "passed", "detail": "Synthetic contract-test observation"}
+                                 for name in sorted(ids)],
+            }
+            self.assertEqual(r12_runtime_errors(report, behavior, fixture, runner_hash, ids), [])
+            for field, value in (
+                ("schema_version", 0), ("recorded_on", "2026-10-16"), ("recorded_on", "2026-02-30"),
+                ("behavior_hashes", self.behavior), ("fixture_hashes", self.fixture),
+                ("runner_sha256", "0" * 64), ("javascript_errors", ["error"]), ("console_warnings", None),
+                ("observations", None), ("observations", [None]),
+                ("observations", report["observations"][:-1]),
+                ("observations", report["observations"] + [report["observations"][0]]),
+            ):
+                self.assertTrue(r12_runtime_errors({**report, field: value}, behavior, fixture, runner_hash, ids), field)
+            for field, value in (("id", "unexpected"), ("id", {}), ("status", "failed"), ("detail", " ")):
+                broken = copy.deepcopy(report)
+                broken["observations"][0][field] = value
+                self.assertTrue(r12_runtime_errors(broken, behavior, fixture, runner_hash, ids), field)
+            with_view = copy.deepcopy(report)
+            with_view["observations"].append({"id": "VIEW-primary", "status": "passed", "detail": "View checked"})
+            self.assertEqual(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids), [])
+            with_view["observations"][-1]["detail"] = {"viewport": 390, "scrollWidth": 390}
+            self.assertEqual(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids), [])
+            with_view["observations"][-1]["detail"] = {}
+            self.assertTrue(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids))
+            with_view["observations"][-1]["detail"] = "View checked"
+            malformed_detail = copy.deepcopy(report)
+            malformed_detail["observations"][0]["detail"] = {"claim": "passed"}
+            self.assertTrue(r12_runtime_errors(malformed_detail, behavior, fixture, runner_hash, ids))
+            with_view["observations"][-1]["status"] = "failed"
+            self.assertTrue(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids))
 
 
 if __name__ == "__main__":

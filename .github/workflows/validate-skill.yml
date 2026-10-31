@@ -24,8 +24,10 @@ jobs:
       - name: WordPress settings evidence and isolation regressions
         run: |
           python3 evals/wordpress-settings/test_contracts.py
+          python3 evals/wordpress-settings/test_r12_behavior.py
           node evals/wordpress-settings/test_model.cjs
           node evals/wordpress-settings/test_conflict.cjs
+          node evals/wordpress-settings/test_discovery.cjs
 
       - name: Release packaging path safety and failure preservation
         run: python3 scripts/test_package_release.py
@@ -84,7 +86,7 @@ jobs:
       - name: Independent selected UI foundation evidence integrity
         run: |
           python3 scripts/test_behavior_evaluation.py
-          python3 scripts/validate_eval_result.py evals/ui-foundations/result.json --suite ui-foundations --accept
+          python3 scripts/validate_eval_result.py evals/ui-foundations/r12-result.json --suite ui-foundations --accept --release-binding evals/r12-release-version.json
 
       - name: Eval harness smoke test
         run: |

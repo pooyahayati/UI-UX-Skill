@@ -1,10 +1,13 @@
 (function () {
     "use strict";
     const {createElement: h, useState, useEffect, useRef, createRoot} = wp.element;
-    const {TextControl, ToggleControl, SelectControl, Button, Notice, Modal, Spinner, PanelBody} = wp.components;
+    const {TextControl, ToggleControl, SelectControl, Button, Notice, Modal, Spinner, PanelBody, SearchControl} = wp.components;
     const M = WPSModel, cfg = WPSConfig, fa = cfg.lang === "fa";
     const words = {
         heading: ["تنظیمات گزارش", "Report settings"], intro: ["عنوان گزارش و شیوهٔ ارسال را تنظیم کنید. هر بخش جداگانه ذخیره می‌شود.", "Set the report identity and delivery. Each section saves independently."],
+        search: ["جست‌وجوی تنظیمات", "Search settings"], searchHelp: ["نام تنظیم یا عبارتی مثل «گیرنده» و «وب‌هوک» را بنویسید.", "Search a setting name or intent, such as recipient or webhook."],
+        noResults: ["تنظیمی پیدا نشد. عبارت کوتاه‌تری بنویسید یا از بخش‌های زیر استفاده کنید.", "No setting found. Try a shorter phrase or use the sections below."],
+        clearSearch: ["پاک کردن جست‌وجو", "Clear search"], sections: ["بخش‌های تنظیمات", "Settings sections"], results: ["نتیجه", "results"],
         synthetic: ["نمونهٔ آزمایشی با داده‌های ساختگی؛ به سرویس بیرونی متصل نمی‌شود.", "Synthetic test specimen; no external service is contacted."],
         general: ["مشخصات گزارش", "Report identity"], title: ["عنوان گزارش", "Report title"], titleHelp: ["عنوانی کوتاه و مشخص، حداکثر ۸۰ نویسه.", "A clear title, up to 80 characters."],
         delivery: ["ارسال گزارش", "Report delivery"], enabled: ["ارسال ایمیلی گزارش فعال باشد", "Enable email delivery"], email: ["نشانی ایمیل دریافت‌کنندهٔ گزارش‌های دوره‌ای", "Recipient email address for scheduled reports"],
@@ -38,6 +41,10 @@
         } finally { clearTimeout(timer); }
     }
     function App() {
+        const discovery = cfg.variant === "discovery";
+        const fromLocation = () => ["general", "delivery", "advanced"].find(key => location.hash === "#wps-section-" + key) || "general";
+        const [activeSection, setActiveSection] = useState(fromLocation), [query, setQuery] = useState("");
+        const [focusTarget, setFocusTarget] = useState(null);
         const [server, setServer] = useState(null), [draft, setDraft] = useState(null), [status, setStatus] = useState("loading");
         const [busy, setBusy] = useState(false), [errors, setErrors] = useState({}), [fault, setFault] = useState("none");
         const [conflict, setConflict] = useState(null), [dialog, setDialog] = useState(null);
@@ -47,6 +54,27 @@
         const updateDraft = (value) => { draftRef.current = value; setDraft(value); };
         const receiveConflict = (value) => { setConflict(value); setResolutions({}); setStatus("conflict"); };
         const dirty = server && draft ? ["general", "delivery", "advanced"].some(s => M.dirty(draft, server, s)) : false;
+        useEffect(() => {
+            if (!discovery) { return; }
+            const back = () => { setActiveSection(fromLocation()); setFocusTarget("heading-" + fromLocation()); };
+            window.addEventListener("popstate", back);
+            return () => window.removeEventListener("popstate", back);
+        }, []);
+        useEffect(() => {
+            if (!focusTarget || !draft) { return; }
+            const destination = document.getElementById(focusTarget);
+            const target = focusTarget === "wps-enabled" ? destination?.querySelector("input[type=checkbox]") : destination;
+            if (target && !target.disabled) { target.focus(); target.scrollIntoView({block: "nearest"}); setFocusTarget(null); }
+        }, [focusTarget, activeSection, advancedOpen, draft]);
+        function navigate(group, field, replace = false) {
+            setActiveSection(group);
+            if (discovery && location.hash !== "#wps-section-" + group) {
+                history[replace ? "replaceState" : "pushState"](null, "", "#wps-section-" + group);
+            }
+            if (group === "advanced") { setAdvancedOpen(true); }
+            setFocusTarget(field ? (field === "email" && !draftRef.current.delivery.enabled ? "wps-email-dependency" : "wps-" + field) : "heading-" + group);
+            setQuery("");
+        }
         useEffect(() => {
             const guard = (event) => { if (dirty || status === "unknown") { event.preventDefault(); event.returnValue = ""; } };
             window.addEventListener("beforeunload", guard);
@@ -71,7 +99,11 @@
         function edit(section, key, value) {
             updateDraft({...draftRef.current, [section]: {...draftRef.current[section], [key]: value}});
             setResolutions({});
-            setErrors(old => { const next = {...old}; delete next[key]; return next; });
+            setErrors(old => {
+                const next = {...old}; delete next[key];
+                if (section === "advanced" && key === "credentialAction") { delete next.credential; }
+                return next;
+            });
         }
         async function submit(section, reset = false) {
             if (inFlight.current || !server || status === "unknown" || conflict) { return; }
@@ -87,10 +119,15 @@
                 const detail = error.detail || {};
                 if (detail.code === "conflict") { receiveConflict(detail.current); }
                 else if (["validation", "rejected", "denied", "nonce", "invalid_fields", "invalid_values", "invalid_request", "save_failed"].includes(detail.code)) {
-                    setStatus("rejected"); setErrors(detail.fields || {});
-                    const field = Object.keys(detail.fields || {})[0];
+                    const fields = {...(detail.fields || {})};
+                    // A later keep/remove choice no longer has a replacement field.
+                    if (draftRef.current.advanced.credentialAction !== "replace") { delete fields.credential; }
+                    setStatus("rejected"); setErrors(fields);
+                    const field = Object.keys(fields)[0];
                     if (["endpoint", "credential"].includes(field)) { setAdvancedOpen(true); }
-                    if (field) { setTimeout(() => document.getElementById("wps-" + field)?.focus(), 0); }
+                    if (discovery && field) {
+                        navigate(section, field, true);
+                    } else if (field) { setTimeout(() => document.getElementById("wps-" + field)?.focus(), 0); }
                 } else { pending.current = sent; setStatus("unknown"); }
             } finally { inFlight.current = false; setBusy(false); }
         }
@@ -99,13 +136,14 @@
         // Explicit adoption avoids deprecated defaults; this is not an experimental control.
         const controlStyle = {__next40pxDefaultSize: true, __nextHasNoMarginBottom: true};
         const input = (section, key, label, help, extra = {}) => h(TextControl, {...controlStyle, id: "wps-" + key, label: t(label),
-            help: errors[key] ? t("invalid") : t(help), value: draft[section][key], onChange: value => edit(section, key, value),
+            help: errors[key] ? t("invalid") + " " + t(help) : t(help), value: draft[section][key], onChange: value => edit(section, key, value),
             "aria-invalid": errors[key] ? "true" : undefined, ...extra});
         const save = (section, key) => button(key, () => submit(section), {variant: "primary", disabled: busy || !M.dirty(draft, server, section) || status === "unknown" || !!conflict});
         const notice = (key, severity = "info") => h(Notice, {key, status: severity, isDismissible: false, className: "wps-status"}, t(key));
-        const section = (key, children) => h("section", {key, className: "wps-section", "aria-labelledby": "heading-" + key},
-            h("h2", {id: "heading-" + key}, t(key)), h("div", {className: "wps-fields"}, ...children));
+        const section = (key, children) => h("section", {key, className: "wps-section", hidden: discovery && activeSection !== key, "aria-labelledby": "heading-" + key},
+            h("h2", {id: "heading-" + key, tabIndex: -1}, t(key)), h("div", {className: "wps-fields"}, ...children));
         root.dataset.state = status;
+        root.dataset.variant = cfg.variant;
         if (!draft) { return h("div", null, h("h1", null, t("heading")), notice(status === "load-error" ? "loadFailed" : "loading", status === "load-error" ? "error" : "info"),
             status === "load-error" ? button("retry", () => load(false), {disabled: busy}) : h(Spinner)); }
         const review = conflict ? M.reconcile(draft, server, conflict, resolutions) : null;
@@ -116,22 +154,49 @@
             pending.current = null; setDialog(null); setStatus("ready");
         }
         const nodes = [h("h1", {key: "title"}, t("heading")), h("p", {className: "wps-intro", key: "intro"}, t("intro")), h("p", {key: "synthetic"}, t("synthetic"))];
+        if (discovery) {
+            const results = WPSDiscovery.search(WPSDiscovery.catalog(fa), query, ["manage_options"]);
+            nodes.push(h("div", {key: "search", className: "wps-search", onKeyDown: event => {
+                if (event.key === "Escape") { setQuery(""); document.getElementById("wps-search")?.focus(); }
+            }}, h("label", {id: "wps-search-label", htmlFor: "wps-search", className: "wps-search-label"}, t("search")),
+                h(SearchControl, {id: "wps-search", __nextHasNoMarginBottom: true, label: t("search"), "aria-labelledby": "wps-search-label", value: query, onChange: setQuery, "aria-describedby": "wps-search-help"}),
+                h("p", {id: "wps-search-help", className: "wps-help"}, t("searchHelp")),
+                query ? h("div", {className: "wps-search-results"},
+                    h("p", {role: "status"}, results.length ? new Intl.NumberFormat(fa ? "fa" : "en").format(results.length) + " " + t("results") : t("noResults")),
+                    h("ul", null, ...results.map(item => h("li", {key: item.id}, h(Button, {variant: "link", onClick: () => navigate(item.group, item.id)}, item.label), h("span", {className: "wps-help"}, item.help)))),
+                    button("clearSearch", () => { setQuery(""); document.getElementById("wps-search")?.focus(); })) : null));
+            nodes.push(h("nav", {key: "nav", className: "wps-section-nav", "aria-label": t("sections")}, ...["general", "delivery", "advanced"].map(key =>
+                h(Button, {key, variant: activeSection === key ? "primary" : "secondary", "aria-current": activeSection === key ? "page" : undefined, onClick: () => navigate(key)}, t(key)))));
+        }
         if (status === "saving") { nodes.push(notice("saving")); }
         if (status === "saved") { nodes.push(notice("saved", "success")); }
         if (status === "rejected") { nodes.push(notice("rejected", "error")); }
+        if (discovery && Object.keys(errors).length) {
+            const errorDestinations = {title: ["general", "title"], enabled: ["delivery", "enabled"], email: ["delivery", "email"], endpoint: ["advanced", "endpoint"], credential: ["advanced", "secret"]};
+            nodes.push(h("ul", {key: "field-errors", className: "wps-field-errors", "aria-label": fa ? "تنظیمات نیازمند اصلاح" : "Settings needing correction"},
+                ...Object.keys(errors).filter(key => errorDestinations[key]).map(key => h("li", {key},
+                    h(Button, {variant: "link", onClick: () => navigate(errorDestinations[key][0], key)},
+                        (fa ? "بررسی خطا: " : "Review error: ") + t(errorDestinations[key][1]))))));
+        }
         if (status === "unknown") { nodes.push(notice("unknown", "warning"), button("reconcile", () => load(false), {disabled: busy})); }
         if (conflict) { nodes.push(notice("conflict", "warning"), h("div", {className: "wps-actions"}, button("reviewCurrent", () => setDialog("conflict")),
             button("keepEdits", adoptConflict, {disabled: busy || review.conflicts.length > 0}))); }
         if (dirty) { nodes.push(h("p", {key: "unsaved", className: "wps-unsaved", role: "status"}, t("unsaved"))); }
-        const toggle = h(ToggleControl, {__nextHasNoMarginBottom: true, label: t("enabled"), checked: draft.delivery.enabled, onChange: value => edit("delivery", "enabled", value)});
+        // ToggleControl owns its generated input/label pair; a custom input id
+        // breaks that pair on supported hosts. Keep our destination on a wrapper.
+        const toggle = h("div", {id: "wps-enabled"}, h(ToggleControl, {__nextHasNoMarginBottom: true, label: t("enabled"), checked: draft.delivery.enabled, onChange: value => edit("delivery", "enabled", value)}));
         nodes.push(section("general", [input("general", "title", "title", "titleHelp"), ...(cfg.variant === "simple" ? [toggle] : []), h("div", {className: "wps-actions"}, save("general", "saveGeneral"), ...(cfg.variant === "simple" ? [save("delivery", "saveDelivery")] : []))]));
         if (cfg.variant !== "simple") {
-            nodes.push(section("delivery", [toggle, input("delivery", "email", "email", draft.delivery.enabled ? "emailHelp" : "dependency", {type: "email", disabled: !draft.delivery.enabled, className: "wps-technical"}),
+            nodes.push(section("delivery", [toggle,
+                h("div", {id: discovery ? "wps-email-dependency" : undefined, tabIndex: discovery && !draft.delivery.enabled ? -1 : undefined},
+                    input("delivery", "email", "email", draft.delivery.enabled ? "emailHelp" : "dependency", {type: "email", disabled: !draft.delivery.enabled, className: "wps-technical"})),
                 h("div", {className: "wps-actions"}, save("delivery", "saveDelivery"), button("reset", () => setDialog("reset"), {disabled: busy || !!conflict || status === "unknown"}))]));
-            nodes.push(h("section", {key: "technical", className: "wps-section"}, h(PanelBody, {title: t("advanced"), opened: advancedOpen, onToggle: setAdvancedOpen},
+            nodes.push(h("section", {key: "technical", className: "wps-section", hidden: discovery && activeSection !== "advanced"},
+                discovery ? h("h2", {id: "heading-advanced", tabIndex: -1}, t("advanced")) : null,
+                h(discovery ? "div" : PanelBody, discovery ? {} : {title: t("advanced"), opened: advancedOpen, onToggle: setAdvancedOpen},
                 h("div", {className: "wps-fields"}, input("advanced", "endpoint", "endpoint", "endpointHelp", {className: "wps-technical"}),
                     h("p", null, t(draft.advanced.credentialConfigured ? "configured" : "absent")),
-                    h(SelectControl, {...controlStyle, label: t("secretAction"), value: draft.advanced.credentialAction, options: ["keep", "replace", "remove"].map(value => ({value, label: t(value)})), onChange: value => edit("advanced", "credentialAction", value)}),
+                    h(SelectControl, {...controlStyle, id: "wps-credentialAction", label: t("secretAction"), value: draft.advanced.credentialAction, options: ["keep", "replace", "remove"].map(value => ({value, label: t(value)})), onChange: value => edit("advanced", "credentialAction", value)}),
                     draft.advanced.credentialAction === "replace" ? input("advanced", "credential", "secret", "absent", {type: "password", autoComplete: "new-password"}) : null,
                     h("div", {className: "wps-actions"}, save("advanced", "saveAdvanced"))))));
         }
@@ -155,5 +220,5 @@
         }
         return h("div", null, ...nodes);
     }
-    createRoot(root).render(h(App));
+    createRoot(root).render(h(cfg.variant === "workspace" ? WPSWorkspace : App));
 })();

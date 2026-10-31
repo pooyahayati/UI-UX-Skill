@@ -286,5 +286,131 @@ class CurrentRoadmapTests(unittest.TestCase):
                                           "Completion authorizes delivery"), "authority boundary")
 
 
+class R12RoadmapTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.live = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+        cls.planned = cls.live
+        # A stable planning baseline lets tests cover both future states and the
+        # actual live ledger, without freezing that ledger at a particular step.
+        for row in re.findall(r"^\| R12\.\d+ \|.*$", cls.planned, re.M):
+            fields = row.split("|")
+            fields[3], fields[5] = " Not started ", " Not recorded "
+            cls.planned = cls.planned.replace(row, "|".join(fields))
+        for key, value in {
+            "Completed R12 packages": "0 of 6",
+            "Active R12 package": "None",
+            "Next R12 package": "R12.1",
+            "R12 execution authority": "Planning/documentation only; implementation needs a subsequent owner instruction",
+        }.items():
+            cls.planned = cls.summary(cls.planned, key, value)
+
+    @staticmethod
+    def summary(text, key, value):
+        return re.sub(rf"^\| {re.escape(key)} \|.*$", f"| {key} | {value} |", text, flags=re.M)
+
+    @staticmethod
+    def row(text, package, status, evidence="[Execution](docs/R12_EXECUTION.md#record)"):
+        before = next(line for line in text.splitlines() if line.startswith(f"| {package} |"))
+        fields = before.split("|")
+        fields[3], fields[5] = f" {status} ", f" {evidence} "
+        return text.replace(before, "|".join(fields))
+
+    def authorized(self):
+        return self.summary(self.planned, "R12 execution authority",
+                            "[Owner-authorized R12 implementation](docs/R12_EXECUTION.md#authority)")
+
+    def rejected(self, text, expected):
+        errors = validate_current_roadmap(text)
+        self.assertTrue(any(expected in error for error in errors), errors)
+
+    def test_live_and_planned_ledgers_pass(self):
+        self.assertEqual(validate_current_roadmap(self.live), [])
+        self.assertEqual(validate_current_roadmap(self.planned), [])
+
+    def test_missing_duplicate_unknown_reordered_and_malformed_rows(self):
+        first = next(line for line in self.planned.splitlines() if line.startswith("| R12.1 |"))
+        second = next(line for line in self.planned.splitlines() if line.startswith("| R12.2 |"))
+        for text in (
+            self.planned.replace("| R12.6 |", "| Removed |"),
+            self.planned.replace("| R12.6 |", "| R12.5 |"),
+            self.planned.replace("| R12.6 |", "| R12.7 |"),
+            self.planned.replace(first + "\n" + second, second + "\n" + first),
+        ):
+            self.rejected(text, "R12 tracker must contain")
+        self.rejected(self.planned.replace(first, first + " extra |"), "five columns")
+        self.rejected(self.row(self.planned, "R12.1", "Almost done"), "invalid status")
+
+    def test_counter_active_next_and_duplicate_summary(self):
+        for key, value, expected in (
+            ("Completed R12 packages", "6 of 6", "R12 completed count"),
+            ("Active R12 package", "R12.1", "Active R12"),
+            ("Next R12 package", "R12.6", "Next R12"),
+        ):
+            self.rejected(self.summary(self.planned, key, value), expected)
+        self.rejected(self.planned.replace("| Completed R12 packages | 0 of 6 |",
+                                          "| Completed R12 packages | 0 of 6 |\n| Completed R12 packages | 0 of 6 |"),
+                      "Duplicate current-state field")
+
+    def test_own_authority_is_required_and_planning_link_is_not_execution(self):
+        started = self.row(self.planned, "R12.1", "In progress")
+        self.rejected(started, "Started R12 work requires linked owner execution authority")
+        for authority in ("Owner authorized execution", "Awaiting [owner decision](#authority)",
+                          "Planning/documentation only; [plan](docs/R12_WORDPRESS_ADMIN_DESIGN.md)"):
+            self.rejected(self.summary(started, "R12 execution authority", authority),
+                          "Started R12 work requires linked owner execution authority")
+        # Completed WPS/R11's generic authority link cannot substitute for R12's.
+        self.rejected(re.sub(r"^\| R12 execution authority \|.*\n", "", started, flags=re.M),
+                      "R12 execution authority must be recorded")
+
+    def test_started_requires_evidence_and_declared_prerequisite(self):
+        self.rejected(self.row(self.authorized(), "R12.1", "In progress", "Not recorded"),
+                      "R12.1: started package needs an execution/evidence link")
+        self.rejected(self.planned.replace("Owner instruction to implement R12", "Inherited R11 authority"),
+                      "R12.1: missing execution prerequisite")
+        self.rejected(self.planned.replace("| Accepted R12.2 |", "| Accepted R12.1 |"),
+                      "R12.3: missing execution prerequisite")
+
+    def test_completion_requires_visible_valid_dated_evidence(self):
+        for evidence, expected in (
+            ("[Acceptance](#2026-11-01)", "valid dated acceptance"),
+            ("[2026-02-30 acceptance](#record)", "valid dated acceptance"),
+            ("2026-11-01 no link", "execution/evidence link"),
+        ):
+            self.rejected(self.row(self.authorized(), "R12.1", "Completed", evidence), expected)
+
+    def test_out_of_order_including_premature_last_completion(self):
+        for state in ("In progress", "Completed", "Blocked", "Reopened"):
+            self.rejected(self.row(self.authorized(), "R12.6", state,
+                                   "[2026-11-01 acceptance](docs/R12_EXECUTION.md#r126)"),
+                          "R12.6: prerequisite packages must be Completed")
+
+    def test_multiple_active_packages_are_rejected(self):
+        text = self.row(self.authorized(), "R12.1", "In progress")
+        text = self.row(text, "R12.2", "In progress")
+        self.rejected(text, "Active R12 package must match the single active tracker row")
+
+    def test_each_ordered_partial_and_complete_ledger_passes(self):
+        text = self.authorized()
+        for index in range(1, 7):
+            started = self.row(text, f"R12.{index}", "In progress")
+            started = self.summary(started, "Active R12 package", f"R12.{index}")
+            started = self.summary(started, "Next R12 package", f"R12.{index + 1}" if index < 6 else "None")
+            self.assertEqual(validate_current_roadmap(started), [])
+            text = self.row(text, f"R12.{index}", "Completed",
+                            f"[2026-11-01 acceptance](docs/R12_EXECUTION.md#r12{index})")
+            text = self.summary(text, "Completed R12 packages", f"{index} of 6")
+            text = self.summary(text, "Next R12 package", f"R12.{index + 1}" if index < 6 else "None")
+            self.assertEqual(validate_current_roadmap(text), [])
+
+    def test_blocked_and_reopened_are_active_and_not_completed(self):
+        for state in ("Blocked", "Reopened"):
+            text = self.row(self.authorized(), "R12.1", state)
+            text = self.summary(text, "Active R12 package", "R12.1")
+            text = self.summary(text, "Next R12 package", "R12.2")
+            self.assertEqual(validate_current_roadmap(text), [])
+            self.rejected(self.summary(text, "Completed R12 packages", "1 of 6"), "R12 completed count")
+
+
 if __name__ == "__main__":
     unittest.main()

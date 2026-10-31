@@ -28,13 +28,35 @@ Official implementation sources:
 | Small known choice set | `SelectControl` or `RadioControl` | Actual option labels/values and the current selection; avoid a custom dropdown |
 | Save, retry, cancel or reset action | `Button` | Explicit action/scope, supported variant, busy/disabled semantics and duplicate-submit protection |
 | Durable local status or validation summary | `Notice` | Severity, accessible announcement, persistence and links to affected fields; not toast-only recovery |
-| Genuinely secondary settings | `PanelBody` | Meaningful title, initial open state and discoverable errors; primary options need not be collapsed |
+| Genuinely secondary settings | Version-appropriate disclosure | Current Panel guidance targets the block inspector; inspect `CollapsibleCard` availability or use a documented compatible native composition. Retained `PanelBody` fixtures do not make it a universal admin-page default. |
+| Find a setting in complex configuration | `SearchControl` | Accessible name, controlled value and verified props; curated results, capability filtering, reveal/focus and draft preservation belong to the application |
 | Consequential confirmation | `Modal` | Clear scope, title/close callback, initial/contained focus and return focus; use only when consequence warrants it |
 | Async wait | `Spinner` with status text | Loading is not a completed or measurable-progress claim |
 
 This is a task-oriented shortlist, not an exhaustive component catalog. Use
 ordinary headings/sections for a short form; components do not require tabs or
 cards. Read official component documentation only for controls actually needed.
+
+For data-heavy operational collections, evaluate public `DataViews` and `DataForm`
+from `@wordpress/dataviews` against the actual list/filter/edit task and supported
+host. They are conditional dataset tools, not the settings-form default. Verify
+the package's WordPress entrypoint, dependencies and styles with the existing
+build strategy; do not introduce REST, storage migration or a build pipeline just
+to use them. A small native list/detail composition may be sufficient.
+
+Public availability does not establish stability. The current `@wordpress/ui`
+README labels it experimental and it is not a drop-in `window.wp` replacement;
+preserve the approved settings convention instead of automatic migration.
+Optional `@wordpress/theme` semantic tokens/ThemeProvider are distinct from a site
+theme or its JSON configuration. Use only verified public tokens/exports with scoped styles;
+installing a newer package does not update an older host's provided runtime.
+
+Build visual hierarchy from the handbook: readable labels/help, purposeful
+sections, restrained borders/radius, explicit save scope and coherent status,
+focus and disabled states. Avoid decorative cards, oversized headings or excessive
+whitespace that slow scanning. Keep reusable values in bounded semantic tokens;
+owner controls are conditional on existing product scope and cannot change host
+chrome or weaken accessibility. A modern component alone is not a usable page.
 
 ## Compatibility and assets
 
@@ -101,6 +123,17 @@ Additional official sources:
 - [Modal](https://developer.wordpress.org/block-editor/reference-guides/components/modal/)
 - [Element public runtime](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-element/)
 - [Dependency extraction](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dependency-extraction-webpack-plugin/)
+- [SearchControl](https://developer.wordpress.org/block-editor/reference-guides/components/search-control/)
+- [DataViews and DataForm](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dataviews/)
+- [Design-system selection](https://developer.wordpress.org/block-editor/contributors/design/design-system-packages/)
+- [Theme and token boundaries](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-theme/)
+- [UI package stability](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-ui/)
+
+These additional decisions were reviewed against official sources on 2026-11-01.
+The R12 fixture verifies `SearchControl` and its margin-transition flag on its
+actual 6.8/7.1.3 hosts. DataViews/DataForm, ThemeProvider, CollapsibleCard and the
+experimental UI package are decision routes, not installed or runtime-certified
+dependencies of this specimen. Recheck selected controls at implementation time.
 
 Library usage is not visual, accessibility or data-preservation acceptance. Apply
 the existing settings interaction and host-context checks before completion.

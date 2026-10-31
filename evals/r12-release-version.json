@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "normalization": "git-lf",
+  "scope": "r12-release-version-only",
+  "decision": "docs/releases/3.6.0.md#authority",
+  "recorded_version": "3.5.1",
+  "release_version": "3.6.0",
+  "version_change": {
+    "path": "VERSION",
+    "previous_sha256": "eb41f86c3d67299b46490cde10158a521148fdc03641aa14a93fa2797becd78c",
+    "sha256": "138203e3f604a08fad0c4d0a297efe2c486219820dcdd053e72b7d843504c7a1"
+  },
+  "candidate_before_sha256": "712cf2c6922e290f61f7099e7bcb7875ee6adac78cc922282cb9b7eb993bd79d",
+  "candidate_after_sha256": "971eef071c2a05e5554dc98f1fb4eaee5fc54b2cf50f837a36b0402a1de033cd",
+  "records": {
+    "evals/ui-foundations/r12-result.json": "faf8c54f4894d4ab12bfe4164b0d0f30e8987104c00571685469b05460e5253f",
+    "evals/wordpress-settings/r12-behavior-results.json": "2dc18d063755a1c6835ba3a4832e46e604b3462d4baaf9f80c5fd6261d814437"
+  },
+  "notes": "The retained R12 responses were executed against 3.5.1 metadata. Only the Skill-root VERSION changes to 3.6.0; all original records, candidate hashes, preparations and outputs remain unchanged. This is source compatibility for release metadata only, not a fresh model evaluation of 3.6.0."
+}
