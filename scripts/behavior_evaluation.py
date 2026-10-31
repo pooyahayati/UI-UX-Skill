@@ -1,4 +1,4 @@
-"""R11 raw-input preparation and record checks; not model execution or evidence truth."""
+"""Raw-input preparation and source-bound records; not model execution or evidence truth."""
 from __future__ import annotations
 
 import hashlib
@@ -28,6 +28,15 @@ def snapshot(skill: Path) -> dict:
 
 def tree_digest(files: dict) -> str:
     return digest(json.dumps(files, sort_keys=True, separators=(",", ":")).encode())
+
+
+def candidate_files(candidate: object, actual: dict) -> tuple[dict, bool]:
+    """Validate a complete snapshot, including historical per-case candidates."""
+    files = candidate.get("files", {}) if isinstance(candidate, dict) else {}
+    valid = (isinstance(files, dict) and bool(files) and set(files) == set(actual)
+             and candidate.get("sha256") == tree_digest(files)
+             and all(re.fullmatch(r"[a-f0-9]{64}", str(value)) for value in files.values()))
+    return (files if isinstance(files, dict) else {}), bool(valid)
 
 
 def manifest(root: Path = ROOT) -> dict:
@@ -100,20 +109,26 @@ def prepare(case_id: str, output: Path, root: Path = ROOT) -> Path:
 
 
 def validate_record(result: object, directory: Path, *, root: Path = ROOT,
-                    accept: bool = False, require_all: bool = False) -> list[str]:
+                    accept: bool = False, require_all: bool = False,
+                    release_binding: object = None) -> list[str]:
     from validate_eval_result import validate_result
     current = manifest(root)
+    actual = snapshot(root / "skills/ui-ux-skill")
+    if release_binding is not None:
+        from release_version_binding import release_predecessor
+        try:
+            actual = release_predecessor(result, actual, release_binding,
+                                         record="evals/ui-foundations/r12-result.json",
+                                         current_version=current["version"])
+            current = {**current, "version": result["skillVersion"]}
+        except ValueError as error:
+            return [str(error)]
     errors = validate_result(result, manifest=current, require_all=accept or require_all)
     if not isinstance(result, dict):
         return errors
-    candidate = result.get("candidate", {})
-    supplied = candidate.get("files", {}) if isinstance(candidate, dict) else {}
-    actual = snapshot(root / "skills/ui-ux-skill")
-    if (not isinstance(supplied, dict) or not supplied or set(supplied) != set(actual)
-            or candidate.get("sha256") != tree_digest(supplied)
-            or not all(re.fullmatch(r"[a-f0-9]{64}", str(v)) for v in supplied.values())):
+    supplied, valid = candidate_files(result.get("candidate"), actual)
+    if not valid:
         errors.append("Missing/malformed candidate identity or changed resource inventory")
-        supplied = {} if not isinstance(supplied, dict) else supplied
     if result.get("unexecuted") != current["unexecuted"] or result.get("suite") != SUITE:
         errors.append("Missing/changed suite coverage boundary")
     expected = {c["id"]: c for c in current["cases"]}
@@ -122,9 +137,19 @@ def validate_record(result: object, directory: Path, *, root: Path = ROOT,
         if not isinstance(case, dict) or not isinstance(case.get("id"), str) or case["id"] not in expected:
             continue
         case_id = case["id"]
+        # A fresh run can succeed one case without rewriting the candidate or
+        # outputs for unrelated historical runs. Both records remain reviewable.
+        has_candidate = "candidate" in case
+        if has_candidate != ("outputFile" in case):
+            errors.append(case_id + ": candidate override and distinct outputFile must be paired")
+        case_files = supplied
+        if has_candidate:
+            case_files, valid = candidate_files(case["candidate"], actual)
+            if not valid:
+                errors.append(case_id + ": malformed candidate override or changed resource inventory")
         if case.get("inputSha256") != digest(expected[case_id]["prompt"].encode()):
             errors.append(case_id + ": stale raw input")
-        if case.get("preparationSha256") != digest(run_bytes(run_record(expected[case_id], supplied))):
+        if case.get("preparationSha256") != digest(run_bytes(run_record(expected[case_id], case_files))):
             errors.append(case_id + ": stale preparation/rubric binding")
         # Shared routing inputs plus the declared case-specific dependency/read set.
         # Changes to consumed sources invalidate those cases, not unrelated outputs.
@@ -134,7 +159,7 @@ def validate_record(result: object, directory: Path, *, root: Path = ROOT,
             errors.append(case_id + ": missing/duplicate source dependency set")
         else:
             for name in paths:
-                if name not in supplied or supplied.get(name) != actual.get(name):
+                if name not in case_files or case_files.get(name) != actual.get(name):
                     errors.append(case_id + ": stale/missing consumed source " + name)
         if not isinstance(case.get("evaluatorId"), str) or not case["evaluatorId"].strip():
             errors.append(case_id + ": missing independent evaluator identity")
@@ -143,9 +168,19 @@ def validate_record(result: object, directory: Path, *, root: Path = ROOT,
         else:
             evaluators.add(case["evaluatorId"])
         try:
-            output = canonical(directory / "outputs" / (case_id + ".md"))
+            filename = case.get("outputFile", case_id + ".md")
+            if (not isinstance(filename, str)
+                    or ("outputFile" in case and not re.fullmatch(re.escape(case_id) + r"-[A-Za-z0-9][A-Za-z0-9_.-]*\.md", filename))):
+                raise ValueError("invalid outputFile")
+            output_dir = directory.resolve() / "outputs"
+            output_path = output_dir / filename
+            if output_path.is_symlink() or output_path.resolve().parent != output_dir:
+                raise ValueError("outputFile escapes the output directory")
+            output = canonical(output_path)
             if not output.strip() or case.get("outputSha256") != digest(output):
                 errors.append(case_id + ": missing/changed actual output")
+        except ValueError:
+            errors.append(case_id + ": invalid or escaping outputFile")
         except OSError:
             errors.append(case_id + ": missing actual output")
         invariants = case.get("invariants", [])

@@ -6,19 +6,51 @@ The live work queue is below. Completed work is summarized in [history](#complet
 
 | Item | State |
 | --- | --- |
-| Updated | 2026-10-16 |
+| Updated | 2026-11-01 |
 | Released baseline | [v3.5.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.5.1); published artifacts and managed local installation verified 2026-10-16 |
-| Current workstream | [R11: three audit remediations](#r11-audit-remediation); implementation and delivery complete |
-| Acceptance | All three packages satisfy the [R11 plan](docs/R11_AUDIT_REMEDIATION.md); [implementation evidence](docs/R11_EXECUTION.md) and [verified delivery](docs/releases/3.5.1.md) are recorded separately |
+| Current workstream | R12 implementation complete; [3.6.0 delivery](docs/releases/3.6.0.md) authorized and in progress |
+| Acceptance | All six packages accepted 2026-11-01; evidence and explicit limits in the [R12 execution record](docs/R12_EXECUTION.md) |
+| Completed R12 packages | 6 of 6 |
+| Active R12 package | None |
+| Next R12 package | None |
+| R12 execution authority | [Owner-authorized R12 implementation](docs/R12_EXECUTION.md#authority) |
 | Completed R11 packages | 3 of 3 |
 | Active R11 package | None |
 | Next R11 package | None |
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
-| Execution authority | [R11 implementation and delivery authorization](#r11-audit-remediation) fulfilled; no new workstream authorized by completion |
+| Execution authority | Historical [R11 implementation and delivery authorization](#r11-audit-remediation) is fulfilled; the separate R12 instruction above governs current work |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | v3.5.1 merged, published and installed locally; exact-head/main CI, downloaded packages, installation compatibility and backup verified |
+| Delivery | v3.6.0 candidate; owner authorized commit/push/merge, publication and managed local update. v3.5.1 remains published until verified release completion |
+
+## R12 WordPress admin design and settings findability
+
+**Owner decision, 2026-11-01:** prepare the roadmap for attractive, coherent, modern plugin-owned settings and internal admin pages where administrators can find a setting, understand its effect and save it without unnecessary searching. This authorizes the plan and acceptance criteria only. It does not reopen the completed WPS/R11 work or extend their delivery permissions.
+
+The [R12 plan](docs/R12_WORDPRESS_ADMIN_DESIGN.md) owns scope, proposed file boundaries, protected behavior, verification and package exits. This table is the **only live R12 status ledger**; creating the plan does not complete R12.1.
+
+**Superseding execution decision, 2026-11-01:** the owner requested R12.1 through R12.6 in order. This authorizes the bounded implementation, synthetic local WordPress host checks and acceptance work described in the plan. It supersedes planning-only authority for R12; publication and installation remain outside this instruction. [Execution record](docs/R12_EXECUTION.md#authority).
+
+| Package | Deliverable | Status | Entry condition | Acceptance / next action |
+| --- | --- | --- | --- | --- |
+| R12.1 | Scoped baseline, surface routing and task inventory | Completed | Owner instruction to implement R12; received 2026-11-01 | [2026-11-01 A1 acceptance](docs/R12_EXECUTION.md#r121) |
+| R12.2 | Task-based organization, navigation and settings search | Completed | Accepted R12.1 | [2026-11-01 A2 acceptance](docs/R12_EXECUTION.md#r122) |
+| R12.3 | Visual foundations and version-aware component selection | Completed | Accepted R12.2 | [2026-11-01 A3 acceptance](docs/R12_EXECUTION.md#r123) |
+| R12.4 | Representative rendered settings and internal-page patterns | Completed | Accepted R12.3 | [2026-11-01 A4 acceptance](docs/R12_EXECUTION.md#r124) |
+| R12.5 | Findability, behavior and regression evaluation | Completed | Accepted R12.4 | [2026-11-01 A5 acceptance](docs/R12_EXECUTION.md#r125) |
+| R12.6 | Combined acceptance and reviewable delivery handoff | Completed | Accepted R12.5 | [2026-11-01 A6 acceptance and local handoff](docs/R12_EXECUTION.md#r126) |
+
+**Delivery decision, 2026-11-01:** the owner authorized committing, pushing and merging R12, publishing a new release and updating the local Skill. This supersedes the delivery exclusion above, within [the 3.6.0 scope](docs/releases/3.6.0.md#authority).
+
+| Delivery step | Status | Evidence / next action |
+| --- | --- | --- |
+| Candidate metadata, compatibility, package and native security checks | Completed | [Candidate evidence](docs/releases/3.6.0.md#candidate-verification); final committed-source scan precedes push |
+| Commit, push, exact-head PR checks and merge | In progress | Local candidate accepted; exact-head CI and merge pending |
+| Main workflow, release/tag and actual downloaded artifacts | Not started | Existing workflow is sole publisher |
+| Managed local update, backup and closeout | Not started | Requires verified published artifacts |
+
+**Next action:** complete the authorized 3.6.0 delivery. No fixed UI template, extra language, automatic dark theme, framework migration or new external design specialist is implied. The existing settings-only `@wordpress/components` requirement is preserved.
 
 ## R11 audit remediation
 
@@ -26,7 +58,7 @@ The live work queue is below. Completed work is summarized in [history](#complet
 
 **Superseding execution decision, 2026-10-16:** the owner explicitly authorized R11.1 through R11.3 in order, followed by merge, a new release, then a managed local update of this Skill. This supersedes the planning-only restriction for R11, not its acceptance criteria. Branch/commit/push/PR operations are included in that delivery; unrelated skills, production sites and product dependencies remain outside scope. Preserve local Head integration and a recoverable installation backup. [Execution evidence](docs/R11_EXECUTION.md) records checks and stage acceptance.
 
-The [R11 implementation plan](docs/R11_AUDIT_REMEDIATION.md) contains the audited baseline, finding evidence, affected paths, protected contracts, observable acceptance and required checks. Two findings are confirmed defects; the third is a behavioral-test coverage risk, not a demonstrated routing/motion defect. This table is the **only live R11 status ledger**.
+The [R11 implementation plan](docs/R11_AUDIT_REMEDIATION.md) contains the audited baseline, finding evidence, affected paths, protected contracts, observable acceptance and required checks. Two findings are confirmed defects; the third is a behavioral-test coverage risk, not a demonstrated routing/motion defect. This table is the closed R11 status ledger.
 
 | Package | Deliverable | Status | Entry condition | Acceptance / next action |
 | --- | --- | --- | --- | --- |
@@ -83,7 +115,7 @@ Acceptance: compatible new dashboards choose shadcn/ui without another library-c
 
 **Goal:** clearer, reliable plugin-owned settings pages inside `wp-admin`, using stable public `@wordpress/components`, including simple forms. This is not a redesign of all plugin-management screens or other products.
 
-The [detailed implementation plan](docs/WORDPRESS_SETTINGS_ROADMAP.md) owns scope, allowed files, scenarios and exit criteria. This table is the **only live package-status ledger**. Planning does not complete WPS-0.
+The [detailed implementation plan](docs/WORDPRESS_SETTINGS_ROADMAP.md) owns the original scope, allowed files, scenarios and exit criteria. This is the closed WPS package-status ledger; the new R12 work is tracked separately above.
 
 | Package | Deliverable | Status | Execution prerequisite | Acceptance evidence |
 | --- | --- | --- | --- | --- |
@@ -99,7 +131,7 @@ The [detailed implementation plan](docs/WORDPRESS_SETTINGS_ROADMAP.md) owns scop
 
 All seven packages and the authorized GitHub release are complete. [Delivery evidence](evals/wordpress-settings/EXECUTION.md#integration-and-publication) includes exact-candidate CI, merge/tag binding, installer smoke checks and independent verification of actual downloads.
 
-The original WPS packages stay closed with their historical evidence. The later specimen conflict defect is corrected separately in [R11.1](#r11-audit-remediation); it does not invalidate the narrower title-conflict test that previously passed or authorize a production-plugin migration. Current Skill delivery authority comes from the superseding R11 decision, not this historical WPS checkpoint.
+The original WPS packages stay closed with their historical evidence. The later specimen conflict defect was corrected separately in [R11.1](#r11-audit-remediation); it does not invalidate the narrower title-conflict test that previously passed or authorize a production-plugin migration. R11 delivery is complete. The new R12 planning decision does not inherit execution or delivery authority from either checkpoint.
 
 ## Scope and acceptance rules
 
@@ -110,6 +142,7 @@ The original WPS packages stay closed with their historical evidence. The later 
 - Source checks, agent observations, rendered/runtime evidence and owner approval are distinct. Example-product approval is not Skill engineering acceptance.
 - Completion does not authorize push/merge, publication, installation or deployment. Preserve user changes; do not infer new delivery permission from historical approvals.
 - R11 is bounded to its three audited findings and the tests/documentation needed to verify and deliver them under the explicit execution decision above. It does not reopen completed design approvals or authorize unrelated features.
+- R12 plans improvements for plugin-owned settings and internal admin surfaces only. Existing new/redesigned-settings component policy remains intact; other surfaces do not inherit that mandate automatically. Planning is not implementation or delivery authority.
 
 ## Completed history
 
@@ -135,7 +168,7 @@ The historical five-product evaluation was source-based in the same session, not
 
 ## Updating this roadmap
 
-- Allowed package states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. Keep one active implementation package in the current workstream; an unstarted prerequisite alone is not a blocker. The historical WPS ledger and live R11 ledger remain separate.
+- Allowed package states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. Keep one active implementation package in the current workstream; an unstarted prerequisite alone is not a blocker. Closed WPS/R11 ledgers and the live R12 ledger remain separate.
 - Update the package row, completed count, active/next package and authority together. Started work needs an execution-record link; completion needs dated acceptance evidence and satisfied prerequisites.
 - Record the checked revision, actual checks, remaining limits and lead acceptance in the linked record. Keep local changes separate from integration/publication evidence.
 - Retain useful completed evidence in tables/archives, not repeated execution prose. Archives are historical snapshots, never competing live trackers.

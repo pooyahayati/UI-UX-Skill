@@ -3,12 +3,12 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-3.5.1-blue)
+![Version](https://img.shields.io/badge/version-3.6.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A product-aware **UI/UX Head** for designing, auditing and improving real interfaces. Works standalone or as a bounded specialist under an engineering Head.
 
-Current source: **v3.5.1** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
+Source version: **v3.6.0** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
 
 ## Product coverage
 
@@ -18,10 +18,15 @@ Current source: **v3.5.1** · Skill slug: `ui-ux-skill` · [Latest published rel
 | **Dashboard** | Decision hierarchy, trustworthy metrics, tables/charts, filters, live states and role-aware work queues. |
 | **Web Application** | Routed workflows, URL/state continuity, drafts, forms, recovery, keyboard/focus and permission-facing UX. |
 | **Mobile Application** | iOS/Android/cross-platform adaptation, touch, lifecycle/offline behavior and accessible adaptive layouts. |
-| **WordPress Plugin / Admin UI** | Native admin integration, task-based settings, reliable saving, onboarding, diagnostics, capabilities and Multisite. |
+| **WordPress Plugin / Admin UI** | Task-based settings and discovery, coherent internal pages, version-aware native controls, reliable saving, onboarding, diagnostics, capabilities and Multisite. |
 | **Shared foundation** | Shared UI Rules, Design System tokens/themes/states, responsive/RTL behavior and bounded appearance governance. |
 
 Inactive Product Packs are not preloaded. Only the active product's modules and scope-relevant shared rules are loaded. For Persian-facing UI, `persian-writing` is required; it is the only external specialist.
+
+WordPress guidance keeps short forms simple and adds settings search only when
+needed. Search can reveal and focus the actual field while preserving edits;
+report lists, connection health and background work keep their own task patterns.
+See the [synthetic admin examples and evidence](evals/wordpress-settings/README.md).
 
 [shadcn/ui](skills/ui-ux-skill/references/shadcn-ui.md) is the dashboard component-foundation default unless the user explicitly chooses otherwise. The guide personalizes components to the product's approved foundations, with RTL, dark-mode, mobile and owner-control guidance. Existing stacks and host constraints remain protected; this default does not authorize automatic migration.
 

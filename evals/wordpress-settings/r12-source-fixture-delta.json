@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "normalization": "git-lf",
+  "decision": "docs/R12_EXECUTION.md#authority",
+  "authorized_on": "2026-11-01",
+  "parents": {
+    "baseline.json": "7f9c912937e0bc65487d98194b6f3c10593daf530c9eaea3f8e1971da88dc570",
+    "RESULTS.json": "7946519749a5f7c2677b47671666fab09b73a58efd0b1e855dbe52fa4ce2b2ac",
+    "r11-fixture-delta.json": "5da598e8b69efc00653f0596c207ccf833577980041a73a3379fdbef6a85cec7",
+    "r11-license-delta.json": "dad8e38265e8997f5195ac6732193a045414d0c016597c77c005252b3cb5cea2",
+    "evidence/r11-browser-results.json": "8f7f8cec1079bf9320543248ff249e67c39450169bfa68c9f5077a5260023ed4"
+  },
+  "skill_changes": {
+    "references/products/wordpress-plugin.md": {
+      "previous_sha256": "94d5f38fec877ae9783476119e1327614e45b915406918811b53daa955c4a656",
+      "sha256": "118544ca97739175652a70bf1886d9be0bda5d7d510e7fe83ed27b69b43b674c"
+    },
+    "references/products/wordpress/components.md": {
+      "previous_sha256": "90c4770145b78c3cd4dafd6bd0fe8535488d8bce86770064b89de88c9709353a",
+      "sha256": "2bb83f33af3bdb316969f94b13687f1c07a6fcd2f32ce3d36427e84fed8ef9bf"
+    },
+    "references/products/wordpress/settings.md": {
+      "previous_sha256": "6987747e9d3434bf62dd45c10837e678aba6b8d385a6418d02762abe4c4bc138",
+      "sha256": "60ed330b406722685da569b5c2520c95b885f131cbec4b84f2cea5130c0ee12b"
+    }
+  },
+  "fixture_changes": {
+    "app.js": {
+      "previous_sha256": "bccde0e309037e22517f7558af4d54e9df05551505a222e5738ec50a21b0e8e9",
+      "sha256": "3a3c1258508afbe4de6f7a756572b740b31fa0fa98889f87a74a2a33c088b3d7"
+    },
+    "discovery.js": {
+      "previous_sha256": null,
+      "sha256": "a0c419e89497338f6e4e9a749d097523c5ba99991b33b70aafe1fc622d21cfa1"
+    },
+    "style.css": {
+      "previous_sha256": "0c6b3ac496b471afa493be334dad283757f11d03ef31e64b3110b1a02c9015eb",
+      "sha256": "079ab5458773c654020cc74b733eb9b246e344034b5ebdd9c6986d6f6fd8bc74"
+    },
+    "workspace.js": {
+      "previous_sha256": null,
+      "sha256": "cbecaa8fbd8d48d718ecbcd8ab890338664a913c9d197bcb583633ea5db79a2b"
+    },
+    "wps-specimen.php": {
+      "previous_sha256": "e8f450291d7260fcf131cc753f1f0db77f61b7e427cdd4a2edfc90793426bcdb",
+      "sha256": "be905fe36d8ef8499411f390209f7e1be150ea885c17e56c3a8b527e51317391"
+    }
+  }
+}

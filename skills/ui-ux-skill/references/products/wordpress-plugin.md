@@ -15,6 +15,14 @@ Do not duplicate the cross-product contracts here. This Product Pack owns only i
 
 Before major design decisions, classify the current plugin surface.
 
+Record the actual administrator task, entry point and stable destination before
+choosing navigation. For settings, include the visible name/intent aliases,
+frequency/consequence, group, dependency, capability, default/effective value and
+save scope. Keep operational tasks (review records, inspect a connection, recover
+a job) separate from configuration; a hybrid can link them without mixing save
+actions and operational commands. Reuse the existing product inventory instead
+of inventing categories to fill a layout. Route only the affected portion below.
+
 ### Settings / configuration
 
 Load:
@@ -141,6 +149,32 @@ Use when a plugin has:
 Do not force both surface types into one visual pattern.
 
 Settings can remain native while the operational workspace uses a stronger product design system.
+
+## Plugin-owned page patterns
+
+Choose the smallest pattern that supports the actual task; the following are
+adaptable compositions, not mandatory pages or a new dashboard framework.
+
+| Surface | Composition / behavior to preserve |
+| --- | --- |
+| Short settings | Visible heading, related fields/help and explicit save scope; no empty categories/search/sidebar |
+| Multi-topic settings | Task-based sections and one local navigation; conditional search reveals the actual field while retaining drafts and hidden errors; use [settings discovery](wordpress/settings.md#settings-information-architecture) |
+| Record workspace | Filter/search and visible result scope → useful row identity/status/action → detail/edit with a predictable return that retains filters/selection; distinguish no data from no matches and preserve selection semantics across pagination |
+| Connection page | Separate configuration presence, authorization, last health check and synchronization; link to the relevant configuration destination, not a generic settings home; use [integration rules](wordpress/onboarding-integrations.md) |
+| Background work | Show accepted/queued/running/failed/completed truthfully with actual scope and recovery; retry only when backend semantics support it; use [operations rules](wordpress/diagnostics-operations.md) |
+
+Reuse approved typography, semantic colors, spacing and state conventions across
+these surfaces without forcing identical layouts. Use native controls where they
+fit; an operational page does not inherit the settings-only component mandate.
+For a supported owner appearance policy, use its existing bounded tokens/controls;
+do not build another theme engine or restyle WordPress chrome.
+
+Review one realistic primary-language page in the real host before generalizing.
+Use actual-length labels, empty/error/disabled/unsaved states and relevant overlays;
+check narrow toolbar/menu/notices and focused controls. Keep evidence tied to the
+source/handbook revision, language, viewport and state. Existing staged dark and
+authorized-secondary review still applies; fixture engineering review is not
+product-owner approval and does not mandate extra product variants.
 
 ## Menu placement and entry point
 

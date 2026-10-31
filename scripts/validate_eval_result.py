@@ -151,6 +151,7 @@ def main() -> None:
                         help="Require every current manifest case; does not require passing outcomes.")
     parser.add_argument("--suite", choices=["default", "ui-foundations"], default="default")
     parser.add_argument("--binding", help="Explicit historical compatibility sidecar; default suite only")
+    parser.add_argument("--release-binding", help="Exact R12 VERSION-only release successor; ui-foundations only, not a fresh evaluation")
     parser.add_argument("--accept", action="store_true", help="Require selected ui-foundations evidence to pass; does not run a model")
     args = parser.parse_args()
     try:
@@ -158,12 +159,19 @@ def main() -> None:
         selected_manifest = cases_manifest
         if args.binding and args.suite != "default":
             raise ValueError("--binding cannot qualify a fresh ui-foundations evaluation")
+        if args.release_binding and (args.suite != "ui-foundations" or args.binding):
+            raise ValueError("--release-binding is only for the retained R12 ui-foundations record")
         if args.accept and args.suite != "ui-foundations":
             raise ValueError("--accept is only for the bounded ui-foundations suite")
         if args.suite == "ui-foundations":
             from behavior_evaluation import manifest, validate_record
             selected_manifest = manifest()
-            errors = validate_record(result, Path(args.result).resolve().parent, accept=args.accept, require_all=args.require_all)
+            release_binding = (json.loads(Path(args.release_binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+                               if args.release_binding else None)
+            if args.release_binding and not isinstance(release_binding, dict):
+                raise ValueError("--release-binding must contain an explicit successor object")
+            errors = validate_record(result, Path(args.result).resolve().parent, accept=args.accept,
+                                     require_all=args.require_all, release_binding=release_binding)
         elif args.binding:
             binding = json.loads(Path(args.binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
             errors = validate_historical(result, binding, require_all=args.require_all)
@@ -187,6 +195,8 @@ def main() -> None:
         print("Selected recorded outcomes pass the evidence-integrity gate; independent reviewer acceptance is still required.")
     if args.binding:
         print("Historical structural compatibility only; this is not a fresh evaluation of the current candidate.")
+    if args.release_binding:
+        print("Retained R12 evidence was executed with 3.5.1 metadata; exact VERSION-only compatibility with 3.6.0 is verified. This is not a fresh 3.6.0 model evaluation.")
     failures = [x["id"] for x in result["cases"] if x["result"] == "fail"]
     if failures:
         print("Failed cases:", ", ".join(failures))

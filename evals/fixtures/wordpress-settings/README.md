@@ -36,6 +36,15 @@ variant and `fault=load` for initial-load failure. Test review controls provide
 rejection, delay and uncertain-response demonstrations. Normal requests remain
 independent of them; no external service/mail request occurs.
 
+R12 adds two opt-in variants, preserving the original default and short form:
+
+- [Findable settings](http://127.0.0.1:8790/wp-admin/options-general.php?page=wps-specimen&variant=discovery): curated intent search, section navigation and existing per-section saves.
+- [Internal workspace](http://127.0.0.1:8790/wp-admin/options-general.php?page=wps-specimen&variant=workspace): synthetic report filters/detail, connection status and background-work state transitions. It has no external service or job engine.
+
+Append `&lang=en` for LTR content or use port `8791` for the minimum host.
+The configured 7.1.3 host is a retained test target, not a claim of latest stable
+WordPress. The selected component exports/props are verified on both actual hosts.
+
 ## Verify
 
 Using an already available Node/Playwright and Chromium-family browser runtime:
@@ -45,6 +54,7 @@ node evals/wordpress-settings/test_model.cjs
 # Set WPS_EVIDENCE_DIR to an existing directory outside the product checkout.
 # WPS_BROWSER_CHANNEL defaults to msedge; WPS_DOCKER defaults to docker.
 node evals/wordpress-settings/run_browser.cjs
+node evals/wordpress-settings/run_discovery.cjs
 python -B -X utf8 evals/wordpress-settings/test_contracts.py
 ```
 
@@ -58,6 +68,13 @@ Generated captures/reports stay outside source; selected accepted evidence is
 retained under the dedicated evaluation suite. Structural/model checks do not
 replace real-admin observation. See [design criteria](DESIGN.md) and
 [actual execution](../../wordpress-settings/EXECUTION.md).
+
+Run browser suites sequentially: both reset their owned synthetic option.
+`run_discovery.cjs --settings-only` deliberately omits the workspace observation;
+it cannot stand in for full acceptance. The full runner binds fixture, guide,
+runner and capture hashes, actual host/assets and local date/UTC instant. Native
+control label association and label-click behavior are checked alongside search
+focus. Current acceptance is in the [R12 record](../../../docs/R12_EXECUTION.md).
 
 Stop or remove only this Compose project's containers/volumes when finished;
 verify ownership before removing synthetic data. The old compatibility host is

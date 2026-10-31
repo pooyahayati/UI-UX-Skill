@@ -176,6 +176,27 @@ class EvalResultTests(unittest.TestCase):
             self.errors(value, require_all=True)
             self.assertEqual(value, before)
 
+    def test_release_binding_cli_is_explicit_and_cannot_qualify_other_records(self):
+        record = ROOT / "evals/ui-foundations/r12-result.json"
+        binding = str(ROOT / "evals/r12-release-version.json")
+        before = record.read_bytes()
+        for arguments, expected in (
+            ([str(record), "--suite", "ui-foundations", "--accept", "--release-binding", binding], 0),
+            ([str(record), "--suite", "ui-foundations", "--accept"], 1),
+            ([str(record), "--release-binding", binding], 1),
+            ([str(ROOT / "evals/ui-foundations/result.json"), "--suite", "ui-foundations", "--release-binding", binding], 1),
+            ([str(record), "--suite", "ui-foundations", "--release-binding", binding,
+              "--binding", str(ROOT / "evals/real-world/compatibility.json")], 1),
+        ):
+            with self.subTest(arguments=arguments):
+                result = subprocess.run([sys.executable, "-B", str(ROOT / "scripts/validate_eval_result.py"), *arguments],
+                                        capture_output=True, text=True, encoding="utf-8", check=False)
+                self.assertEqual(result.returncode, expected, result.stdout + result.stderr)
+                self.assertNotIn("Traceback", result.stderr)
+                if expected == 0:
+                    self.assertIn("not a fresh 3.6.0 model evaluation", result.stdout)
+        self.assertEqual(record.read_bytes(), before)
+
     def test_real_world_gate_reuses_consistency_and_remains_stricter(self):
         path = ROOT / "evals/real-world/result.json"
         original_read = Path.read_text

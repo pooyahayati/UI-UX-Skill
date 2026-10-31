@@ -2,6 +2,13 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
+## [3.6.0] - 2026-11-01
+
+- Improved WordPress settings findability with task inventories, curated intent aliases, permission-safe discovery, field/dependency focus and draft-preserving navigation. Short forms remain simple.
+- Added scoped visual foundations and version-aware decisions for native controls, optional data collections and experimental packages; settings and operational surfaces retain distinct boundaries.
+- Extended the synthetic real-admin specimen with discovery and report/detail, connection and job-state examples. Added source-bound runtime checks and independent behavior records while preserving historical WPS/R11 evidence.
+- Preserved recorded evaluation provenance across the release-only version bump with an exact-content compatibility binding; unchanged historical outputs are not presented as fresh runs. Publication and managed-install evidence are tracked in the roadmap.
+
 ## [3.5.1] - 2026-10-16
 
 - Corrected concurrent-edit recovery in the synthetic WordPress settings specimen: retain independent peer/local changes, require explicit overlapping-field and masked credential choices, and keep revision checks, cancellation and later edits intact.
