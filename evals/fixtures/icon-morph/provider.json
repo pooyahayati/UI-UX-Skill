@@ -1,0 +1,63 @@
+{
+  "name": "morphicons",
+  "version": "2.0.2",
+  "revision": "8c3e3c7cd717b2381f8f35cf6c245afd80d8d7df",
+  "license": "MIT",
+  "tarball": "https://registry.npmjs.org/morphicons/-/morphicons-2.0.2.tgz",
+  "integrity": "sha512-/GFSrsZDuyZ3a2QK8wXnVpsHzrVIZ8eLhg0QbGxeeOPyOZmtKUC8i0z3QQ3bbIX5DV/LOLYpp/8unJMWQU0Qgw==",
+  "exporter": "No Aria-generated code or catalog asset is embedded. Aria exporter c1d22bdca5a83921f435a52f2832320538236a62 was source-reviewed separately; its ^1.7.0 contract is not inferred from this engine.",
+  "artwork": "Original prepared outline/solid disclosure, plain/badge, from scripts/runtime_icons.py in this repository, MIT. Names and source bytes are bound in the runtime report.",
+  "boundary": "Isolated evaluation dependency only. No package install or network request in the portable Skill; no production adapter promise.",
+  "budget": {
+    "additional_route_gzip_bytes": 16000,
+    "purpose": "Pre-run local specimen ceiling for one optional interaction, not a universal product budget."
+  },
+  "files": {
+    "LICENSE": "bca713965691c297a4fc7e17eb115b373b7d08db4975c1968df7f7707267a4be",
+    "dist/MorphIcon.astro": "b0bc917599b3ae45c8fb4f529f73f8a6a8111aa9c334e7cacfe7d69b0f62d4e7",
+    "dist/adapters.js": "89578c0295247f050efb4acc0f5241509a7d7e4ba393462e4ad3fe57965a9978",
+    "dist/controller--7SSBggk.js": "b523b1d8e89d0bc4a96d72bec84f244ce351608755894af660b13b1f142c48d7",
+    "dist/dom.js": "ddac5665b67fb4ea3bd2792592e98da26c3d08cd202230640a8d4f60c0f8c73d",
+    "dist/element.js": "c997750c20a2206a4292dfe34492ad52b98c30f0a6661ea11b16c8b7928eb6f3",
+    "dist/index.js": "9125c194e22f028e433e4fcb01051c5e941c3042d505013e6eefb0a37d8249a7",
+    "dist/normalize-CYnN3Npw.js": "7da2964e74cff390949302e7c771dc89eaf6daa107cd8f5356865277542cc9c3",
+    "dist/react-native.js": "4a6506c90180e30515c20cdc833f341944041bb7da89d90b0c9e3026287807e6",
+    "dist/react.js": "eed4daa47c0dd4e244c1fe83c3357297c043b53c5041afab55da9aa371fc59a9",
+    "dist/region-BjECuWZR.js": "8e4f9297b346fceac5ed79f94fe89022e40aee36939d3777b0b0b390a9652b1e",
+    "dist/region.js": "c9455cd1de439a429f69b776c778399f382c65c2b3a8f1f2c603b1d947b72126",
+    "dist/resample-CXlaZ5ZQ.js": "3c6b457510d0362b98346cce45df3cdb079eaca7596d289a29cf212feddaf983",
+    "dist/spring-B_P92nf6.js": "4a426a9c984585b87a743d744bd729e7deaf34761999b6d2f40906a2654c74dc",
+    "dist/svelte-shared.js": "f7875d5180a1e941a0d81d6b251c8acc5fbd3c69a7d36542bf366a0549eda19a",
+    "dist/svelte.js": "45a14352de5c4115481d3b0dcf78ec6055958dbf3f65329a9d9712e7b926f8be",
+    "dist/vue.js": "d1f8f3c72b6b9995bc18c75a33e2468a2bb09c82bda581f84950958adb67a98b",
+    "package.json": "68a02a56dc95656d255c960136d1a95b60e40e2d836b71d5743404f51ed166ce",
+    "README.md": "dc7fb699e9b8179e68ad9674370e1f3143b89b287ec0b7f34588cebf2fb0e2e6",
+    "dist/MorphIcon.svelte": "635a7ba5380c2765681474e8ccd5aa9a370e58fb6f9eb3965e31a88273e65bee",
+    "dist/adapters.d.ts": "5040eb60a98cacd38226f442b3b8bf5a7dd48eaa691e543e652d5ba3563538a2",
+    "dist/astro.d.ts": "dc38863967a91a8b1cfae922452faeefddfa7671a4ddfe22ef0032b5c11415df",
+    "dist/controller-DKm8s2ni.d.ts": "77d43b3c72591044b070be7e2132a04d175f24e1d5e34422e1ead0bf938fba49",
+    "dist/dom.d.ts": "58563bb9276b36ee9aec45f2f01b8ad9c52d0a7204063c8b8fb73ce5b2cd486b",
+    "dist/element.d.ts": "89eca6da2932693c318dfe9f23b53894b8143387e9154b6a11a8652f9890d2f4",
+    "dist/index-DDNCPQ4Z.d.ts": "0977974cc97248d39d45a98e6d705182915e2d58bde74c8cb0c88bee64ad1bae",
+    "dist/index-DpvKR75N.d.ts": "8adf369eae060655337f9f09b9cb5df02f1f85c8c93eb23bd3aa1d76809578a1",
+    "dist/index.d.ts": "305995a8b6f291dbb54b4173c9bc4c2cbdd6150cf531839b6bbc0ba05a7806f5",
+    "dist/plan-DhaDhEVq.d.ts": "e86c533f3159698a1c2562720b7cdea8118163c2e93002b734a13a9c18e008d5",
+    "dist/react-native.d.ts": "5f9f2510744808c3e17469dc2eebd6f78fdce337486ace5c894ec732022cc969",
+    "dist/react.d.ts": "ef7330df1db968a1efabfcc9d73aaa361591c20fe8da660896afb588afc52eae",
+    "dist/region.d.ts": "7d3dc0ee083821b47ecbfb66b06fc15a939bbb81ccb279e516269288cac4131b",
+    "dist/spring-BgZHrI2W.d.ts": "a3019ff2af2e7d6d463b8d97f48ba7da1e8bbdc28a0aff1638e9143e62e4bae6",
+    "dist/svelte-shared.d.ts": "cfb1923f5fd89e7cce12be1d55e324418ddba66d3c88ae8f05e8fd8b88383a8b",
+    "dist/svelte.d.ts": "a533be8b5c067422f08a8b3f69b4d2db5f7f6d68ae82f1d26f55258fb538d11d",
+    "dist/vue.d.ts": "ce598ab7ddf72ef461f7ad6a9640e3b98787fcb95491d9778a19750cd7b5a976"
+  },
+  "bundle": {
+    "tool": "esbuild",
+    "version": "0.28.2",
+    "command": "esbuild morphicons/package/dist/dom.js --bundle --format=esm --platform=browser --minify --splitting --outdir=morph-bundle",
+    "files": {
+      "chunk-4JNG5ENK.js": "e3b399dfdd74d0c8c1c550b691c56c2211cd3d33aa92a264a733bbdac9318b2a",
+      "dom.js": "e5f3f7b844176df88bd4208e33c4c7f273ac0f75b9d7f50660e6fbc5b34a680b",
+      "region-IVULNZV3.js": "4b8018c2b6ce64c7459fe075da2c6b813397049e9bb3b2500deba6a2768a976f"
+    }
+  }
+}

@@ -110,13 +110,26 @@ def prepare(case_id: str, output: Path, root: Path = ROOT) -> Path:
 
 def validate_record(result: object, directory: Path, *, root: Path = ROOT,
                     accept: bool = False, require_all: bool = False,
-                    release_binding: object = None, r13_release_binding: object = None) -> list[str]:
+                    release_binding: object = None, r13_release_binding: object = None,
+                    r14_release_binding: object = None) -> list[str]:
     from validate_eval_result import validate_result
     current = manifest(root)
     actual = snapshot(root / "skills/ui-ux-skill")
+    if r14_release_binding is not None:
+        from r14_release_binding import r14_release_predecessor
+        if release_binding is not None or r13_release_binding is not None or current["version"] != "3.7.0":
+            return ["R14 release binding requires its explicit release version and no other bridge"]
+        try:
+            actual = r14_release_predecessor(actual, r14_release_binding, root=root,
+                result=result, record="evals/ui-foundations/r14-result.json")
+            current = {**current, "version": "3.6.1"}
+        except ValueError as error:
+            return [str(error)]
     if r13_release_binding is not None:
         from r13_release_binding import r13_release_predecessor
-        if release_binding is not None or current["version"] != "3.6.1":
+        # 3.7.0 must pass the exact R14 source + VERSION succession inside the
+        # R13 helper. Merely allowing the string cannot qualify changed evidence.
+        if release_binding is not None or current["version"] not in {"3.6.1", "3.7.0"}:
             return ["R13 release binding requires its explicit release version and no other bridge"]
         try:
             actual = r13_release_predecessor(actual, r13_release_binding, root=root,
@@ -169,6 +182,12 @@ def validate_record(result: object, directory: Path, *, root: Path = ROOT,
             errors.append(case_id + ": missing/duplicate source dependency set")
         else:
             for name in paths:
+                if name == "VERSION" and result.get("retainedR13VersionOnly"):
+                    from r14_source_binding import retained_r13_version_case
+                    from release_version_binding import version_digest
+                    if (actual.get(name) == version_digest("3.6.1") and case_files.get(name) == version_digest("3.6.0")
+                            and retained_r13_version_case(result, case, root)):
+                        continue
                 if name == "VERSION" and result.get("retainedR12VersionOnly"):
                     from r13_source_binding import retained_r12_version_case
                     from release_version_binding import version_digest

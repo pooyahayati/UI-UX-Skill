@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "scope": "r14-release-version-only",
+  "normalization": "git-lf",
+  "decision": "docs/releases/3.7.0.md#authority",
+  "recorded_version": "3.6.1",
+  "release_version": "3.7.0",
+  "version_change": {
+    "path": "VERSION",
+    "previous_sha256": "de58d841bd709aa85a66ecc500dfbb48e7c207e84c399e30e751e8ccad6e8c9b",
+    "sha256": "84746b20a3a72f6ff85a629706e50507c1bd200907456b76dd808a2a5ca0efba"
+  },
+  "candidate_before_sha256": "8067331adcf001b8a25a149572ed65996984d4d2a5dc57b7d65244541e5434c7",
+  "candidate_after_sha256": "08206437c937c36255cd97b2094f8a55157b4ac3d9b12d524bd75c3a10df5827",
+  "records": {
+    "evals/r14/stage2-results.json": "5e89f371b2564aa15a0f12ce19edc98379c3ee6381ef94cc4806d2c69626e5da",
+    "evals/r14/stage3-results.json": "49def1428c3a73e898d50b0e6650c410ed292af1dda48f2691fbe71d1af7c327",
+    "evals/r14/evidence/icon-runtime.json": "f6f9ff49ea76f32b484213222f746f3827fdf4a36fb487a4c67032b22bc1a478",
+    "evals/ui-foundations/r14-result.json": "dd1d78b0270b6ac0f70f7554ec25f09b360165b1c9a050ed0bb21c9820dbb21e",
+    "evals/r14-source.json": "def8b6c1b0544e3447d8ed2d05c3560cc8e0216f4a8e985eeba5be13530610f4"
+  },
+  "notes": "Exact VERSION-only successor of accepted R14 source and reviewed evidence. Original outputs, candidates and evaluator identities remain unchanged; not fresh model/runtime evidence for the metadata bump."
+}

@@ -33,6 +33,9 @@ def r13_release_predecessor(actual, binding=None, *, root=ROOT, result=None, rec
             or binding.get("records") != ACCEPTED_RECORDS
             or not isinstance(binding.get("notes"), str) or not binding["notes"].strip()):
         raise ValueError("Invalid R13 release-only identity or scope")
+    if isinstance(actual, dict) and tree_digest(actual) != binding["candidate_after_sha256"] and (root / "evals/r14-source.json").exists():
+        from r14_source_binding import r14_predecessor
+        actual = r14_predecessor(actual, root=root)
     if (not isinstance(actual, dict) or actual.get("VERSION") != version_digest(TO_VERSION)
             or tree_digest(actual) != binding["candidate_after_sha256"]):
         raise ValueError("R13 release source identity changed")

@@ -153,6 +153,7 @@ def main() -> None:
     parser.add_argument("--binding", help="Explicit historical compatibility sidecar; default suite only")
     parser.add_argument("--release-binding", help="Exact R12 VERSION-only release successor; ui-foundations only, not a fresh evaluation")
     parser.add_argument("--r13-release-binding", help="Exact R13 VERSION-only release successor; ui-foundations only, not a fresh evaluation")
+    parser.add_argument("--r14-release-binding", help="Exact R14 VERSION-only release successor; ui-foundations only, not a fresh evaluation")
     parser.add_argument("--accept", action="store_true", help="Require selected ui-foundations evidence to pass; does not run a model")
     args = parser.parse_args()
     try:
@@ -164,6 +165,8 @@ def main() -> None:
             raise ValueError("--release-binding is only for the retained R12 ui-foundations record")
         if args.r13_release_binding and (args.suite != "ui-foundations" or args.binding or args.release_binding):
             raise ValueError("--r13-release-binding is only for the retained R13 ui-foundations record")
+        if args.r14_release_binding and (args.suite != "ui-foundations" or args.binding or args.release_binding or args.r13_release_binding):
+            raise ValueError("--r14-release-binding is only for the accepted R14 ui-foundations record")
         if args.accept and args.suite != "ui-foundations":
             raise ValueError("--accept is only for the bounded ui-foundations suite")
         if args.suite == "ui-foundations":
@@ -177,9 +180,13 @@ def main() -> None:
                            if args.r13_release_binding else None)
             if args.r13_release_binding and not isinstance(r13_binding, dict):
                 raise ValueError("--r13-release-binding must contain an explicit successor object")
+            r14_binding = (json.loads(Path(args.r14_release_binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+                           if args.r14_release_binding else None)
+            if args.r14_release_binding and not isinstance(r14_binding, dict):
+                raise ValueError("--r14-release-binding must contain an explicit successor object")
             errors = validate_record(result, Path(args.result).resolve().parent, accept=args.accept,
                                      require_all=args.require_all, release_binding=release_binding,
-                                     r13_release_binding=r13_binding)
+                                     r13_release_binding=r13_binding, r14_release_binding=r14_binding)
         elif args.binding:
             binding = json.loads(Path(args.binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
             errors = validate_historical(result, binding, require_all=args.require_all)
@@ -207,6 +214,8 @@ def main() -> None:
         print("Retained R12 evidence was executed with 3.5.1 metadata; exact VERSION-only compatibility with 3.6.0 is verified. This is not a fresh 3.6.0 model evaluation.")
     if args.r13_release_binding:
         print("Retained R13 evidence used 3.6.0 metadata; exact VERSION-only compatibility with 3.6.1 is verified. This is not a fresh 3.6.1 model evaluation.")
+    if args.r14_release_binding:
+        print("Accepted R14 evidence used 3.6.1 metadata; exact VERSION-only compatibility with 3.7.0 is verified. This is not a fresh 3.7.0 model evaluation.")
     failures = [x["id"] for x in result["cases"] if x["result"] == "fail"]
     if failures:
         print("Failed cases:", ", ".join(failures))

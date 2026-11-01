@@ -6,6 +6,7 @@ import copy
 from datetime import date
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 import sys
@@ -35,6 +36,9 @@ R13_VALIDATION_IDS = {f"ERR-{case}-{service}-{lang}" for case in ("retained", "d
 R12_REGRESSION_IDS = ({f"WP-{i:02d}" for i in range(1, 15)} - {"WP-10"}) | {
     "R11-CONFLICT-current", "R11-CONFLICT-minimum", "R11-CONFLICT-RTL",
 }
+LEGACY_VIEWPORT_IDS = {f"VIEW-{variant}-{width}" for variant in ("multi", "simple")
+                       for width in (1440, 390)} | {"VIEW-zoom-200"}
+LEGACY_ZOOM_LIMITATION = "Owned-surface CSS 200% zoom stress, not native browser zoom or assistive-technology certification"
 
 
 def canonical_bytes(path):
@@ -121,13 +125,14 @@ def active_source_baseline():
     sys.path.insert(0, str(ROOT / "scripts"))
     from r13_source_binding import r13_predecessor
     r13_predecessor()  # Verify exact full source scope before updating protected expectations.
-    delta = json.loads((ROOT / "evals/r13-source.json").read_text(encoding="utf-8"))
-    for name, binding in delta["changes"].items():
-        key = "skills/ui-ux-skill/" + name
-        if key in updated["protected_skill_hashes"]:
-            if updated["protected_skill_hashes"][key] != binding["previous_sha256"]:
-                raise ValueError("R13 protected-source predecessor mismatch: " + name)
-            updated["protected_skill_hashes"][key] = binding["sha256"]
+    for series in ("r13", "r14"):
+        delta = json.loads((ROOT / f"evals/{series}-source.json").read_text(encoding="utf-8"))
+        for name, binding in delta["changes"].items():
+            key = "skills/ui-ux-skill/" + name
+            if key in updated["protected_skill_hashes"]:
+                if updated["protected_skill_hashes"][key] != binding["previous_sha256"]:
+                    raise ValueError(series.upper() + " protected-source predecessor mismatch: " + name)
+                updated["protected_skill_hashes"][key] = binding["sha256"]
     return updated
 
 
@@ -308,6 +313,41 @@ def validation_metadata_errors(report):
     return errors
 
 
+def legacy_viewport_errors(rows):
+    """Validate the existing run_browser producer, not universal product defaults."""
+    errors = []
+    for row in rows:
+        name = row.get("id")
+        if not isinstance(name, str) or name not in LEGACY_VIEWPORT_IDS:
+            continue
+        detail = row.get("detail")
+        if not isinstance(detail, dict):
+            errors.append(f"Legacy viewport {name}: missing geometry/font detail")
+            continue
+        if name == "VIEW-zoom-200":
+            width = detail.get("rootWidth")
+            if (detail.get("zoom") != "2" or detail.get("overflow") is not False
+                    or type(width) not in (int, float) or not 0 < width <= 780
+                    or not math.isfinite(width) or detail.get("limitation") != LEGACY_ZOOM_LIMITATION):
+                errors.append(f"Legacy viewport {name}: invalid CSS zoom geometry or limitation")
+            continue
+        font = detail.get("font")
+        fonts = detail.get("rendered_fonts")
+        valid = (detail.get("direction") == "rtl" and detail.get("overflow") is False
+                 and detail.get("regular") is True and detail.get("bold") is True
+                 and isinstance(font, str) and font.split(",")[0].strip(" \"'") == "Vazirmatn"
+                 and isinstance(fonts, dict))
+        for selector in ("#wps-root h1", "#wps-root label"):
+            records = fonts.get(selector) if isinstance(fonts, dict) else None
+            valid = valid and isinstance(records, list) and any(
+                isinstance(face, dict) and face.get("familyName") == "Vazirmatn"
+                and face.get("isCustomFont") is True and type(face.get("glyphCount")) is int
+                and face["glyphCount"] > 0 for face in records)
+        if not valid:
+            errors.append(f"Legacy viewport {name}: contradictory or missing RTL/overflow/rendered-font evidence")
+    return errors
+
+
 def r12_runtime_errors(report, behavior, fixture, runner_sha256, expected_ids):
     """Check fresh runtime evidence against the exact successor and runner."""
     errors = []
@@ -328,9 +368,10 @@ def r12_runtime_errors(report, behavior, fixture, runner_sha256, expected_ids):
     if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
         return errors + ["R12 runtime observation inventory is missing or malformed"]
     ids = [row.get("id") for row in rows]
+    required_ids = expected_ids | LEGACY_VIEWPORT_IDS if expected_ids == R12_REGRESSION_IDS else expected_ids
     if (any(not isinstance(name, str) for name in ids)
             or len(ids) != len(set(ids))
-            or {name for name in ids if not name.startswith("VIEW-")} != expected_ids):
+            or set(ids) != required_ids):
         errors.append("R12 runtime observations are missing, duplicate or out of scope")
     def has_detail(row):
         detail = row.get("detail")
@@ -348,6 +389,8 @@ def r12_runtime_errors(report, behavior, fixture, runner_sha256, expected_ids):
         errors.extend(discovery_metadata_errors(report))
     elif expected_ids == R13_VALIDATION_IDS:
         errors.extend(validation_metadata_errors(report))
+    elif expected_ids == R12_REGRESSION_IDS:
+        errors.extend(legacy_viewport_errors(rows))
     return errors
 
 
@@ -745,6 +788,10 @@ class R12SuccessorContracts(unittest.TestCase):
                 "observations": [{"id": name, "status": "passed", "method": "real-admin-browser", "detail": "Synthetic contract-test observation"}
                                  for name in sorted(ids)],
             }
+            if ids == R12_REGRESSION_IDS:
+                legacy = json.loads((HERE / "evidence/r12-regression-results.json").read_text(encoding="utf-8"))
+                report["observations"].extend(copy.deepcopy(row) for row in legacy["observations"]
+                                              if row["id"] in LEGACY_VIEWPORT_IDS)
             self.assertEqual(r12_runtime_errors(report, behavior, fixture, runner_hash, ids), [])
             for field, value in (
                 ("schema_version", 0), ("recorded_on", "2026-10-16"), ("recorded_on", "2026-02-30"),
@@ -761,9 +808,9 @@ class R12SuccessorContracts(unittest.TestCase):
                 self.assertTrue(r12_runtime_errors(broken, behavior, fixture, runner_hash, ids), field)
             with_view = copy.deepcopy(report)
             with_view["observations"].append({"id": "VIEW-primary", "status": "passed", "method": "real-admin-browser", "detail": "View checked"})
-            self.assertEqual(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids), [])
+            self.assertTrue(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids))
             with_view["observations"][-1]["detail"] = {"viewport": 390, "scrollWidth": 390}
-            self.assertEqual(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids), [])
+            self.assertTrue(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids))
             with_view["observations"][-1]["detail"] = {}
             self.assertTrue(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids))
             with_view["observations"][-1]["detail"] = "View checked"

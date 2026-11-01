@@ -2,6 +2,13 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
+## [3.7.0] - 2026-11-02
+
+- Reject missing, duplicate or contradictory legacy viewport evidence, including actual font records and the separate bounded zoom contract; valid historical reports remain unchanged.
+- Strengthen existing visual critique with task-sensitive hierarchy, preserved baselines and falsifiable corrections, informed by selected Impeccable and Interface Design criteria without importing their workflows.
+- Add optional Aria Icons discovery and morphicons state transitions with per-family licensing, exporter/version boundaries, truthful static fallbacks and existing owner/user/OS controls. No mandatory provider or new specialist is added.
+- Retain independent response comparisons, affected-case reruns and a bounded mobile runtime specimen with measured payload and appearance lifecycle checks. Source/version bridges preserve original evidence identities. [Delivery record](docs/releases/3.7.0.md).
+
 ## [3.6.1] - 2026-11-01
 
 - Fixed synthetic WordPress settings error ownership: unrelated section errors survive saves, and delayed validation cannot mark a newer corrected value invalid.

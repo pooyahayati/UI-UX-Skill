@@ -26,6 +26,7 @@ jobs:
           python3 evals/wordpress-settings/test_contracts.py
           python3 evals/wordpress-settings/test_r12_behavior.py
           python3 evals/wordpress-settings/test_r13_evidence.py
+          python3 evals/wordpress-settings/test_r14_evidence.py
           python3 evals/wordpress-settings/test_r13_behavior.py
           node evals/wordpress-settings/test_model.cjs
           node evals/wordpress-settings/test_conflict.cjs
@@ -90,8 +91,12 @@ jobs:
         run: |
           python3 scripts/test_behavior_evaluation.py
           python3 scripts/test_r13_source_binding.py
+          python3 scripts/test_r14_source_binding.py
+          python3 scripts/test_r14_evaluation.py
+          python3 scripts/test_r14_release_binding.py
           python3 scripts/test_r13_release_binding.py
           python3 scripts/validate_eval_result.py evals/ui-foundations/r13-result.json --suite ui-foundations --accept --r13-release-binding evals/r13-release-version.json
+          python3 scripts/validate_eval_result.py evals/ui-foundations/r14-result.json --suite ui-foundations --accept --r14-release-binding evals/r14-release-version.json
 
       - name: Eval harness smoke test
         run: |

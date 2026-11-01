@@ -170,6 +170,10 @@ def validate_current_roadmap(roadmap: str) -> list[str]:
         section(roadmap, "R13 audit remediation"), summary,
         "R13", [f"R13.{i}" for i in range(1, 5)], r"R13\.\d+",
         "Owner instruction to implement R13.1", "R13 execution authority"))
+    errors.extend(validate_ordered_packages(
+        section(roadmap, "R14 bounded quality-gap corrections"), summary,
+        "R14", [f"R14.{i}" for i in range(1, 4)], r"R14\.\d+",
+        "Owner instruction to implement R14.1", "R14 execution authority"))
     if not summary.get("Accountable role"):
         errors.append("WPS accountable role must be recorded")
     history = section(roadmap, "Completed history")

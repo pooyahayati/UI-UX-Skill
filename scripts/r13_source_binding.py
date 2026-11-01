@@ -13,6 +13,9 @@ THEME = {"SKILL.md", "references/design-foundation-workflow.md", "references/des
 def r13_predecessor(actual=None, binding=None):
     """Verify every current file, then expose the exact released historical view."""
     if actual is None: actual = snapshot(ROOT / "skills/ui-ux-skill")
+    if actual.get("VERSION") == version_digest("3.7.0"):
+        from r14_source_binding import r14_predecessor
+        actual = r14_predecessor(actual)
     if actual.get("VERSION") == version_digest("3.6.1"):
         from r13_release_binding import r13_release_predecessor
         actual = r13_release_predecessor(actual)
