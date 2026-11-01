@@ -7,8 +7,8 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Item | State |
 | --- | --- |
 | Updated | 2026-11-01 |
-| Released baseline | [v3.6.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.6.0); published artifacts and managed local installation verified 2026-11-01 |
-| Current workstream | R13 corrections accepted; authorized 3.6.1 delivery in progress |
+| Released baseline | [v3.6.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.6.1); published artifacts and managed local installation verified 2026-11-01 |
+| Current workstream | R13 corrections and authorized 3.6.1 delivery completed |
 | Acceptance | R13.1–R13.4 accepted against the bounded runtime, metadata, routing and theme criteria. R12's historical acceptance and limits remain in its [execution record](docs/R12_EXECUTION.md) |
 | Completed R13 packages | 4 of 4 |
 | Active R13 package | None |
@@ -24,9 +24,9 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
-| Execution authority | Historical [R11](#r11-audit-remediation) and [R12 delivery](docs/releases/3.6.0.md#authority) authorizations are fulfilled; current R13 authority is recorded separately above |
+| Execution authority | R11, R12 and the bounded [R13 delivery authority](docs/releases/3.6.1.md#authority) are fulfilled; completion grants no new scope |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | Preparing 3.6.1 under [owner delivery authority](docs/releases/3.6.1.md#authority); 3.6.0 remains the verified published/installed baseline until the new delivery gates pass |
+| Delivery | 3.6.1 merged, published and installed locally with verified backup and accepted Head compatibility; [delivery evidence](docs/releases/3.6.1.md) |
 
 ## R13 audit remediation
 
@@ -45,7 +45,15 @@ All four findings have Medium severity: one reproduced specimen defect, one demo
 
 Execute in priority order after authorization, with one active package. Completion requires dated, source-bound acceptance for that package and its prerequisites; unavailable checks stay open. Preserve original WPS/R11/R12 evidence and use explicit successors for changed current inputs. A planning document or greener metadata check is not implementation or behavioral acceptance.
 
-**Next action:** complete the authorized [3.6.1 delivery](docs/releases/3.6.1.md): exact-head validation, merge, publication, published-asset checks and backed-up managed local update. No R13 implementation package or repeated owner font/design approval remains.
+**Superseding delivery decision, 2026-11-01:** the owner authorized committing, pushing and merging R13, publishing a new release and updating the local Skill. This supersedes the delivery exclusion at the implementation checkpoint, within the [3.6.1 scope](docs/releases/3.6.1.md#authority).
+
+| Delivery step | Status | Evidence |
+| --- | --- | --- |
+| Source/package checks, exact-head PR validation and merge | Completed | [PR #51](https://github.com/pooyahayati/UI-UX-Skill/pull/51); [integration evidence](docs/releases/3.6.1.md#integration-and-publication) |
+| Main release workflow, tag and actual downloaded artifacts | Completed | [Published artifacts](docs/releases/3.6.1.md#published-artifacts) |
+| Managed local update, exact backup and Head compatibility | Completed | [Installation evidence](docs/releases/3.6.1.md#managed-local-installation) |
+
+**Next action:** none within R13 implementation or its [3.6.1 delivery](docs/releases/3.6.1.md). Future changes need their own scope; no repeated owner font/design approval remains.
 
 ## R12 WordPress admin design and settings findability
 
@@ -188,7 +196,7 @@ These rows summarize closed work, not pending tasks. Historical limitations and 
 | Dashboard shadcn/ui default, optional interactive motion and release 3.5.0 | Completed, merged, published and installed locally, 2026-10-16 | [Exact source, CI, downloaded packages, security and managed-install verification](docs/releases/3.5.0.md) |
 | R11.1–R11.3 and corrective release 3.5.1 | Completed, merged, published and installed locally, 2026-10-16; 3 of 3 packages | [Stage acceptance and limits](docs/R11_EXECUTION.md); [PR, CI, published artifacts and managed-install verification](docs/releases/3.5.1.md) |
 | R12.1–R12.6 and release 3.6.0 | Completed, merged, published and installed locally, 2026-11-01; 6 of 6 packages | [Stage acceptance and limits](docs/R12_EXECUTION.md); [delivery evidence](docs/releases/3.6.0.md) |
-| R13.1–R13.4: four audit corrections | Implementation accepted, 2026-11-01; 4 of 4 packages; delivery tracked separately | [Stage acceptance](docs/R13_EXECUTION.md); [3.6.1 delivery](docs/releases/3.6.1.md) |
+| R13.1–R13.4 and release 3.6.1 | Completed, merged, published and installed locally, 2026-11-01; 4 of 4 packages | [Stage acceptance](docs/R13_EXECUTION.md); [delivery evidence](docs/releases/3.6.1.md) |
 
 The historical five-product evaluation was source-based in the same session, not an independent browser/device run. R7/R8 and R9 acceptance is bounded to its recorded evidence; hypothetical specimen approvals are not unfinished Skill stages. See [full limitations](docs/archive/ROADMAP-2026-10-09.md#acceptance-and-known-limits).
 
