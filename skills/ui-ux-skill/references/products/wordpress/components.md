@@ -37,13 +37,6 @@ This is a task-oriented shortlist, not an exhaustive component catalog. Use
 ordinary headings/sections for a short form; components do not require tabs or
 cards. Read official component documentation only for controls actually needed.
 
-For data-heavy operational collections, evaluate public `DataViews` and `DataForm`
-from `@wordpress/dataviews` against the actual list/filter/edit task and supported
-host. They are conditional dataset tools, not the settings-form default. Verify
-the package's WordPress entrypoint, dependencies and styles with the existing
-build strategy; do not introduce REST, storage migration or a build pipeline just
-to use them. A small native list/detail composition may be sufficient.
-
 Public availability does not establish stability. The current `@wordpress/ui`
 README labels it experimental and it is not a drop-in `window.wp` replacement;
 preserve the approved settings convention instead of automatic migration.

@@ -60,7 +60,7 @@ Keep preset definitions and supported duration/easing bounds in design-system so
 
 Reuse existing authorization/scope, private draft, preview, validation, publication, history, reset and rollback. Unknown/invalid values are rejected at write time; loading failures retain a safe last-valid/default policy and cannot enable stronger motion than the effective preference allows. Preserve prior configuration and history with compatible migration if a schema changes. No admin surface means no invented role/backend; a narrow animation fix does not authorize a new panel.
 
-In the existing `DESIGN.md` sections, record the selected provider or no-library decision and rationale, affected interactions, token/preset sources, reduced/off alternatives, directional meaning, supported owner/user controls and actual verification gaps. Link executable values and runtime history rather than duplicating them. Use the existing primary-then-dark-then-authorized-secondary approval sequence; animation does not reopen settled foundations or require unnecessary language variants.
+In the existing `DESIGN.md` sections, record the selected provider or no-library decision and rationale, affected interactions, token/preset sources, reduced/off alternatives, directional meaning, supported owner/user controls and actual verification gaps. Link executable values and runtime history rather than duplicating them. Use the [canonical primary, applicable-theme and authorized-secondary gates](design-foundation-workflow.md#phase-2--theme-applicability-and-required-dark-review); animation does not reopen settled foundations or require unnecessary language variants.
 
 ## Verify the affected behavior
 

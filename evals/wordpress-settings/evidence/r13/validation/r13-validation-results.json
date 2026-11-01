@@ -1,0 +1,474 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-01",
+  "recorded_at": "2026-11-01T01:03:00.705Z",
+  "scope": "R13 section and submitted-value error ownership",
+  "complete": true,
+  "omitted_observations": [],
+  "runner_sha256": "502375736be674ec6f84b1f4504d9cff2ef0570c22d2b22d9fc02782b30ce72d",
+  "fixture_hashes": {
+    "app.js": "d1a8010bf7a419eb65ad329b16b93d95d74e2202963230d669e1cc54155692fb",
+    "discovery.js": "a0c419e89497338f6e4e9a749d097523c5ba99991b33b70aafe1fc622d21cfa1",
+    "fonts/OFL.txt": "e6f4ce7b6c830d5a25a4f8ac777c267cd7d3c180bc2a7150ca57cbb9b280c4b7",
+    "fonts/Vazirmatn-Bold.ttf": "f635fdbea28f265de395ba83b4b1570dcf2f58d13c65469e61903b1c2d2ae723",
+    "fonts/Vazirmatn-Regular.ttf": "b69fd4c680b8f3f225feabcc655a2c585d97627b8f5f5c0f9985e894069f3a56",
+    "index.asset.php": "3fdcdbb233db97b5c80a7b72bc060845805bf533ae81c52486d55a92d1ae8fe3",
+    "model.js": "6d2401235f027608ae6896d55fea72c9af3eddc56c2947329ced473e35022ae5",
+    "style.css": "079ab5458773c654020cc74b733eb9b246e344034b5ebdd9c6986d6f6fd8bc74",
+    "workspace.js": "cbecaa8fbd8d48d718ecbcd8ab890338664a913c9d197bcb583633ea5db79a2b",
+    "wps-specimen.php": "be905fe36d8ef8499411f390209f7e1be150ea885c17e56c3a8b527e51317391"
+  },
+  "behavior_hashes": {
+    "references/products/wordpress-plugin.md": "118544ca97739175652a70bf1886d9be0bda5d7d510e7fe83ed27b69b43b674c",
+    "references/products/wordpress/components.md": "2bb83f33af3bdb316969f94b13687f1c07a6fcd2f32ce3d36427e84fed8ef9bf",
+    "references/products/wordpress/settings.md": "60ed330b406722685da569b5c2520c95b885f131cbec4b84f2cea5130c0ee12b"
+  },
+  "browser": "156.0.4314.50",
+  "compatibility": [
+    {
+      "service": "current",
+      "base": "http://127.0.0.1:8790",
+      "core": "7.1.3",
+      "php": "8.3.35",
+      "plugins": [
+        "wps-specimen/wps-specimen.php"
+      ],
+      "asset_metadata": {
+        "dependencies": [
+          "wp-components",
+          "wp-element"
+        ],
+        "version": "0.1.0"
+      },
+      "asset_metadata_kind": "maintained no-build dependency record, not generated build evidence",
+      "exports": {
+        "TextControl": true,
+        "ToggleControl": true,
+        "SelectControl": true,
+        "Button": true,
+        "Notice": true,
+        "Modal": true,
+        "Spinner": true,
+        "PanelBody": true,
+        "SearchControl": true
+      },
+      "scripts": [
+        {
+          "id": "wp-element-js",
+          "src": "http://127.0.0.1:8790/wp-includes/js/dist/element.min.js?ver=4a4370b2b349066fd440"
+        },
+        {
+          "id": "wp-components-js-translations",
+          "src": ""
+        },
+        {
+          "id": "wp-components-js",
+          "src": "http://127.0.0.1:8790/wp-includes/js/dist/components.min.js?ver=9b751f17060211272a5c"
+        },
+        {
+          "id": "wps-model-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/model.js?ver=0.1.0"
+        },
+        {
+          "id": "wps-discovery-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/discovery.js?ver=0.1.0"
+        },
+        {
+          "id": "wps-app-js-extra",
+          "src": ""
+        },
+        {
+          "id": "wps-app-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/app.js?ver=0.1.0"
+        }
+      ],
+      "styles": [
+        {
+          "id": "",
+          "href": "http://127.0.0.1:8790/wp-admin/load-styles.php?c=0&dir=rtl&load%5Bchunk_0%5D=dashicons,admin-bar,common,forms,admin-menu,dashboard,list-tables,edit,revisions,media,themes,about,nav-menus,wp-pointer,widgets&load%5Bchunk_1%5D=,site-icon,l10n,wp-base-styles,wp-tooltip,buttons,wp-auth-check,wp-theme,wp-components,wp-commands&ver=7.1.3",
+          "loadedRules": 4175,
+          "handles": [
+            "dashicons",
+            "admin-bar",
+            "common",
+            "forms",
+            "admin-menu",
+            "dashboard",
+            "list-tables",
+            "edit",
+            "revisions",
+            "media",
+            "themes",
+            "about",
+            "nav-menus",
+            "wp-pointer",
+            "widgets",
+            "",
+            "site-icon",
+            "l10n",
+            "wp-base-styles",
+            "wp-tooltip",
+            "buttons",
+            "wp-auth-check",
+            "wp-theme",
+            "wp-components",
+            "wp-commands"
+          ]
+        },
+        {
+          "id": "wps-style-css",
+          "href": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/style.css?ver=0.1.0",
+          "loadedRules": 39,
+          "handles": []
+        }
+      ],
+      "actualOwnedLanguage": "en",
+      "hostLanguage": "fa-IR",
+      "actualRootDirection": "ltr"
+    },
+    {
+      "service": "minimum",
+      "base": "http://127.0.0.1:8791",
+      "core": "6.8",
+      "php": "8.3.35",
+      "plugins": [
+        "wps-specimen/wps-specimen.php"
+      ],
+      "asset_metadata": {
+        "dependencies": [
+          "wp-components",
+          "wp-element"
+        ],
+        "version": "0.1.0"
+      },
+      "asset_metadata_kind": "maintained no-build dependency record, not generated build evidence",
+      "exports": {
+        "TextControl": true,
+        "ToggleControl": true,
+        "SelectControl": true,
+        "Button": true,
+        "Notice": true,
+        "Modal": true,
+        "Spinner": true,
+        "PanelBody": true,
+        "SearchControl": true
+      },
+      "scripts": [
+        {
+          "id": "wps-model-js",
+          "src": "http://127.0.0.1:8791/wp-content/plugins/wps-specimen/model.js?ver=0.1.0"
+        },
+        {
+          "id": "wp-element-js",
+          "src": "http://127.0.0.1:8791/wp-includes/js/dist/element.min.js?ver=a4eeeadd23c0d7ab1d2d"
+        },
+        {
+          "id": "wp-components-js",
+          "src": "http://127.0.0.1:8791/wp-includes/js/dist/components.min.js?ver=787a8a74848a09b31e37"
+        },
+        {
+          "id": "wps-discovery-js",
+          "src": "http://127.0.0.1:8791/wp-content/plugins/wps-specimen/discovery.js?ver=0.1.0"
+        },
+        {
+          "id": "wps-app-js-extra",
+          "src": ""
+        },
+        {
+          "id": "wps-app-js",
+          "src": "http://127.0.0.1:8791/wp-content/plugins/wps-specimen/app.js?ver=0.1.0"
+        }
+      ],
+      "styles": [
+        {
+          "id": "",
+          "href": "http://127.0.0.1:8791/wp-admin/load-styles.php?c=0&dir=ltr&load%5Bchunk_0%5D=dashicons,admin-bar,common,forms,admin-menu,dashboard,list-tables,edit,revisions,media,themes,about,nav-menus,wp-pointer,widgets&load%5Bchunk_1%5D=,site-icon,l10n,buttons,wp-auth-check,wp-components&ver=6.8",
+          "loadedRules": 3936,
+          "handles": [
+            "dashicons",
+            "admin-bar",
+            "common",
+            "forms",
+            "admin-menu",
+            "dashboard",
+            "list-tables",
+            "edit",
+            "revisions",
+            "media",
+            "themes",
+            "about",
+            "nav-menus",
+            "wp-pointer",
+            "widgets",
+            "",
+            "site-icon",
+            "l10n",
+            "buttons",
+            "wp-auth-check",
+            "wp-components"
+          ]
+        },
+        {
+          "id": "wps-style-css",
+          "href": "http://127.0.0.1:8791/wp-content/plugins/wps-specimen/style.css?ver=0.1.0",
+          "loadedRules": 39,
+          "handles": []
+        }
+      ],
+      "actualOwnedLanguage": "en",
+      "hostLanguage": "en-US",
+      "actualRootDirection": "ltr"
+    },
+    {
+      "service": "current",
+      "base": "http://127.0.0.1:8790",
+      "core": "7.1.3",
+      "php": "8.3.35",
+      "plugins": [
+        "wps-specimen/wps-specimen.php"
+      ],
+      "asset_metadata": {
+        "dependencies": [
+          "wp-components",
+          "wp-element"
+        ],
+        "version": "0.1.0"
+      },
+      "asset_metadata_kind": "maintained no-build dependency record, not generated build evidence",
+      "exports": {
+        "TextControl": true,
+        "ToggleControl": true,
+        "SelectControl": true,
+        "Button": true,
+        "Notice": true,
+        "Modal": true,
+        "Spinner": true,
+        "PanelBody": true,
+        "SearchControl": true
+      },
+      "scripts": [
+        {
+          "id": "wp-element-js",
+          "src": "http://127.0.0.1:8790/wp-includes/js/dist/element.min.js?ver=4a4370b2b349066fd440"
+        },
+        {
+          "id": "wp-components-js-translations",
+          "src": ""
+        },
+        {
+          "id": "wp-components-js",
+          "src": "http://127.0.0.1:8790/wp-includes/js/dist/components.min.js?ver=9b751f17060211272a5c"
+        },
+        {
+          "id": "wps-model-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/model.js?ver=0.1.0"
+        },
+        {
+          "id": "wps-discovery-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/discovery.js?ver=0.1.0"
+        },
+        {
+          "id": "wps-app-js-extra",
+          "src": ""
+        },
+        {
+          "id": "wps-app-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/app.js?ver=0.1.0"
+        }
+      ],
+      "styles": [
+        {
+          "id": "",
+          "href": "http://127.0.0.1:8790/wp-admin/load-styles.php?c=0&dir=rtl&load%5Bchunk_0%5D=dashicons,admin-bar,common,forms,admin-menu,dashboard,list-tables,edit,revisions,media,themes,about,nav-menus,wp-pointer,widgets&load%5Bchunk_1%5D=,site-icon,l10n,wp-base-styles,wp-tooltip,buttons,wp-auth-check,wp-theme,wp-components,wp-commands&ver=7.1.3",
+          "loadedRules": 4175,
+          "handles": [
+            "dashicons",
+            "admin-bar",
+            "common",
+            "forms",
+            "admin-menu",
+            "dashboard",
+            "list-tables",
+            "edit",
+            "revisions",
+            "media",
+            "themes",
+            "about",
+            "nav-menus",
+            "wp-pointer",
+            "widgets",
+            "",
+            "site-icon",
+            "l10n",
+            "wp-base-styles",
+            "wp-tooltip",
+            "buttons",
+            "wp-auth-check",
+            "wp-theme",
+            "wp-components",
+            "wp-commands"
+          ]
+        },
+        {
+          "id": "wps-style-css",
+          "href": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/style.css?ver=0.1.0",
+          "loadedRules": 39,
+          "handles": []
+        }
+      ],
+      "actualOwnedLanguage": "fa",
+      "hostLanguage": "fa-IR",
+      "actualRootDirection": "rtl"
+    }
+  ],
+  "captures": [
+    {
+      "file": "r13-errors-current-en-1440.png",
+      "sha256": "207a68917e4ff439152b4e3e79c8cf5827836bfd35855d6873a827ea682c4229",
+      "language": "en",
+      "variant": "discovery",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "ltr",
+      "font": "Tahoma, Arial, sans-serif",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "state": "saved",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true
+    },
+    {
+      "file": "r13-errors-minimum-en-390.png",
+      "sha256": "f3abc63851df6a2e813958e31dbeed2c4754ae510b47c10ec3ecc74feb08a274",
+      "language": "en",
+      "variant": "discovery",
+      "service": "minimum",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "ltr",
+      "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "overflow": false,
+      "state": "saved",
+      "hostDirection": "ltr",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true
+    },
+    {
+      "file": "r13-errors-current-fa-390.png",
+      "sha256": "636cdd3f3f4b7ae67035f70af77a5d1aa1838cd87d2270868d2ffc7bb2a668a3",
+      "language": "fa",
+      "variant": "discovery",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "overflow": false,
+      "state": "saved",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 13
+          }
+        ],
+        "#wps-root label": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 16
+          }
+        ]
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "ERR-retained-current-en",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Rejected endpoint remains unsaved, invalid and reachable after authoritative title save, search, section and browser-back navigation; helper text and focus verified."
+    },
+    {
+      "id": "ERR-delayed-corrected-current-en",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Newer HTTPS draft survives delayed rejection without stale field error, section reveal or focus jump; server endpoint unchanged."
+    },
+    {
+      "id": "ERR-delayed-unchanged-current-en",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Unchanged rejected HTTP draft receives field error and reveal/focus; server endpoint unchanged."
+    },
+    {
+      "id": "ERR-retained-minimum-en",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Rejected endpoint remains unsaved, invalid and reachable after authoritative title save, search, section and browser-back navigation; helper text and focus verified."
+    },
+    {
+      "id": "ERR-delayed-corrected-minimum-en",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Newer HTTPS draft survives delayed rejection without stale field error, section reveal or focus jump; server endpoint unchanged."
+    },
+    {
+      "id": "ERR-delayed-unchanged-minimum-en",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Unchanged rejected HTTP draft receives field error and reveal/focus; server endpoint unchanged."
+    },
+    {
+      "id": "ERR-retained-current-fa",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Rejected endpoint remains unsaved, invalid and reachable after authoritative title save, search, section and browser-back navigation; helper text and focus verified."
+    },
+    {
+      "id": "ERR-delayed-corrected-current-fa",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Newer HTTPS draft survives delayed rejection without stale field error, section reveal or focus jump; server endpoint unchanged."
+    },
+    {
+      "id": "ERR-delayed-unchanged-current-fa",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Unchanged rejected HTTP draft receives field error and reveal/focus; server endpoint unchanged."
+    }
+  ],
+  "javascript_errors": [],
+  "console_warnings": []
+}

@@ -181,7 +181,7 @@ class EvalResultTests(unittest.TestCase):
         binding = str(ROOT / "evals/r12-release-version.json")
         before = record.read_bytes()
         for arguments, expected in (
-            ([str(record), "--suite", "ui-foundations", "--accept", "--release-binding", binding], 0),
+            ([str(record), "--suite", "ui-foundations", "--accept", "--release-binding", binding], 1),
             ([str(record), "--suite", "ui-foundations", "--accept"], 1),
             ([str(record), "--release-binding", binding], 1),
             ([str(ROOT / "evals/ui-foundations/result.json"), "--suite", "ui-foundations", "--release-binding", binding], 1),

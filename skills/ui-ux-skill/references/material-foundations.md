@@ -77,8 +77,10 @@ comfortable onboarding need not enlarge every repetitive data row.
 
 Plan semantic dark roles and affected states early, but produce/review only the
 primary-language/direction/theme proposal first. Derive dark after that revision
-is approved; secondary language/layout only after dark approval when the product
-needs it and the owner authorizes it. No simultaneous language/theme gallery and
+is approved when required. Secondary language/layout follows the applicable theme
+gate when needed and owner-authorized: required dark approval, existing approved
+primary-dark coverage, or an evidenced light-only non-applicability decision.
+Use the [canonical applicability requirements](design-foundation-workflow.md#phase-2--theme-applicability-and-required-dark-review); pending, rejected or unavailable required dark is not an exemption. No simultaneous language/theme gallery and
 no invented bilingual scope. Use real content and existing formats; preserve
 mixed-script identifiers rather than indiscriminately mirroring them.
 

@@ -51,7 +51,17 @@
         const [resolutions, setResolutions] = useState({});
         const [advancedOpen, setAdvancedOpen] = useState(false);
         const draftRef = useRef(null), inFlight = useRef(false), pending = useRef(null);
-        const updateDraft = (value) => { draftRef.current = value; setDraft(value); };
+        const updateDraft = (value) => {
+            const previous = draftRef.current;
+            draftRef.current = value; setDraft(value);
+            // Editing, conflict adoption and late acknowledgement all replace
+            // drafts. A field error owns a value, not just a control's name.
+            if (previous) { setErrors(old => Object.fromEntries(Object.entries(old).filter(([key]) => {
+                const section = Object.keys(previous).find(name => Object.hasOwn(previous[name], key));
+                return section && previous[section][key] === value[section][key] &&
+                    (key !== "credential" || previous.advanced.credentialAction === value.advanced.credentialAction);
+            }))); }
+        };
         const receiveConflict = (value) => { setConflict(value); setResolutions({}); setStatus("conflict"); };
         const dirty = server && draft ? ["general", "delivery", "advanced"].some(s => M.dirty(draft, server, s)) : false;
         useEffect(() => {
@@ -99,11 +109,6 @@
         function edit(section, key, value) {
             updateDraft({...draftRef.current, [section]: {...draftRef.current[section], [key]: value}});
             setResolutions({});
-            setErrors(old => {
-                const next = {...old}; delete next[key];
-                if (section === "advanced" && key === "credentialAction") { delete next.credential; }
-                return next;
-            });
         }
         async function submit(section, reset = false) {
             if (inFlight.current || !server || status === "unknown" || conflict) { return; }
@@ -111,18 +116,33 @@
             delete values.credentialConfigured;
             const sent = {operation: reset ? "reset" : "save", section, values, uiValues, revision: server.revision,
                 requestId: crypto.randomUUID(), fault};
-            inFlight.current = true; setBusy(true); setErrors({}); setStatus("saving"); setDialog(null);
+            // Every field key belongs to one section in this specimen. A request
+            // may replace only that section's errors, never another draft's.
+            const sectionErrors = (old, fields = {}) => {
+                const next = {...old};
+                Object.keys(uiValues).forEach(key => { delete next[key]; });
+                return {...next, ...fields};
+            };
+            inFlight.current = true; setBusy(true); setStatus("saving"); setDialog(null);
             try {
                 const reply = await request(sent);
                 updateDraft(M.acknowledge(draftRef.current, sent, reply)); setServer(reply); pending.current = null; setStatus("saved");
+                setErrors(old => sectionErrors(old));
             } catch (error) {
                 const detail = error.detail || {};
                 if (detail.code === "conflict") { receiveConflict(detail.current); }
                 else if (["validation", "rejected", "denied", "nonce", "invalid_fields", "invalid_values", "invalid_request", "save_failed"].includes(detail.code)) {
                     const fields = {...(detail.fields || {})};
+                    // Late validation describes the submitted value, not edits
+                    // made while awaiting the response. Ignore foreign keys too.
+                    Object.keys(fields).forEach(key => {
+                        if (!Object.hasOwn(uiValues, key) || draftRef.current[section][key] !== uiValues[key]) { delete fields[key]; }
+                    });
                     // A later keep/remove choice no longer has a replacement field.
                     if (draftRef.current.advanced.credentialAction !== "replace") { delete fields.credential; }
-                    setStatus("rejected"); setErrors(fields);
+                    setStatus("rejected");
+                    // Permission/nonce/transport rejection is not revalidation.
+                    setErrors(old => detail.code === "validation" ? sectionErrors(old, fields) : old);
                     const field = Object.keys(fields)[0];
                     if (["endpoint", "credential"].includes(field)) { setAdvancedOpen(true); }
                     if (discovery && field) {

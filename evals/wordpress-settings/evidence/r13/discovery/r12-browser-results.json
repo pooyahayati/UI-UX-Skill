@@ -1,0 +1,734 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-01",
+  "recorded_at": "2026-11-01T01:03:39.904Z",
+  "recorded_timezone": "Asia/Tehran",
+  "git_head": "faad3b126e323e566706f6f5dd288cc1e2781c3b",
+  "scope": "full R12 discovery and workspace",
+  "complete": true,
+  "omitted_observations": [],
+  "runner_sha256": "44a9d279daa93ed45c7cdfea7ed6ee157afea5e9bc98eb5af5bab8433a8f275e",
+  "fixture_hashes": {
+    "app.js": "d1a8010bf7a419eb65ad329b16b93d95d74e2202963230d669e1cc54155692fb",
+    "discovery.js": "a0c419e89497338f6e4e9a749d097523c5ba99991b33b70aafe1fc622d21cfa1",
+    "fonts/OFL.txt": "e6f4ce7b6c830d5a25a4f8ac777c267cd7d3c180bc2a7150ca57cbb9b280c4b7",
+    "fonts/Vazirmatn-Bold.ttf": "f635fdbea28f265de395ba83b4b1570dcf2f58d13c65469e61903b1c2d2ae723",
+    "fonts/Vazirmatn-Regular.ttf": "b69fd4c680b8f3f225feabcc655a2c585d97627b8f5f5c0f9985e894069f3a56",
+    "index.asset.php": "3fdcdbb233db97b5c80a7b72bc060845805bf533ae81c52486d55a92d1ae8fe3",
+    "model.js": "6d2401235f027608ae6896d55fea72c9af3eddc56c2947329ced473e35022ae5",
+    "style.css": "079ab5458773c654020cc74b733eb9b246e344034b5ebdd9c6986d6f6fd8bc74",
+    "workspace.js": "cbecaa8fbd8d48d718ecbcd8ab890338664a913c9d197bcb583633ea5db79a2b",
+    "wps-specimen.php": "be905fe36d8ef8499411f390209f7e1be150ea885c17e56c3a8b527e51317391"
+  },
+  "behavior_hashes": {
+    "references/products/wordpress-plugin.md": "118544ca97739175652a70bf1886d9be0bda5d7d510e7fe83ed27b69b43b674c",
+    "references/products/wordpress/components.md": "2bb83f33af3bdb316969f94b13687f1c07a6fcd2f32ce3d36427e84fed8ef9bf",
+    "references/products/wordpress/settings.md": "60ed330b406722685da569b5c2520c95b885f131cbec4b84f2cea5130c0ee12b"
+  },
+  "browser": "156.0.4314.50",
+  "compatibility": [
+    {
+      "service": "current",
+      "base": "http://127.0.0.1:8790",
+      "core": "7.1.3",
+      "php": "8.3.35",
+      "plugins": [
+        "wps-specimen/wps-specimen.php"
+      ],
+      "asset_metadata": {
+        "dependencies": [
+          "wp-components",
+          "wp-element"
+        ],
+        "version": "0.1.0"
+      },
+      "asset_metadata_kind": "maintained no-build dependency record, not generated build evidence",
+      "exports": {
+        "TextControl": true,
+        "ToggleControl": true,
+        "SelectControl": true,
+        "Button": true,
+        "Notice": true,
+        "Modal": true,
+        "Spinner": true,
+        "PanelBody": true,
+        "SearchControl": true
+      },
+      "scripts": [
+        {
+          "id": "wp-element-js",
+          "src": "http://127.0.0.1:8790/wp-includes/js/dist/element.min.js?ver=4a4370b2b349066fd440"
+        },
+        {
+          "id": "wp-components-js-translations",
+          "src": ""
+        },
+        {
+          "id": "wp-components-js",
+          "src": "http://127.0.0.1:8790/wp-includes/js/dist/components.min.js?ver=9b751f17060211272a5c"
+        },
+        {
+          "id": "wps-model-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/model.js?ver=0.1.0"
+        },
+        {
+          "id": "wps-discovery-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/discovery.js?ver=0.1.0"
+        },
+        {
+          "id": "wps-app-js-extra",
+          "src": ""
+        },
+        {
+          "id": "wps-app-js",
+          "src": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/app.js?ver=0.1.0"
+        }
+      ],
+      "styles": [
+        {
+          "id": "",
+          "href": "http://127.0.0.1:8790/wp-admin/load-styles.php?c=0&dir=rtl&load%5Bchunk_0%5D=dashicons,admin-bar,common,forms,admin-menu,dashboard,list-tables,edit,revisions,media,themes,about,nav-menus,wp-pointer,widgets&load%5Bchunk_1%5D=,site-icon,l10n,wp-base-styles,wp-tooltip,buttons,wp-auth-check,wp-theme,wp-components,wp-commands&ver=7.1.3",
+          "loadedRules": 4175,
+          "handles": [
+            "dashicons",
+            "admin-bar",
+            "common",
+            "forms",
+            "admin-menu",
+            "dashboard",
+            "list-tables",
+            "edit",
+            "revisions",
+            "media",
+            "themes",
+            "about",
+            "nav-menus",
+            "wp-pointer",
+            "widgets",
+            "",
+            "site-icon",
+            "l10n",
+            "wp-base-styles",
+            "wp-tooltip",
+            "buttons",
+            "wp-auth-check",
+            "wp-theme",
+            "wp-components",
+            "wp-commands"
+          ]
+        },
+        {
+          "id": "wps-style-css",
+          "href": "http://127.0.0.1:8790/wp-content/plugins/wps-specimen/style.css?ver=0.1.0",
+          "loadedRules": 39,
+          "handles": []
+        }
+      ],
+      "actualOwnedLanguage": "en",
+      "hostLanguage": "fa-IR",
+      "actualRootDirection": "ltr"
+    },
+    {
+      "service": "minimum",
+      "base": "http://127.0.0.1:8791",
+      "core": "6.8",
+      "php": "8.3.35",
+      "plugins": [
+        "wps-specimen/wps-specimen.php"
+      ],
+      "asset_metadata": {
+        "dependencies": [
+          "wp-components",
+          "wp-element"
+        ],
+        "version": "0.1.0"
+      },
+      "asset_metadata_kind": "maintained no-build dependency record, not generated build evidence",
+      "exports": {
+        "TextControl": true,
+        "ToggleControl": true,
+        "SelectControl": true,
+        "Button": true,
+        "Notice": true,
+        "Modal": true,
+        "Spinner": true,
+        "PanelBody": true,
+        "SearchControl": true
+      },
+      "scripts": [
+        {
+          "id": "wps-model-js",
+          "src": "http://127.0.0.1:8791/wp-content/plugins/wps-specimen/model.js?ver=0.1.0"
+        },
+        {
+          "id": "wp-element-js",
+          "src": "http://127.0.0.1:8791/wp-includes/js/dist/element.min.js?ver=a4eeeadd23c0d7ab1d2d"
+        },
+        {
+          "id": "wp-components-js",
+          "src": "http://127.0.0.1:8791/wp-includes/js/dist/components.min.js?ver=787a8a74848a09b31e37"
+        },
+        {
+          "id": "wps-discovery-js",
+          "src": "http://127.0.0.1:8791/wp-content/plugins/wps-specimen/discovery.js?ver=0.1.0"
+        },
+        {
+          "id": "wps-app-js-extra",
+          "src": ""
+        },
+        {
+          "id": "wps-app-js",
+          "src": "http://127.0.0.1:8791/wp-content/plugins/wps-specimen/app.js?ver=0.1.0"
+        }
+      ],
+      "styles": [
+        {
+          "id": "",
+          "href": "http://127.0.0.1:8791/wp-admin/load-styles.php?c=0&dir=ltr&load%5Bchunk_0%5D=dashicons,admin-bar,common,forms,admin-menu,dashboard,list-tables,edit,revisions,media,themes,about,nav-menus,wp-pointer,widgets&load%5Bchunk_1%5D=,site-icon,l10n,buttons,wp-auth-check,wp-components&ver=6.8",
+          "loadedRules": 3936,
+          "handles": [
+            "dashicons",
+            "admin-bar",
+            "common",
+            "forms",
+            "admin-menu",
+            "dashboard",
+            "list-tables",
+            "edit",
+            "revisions",
+            "media",
+            "themes",
+            "about",
+            "nav-menus",
+            "wp-pointer",
+            "widgets",
+            "",
+            "site-icon",
+            "l10n",
+            "buttons",
+            "wp-auth-check",
+            "wp-components"
+          ]
+        },
+        {
+          "id": "wps-style-css",
+          "href": "http://127.0.0.1:8791/wp-content/plugins/wps-specimen/style.css?ver=0.1.0",
+          "loadedRules": 39,
+          "handles": []
+        }
+      ],
+      "actualOwnedLanguage": "en",
+      "hostLanguage": "en-US",
+      "actualRootDirection": "ltr"
+    }
+  ],
+  "captures": [
+    {
+      "file": "discovery-current-fa-1440.png",
+      "sha256": "16cf8d0866af3055aa46d9ffe1f1d70b97cf97fb73427b92be96d23b24dd7e61",
+      "language": "fa",
+      "variant": "discovery",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 13
+          }
+        ],
+        "#wps-root label": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 16
+          }
+        ]
+      }
+    },
+    {
+      "file": "discovery-recipient-fa-1440.png",
+      "sha256": "a23dbe5876a31edd8d4920200a06980053205368ac7cfca3483657e12682f107",
+      "language": "fa",
+      "variant": "discovery",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 13
+          }
+        ],
+        "#wps-root label": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 16
+          }
+        ]
+      }
+    },
+    {
+      "file": "discovery-current-fa-390.png",
+      "sha256": "98aa8ac25c490a7d81c4c975e8c8d9bf422af44e740d1232256a15904f0a71d7",
+      "language": "fa",
+      "variant": "discovery",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 13
+          }
+        ],
+        "#wps-root label": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 16
+          }
+        ]
+      }
+    },
+    {
+      "file": "discovery-recipient-fa-390.png",
+      "sha256": "98aa8ac25c490a7d81c4c975e8c8d9bf422af44e740d1232256a15904f0a71d7",
+      "language": "fa",
+      "variant": "discovery",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 13
+          }
+        ],
+        "#wps-root label": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 16
+          }
+        ]
+      }
+    },
+    {
+      "file": "discovery-minimum-en-390.png",
+      "sha256": "c63e99b9444bbddba0749c90014910c34b78c92d45591b393e63de19c8eff34d",
+      "language": "en",
+      "variant": "discovery",
+      "service": "minimum",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "ltr",
+      "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "state": "saved",
+      "hostDirection": "ltr",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true
+    },
+    {
+      "file": "workspace-current-fa-1440.png",
+      "sha256": "7ba2ba8a8ed238b40b94778291186fb232192bf98348dc68e3259bf115d5d5fa",
+      "language": "fa",
+      "variant": "workspace",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 15
+          }
+        ],
+        "#wps-root label": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 14
+          }
+        ]
+      }
+    },
+    {
+      "file": "workspace-current-fa-390.png",
+      "sha256": "a9f99398c5d926bf38128c7e441f2a59f0a0cccf3871e49c8a28a7df100098f1",
+      "language": "fa",
+      "variant": "workspace",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 15
+          }
+        ],
+        "#wps-root label": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 14
+          }
+        ]
+      }
+    },
+    {
+      "file": "workspace-detail-current-fa-390.png",
+      "sha256": "a45ce11cb98db295217d78d9d71c09d11a8e3278f2f30058857fb9fe3ae2c8e8",
+      "language": "fa",
+      "variant": "workspace-modal",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": {
+        "finiteAnimations": 2,
+        "stableFrames": 4,
+        "box": {
+          "x": 0,
+          "y": 555.84375,
+          "width": 390,
+          "height": 288.15625
+        },
+        "opacity": "1",
+        "viewportHeight": 844
+      },
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 15
+          }
+        ],
+        "#wps-root label": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 14
+          }
+        ]
+      }
+    },
+    {
+      "file": "workspace-connection-current-fa-390.png",
+      "sha256": "c4b4e35ea09043710db23657f169073929a5d92920b5a8f953da09e550dd8fe8",
+      "language": "fa",
+      "variant": "workspace-connection",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 15
+          }
+        ],
+        "#wps-root .wps-section p": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Regular",
+            "isCustomFont": true,
+            "glyphCount": 41
+          }
+        ]
+      }
+    },
+    {
+      "file": "workspace-failed-current-fa-390.png",
+      "sha256": "9916242f5fdda86582ae23b1f8a84763d98f4bd41128c853946d835801f43ad1",
+      "language": "fa",
+      "variant": "workspace-failed",
+      "service": "current",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "rtl",
+      "font": "Vazirmatn, sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "rtl",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true,
+      "renderedFonts": {
+        "#wps-root h1": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Bold",
+            "isCustomFont": true,
+            "glyphCount": 15
+          }
+        ],
+        "#wps-root .wps-section p": [
+          {
+            "familyName": "Vazirmatn",
+            "postScriptName": "Vazirmatn-Regular",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ]
+      }
+    },
+    {
+      "file": "workspace-minimum-en-390.png",
+      "sha256": "21514efa2e896c74b974031f356ece79f95e40f7034efd917ebe8324e8b8bfbb",
+      "language": "en",
+      "variant": "workspace",
+      "service": "minimum",
+      "theme": "light",
+      "modalSettlement": null,
+      "capturePolicy": "Wait for finite owned-modal animations and stable geometry; modal captures use the actual viewport, other pages use full-page. Screenshot finite animations disabled; animation aesthetics not evaluated.",
+      "direction": "ltr",
+      "font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "state": "ready",
+      "hostDirection": "ltr",
+      "toolbar": true,
+      "menu": true,
+      "hostNotices": 1,
+      "regular": true,
+      "bold": true
+    }
+  ],
+  "observations": [
+    {
+      "id": "D01",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "English and Persian search controls have exact single accessible names. English webhook and Persian spacing/Arabic-character alias queries reveal the actual advanced endpoint/credential controls and move focus to them."
+    },
+    {
+      "id": "D02",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Section changes and browser Back preserve title/recipient drafts. During a delayed real save, navigation and newer edits survive; server stores only the submitted title and leaves unsaved delivery values unchanged."
+    },
+    {
+      "id": "D03",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "A disabled recipient result reveals/focuses its prerequisite explanation while retaining the saved address. Notification alias discovery focuses the actual checkbox with its accessible name and native matching label/input IDs; visible-label clicks toggle and restore state. After enabling delivery, the recipient result focuses the editable field."
+    },
+    {
+      "id": "D04",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "No-result guidance is actionable, clearing/Escape restores search focus, and a saved recipient value is not indexed as searchable metadata."
+    },
+    {
+      "id": "D05",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "A real validation response arriving after navigation away reopens the hidden technical section, synchronizes its URL destination, focuses the invalid endpoint and preserves HTTPS guidance in its associated help. After further navigation, keyboard activation of the persistent field-error link returns to that field/destination. Empty replacement-credential validation creates a real field error; choosing keep/remove removes both field and error destination. A delayed replacement validation arriving after a keep choice cannot restore a dangling field/error link. Current action and endpoint drafts survive; server state remains unchanged."
+    },
+    {
+      "id": "D06",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Subscriber page access exposes neither settings root nor owned metadata scripts; read/write requests return denial without state, and saved settings remain unchanged."
+    },
+    {
+      "id": "D07",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Persian discovery and recipient dependency states at 1440/390px retain the real host toolbar/menu, local rendered Vazirmatn regular/bold and no document overflow; captures identify language, viewport and state."
+    },
+    {
+      "id": "D08",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "WordPress 6.8 loads the actual public controls/styles/dependency metadata; English LTR alias discovery, focus and endpoint save work at 390px. Notification discovery focuses the named native checkbox; matching label/input IDs and label-click toggling both directions are verified. Actual host/runtime/export metadata retained separately."
+    },
+    {
+      "id": "D09",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "The short form retains one title and one toggle with its existing save scopes; no search, tabs, local navigation or discovery/workspace script is loaded."
+    },
+    {
+      "id": "D10",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Real current/minimum-host workspace: report name/status filters, no-match clear, loading disable/recovery, details modal Tab/Escape/close focus return and retained filters. Keyboard clear focuses the report filter; keyboard start/failure/retry/completion transitions focus the persistent job status instead of the document body. Configuration is separate from unchecked connection health and its link reveals actual technical settings. Synthetic queued/running/failure/retry/completion states remain truthful, retain report rows and send no work/external requests. Persian 1440/390, RTL modal/connection/failure and minimum-host English narrow captures have no document/modal overflow."
+    },
+    {
+      "id": "D11",
+      "status": "passed",
+      "method": "real-admin-browser",
+      "detail": "Keyboard Tab reaches native search result controls, Enter reveals/focuses the actual field, and Escape from a result dismisses results and returns focus to search."
+    }
+  ],
+  "javascript_errors": [],
+  "console_warnings": []
+}

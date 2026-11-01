@@ -66,7 +66,7 @@ live token database or forced document creation during audits/narrow repairs.
 
 Use actual product language/direction, not the chat language. Preserve the
 existing sequence: one responsive primary-language/direction proposal using
-settled foundations; corrections and scoped approval; derived dark review;
+settled foundations; corrections and scoped approval; the [applicable theme gate](design-foundation-workflow.md#phase-2--theme-applicability-and-required-dark-review);
 secondary language/layout only when needed and owner-authorized. Material does
 not mandate multilingual products or simultaneous variants.
 
