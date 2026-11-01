@@ -7,9 +7,9 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Item | State |
 | --- | --- |
 | Updated | 2026-11-02 |
-| Released baseline | [v3.6.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.6.1); published artifacts and managed local installation verified 2026-11-01 |
-| Current workstream | R14 implementation accepted; 3.7.0 delivery checks in progress |
-| Acceptance | R14 acceptance follows the staged criteria; historical R13 and 3.6.1 evidence remains unchanged |
+| Released baseline | [v3.7.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.7.0); published artifacts and managed local installation verified 2026-11-02 |
+| Current workstream | R14 implementation and 3.7.0 delivery completed |
+| Acceptance | All R14 stages accepted; source, published packages and backed-up managed installation verified; historical evidence preserved |
 | Completed R14 packages | 3 of 3 |
 | Active R14 package | None |
 | Next R14 package | None |
@@ -48,7 +48,13 @@ The [R14 plan](docs/R14_AUDIT_REMEDIATION.md) records the reproduction, selected
 
 Execute in this order under the recorded instruction. Each package needs its own scoped checks and dated acceptance; prerequisites, active/next package and counts move together. No new workflow, Product Pack, external specialist, mandatory tool, competing design handbook or appearance engine is planned. Research references do not become installed specialists.
 
-**Next action:** complete authorized [3.7.0 delivery](docs/releases/3.7.0.md). Preserve accepted fonts/designs and historical evidence; no repeated owner approval is required within this scope.
+| Delivery step | Status | Evidence |
+| --- | --- | --- |
+| Exact-head checks and merge | Completed | [PR #53](https://github.com/pooyahayati/UI-UX-Skill/pull/53); [integration](docs/releases/3.7.0.md#integration-and-publication) |
+| Main workflow and published-artifact verification | Completed | [Release 3.7.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.7.0); [downloaded artifacts](docs/releases/3.7.0.md#published-artifacts) |
+| Managed local update and recoverable backup | Completed | [Installation and compatibility](docs/releases/3.7.0.md#managed-local-installation) |
+
+**Next action:** none within R14 or its [3.7.0 delivery](docs/releases/3.7.0.md). Future work needs its own scope; accepted fonts/designs and historical evidence remain preserved.
 
 ## R13 audit remediation
 
