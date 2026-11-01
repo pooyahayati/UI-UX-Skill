@@ -3,12 +3,12 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-3.6.1-blue)
+![Version](https://img.shields.io/badge/version-3.7.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A product-aware **UI/UX Head** for designing, auditing and improving real interfaces. Works standalone or as a bounded specialist under an engineering Head.
 
-Source version: **v3.6.1** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
+Source version: **v3.7.0** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
 
 ## Product coverage
 
@@ -31,6 +31,8 @@ See the [synthetic admin examples and evidence](evals/wordpress-settings/README.
 [shadcn/ui](skills/ui-ux-skill/references/shadcn-ui.md) is the dashboard component-foundation default unless the user explicitly chooses otherwise. The guide personalizes components to the product's approved foundations, with RTL, dark-mode, mobile and owner-control guidance. Existing stacks and host constraints remain protected; this default does not authorize automatic migration.
 
 [Interactive motion guidance](skills/ui-ux-skill/references/interactive-motion.md) uses CSS first, with Motion and selected Animate UI components only when the product needs them. It covers accessible reduced/off behavior and bounded owner motion presets, not mandatory animation dependencies or an installed settings engine.
+
+[Icon guidance](skills/ui-ux-skill/references/implementation-strategies.md#icons) adds optional Aria Icons discovery and meaningful morphicons state pairs. Existing families, asset licenses, accessible controls and owner/user/OS motion preferences remain authoritative. Visual critique emphasizes task evidence and small verifiable improvements while preserving useful existing designs.
 
 New or explicitly redesigned plugin-owned WordPress settings use stable public `@wordpress/components`, including short forms. The [scoped component guide](skills/ui-ux-skill/references/products/wordpress/components.md) preserves existing storage, permissions and other surfaces; an audit or narrow fix does not authorize migration. [Real-admin examples and evidence](evals/wordpress-settings/README.md) show the bounded behavior.
 

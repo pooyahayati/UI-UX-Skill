@@ -20,7 +20,9 @@ class R13Release(unittest.TestCase):
 
     def test_exact_candidate_and_both_retained_results(self):
         previous = r13_release_predecessor(self.files)
-        self.assertEqual([p for p in previous if previous[p] != self.files[p]], ["VERSION"])
+        from r14_source_binding import r14_predecessor
+        released = r14_predecessor(self.files)
+        self.assertEqual([p for p in previous if previous[p] != released[p]], ["VERSION"])
         for name in ("evals/ui-foundations/r13-result.json", "evals/wordpress-settings/r13-stage4-behavior.json"):
             result = json.loads((ROOT / name).read_text(encoding="utf-8"))
             before = copy.deepcopy(result)

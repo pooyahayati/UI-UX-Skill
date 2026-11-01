@@ -39,6 +39,50 @@ Keep high-frequency operational surfaces restrained. Avoid looping decorative ba
 
 ## Accessibility and resolved motion policy
 
+### Icon state morphs
+
+[morphicons](https://github.com/guillermolg00/morphicons) is optional for a meaningful
+pair such as menu/close or play/pause when the existing icon/component behavior is
+insufficient. Check the actual stack, host and selected API first; a compatible
+DOM binding does not require adding React. Preserve native WordPress controls.
+Use a bounded representative interaction before expanding to frequent/list items.
+
+Pin the selected engine and any exporter separately. The inspected Aria exporter
+uses `morphicons ^1.7.0` and rejects filled/other unsupported SVG inputs; the inspected
+engine 2.0.2 supports filled shapes through an additional lazy module. New engine
+capabilities do not repair an older exporter. Exercise the actual accepted pair
+and a rejected input, falling back to truthful prepared static artwork. Do not
+silently replace an approved family or claim every catalog icon can morph.
+
+Provide an accessible name on the interactive control, with expanded/pressed state
+where applicable; the artwork need not repeat that name. Preserve keyboard/focus,
+visible status and static fallback on provider failure. A checkmark cannot announce
+save success until the actual result is confirmed. Mirror only directional meaning.
+
+The inspected `reducedMotion` default is **`never`**, so set an explicit policy:
+`user` follows the OS and `always` renders immediate states. Map the existing
+resolved owner/user/OS policy to the chosen binding. When reduction/off changes
+during a morph, cancel/settle the current animation immediately; changing a future
+animation option alone may not stop the active driver. Use the version's immediate
+set/destroy lifecycle as needed, independent of animation completion callbacks.
+Clean up listeners/drivers on unmount and keep a usable static initial state.
+
+When appearance management exists, consume its approved family/state-pair mapping
+and motion presets through the existing adapter. Preview/save/reopen/publish/reset/
+rollback must update the actual icon consumer; reject unknown IDs and invalid
+presets on writes. On load failure keep a safe last-valid/default/static result.
+Do not create a separate panel, raw spring editor or owner-facing library selector.
+Measure the added route payload and observed mobile interaction against the
+existing baseline/budget, including interruption and reduced/off states; source
+documentation or upstream size claims are not product performance evidence.
+
+Sources checked 2026-11-02: [Aria exporter](https://github.com/LeulAria/Aria-Icons/blob/c1d22bdca5a83921f435a52f2832320538236a62/apps/web/src/lib/icon-morph.ts)
+and [morphicons 2.0.2](https://github.com/guillermolg00/morphicons/tree/8c3e3c7cd717b2381f8f35cf6c245afd80d8d7df).
+Recheck the selected revision/API/license at adoption; these are observations, not
+a permanent dependency pin or a tested adapter for every product.
+
+### Shared policy across consumers
+
 Use a shared resolved policy for CSS, Motion components, copied Animate UI components, animated icons and independent consumers. A library provider does not automatically govern CSS animations, imperative animation calls, video or every third-party primitive.
 
 - Respect `prefers-reduced-motion` on first use and when it changes. Product settings may reduce motion further, never override an operating-system or user request for less motion.

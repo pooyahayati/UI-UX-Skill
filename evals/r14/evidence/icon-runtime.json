@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "stage": "R14.3",
+  "recorded_on": "2026-11-02",
+  "engine": {
+    "name": "morphicons",
+    "version": "2.0.2",
+    "integrity": "sha512-/GFSrsZDuyZ3a2QK8wXnVpsHzrVIZ8eLhg0QbGxeeOPyOZmtKUC8i0z3QQ3bbIX5DV/LOLYpp/8unJMWQU0Qgw=="
+  },
+  "browser": "156.0.4314.58",
+  "source": {
+    "scripts/test_icon_morph_browser.mjs": "364793478dd155526cf333358aac646882cb8fbeabab8571ed4c0b9c435b2cdb",
+    "scripts/runtime_appearance.py": "4e8ed38ce5c27c1699470719f2a6df9aad446fdffea9a722165813dc0a44ef07",
+    "scripts/runtime_icons.py": "7fec58d9216c7c0fbb774c49ff08ed1b6e3f4cc0199fe0df2a160faefee22139",
+    "evals/fixtures/icon-morph/index.html": "32e4cad64fe3398c46a768966f802c4ab44bdee9309f2eaa64b1f993cf1117ba",
+    "evals/fixtures/icon-morph/adapter.mjs": "434464baa0d534f1fca26fab68b5d96a98fe72b9f0758d9f1c649adfb9e2907d",
+    "evals/fixtures/icon-morph/fixture.mjs": "4c06360d837131de21125427256178306dd5bdf3d23742920c7a0e8f2373255f",
+    "evals/fixtures/icon-morph/provider.json": "5aa6f771f40fd541e5b3202a286264a1fdab20b92442133651c714e2f1d6021e"
+  },
+  "observations": [
+    {
+      "id": "STATIC",
+      "status": "passed",
+      "details": {
+        "provider_requests": 0,
+        "usable": true
+      }
+    },
+    {
+      "id": "NORMAL",
+      "status": "passed",
+      "details": {
+        "name": "Visit instructions",
+        "keyboard": "Enter",
+        "focus": "disclosure",
+        "state": {
+          "open": true,
+          "mode": "morph",
+          "immediate": false,
+          "progress": 1,
+          "disposed": false,
+          "policyEvents": 0
+        }
+      }
+    },
+    {
+      "id": "INTERRUPT",
+      "status": "passed",
+      "details": {
+        "activations": 21,
+        "state": {
+          "open": false,
+          "mode": "morph",
+          "immediate": false,
+          "progress": 1,
+          "disposed": false,
+          "policyEvents": 0
+        }
+      }
+    },
+    {
+      "id": "REDUCED-LIVE",
+      "status": "passed",
+      "details": {
+        "state": {
+          "open": false,
+          "mode": "immediate",
+          "immediate": true,
+          "progress": 1,
+          "disposed": false,
+          "policyEvents": 1
+        },
+        "stable": true
+      }
+    },
+    {
+      "id": "PERSONAL-OFF",
+      "status": "passed",
+      "details": {
+        "state": {
+          "open": true,
+          "mode": "immediate",
+          "immediate": true,
+          "progress": 1,
+          "disposed": false,
+          "policyEvents": 2
+        }
+      }
+    },
+    {
+      "id": "PRIVATE-UNSUPPORTED",
+      "status": "passed",
+      "details": {
+        "source": "private-preview",
+        "publicFamily": "outline",
+        "staticFamily": "solid",
+        "variant": "badge",
+        "paths": 2,
+        "state": {
+          "open": false,
+          "mode": "static",
+          "immediate": true,
+          "progress": 1,
+          "disposed": false,
+          "policyEvents": 3
+        }
+      }
+    },
+    {
+      "id": "SAVE-REOPEN-PUBLISH",
+      "status": "passed",
+      "details": {
+        "privateDraftReopened": true,
+        "publishedFamily": "solid",
+        "consumerMode": "static"
+      }
+    },
+    {
+      "id": "INVALID-DENIED",
+      "status": "passed",
+      "details": {
+        "invalidPreset": 422,
+        "unknownId": 422,
+        "anonymous": 401,
+        "publishedUnchanged": true
+      }
+    },
+    {
+      "id": "RESET-ROLLBACK",
+      "status": "passed",
+      "details": {
+        "resetPrivate": true,
+        "resetMode": "immediate",
+        "rollbackMode": "morph",
+        "historyRetained": true
+      }
+    },
+    {
+      "id": "CONFIG-FAILURE",
+      "status": "passed",
+      "details": {
+        "lastValidRetained": true
+      }
+    },
+    {
+      "id": "OWNER-OFF",
+      "status": "passed",
+      "details": {
+        "persistedEquivalent": "reduced (0ms)",
+        "state": {
+          "open": true,
+          "mode": "immediate",
+          "immediate": true,
+          "progress": 1,
+          "disposed": false,
+          "policyEvents": 0
+        }
+      }
+    },
+    {
+      "id": "MOBILE",
+      "status": "passed",
+      "details": {
+        "width": 390,
+        "height": 844,
+        "overflow": false
+      }
+    },
+    {
+      "id": "CLEANUP",
+      "status": "passed",
+      "details": {
+        "disposed": true,
+        "stable": true
+      }
+    },
+    {
+      "id": "PROVIDER-FAILURE",
+      "status": "passed",
+      "details": {
+        "usable": true,
+        "mode": "static"
+      }
+    },
+    {
+      "id": "PAYLOAD",
+      "status": "passed",
+      "details": {
+        "static_provider_bytes": 0,
+        "additional_raw_bytes": 20766,
+        "additional_gzip_bytes": 9611,
+        "budget_gzip_bytes": 16000,
+        "resources": [
+          {
+            "path": "vendor/dom.js",
+            "bytes": 6749,
+            "gzip_bytes": 3324,
+            "sha256": "e5f3f7b844176df88bd4208e33c4c7f273ac0f75b9d7f50660e6fbc5b34a680b"
+          },
+          {
+            "path": "vendor/chunk-4JNG5ENK.js",
+            "bytes": 14017,
+            "gzip_bytes": 6287,
+            "sha256": "e3b399dfdd74d0c8c1c550b691c56c2211cd3d33aa92a264a733bbdac9318b2a"
+          }
+        ],
+        "click_handler_ms": {
+          "baseline": [
+            0.19999998807907104,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.09999999403953552,
+            0,
+            0,
+            0,
+            0
+          ],
+          "morph": [
+            0.29999999701976776,
+            0.4000000059604645,
+            0.30000001192092896,
+            0.7000000029802322,
+            0.09999999403953552,
+            0.19999998807907104,
+            0.20000000298023224,
+            0.5,
+            0.5999999940395355,
+            0.29999999701976776,
+            0.20000000298023224,
+            0.20000000298023224
+          ]
+        },
+        "measurement": "Local installed Chromium-family browser, 390x844 emulation; synchronous handler durations, not FPS, INP, physical device or user task time. gzip per served module; no bundler saving claim."
+      }
+    }
+  ],
+  "artifacts": {
+    "mobile.png": "11845129fc1e83b8aeffca45872b0db8fe5b424f9fa9bd8969b4220d1197706f"
+  },
+  "limitations": "Synthetic existing appearance API. Static assets routed by Playwright; API writes use real HTTP/session/CSRF/store. No production or WordPress runtime change; no Aria catalog asset or exporter execution; unsupported solid/badge pair is this adapter restriction, not engine 2.x limitation."
+}

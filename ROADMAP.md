@@ -6,10 +6,14 @@ The live work queue is below. Completed work is summarized in [history](#complet
 
 | Item | State |
 | --- | --- |
-| Updated | 2026-11-01 |
+| Updated | 2026-11-02 |
 | Released baseline | [v3.6.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.6.1); published artifacts and managed local installation verified 2026-11-01 |
-| Current workstream | R13 corrections and authorized 3.6.1 delivery completed |
-| Acceptance | R13.1–R13.4 accepted against the bounded runtime, metadata, routing and theme criteria. R12's historical acceptance and limits remain in its [execution record](docs/R12_EXECUTION.md) |
+| Current workstream | R14 implementation accepted; 3.7.0 delivery checks in progress |
+| Acceptance | R14 acceptance follows the staged criteria; historical R13 and 3.6.1 evidence remains unchanged |
+| Completed R14 packages | 3 of 3 |
+| Active R14 package | None |
+| Next R14 package | None |
+| R14 execution authority | [Owner-authorized implementation and delivery](docs/R14_EXECUTION.md#authority) |
 | Completed R13 packages | 4 of 4 |
 | Active R13 package | None |
 | Next R13 package | None |
@@ -24,9 +28,27 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
-| Execution authority | R11, R12 and the bounded [R13 delivery authority](docs/releases/3.6.1.md#authority) are fulfilled; completion grants no new scope |
+| Execution authority | Historical scope remains attached to [WPS](evals/wordpress-settings/EXECUTION.md) and earlier deliveries. [R14 authority](docs/R14_EXECUTION.md#authority) now covers its implementation, merge, release and managed local update |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
 | Delivery | 3.6.1 merged, published and installed locally with verified backup and accepted Head compatibility; [delivery evidence](docs/releases/3.6.1.md) |
+
+## R14 bounded quality-gap corrections
+
+**Owner decision, 2026-11-02:** prepare prioritized corrections for the evidenced viewport-validation gap, targeted visual-critique improvements from Impeccable and Interface Design, and optional Aria Icons / morphicons guidance. **Preserve the Skill's purpose and existing workflow.** This authorizes planning/documentation only, not implementation or delivery.
+
+**Superseding execution/delivery decision, 2026-11-02:** implement all three packages in order, then merge, release and update the local Skill. The [execution record](docs/R14_EXECUTION.md#authority) preserves the bounded authority; existing design and font decisions stay settled.
+
+The [R14 plan](docs/R14_AUDIT_REMEDIATION.md) records the reproduction, selected-source boundaries, protected decisions, permitted file areas and observable acceptance criteria. Only the first package fixes a confirmed defect; the other two are bounded improvement proposals whose benefit must be demonstrated. This table is the **only live R14 progress ledger**.
+
+| Package | Deliverable | Status | Entry condition | Acceptance / next action |
+| --- | --- | --- | --- | --- |
+| R14.1 | Reject missing or contradictory legacy viewport evidence | Completed | Owner instruction to implement R14.1 | [2026-11-02 VIEW acceptance](docs/R14_EXECUTION.md#r141) |
+| R14.2 | Strengthen existing visual critique with selected, product-relevant criteria | Completed | Accepted R14.1 | [2026-11-02 CRIT acceptance](docs/R14_EXECUTION.md#r142) |
+| R14.3 | Add optional icon discovery and bounded state-morph guidance | Completed | Accepted R14.2 | [2026-11-02 ICON acceptance](docs/R14_EXECUTION.md#r143) |
+
+Execute in this order under the recorded instruction. Each package needs its own scoped checks and dated acceptance; prerequisites, active/next package and counts move together. No new workflow, Product Pack, external specialist, mandatory tool, competing design handbook or appearance engine is planned. Research references do not become installed specialists.
+
+**Next action:** complete authorized [3.7.0 delivery](docs/releases/3.7.0.md). Preserve accepted fonts/designs and historical evidence; no repeated owner approval is required within this scope.
 
 ## R13 audit remediation
 
@@ -34,7 +56,7 @@ The live work queue is below. Completed work is summarized in [history](#complet
 
 **Superseding execution decision, 2026-11-01:** the owner requested R13.1 through R13.4 in order, with a report after each stage. This authorizes the planned corrections, tests and existing synthetic local host checks; no new publication or active installation. [Execution record](docs/R13_EXECUTION.md#authority).
 
-All four findings have Medium severity: one reproduced specimen defect, one demonstrated evidence-validation gap and two confirmed guidance inconsistencies. Historical R12 records remain intact; they do not prove the new failure scenarios passed. This table is the **only live R13 progress ledger**.
+All four findings have Medium severity: one reproduced specimen defect, one demonstrated evidence-validation gap and two confirmed guidance inconsistencies. Historical R12 records remain intact; they do not prove the new failure scenarios passed. This is the **closed R13 progress ledger**; the later bounded follow-up is tracked separately in [R14](#r14-bounded-quality-gap-corrections).
 
 | Package | Deliverable | Status | Entry condition | Acceptance / next action |
 | --- | --- | --- | --- | --- |
@@ -175,6 +197,7 @@ The original WPS packages stay closed with their historical evidence. The later 
 - R11 is bounded to its three audited findings and the tests/documentation needed to verify and deliver them under the explicit execution decision above. It does not reopen completed design approvals or authorize unrelated features.
 - R12 plans improvements for plugin-owned settings and internal admin surfaces only. Existing new/redesigned-settings component policy remains intact; other surfaces do not inherit that mandate automatically. Planning is not implementation or delivery authority.
 - R13 is limited to the four documented audit findings and their verification. Its implementation acceptance remains intact; the subsequent [3.6.1 delivery decision](docs/releases/3.6.1.md#authority) separately authorizes commit/push/merge, publication and the local update. It does not authorize unrelated changes.
+- R14 fills only the three agreed gaps within existing QA, icon and motion boundaries under its explicit [implementation/delivery instruction](docs/R14_EXECUTION.md#authority). External material must support a named product need and add something missing from current guidance; omit duplicates and conflicting prescriptions. Preserve the current workflow, canonical `DESIGN.md`, product defaults, WordPress host rules, owner controls and approval sequence.
 
 ## Completed history
 
@@ -202,7 +225,7 @@ The historical five-product evaluation was source-based in the same session, not
 
 ## Updating this roadmap
 
-- Allowed package states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. Keep one active implementation package in the current workstream; an unstarted prerequisite alone is not a blocker. Closed WPS/R11/R12 ledgers and the live R13 ledger remain separate.
+- Allowed package states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. Keep one active implementation package in the current workstream; an unstarted prerequisite alone is not a blocker. Closed WPS/R11/R12/R13 ledgers and the live R14 ledger remain separate.
 - Update the package row, completed count, active/next package and authority together. Started work needs an execution-record link; completion needs dated acceptance evidence and satisfied prerequisites.
 - Record the checked revision, actual checks, remaining limits and lead acceptance in the linked record. Keep local changes separate from integration/publication evidence.
 - Retain useful completed evidence in tables/archives, not repeated execution prose. Archives are historical snapshots, never competing live trackers.

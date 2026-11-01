@@ -119,6 +119,23 @@ Do not duplicate chart color arrays in every screen.
 
 Prefer an existing coherent icon family.
 
+[Aria Icons](https://icons.leularia.com/) is an optional development-time catalog
+for finding/comparing and exporting selected assets. Keep approved assignments
+and one compatible visual family; do not import the catalog, configure its MCP/CLI
+automatically or fetch icons remotely at runtime. Aria is a source, not a new
+product style or a replacement for the existing icon adapter.
+
+Record each selected asset's upstream family/name, source revision and applicable
+license/attribution. [Aria's code](https://github.com/LeulAria/Aria-Icons) is MIT;
+its collections have their own terms. Unknown terms or unvalidated SVG do not
+enter the approved asset set. Preserve the trusted prepared-asset boundary; a
+catalog export is not permission for arbitrary SVG, script or URL uploads.
+
+For a meaningful state pair that needs more than the existing static/CSS solution,
+consider optional [morphicons guidance](interactive-motion.md#icon-state-morphs).
+Keep labels, business state and owner semantic assignments independent of the
+animation provider. A static icon remains a valid outcome.
+
 Centralize semantic icon choices where product meaning matters.
 
 When owner appearance management is in scope, include a prepared family selector

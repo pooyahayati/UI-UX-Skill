@@ -538,5 +538,61 @@ class R13RoadmapTests(unittest.TestCase):
             self.rejected(self.summary(text, "Completed R13 packages", "1 of 4"), "R13 completed count")
 
 
+class R14RoadmapTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.live = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+        cls.planned = cls.live
+        for index in range(1, 4):
+            cls.planned = cls.row(cls.planned, f"R14.{index}", "Not started", "Not recorded")
+        for key, value in {"Completed R14 packages": "0 of 3", "Active R14 package": "None",
+                           "Next R14 package": "R14.1", "R14 execution authority":
+                           "Planning/documentation only; [plan](docs/R14_AUDIT_REMEDIATION.md)"}.items():
+            cls.planned = cls.summary(cls.planned, key, value)
+
+    summary = staticmethod(R13RoadmapTests.summary)
+
+    @staticmethod
+    def row(text, package, status, evidence="[Execution](docs/R14_EXECUTION.md)"):
+        return R13RoadmapTests.row(text, package, status, evidence)
+
+    def test_live_planning_and_all_ordered_states(self):
+        self.assertEqual(validate_current_roadmap(self.live), [])
+        self.assertEqual(validate_current_roadmap(self.planned), [])
+        text = self.summary(self.planned, "R14 execution authority", "[Owner execution](docs/R14_EXECUTION.md#authority)")
+        for index in range(1, 4):
+            for state in ("In progress", "Blocked", "Reopened"):
+                current = self.row(text, f"R14.{index}", state)
+                current = self.summary(current, "Active R14 package", f"R14.{index}")
+                current = self.summary(current, "Next R14 package", f"R14.{index + 1}" if index < 3 else "None")
+                self.assertEqual(validate_current_roadmap(current), [])
+            text = self.row(text, f"R14.{index}", "Completed", "[2026-11-02 acceptance](docs/R14_EXECUTION.md)")
+            text = self.summary(text, "Completed R14 packages", f"{index} of 3")
+            text = self.summary(text, "Next R14 package", f"R14.{index + 1}" if index < 3 else "None")
+            self.assertEqual(validate_current_roadmap(text), [])
+
+    def test_invalid_inventory_and_summary(self):
+        row = next(line for line in self.planned.splitlines() if line.startswith("| R14.1 |"))
+        for text in (self.planned.replace(row, ""), self.planned.replace(row, row + "\n" + row),
+                     self.planned.replace("| R14.3 |", "| R14.4 |"),
+                     self.row(self.planned, "R14.1", "Almost done")):
+            self.assertTrue(validate_current_roadmap(text))
+        for key, value in (("Completed R14 packages", "1 of 3"), ("Active R14 package", "R14.1"),
+                           ("Next R14 package", "R14.3")):
+            self.assertTrue(validate_current_roadmap(self.summary(self.planned, key, value)))
+
+    def test_no_inherited_authority_or_premature_acceptance(self):
+        started = self.row(self.planned, "R14.1", "In progress")
+        self.assertIn("Started R14 work requires linked owner execution authority", validate_current_roadmap(started))
+        authorized = self.summary(self.planned, "R14 execution authority", "[Owner execution](docs/R14_EXECUTION.md#authority)")
+        for state in ("In progress", "Completed", "Blocked", "Reopened"):
+            errors = validate_current_roadmap(self.row(authorized, "R14.3", state,
+                                                     "[2026-11-02 acceptance](docs/R14_EXECUTION.md)"))
+            self.assertIn("R14.3: prerequisite packages must be Completed", errors)
+        for evidence in ("Not recorded", "[Undated](docs/R14_EXECUTION.md)", "[2026-02-30](#record)"):
+            self.assertTrue(validate_current_roadmap(self.row(authorized, "R14.1", "Completed", evidence)))
+        self.assertTrue(validate_current_roadmap(self.row(started, "R14.2", "In progress")))
+
+
 if __name__ == "__main__":
     unittest.main()

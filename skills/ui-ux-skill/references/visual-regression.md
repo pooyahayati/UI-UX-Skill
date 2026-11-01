@@ -145,6 +145,19 @@ Use two layers:
 
 A deliberate redesign can have a large pixel diff and still be correct.
 
+For critique, compare the same task, content, state, viewport and approved
+foundation. Trace what the user must notice, distinguish and do next; name the
+specific element where the evidence supports a problem. Separate observed layout
+or hierarchy from inferred discoverability and untested interaction behavior.
+Pair each retained recommendation with a small falsifiable check, such as finding
+the intended field or reaching its recovery action without losing the draft.
+Do not report fewer clicks or faster users without observing those outcomes.
+
+Refine only the evidenced weakness within the current direction, then inspect
+the same state again if a change is implemented. Preserve successful parts and
+report when no correction is justified. This is part of existing compare/refine
+work, not a new approval gate, compulsory score or requirement for extra designs.
+
 ## Thresholds
 
 Do not invent a universal pixel-diff threshold.

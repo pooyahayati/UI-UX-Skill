@@ -6,7 +6,7 @@ Goal: improve UI/UX without breaking working product behavior.
 
 Use `ux-evidence-and-metrics.md` to ground significant findings when research, analytics, support, or measurable workflow evidence is available.
 
-Use `visual-regression.md` for broad visual changes when rendered capture tooling is available.
+Use `visual-regression.md` for rendered critique and before/after comparison; narrow audits still keep their existing scope.
 
 ## Modes
 
@@ -121,6 +121,29 @@ Check:
 - radius/shadow/gradient excess
 - action hierarchy
 - oversized headers/sidebars
+
+Judge emphasis against the user's next decision in the inspected state, not a
+marketing-page reference. For repeated work, check whether headings, grouping
+and action prominence help distinguish the needed setting/record, its current
+state and the next safe action. Extra decoration or a larger heading is not an
+improvement when it pushes that information away from the task.
+
+Follow one realistic scan path through the rendered surface. Identify the exact
+point where competing emphasis, weak grouping or excessive density makes the
+task ambiguous; distinguish it from an untested interaction. An action may need
+to become less prominent when its prerequisite has not been met. Keep status,
+validation and recovery visible when reducing visual noise.
+
+For a substantive critique, connect the observed element/state to task impact,
+the smallest correction within approved tokens/components, and a concrete check
+that could disprove the recommendation. If the baseline already works, retain it.
+Do not prescribe a new visual direction, cards, search, icon treatment or spacing
+scale solely to imitate a reference. Keep one `DESIGN.md` and the existing review
+sequence; a quiet native settings form is a valid result.
+
+These task-focused criteria draw on [Impeccable's operative-surface guidance](https://github.com/pbakaus/impeccable/blob/e89e3ada3e875a89ac2c5d33d11e65ebef6fe285/skill/reference/operate.md)
+and [Interface Design](https://github.com/Dammyjay93/interface-design/blob/2f9be3206855bcb2d1d0af262c8bae25cba6658d/.claude/skills/interface-design/SKILL.md).
+They are research references, not additional Skills, tools or runtime dependencies.
 
 ### Brand and visual identity
 

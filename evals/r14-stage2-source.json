@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "normalization": "git-lf",
+  "decision": "docs/R14_EXECUTION.md#authority",
+  "stage": "R14.2",
+  "parents": {
+    "evals/r13-release-version.json": "dd7a125c4785dd10eeebf6b80a4522c27b0aa5b2eb85269f9852cca3affccf4e",
+    "evals/r13-source.json": "a45f100a58879c984faa9ecaf3056b115976532ac383c5299a19e66635a4e9dd",
+    "evals/ui-foundations/r13-result.json": "b74915fae9fcecf80e5aca2657a49e1e565812f89e42f92a2470f469abcaee38",
+    "evals/wordpress-settings/r13-stage4-behavior.json": "ea546eb8f1168355fdebf6a97aaaea60622bc8ce4d5b043d0679048db48e5d06"
+  },
+  "parent_sha256": "e35cec2a8c25de1fd56800efb7f95bb724685abab1d9794519710b7e2a555f8c",
+  "candidate_sha256": "0fefe4bf3ddba5fabb5d26ddcb6b76fc2dddb685abee3907923a0f8d996927be",
+  "changes": {
+    "references/existing-product-audit.md": {
+      "previous_sha256": "9a30d253e3a99848ece8b38e84a9d37444ebefbfa2ff5e691d6df3eaaa37d8e8",
+      "sha256": "4132aa49cc0c7b339725e5c7cb68355083745be8f8449a8cc9936a6bd8bb3115"
+    },
+    "references/visual-regression.md": {
+      "previous_sha256": "31462946fbc6253b391ef8b3c59585fb0cec0f745f1e952cc80392412cfb12b1",
+      "sha256": "04e4e39cfe897c679324086462e6c2d0a57769c7960a12910e295cbb4161192c"
+    }
+  }
+}
