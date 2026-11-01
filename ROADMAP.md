@@ -8,8 +8,12 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | --- | --- |
 | Updated | 2026-11-01 |
 | Released baseline | [v3.6.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.6.0); published artifacts and managed local installation verified 2026-11-01 |
-| Current workstream | R12 implementation and [3.6.0 delivery](docs/releases/3.6.0.md) complete |
-| Acceptance | All six packages accepted 2026-11-01; evidence and explicit limits in the [R12 execution record](docs/R12_EXECUTION.md) |
+| Current workstream | R13 corrections accepted; authorized 3.6.1 delivery in progress |
+| Acceptance | R13.1–R13.4 accepted against the bounded runtime, metadata, routing and theme criteria. R12's historical acceptance and limits remain in its [execution record](docs/R12_EXECUTION.md) |
+| Completed R13 packages | 4 of 4 |
+| Active R13 package | None |
+| Next R13 package | None |
+| R13 execution authority | [Owner-authorized R13 implementation](docs/R13_EXECUTION.md#authority) |
 | Completed R12 packages | 6 of 6 |
 | Active R12 package | None |
 | Next R12 package | None |
@@ -20,15 +24,34 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Completed WPS packages | 7 of 7 |
 | Active WPS package | None |
 | Next WPS package | None |
-| Execution authority | Historical [R11 implementation and delivery authorization](#r11-audit-remediation) is fulfilled; the separate R12 instruction above governs current work |
+| Execution authority | Historical [R11](#r11-audit-remediation) and [R12 delivery](docs/releases/3.6.0.md#authority) authorizations are fulfilled; current R13 authority is recorded separately above |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | R12 merged through PR #49; v3.6.0 published and installed locally with verified backup and Head integration |
+| Delivery | Preparing 3.6.1 under [owner delivery authority](docs/releases/3.6.1.md#authority); 3.6.0 remains the verified published/installed baseline until the new delivery gates pass |
+
+## R13 audit remediation
+
+**Owner decision, 2026-11-01:** update the roadmap for the four documented findings from the post-3.6.0 audit, with prioritized steps and explicit acceptance criteria. This authorizes planning/documentation only. The [R13 plan](docs/R13_AUDIT_REMEDIATION.md) records the audit baseline, reproductions, protected scope, file boundaries, verification and evidence-succession rules. No implementation, version change or delivery action is part of this planning checkpoint.
+
+**Superseding execution decision, 2026-11-01:** the owner requested R13.1 through R13.4 in order, with a report after each stage. This authorizes the planned corrections, tests and existing synthetic local host checks; no new publication or active installation. [Execution record](docs/R13_EXECUTION.md#authority).
+
+All four findings have Medium severity: one reproduced specimen defect, one demonstrated evidence-validation gap and two confirmed guidance inconsistencies. Historical R12 records remain intact; they do not prove the new failure scenarios passed. This table is the **only live R13 progress ledger**.
+
+| Package | Deliverable | Status | Entry condition | Acceptance / next action |
+| --- | --- | --- | --- | --- |
+| R13.1 | Preserve section errors and reject stale validation feedback | Completed | Owner instruction to implement R13.1 | [2026-11-01 ERR acceptance](docs/R13_EXECUTION.md#r131) |
+| R13.2 | Reject contradictory runtime-evidence metadata and missing host coverage | Completed | Accepted R13.1 | [2026-11-01 EVD acceptance](docs/R13_EXECUTION.md#r132) |
+| R13.3 | Route operational component advice to the correct WordPress surface | Completed | Accepted R13.2 | [2026-11-01 ROUTE acceptance](docs/R13_EXECUTION.md#r133) |
+| R13.4 | Allow an evidenced dark-not-applicable path to authorized secondary review | Completed | Accepted R13.3 | [2026-11-01 THEME acceptance](docs/R13_EXECUTION.md#r134) |
+
+Execute in priority order after authorization, with one active package. Completion requires dated, source-bound acceptance for that package and its prerequisites; unavailable checks stay open. Preserve original WPS/R11/R12 evidence and use explicit successors for changed current inputs. A planning document or greener metadata check is not implementation or behavioral acceptance.
+
+**Next action:** complete the authorized [3.6.1 delivery](docs/releases/3.6.1.md): exact-head validation, merge, publication, published-asset checks and backed-up managed local update. No R13 implementation package or repeated owner font/design approval remains.
 
 ## R12 WordPress admin design and settings findability
 
 **Owner decision, 2026-11-01:** prepare the roadmap for attractive, coherent, modern plugin-owned settings and internal admin pages where administrators can find a setting, understand its effect and save it without unnecessary searching. This authorizes the plan and acceptance criteria only. It does not reopen the completed WPS/R11 work or extend their delivery permissions.
 
-The [R12 plan](docs/R12_WORDPRESS_ADMIN_DESIGN.md) owns scope, proposed file boundaries, protected behavior, verification and package exits. This table is the **only live R12 status ledger**; creating the plan does not complete R12.1.
+The [R12 plan](docs/R12_WORDPRESS_ADMIN_DESIGN.md) owns its original scope, file boundaries, protected behavior, verification and package exits. This is the closed R12 status ledger. The later audit findings are tracked separately in [R13](#r13-audit-remediation), without rewriting historical acceptance.
 
 **Superseding execution decision, 2026-11-01:** the owner requested R12.1 through R12.6 in order. This authorizes the bounded implementation, synthetic local WordPress host checks and acceptance work described in the plan. It supersedes planning-only authority for R12; publication and installation remain outside this instruction. [Execution record](docs/R12_EXECUTION.md#authority).
 
@@ -50,7 +73,7 @@ The [R12 plan](docs/R12_WORDPRESS_ADMIN_DESIGN.md) owns scope, proposed file bou
 | Main workflow, release/tag and actual downloaded artifacts | Completed | [Published download verification](docs/releases/3.6.0.md#published-artifacts) |
 | Managed local update and recoverable backup | Completed | [Installation and compatibility](docs/releases/3.6.0.md#managed-local-installation) |
 
-**Next action:** none within R12 or its delivery. Future changes need their own scope. No fixed UI template, extra language, automatic dark theme, framework migration or new external design specialist is implied. The existing settings-only `@wordpress/components` requirement is preserved.
+**Next action:** none within the original R12 delivery; the separately scoped [R13 corrections](#r13-audit-remediation) are tracked above. No fixed UI template, extra language, automatic dark theme, framework migration or new external design specialist is implied. The existing settings-only `@wordpress/components` requirement is preserved.
 
 ## R11 audit remediation
 
@@ -138,11 +161,12 @@ The original WPS packages stay closed with their historical evidence. The later 
 - Stabilization maintenance remains the default. WPS execution needs its own bounded instruction; completed R0–R8 and R9 exceptions are not new authority.
 - Preserve other product routes, shared rules, permissions, data contracts and approved `DESIGN.md` decisions. No new Product Types, external design specialists, general-purpose page builder or repository-wide framework is authorized.
 - The WPS plan permits only named settings behavior, dedicated evaluation support and a narrowly additive CI hook. An out-of-scope need requires a recorded scope decision, not weaker existing checks.
-- Keep primary-language/direction review, later dark-mode review and optional secondary-language approval sequential. Existing acceptance remains scoped; do not reopen accepted font tests without a concrete defect.
+- Keep primary-language/direction approval, the applicable theme gate and authorized secondary-language review sequential. Required dark must be approved; evidenced light-only scope or an already approved primary-dark treatment follows the recorded R13 transition. Existing acceptance remains scoped; do not reopen accepted font tests without a concrete defect.
 - Source checks, agent observations, rendered/runtime evidence and owner approval are distinct. Example-product approval is not Skill engineering acceptance.
 - Completion does not authorize push/merge, publication, installation or deployment. Preserve user changes; do not infer new delivery permission from historical approvals.
 - R11 is bounded to its three audited findings and the tests/documentation needed to verify and deliver them under the explicit execution decision above. It does not reopen completed design approvals or authorize unrelated features.
 - R12 plans improvements for plugin-owned settings and internal admin surfaces only. Existing new/redesigned-settings component policy remains intact; other surfaces do not inherit that mandate automatically. Planning is not implementation or delivery authority.
+- R13 is limited to the four documented audit findings and their verification. Its implementation acceptance remains intact; the subsequent [3.6.1 delivery decision](docs/releases/3.6.1.md#authority) separately authorizes commit/push/merge, publication and the local update. It does not authorize unrelated changes.
 
 ## Completed history
 
@@ -164,12 +188,13 @@ These rows summarize closed work, not pending tasks. Historical limitations and 
 | Dashboard shadcn/ui default, optional interactive motion and release 3.5.0 | Completed, merged, published and installed locally, 2026-10-16 | [Exact source, CI, downloaded packages, security and managed-install verification](docs/releases/3.5.0.md) |
 | R11.1–R11.3 and corrective release 3.5.1 | Completed, merged, published and installed locally, 2026-10-16; 3 of 3 packages | [Stage acceptance and limits](docs/R11_EXECUTION.md); [PR, CI, published artifacts and managed-install verification](docs/releases/3.5.1.md) |
 | R12.1–R12.6 and release 3.6.0 | Completed, merged, published and installed locally, 2026-11-01; 6 of 6 packages | [Stage acceptance and limits](docs/R12_EXECUTION.md); [delivery evidence](docs/releases/3.6.0.md) |
+| R13.1–R13.4: four audit corrections | Implementation accepted, 2026-11-01; 4 of 4 packages; delivery tracked separately | [Stage acceptance](docs/R13_EXECUTION.md); [3.6.1 delivery](docs/releases/3.6.1.md) |
 
 The historical five-product evaluation was source-based in the same session, not an independent browser/device run. R7/R8 and R9 acceptance is bounded to its recorded evidence; hypothetical specimen approvals are not unfinished Skill stages. See [full limitations](docs/archive/ROADMAP-2026-10-09.md#acceptance-and-known-limits).
 
 ## Updating this roadmap
 
-- Allowed package states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. Keep one active implementation package in the current workstream; an unstarted prerequisite alone is not a blocker. Closed WPS/R11 ledgers and the live R12 ledger remain separate.
+- Allowed package states: `Not started`, `In progress`, `Blocked`, `Completed`, `Reopened`. Keep one active implementation package in the current workstream; an unstarted prerequisite alone is not a blocker. Closed WPS/R11/R12 ledgers and the live R13 ledger remain separate.
 - Update the package row, completed count, active/next package and authority together. Started work needs an execution-record link; completion needs dated acceptance evidence and satisfied prerequisites.
 - Record the checked revision, actual checks, remaining limits and lead acceptance in the linked record. Keep local changes separate from integration/publication evidence.
 - Retain useful completed evidence in tables/archives, not repeated execution prose. Archives are historical snapshots, never competing live trackers.

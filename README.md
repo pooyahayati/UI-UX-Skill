@@ -3,12 +3,12 @@
 # UI/UX Skill
 
 [![Validate](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/UI-UX-Skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-3.6.0-blue)
+![Version](https://img.shields.io/badge/version-3.6.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 A product-aware **UI/UX Head** for designing, auditing and improving real interfaces. Works standalone or as a bounded specialist under an engineering Head.
 
-Source version: **v3.6.0** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
+Source version: **v3.6.1** · Skill slug: `ui-ux-skill` · [Latest published release](https://github.com/pooyahayati/UI-UX-Skill/releases/latest)
 
 ## Product coverage
 
@@ -38,7 +38,7 @@ New or explicitly redesigned plugin-owned WordPress settings use stable public `
 
 1. Inspect the product, audience and settled decisions; ask focused questions and recommend suitable defaults.
 2. Maintain one living `DESIGN.md`. Review one responsive primary-language/direction sample using approved foundations.
-3. Refine and approve that revision, then review dark mode. Add a second language/layout only when needed and authorized.
+3. Refine and approve that revision, then review required dark mode or record an evidenced light-only applicability decision. Reuse an approved primary-dark treatment. Add a second language/layout only after that theme gate, when needed and authorized.
 4. Implement and validate the affected workflow. In-scope products with admin can use prepared, permissioned appearance/font/icon controls.
 
 Material Design is [optional and product-personalized](skills/ui-ux-skill/references/material-design.md), not a universal default or automatic library choice. Existing stack, permissions, business logic and user data remain protected. Guidance and synthetic fixtures are not a turnkey production theme/admin engine.

@@ -42,7 +42,8 @@ The [selection manifest](ui-foundations/manifest.json) freezes 13 of the 18 exis
 ```bash
 python3 scripts/prepare_eval_run.py S01 --suite ui-foundations --output <fresh-external-case-directory>
 python3 scripts/test_behavior_evaluation.py
-python3 scripts/validate_eval_result.py evals/ui-foundations/r12-result.json --suite ui-foundations --accept --release-binding evals/r12-release-version.json
+python3 scripts/test_r13_source_binding.py
+python3 scripts/validate_eval_result.py evals/ui-foundations/r13-result.json --suite ui-foundations --accept --r13-release-binding evals/r13-release-version.json
 ```
 
 Provide a fresh evaluator only `evaluator/PROMPT.txt` and `evaluator/skill/`, plus required routed external specialization. `RUN.json`, the selection manifest, prior outputs and review notes stay outside its allowed inputs. Preparation checks exact prompt/candidate bytes and rejects extra files in the input tree; it is an integrity check, not a sandbox preventing an agent from reading elsewhere.
@@ -57,7 +58,7 @@ response and twelve unchanged historical case records. A paired per-case
 rewriting the historical top-level candidate or output. All current consumed
 resources must still match; an override is not a stale-source exemption.
 The [original result](ui-foundations/result.json) remains historical. Separate
-[R12 raw requests and reviewed outputs](wordpress-settings/README.md#r12-current-evidence)
+[R12 raw requests and reviewed outputs](wordpress-settings/README.md#historical-r12-evidence)
 cover five WordPress design decisions; neither suite claims customer implementation.
 
 The [3.6.0 release binding](r12-release-version.json) preserves those original
@@ -65,6 +66,21 @@ outputs and candidate identities across the canonical `VERSION`-only bump.
 It binds the exact prior/current full trees and retained result contents;
 changed guidance, inventory, raw requests, outputs or preparation still fail.
 This is explicit metadata compatibility, not a new model or browser run.
+
+The current [R13 record](ui-foundations/r13-result.json) is separate from those
+historical records. R13.3 refreshed S04; its [intermediate record](ui-foundations/r13-stage3-result.json)
+retains twelve exact older rows under their narrow VERSION-only compatibility.
+R13.4 changes the shared entrypoint and therefore refreshes all thirteen selected
+responses. [R13 source succession](r13-source.json) checks the entire current tree
+and explicitly allowed changes against the exact released predecessor; historical
+checks remain separate. The [execution record](../docs/R13_EXECUTION.md) owns
+semantic acceptance, commands and limitations. Read lists are self-reported;
+neither source hashes nor structural validation establish model truth.
+
+The [3.6.1 metadata bridge](r13-release-version.json) verifies the complete
+VERSION-only successor and the exact retained final R13 reports. Current CI
+supplies it explicitly; the ordinary CLI still rejects a version/source mismatch.
+This is release compatibility, not a new model or browser evaluation.
 
 ## Inputs versus examples
 

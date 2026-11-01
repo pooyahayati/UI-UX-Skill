@@ -84,6 +84,44 @@ class MaterialSampleTests(unittest.TestCase):
         self.setUp(); self.data["entry"] = "../../../../missing.html"
         self.assertTrue(validate_metadata(self.data))
 
+    def light_only_secondary(self):
+        self.data["approval"] = self.hypothetical_approval(self.identity)
+        self.data["dark"] = {"status": "not-applicable", "parent": deepcopy(self.identity),
+            "applicability": {"requirement": "not-required", "product_source": self.data["brief"],
+                "reason": "Synthetic light-only host scope for this test, not a product decision",
+                "decision": self.hypothetical_approval(self.identity)}}
+        self.data["secondary"] = {"status": "proposed", "entry": "index.html", "parent": deepcopy(self.identity),
+            "authorization": {"actor": "Test", "source": "Test", "scope": "Test", "date": "unknown",
+                "language": "en", "direction": "ltr", "need": "Synthetic bilingual product"}}
+
+    def test_evidenced_light_only_secondary_and_missing_decisions(self):
+        self.light_only_secondary(); self.assertEqual(validate_metadata(self.data), [])
+        original = deepcopy(self.data)
+        for key in ("requirement", "product_source", "reason", "decision"):
+            self.data = deepcopy(original); self.data["dark"]["applicability"].pop(key)
+            self.assertTrue(validate_metadata(self.data), key)
+        for value in ("required", "pending", "rejected", "unavailable", "untested", "unresolved"):
+            self.data = deepcopy(original); self.data["dark"]["applicability"]["requirement"] = value
+            self.assertTrue(validate_metadata(self.data), value)
+        self.data = deepcopy(original); self.data["approval"] = None
+        self.assertTrue(validate_metadata(self.data))
+        self.data = deepcopy(original); self.data["dark"]["parent"]["sample_revision"] = "stale"
+        self.assertTrue(validate_metadata(self.data))
+        self.data = deepcopy(original); self.data["secondary"]["authorization"] = None
+        self.assertTrue(validate_metadata(self.data))
+        self.data = deepcopy(original); self.data["dark"]["approval"] = self.hypothetical_approval(self.identity)
+        self.assertTrue(validate_metadata(self.data), "Exclusion must not fabricate dark approval")
+
+    def test_primary_dark_is_reused_without_derived_duplicate(self):
+        self.data["theme"] = "dark"; self.identity["theme"] = "dark"
+        self.data["approval"] = self.hypothetical_approval(self.identity)
+        self.data["dark"] = {"status": "covered-by-primary", "parent": deepcopy(self.identity)}
+        self.data["secondary"] = {"status": "proposed", "entry": "index.html", "parent": deepcopy(self.identity),
+            "authorization": {"actor": "Test", "source": "Test", "scope": "Test", "date": "unknown",
+                "language": "en", "direction": "ltr", "need": "Synthetic bilingual product"}}
+        self.assertEqual(validate_metadata(self.data), [])
+        self.data["approval"] = None; self.assertTrue(validate_metadata(self.data))
+
     def test_native_assets_foundation_consumption_and_ids_resolve(self):
         parser = References(); parser.feed((SAMPLE / "index.html").read_text(encoding="utf-8"))
         self.assertEqual(len(parser.ids), len(set(parser.ids)))

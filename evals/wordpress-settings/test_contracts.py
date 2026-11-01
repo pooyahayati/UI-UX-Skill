@@ -30,6 +30,8 @@ R12_PARENT_HASHES = {
     "evidence/r11-browser-results.json": "8f7f8cec1079bf9320543248ff249e67c39450169bfa68c9f5077a5260023ed4",
 }
 R12_DISCOVERY_IDS = {f"D{i:02d}" for i in range(1, 12)}
+R13_VALIDATION_IDS = {f"ERR-{case}-{service}-{lang}" for case in ("retained", "delayed-corrected", "delayed-unchanged")
+                      for service, lang in (("current", "en"), ("minimum", "en"), ("current", "fa"))}
 R12_REGRESSION_IDS = ({f"WP-{i:02d}" for i in range(1, 15)} - {"WP-10"}) | {
     "R11-CONFLICT-current", "R11-CONFLICT-minimum", "R11-CONFLICT-RTL",
 }
@@ -115,7 +117,18 @@ def active_source_baseline():
     shadcn = json.loads((ROOT / "evals/shadcn/source-delta.json").read_text(encoding="utf-8"))
     motion = json.loads((ROOT / "evals/motion/source-delta.json").read_text(encoding="utf-8"))
     license_delta = json.loads((HERE / "r11-license-delta.json").read_text(encoding="utf-8"))
-    return license_source_baseline(motion_source_baseline(current_source_baseline(baseline, shadcn), motion), license_delta)
+    updated = license_source_baseline(motion_source_baseline(current_source_baseline(baseline, shadcn), motion), license_delta)
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from r13_source_binding import r13_predecessor
+    r13_predecessor()  # Verify exact full source scope before updating protected expectations.
+    delta = json.loads((ROOT / "evals/r13-source.json").read_text(encoding="utf-8"))
+    for name, binding in delta["changes"].items():
+        key = "skills/ui-ux-skill/" + name
+        if key in updated["protected_skill_hashes"]:
+            if updated["protected_skill_hashes"][key] != binding["previous_sha256"]:
+                raise ValueError("R13 protected-source predecessor mismatch: " + name)
+            updated["protected_skill_hashes"][key] = binding["sha256"]
+    return updated
 
 
 def license_source_baseline(baseline, delta):
@@ -204,6 +217,97 @@ def r12_successor(behavior_parent, fixture_parent, delta):
     return tuple(updated)
 
 
+def supported_host_errors(report, expected_surfaces):
+    errors = []
+    compose = (ROOT / "evals/fixtures/wordpress-settings/compose.yaml").read_text(encoding="utf-8")
+    hosts = {}
+    for service in ("current", "minimum"):
+        block = re.search(rf"^  {service}:\n(.*?)(?=^  [a-z]|^volumes:)", compose, re.M | re.S).group(1)
+        hosts[service] = (re.search(r'WPS_CORE_VERSION: "([^"]+)"', block).group(1),
+                          re.search(r'WPS_SITE_URL: "([^"]+)"', block).group(1),
+                          re.search(r'image: wordpress:php([0-9.]+)-', block).group(1))
+    compatibility = report.get("compatibility")
+    if (not isinstance(compatibility, list) or len(compatibility) != len(expected_surfaces)
+            or any(not isinstance(row, dict) for row in compatibility)
+            or {(row.get("service"), row.get("actualOwnedLanguage")) for row in compatibility
+                if isinstance(row, dict) and isinstance(row.get("service"), str) and isinstance(row.get("actualOwnedLanguage"), str)} != set(expected_surfaces)):
+        errors.append("Discovery compatibility must identify each required supported host/language surface exactly once")
+    else:
+        controls = {"TextControl", "ToggleControl", "SelectControl", "Button", "Notice", "Modal", "Spinner", "PanelBody", "SearchControl"}
+        for row in compatibility:
+            core, base, php = hosts[row["service"]]
+            exports, asset = row.get("exports"), row.get("asset_metadata")
+            if (row.get("actualRootDirection") != ("rtl" if row["actualOwnedLanguage"] == "fa" else "ltr")
+                    or row.get("core") != core or row.get("base") != base
+                    or not isinstance(row.get("php"), str) or not row["php"].startswith(php + ".")
+                    or row.get("plugins") != ["wps-specimen/wps-specimen.php"]
+                    or not isinstance(exports, dict) or set(exports) != controls or any(v is not True for v in exports.values())
+                    or not isinstance(asset, dict) or asset.get("dependencies") != ["wp-components", "wp-element"]):
+                errors.append("Discovery compatibility disagrees with declared host or verified public controls")
+
+    return errors
+
+
+def discovery_metadata_errors(report):
+    """Full discovery producer contract, not a requirement on legacy runners."""
+    errors = []
+    if (report.get("complete") is not True or report.get("scope") != "full R12 discovery and workspace"
+            or report.get("omitted_observations") != []):
+        errors.append("Full discovery needs complete scope and no omitted observations")
+    errors.extend(supported_host_errors(report, {("current", "en"), ("minimum", "en")}))
+    # State names are tied to actual producer capture destinations. General
+    # ready-state alone cannot distinguish default, recipient and detail views.
+    matrix = {}
+    for width, height in ((1440, 1100), (390, 844)):
+        for name in ("current", "recipient"):
+            matrix[f"discovery-{name}-fa-{width}.png"] = ("current", "fa", width, height, "discovery", "ready")
+        matrix[f"workspace-current-fa-{width}.png"] = ("current", "fa", width, height, "workspace", "ready")
+    matrix["discovery-minimum-en-390.png"] = ("minimum", "en", 390, 844, "discovery", "saved")
+    matrix["workspace-minimum-en-390.png"] = ("minimum", "en", 390, 844, "workspace", "ready")
+    for name, variant in (("detail", "modal"), ("connection", "connection"), ("failed", "failed")):
+        matrix[f"workspace-{name}-current-fa-390.png"] = ("current", "fa", 390, 844, "workspace-" + variant, "ready")
+    captures = report.get("captures")
+    if not isinstance(captures, list) or any(not isinstance(row, dict) or not isinstance(row.get("file"), str) for row in captures):
+        return errors + ["Discovery capture matrix missing or malformed"]
+    names = [row["file"].removeprefix("r12-") for row in captures]
+    if len(names) != len(matrix) or set(names) != set(matrix):
+        errors.append("Discovery capture matrix is missing, duplicate or out of scope")
+    for name, row in zip(names, captures):
+        if name not in matrix: continue
+        service, language, width, height, variant, state = matrix[name]
+        if (row.get("service") != service or row.get("language") != language or row.get("variant") != variant
+                or row.get("viewport") != {"width": width, "height": height} or row.get("state") != state
+                or row.get("theme") != "light" or row.get("direction") != ("rtl" if language == "fa" else "ltr")
+                or row.get("overflow") is not False or row.get("toolbar") is not True or row.get("menu") is not True):
+            errors.append("Discovery capture metadata disagrees with its required host/locale/viewport/state cell: " + name)
+    return errors
+
+
+def validation_metadata_errors(report):
+    errors = []
+    if (report.get("complete") is not True or report.get("scope") != "R13 section and submitted-value error ownership"
+            or report.get("omitted_observations") != []):
+        errors.append("Full R13 validation needs complete scope and no omitted observations")
+    cells = {("current", "en", 1440), ("minimum", "en", 390), ("current", "fa", 390)}
+    errors.extend(supported_host_errors(report, {(s, l) for s, l, _ in cells}))
+    captures = report.get("captures")
+    if not isinstance(captures, list) or len(captures) != 3 or any(not isinstance(row, dict) for row in captures):
+        return errors + ["R13 validation capture matrix missing or malformed"]
+    expected = {f"r13-errors-{s}-{l}-{w}.png": (s, l, w) for s, l, w in cells}
+    names = [row.get("file") for row in captures]
+    if any(not isinstance(name, str) for name in names) or set(names) != set(expected):
+        return errors + ["R13 validation capture matrix missing, duplicate or out of scope"]
+    for row in captures:
+        service, language, width = expected[row["file"]]
+        if (row.get("service") != service or row.get("language") != language
+                or row.get("viewport") != {"width": width, "height": 1000}
+                or row.get("variant") != "discovery" or row.get("state") != "saved"
+                or row.get("theme") != "light" or row.get("direction") != ("rtl" if language == "fa" else "ltr")
+                or row.get("overflow") is not False or row.get("toolbar") is not True or row.get("menu") is not True):
+            errors.append("R13 validation capture disagrees with required host/locale/viewport/state cell")
+    return errors
+
+
 def r12_runtime_errors(report, behavior, fixture, runner_sha256, expected_ids):
     """Check fresh runtime evidence against the exact successor and runner."""
     errors = []
@@ -238,7 +342,30 @@ def r12_runtime_errors(report, behavior, fixture, runner_sha256, expected_ids):
 
     if any(row.get("status") != "passed" or not has_detail(row) for row in rows):
         errors.append("R12 runtime observation is failed or lacks actual detail")
+    if any(row.get("method") != "real-admin-browser" for row in rows):
+        errors.append("Runtime observation method must be real-admin-browser")
+    if expected_ids == R12_DISCOVERY_IDS:
+        errors.extend(discovery_metadata_errors(report))
+    elif expected_ids == R13_VALIDATION_IDS:
+        errors.extend(validation_metadata_errors(report))
     return errors
+
+
+def r13_fixture_successor(parent, delta):
+    """R13.1 changes only App error ownership; older runtime records stay intact."""
+    parents = {name: hashlib.sha256(canonical_bytes(HERE / name)).hexdigest() for name in
+               ("r12-source-fixture-delta.json", "evidence/r12-browser-results.json", "evidence/r12-regression-results.json")}
+    if (delta.get("schema_version") != 1 or delta.get("normalization") != "git-lf"
+            or delta.get("decision") != "docs/R13_EXECUTION.md#authority"
+            or delta.get("authorized_on") != "2026-11-01"
+            or delta.get("parents") != parents or set(delta.get("changes", {})) != {"app.js"}):
+        raise ValueError("Invalid R13 fixture successor scope/parent")
+    binding = delta["changes"]["app.js"]
+    if (binding.get("previous_sha256") != parent["app.js"]
+            or not re.fullmatch(r"[a-f0-9]{64}", str(binding.get("sha256", "")))
+            or binding["sha256"] == parent["app.js"]):
+        raise ValueError("R13 fixture successor does not bind its exact parent")
+    return {**parent, "app.js": binding["sha256"]}
 
 
 class WPSContracts(unittest.TestCase):
@@ -366,6 +493,23 @@ class WPSContracts(unittest.TestCase):
         wordpress = next(p for p in registry["products"] if p["id"] == "wordpress-plugin")
         self.assertEqual(wordpress["required_references"], ["references/products/wordpress-plugin.md"])
 
+    def test_operational_selection_is_reachable_without_settings_guide(self):
+        skill = ROOT / "skills/ui-ux-skill/references/products"
+        parent = (skill / "wordpress-plugin.md").read_text(encoding="utf-8")
+        settings = (skill / "wordpress/settings.md").read_text(encoding="utf-8")
+        controls = (skill / "wordpress/components.md").read_text(encoding="utf-8")
+        operational = parent.split("### Operational collections and detail views", 1)[1].split("### Diagnostics", 1)[0]
+        operational = " ".join(operational.split())
+        for term in ("DataViews", "DataForm", "conditional dataset tools", "existing build strategy", "existing native list"):
+            self.assertIn(term, operational)
+        # Historical source citations are not operational selection instructions.
+        self.assertNotIn("For data-heavy operational collections", controls)
+        self.assertNotIn("They are conditional dataset tools", controls)
+        self.assertIn("components.md", settings)
+        self.assertIn("including simple forms", parent)
+        self.assertIn("not to settings merely because this shared parent was read", operational)
+        self.assertIn("Audit-only work recommends without migration", operational)
+
     def test_report_rejects_contradiction_missing_method_and_evidence(self):
         report = {"schema_version": 1, "fresh_model_evaluation": False, "outcomes": []}
         for name in sorted(EXPECTED):
@@ -391,8 +535,12 @@ class WPSContracts(unittest.TestCase):
         r12 = json.loads((HERE / "r12-source-fixture-delta.json").read_text(encoding="utf-8"))
         behavior, expected_fixture = r12_successor(
             result["candidate_skill_hashes"], fixture_successor(result["fixture_hashes"], r11), r12)
+        expected_fixture = r13_fixture_successor(expected_fixture, json.loads((HERE / "r13-fixture-delta.json").read_text(encoding="utf-8")))
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from r13_source_binding import r13_predecessor
+        released = r13_predecessor()
         for rel, digest in behavior.items():
-            self.assertEqual(hashlib.sha256(canonical_bytes(ROOT / "skills/ui-ux-skill" / rel)).hexdigest(), digest)
+            self.assertEqual(released[rel], digest)
         fixture = ROOT / "evals/fixtures/wordpress-settings/plugin"
         actual = {p.relative_to(fixture).as_posix(): hashlib.sha256(p.read_bytes() if p.suffix == ".ttf" else canonical_bytes(p)).hexdigest() for p in fixture.rglob("*") if p.is_file()}
         self.assertEqual(expected_fixture, actual)
@@ -590,10 +738,11 @@ class R12SuccessorContracts(unittest.TestCase):
         runner_hash = "c" * 64
         for ids in (R12_DISCOVERY_IDS, R12_REGRESSION_IDS):
             report = {
+                **json.loads((HERE / "evidence/r12-browser-results.json").read_text(encoding="utf-8")),
                 "schema_version": 1, "recorded_on": "2026-11-01", "runner_sha256": runner_hash,
                 "behavior_hashes": behavior, "fixture_hashes": fixture,
                 "javascript_errors": [], "console_warnings": [],
-                "observations": [{"id": name, "status": "passed", "detail": "Synthetic contract-test observation"}
+                "observations": [{"id": name, "status": "passed", "method": "real-admin-browser", "detail": "Synthetic contract-test observation"}
                                  for name in sorted(ids)],
             }
             self.assertEqual(r12_runtime_errors(report, behavior, fixture, runner_hash, ids), [])
@@ -611,7 +760,7 @@ class R12SuccessorContracts(unittest.TestCase):
                 broken["observations"][0][field] = value
                 self.assertTrue(r12_runtime_errors(broken, behavior, fixture, runner_hash, ids), field)
             with_view = copy.deepcopy(report)
-            with_view["observations"].append({"id": "VIEW-primary", "status": "passed", "detail": "View checked"})
+            with_view["observations"].append({"id": "VIEW-primary", "status": "passed", "method": "real-admin-browser", "detail": "View checked"})
             self.assertEqual(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids), [])
             with_view["observations"][-1]["detail"] = {"viewport": 390, "scrollWidth": 390}
             self.assertEqual(r12_runtime_errors(with_view, behavior, fixture, runner_hash, ids), [])

@@ -110,10 +110,20 @@ def prepare(case_id: str, output: Path, root: Path = ROOT) -> Path:
 
 def validate_record(result: object, directory: Path, *, root: Path = ROOT,
                     accept: bool = False, require_all: bool = False,
-                    release_binding: object = None) -> list[str]:
+                    release_binding: object = None, r13_release_binding: object = None) -> list[str]:
     from validate_eval_result import validate_result
     current = manifest(root)
     actual = snapshot(root / "skills/ui-ux-skill")
+    if r13_release_binding is not None:
+        from r13_release_binding import r13_release_predecessor
+        if release_binding is not None or current["version"] != "3.6.1":
+            return ["R13 release binding requires its explicit release version and no other bridge"]
+        try:
+            actual = r13_release_predecessor(actual, r13_release_binding, root=root,
+                result=result, record="evals/ui-foundations/r13-result.json")
+            current = {**current, "version": "3.6.0"}
+        except ValueError as error:
+            return [str(error)]
     if release_binding is not None:
         from release_version_binding import release_predecessor
         try:
@@ -159,6 +169,12 @@ def validate_record(result: object, directory: Path, *, root: Path = ROOT,
             errors.append(case_id + ": missing/duplicate source dependency set")
         else:
             for name in paths:
+                if name == "VERSION" and result.get("retainedR12VersionOnly"):
+                    from r13_source_binding import retained_r12_version_case
+                    from release_version_binding import version_digest
+                    if (actual.get(name) == version_digest("3.6.0") and case_files.get(name) == version_digest("3.5.1")
+                            and retained_r12_version_case(result, case, root)):
+                        continue
                 if name not in case_files or case_files.get(name) != actual.get(name):
                     errors.append(case_id + ": stale/missing consumed source " + name)
         if not isinstance(case.get("evaluatorId"), str) or not case["evaluatorId"].strip():

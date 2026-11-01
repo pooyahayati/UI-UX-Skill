@@ -376,8 +376,9 @@ class ReleaseVersionBindingTests(unittest.TestCase):
 
     def test_actual_release_tree_and_retained_r12_records(self):
         binding = json.loads((ROOT / "evals/r12-release-version.json").read_text(encoding="utf-8"))
-        actual = snapshot(ROOT / "skills/ui-ux-skill")
-        version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+        from r13_source_binding import r13_predecessor
+        actual = r13_predecessor(snapshot(ROOT / "skills/ui-ux-skill"))
+        version = "3.6.0"  # Verified released predecessor, not the current metadata version.
         for record in (UI_RECORD, WPS_RECORD):
             result = json.loads((ROOT / record).read_text(encoding="utf-8"))
             previous = release_predecessor(result, actual, binding, record=record, current_version=version)

@@ -53,7 +53,7 @@ Follow current [RTL guidance](https://ui.shadcn.com/docs/rtl) for the chosen set
 
 Keep mixed-script identifiers isolated and localize dates/numbers deliberately. Calendar support must be checked for the selected component/version; translated labels alone do not create a Persian calendar.
 
-Use [the existing sequential review](design-foundation-workflow.md): one responsive primary-language/direction proposal applying settled foundations, corrections and approval, then dark review, then only needed and owner-authorized secondary language/layout. Do not produce simultaneous alternatives because a preset generator supports them.
+Use [the existing sequential review](design-foundation-workflow.md): one responsive primary-language/direction proposal applying settled foundations, corrections and approval, then the applicable theme gate, then only needed and owner-authorized secondary language/layout. Required dark needs approval; reuse approved primary-dark coverage or an evidenced light-only non-applicability decision as defined by that workflow. Do not produce simultaneous alternatives because a preset generator supports them.
 
 For affected components, test realistic narrow and wide widths, long labels, keyboard/focus, overlay dismissal/return, validation/recovery and the actual direction/theme under review. Preserve table semantics and prioritize columns or deliberate horizontal comparison instead of forcing every table into cards. Check contrast and chart alternatives in dark mode; inspect hydration/theme flash and route payload when relevant. Library accessibility or mobile claims are not product test evidence.
 

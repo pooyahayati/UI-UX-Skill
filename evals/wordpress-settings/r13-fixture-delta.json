@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "normalization": "git-lf",
+  "decision": "docs/R13_EXECUTION.md#authority",
+  "authorized_on": "2026-11-01",
+  "parents": {
+    "r12-source-fixture-delta.json": "c4a08dd17ded2222651f7003d28ef1922fce7b46b0cf8d286fe628c16d0e6826",
+    "evidence/r12-browser-results.json": "d14de184ba6f79819f1197070fde685d19cc4be5f009aee03b8ab083c27e893b",
+    "evidence/r12-regression-results.json": "15007f4b2b714820346750bc12c07b72e68549e7deeb3c951bb8a7c8b75731cf"
+  },
+  "changes": {
+    "app.js": {
+      "previous_sha256": "3a3c1258508afbe4de6f7a756572b740b31fa0fa98889f87a74a2a33c088b3d7",
+      "sha256": "d1a8010bf7a419eb65ad329b16b93d95d74e2202963230d669e1cc54155692fb"
+    }
+  }
+}

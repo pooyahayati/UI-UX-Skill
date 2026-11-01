@@ -26,8 +26,8 @@ component**; component rows add only meaningful differences:
 - Use the product's actual language/direction, real approved font assets/weights,
   logical placement and isolated identifiers. Mirror directional meaning only,
   not logos, checkmarks, media playback or time/data semantics by blanket rule.
-- Primary proposal/corrections/approval precede derived dark review, then any
-  needed owner-authorized secondary language/layout. Both themes use semantic
+- Primary proposal/corrections/approval precede the [applicable theme gate](design-foundation-workflow.md#phase-2--theme-applicability-and-required-dark-review), then any
+  needed owner-authorized secondary language/layout. Required themes use semantic
   surface/text/boundary/state pairs; no automatic inversion or simultaneous gallery.
 - Icons resolve through the existing semantic mapping and accessible labels.
   Motion indicates cause/state only, follows approved levels and reduced motion,

@@ -82,7 +82,7 @@ Read as needed:
 
 Typical flow:
 
-`Inspect -> Discover -> Draft DESIGN.md -> Primary Sample/Feedback/Approval -> Dark Review/Approval -> Authorized Secondary Review (if needed) -> Roll Out -> QA`
+`Inspect -> Discover -> Draft DESIGN.md -> Primary Sample/Feedback/Approval -> Applicable Theme Gate -> Authorized Secondary Review (if needed) -> Roll Out -> QA`
 
 ### Existing product — audit only
 
@@ -213,7 +213,7 @@ Inspect known decisions before questioning. Use product-relevant recommendation-
 
 For durable foundation work, read `references/design-handbook.md` for the early `DESIGN.md` draft, single-writer/approval contract and compatible legacy-profile migration. Its output template is routed there; a draft is not owner approval or active runtime configuration.
 
-Before broad rollout, read `references/design-foundation-workflow.md`: one responsive primary-language/direction proposal must apply settled foundations, receive corrections and revision-scoped approval; dark mode follows that approval; secondary language/direction follows dark approval only when needed and owner-authorized. Do not mandate alternatives or simultaneous variants. Sample approval and implementation authorization are distinct; concepts/builds do not prove rendered behavior.
+Before broad rollout, read `references/design-foundation-workflow.md`: one responsive primary-language/direction proposal must apply settled foundations, receive corrections and revision-scoped approval; required dark review follows primary approval; an evidenced light-only non-applicability decision is a separate valid theme gate, not approval of unseen dark work. Secondary language/direction follows that gate only when needed and owner-authorized. Reuse an already approved primary-dark treatment; pending/rejected/unavailable required dark cannot be skipped. Do not mandate alternatives or simultaneous variants. Sample approval and implementation authorization are distinct; concepts/builds do not prove rendered behavior.
 
 For existing products without an approved handbook, use an observed baseline for corrective work rather than forcing full rediscovery or document migration.
 

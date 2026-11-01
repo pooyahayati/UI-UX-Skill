@@ -29,7 +29,7 @@ function host() {
         }
     };
 }
-async function mount(service) {
+async function mount(service, variant = "multi") {
     const slots = [], effects = [], root = {dataset: {}};
     let cursor = 0, App, tree;
     const h = (type, props, ...children) => ({type, props: props || {}, children: children.flat(Infinity).filter(x => x != null && x !== false)});
@@ -41,8 +41,10 @@ async function mount(service) {
             useRef(value) { const i = cursor++; if (!(i in slots)) slots[i] = {current: value}; return slots[i]; },
             useEffect(callback) { const i = cursor++; if (!(i in slots)) { slots[i] = true; effects.push(callback); } },
             createRoot() { return {render(node) { App = node.type; }}; }
-        }, components: Object.fromEntries(["TextControl", "ToggleControl", "SelectControl", "Button", "Notice", "Modal", "Spinner", "PanelBody"].map(name => [name, name]))},
-        WPSModel: M, WPSConfig: {lang: "en", variant: "multi", ajaxUrl: "/ajax", nonce: "synthetic"},
+        }, components: Object.fromEntries(["TextControl", "ToggleControl", "SelectControl", "Button", "Notice", "Modal", "Spinner", "PanelBody", "SearchControl"].map(name => [name, name]))},
+        WPSModel: M, WPSDiscovery: require("../fixtures/wordpress-settings/plugin/discovery.js"),
+        location: {hash: ""}, history: {pushState() {}, replaceState() {}},
+        WPSConfig: {lang: "en", variant, ajaxUrl: "/ajax", nonce: "synthetic"},
         document: {getElementById: id => id === "wps-root" ? root : null},
         window: {addEventListener() {}, removeEventListener() {}},
         fetch: service.fetch, AbortController, setTimeout, clearTimeout, crypto: {randomUUID}
@@ -64,7 +66,8 @@ async function mount(service) {
         async closeDialog() { find(n => n.type === "Modal").props.onRequestClose(); await flush(); }
     };
 }
-(async () => {
+module.exports = {host, mount};
+if (require.main === module) (async () => {
     const service = host(), a = await mount(service), b = await mount(service);
     await a.change("Credential action", "replace");
     await a.change("Replacement credential", "synthetic-only-test-value");

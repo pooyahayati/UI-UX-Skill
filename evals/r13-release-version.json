@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "scope": "r13-release-version-only",
+  "normalization": "git-lf",
+  "decision": "docs/releases/3.6.1.md#authority",
+  "recorded_version": "3.6.0",
+  "release_version": "3.6.1",
+  "version_change": {
+    "path": "VERSION",
+    "previous_sha256": "138203e3f604a08fad0c4d0a297efe2c486219820dcdd053e72b7d843504c7a1",
+    "sha256": "de58d841bd709aa85a66ecc500dfbb48e7c207e84c399e30e751e8ccad6e8c9b"
+  },
+  "candidate_before_sha256": "c88607b8b2eccc7a93fdfb17a51905897adbcc8acb269486e8a996ceee724692",
+  "candidate_after_sha256": "e35cec2a8c25de1fd56800efb7f95bb724685abab1d9794519710b7e2a555f8c",
+  "records": {
+    "evals/r13-source.json": "6609c3f3fc9b7a60446ecb1963702b18c619b18e9effae164afe52c8cbf23937",
+    "evals/ui-foundations/r13-result.json": "c6e7de84edbfbd83a97cf2d975a5b226564987734f6893ca2d7993dbe4542d44",
+    "evals/wordpress-settings/r13-stage4-behavior.json": "3124278f6da720cd63cc4195e54c1c880067e13357c640ee04933a4aeb062690"
+  },
+  "notes": "Exact VERSION-only compatibility for accepted R13 results. No fresh model, browser or owner approval is claimed; original candidate, input, preparation and response bytes remain unchanged."
+}

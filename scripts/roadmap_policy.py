@@ -166,6 +166,10 @@ def validate_current_roadmap(roadmap: str) -> list[str]:
         section(roadmap, "R12 WordPress admin design and settings findability"), summary,
         "R12", [f"R12.{i}" for i in range(1, 7)], r"R12\.\d+",
         "Owner instruction to implement R12", "R12 execution authority"))
+    errors.extend(validate_ordered_packages(
+        section(roadmap, "R13 audit remediation"), summary,
+        "R13", [f"R13.{i}" for i in range(1, 5)], r"R13\.\d+",
+        "Owner instruction to implement R13.1", "R13 execution authority"))
     if not summary.get("Accountable role"):
         errors.append("WPS accountable role must be recorded")
     history = section(roadmap, "Completed history")

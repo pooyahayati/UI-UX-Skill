@@ -32,16 +32,19 @@ In existing sample and decision rows retain:
 - relevant local guides and official sources/review dates, distinguishing source
   observations from the agent's product inference and implementation exceptions;
 - actual executable value sources and consumers, font assets and weights;
-- sample/handbook revisions, phase, parent approved primary/dark identity;
+- sample/handbook revisions, phase, parent approved primary/dark identity and any scoped theme-applicability decision;
 - focused feedback, correction delta, accepted versus pending decisions,
   actual actor/source/date or explicit unknown, exclusions and next action;
 - observed viewport/theme/locale/states, capture/font limits and untested behavior.
 
 Present only the primary proposal initially. Record dark needs as planned, not
 an upfront theme switch or hidden prebuilt variant. After actual scoped primary
-approval, derive dark semantic treatment without changing accepted typography,
-spacing, structure or behavior. After dark approval, confirm secondary need and
-named owner authority, or record monolingual N/A with its source. Existing valid
+approval, derive required dark treatment without changing accepted typography,
+spacing, structure or behavior. Reuse an approved primary-dark treatment. A
+light-only scope can instead record the evidenced applicability decision defined
+in the [canonical workflow](design-foundation-workflow.md#phase-2--theme-applicability-and-required-dark-review), not a fake dark approval; missing or rejected required dark stays pending.
+After that theme gate, confirm secondary need and named owner authority, or
+record monolingual N/A with its source. Existing valid
 production themes/locales are preserved; this governs new proposal sequencing.
 
 A correction reuses the same proposal; preserve the last approved baseline and

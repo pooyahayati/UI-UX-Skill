@@ -42,6 +42,7 @@ def validate_metadata(data: dict, sample: Path = SAMPLE) -> list[str]:
     dark = data.get("dark", {})
     if not isinstance(dark, dict):
         return errors + ["invalid dark record"]
+    theme_parent = None
     if dark.get("status") == "not-started":
         if any(dark.get(k) is not None for k in ("entry", "parent", "approval")):
             errors.append("unstarted dark has premature artifact/approval")
@@ -60,6 +61,27 @@ def validate_metadata(data: dict, sample: Path = SAMPLE) -> list[str]:
             errors.append("dark approval is not provenance/revision bound")
         if dark.get("status") == "proposed" and dark.get("approval") is not None:
             errors.append("proposed dark cannot carry approval")
+        if dark.get("status") == "approved" and approval_matches(dark.get("approval"), dark_identity):
+            theme_parent = dark_identity
+    elif dark.get("status") in ("not-applicable", "covered-by-primary"):
+        valid_parent = approval_matches(primary, identity) and dark.get("parent") == identity
+        if not valid_parent:
+            errors.append("theme applicability requires exact approved primary parent")
+        if any(dark.get(k) is not None for k in ("entry", "identity", "approval")):
+            errors.append("theme applicability cannot fabricate a derived dark artifact/approval")
+        if dark["status"] == "covered-by-primary":
+            valid_applicability = identity["theme"] == "dark"
+        else:
+            applicability = dark.get("applicability")
+            valid_applicability = (isinstance(applicability, dict) and identity["theme"] == "light"
+                and applicability.get("requirement") == "not-required"
+                and local_file(applicability.get("product_source"))
+                and isinstance(applicability.get("reason"), str) and bool(applicability["reason"].strip())
+                and approval_matches(applicability.get("decision"), identity))
+        if not valid_applicability:
+            errors.append("theme applicability lacks product scope, reason or bound owner decision")
+        if valid_parent and valid_applicability:
+            theme_parent = identity
     else:
         errors.append("unknown dark status")
     secondary = data.get("secondary", {})
@@ -71,9 +93,9 @@ def validate_metadata(data: dict, sample: Path = SAMPLE) -> list[str]:
         if secondary.get("entry") is not None or secondary.get("authorization") is not None:
             errors.append("secondary N/A cannot have an artifact/authorization")
     elif secondary.get("status") == "proposed":
-        if dark.get("status") != "approved" or not approval_matches(dark.get("approval"), dark.get("identity")):
-            errors.append("secondary requires approved dark")
-        if secondary.get("parent") != dark.get("identity"):
+        if theme_parent is None:
+            errors.append("secondary requires satisfied applicable theme gate")
+        if secondary.get("parent") != theme_parent:
             errors.append("secondary parent is stale")
         authority = secondary.get("authorization")
         if (not isinstance(authority, dict) or not all(authority.get(k)

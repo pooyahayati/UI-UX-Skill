@@ -65,6 +65,24 @@ Use for:
 - service/account connection;
 - data sync onboarding.
 
+### Operational collections and detail views
+
+Apply this selection only to an actual operational list/filter/detail/edit task,
+not to settings merely because this shared parent was read.
+
+For data-heavy operational collections, evaluate public `DataViews` and `DataForm`
+from `@wordpress/dataviews` against the actual list/filter/edit task and supported
+host. They are conditional dataset tools, not the settings-form default. Verify
+the package's WordPress entrypoint, dependencies and styles with the existing
+build strategy; do not introduce REST, storage migration or a build pipeline just
+to use them. A small native list/detail composition may be sufficient.
+
+
+Preserve an adequate existing native list; an operational workspace does not
+activate the settings-only component guide, a dashboard library default, Material
+or motion. For hybrid pages, settings keep their own controls and save contract;
+operational actions retain theirs. Audit-only work recommends without migration.
+
 ### Diagnostics / operations
 
 Load:

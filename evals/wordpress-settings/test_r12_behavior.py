@@ -11,6 +11,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from behavior_evaluation import canonical, digest, snapshot, tree_digest
 from release_version_binding import release_predecessor
+from r13_source_binding import r13_predecessor
 
 CRITERIA = {
     "B01": {"short-form-restraint", "native-preserve"},
@@ -21,7 +22,8 @@ CRITERIA = {
 }
 
 
-def errors(report, files, prompts, outputs, *, release_binding=None, current_version=None):
+def errors(report, files, prompts, outputs, *, release_binding=None, current_version=None,
+           criteria=CRITERIA, output_prefix="r12-outputs"):
     failures = []
     if release_binding is not None:
         try:
@@ -35,7 +37,7 @@ def errors(report, files, prompts, outputs, *, release_binding=None, current_ver
         failures.append("Candidate or execution identity mismatch")
     rows = report.get("cases", [])
     if (not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows)
-            or len(rows) != len(CRITERIA) or {row.get("id") for row in rows} != set(CRITERIA)):
+            or len(rows) != len(criteria) or {row.get("id") for row in rows} != set(criteria)):
         return failures + ["Case inventory mismatch"]
     evaluators = set()
     for row in rows:
@@ -49,15 +51,15 @@ def errors(report, files, prompts, outputs, *, release_binding=None, current_ver
         evaluators.add(row.get("evaluator"))
         if row.get("input_sha256") != digest(prompts[ident].encode()):
             failures.append(ident + ": changed raw input")
-        if (row.get("output") != f"r12-outputs/{ident}.md" or not outputs[ident].strip()
+        if (row.get("output") != f"{output_prefix}/{ident}.md" or not outputs[ident].strip()
                 or row.get("output_sha256") != digest(outputs[ident])):
             failures.append(ident + ": missing or changed actual output")
         if (not isinstance(reads, list) or not reads or len(reads) != len(set(reads))
                 or not all(isinstance(p, str) and p in files for p in reads)):
             failures.append(ident + ": invalid consumed resources")
         if (not isinstance(reviews, list) or any(not isinstance(r, dict) for r in reviews)
-                or len(reviews) != len(CRITERIA[ident])
-                or {r.get("id") for r in reviews} != CRITERIA[ident]
+                or len(reviews) != len(criteria[ident])
+                or {r.get("id") for r in reviews} != criteria[ident]
                 or any(r.get("status") != "passed" or not isinstance(r.get("evidence"), str)
                        or not r["evidence"].strip() for r in reviews)):
             failures.append(ident + ": missing or unresolved reviewed criteria")
@@ -68,9 +70,9 @@ class R12Behavior(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.report = json.loads((HERE / "r12-behavior-results.json").read_text(encoding="utf-8"))
-        cls.files = snapshot(ROOT / "skills/ui-ux-skill")
+        cls.files = r13_predecessor(snapshot(ROOT / "skills/ui-ux-skill"))
         cls.release_binding = json.loads((ROOT / "evals/r12-release-version.json").read_text(encoding="utf-8"))
-        cls.current_version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+        cls.current_version = "3.6.0"  # r13_predecessor verified this exact historical view.
         cls.prompts = {m[1]: m[2].strip() + "\n" for m in re.finditer(
             r"^## (B\d{2})[^\n]*\n(.*?)(?=^## |\Z)",
             (HERE / "R12_CASES.md").read_text(encoding="utf-8"), re.M | re.S)}

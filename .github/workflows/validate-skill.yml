@@ -25,8 +25,11 @@ jobs:
         run: |
           python3 evals/wordpress-settings/test_contracts.py
           python3 evals/wordpress-settings/test_r12_behavior.py
+          python3 evals/wordpress-settings/test_r13_evidence.py
+          python3 evals/wordpress-settings/test_r13_behavior.py
           node evals/wordpress-settings/test_model.cjs
           node evals/wordpress-settings/test_conflict.cjs
+          node evals/wordpress-settings/test_validation.cjs
           node evals/wordpress-settings/test_discovery.cjs
 
       - name: Release packaging path safety and failure preservation
@@ -86,7 +89,9 @@ jobs:
       - name: Independent selected UI foundation evidence integrity
         run: |
           python3 scripts/test_behavior_evaluation.py
-          python3 scripts/validate_eval_result.py evals/ui-foundations/r12-result.json --suite ui-foundations --accept --release-binding evals/r12-release-version.json
+          python3 scripts/test_r13_source_binding.py
+          python3 scripts/test_r13_release_binding.py
+          python3 scripts/validate_eval_result.py evals/ui-foundations/r13-result.json --suite ui-foundations --accept --r13-release-binding evals/r13-release-version.json
 
       - name: Eval harness smoke test
         run: |

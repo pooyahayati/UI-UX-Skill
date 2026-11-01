@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "stage": "R13.4",
+  "decision": "docs/R13_EXECUTION.md#authority",
+  "normalization": "git-lf",
+  "parents": {
+    "evals/r12-release-version.json": "65aa3471aecb162cdf760e9d03a4f18411e8b048b72395f3e8c11981780c81eb",
+    "evals/ui-foundations/r12-result.json": "2d98164170d4a5868a0147885e896c71c45ffa6b762bb2499201eeee1fac15ff",
+    "evals/wordpress-settings/r12-behavior-results.json": "b715137dfdcc2ec8af416bea4ae46d1daadf60ce6404c633c6bc6839f53a0528"
+  },
+  "parent_sha256": "971eef071c2a05e5554dc98f1fb4eaee5fc54b2cf50f837a36b0402a1de033cd",
+  "candidate_sha256": "c88607b8b2eccc7a93fdfb17a51905897adbcc8acb269486e8a996ceee724692",
+  "changes": {
+    "SKILL.md": {
+      "previous_sha256": "a4839ec46fbb0629bcddea3d96eeb2b95f6600e01f61ef4653e4c87224366907",
+      "sha256": "5180eb446fccf698a3c9c19d614e4934b1dafe6aedcec8dcc0d27176cd92c0fd"
+    },
+    "assets/templates/DESIGN.md": {
+      "previous_sha256": "718f00256eb4583be9b3f30f38ad58de48adc35eacce00d17374ee6a86a4f53b",
+      "sha256": "19030c7dada8d35bdc6852a94587da5fcd20a6baaa87f51e3f7e68b8fcbd452b"
+    },
+    "references/design-foundation-workflow.md": {
+      "previous_sha256": "f473ed431c97ed7b65b4f5e5b50af5ba242bc8534d7e0e9b98d347b531a32d40",
+      "sha256": "2acae2f8ff72367c69355e661b3b7c7c51db8b242cd9bb0569ac52ab210f2401"
+    },
+    "references/design-handbook.md": {
+      "previous_sha256": "477c6aca83c337c1faf2fe3d79469549327818f3e70d2d5b717473d1959a7b72",
+      "sha256": "d43922c9a4be00e8d656afabf11f176e728e38b51916ea2b52c3fd018fe0a638"
+    },
+    "references/discovery-and-profile.md": {
+      "previous_sha256": "74e38b46ec583a3a316936688fab4f2526af7b3d9f5d3581fbb0a7febe3a97d9",
+      "sha256": "56eb5a556baebf66d3677b03265e5a9074bbfa108d143ba0c06fd8a97c510676"
+    },
+    "references/interactive-motion.md": {
+      "previous_sha256": "bd8416366414958c01e0e0d984a4a4b93448bb9d47479550a1d04711d88cdff8",
+      "sha256": "627bc42551b8990e4a8f2c8ad6b249e80a0354c6c53fe21e42ee6652abdc8d41"
+    },
+    "references/material-components.md": {
+      "previous_sha256": "37f94902d97f4372c18e8ba8206b6f1a582b971df3a41d6e33190eebec76a621",
+      "sha256": "e526ec6ee7bc5d414bf701a2944f91d1cebb38c13656070004d0740f17a71da8"
+    },
+    "references/material-design.md": {
+      "previous_sha256": "72a4453f551d21bf98834e606d65d417236a45abc83ba4cd9c059f3963d5b9f1",
+      "sha256": "de17a9148f97527a35e618b99a8ef0f0e1f017982fca50e3b37c682ad6422848"
+    },
+    "references/material-foundations.md": {
+      "previous_sha256": "0960def6875a62773963cae45b3fc3f809842df39c6015fe81695328a09b42e4",
+      "sha256": "979ccfde880155b7d603e20551688a20470b4a5b1e455b6f9ae00323441d3e95"
+    },
+    "references/material-samples.md": {
+      "previous_sha256": "3d4100fabe5c72522e1f20ff51f1f247ff0ba1421faba0d2244ebeec0c7d2689",
+      "sha256": "6f165eff1e51867a24a988c44ec0810dbec82008554873dd4a7e0923a8624934"
+    },
+    "references/products/wordpress-plugin.md": {
+      "previous_sha256": "118544ca97739175652a70bf1886d9be0bda5d7d510e7fe83ed27b69b43b674c",
+      "sha256": "cb0d53638e97badd9ec1991fbd52be1b1c9366d4e7fef30e2bc68ed7709a1b73"
+    },
+    "references/products/wordpress/components.md": {
+      "previous_sha256": "2bb83f33af3bdb316969f94b13687f1c07a6fcd2f32ce3d36427e84fed8ef9bf",
+      "sha256": "e9efae2aa870a6bd6d75b00bdff48a2d952dd2ed801d6f2e6bc42f878854a909"
+    },
+    "references/shadcn-ui.md": {
+      "previous_sha256": "25238f2d286685ed426cb686fbcc66792b10b4a3e2ff4d6b893ab83db449f517",
+      "sha256": "8cdbec03eebfccedc50de0ac2bc48f348ac7a36f06ada96ac7fa97fc5c353269"
+    }
+  }
+}

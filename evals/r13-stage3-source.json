@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "stage": "R13.3",
+  "decision": "docs/R13_EXECUTION.md#authority",
+  "normalization": "git-lf",
+  "parents": {
+    "evals/r12-release-version.json": "65aa3471aecb162cdf760e9d03a4f18411e8b048b72395f3e8c11981780c81eb",
+    "evals/ui-foundations/r12-result.json": "2d98164170d4a5868a0147885e896c71c45ffa6b762bb2499201eeee1fac15ff",
+    "evals/wordpress-settings/r12-behavior-results.json": "b715137dfdcc2ec8af416bea4ae46d1daadf60ce6404c633c6bc6839f53a0528"
+  },
+  "parent_sha256": "971eef071c2a05e5554dc98f1fb4eaee5fc54b2cf50f837a36b0402a1de033cd",
+  "candidate_sha256": "31891c8eadd7f4d56e358186d23b94285345f57df9c2ac1bc3e1deaf57daaafa",
+  "changes": {
+    "references/products/wordpress-plugin.md": {
+      "previous_sha256": "118544ca97739175652a70bf1886d9be0bda5d7d510e7fe83ed27b69b43b674c",
+      "sha256": "cb0d53638e97badd9ec1991fbd52be1b1c9366d4e7fef30e2bc68ed7709a1b73"
+    },
+    "references/products/wordpress/components.md": {
+      "previous_sha256": "2bb83f33af3bdb316969f94b13687f1c07a6fcd2f32ce3d36427e84fed8ef9bf",
+      "sha256": "e9efae2aa870a6bd6d75b00bdff48a2d952dd2ed801d6f2e6bc42f878854a909"
+    }
+  }
+}

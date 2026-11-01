@@ -36,7 +36,7 @@ Keep assumptions separate from decisions. Do not copy private customer data or u
 ## Languages, directions and formats
 
 - Default and supported product languages: not recorded; not inferred from conversation.
-- Secondary language/layout need and owner authorization: not recorded; review only after dark approval. If monolingual, record not applicable with source.
+- Secondary language/layout need and owner authorization: not recorded; review only after the applicable theme gate. If monolingual, record not applicable with source.
 
 | Supported language | Direction | Actual font / text assets | Relevant formats / mixed-script fields | Evidence / next action |
 | --- | --- | --- | --- | --- |
@@ -56,7 +56,7 @@ Record relevant style/personality, semantic color roles, typography roles/scale,
 | Theme | Intended semantic treatment / source | Representative coverage | Evidence / gap |
 | --- | --- | --- | --- |
 | Primary (normally light; inspect existing default) | Proposed / not recorded | First responsive proposal in primary language/direction | Not run |
-| Derived dark | Proposed / not recorded | After primary revision approval; reuse accepted foundations | Not run / phase not started |
+| Derived dark | Proposed / not recorded | When required, after primary revision approval; reuse accepted foundations | Not run / phase not started |
 
 ## Components, states and icons
 
@@ -95,8 +95,9 @@ not choose a library, approve a sample or activate runtime configuration.
 - Professional recommendation / product-fit reason / tradeoff: not recorded.
 - One primary proposal / focused feedback / corrections / matching executable and handbook revisions: none recorded.
 - Primary approval / scoped delegation / real source: none recorded; not inferred from recommendation.
-- Dark review prerequisite (approved primary revision) / feedback / matching revisions / approval source: none recorded; phase not started.
-- Secondary review prerequisite (approved dark revision) / confirmed need / named owner authorization / feedback / approval source: none recorded; do not generate automatically.
+- Dark applicability (`required`, `not applicable`, `unresolved`) / reason / product-host source / owner decision actor-source-date / covered scope / approved primary and handbook revision: unresolved; no exemption or approval inferred.
+- Required dark review / feedback / matching revisions / approval source, or existing approved primary-dark coverage: none recorded; phase not started. `Pending`, `rejected`, `unavailable` and `untested` required dark never mean `not applicable`.
+- Secondary review prerequisite (required dark approval, approved primary-dark coverage, or evidenced light-only applicability decision plus approved primary) / exact parent revision / confirmed need / named owner authorization / feedback / approval source: none recorded; do not generate automatically.
 - Actual sample approval / actor / source / date / covered scope / exclusions: none recorded.
 - Broad implementation authority / remaining gates: not recorded; not implied by selection.
 - Proposed changes against last approved baseline / affected decisions needing approval: not recorded.
