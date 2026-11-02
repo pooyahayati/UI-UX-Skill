@@ -7,9 +7,9 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Item | State |
 | --- | --- |
 | Updated | 2026-11-02 |
-| Released baseline | [v3.7.0](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.7.0); published artifacts and managed local installation verified 2026-11-02 |
-| Current workstream | R15 implementation completed; authorized 3.7.1 delivery in progress |
-| Acceptance | All three R15 stages accepted locally with current runtime evidence; historical R14 evidence preserved |
+| Released baseline | [v3.7.1](https://github.com/pooyahayati/UI-UX-Skill/releases/tag/v3.7.1); published artifacts and managed local installation verified 2026-11-02 |
+| Current workstream | R15 completed, merged, published and installed locally; no active package |
+| Acceptance | All three R15 stages and delivery accepted; current runtime evidence and historical R14 records preserved |
 | Completed R15 packages | 3 of 3 |
 | Active R15 package | None |
 | Next R15 package | None |
@@ -34,7 +34,7 @@ The live work queue is below. Completed work is summarized in [history](#complet
 | Next WPS package | None |
 | Execution authority | Historical execution remains attached to [WPS](evals/wordpress-settings/EXECUTION.md) and [R14 delivery](docs/R14_EXECUTION.md#authority), within those completed scopes. Current R15 permissions are recorded separately above |
 | Accountable role | Engineering lead / maintainer; one implementation writer |
-| Delivery | 3.7.0 merged, published and installed locally with verified backup and accepted Head compatibility; [delivery evidence](docs/releases/3.7.0.md). R15 patch release 3.7.1 and managed local update authorized; [delivery in progress](docs/releases/3.7.1.md) |
+| Delivery | 3.7.1 merged, published and installed locally with verified backup and accepted Head compatibility; [delivery evidence](docs/releases/3.7.1.md). No outstanding delivery action |
 
 ## R15 post-R14 audit remediation
 
@@ -44,7 +44,7 @@ All three findings are confirmed, Medium severity: one evidence-validation gap a
 
 **Superseding implementation decision, 2026-11-02:** execute R15.1 through R15.3 in order. The [execution record](docs/R15_EXECUTION.md#authority) owns this bounded implementation and verification authority; publication and installation remain separate.
 
-**Superseding delivery decision, 2026-11-02:** the owner also authorized commit/push, merge, publication and local installation. [Release 3.7.1](docs/releases/3.7.1.md#authority) records this separate delivery scope and its verification.
+**Superseding delivery decision, 2026-11-02:** the owner also authorized commit/push, merge, publication and local installation. [Release 3.7.1](docs/releases/3.7.1.md#authority) records this separate delivery scope, completed publication and verified local update.
 
 | Package | Deliverable | Status | Entry condition | Acceptance / next action |
 | --- | --- | --- | --- | --- |
@@ -52,9 +52,9 @@ All three findings are confirmed, Medium severity: one evidence-validation gap a
 | R15.2 | Restore icon interaction after back/forward-cache navigation | Completed | Accepted R15.1 | [2026-11-02 LIFE acceptance](docs/R15_EXECUTION.md#r152) |
 | R15.3 | Keep the initial static fallback truthful when appearance loading fails | Completed | Accepted R15.2 | [2026-11-02 FALL and combined acceptance](docs/R15_EXECUTION.md#r153) |
 
-After authorization, execute in this order with one active package. Each exit requires dated evidence for its own failure scenario and protected behavior. Keep historical reports intact; record new runtime results against their actual source. No product redesign, new dependency, provider migration or additional owner font/design review is planned.
+Stages were executed in order, with dated evidence for each failure scenario and protected behavior. Historical reports remain intact; new runtime results bind their actual source. No product redesign, new dependency, provider migration or additional owner font/design review was introduced.
 
-**Next action:** no remaining R15 implementation. [Combined acceptance](docs/R15_EXECUTION.md#combined-review) records checks and limitations. Commit/push/merge, publication and installation require an applicable delivery instruction.
+**Next action:** none within R15 or its authorized delivery. [Combined acceptance](docs/R15_EXECUTION.md#combined-review) records implementation checks and limitations; [3.7.1 delivery](docs/releases/3.7.1.md) records merge, publication and the verified local update.
 
 ## R14 bounded quality-gap corrections
 
@@ -252,6 +252,7 @@ These rows summarize closed work, not pending tasks. Historical limitations and 
 | R12.1–R12.6 and release 3.6.0 | Completed, merged, published and installed locally, 2026-11-01; 6 of 6 packages | [Stage acceptance and limits](docs/R12_EXECUTION.md); [delivery evidence](docs/releases/3.6.0.md) |
 | R13.1–R13.4 and release 3.6.1 | Completed, merged, published and installed locally, 2026-11-01; 4 of 4 packages | [Stage acceptance](docs/R13_EXECUTION.md); [delivery evidence](docs/releases/3.6.1.md) |
 | R14.1–R14.3 and release 3.7.0 | Completed, merged, published and installed locally, 2026-11-02; 3 of 3 packages | [Stage acceptance](docs/R14_EXECUTION.md); [delivery evidence](docs/releases/3.7.0.md); later gaps tracked in [R15](#r15-post-r14-audit-remediation) |
+| R15.1–R15.3 and patch release 3.7.1 | Completed, merged, published and installed locally, 2026-11-02; 3 of 3 packages | [Stage acceptance](docs/R15_EXECUTION.md); [delivery evidence](docs/releases/3.7.1.md) |
 
 The historical five-product evaluation was source-based in the same session, not an independent browser/device run. R7/R8 and R9 acceptance is bounded to its recorded evidence; hypothetical specimen approvals are not unfinished Skill stages. See [full limitations](docs/archive/ROADMAP-2026-10-09.md#acceptance-and-known-limits).
 

@@ -4,6 +4,11 @@ Prepared 2026-11-02. This is a plan, not implementation or acceptance evidence.
 [ROADMAP.md](../ROADMAP.md#r15-post-r14-audit-remediation) is the only live progress
 ledger. Execute R15.1, R15.2 and R15.3 in that priority order when authorized.
 
+Historical planning checkpoint: all three stages were subsequently implemented
+under the [execution authority and acceptance](R15_EXECUTION.md), then delivered
+under the separately authorized [3.7.1 release](releases/3.7.1.md). The original
+criteria and planning boundary below remain preserved.
+
 ## Objective and authority
 
 Repair the three reproduced post-R14 defects without changing the Skill's purpose,

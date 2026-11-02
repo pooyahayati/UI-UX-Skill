@@ -7,8 +7,10 @@ explicitly uses this source root; altered/missing historical files still fail.
 It does not present that report as acceptance of the current specimen.
 
 R15's new runtime report and dedicated gate bind the current source and required
-recovery scenarios. The old report, images, portable Skill, provider pin and
-source/version binding records remain unchanged. No production capability is claimed.
+recovery scenarios. The old report, images, portable Skill guidance, provider pin
+and original source/version binding records remain unchanged. The separate
+[3.7.1 release](../../docs/releases/3.7.1.md) changes only portable VERSION and adds
+an exact successor binding. No production capability is claimed.
 
 ## Current acceptance
 
