@@ -1,5 +1,5 @@
 """Exact R14 source succession and narrowly retained R13 VERSION compatibility."""
-import json
+from evidence_json import load_json
 from behavior_evaluation import ROOT, canonical, digest, snapshot, tree_digest
 from release_version_binding import content_digest, version_digest
 
@@ -20,12 +20,12 @@ def r14_predecessor(actual=None, binding=None, *, root=ROOT):
     """Verify the entire descendant and expose the exact released 3.6.1 tree."""
     if actual is None:
         actual = snapshot(root / "skills/ui-ux-skill")
-    if actual.get("VERSION") == version_digest("3.7.0"):
+    if actual.get("VERSION") in {version_digest("3.7.0"), version_digest("3.7.1")}:
         from r14_release_binding import r14_release_predecessor
         actual = r14_release_predecessor(actual, root=root)
     if binding is None:
-        binding = json.loads((root / "evals/r14-source.json").read_text(encoding="utf-8"))
-    original = json.loads((root / "evals/ui-foundations/r13-result.json").read_text(encoding="utf-8"))
+        binding = load_json(root / "evals/r14-source.json")
+    original = load_json(root / "evals/ui-foundations/r13-result.json")
     released = {**original["candidate"]["files"], "VERSION": version_digest("3.6.1")}
     parents = {name: digest(canonical(root / name)) for name in PARENTS}
     allowed = CRITIQUE if binding.get("stage") == "R14.2" else CRITIQUE | ICONS if binding.get("stage") == "R14.3" else set()
@@ -48,7 +48,7 @@ def r14_predecessor(actual=None, binding=None, *, root=ROOT):
 def retained_r13_version_case(result, case, root=ROOT):
     """Only exact retained R13 rows may cross their original VERSION-only bump."""
     name = "evals/ui-foundations/r13-result.json"
-    original = json.loads((root / name).read_text(encoding="utf-8"))
+    original = load_json(root / name)
     from r13_release_binding import ACCEPTED_RECORDS, r13_release_predecessor
     if content_digest(original) != ACCEPTED_RECORDS[name]:
         return False

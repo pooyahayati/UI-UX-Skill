@@ -174,6 +174,11 @@ def validate_current_roadmap(roadmap: str) -> list[str]:
         section(roadmap, "R14 bounded quality-gap corrections"), summary,
         "R14", [f"R14.{i}" for i in range(1, 4)], r"R14\.\d+",
         "Owner instruction to implement R14.1", "R14 execution authority"))
+    errors.extend(validate_ordered_packages(
+        section(roadmap, "R15 post-R14 audit remediation"), summary,
+        "R15", [f"R15.{i}" for i in range(1, 4)], r"R15\.\d+",
+        "Owner instruction to implement R15.1", "R15 execution authority",
+        authority_target="docs/R15_EXECUTION.md#authority"))
     if not summary.get("Accountable role"):
         errors.append("WPS accountable role must be recorded")
     history = section(roadmap, "Completed history")
@@ -188,7 +193,8 @@ def validate_current_roadmap(roadmap: str) -> list[str]:
 
 def validate_ordered_packages(tracker: str, summary: dict[str, str], series: str,
                               expected: list[str], row_pattern: str,
-                              kickoff: str, authority_key: str) -> list[str]:
+                              kickoff: str, authority_key: str,
+                              authority_target: str | None = None) -> list[str]:
     """Shared five-column ledger contract; each workstream owns its authority."""
     errors = []
     rows = re.findall(rf"^\| ({row_pattern}) \| (.+)\|\s*$", tracker, re.M)
@@ -238,7 +244,8 @@ def validate_ordered_packages(tracker: str, summary: dict[str, str], series: str
         errors.append(f"{series} execution authority must be recorded")
     elif any(value != "Not started" for value in statuses.values()):
         if (re.search(r"\b(?:awaiting|planning/documentation only)\b", authority, re.I)
-                or not re.search(link, authority)):
+                or not re.search(link, authority)
+                or (authority_target and f"]({authority_target})" not in authority)):
             errors.append(f"Started {series} work requires linked owner execution authority")
     return errors
 

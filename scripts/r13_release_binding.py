@@ -1,5 +1,5 @@
 """Exact R13 VERSION-only release compatibility; never fresh behavioral evidence."""
-import json
+from evidence_json import load_json
 from pathlib import Path
 from release_version_binding import content_digest, tree_digest, version_digest
 
@@ -18,7 +18,7 @@ ACCEPTED_RECORDS = {
 
 def r13_release_predecessor(actual, binding=None, *, root=ROOT, result=None, record=None):
     if binding is None:
-        binding = json.loads((root / "evals/r13-release-version.json").read_text(encoding="utf-8"))
+        binding = load_json(root / "evals/r13-release-version.json")
     keys = {"schema_version", "scope", "normalization", "decision", "recorded_version",
             "release_version", "version_change", "candidate_before_sha256",
             "candidate_after_sha256", "records", "notes"}
@@ -43,7 +43,7 @@ def r13_release_predecessor(actual, binding=None, *, root=ROOT, result=None, rec
     if tree_digest(previous) != BEFORE:
         raise ValueError("R13 release changes more than VERSION")
     for path in RECORDS:
-        original = json.loads((root / path).read_text(encoding="utf-8"))
+        original = load_json(root / path)
         if content_digest(original) != binding["records"][path]:
             raise ValueError("Retained R13 record changed: " + path)
         if path != "evals/r13-source.json" and original.get("candidate") != {"files": previous, "sha256": BEFORE}:

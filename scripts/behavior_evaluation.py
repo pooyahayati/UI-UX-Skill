@@ -117,7 +117,7 @@ def validate_record(result: object, directory: Path, *, root: Path = ROOT,
     actual = snapshot(root / "skills/ui-ux-skill")
     if r14_release_binding is not None:
         from r14_release_binding import r14_release_predecessor
-        if release_binding is not None or r13_release_binding is not None or current["version"] != "3.7.0":
+        if release_binding is not None or r13_release_binding is not None or current["version"] not in {"3.7.0", "3.7.1"}:
             return ["R14 release binding requires its explicit release version and no other bridge"]
         try:
             actual = r14_release_predecessor(actual, r14_release_binding, root=root,
@@ -127,9 +127,9 @@ def validate_record(result: object, directory: Path, *, root: Path = ROOT,
             return [str(error)]
     if r13_release_binding is not None:
         from r13_release_binding import r13_release_predecessor
-        # 3.7.0 must pass the exact R14 source + VERSION succession inside the
+        # 3.7.0/3.7.1 must pass the exact R14/R15 source + VERSION succession inside the
         # R13 helper. Merely allowing the string cannot qualify changed evidence.
-        if release_binding is not None or current["version"] not in {"3.6.1", "3.7.0"}:
+        if release_binding is not None or current["version"] not in {"3.6.1", "3.7.0", "3.7.1"}:
             return ["R13 release binding requires its explicit release version and no other bridge"]
         try:
             actual = r13_release_predecessor(actual, r13_release_binding, root=root,

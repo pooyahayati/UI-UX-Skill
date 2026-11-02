@@ -1,5 +1,5 @@
 """Exact accepted R14 VERSION-only successor, never a fresh evaluation."""
-import json
+from evidence_json import load_json
 from pathlib import Path
 from release_version_binding import content_digest, tree_digest, version_digest
 from r14_evaluation import ACCEPTED
@@ -11,8 +11,11 @@ RECORDS={**ACCEPTED,
  "evals/r14-source.json":"def8b6c1b0544e3447d8ed2d05c3560cc8e0216f4a8e985eeba5be13530610f4"}
 
 def r14_release_predecessor(actual,binding=None,*,root=ROOT,result=None,record=None):
+    if isinstance(actual,dict) and actual.get("VERSION")==version_digest("3.7.1"):
+        from r15_release_binding import r15_release_predecessor
+        actual=r15_release_predecessor(actual,root=root)
     if binding is None:
-        binding=json.loads((root/"evals/r14-release-version.json").read_text(encoding="utf-8"))
+        binding=load_json(root/"evals/r14-release-version.json")
     keys={"schema_version","scope","normalization","decision","recorded_version","release_version",
           "version_change","candidate_before_sha256","candidate_after_sha256","records","notes"}
     if (not isinstance(binding,dict) or set(binding)!=keys or binding.get("schema_version")!=1
@@ -28,7 +31,7 @@ def r14_release_predecessor(actual,binding=None,*,root=ROOT,result=None,record=N
     previous={**actual,"VERSION":version_digest("3.6.1")}
     if tree_digest(previous)!=BEFORE:raise ValueError("R14 release changes more than VERSION")
     for name,expected in RECORDS.items():
-        original=json.loads((root/name).read_text(encoding="utf-8"))
+        original=load_json(root/name)
         if content_digest(original)!=expected:raise ValueError("Accepted R14 record changed: "+name)
     if result is not None or record is not None:
         if record!="evals/ui-foundations/r14-result.json" or content_digest(result)!=RECORDS[record]:

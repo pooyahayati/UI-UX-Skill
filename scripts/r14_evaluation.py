@@ -1,5 +1,5 @@
 """Integrity of reviewed R14 artifacts; this does not grade model answers."""
-import json
+from evidence_json import load_json
 import re
 from pathlib import Path
 from behavior_evaluation import ROOT, canonical, digest, tree_digest
@@ -23,8 +23,13 @@ def artifact(base, name):
     return path
 
 
-def errors(name, result, *, root=ROOT):
+def errors(name, result=None, *, root=ROOT, runtime_source_root=None):
+    """An explicit historical runtime root never establishes current runtime acceptance."""
     try:
+        if name not in ACCEPTED:
+            return ["Unknown R14 evidence record"]
+        if result is None:
+            result = load_json(root / name)
         if name not in ACCEPTED or content_digest(result) != ACCEPTED[name]:
             return ["Reviewed R14 record identity changed"]
         base = root / "evals/r14"
@@ -36,7 +41,7 @@ def errors(name, result, *, root=ROOT):
                 if row["status"] != "passed" or not row["details"]:
                     return ["Runtime observation is not passing"]
             for path, sha in result["source"].items():
-                if digest(artifact(root, path).read_bytes().replace(b"\r\n", b"\n")) != sha:
+                if digest(artifact(runtime_source_root or root, path).read_bytes().replace(b"\r\n", b"\n")) != sha:
                     return ["Runtime producer/input changed: " + path]
             for path, sha in result["artifacts"].items():
                 if digest(artifact(base / "evidence", path).read_bytes()) != sha:
@@ -47,7 +52,7 @@ def errors(name, result, *, root=ROOT):
         rows = result["cases"]
         if {r["id"] for r in rows} != expected or len(rows) != len(expected) or len({r["evaluator"] for r in rows}) != len(rows):
             return ["Missing/duplicate case or independent evaluator"]
-        binding = json.loads((root / ("evals/r14-stage2-source.json" if stage == "R14.2" else "evals/r14-source.json")).read_text())
+        binding = load_json(root / ("evals/r14-stage2-source.json" if stage == "R14.2" else "evals/r14-source.json"))
         r14_predecessor(result["candidate"]["files"], binding, root=root)
         for row in rows:
             if row["candidate"]["sha256"] != tree_digest(row["candidate"]["files"]):

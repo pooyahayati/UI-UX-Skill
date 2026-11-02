@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "scope": "r15-release-version-only",
+  "normalization": "git-lf",
+  "decision": "docs/releases/3.7.1.md#authority",
+  "recorded_version": "3.7.0",
+  "release_version": "3.7.1",
+  "version_change": {
+    "path": "VERSION",
+    "previous_sha256": "84746b20a3a72f6ff85a629706e50507c1bd200907456b76dd808a2a5ca0efba",
+    "sha256": "4e99e7eac21c2b71a97139cacca695d98c93fbd7dd26505f04f5271809ac4b94"
+  },
+  "candidate_before_sha256": "08206437c937c36255cd97b2094f8a55157b4ac3d9b12d524bd75c3a10df5827",
+  "candidate_after_sha256": "87e50e72260117c4cc10683495a243f05c9596006702afa50c2f911d89d13b11",
+  "records": {
+    "evals/r14-release-version.json": "b32cbcddf5c1cb9d43ca07f4b5cb9a1a2cb847c72cd5655b93bf21d068cbf0ac",
+    "evals/r15/evidence/runtime.json": "def8b604d23d7c3c944bec0dcb5317985bef4aa97fc25fdeab573f56fb71d81e"
+  },
+  "notes": "Exact portable VERSION-only patch successor. Original R14 model evidence remains historical; R15 runtime evidence is independently source/artifact-bound, not a new model evaluation."
+}

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" dir="ltr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visit instructions — bounded icon specimen</title>
+<style>
+:root { color-scheme:light; font:16px/1.6 system-ui,sans-serif; background:#f5f6f8;color:#17212b }
+body { margin:0;padding:24px;max-width:40rem } h1 {font-size:1.5rem}
+button {font:inherit;color:inherit;background:white;border:1px solid #667483;border-radius:8px;min-height:48px;padding:8px 16px;display:flex;align-items:center;gap:12px;width:100%;text-align:start}
+button:focus-visible {outline:3px solid #145f86;outline-offset:3px}
+svg {width:24px;height:24px;flex:none} #panel {padding:16px;border:1px solid #667483} [hidden] {display:none}
+</style>
+<h1>North Workshop</h1><p>Synthetic visit. This specimen changes no visit data.</p>
+<button id="disclosure" type="button" aria-expanded="false" aria-controls="panel">
+<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 5L14 12L7 19"></path></svg>
+<span>Visit instructions</span></button>
+<section id="panel" hidden><p>Inspect the intake filter and record the reading before restarting the unit.</p></section>
+<p id="provenance"></p><p id="load-status" role="status"></p>
+<script type="module" src="/icon-specimen/fixture.mjs"></script></html>
