@@ -6,6 +6,7 @@ import hashlib
 import json
 import sys
 from pathlib import Path
+from evidence_json import load_json, unique_object
 
 ROOT = Path(__file__).resolve().parents[1]
 cases_manifest = json.loads((ROOT / "evals" / "cases.json").read_text(encoding="utf-8"))
@@ -111,16 +112,6 @@ def validate_result(result: object, *, manifest: dict = cases_manifest,
     return errors
 
 
-def unique_object(pairs: list[tuple[str, object]]) -> dict:
-    """Do not silently overwrite contradictory JSON object fields."""
-    value = {}
-    for key, item in pairs:
-        if key in value:
-            raise ValueError(f"Duplicate JSON field: {key}")
-        value[key] = item
-    return value
-
-
 def content_hash(value: object) -> str:
     """Bind JSON content without requiring a platform-specific newline encoding."""
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
@@ -157,7 +148,7 @@ def main() -> None:
     parser.add_argument("--accept", action="store_true", help="Require selected ui-foundations evidence to pass; does not run a model")
     args = parser.parse_args()
     try:
-        result = json.loads(Path(args.result).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+        result = load_json(args.result)
         selected_manifest = cases_manifest
         if args.binding and args.suite != "default":
             raise ValueError("--binding cannot qualify a fresh ui-foundations evaluation")
@@ -172,15 +163,15 @@ def main() -> None:
         if args.suite == "ui-foundations":
             from behavior_evaluation import manifest, validate_record
             selected_manifest = manifest()
-            release_binding = (json.loads(Path(args.release_binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+            release_binding = (load_json(args.release_binding)
                                if args.release_binding else None)
             if args.release_binding and not isinstance(release_binding, dict):
                 raise ValueError("--release-binding must contain an explicit successor object")
-            r13_binding = (json.loads(Path(args.r13_release_binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+            r13_binding = (load_json(args.r13_release_binding)
                            if args.r13_release_binding else None)
             if args.r13_release_binding and not isinstance(r13_binding, dict):
                 raise ValueError("--r13-release-binding must contain an explicit successor object")
-            r14_binding = (json.loads(Path(args.r14_release_binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+            r14_binding = (load_json(args.r14_release_binding)
                            if args.r14_release_binding else None)
             if args.r14_release_binding and not isinstance(r14_binding, dict):
                 raise ValueError("--r14-release-binding must contain an explicit successor object")
@@ -188,7 +179,7 @@ def main() -> None:
                                      require_all=args.require_all, release_binding=release_binding,
                                      r13_release_binding=r13_binding, r14_release_binding=r14_binding)
         elif args.binding:
-            binding = json.loads(Path(args.binding).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+            binding = load_json(args.binding)
             errors = validate_historical(result, binding, require_all=args.require_all)
         else:
             errors = validate_result(result, require_all=args.require_all)
@@ -216,6 +207,8 @@ def main() -> None:
         print("Retained R13 evidence used 3.6.0 metadata; exact VERSION-only compatibility with 3.6.1 is verified. This is not a fresh 3.6.1 model evaluation.")
     if args.r14_release_binding:
         print("Accepted R14 evidence used 3.6.1 metadata; exact VERSION-only compatibility with 3.7.0 is verified. This is not a fresh 3.7.0 model evaluation.")
+    if (args.r13_release_binding or args.r14_release_binding) and (ROOT / 'VERSION').read_text().strip() == '3.7.1':
+        print("The exact 3.7.0 to 3.7.1 VERSION-only successor is also verified; not a fresh 3.7.1 model evaluation. R15 runtime evidence is a separate bounded gate.")
     failures = [x["id"] for x in result["cases"] if x["result"] == "fail"]
     if failures:
         print("Failed cases:", ", ".join(failures))

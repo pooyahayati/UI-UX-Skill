@@ -11,6 +11,7 @@ import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import {createInterface} from 'node:readline';
 import {once} from 'node:events';
+import {createServer} from 'node:http';
 const require=createRequire(import.meta.url);
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
@@ -36,7 +37,8 @@ print(json.dumps(s.access_link()),flush=True)
 s.serve_forever()
 `;
 const server=spawn(process.env.PYTHON||'python',['-B','-u','-c',code,temporary],{cwd:root,stdio:['ignore','pipe','pipe'],windowsHide:true});
-let browser;
+let browser,assetServer,appearanceFault;
+let providerRequests=0;
 const observations=[],served=new Map(),pageErrors=[];
 const record=(id,details)=>observations.push({id,status:'passed',details});
 try {
@@ -45,16 +47,33 @@ try {
     once(server,'exit').then(()=>{throw Error('Server exited');}),
     new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Server startup timeout')),15000);})]).finally(()=>clearTimeout(timer));
   const origin=new URL(access).origin;
-  browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE?{executablePath:process.env.BROWSER_EXECUTABLE}:{})});
+  browser=await chromium.launch({headless:true,ignoreDefaultArgs:['--disable-back-forward-cache'],...(process.env.BROWSER_EXECUTABLE?{executablePath:process.env.BROWSER_EXECUTABLE}:{})});
   const context=await browser.newContext({viewport:{width:390,height:844}});
-  await context.route('**/icon-specimen/**',async route=>{
-    const path=new URL(route.request().url()).pathname.slice('/icon-specimen/'.length);
-    const local=path.startsWith('vendor/')?join(bundle,basename(path)):join(fixture,path||'index.html');
-    const allowed=path.startsWith('vendor/')?Object.hasOwn(pin.bundle.files,basename(path)):['','index.html','adapter.mjs','fixture.mjs'].includes(path);
-    assert.ok(allowed,'Unexpected asset request '+path);
-    const body=await readFile(local);served.set(path,body);
-    await route.fulfill({body,contentType:path.endsWith('.js')||path.endsWith('.mjs')?'text/javascript':'text/html'});
+  // Real HTTP assets keep BFCache eligibility observable; request interception can disable it.
+  assetServer=createServer(async(req,res)=>{
+    try {
+      const pathname=new URL(req.url,'http://localhost').pathname;
+      if(pathname==='/api/v1/tenants/a/published') {
+        const fault=appearanceFault;
+        if(fault?.wait)await fault.wait;
+        if(fault?.mode==='network'){res.destroy();return;}
+        if(fault?.mode==='http'){res.writeHead(503,{'Content-Type':'application/json'});res.end('{}');return;}
+        const upstream=await fetch(origin+pathname,{headers:{cookie:req.headers.cookie||''}});
+        res.writeHead(upstream.status,{'Content-Type':'application/json'});res.end(await upstream.text());return;
+      }
+      if(pathname==='/icon-other') {res.setHeader('Content-Type','text/html');res.end('<title>Other page</title><p>Navigation target</p>');return;}
+      if(!pathname.startsWith('/icon-specimen/')) {res.writeHead(404);res.end();return;}
+      const path=pathname.slice('/icon-specimen/'.length);
+      const allowed=path.startsWith('vendor/')?Object.hasOwn(pin.bundle.files,path.slice(7)):['','index.html','adapter.mjs','fixture.mjs'].includes(path);
+      if(!allowed) {res.writeHead(404);res.end();return;}
+      const local=path.startsWith('vendor/')?join(bundle,basename(path)):join(fixture,path||'index.html');
+      if(path.startsWith('vendor/'))providerRequests++;
+      const body=await readFile(local);served.set(path,body);
+      res.setHeader('Content-Type',path.endsWith('.js')||path.endsWith('.mjs')?'text/javascript':'text/html');res.end(body);
+    } catch(error) {pageErrors.push(error.message);res.writeHead(500);res.end('Fixture server error');}
   });
+  assetServer.listen(0,'127.0.0.1');await once(assetServer,'listening');
+  const specimenOrigin='http://127.0.0.1:'+assetServer.address().port;
   const owner=await context.newPage();await owner.goto(access);
   const session=await (await owner.request.get(origin+'/api/v1/session')).json();
   const csrf={'X-Fixture-CSRF':session.csrf,Origin:origin};
@@ -73,7 +92,7 @@ try {
     assert.equal(r.status,200,JSON.stringify(r));return r.body;
   }
   const page=await context.newPage();page.on('pageerror',e=>pageErrors.push(e.message));
-  async function open(suffix='') {await page.goto(origin+'/icon-specimen/index.html'+suffix);await page.waitForFunction(()=>window.ready);}
+  async function open(suffix='') {await page.goto(specimenOrigin+'/icon-specimen/index.html'+suffix);await page.waitForFunction(()=>window.ready);}
   const state=()=>page.evaluate(()=>fixture.view.state());
   async function settle(){await page.waitForFunction(()=>{
     const state=fixture.view.state(),asset=fixture.last.tokens.icons.disclosure;
@@ -146,13 +165,97 @@ try {
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   record('MOBILE',{width:390,height:844,overflow:false});
   await publish({...initial.config,motion:'standard'});await page.evaluate(()=>fixture.reload());
+  const lifecycle=[];
+  for(const suffix of ['?static','']) {
+    const cached=await context.newPage();cached.on('pageerror',e=>pageErrors.push(e.message));
+    await cached.addInitScript(()=>{window.restores=[];addEventListener('pageshow',e=>{if(e.persisted)window.restores.push(true);});});
+    await cached.goto(specimenOrigin+'/icon-specimen/index.html'+suffix);await cached.waitForFunction(()=>window.ready);
+    const control=cached.getByRole('button',{name:'Visit instructions'});
+    await cached.evaluate(()=>{window.originalDocument='kept';});
+    for(const expanded of [false,true]) {
+      await cached.evaluate(value=>{if(fixture.view.state().open!==value)document.querySelector('button').click();},expanded);
+      await control.focus();
+      const count=await cached.evaluate(()=>restores.length);
+      await cached.goto(specimenOrigin+'/icon-other');
+      await cached.emulateMedia({reducedMotion:'reduce'});
+      await cached.goBack({waitUntil:'commit'});
+      await cached.waitForFunction(n=>window.restores?.length===n+1,count);
+      assert.equal(await cached.evaluate(()=>originalDocument),'kept');
+      assert.equal(await control.getAttribute('aria-expanded'),String(expanded));
+      assert.equal(await cached.locator('#panel').isVisible(),expanded);
+      await control.click();
+      assert.equal(await control.getAttribute('aria-expanded'),String(!expanded));
+      await cached.keyboard.press('Enter');
+      assert.equal(await control.getAttribute('aria-expanded'),String(expanded));
+      await cached.keyboard.press('Space');
+      assert.equal(await control.getAttribute('aria-expanded'),String(!expanded));
+      assert.equal(await cached.evaluate(()=>document.activeElement.id),'disclosure');
+      assert.equal(await cached.evaluate(()=>fixture.view.state().immediate),true);
+      const icon=await cached.evaluate(()=>({actual:document.querySelector('svg path').getAttribute('d'),
+        expected:fixture.last.tokens.icons.disclosure.states[fixture.view.state().open?'open':'closed'][0].d}));
+      assert.equal(icon.actual,icon.expected);
+      lifecycle.push({provider:suffix?'static':'morphicons',initialOpen:expanded,persisted:true,
+        pointerKeyboard:true,singleActivation:true,focus:true,reducedAfterReturn:true,geometry:true});
+      await cached.emulateMedia({reducedMotion:'no-preference'});
+    }
+    await cached.close();
+  }
+  record('BFCACHE',{cycles:lifecycle});
+  const coldCases=[];
+  for(const mode of ['http','network']) {
+    let release;
+    appearanceFault={mode,wait:new Promise(r=>release=r)};
+    const cold=await context.newPage();cold.on('pageerror',e=>pageErrors.push(e.message));
+    await cold.addInitScript(()=>{window.restores=[];addEventListener('pageshow',e=>{if(e.persisted)window.restores.push(true);});});
+    await cold.emulateMedia({reducedMotion:'reduce'});
+    await cold.goto(specimenOrigin+'/icon-specimen/index.html',{waitUntil:'commit'});
+    await cold.waitForFunction(()=>window.fixture);
+    const coldStart=providerRequests,control=cold.getByRole('button',{name:'Visit instructions'});
+    await cold.evaluate(()=>document.documentElement.dir='rtl');
+    async function assertColdState(expanded) {
+      assert.equal(await control.getAttribute('aria-expanded'),String(expanded));
+      assert.equal(await cold.locator('#panel').isVisible(),expanded);
+      assert.equal(await cold.locator('svg path').getAttribute('d'),initial.tokens.icons.disclosure.states[expanded?'open':'closed'][0].d);
+      assert.equal(await cold.locator('svg').evaluate(e=>e.style.transform),expanded?'':'scaleX(-1)');
+      assert.equal(await cold.evaluate(()=>fixture.view.state().immediate),true);
+    }
+    await control.click();await assertColdState(true);
+    await cold.keyboard.press('Space');await assertColdState(false);
+    release();await cold.waitForFunction(()=>window.ready);
+    assert.match(await cold.locator('#load-status').textContent(),/default/);
+    await control.click();await assertColdState(true);
+    const expectedRequests=providerRequests-coldStart;assert.equal(expectedRequests,0);
+    const count=await cold.evaluate(()=>restores.length);
+    await cold.goto(specimenOrigin+'/icon-other');await cold.goBack({waitUntil:'commit'});
+    await cold.waitForFunction(n=>window.restores?.length===n+1,count);
+    await cold.keyboard.press('Space');await assertColdState(false);
+    await control.click();await assertColdState(true);
+    appearanceFault=null;
+    const selected={...initial.config,motion:'reduced',iconFamily:'solid',disclosureIcon:'badge'};
+    await publish(selected);await cold.evaluate(()=>fixture.reload());
+    assert.equal(await control.getAttribute('aria-expanded'),'true');
+    assert.equal(await cold.locator('svg path').count(),2);
+    assert.equal(await cold.locator('svg').getAttribute('fill'),'currentColor');
+    assert.equal(await cold.evaluate(()=>document.activeElement.id),'disclosure');
+    assert.equal(await cold.evaluate(()=>fixture.view.state().immediate),true);
+    assert.equal(await cold.locator('#load-status').textContent(),'Appearance loaded.');
+    const retained=await cold.locator('svg').innerHTML();appearanceFault={mode:'http'};
+    await cold.evaluate(()=>fixture.reload());
+    assert.equal(await cold.locator('svg').innerHTML(),retained);
+    assert.match(await cold.locator('#load-status').textContent(),/retaining/);
+    assert.equal(await control.getAttribute('aria-expanded'),'true');
+    coldCases.push({failure:mode,pendingUsable:true,failedUsable:true,directionalRTL:true,providerRequests:expectedRequests,
+      persisted:true,recoveryPreservesOpen:true,recoveryPreservesFocus:true,recoveryReduced:true,selectedFamily:'solid',selectedVariant:'badge',lastValidRetained:true});
+    appearanceFault=null;await cold.close();await publish({...initial.config,motion:'standard'});
+  }
+  record('COLD-RECOVERY',{cases:coldCases});
   await page.evaluate(()=>{document.querySelector('button').click();fixture.view.destroy();});
   const deadD=await page.locator('svg path').getAttribute('d');await page.waitForTimeout(120);
   assert.equal(await page.locator('svg path').getAttribute('d'),deadD);
   const deadState=await state();await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>document.querySelector('button').click());
   assert.equal((await state()).open,deadState.open);record('CLEANUP',{disposed:true,stable:true});
   const failed=await context.newPage();await failed.route('**/vendor/**',r=>r.abort());
-  await failed.goto(origin+'/icon-specimen/index.html');await failed.waitForFunction(()=>window.ready);
+  await failed.goto(specimenOrigin+'/icon-specimen/index.html');await failed.waitForFunction(()=>window.ready);
   await failed.getByRole('button',{name:'Visit instructions'}).click();
   assert.equal(await failed.locator('#panel').isVisible(),true);assert.equal(await failed.evaluate(()=>fixture.view.state().mode),'static');
   record('PROVIDER-FAILURE',{usable:true,mode:'static'});
@@ -164,7 +267,7 @@ try {
   const source={};
   for(const file of ['scripts/test_icon_morph_browser.mjs','scripts/runtime_appearance.py','scripts/runtime_icons.py',...['index.html','adapter.mjs','fixture.mjs','provider.json'].map(p=>'evals/fixtures/icon-morph/'+p)])
     source[file]=hash((await readFile(join(root,file))).toString().replaceAll('\r\n','\n'));
-  const report={schema_version:1,stage:'R14.3',recorded_on:'2026-11-02',engine:{name:pin.name,version:pin.version,integrity:pin.integrity},browser:browser.version(),source,observations,
-    artifacts:{'mobile.png':hash(await readFile(join(out,'mobile.png')))},limitations:'Synthetic existing appearance API. Static assets routed by Playwright; API writes use real HTTP/session/CSRF/store. No production or WordPress runtime change; no Aria catalog asset or exporter execution; unsupported solid/badge pair is this adapter restriction, not engine 2.x limitation.'};
+  const report={schema_version:1,stage:'R15.3',recorded_on:'2026-11-02',engine:{name:pin.name,version:pin.version,integrity:pin.integrity},browser:browser.version(),source,observations,
+    artifacts:{'mobile.png':hash(await readFile(join(out,'mobile.png')))},limitations:'Synthetic existing appearance API. Static assets served over loopback HTTP; API writes use real HTTP/session/CSRF/store. BFCache tests require actual persisted restoration. No production or WordPress runtime change; no Aria catalog asset or exporter execution; unsupported solid/badge pair is this adapter restriction, not engine 2.x limitation.'};
   await writeFile(join(out,'runtime.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:observations.length,browser:report.browser,gzip_bytes:gzip,output:out}));
-} finally {await browser?.close();server.kill();}
+} finally {await browser?.close();assetServer?.closeAllConnections();assetServer?.close();server.kill();}

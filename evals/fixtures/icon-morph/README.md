@@ -38,11 +38,31 @@ Run `node scripts/test_icon_morph_browser.mjs` with these existing-tool paths:
 
 No tool download is performed by the runner. It starts/stops its own loopback
 server and browser; synthetic SQLite remains in its unique host temp directory.
-Playwright routes only static specimen/vendor files. All appearance operations
+An isolated loopback HTTP server serves specimen/vendor files, preserving real
+BFCache eligibility. Published reads are forwarded to the existing fixture API;
+controlled failures are injected only by the test runner. All appearance operations
 use the real existing authenticated API. Private preview is explicitly applied to
 the specimen view; publication reaches it on reload, not a claimed push subscription.
 
 ## Recorded acceptance
+
+The [R15 runtime report](../../r15/evidence/runtime.json) and
+[mobile capture](../../r15/evidence/mobile.png) bind the current specimen and runner:
+17 observation groups in Edge 156.0.4314.58 at 390x844. In addition to the original
+scenarios, four real persisted BFCache cycles cover open/closed and static/provider
+states, keyboard/focus, single activation and OS reduction changed while away.
+Cold-start HTTP/network failures cover delayed loading, truthful RTL state,
+zero-provider fallback, cached navigation, recovery into a selected solid/badge
+appearance and retention after a subsequent failure. Controlled DOM regressions
+separately cover late imports, repeated suspension/resume and final destruction.
+
+`scripts/r15_evaluation.py` verifies required current observations, reviewed report
+identity, exact producer/artifact hashes and preserved R14 history. The approved
+static pair is available before configuration resolves; no provider is loaded
+until valid configuration is applied. Suspension preserves state; final teardown
+remains permanent. These corrections do not add production integration.
+
+### Historical R14 checkpoint
 
 [Runtime report](../../r14/evidence/icon-runtime.json) and
 [mobile capture](../../r14/evidence/mobile.png): 15 assertions/observation groups,
@@ -50,6 +70,10 @@ Edge 156.0.4314.58 at 390×844. Includes normal/keyboard, rapid interruption, li
 reduction, personal/owner off, unsupported-pair static fallback, private preview,
 save/reopen/publish, invalid/denied writes, reset/rollback/history, configuration
 failure, provider failure and cleanup. No clipping was observed in the capture.
+That report remains unchanged and is checked against its
+[preserved source snapshot](../../r15/README.md). Its configuration-failure case
+followed a successful load; its cleanup case did not cover BFCache restoration.
+Those missing cases are verified separately by R15, not backfilled into R14.
 
 The first unminified module route exceeded the preselected 16,000-byte gzip ceiling
 (17,671 bytes); bundling/minification reduced actual requested provider modules to

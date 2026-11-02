@@ -2,6 +2,13 @@
 
 User-facing release summary. Full technical and partial development notes remain in the [dated archive](docs/archive/CHANGELOG-2026-10-06.md). Current progress and acceptance evidence live in the [roadmap](ROADMAP.md), not historical pending notes.
 
+## [3.7.1] - 2026-11-02
+
+- Reject duplicate raw JSON fields across R14 evidence, source and release readers before canonical hashing; preserve valid historical records.
+- Repair the bounded icon specimen after browser back/forward-cache restoration, including deferred work, focus and owner/user/OS motion policy.
+- Keep disclosure icons and actions usable while initial appearance settings are pending or unavailable; recover the selected family without losing state or focus.
+- Add targeted regressions and source-bound runtime evidence. Portable Skill guidance and provider dependencies are unchanged; this is a harness/specimen patch, not production or fresh model certification. [Delivery record](docs/releases/3.7.1.md).
+
 ## [3.7.0] - 2026-11-02
 
 - Reject missing, duplicate or contradictory legacy viewport evidence, including actual font records and the separate bounded zoom contract; valid historical reports remain unchanged.

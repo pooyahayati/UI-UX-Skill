@@ -6,15 +6,18 @@ from pathlib import Path
 from unittest.mock import patch
 from behavior_evaluation import ROOT
 from r14_evaluation import ACCEPTED, errors
+from evidence_json import load_json
+
+HISTORICAL_RUNTIME = ROOT/'evals/r15/r14-runtime-source'
 
 class R14Evaluation(unittest.TestCase):
     def test_all_reviewed_records_and_bound_artifacts(self):
         for name in ACCEPTED:
-            self.assertEqual(errors(name,json.loads((ROOT/name).read_text(encoding="utf-8"))),[],name)
+            self.assertEqual(errors(name,runtime_source_root=HISTORICAL_RUNTIME),[],name)
 
     def test_missing_relabelled_or_contradictory_rows_are_rejected(self):
         for name in ACCEPTED:
-            original=json.loads((ROOT/name).read_text(encoding="utf-8"))
+            original=load_json(ROOT/name)
             key="observations" if "observations" in original else "cases"
             for mutation in ("missing","duplicate","status","details"):
                 changed=copy.deepcopy(original)
@@ -32,11 +35,11 @@ class R14Evaluation(unittest.TestCase):
         }
         original_bytes=Path.read_bytes;original_text=Path.read_text
         for name,paths in targets.items():
-            result=json.loads((ROOT/name).read_text(encoding="utf-8"))
+            result=load_json(ROOT/name)
             for path in paths:
-                target=ROOT/path
+                target=(HISTORICAL_RUNTIME if name.endswith('icon-runtime.json') and not path.startswith('evals/r14/') else ROOT)/path
                 with patch.object(Path,"read_bytes",lambda p: b"tampered" if p==target else original_bytes(p)), \
                      patch.object(Path,"read_text",lambda p,*a,**k: "tampered" if p==target else original_text(p,*a,**k)):
-                    self.assertTrue(errors(name,result),path)
+                    self.assertTrue(errors(name,result,runtime_source_root=HISTORICAL_RUNTIME),path)
 
 if __name__=="__main__":unittest.main()
